@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <style type="text/css">
+        body {
+            color: #444444;
+            background: #fffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        p, td {
+            font-size: 12px;
+            color: #444444;
+            margin: 0;
+            font-family: arial, verdana, "Lucida Grande", helvetica, sans-serif;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        td table tr td {
+            padding: 0px;
+        }
+
+        #main-box {
+            background: #fffffff;
+            width: 540px;
+            margin: 20px auto;
+            text-align: left;
+            border: 1px solid #e5e5e5;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        #main-box-inner {
+            padding: 20px;
+            padding-bottom: 10px;
+        }
+
+        .text-div {
+            text-align: left;
+            width: 488px;
+            margin: 5px 20px 0px 20px;
+        }
+
+        .stats {
+            text-align: left;
+            background: #eeeeee;
+            border-collapse: collapse;
+        }
+
+        .stats p {
+            color: #666666;
+            font-size: 12px;
+            line-height: 20px;
+            margin-left: 3px;
+        }
+
+        .spacer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<table id="main-box">
+    <tr>
+        <td><img src="{{ userLogo(user) }}"/>
+    <tr>
+    <tr>
+        <td>
+            Wenn die E-Mail nicht richtig angezeigt wird, klick
+            <a href="{{ task.id|postTaskPermalink }}">hier</a>
+        </td>
+    <tr>
+
+    <tr>
+        <td>
+            <div class="text-div">
+                {{ task.content|raw }}
+                _____________________________________________________________
+                <br/><br/>
+                <b>{{ task.title|raw }}</b><br/>
+                {{ taskDescription|raw }}
+
+            </div>
+
+            <table class="stats">
+                <tr style="background: #ffffff;">
+                    <td width="20"></td>
+                    <td width="510" height="20"></td>
+                    <td width="20"></td>
+                </tr>
+                <tr style="background: #ffffff;">
+                    <td width="20"></td>
+                    <td width="510" height="20" style="text-align: center;">
+                        <a href="{{ task.id|postTaskPermalink }}" border="0">
+                            <img src="{{ asset('/wp-content/uploads/email/weeklytask.png') }}" border="0"/>
+                        </a>
+                    </td>
+                    <td width="20"></td>
+                </tr>
+                <tr style="background: #ffffff;">
+                    <td width="20"></td>
+                    <td width="510" height="20"></td>
+                    <td width="20"></td>
+                </tr>
+                <tr>
+                    <td width="20"></td>
+                    <td width="510" height="14"></td>
+                    <td width="20"></td>
+                </tr>
+                <tr>
+                    <td width="20"></td>
+                    <td width="510">
+                        <table>
+                            <tr>
+                                <td><p><b>Übungen fertig</b></p></td>
+                                <td width="50"></td>
+                                <td><p><b>Übungen zu machen</b></p></td>
+                                <td width="50"></td>
+                                <td><p><b>Punkte gesamt</b></p></td>
+                            </tr>
+                            <tr>
+                                <td><p>{{ taskCountPointsProcessed }}</p></td>
+                                <td width="50"></td>
+                                <td><p>{{ taskCount }}</p></td>
+                                <td width="50"></td>
+                                <td><p>{{ taskCountPointsProcessed }}</p></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="20"></td>
+                </tr>
+                <tr>
+                    <td width="20"></td>
+                    <td width="510" height="18"></td>
+                    <td width="20"></td>
+                </tr>
+                <tr>
+                    <td width="20">&nbsp;</td>
+                    <td width="510" height="18">&nbsp;</td>
+                    <td width="20">&nbsp;</td>
+                </tr>
+            </table>
+    </tr>
+</table>
+</body>
+</html>

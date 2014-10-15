@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="content">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="countPoint">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
+            </constraint>
+        </property>
+        <property name="weekId">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="correct">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="countPoint">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="description">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="countPoint">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">numeric</option>
+                <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan">
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan">
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser">
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer">
+    </class>
+
+    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser">
+    </class>
+
+</constraint-mapping>

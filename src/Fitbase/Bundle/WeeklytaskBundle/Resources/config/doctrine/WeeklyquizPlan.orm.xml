@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan" table="fitbase_weeklyquiz_plan"
+            repository-class="Fitbase\Bundle\WeeklytaskBundle\Repository\WeeklyquizPlanRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="quizId" type="integer" column="quiz_id"/>
+        <field name="userId" type="integer" column="user_id"/>
+        <field name="weekId" type="integer" column="week_id"/>
+        <field name="weeklytaskId" type="integer" column="weeklytask_id"/>
+        <field name="date" type="datetime" column="date"/>
+        <field name="processed" type="boolean" column="processed"/>
+        <field name="processedDate" type="datetime" column="processed_date"/>
+
+
+    </entity>
+</doctrine-mapping>

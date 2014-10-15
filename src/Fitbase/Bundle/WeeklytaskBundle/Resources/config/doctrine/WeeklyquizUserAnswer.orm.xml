@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer" table="ors_weeklyquiz_user_answer"
+            repository-class="Fitbase\Bundle\WeeklytaskBundle\Repository\WeeklyquizUserAnswerRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="correct" type="string" column="correct"/>
+        <field name="countPoint" type="integer" column="count_point"/>
+
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+            <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
+
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz">
+            <join-column name="quiz_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-one field="question" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion">
+            <join-column name="question_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-many field="answerUser" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">
+            <join-table name="ors_weeklytask_user_answer_user">
+                <join-columns>
+                    <join-column name="user_answer_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="answer_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="answerRight" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">
+            <join-table name="ors_weeklytask_user_answer_right">
+                <join-columns>
+                    <join-column name="user_answer_id" referenced-column-name="id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="answer_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase_validator.weeklytask_question" class="Fitbase\Bundle\WeeklytaskBundle\Form\Constraints\WeeklyquizQuestionValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="weeklytask_question" />
+        </service>
+
+        <service id="fitbase_validator.weeklytask_user_answer" class="Fitbase\Bundle\WeeklytaskBundle\Form\Constraints\WeeklyquizUserAnswerValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="weeklytask_user_answer" />
+        </service>
+
+    </services>
+
+</container>

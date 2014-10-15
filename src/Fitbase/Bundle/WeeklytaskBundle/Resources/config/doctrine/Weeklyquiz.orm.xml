@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz" table="fitbase_weeklyquiz"
+            repository-class="Fitbase\Bundle\WeeklytaskBundle\Repository\WeeklyquizRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" type="string" column="name"/>
+        <field name="format" type="string" column="format"/>
+        <field name="description" type="text" column="description"/>
+        <field name="countPoint" type="integer" column="count_point"/>
+
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
+        <one-to-many field="answers" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer" mapped-by="quiz"/>
+
+    </entity>
+</doctrine-mapping>

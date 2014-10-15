@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser" table="fitbase_weeklytask_user"
+            repository-class="Fitbase\Bundle\WeeklytaskBundle\Repository\WeeklytaskUserRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="userId" type="integer" column="user_id"/>
+        <field name="weekId" type="integer" column="week_id"/>
+        <field name="postId" type="integer" column="post_id"/>
+        <field name="weeklytaskId" type="integer" column="weeklytask_id"/>
+        <field name="code" type="boolean" column="code"/>
+        <field name="done" type="boolean" column="done"/>
+        <field name="doneDate" type="datetime" column="done_date"/>
+        <field name="countPoint" type="integer" column="count_point"/>
+
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+            <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
+
+
+    </entity>
+</doctrine-mapping>

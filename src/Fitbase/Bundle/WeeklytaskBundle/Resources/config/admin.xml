@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.admin.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklytaskAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenaufgaben"/>
+            <argument/>
+            <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.weeklyquiz" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklyquizAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenquizze"/>
+            <argument/>
+            <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.weeklyquiz_question" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklyquizQuestionAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Questions"/>
+            <argument/>
+            <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion</argument>
+            <argument/>
+        </service>
+
+
+    </services>
+</container>

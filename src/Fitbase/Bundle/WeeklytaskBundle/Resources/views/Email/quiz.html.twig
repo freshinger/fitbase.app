@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <style type="text/css">
+        body {
+            color: #444444;
+            background: #f2f2f2;
+            text-align: center;
+            font-size: 12px;
+            padding: 20px;
+        }
+
+        p, td {
+            font-size: 13px;
+            line-height: 19px;
+            color: #444444;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        #main-box {
+            background: #fffffff;
+            width: 540px;
+            text-align: left;
+            text-align: center;
+        }
+
+        .text-div {
+            text-align: left;
+        }
+
+        .spacer {
+            margin-top: 20px;
+        }
+
+        p.light {
+            color: #aaaaaa;
+        }
+
+        p.light a {
+            color: #999999;
+        }
+
+        td.button {
+            background-color: #f2f2f2;
+            padding: 10px 20px 10px 20px;
+            moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        td.button a {
+            font-weight: bold;
+            text-decoration: none;;
+        }
+
+        table.statistics {
+            background: #efefef;
+            text-align: left;
+            margin-top: 14px;
+            width: 100%;
+            padding: 7px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<table bgcolor="#FFFFFF" cellspacing="20" align="center">
+    <tr>
+        <td>
+            <table id="main-box" cellspacing="5">
+                <tr>
+                    <td><img src="{{ userLogo(user) }}"/>
+                <tr>
+                <tr>
+                    <td>
+                        <div class="text-div">
+
+                            <p>Guten Tag {{ first_name }} {{ last_name }},</p>
+
+                            <p>passend zum Freitag, wollen wir Sie an Ihr Quiz erinnern,
+                                mit dem Sie Ihr Wissen über die letzte Wochenaufgabe zum Thema: {{ weeklytask.category }} überprüfen können.</em></p>
+
+                            <p>Wir wünschen Ihnen viel Spaß!</p>
+
+                            <p>Ihr Online-Rückenschule Team</p>
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <table border="0" align="center" cellspacing="7">
+                            <tr>
+                                <td colspan="2" align="center" class="button" style="background-color:#33CC66;">
+                                    <a href="{{ asset('/mitgliederbereich') }}?quizcode={{ weeklytaskUserQuiz.code }}&login_code={{ login_code }}">
+                                        Das Quiz starten
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <p>
+                            <a href="{{ asset('/mitgliederbereich/profil/') }}?user_id={{ user.id }}&login_code={{ login_code }}">
+                                Erinnerungsemail-Einstellungen
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <p>
+                            <a href="{{ asset('/mitgliederbereich/profil/') }}?user_id={{ user.id }}&login_code={{ login_code }}">
+                                Erinnerung pausieren
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

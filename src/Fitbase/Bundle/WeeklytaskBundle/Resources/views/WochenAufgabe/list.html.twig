@@ -1,0 +1,126 @@
+{% extends "FitbaseWeeklytaskBundle::wochenaufgaben.html.twig" %}
+
+
+{% block content %}
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Wochenaufgaben
+            <a class="add-new-h2" href="?page=reminder_plan_create">
+                Neu hinzufügen
+            </a>
+        </h2>
+
+
+        <h2>
+            Wochenaufgaben zu versenden
+        </h2>
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <p>
+            Diese Erinnerungen werden heute abgeschickt.
+            Wann sie abgeschickt werden, kann man im Feld "Date" sehen.
+        </p>
+
+        <form method="get">
+            <table class="wp-list-table widefat fixed company">
+                <thead>
+                <tr>
+                    <th class="manage-column">Id</th>
+                    <th class="manage-column">Aufgabe</th>
+                    <th class="manage-column">Benutzer</th>
+                    <th class="manage-column">Date</th>
+                    <th class="manage-column">Status</th>
+                    <th class="manage-column">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if tasks|length > 0 %}
+                    {% for task in tasks %}
+                        <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                            <td>{{ task.id }}</td>
+                            <td>
+                                <a href="/wp-admin/post.php?post={{ task.taskId }}&action=edit">
+                                    {{ task.taskId|title }}
+                                </a>
+                            </td>
+                            <td>{{ task.userId|username }}</td>
+                            <td>{{ task.date|date('d.m.Y H:i:s') }}</td>
+                            <td>{{ task.processed|status }}</td>
+                            <td><a href="?page=wochenaufgaben_plan&wochenaufgabe_task_id={{ task.id }}">verschicken</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr style="background: #f2f0f0;">
+                        <td><b>Total: {{ tasks|length }}</b></td>
+                        <td colspan="5"></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Kein Remind-Plan gefunden</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>Versendete Wochenaufgaben für die letzte 2 Wochen</h2>
+
+        <p> Diese Erinnerungen werden heute abgeschickt. Wann sie abgeschickt werden, kann man im Feld "Date" sehen.</p>
+
+
+        <form method="get">
+            <table class="wp-list-table widefat fixed company">
+                <thead>
+                <tr>
+                    <th class="manage-column">Id</th>
+                    <th class="manage-column">Aufgabe</th>
+                    <th class="manage-column">Benutzer</th>
+                    <th class="manage-column">Date</th>
+                    <th class="manage-column">Status</th>
+                    <th class="manage-column">Versand-Date</th>
+                    <th class="manage-column">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if archive|length > 0 %}
+                    {% for task in archive %}
+                        <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                            <td>{{ task.id }}</td>
+                            <td>
+                                <a href="/wp-admin/post.php?post={{ task.taskId }}&action=edit">
+                                    {{ task.taskId|title }}
+                                </a>
+                            </td>
+                            <td>{{ task.userId|username }}</td>
+                            <td>{{ task.date|date('d.m.Y H:i:s') }}</td>
+                            <td>{{ task.processed|status }}</td>
+                            <td>{{ task.processedDate|date('d.m.Y H:i:s') }}</td>
+                            <td><a href="?page=wochenaufgaben_plan&wochenaufgabe_task_id={{ task.id }}">verschicken</a>
+                        </tr>
+                    {% endfor %}
+                    <tr style="background: #f2f0f0;">
+                        <td><b>Total: {{ archive|length }}</b></td>
+                        <td colspan="6"></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Keine Wochenaufgabe gefunden</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+
+{% endblock content %}

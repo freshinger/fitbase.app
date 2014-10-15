@@ -1,0 +1,27 @@
+{% if user %}
+    {% if processed %}
+        <table>
+            <tbody>
+            <tr>
+                <td class="blue center" style="width: 100px;"></td>
+                <td class="blue center">
+                    <img src="/wp-content/uploads/icon_check_green.png" alt=""/>
+                </td>
+                <td class="blue center">
+                    <strong>Diese Wochenaufgabe wurde bereits erledigt</strong>
+                </td>
+                <td class="blue center" style="width: 100px;"></td>
+            </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <div class="big-button center">
+            <a href="?processed=true" class="btn btn-primary">
+                Ich habe diese Aufgabe erledigt
+            </a>
+        </div>
+    {% endif %}
+{% else %}
+
+{% endif %}
+

@@ -1,0 +1,108 @@
+{% extends "FitbaseWeeklytaskBundle::wochenaufgaben.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Das Quiz modifizieren
+            <a class="add-new-h2" href="?page=wochenquizzen">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+
+        {#<h2>#}
+            {#Die Daten des Quizes ändern#}
+        {#</h2>#}
+
+        {#<p>#}
+            {#Die Beschreibung und der Name werden den Benutzer angezeigt.#}
+        {#</p>#}
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {% form_theme form 'FitbaseWeeklytaskBundle:Weeklytask:form.html.twig' %}
+
+        {{ form(form) }}
+
+
+        <h2>
+            Fragen des Quizes
+        </h2>
+
+        <p>
+            Die Benutzer werden diese Fragen beantworten. Jede Frage hat auch die Liste mit der Antworten.
+            Die Antwortliste kann man in der Einstellungen der Frage regeln.
+        </p>
+        <table class="wp-list-table widefat">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Id
+                </th>
+                <th class="manage-column">
+                    Name
+                </th>
+                <th class="manage-column">
+                    Type
+                </th>
+                <th class="manage-column">
+                    Description
+                </th>
+                <th class="manage-column">
+                    Punkte
+                </th>
+                <th class="manage-column">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collection|length > 0 %}
+                {% for question in collection %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>{{ loop.index }}</td>
+                        <td nowrap>{{ question.name }}</td>
+                        <td nowrap>{{ question.type }}</td>
+                        <td>{{ question.description }}</td>
+                        <td>{{ question.countPoint }}</td>
+                        <td>
+                            <a href="?page=wochenquizzen&question_id_edit={{ question.id }}">
+                                ändern
+                            </a>
+                            <a href="?page=wochenquizzen&question_id_remove={{ question.id }}">
+                                löschen
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+
+
+        <h2>
+            Eine neue Frage anlegen
+        </h2>
+
+        <p>
+            Die Beschreibung und der Name werden den Benutzer angezeigt.
+        </p>
+        {% form_theme formQuestion 'FitbaseWeeklytaskBundle:Weeklytask:form.html.twig' %}
+
+        {{ form(formQuestion) }}
+
+
+    </div>
+
+{% endblock content %}

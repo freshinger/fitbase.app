@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="admin.xml"/>
+        <import resource="listeners.xml"/>
+        <import resource="validators.xml"/>
+    </imports>
+    
+    <!--
+    <parameters>
+        <parameter key="fitbase_aufgabe.example.class">Fitbase\Bundle\WeeklytaskBundle\Example</parameter>
+    </parameters>
+
+    -->
+    <services>
+        <service id="fitbase_shortcode.wochenaufgaben" class="Fitbase\Bundle\WeeklytaskBundle\Controller\WochenAufgabeController">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase_helper.task" class="Fitbase\Bundle\WeeklytaskBundle\Helper\WeektaskHelper">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="fitbase_service.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Services\ServiceWeeklytask">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase_formtype.post" class="Fitbase\Bundle\WeeklytaskBundle\Form\WeeklytaskPostType">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="form.type" alias="post"/>
+        </service>
+
+        <service id="fitbase_formtype.quiz" class="Fitbase\Bundle\WeeklytaskBundle\Form\WeeklyquizType">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="form.type" alias="quiz"/>
+        </service>
+
+
+    </services>
+
+</container>
