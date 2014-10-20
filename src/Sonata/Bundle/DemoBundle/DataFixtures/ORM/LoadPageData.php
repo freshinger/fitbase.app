@@ -1213,6 +1213,7 @@ CONTENT
         $text->setPage($global);
 
         $pageManager->save($global);
+
     }
 
     /**

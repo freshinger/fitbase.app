@@ -15,7 +15,6 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
  */
 class LoadWeeklyquiz extends AbstractFixture implements OrderedFixtureInterface
 {
-
     /**
      * Set loading order.
      *

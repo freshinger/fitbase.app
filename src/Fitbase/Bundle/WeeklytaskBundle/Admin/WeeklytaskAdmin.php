@@ -43,6 +43,9 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
+            ->add('tag', null, array(
+                'label' => 'Tags',
+            ))
             ->add('content', null, array(
                 'label' => 'Text',
                 'safe' => true,
@@ -66,6 +69,9 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('name', null, array(
                 'label' => 'Name',
+            ))
+            ->add('tag', null, array(
+                'label' => 'Tags',
             ))
             ->add('weekId', null, array(
                 'label' => 'Woche',
@@ -108,6 +114,9 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->with('General')
             ->add('name', null, array(
                 'label' => 'Name',
+            ))
+            ->add('tag', null, array(
+                'label' => 'Tags',
             ))
             ->add('content', 'sonata_formatter_type', array(
                 'event_dispatcher' => $this->container->get('event_dispatcher'),

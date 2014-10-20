@@ -6,6 +6,7 @@
 
     <imports>
         <import resource="admin.xml"/>
+        <import resource="blocks.xml"/>
         <import resource="listeners.xml"/>
         <import resource="validators.xml"/>
     </imports>

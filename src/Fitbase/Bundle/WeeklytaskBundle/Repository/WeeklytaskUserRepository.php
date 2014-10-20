@@ -222,7 +222,7 @@ class WeeklytaskUserRepository extends EntityRepository
     /**
      * Find count of processed by user tasks
      * @param $user
-     * @return mixed
+     * @return int
      */
     public function findCountByUserAndDone($user)
     {
@@ -234,13 +234,13 @@ class WeeklytaskUserRepository extends EntityRepository
             $this->getExprDone($queryBuilder)
         ));
 
-        return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+        return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 
     /**
      * Find count of point of processed tasks
      * @param $user
-     * @return mixed
+     * @return int
      */
     public function findSumPointByUserAndDone($user)
     {
@@ -252,7 +252,7 @@ class WeeklytaskUserRepository extends EntityRepository
             $this->getExprDone($queryBuilder)
         ));
 
-        return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+        return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 
     /**

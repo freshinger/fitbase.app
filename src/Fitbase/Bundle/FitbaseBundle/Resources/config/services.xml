@@ -10,13 +10,17 @@
         <!--<import resource="validators.xml"/>-->
     <!--</imports>-->
 
-    <!--<services>-->
+    <services>
 
-        <!--<service id="fitbase" class="Fitbase\Bundle\FitbaseBundle\Service\ServiceFitbase">-->
-            <!--<call method="setContainer">-->
-                <!--<argument type="service" id="service_container"/>-->
-            <!--</call>-->
-        <!--</service>-->
+        <service id="user" class="Fitbase\Bundle\FitbaseBundle\Service\ServiceUser">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="entity_manager" class="%doctrine.orm.entity_manager.class%" factory-service="doctrine" factory-method="getManager"/>
+
 
 
         <!--<service id="fitbase_helper.mentee" class="Fitbase\Bundle\FitbaseBundle\Helper\MenteeHelper">-->
@@ -26,7 +30,7 @@
             <!--<tag name="twig.extension"/>-->
         <!--</service>-->
 
-    <!--</services>-->
+    </services>
 
 
 </container>

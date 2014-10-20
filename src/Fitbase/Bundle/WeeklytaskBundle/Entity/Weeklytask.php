@@ -18,6 +18,23 @@ class Weeklytask
     protected $countPoint;
     protected $quiz;
     protected $weekId;
+    protected $tag;
+
+    /**
+     * @return mixed
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @param mixed $tag
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+    }
 
     /**
      * @return mixed
