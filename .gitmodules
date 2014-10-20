@@ -4,3 +4,6 @@
 [submodule "vendor/doctrine/data-fixturess"]
 	path = vendor/doctrine/data-fixtures
 	url = git://github.com/doctrine/data-fixtures.git
+[submodule "vendor/doctrine/doctrine-migrations-bundle/Doctrine/Bundle/MigrationsBundle"]
+	path = vendor/doctrine/doctrine-migrations-bundle/Doctrine/Bundle/MigrationsBundle
+	url = git://github.com/doctrine/DoctrineMigrationsBundle.git
