@@ -9,7 +9,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenaufgaben"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Aufgaben"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask</argument>
             <argument/>
@@ -19,7 +19,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenquizze"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Quizze"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz</argument>
             <argument/>
@@ -29,7 +29,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Questions"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Fragen"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion</argument>
             <argument/>

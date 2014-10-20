@@ -75,7 +75,8 @@
         "stephpy/TimelineBundle": "~2.0@dev",
         "stephpy/timeline": "~1.0@dev",
 
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "webonaute/doctrine-fixtures-generator-bundle": "v1.0.2"
     },
 
     "require-dev": {
