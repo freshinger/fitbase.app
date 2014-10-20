@@ -22,3 +22,6 @@
 [submodule "vendor/sonata-project/timeline-bundle"]
 	path = vendor/sonata-project/timeline-bundle
 	url = git://github.com/sonata-project/SonataTimelineBundle.git
+[submodule "vendor/stephpy/TimelineBundle"]
+	path = vendor/stephpy/TimelineBundle
+	url = git://github.com/stephpy/timeline-bundle.git
