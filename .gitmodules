@@ -13,3 +13,6 @@
 [submodule "vendor/sonata-project/comment-bundle"]
 	path = vendor/sonata-project/comment-bundle
 	url = git://github.com/sonata-project/SonataCommentBundle.git
+[submodule "vendor/sonata-project/datagrid-bundle"]
+	path = vendor/sonata-project/datagrid-bundle
+	url = git://github.com/sonata-project/SonataDatagridBundle.git
