@@ -7,3 +7,6 @@
 [submodule "vendor/doctrine/doctrine-migrations-bundle/Doctrine/Bundle/MigrationsBundle"]
 	path = vendor/doctrine/doctrine-migrations-bundle/Doctrine/Bundle/MigrationsBundle
 	url = git://github.com/doctrine/DoctrineMigrationsBundle.git
+[submodule "vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle"]
+	path = vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle
+	url = git://github.com/FriendsOfSymfony/FOSCommentBundle.git
