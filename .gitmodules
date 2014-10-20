@@ -10,3 +10,6 @@
 [submodule "vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle"]
 	path = vendor/friendsofsymfony/comment-bundle/FOS/CommentBundle
 	url = git://github.com/FriendsOfSymfony/FOSCommentBundle.git
+[submodule "vendor/sonata-project/comment-bundle"]
+	path = vendor/sonata-project/comment-bundle
+	url = git://github.com/sonata-project/SonataCommentBundle.git
