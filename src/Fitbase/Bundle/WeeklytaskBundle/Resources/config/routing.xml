@@ -5,58 +5,67 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
 
-    <route id="weeklytask" pattern="/administration/weeklytask/list">
+    <route id="weeklytask_show" pattern="/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytaskShow</default>
+    </route>
+
+    <route id="weeklytask" pattern="/">
         <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>
     </route>
 
-    <route id="weeklytask_plan" pattern="/administration/weeklytask/plan">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytaskPlan</default>
-    </route>
+
+    <!--<route id="weeklytask" pattern="/administration/weeklytask/list">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>-->
+    <!--</route>-->
+
+    <!--<route id="weeklytask_plan" pattern="/administration/weeklytask/plan">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytaskPlan</default>-->
+    <!--</route>-->
 
 
-    <route id="weeklyquiz" pattern="/administration/weeklyquiz/list">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquiz</default>
-    </route>
+    <!--<route id="weeklyquiz" pattern="/administration/weeklyquiz/list">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquiz</default>-->
+    <!--</route>-->
 
-    <route id="weeklyquiz_show" pattern="/administration/weeklyquiz/show">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquizShow</default>
-    </route>
+    <!--<route id="weeklyquiz_show" pattern="/administration/weeklyquiz/show">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquizShow</default>-->
+    <!--</route>-->
 
-    <route id="weeklyquiz_plan" pattern="/administration/weeklyquiz/plan">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquizPlan</default>
-    </route>
+    <!--<route id="weeklyquiz_plan" pattern="/administration/weeklyquiz/plan">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquizPlan</default>-->
+    <!--</route>-->
 
-    <route id="weeklyquiz_user" pattern="/mitgliederbereich/wochenaufgaben/quiz">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklyquizUser:weeklyquizUser</default>
-    </route>
+    <!--<route id="weeklyquiz_user" pattern="/mitgliederbereich/wochenaufgaben/quiz">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklyquizUser:weeklyquizUser</default>-->
+    <!--</route>-->
 
-    <route id="weeklyquiz_user_ajax" pattern="/mitgliederbereich/wochenaufgaben/ajax/quiz">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklyquizUser:weeklyquizUserAjax</default>
-    </route>
-
-
-    <route id="weeklytask_user_done" pattern="/mitgliederbereich/wochenaufgaben/done">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listDone</default>
-    </route>
-
-    <route id="weeklytask_user_list" pattern="/mitgliederbereich/wochenaufgaben/list">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listToDone</default>
-    </route>
-
-    <route id="weeklytask_user_count_done" pattern="/mitgliederbereich/wochenaufgaben/count/done">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:countDone</default>
-    </route>
-
-    <route id="weeklytask_user_count_point" pattern="/mitgliederbereich/wochenaufgaben/count/point">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:countPoint</default>
-    </route>
-
-    <route id="weeklytask_user_post" pattern="/mitgliederbereich/wochenaufgaben/post">
-        <default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:post</default>
-    </route>
+    <!--<route id="weeklyquiz_user_ajax" pattern="/mitgliederbereich/wochenaufgaben/ajax/quiz">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklyquizUser:weeklyquizUserAjax</default>-->
+    <!--</route>-->
 
 
-    <route id="fitbase_weekly_task" pattern="/mitgliederbereich/wochenaufgaben/">
-        <default key="_controller">FitbaseWeeklytaskBundle:WochenAufgabe:index</default>
-    </route>
+    <!--<route id="weeklytask_user_done" pattern="/mitgliederbereich/wochenaufgaben/done">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listDone</default>-->
+    <!--</route>-->
+
+    <!--<route id="weeklytask_user_list" pattern="/mitgliederbereich/wochenaufgaben/list">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listToDone</default>-->
+    <!--</route>-->
+
+    <!--<route id="weeklytask_user_count_done" pattern="/mitgliederbereich/wochenaufgaben/count/done">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:countDone</default>-->
+    <!--</route>-->
+
+    <!--<route id="weeklytask_user_count_point" pattern="/mitgliederbereich/wochenaufgaben/count/point">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:countPoint</default>-->
+    <!--</route>-->
+
+    <!--<route id="weeklytask_user_post" pattern="/mitgliederbereich/wochenaufgaben/post">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:post</default>-->
+    <!--</route>-->
+
+
+    <!--<route id="fitbase_weekly_task" pattern="/mitgliederbereich/wochenaufgaben/">-->
+    <!--<default key="_controller">FitbaseWeeklytaskBundle:WochenAufgabe:index</default>-->
+    <!--</route>-->
 </routes>

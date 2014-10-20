@@ -43,71 +43,214 @@ class LoadPageOnlineRueckenschuleData extends AbstractFixture implements Contain
      */
     public function load(ObjectManager $manager)
     {
-        $pageManager = $this->getPageManager();
-
-        // Create dashboard or default page
-        $dashboard = $pageManager->create();
-        $dashboard->setCreatedAt(new \DateTime("now"));
-        $dashboard->setUpdatedAt(new \DateTime("now"));
-        $dashboard->setRouteName("page_slug");
-        $dashboard->setName("Dashboard");
-        $dashboard->setTitle("Dashboard - Online - Rückenschule");
-        $dashboard->setSlug("/");
-        $dashboard->setUrl("/");
-        $dashboard->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
-        $dashboard->setTemplateCode("default");
-        $dashboard->setEnabled(1);
-        $dashboard->setPosition(1);
-        $dashboard->setDecorate(1);
-        $dashboard->setSite($this->getReference('online-rueckenschule'));
-        $pageManager->save($dashboard);
-
-        $this->addReference('online-rueckenschule-dashboard', $dashboard);
-
-        $uebungen = $pageManager->create();
-        $uebungen->setCreatedAt(new \DateTime("now"));
-        $uebungen->setUpdatedAt(new \DateTime("now"));
-        $uebungen->setRouteName("page_slug");
-        $uebungen->setType("sonata.page.service.default");
-        $uebungen->setName("Übungen");
-        $uebungen->setTitle("Übungen - Online - Rückenschule");
-        $uebungen->setSlug("uebungen");
-        $uebungen->setUrl("/uebungen");
-        $uebungen->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
-        $uebungen->setParent($dashboard);
-        $uebungen->setTemplateCode("default");
-        $uebungen->setEdited(1);
-        $uebungen->setEnabled(1);
-        $uebungen->setPosition(1);
-        $uebungen->setDecorate(1);
-        $uebungen->setSite($this->getReference('online-rueckenschule'));
-        $pageManager->save($uebungen);
-
-        $this->addReference('online-rueckenschule-uebungen', $uebungen);
+        if (($site = $this->getReference('online-rueckenschule'))) {
+            $pageManager = $this->getPageManager();
+            $blockManager = $this->getBlockManager();
+            $blockInteractor = $this->getBlockInteractor();
 
 
-        $wochanaufgaben = $pageManager->create();
-        $wochanaufgaben->setCreatedAt(new \DateTime("now"));
-        $wochanaufgaben->setUpdatedAt(new \DateTime("now"));
-        $wochanaufgaben->setRouteName("page_slug");
-        $wochanaufgaben->setType("sonata.page.service.default");
-        $wochanaufgaben->setName("Wochanaufgaben");
-        $wochanaufgaben->setTitle("Wochanaufgaben - Online - Rückenschule");
-        $wochanaufgaben->setSlug("wochenaufgaben");
-        $wochanaufgaben->setUrl("/wochenaufgaben");
-        $wochanaufgaben->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
-        $wochanaufgaben->setParent($dashboard);
-        $wochanaufgaben->setTemplateCode("default");
-        $wochanaufgaben->setEdited(1);
-        $wochanaufgaben->setEnabled(1);
-        $wochanaufgaben->setPosition(1);
-        $wochanaufgaben->setDecorate(1);
-        $wochanaufgaben->setSite($this->getReference('online-rueckenschule'));
+            $global = $pageManager->create();
+            $global->setName('global');
+            $global->setRouteName('_page_internal_global');
+            $global->setSite($site);
+            $pageManager->save($global);
 
-        $pageManager->save($wochanaufgaben);
 
-        $this->addReference('online-rueckenschule-wochanaufgaben', $wochanaufgaben);
+            // CREATE A HEADER BLOCK
+            $global->addBlocks($header = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'header',
+            )));
+            $header->setName('The header container');
 
+            $global->addBlocks($headerMenu = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'header-menu',
+            )));
+            $headerMenu->setPosition(2);
+
+            $header->addChildren($headerMenu);
+
+            $headerMenu->setName('The header menu container');
+            $headerMenu->setPosition(3);
+            $headerMenu->addChildren($menu = $blockManager->create());
+
+            $menu->setType('sonata.block.service.menu');
+            $menu->setSetting('menu_name', "FitbaseFitbaseBundle:Builder:mainMenu");
+            $menu->setSetting('safe_labels', true);
+            $menu->setPosition(3);
+            $menu->setEnabled(true);
+            $menu->setPage($global);
+
+
+            if (($dashboard = $this->createPage($site, $global, "Dashboard", "Dashboard - Online - Rückenschule", ""))) {
+                $this->addReference('online-rueckenschule-dashboard', $dashboard);
+
+
+                if (($uebungen = $this->createPage($site, $global, "Übungen", "Übungen - Online - Rückenschule", "uebungen"))) {
+                    $this->addReference('online-rueckenschule-uebungen', $uebungen);
+                }
+
+                if (($questions = $this->createPage($site, $global, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
+                    $this->addReference('online-rueckenschule-questions', $questions);
+                }
+
+                if (($questions = $this->createPage($site, $global, "Abmelden", "Abmelden - Online - Rückenschule", "abmelden"))) {
+                    $this->addReference('online-rueckenschule-abmelden', $questions);
+                }
+            }
+
+
+            $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'footer'
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
+            }));
+
+            $footer->setName('The footer container');
+            // Footer : add 3 children block containers (left, center, right)
+            $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'content'
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
+            }));
+
+            $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'content',
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
+            }));
+
+            $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'content'
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
+            }));
+
+            $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'content'
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
+            }));
+
+            // Footer left: add a simple text block
+            $footerLeft->addChildren($text = $blockManager->create());
+
+            $text->setType('sonata.block.service.text');
+            $text->setSetting('content', <<<CONTENT
+<h2>Fitbase</h2>
+<p><a href="http://twitter.com/fitbase" target="_blank">Follow Fitbase on Twitter</a></p>
+CONTENT
+            );
+
+            $text->setPosition(1);
+            $text->setEnabled(true);
+            $text->setPage($global);
+
+            // Footer left links
+            $footerLinksLeft->addChildren($text = $blockManager->create());
+
+            $text->setType('sonata.block.service.text');
+            $text->setSetting('content', <<<CONTENT
+<h4>PRODUCTS</h4>
+<ul class="links">
+    <li><a href="http://fitbase.de">Fitbase</a></li>
+    <li><a href="http://online-rueckenschule.de">Online-Rückenschule</a></li>
+    <li><a href="http://officephysio.de">Officephysio</a></li>
+</ul>
+CONTENT
+            );
+
+            $text->setPosition(1);
+            $text->setEnabled(true);
+            $text->setPage($global);
+
+            // Footer middle links
+            $footerLinksCenter->addChildren($text = $blockManager->create());
+
+            $text->setType('sonata.block.service.text');
+            $text->setSetting('content', <<<CONTENT
+<h4>ABOUT</h4>
+<ul class="links">
+    <li><a href="/about" target="_blank">About Fitbase</a></li>
+    <li><a href="/legal-notes">Legal notes</a></li>
+    <li><a href="/terms-and-conditions">Terms</a></li>
+</ul>
+CONTENT
+            );
+
+            $text->setPosition(1);
+            $text->setEnabled(true);
+            $text->setPage($global);
+
+            // Footer right links
+            $footerLinksRight->addChildren($text = $blockManager->create());
+
+            $text->setType('sonata.block.service.text');
+            $text->setSetting('content', <<<CONTENT
+<h4>COMMUNITY</h4>
+<ul class="links">
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/contact-us">Contact us</a></li>
+</ul>
+CONTENT
+            );
+
+            $text->setPosition(1);
+            $text->setEnabled(true);
+            $text->setPage($global);
+
+            $pageManager->save($global);
+        }
+    }
+
+
+    /**
+     * Create page
+     * @param $site
+     * @return null|object
+     */
+    public function createPage($site, $parent, $name, $title, $slug)
+    {
+        if (($pageManager = $this->getPageManager())) {
+
+            if (($page = $pageManager->create())) {
+
+                $page->setName($name);
+                $page->setTitle($title);
+                $page->setSlug($slug);
+                $page->setUrl("/$slug");
+                $page->setCreatedAt(new \DateTime("now"));
+                $page->setUpdatedAt(new \DateTime("now"));
+                $page->setRouteName("page_slug");
+                $page->setType("sonata.page.service.default");
+                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
+                $page->setParent($parent);
+                $page->setTemplateCode("default");
+                $page->setEdited(1);
+                $page->setEnabled(1);
+                $page->setPosition(1);
+                $page->setDecorate(1);
+                $page->setSite($site);
+
+                $pageManager->save($page);
+
+                return $page;
+            }
+        }
+        return null;
     }
 
 

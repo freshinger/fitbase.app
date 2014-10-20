@@ -86,7 +86,7 @@ sonata_block:
 
         sonata.demo.block.newsletter:
 
-        fitbase.block.weeklytask:
+        fitbase.block.weeklytask_dashboard:
 
         # Formatter
         sonata.formatter.block.formatter:

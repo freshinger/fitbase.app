@@ -43,6 +43,9 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
+            ->add('quiz', null, array(
+                'label' => 'Quiz',
+            ))
             ->add('type', null, array(
                 'label' => 'Type',
             ))
@@ -70,6 +73,9 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
+            ->add('quiz', null, array(
+                'label' => 'Quiz',
+            ))
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ))
@@ -91,6 +97,9 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
+            ->add('quiz', null, array(
+                'label' => 'Quiz',
+            ))
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ));
@@ -105,6 +114,9 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->with('General')
             ->add('name', null, array(
                 'label' => 'Name',
+            ))
+            ->add('quiz', null, array(
+                'label' => 'Quiz',
             ))
             ->add('description', 'sonata_formatter_type', array(
                 'label' => 'Beschreibung',

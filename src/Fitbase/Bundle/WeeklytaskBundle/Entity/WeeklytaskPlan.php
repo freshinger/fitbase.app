@@ -24,17 +24,12 @@ class WeeklytaskPlan
     /**
      * @var integer
      */
-    private $postId;
-
-    /**
-     * @var integer
-     */
     private $weekId;
 
     /**
      * @var integer
      */
-    private $weeklytaskId;
+    private $task;
 
     /**
      * @var datetime
@@ -50,6 +45,22 @@ class WeeklytaskPlan
      * @var boolean
      */
     private $processedDate;
+
+    /**
+     * @return int
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param int $task
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+    }
 
     /**
      * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\datetime $date
@@ -81,22 +92,6 @@ class WeeklytaskPlan
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $postId
-     */
-    public function setPostId($postId)
-    {
-        $this->postId = $postId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPostId()
-    {
-        return $this->postId;
     }
 
     /**
@@ -161,21 +156,5 @@ class WeeklytaskPlan
     public function getWeekId()
     {
         return $this->weekId;
-    }
-
-    /**
-     * @param int $weeklytaskId
-     */
-    public function setWeeklytaskId($weeklytaskId)
-    {
-        $this->weeklytaskId = $weeklytaskId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getWeeklytaskId()
-    {
-        return $this->weeklytaskId;
     }
 }

@@ -167,6 +167,11 @@ class WeeklyquizQuestion
 
     public function __toString()
     {
-        return $this->getName();
+        $string = "";
+        if (($quiz = $this->getQuiz())) {
+            $string .= "{$quiz->getName()}, ";
+        }
+
+        return $string . $this->getName();
     }
 }

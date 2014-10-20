@@ -111,9 +111,16 @@ sonata_admin:
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - fitbase.admin.weeklytask
+                    - fitbase.admin.weeklytask_plan
+
+            sonata.admin.group.weeklyquiz:
+                label: Wochenquizze
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
                     - fitbase.admin.weeklyquiz
                     - fitbase.admin.weeklyquiz_question
-
+                    - fitbase.admin.weeklyquiz_answer
+                    - fitbase.admin.weeklyquiz_plan
     assets:
         stylesheets:
             # The sandbox includes default pre-optimized version of some css and js

@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
+class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -40,26 +40,21 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name', null, array(
+            ->add('Name', null, array(
                 'label' => 'Name',
             ))
             ->add('quiz', null, array(
                 'label' => 'Quiz',
             ))
-            ->add('type', null, array(
-                'label' => 'Type',
+            ->add('question', null, array(
+                'label' => 'Question',
             ))
             ->add('description', null, array(
                 'safe' => true,
                 'label' => 'Beschreibung',
             ))
-            ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
-            ))
-            ->add('answers', null, array(
-                'label' => 'Antworte',
+            ->add('correct', null, array(
+                'label' => 'Is richtig',
             ))
             ->end();
     }
@@ -76,8 +71,11 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('quiz', null, array(
                 'label' => 'Quiz',
             ))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
+            ->add('question', null, array(
+                'label' => 'Question',
+            ))
+            ->add('correct', null, array(
+                'label' => 'Is richtig',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -97,11 +95,8 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
-            ->add('quiz', null, array(
-                'label' => 'Quiz',
-            ))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
+            ->add('question', null, array(
+                'label' => 'Question',
             ));
     }
 
@@ -115,8 +110,8 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
-            ->add('quiz', null, array(
-                'label' => 'Quiz',
+            ->add('question', null, array(
+                'label' => 'Question',
             ))
             ->add('description', 'sonata_formatter_type', array(
                 'label' => 'Beschreibung',
@@ -129,9 +124,9 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
                 'listener' => true,
                 'target_field' => 'content'
             ))
-            ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->add('correct', null, array(
+                'label' => 'Is richtig',
+            ))
             ->end();
     }
 }

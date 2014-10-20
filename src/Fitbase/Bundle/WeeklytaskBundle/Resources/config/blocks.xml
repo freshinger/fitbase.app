@@ -5,10 +5,11 @@
 
     <services>
 
-        <service id="fitbase.block.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskBlockService" public="true">
+        <service id="fitbase.block.weeklytask_dashboard"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskDashboardBlockService" public="true">
             <tag name="sonata.block" />
 
-            <argument>fitbase.block.weeklytask_archive</argument>
+            <argument>fitbase.block.weeklytask_dashboard</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="user" />
             <argument type="service" id="entity_manager" />

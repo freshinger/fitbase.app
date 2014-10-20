@@ -1,4 +1,15 @@
-{% if weeklytaskUser %}
+{% if weeklytask %}
+    <div class="row">
+        <div class="col-md-12 top10">
+            <h2>{{ weeklytask.name }}</h2>
+            <br/>
+
+            <p>{{ weeklytask.content|raw }}</p>
+        </div>
+    </div>
+{% endif %}
+
+{% if weeklytaskUser is defined %}
     <div class="main">
         {% if weeklytaskUser.done %}
             <div class="big-button center">

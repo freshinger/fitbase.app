@@ -24,17 +24,12 @@ class WeeklyquizPlan
     /**
      * @var integer
      */
-    private $quizId;
+    private $quiz;
 
     /**
      * @var integer
      */
     private $weekId;
-
-    /**
-     * @var integer
-     */
-    private $weeklytaskId;
 
     /**
      * @var datetime
@@ -52,19 +47,19 @@ class WeeklyquizPlan
     private $processedDate;
 
     /**
-     * @param int $weeklytaskId
+     * @return int
      */
-    public function setWeeklytaskId($weeklytaskId)
+    public function getQuiz()
     {
-        $this->weeklytaskId = $weeklytaskId;
+        return $this->quiz;
     }
 
     /**
-     * @return int
+     * @param int $quiz
      */
-    public function getWeeklytaskId()
+    public function setQuiz($quiz)
     {
-        return $this->weeklytaskId;
+        $this->quiz = $quiz;
     }
 
     /**
@@ -129,22 +124,6 @@ class WeeklyquizPlan
     public function getProcessedDate()
     {
         return $this->processedDate;
-    }
-
-    /**
-     * @param int $quizId
-     */
-    public function setQuizId($quizId)
-    {
-        $this->quizId = $quizId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getQuizId()
-    {
-        return $this->quizId;
     }
 
     /**

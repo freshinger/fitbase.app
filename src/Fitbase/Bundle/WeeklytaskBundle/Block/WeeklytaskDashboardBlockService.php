@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class WeeklytaskBlockService extends BaseBlockService
+class WeeklytaskDashboardBlockService extends BaseBlockService
 {
     protected $serviceUser;
     protected $serviceEntityManager;
@@ -72,6 +72,6 @@ class WeeklytaskBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Wochenaufgaben (Benutzer)';
+        return 'Wochenaufgaben Dashboard (Benutzer)';
     }
 } 

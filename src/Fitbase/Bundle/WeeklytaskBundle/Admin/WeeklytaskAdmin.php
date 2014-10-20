@@ -97,6 +97,9 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('name', null, array(
                 'label' => 'Name',
             ))
+            ->add('tag', null, array(
+                'label' => 'Tags',
+            ))
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ))

@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
+class WeeklyquizPlanAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -40,20 +40,17 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name', null, array(
-                'label' => 'Name',
+            ->add('quiz', null, array(
+                'label' => 'Weeklyquiz',
             ))
-            ->add('description', null, array(
-                'safe' => true,
-                'label' => 'Beschreibung',
+            ->add('Date', null, array(
+                'label' => 'Date',
             ))
-            ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
+            ->add('processed', null, array(
+                'label' => 'Gesendet',
             ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
+            ->add('processedDate', null, array(
+                'label' => 'Gesendet am:',
             ))
             ->end();
     }
@@ -64,14 +61,17 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array(
-                'label' => 'Name',
+            ->add('quiz', null, array(
+                'label' => 'Weeklyquiz',
             ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
+            ->add('date', null, array(
+                'label' => 'Date',
             ))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
+            ->add('processed', null, array(
+                'label' => 'Gesendet',
+            ))
+            ->add('processedDate', null, array(
+                'label' => 'Gesendet am:',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -88,14 +88,17 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array(
-                'label' => 'Name',
+            ->add('quiz', null, array(
+                'label' => 'Weeklyquiz',
             ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
+            ->add('date', null, array(
+                'label' => 'Date',
             ))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
+            ->add('processed', null, array(
+                'label' => 'Gesendet',
+            ))
+            ->add('processedDate', null, array(
+                'label' => 'Gesendet am:',
             ));
     }
 
@@ -106,26 +109,12 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->with('General')
-            ->add('name', null, array(
-                'label' => 'Name',
+            ->add('quiz', null, array(
+                'label' => 'Weeklyquiz',
             ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
+            ->add('date', 'sonata_type_datetime_picker', array(
+                'label' => 'Date',
             ))
-            ->add('description', 'sonata_formatter_type', array(
-                'label' => 'Beschreibung',
-                'event_dispatcher' => $this->container->get('event_dispatcher'),
-                'format_field' => 'format',
-                'source_field' => 'description',
-                'source_field_options' => array(
-                    'attr' => array('class' => 'span10', 'rows' => 20)
-                ),
-                'listener' => true,
-                'target_field' => 'content'
-            ))
-            ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
             ->end();
     }
 }

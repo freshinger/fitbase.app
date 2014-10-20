@@ -81,3 +81,7 @@ fos_comment:
     resource: "@FOSCommentBundle/Resources/config/routing.yml"
     prefix: /comments
     defaults: { _format: html }
+
+weeklytask:
+    resource: '@FitbaseWeeklytaskBundle/Resources/config/routing.xml'
+    prefix: /wochanaufgaben

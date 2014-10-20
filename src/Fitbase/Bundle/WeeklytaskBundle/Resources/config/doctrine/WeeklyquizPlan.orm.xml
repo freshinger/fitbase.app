@@ -8,10 +8,13 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="quizId" type="integer" column="quiz_id"/>
+
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz">
+            <join-column name="quiz_id" referenced-column-name="id"/>
+        </many-to-one>
+
         <field name="userId" type="integer" column="user_id"/>
         <field name="weekId" type="integer" column="week_id"/>
-        <field name="weeklytaskId" type="integer" column="weeklytask_id"/>
         <field name="date" type="datetime" column="date"/>
         <field name="processed" type="boolean" column="processed"/>
         <field name="processedDate" type="datetime" column="processed_date"/>
