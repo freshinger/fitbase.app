@@ -13,35 +13,34 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Weeklyquiz
 {
-
     protected $id;
     protected $name;
     protected $description;
     protected $countPoint;
     protected $task;
     protected $format;
-    protected $answers;
+    protected $questions;
 
     public function __construct()
     {
-        $this->answers = new ArrayCollection(array());
+        $this->questions = new ArrayCollection(array());
     }
 
     /**
      * Add answer to collection
      * @param $answer
      */
-    public function addWeeklyquizAnswer(WeeklyquizAnswer $answer)
+    public function addWeeklyquizQuestion(WeeklyquizQuestion $questions)
     {
-        $this->answers[] = $answer;
+        $this->questions[] = $questions;
     }
 
     /**
      * @return mixed
      */
-    public function getAnswers()
+    public function getQuestions()
     {
-        return $this->answers;
+        return $this->questions;
     }
 
     /**

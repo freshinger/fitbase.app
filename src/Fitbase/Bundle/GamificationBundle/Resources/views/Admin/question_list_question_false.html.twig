@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+    {% if object is defined and object %}
+        {% include 'FitbaseGamificationBundle:Admin:question_false.html.twig' with { 'object' : object } %}
+    {% endif %}
+{% endblock %}

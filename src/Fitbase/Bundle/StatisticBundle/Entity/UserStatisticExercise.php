@@ -9,7 +9,7 @@
 namespace Fitbase\Bundle\StatisticBundle\Entity;
 
 
-class UserStatisticVideo
+class UserStatisticExercise
 {
 
     protected $id;

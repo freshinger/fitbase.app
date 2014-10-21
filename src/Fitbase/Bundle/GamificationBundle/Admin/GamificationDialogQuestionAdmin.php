@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\QuestionnaireBundle\Admin;
+namespace Fitbase\Bundle\GamificationBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
+class GamificationDialogQuestionAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -40,12 +40,14 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name')
-            ->add('description')
-            ->add('questions', null, array(
-                'label' => 'Fragen',
-                'template' => 'FitbaseQuestionnaireBundle:Admin:questionnaire_show_question.html.twig'
-            ))
+            ->add('text')
+            ->add('type')
+            ->add('start')
+            ->add('positive')
+            ->end()
+            ->with('Folgende Fragen', array('class' => 'col-md-6'))
+            ->add('questionTrue')
+            ->add('questionFalse')
             ->end();
     }
 
@@ -55,7 +57,9 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('questions', null, array('template' => 'FitbaseQuestionnaireBundle:Admin:questionnaire_list_question.html.twig'))
+            ->add('text', null, array(
+                'template' => 'FitbaseGamificationBundle:Admin:question_list_text.html.twig'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -71,8 +75,10 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('description');
+            ->add('text')
+            ->add('type')
+            ->add('start')
+            ->add('positive');
     }
 
     /**
@@ -81,10 +87,15 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('name')
-            ->add('description')
-            ->add('questions')
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('text')
+            ->add('type')
+            ->add('start')
+            ->add('positive')
+            ->end()
+            ->with('Folgende Fragen', array('class' => 'col-md-6'))
+            ->add('questionTrue')
+            ->add('questionFalse')
             ->end();
     }
 }

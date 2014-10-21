@@ -1,0 +1,19 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+
+    <p>{{ object.text }}</p>
+
+    {% if object.questionFalse is defined or object.questionTrue is defined %}
+        {% if object.questionFalse or object.questionTrue %}
+            <div class="row">
+                <div class="col-md-6">
+                    {% include 'FitbaseGamificationBundle:Admin:question_true.html.twig' with { 'object' : object } %}
+                </div>
+                <div class="col-md-6">
+                    {% include 'FitbaseGamificationBundle:Admin:question_false.html.twig' with { 'object' : object } %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

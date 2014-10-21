@@ -11,7 +11,7 @@ namespace Fitbase\Bundle\StatisticBundle\Listener;
 
 use Fitbase\Bundle\StatisticBundle\Entity\UserStatistic;
 use Fitbase\Bundle\StatisticBundle\Event\UserLogEvent;
-use Fitbase\Bundle\StatisticBundle\Event\UserStatisticVideoEvent;
+use Fitbase\Bundle\StatisticBundle\Event\UserStatisticExerciseEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -55,7 +55,7 @@ class StatisticListener extends ContainerAware
                 ->getTaskCountProcessed($user);
 
             $videoCountProcessed = $this->container->get('fitbase_entity_manager')
-                ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo')
+                ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
                 ->getUserViewCountTotal($user->getId());
 
             $userStatistic = new UserStatistic();
@@ -198,14 +198,14 @@ class StatisticListener extends ContainerAware
 
     /**
      * Store statistic to database
-     * @param UserStatisticVideoEvent $event
+     * @param UserStatisticExerciseEvent $event
      */
-    public function onStatisticUserVideoEvent(UserStatisticVideoEvent $event)
+    public function onStatisticUserVideoEvent(UserStatisticExerciseEvent $event)
     {
         assert(($statistic = $event->getEntity()), 'Statistic object can not be empty');
 
         $isStatisticExists = $this->container->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo')
+            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
             ->getStatisticExists($statistic);
 
         if (!$isStatisticExists) {
@@ -224,7 +224,7 @@ class StatisticListener extends ContainerAware
             if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
                 $videoCountProcessed = $this->container->get('fitbase_entity_manager')
-                    ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo')
+                    ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
                     ->getUserViewCountTotal($user->getId());
 
                 $userStatistic->setCountVideo($videoCountProcessed);

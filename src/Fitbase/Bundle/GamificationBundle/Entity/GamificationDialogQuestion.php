@@ -147,4 +147,9 @@ class GamificationDialogQuestion
     {
         return $this->text;
     }
+
+    public function __toString()
+    {
+        return $this->getText();
+    }
 }

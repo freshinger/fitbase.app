@@ -13,7 +13,7 @@ use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-class UserStatisticVideoRepository extends EntityRepository
+class UserStatisticExerciseRepository extends EntityRepository
 {
     /**
      * Check existance of statistic record
@@ -22,12 +22,12 @@ class UserStatisticVideoRepository extends EntityRepository
      */
     public function getStatisticExists(UserVideoStatistic $entity)
     {
-        $queryBuilder = $this->createQueryBuilder('UserStatisticVideo');
-        $queryBuilder->select('COUNT(UserStatisticVideo)');
+        $queryBuilder = $this->createQueryBuilder('UserStatisticExercise');
+        $queryBuilder->select('COUNT(UserStatisticExercise)');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('UserStatisticVideo.pageId', ':pageId'),
-            $queryBuilder->expr()->eq('UserStatisticVideo.userId', ':userId'),
-            $queryBuilder->expr()->gte('UserStatisticVideo.date', ':date')
+            $queryBuilder->expr()->eq('UserStatisticExercise.pageId', ':pageId'),
+            $queryBuilder->expr()->eq('UserStatisticExercise.userId', ':userId'),
+            $queryBuilder->expr()->gte('UserStatisticExercise.date', ':date')
         ));
 
         $queryBuilder->setParameter('pageId', $entity->getPageId());
@@ -52,13 +52,13 @@ class UserStatisticVideoRepository extends EntityRepository
      */
     public function getUserViewDateLast($userId)
     {
-        $queryBuilder = $this->createQueryBuilder('UserStatisticVideo');
+        $queryBuilder = $this->createQueryBuilder('UserStatisticExercise');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('UserStatisticVideo.userId', ':userId')
+            $queryBuilder->expr()->eq('UserStatisticExercise.userId', ':userId')
         ));
 
         $queryBuilder->setParameter('userId', $userId);
-        $queryBuilder->orderBy('UserStatisticVideo.date', 'DESC');
+        $queryBuilder->orderBy('UserStatisticExercise.date', 'DESC');
         $queryBuilder->setMaxResults(1);
 
         if (($statistic = $queryBuilder->getQuery()->getOneOrNullResult())) {
@@ -75,11 +75,11 @@ class UserStatisticVideoRepository extends EntityRepository
      */
     public function getUserViewCountLastWeek($userId, $serviceDateTime)
     {
-        $queryBuilder = $this->createQueryBuilder('UserStatisticVideo');
-        $queryBuilder->select('COUNT(UserStatisticVideo)');
+        $queryBuilder = $this->createQueryBuilder('UserStatisticExercise');
+        $queryBuilder->select('COUNT(UserStatisticExercise)');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('UserStatisticVideo.userId', ':userId'),
-            $queryBuilder->expr()->gte('UserStatisticVideo.date', ':date')
+            $queryBuilder->expr()->eq('UserStatisticExercise.userId', ':userId'),
+            $queryBuilder->expr()->gte('UserStatisticExercise.date', ':date')
         ));
 
         $queryBuilder->setParameter('userId', $userId);
@@ -95,10 +95,10 @@ class UserStatisticVideoRepository extends EntityRepository
      */
     public function getUserViewCountTotal($userId)
     {
-        $queryBuilder = $this->createQueryBuilder('UserStatisticVideo');
-        $queryBuilder->select('COUNT(UserStatisticVideo)');
+        $queryBuilder = $this->createQueryBuilder('UserStatisticExercise');
+        $queryBuilder->select('COUNT(UserStatisticExercise)');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('UserStatisticVideo.userId', ':userId')
+            $queryBuilder->expr()->eq('UserStatisticExercise.userId', ':userId')
         ));
 
         $queryBuilder->setParameter('userId', $userId);

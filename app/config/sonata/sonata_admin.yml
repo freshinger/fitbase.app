@@ -105,6 +105,13 @@ sonata_admin:
                     - sonata.demo.admin.engine
                     - sonata.demo.admin.color
                     - sonata.demo.admin.material
+
+            sonata.admin.group.gamification:
+                label: Gamification
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.gamification_question
+
             sonata.admin.group.company:
                 label: Unternehmen
                 icon:  '<i class="fa fa-play-circle"></i>'
@@ -131,8 +138,6 @@ sonata_admin:
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - fitbase.admin.weeklyquiz
-                    - fitbase.admin.weeklyquiz_question
-                    - fitbase.admin.weeklyquiz_answer
                     - fitbase.admin.weeklyquiz_plan
 
             sonata.admin.group.questionnaire:
@@ -140,6 +145,15 @@ sonata_admin:
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - fitbase.admin.questionnaire
+
+            sonata.admin.group.statistic:
+                label: Statistics
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.statistic
+                    - fitbase.admin.statistic_exercise
+
+
     assets:
         stylesheets:
             # The sandbox includes default pre-optimized version of some css and js

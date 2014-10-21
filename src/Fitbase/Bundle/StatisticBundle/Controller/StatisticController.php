@@ -2,9 +2,9 @@
 
 namespace Fitbase\Bundle\StatisticBundle\Controller;
 
-use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class StatisticController extends WordpressControllerAbstract
+class StatisticController extends Controller
 {
     /**
      *
@@ -15,7 +15,7 @@ class StatisticController extends WordpressControllerAbstract
         $user = $this->get('fitbase_manager.user')->getCurrentUser();
 
         $repositoryVideoStatistic = $this->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo');
+            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
         $videoCount = $repositoryVideoStatistic->getUserViewCountLastWeek($user->getId(),
             $this->get('datetime')

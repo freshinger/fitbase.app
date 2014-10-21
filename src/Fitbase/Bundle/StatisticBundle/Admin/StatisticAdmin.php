@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\WeeklytaskBundle\Admin;
+namespace Fitbase\Bundle\StatisticBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
+class StatisticAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -40,16 +40,18 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name')
-            ->add('task')
-            ->add('countPoint')
-            ->add('description', null, array(
-                'safe' => true,
-            ))
+            ->add('countLogin')
+            ->add('loggedAt')
+            ->add('userAgent')
+            ->add('countExercise')
+            ->with('Wochenaufgaben', array('class' => 'col-md-6'))
             ->end()
-            ->with('Aufbau', array('class' => 'col-md-6'))
-            ->add('questions', null, array('template' => 'FitbaseWeeklytaskBundle:Admin:weeklyquiz_show_name.html.twig'))
+            ->add('countWeeklyTask')
+            ->add('countWeeklyTaskProcessed')
+            ->with('Quizze', array('class' => 'col-md-6'))
             ->end()
+            ->add('countWeeklyQuiz')
+            ->add('countWeeklyQuizProcessed')
             ->end();
     }
 
@@ -59,9 +61,14 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('template' => 'FitbaseWeeklytaskBundle:Admin:weeklyquiz_list_name.html.twig'))
-            ->add('task')
-            ->add('countPoint')
+            ->add('countLogin')
+            ->add('loggedAt')
+            ->add('userAgent')
+            ->add('countExercise')
+            ->add('countWeeklyTask')
+            ->add('countWeeklyTaskProcessed')
+            ->add('countWeeklyQuiz')
+            ->add('countWeeklyQuizProcessed')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -77,15 +84,14 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
-            ))
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
-            ));
+            ->add('countLogin')
+            ->add('loggedAt')
+            ->add('userAgent')
+            ->add('countExercise')
+            ->add('countWeeklyTask')
+            ->add('countWeeklyTaskProcessed')
+            ->add('countWeeklyQuiz')
+            ->add('countWeeklyQuizProcessed');
     }
 
     /**
@@ -94,27 +100,19 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
-            ))
-            ->add('description', 'sonata_formatter_type', array(
-                'label' => 'Beschreibung',
-                'event_dispatcher' => $this->container->get('event_dispatcher'),
-                'format_field' => 'format',
-                'source_field' => 'description',
-                'source_field_options' => array(
-                    'attr' => array('class' => 'span10', 'rows' => 20)
-                ),
-                'listener' => true,
-                'target_field' => 'content'
-            ))
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('countLogin')
+            ->add('loggedAt')
+            ->add('userAgent')
+            ->add('countExercise')
+            ->with('Wochenaufgaben', array('class' => 'col-md-6'))
             ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->add('countWeeklyTask')
+            ->add('countWeeklyTaskProcessed')
+            ->with('Quizze', array('class' => 'col-md-6'))
+            ->end()
+            ->add('countWeeklyQuiz')
+            ->add('countWeeklyQuizProcessed')
             ->end();
     }
 }

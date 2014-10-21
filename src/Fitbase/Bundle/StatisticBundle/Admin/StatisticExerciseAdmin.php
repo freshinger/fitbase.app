@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\QuestionnaireBundle\Admin;
+namespace Fitbase\Bundle\StatisticBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
+class StatisticExerciseAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -40,12 +40,7 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name')
-            ->add('description')
-            ->add('questions', null, array(
-                'label' => 'Fragen',
-                'template' => 'FitbaseQuestionnaireBundle:Admin:questionnaire_show_question.html.twig'
-            ))
+            ->add('date')
             ->end();
     }
 
@@ -55,7 +50,7 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('questions', null, array('template' => 'FitbaseQuestionnaireBundle:Admin:questionnaire_list_question.html.twig'))
+            ->add('date')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -71,8 +66,7 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('description');
+            ->add('date');
     }
 
     /**
@@ -81,10 +75,8 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('name')
-            ->add('description')
-            ->add('questions')
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('date')
             ->end();
     }
 }

@@ -1,0 +1,20 @@
+{% if object is defined and object %}
+    {% if object.questionTrue is defined and object.questionTrue %}
+        <ol>
+            <li>
+                {{ object.questionTrue }}
+                <p>
+                    <a href="{{ path('admin_fitbase_gamification_gamificationdialogquestion_show', { id: object.questionTrue.id}) }}">show</a>
+                    |
+                    <a href="{{ path('admin_fitbase_gamification_gamificationdialogquestion_edit', { id: object.questionTrue.id}) }}">edit</a>
+                    |
+                    <a href="{{ path('admin_fitbase_gamification_gamificationdialogquestion_delete', { id: object.questionTrue.id}) }}">remove</a>
+                </p>
+
+                {% if object.questionTrue is defined %}
+                    {% include 'FitbaseGamificationBundle:Admin:question_true.html.twig' with { 'object' : object.questionTrue } %}
+                {% endif %}
+            </li>
+        </ol>
+    {% endif %}
+{% endif %}

@@ -6,6 +6,7 @@
 
 
     <imports>
+        <import resource="admin.xml"/>
         <import resource="listeners.xml"/>
     </imports>
 

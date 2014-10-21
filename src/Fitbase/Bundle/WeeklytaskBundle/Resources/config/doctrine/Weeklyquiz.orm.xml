@@ -14,8 +14,10 @@
         <field name="description" type="text" column="description"/>
         <field name="countPoint" type="integer" column="count_point"/>
 
-        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
-        <one-to-many field="answers" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer" mapped-by="quiz"/>
+        <one-to-many field="questions" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion"
+                     mapped-by="quiz"/>
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask" inversed-by="quiz"/>
+
 
     </entity>
 </doctrine-mapping>

@@ -3,9 +3,10 @@
 namespace Fitbase\Bundle\StatisticBundle\Controller;
 
 use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class WidgetController extends WordpressControllerAbstract
+class WidgetController extends Controller
 {
     /**
      * @param Request $request
@@ -16,7 +17,7 @@ class WidgetController extends WordpressControllerAbstract
         $user = $this->get('fitbase_manager.user')->getCurrentUser();
 
         $repositoryVideoStatistic = $this->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo');
+            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
         $videoCount = $repositoryVideoStatistic->getUserViewCountLastWeek($user->getId(),
             $this->get('datetime')

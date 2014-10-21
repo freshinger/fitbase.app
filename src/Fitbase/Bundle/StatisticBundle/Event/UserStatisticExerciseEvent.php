@@ -11,7 +11,7 @@ namespace Fitbase\Bundle\StatisticBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-class UserStatisticVideoEvent extends Event
+class UserStatisticExerciseEvent extends Event
 {
 
     protected $entity;

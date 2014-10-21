@@ -17,9 +17,9 @@ class StatisticUserVideoListener extends ContainerAware
 {
     /**
      * Fetch user video statistic event and add points for that
-     * @param \Fitbase\Bundle\StatisticBundle\Event\UserStatisticVideoEvent $event
+     * @param \Fitbase\Bundle\StatisticBundle\Event\UserStatisticExerciseEvent $event
      */
-    public function onStatisticUserVideoEvent(\Fitbase\Bundle\StatisticBundle\Event\UserStatisticVideoEvent $event)
+    public function onStatisticUserVideoEvent(\Fitbase\Bundle\StatisticBundle\Event\UserStatisticExerciseEvent $event)
     {
         assert(($statistic = $event->getEntity()), 'Statistic object can not be empty');
 

@@ -3,23 +3,25 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Fitbase\Bundle\StatisticBundle\Entity\UserStatistic" table="ors_user_statistics"
+    <entity name="Fitbase\Bundle\StatisticBundle\Entity\UserStatistic" table="fitbase_statistics_user"
             repository-class="Fitbase\Bundle\StatisticBundle\Repository\UserStatisticRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
         <field name="countLogin" type="integer" column="count_login"/>
-        <field name="countVideo" type="integer" column="count_video"/>
-        <field name="countWeeklyTask" type="integer" column="count_weeklytask"/>
-        <field name="countWeeklyTaskProcessed" type="integer" column="count_weeklytask_processed"/>
         <field name="loggedAt" type="datetime" column="logged_at"/>
         <field name="userAgent" type="string" column="user_agent"/>
+        <field name="countExercise" type="integer" column="count_exercise"/>
+        <field name="countWeeklyTask" type="integer" column="count_weeklytask"/>
+        <field name="countWeeklyTaskProcessed" type="integer" column="count_weeklytask_processed"/>
+        <field name="countWeeklyQuiz" type="integer" column="count_weeklyquiz"/>
+        <field name="countWeeklyQuizProcessed" type="integer" column="count_weeklyquiz_processed"/>
 
 
-        <many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">
-            <join-column name="user_id" referenced-column-name="ID"/>
-        </many-to-one>
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
 
     </entity>
 </doctrine-mapping>

@@ -32,7 +32,7 @@ class EmailListener extends ContainerAware
         $dateTime = $this->container->get('datetime');
 
         $statisticRepository = $this->container->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo');
+            ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
         $content = $this->container->get('templating')->render('FitbaseReminderBundle:Email:reminder.html.twig', array(
             'user' => $user,

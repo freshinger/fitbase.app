@@ -154,9 +154,9 @@ class UserDashboardController extends WordpressControllerAbstract
 
                 if (($company = $repositoryCompany->find($companyId))) {
 
-                    $repositoryUserStatisticVideo = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticVideo');
+                    $repositoryUserStatisticExercise = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
-                    if (($statistic = $repositoryUserStatisticVideo->findCountByCompanyForDate($company))) {
+                    if (($statistic = $repositoryUserStatisticExercise->findCountByCompanyForDate($company))) {
 
                         foreach ($statistic as $index => $element) {
                             $statistic[$index]['date'] = $this->get('datetime')->getDateTime($element['date']);

@@ -14,12 +14,62 @@ class UserStatistic
     protected $id;
     protected $user;
     protected $userId;
-    protected $countVideo;
+    protected $countExercise;
     protected $countLogin;
     protected $countWeeklyTask;
     protected $countWeeklyTaskProcessed;
+    protected $countWeeklyQuiz;
+    protected $countWeeklyQuizProcessed;
     protected $loggedAt;
     protected $userAgent;
+
+    /**
+     * @return mixed
+     */
+    public function getCountExercise()
+    {
+        return $this->countExercise;
+    }
+
+    /**
+     * @param mixed $countExercise
+     */
+    public function setCountExercise($countExercise)
+    {
+        $this->countExercise = $countExercise;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountWeeklyQuiz()
+    {
+        return $this->countWeeklyQuiz;
+    }
+
+    /**
+     * @param mixed $countWeeklyQuiz
+     */
+    public function setCountWeeklyQuiz($countWeeklyQuiz)
+    {
+        $this->countWeeklyQuiz = $countWeeklyQuiz;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCountWeeklyQuizProcessed()
+    {
+        return $this->countWeeklyQuizProcessed;
+    }
+
+    /**
+     * @param mixed $countWeeklyQuizProcessed
+     */
+    public function setCountWeeklyQuizProcessed($countWeeklyQuizProcessed)
+    {
+        $this->countWeeklyQuizProcessed = $countWeeklyQuizProcessed;
+    }
 
     /**
      * @param mixed $countWeeklyTaskProcessed
@@ -67,23 +117,6 @@ class UserStatistic
     public function getUser()
     {
         return $this->user;
-    }
-
-
-    /**
-     * @param mixed $countVideo
-     */
-    public function setCountVideo($countVideo)
-    {
-        $this->countVideo = $countVideo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCountVideo()
-    {
-        return $this->countVideo;
     }
 
     /**

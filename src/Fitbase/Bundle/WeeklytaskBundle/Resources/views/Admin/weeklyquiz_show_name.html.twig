@@ -1,6 +1,7 @@
 {% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
 {% block field %}
-    <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_create') }}">New anlegen</a>
+    <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_create') }}">Neue Frage anlegen</a>
+
     <ol>
         {% for question in object.questions %}
             <li>
@@ -17,15 +18,14 @@
                     {% for answer in question.answers %}
                         <li>
                             {{ answer.name }}
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: answer.id}) }}">show</a>
                             |
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: answer.id}) }}">edit</a>
                             |
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_delete', { id: answer.id}) }}">remove</a>
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: answer.id}) }}">remove</a>
                             {% if answer.description|length > 0 %}
                                 <p>{{ answer.description|raw }}</p>
                             {% endif %}
-
                         </li>
                     {% endfor %}
                 </ol>
