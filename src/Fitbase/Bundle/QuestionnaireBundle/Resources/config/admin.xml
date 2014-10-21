@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.admin.questionnaire" class="Fitbase\Bundle\QuestionnaireBundle\Admin\QuestionnaireAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Questionnaire" label="Questionnaire"/>
+            <argument/>
+            <argument>Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.questionnaire_question"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Admin\QuestionnaireQuestionAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Questionnaire" label="Questions"/>
+            <argument/>
+            <argument>Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.questionnaire_answer"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Admin\QuestionnaireAnswerAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Questionnaire" label="Answers"/>
+            <argument/>
+            <argument>Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer</argument>
+            <argument/>
+        </service>
+
+
+    </services>
+</container>

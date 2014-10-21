@@ -105,6 +105,19 @@ sonata_admin:
                     - sonata.demo.admin.engine
                     - sonata.demo.admin.color
                     - sonata.demo.admin.material
+            sonata.admin.group.company:
+                label: Unternehmen
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.company
+
+            sonata.admin.group.reminder:
+                label: Reminder
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.reminder
+                    - fitbase.admin.reminder_item
+                    - fitbase.admin.reminder_plan
 
             sonata.admin.group.weeklytask:
                 label: Wochenaufgaben
@@ -121,6 +134,12 @@ sonata_admin:
                     - fitbase.admin.weeklyquiz_question
                     - fitbase.admin.weeklyquiz_answer
                     - fitbase.admin.weeklyquiz_plan
+
+            sonata.admin.group.questionnaire:
+                label: Questionnaire
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.questionnaire
     assets:
         stylesheets:
             # The sandbox includes default pre-optimized version of some css and js

@@ -1,0 +1,13 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+    <ol>
+        <li>
+            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_create') }}">New anlegen</a>
+        </li>
+        {% for question in object.questions %}
+            <li>
+                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">{{ question.name }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

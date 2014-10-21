@@ -28,7 +28,7 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
 
         $managerUser = $this->getContainer()->get('fitbase_manager.user');
         $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\UserReminder');
+            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         if (($collection = $repositoryReminder->findAllByNotPauseAndSendWeeklytask())) {
             foreach ($collection as $key => $reminder) {

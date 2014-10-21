@@ -124,10 +124,13 @@ class AppKernel extends Kernel
             new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(), // easy extends integration
 
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
             new Fitbase\Bundle\WeeklytaskBundle\FitbaseWeeklytaskBundle(),
             new Fitbase\Bundle\FitbaseBundle\FitbaseFitbaseBundle(),
+            new Fitbase\Bundle\CompanyBundle\FitbaseCompanyBundle(),
+            new Fitbase\Bundle\ReminderBundle\FitbaseReminderBundle(),
+            new Fitbase\Bundle\QuestionnaireBundle\FitbaseQuestionnaireBundle(),
 
         );
 

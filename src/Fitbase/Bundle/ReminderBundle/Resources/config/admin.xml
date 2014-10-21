@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.admin.reminder" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Reminder"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUser</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.reminder_item" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserItemAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Reminder Items"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.reminder_plan" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserPlanAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Reminder Plan"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan</argument>
+            <argument/>
+        </service>
+
+    </services>
+</container>

@@ -28,7 +28,7 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
 
         $managerUser = $this->getContainer()->get('fitbase_manager.user');
         $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\UserReminder');
+            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         if (($collection = $repositoryReminder->findAllByNotPauseAndSendWeeklyquiz())) {
             foreach ($collection as $key => $reminder) {

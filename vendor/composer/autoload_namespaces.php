@@ -48,6 +48,7 @@ return array(
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'Goutte' => array($vendorDir . '/fabpot/goutte'),
+    'Genemu\\Bundle\\FormBundle' => array($vendorDir . '/genemu/form-bundle'),
     'Gedmo\\' => array($vendorDir . '/gedmo/doctrine-extensions/lib'),
     'Gaufrette' => array($vendorDir . '/knplabs/gaufrette/src'),
     'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
