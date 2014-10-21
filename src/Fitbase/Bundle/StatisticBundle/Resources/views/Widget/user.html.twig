@@ -1,0 +1,16 @@
+<div class="panel-body dashboard-ranking" style="height: 259px;">
+    <h4 class="short hue">Statistik</h4>
+
+    <p>
+        <small>Sie haben in den letzten 7 Tagen {{ percentage }}% der empfohlenen Übungen absolviert.</small>
+    </p>
+    <div class="circular-bar center" style="margin-top: -5px;">
+        <input data-displayinput="false" data-readonly="true" data-width="140" data-linecap="butt" data-thickness=1
+               value="{{ percentage }}" data-linecap="round" class="knob" style="display: none;"
+               readonly="readonly">
+
+        <div class="circular-bar-content">
+            <strong>{{ percentage }}%</strong>
+        </div>
+    </div>
+</div>

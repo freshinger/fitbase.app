@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="fitbase_listener.statistic" class="Fitbase\Bundle\StatisticBundle\Listener\StatisticListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="statistic_login" method="onStatisticLoginEvent" priority="-128"/>
+            <tag name="kernel.event_listener" event="statistic_video" method="onStatisticUserVideoEvent"
+                 priority="-128"/>
+            <tag name="kernel.event_listener" event="wochenaufgabe_sent" method="onStatisticWeeklyTaskEvent"
+                 priority="-128"/>
+            <tag name="kernel.event_listener" event="wochenaufgabe_done" method="onStatisticWeeklyTaskProcessedEvent"
+                 priority="-128"/>
+            <tag name="kernel.event_listener" event="wochenaufgabe_statistic"
+                 method="onStatisticWeeklyTaskStatisticEvent"/>
+            <tag name="kernel.event_listener" event="fitbaseuser_export_statistic" method="onUserStatisticExportEvent"/>
+
+            <tag name="kernel.event_listener" event="fitbaseuser_created" method="onUserCreatedEvent"/>
+        </service>
+    </services>
+
+</container>

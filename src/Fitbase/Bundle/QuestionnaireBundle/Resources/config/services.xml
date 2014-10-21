@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="admin.xml"/>
+        <import resource="listeners.xml"/>
+    </imports>
+    <!--
+    <parameters>
+        <parameter key="fitbase_questionnaire.example.class">Fitbase\Bundle\QuestionnaireBundle\Example</parameter>
+    </parameters>
+
+    -->
+    <services>
+
+        <service id="questionnaire" class="Fitbase\Bundle\QuestionnaireBundle\Service\ServiceQuestionnaire">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase_controller.questionnaire"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Controller\QuestionnaireUserController">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase_validator.questionnaire_section"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Constraint\QuestionSectionValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="questionnaire_section"/>
+        </service>
+
+
+        <service id="fitbase_validator.questionnaire_question"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Form\Constraint\QuestionnaireQuestionValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="questionnaire_question"/>
+        </service>
+
+        <service id="fitbase_helper.questionnaire"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Helper\QuestionnaireHelper">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="twig.extension"/>
+        </service>
+
+    </services>
+
+</container>

@@ -1,0 +1,161 @@
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error.message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
+{% block button_row %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock button_row %}
+
+
+{% block form_row %}
+    {% spaceless %}
+        <div class="form-group" style="padding: 10px;">
+            <label>{{ form_label(form) }}</label>
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
+
+
+{% block medimouse_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% if form.parent is empty %}
+                {{ form_errors(form) }}
+            {% endif %}
+            {% spaceless %}
+                <table style="width: 900px">
+                    <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <h2>1. Persönliche Angaben</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_row(form.nameFirst) }}</td>
+                        <td>{{ form_row(form.nameLast) }}</td>
+                        <td>{{ form_row(form.email) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <h2>2. Ihr Rückenprofil</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form_row(form.bereich) }}</td>
+                        <td>{{ form_row(form.type) }}</td>
+                        <td>{{ form_row(form.extra) }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>3. Benutzer anlegen</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.save) }}
+                    </div>
+                </div>
+            {% endspaceless %}
+        </div>
+    {% endspaceless %}
+{% endblock medimouse_widget %}
+
+
+{% block medimouse_extra_widget %}
+    {% spaceless %}
+        <table {{ block('widget_container_attributes') }} style="height: 500px">
+            {% for child in form %}
+                <tr>
+                    <td>
+                        <div class="form-group" style="padding: 20px;">
+                            {{ form_widget(child) }}
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{{ child.vars.value|image }}">
+                            <img width="150" height="150" class="alignleft size-thumbnail wp-image-1004"
+                                 alt="{{ child.vars.label }}"
+                                 src="{{ child.vars.value|icon }}">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endspaceless %}
+{% endblock medimouse_extra_widget %}
+
+
+{% block medimouse_bereich_widget %}
+    {% spaceless %}
+        <table {{ block('widget_container_attributes') }} style="height: 500px">
+            {% for child in form %}
+                <tr>
+                    <td>
+                        <div class="form-group" style="padding: 20px;">
+                            {{ form_widget(child) }}
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{{ child.vars.value|image }}">
+                            <img width="150" height="150" class="alignleft size-thumbnail wp-image-1004"
+                                 alt="{{ child.vars.label }}"
+                                 src="{{ child.vars.value|icon }}">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endspaceless %}
+{% endblock medimouse_bereich_widget %}
+
+
+{% block medimouse_type_widget %}
+    {% spaceless %}
+        <table {{ block('widget_container_attributes') }} style="height: 500px">
+            {% for child in form %}
+                <tr>
+                    <td>
+                        <div class="form-group" style="padding: 20px;">
+                            {{ form_widget(child) }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn btn-info btn-lg" style="padding: 10px; width: 110px;">
+                            {{ child.vars.label }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endspaceless %}
+{% endblock medimouse_type_widget %}
+
+
+
+

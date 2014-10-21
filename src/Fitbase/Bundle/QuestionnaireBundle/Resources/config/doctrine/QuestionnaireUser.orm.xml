@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser" table="fitbase_questionnaire_user"
+            repository-class="Fitbase\Bundle\QuestionnaireBundle\Repository\QuestionnaireUserRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="date" type="datetime" column="date"/>
+        <field name="done" type="boolean" column="done"/>
+        <field name="doneDate" type="datetime" column="done_date"/>
+
+        <field name="countPointHealth" type="integer" column="count_point_health"/>
+        <field name="countPointStrain" type="integer" column="count_point_strain"/>
+
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
+
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+            <join-column name="questionnaire_id" referenced-column-name="id"/>
+        </many-to-one>
+
+
+        <many-to-one field="questionnaireCompany"
+                     target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany">
+            <join-column name="questionnaire_company_id" referenced-column-name="id"/>
+        </many-to-one>
+
+
+    </entity>
+</doctrine-mapping>

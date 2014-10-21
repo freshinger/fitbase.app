@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <imports>
+        <import resource="listeners.xml"/>
+    </imports>
+
+    <services>
+        <service id="fitbase_shortcode.statistic_widget"
+                 class="Fitbase\Bundle\StatisticBundle\Controller\WidgetController">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="fitbase_shortcode.statistic"
+                 class="Fitbase\Bundle\StatisticBundle\Controller\StatisticController">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+
+</container>

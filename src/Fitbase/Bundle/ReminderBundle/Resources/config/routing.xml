@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+
+    <route id="reminder" pattern="/reminder">
+        <default key="_controller">FitbaseReminderBundle:Default:index</default>
+    </route>
+
+    <route id="reminder_setup" pattern="/mitgliederbereich/profile/reminder">
+        <default key="_controller">FitbaseReminderBundle:Reminder:setup</default>
+    </route>
+
+
+    <route id="reminder_setup_weeklytask" pattern="/mitgliederbereich/profile/reminder/weeklytask">
+        <default key="_controller">FitbaseReminderBundle:Reminder:setupWeeklytask</default>
+    </route>
+
+
+    <route id="reminder_archive" pattern="/administration/reminder">
+        <default key="_controller">FitbaseReminderBundle:ReminderPlan:list</default>
+    </route>
+
+
+</routes>

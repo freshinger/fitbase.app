@@ -1,0 +1,56 @@
+{% extends "form_table_layout.html.twig" %}
+
+{% block form_widget_compound -%}
+    <table {{ block('widget_container_attributes') }} class="form-table">
+        {%- if form.parent is empty and errors|length > 0 -%}
+            <tr>
+                <td colspan="2">
+                    {{- form_errors(form) -}}
+                </td>
+            </tr>
+        {%- endif %}
+        {{- block('form_rows') -}}
+        {{- form_rest(form) -}}
+    </table>
+{%- endblock form_widget_compound %}
+
+
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+        {%- for error in errors -%}
+            <p class="error" style="color: red; padding: 5px;">
+                {{ error.message }}
+            </p>
+        {%- endfor -%}
+    {%- endif %}
+{%- endblock form_errors %}
+
+
+
+{% block form_row %}
+    {% spaceless %}
+        <tr class="form-field">
+            <th scope="row">
+                {{ form_label(form) }}
+            </th>
+            <td>
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock form_row %}
+
+
+
+{% block button_row %}
+    {% spaceless %}
+        <tr>
+            <td>
+                {{ form_widget(form) }}
+            </td>
+            <td>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock button_row %}

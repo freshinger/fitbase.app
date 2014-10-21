@@ -1,0 +1,20 @@
+<div class="span8 col-md-8 column_first">
+    <div class="panel panel-default" style="max-width: 660px; margin-bottom: 0px;">
+        <div class="panel-body" style="padding: 10px;">
+            {{ post|video|raw }}
+        </div>
+    </div>
+
+
+    <ul class="pagination">
+        %%link1%% %%siblings%% %%link2%%
+    </ul>
+    <div style="display: none;">
+        <div id="video_id">
+            {{ post.id }}
+        </div>
+        <div id="update_statistic_nonce">
+            {{ post|token }}
+        </div>
+    </div>
+</div>

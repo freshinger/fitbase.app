@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="fitbase_listener.company" class="Fitbase\Bundle\CompanyBundle\Listener\CompanyListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="fitbase_company_create" method="onCompanyCreate"/>
+            <tag name="kernel.event_listener" event="fitbase_company_update" method="onCompanyUpdate"/>
+        </service>
+
+        <service id="fitbase_listener.company_user" class="Fitbase\Bundle\CompanyBundle\Listener\CompanyUserListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="fitbaseuser_imported" method="onUserImportedEvent"/>
+            <tag name="kernel.event_listener" event="fitbase_company_user_update" method="onCompanyUserUpdate"/>
+        </service>
+    </services>
+
+</container>

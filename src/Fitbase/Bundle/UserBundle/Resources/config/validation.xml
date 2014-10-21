@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+
+    <class name="Fitbase\Bundle\UserBundle\Entity\UserPassword">
+        <property name="current">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\UserPassword">
+                <option name="message">Das Passwort stimmt nicht</option>
+            </constraint>
+        </property>
+        <property name="password">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/</option>
+                <option name="message"><![CDATA[Das Passwort muss folgende Kriterien erfüllen: mind. 8 und max. 20 Zeichen,
+                    1 Kleinbuchstabe, 1 Großbuchstabe, 1 Sonderzeichen und 1 Zahl müssen mind.
+                    enthalten sein.]]></option>
+            </constraint>
+            <constraint name="Length">
+                <option name="min">8</option>
+                <option name="max">20</option>
+                <option name="minMessage">Das Passwort muss zwischen 8 und 20 Zeichen lang sein.</option>
+                <option name="maxMessage">Das Passwort muss zwischen 8 und 20 Zeichen lang sein.</option>
+            </constraint>
+        </property>
+    </class>
+
+
+    <class name="Fitbase\Bundle\UserBundle\Entity\UserProfile">
+        <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\UserEmailUnique">
+            <option name="message">Ein Benutzer mit dieser Email-Adresse wurde bereits registriert</option>
+        </constraint>
+        <property name="anrede">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="vorname">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="nachname">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <!--<property name="hausnummer">-->
+        <!--<constraint name="Type">-->
+        <!--<option name="type">numeric</option>-->
+        <!--<option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>-->
+        <!--</constraint>-->
+        <!--</property>-->
+        <!--<property name="postzahl">-->
+        <!--<constraint name="Type">-->
+        <!--<option name="type">numeric</option>-->
+        <!--<option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>-->
+        <!--</constraint>-->
+        <!--</property>-->
+        <!--<property name="geburtsdatum">-->
+        <!--<constraint name="Date">-->
+        <!--<option name="message">Bitte geben sie eine richtige Date ein.</option>-->
+        <!--</constraint>-->
+        <!--</property>-->
+        <property name="email">
+            <constraint name="Email">
+                <option name="message">Bitte geben sie eine richtige Email-Adresse ein.</option>
+            </constraint>
+        </property>
+    </class>
+
+
+    <class name="Fitbase\Bundle\UserBundle\Entity\UserMedimouse">
+        <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\UserEmailUnique">
+            <option name="message">Ein Benutzer mit dieser Email-Adresse wurde bereits registriert</option>
+        </constraint>
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">Die Email-Adresse wurde falsch geschrieben</option>
+            </constraint>
+        </property>
+        <property name="nameFirst">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="nameLast">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="bereich">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="type">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+
+    </class>
+
+</constraint-mapping>

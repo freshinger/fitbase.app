@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <style type="text/css">
+        body {
+            color: #444444;
+            background: #f2f2f2;
+            text-align: center;
+            font-size: 12px;
+            padding: 20px;
+        }
+
+        p, td {
+            font-size: 13px;
+            color: #444444;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #main-box {
+            background: #fffffff;
+            width: 540px;
+            text-align: left;
+            text-align: center;
+        }
+
+        .text-div {
+            text-align: left;
+        }
+
+        .spacer {
+            margin-top: 20px;
+        }
+
+        p.light {
+            color: #aaaaaa;
+        }
+
+        p.light a {
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+
+<table bgcolor="#FFFFFF" cellspacing="20" align="center">
+    <tr>
+        <td>
+            <table id="main-box" cellspacing="5">
+                <tr>
+                    <td><img src="{{ asset('/wp-content/uploads/email/logo.png') }}" width="200"/></td>
+                <tr>
+                <tr>
+                    <td>
+                        <div class="text-div">Hallo {{ firstName }} {{ lastName }}!<br/>
+                            <br/>
+                            Willkommen bei der Online-Rückenschule. In dieser Email erhalten Sie Ihre
+                            Zugangsdaten, die Sie bei Ihrem nächsten Besuch auf {{ host }} nutzen können.<br><br/>
+                            Bei Fragen besuchen Sie bitte unsere FAQs oder
+                            kontaktieren uns unter <a href="mailto:info@{{ host }}">info@{{ host }}</a>.<br><br/>
+
+                            {% if text is defined %}
+                                {% if text|length > 0 %}
+                                    {{ text }}
+                                {% endif %}
+                            {% endif %}
+
+                            <p style="text-align: center;">
+                                <a href="{{ asset('/login') }}?login_code={{ user|login_code }}">
+                                    <img class="size-full wp-image-5427 aligncenter" title="Jetzt einloggen"
+                                         alt="Jetzt einloggen "
+                                         src="{{ asset('/wp-content/uploads/email/activate.png') }}"/>
+                                </a>
+                            </p><br/>
+                            <br/>
+                            <br/>
+                            <strong>Ihre Zugangsdaten</strong><br/>
+                            Mit den folgenden Zugangsdaten können Sie sich auf {{ host }} einloggen. <br/>
+                            <br/>
+                            <table>
+                                <tr>
+                                    <td>E-Mail-Adresse:</td>
+                                    <td width="10"></td>
+                                    <td>{{ email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Benutzername:</td>
+                                    <td width="10"></td>
+                                    <td>{{ displayName }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Passwort:</td>
+                                    <td width="10"></td>
+                                    <td>{{ password }}</td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            Viel Spaß und Erfolg wünscht das Team von {{ host }}<br/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

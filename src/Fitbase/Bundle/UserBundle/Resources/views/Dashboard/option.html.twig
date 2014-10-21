@@ -1,0 +1,76 @@
+<div class="panel panel-default">
+    <div class="panel-body" id="exercise-focus" style="padding: 0px;">
+        <h4 class="short">Übungsfokus und Optionen</h4>
+
+        <img src="/wp-content/plugins/fitbase/assets/img/muskel_auswahl.jpg"/>
+
+        <div class="text-sn">
+            <label>
+                <input type="radio" name="user_exercise_focus" value="sn"
+                       {% if focus == 'sn' %}checked="checked"{% endif %}>
+                Schulter-Nacken
+            </label>
+
+            <p>
+                <small>Wählen Sie diesen Bereich, wenn Sie häufig in der Schulter verspannt sind.</small>
+            </p>
+        </div>
+
+        <div class="text-ub">
+            <label>
+                <input type="radio" name="user_exercise_focus" value="ub"
+                       {% if focus == 'ub' %}checked="checked"{% endif %}>
+                Mittlerer Rücken
+            </label>
+
+            <p>
+                <small>Wählen Sie diesen Bereich bei Beschwerden im mittlerem Rücken.</small>
+            </p>
+        </div>
+
+        <div class="text-lb">
+            <label>
+                <input type="radio" name="user_exercise_focus" value="lb"
+                       {% if focus == 'lb' %}checked="checked"{% endif %}>
+                Unterer Rücken
+            </label>
+
+            <p>
+                <small>Wählen Sie diesen Bereich bei Beschwerden im unterem Rücken.</small>
+            </p>
+        </div>
+
+        <div class="text-eye">
+            <label>
+                <input type="checkbox" name="user_exercise_eye" value="1" {% if eye %}checked="checked"{% endif %}/>
+                Augen-Entspannung
+            </label>
+
+            <p>
+                <small>Entspannungs- und Ausgleichsübungen für die Augen.</small>
+            </p>
+        </div>
+
+        <div class="text-rsi">
+            <label>
+                <input type="checkbox" name="user_exercise_rsi" value="1" {% if rsi %}checked="checked"{% endif %}/>
+                Hand-Arm-Prävention
+            </label>
+
+            <p>
+                <small>Prävention von Hand-Arm- Beschwerden aufgrund intensiver Belastungen.</small>
+            </p>
+        </div>
+
+        <div class="text-thera">
+            <label>
+                <input type="checkbox" name="user_exercise_thera" value="1" {% if thera %}checked="checked"{% endif %}/>
+                Thera-Band®
+            </label>
+
+            <p>
+                <small>Auch Übungen mit Thera-Band® einspielen.</small>
+            </p>
+        </div>
+    </div>
+</div>

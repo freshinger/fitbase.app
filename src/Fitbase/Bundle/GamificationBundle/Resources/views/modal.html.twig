@@ -1,0 +1,11 @@
+<div class="modal fade in" role="dialog">
+    {% block content %}
+    {% endblock %}
+</div>
+<script type="text/javascript">
+    jQuery(function () {
+        jQuery('.modal').modal({
+            keyboard: false
+        });
+    });
+</script>

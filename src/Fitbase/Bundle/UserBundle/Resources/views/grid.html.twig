@@ -1,0 +1,154 @@
+{% extends "APYDataGridBundle::blocks.html.twig" %}
+
+{% block grid %}
+    <div class="grid">
+        {% if grid.totalCount > 0 or grid.isFiltered or grid.noDataMessage is sameas(false) %}
+            <form id="{{ grid.hash }}" action="" method="post">
+                <div class="grid_header">
+                    {% if grid.massActions|length > 0 %}
+                        {{ grid_actions(grid) }}
+                    {% endif %}
+                </div>
+                <div class="grid_body">
+                    <table class="wp-list-table widefat fixed company">
+                        {% if grid.isTitleSectionVisible %}
+                            {{ grid_titles(grid) }}
+                        {% endif %}
+                        {% if grid.isFilterSectionVisible %}
+                            {{ grid_filters(grid) }}
+                        {% endif %}
+                        {{ grid_rows(grid) }}
+                    </table>
+                </div>
+                <div class="grid_footer">
+                    {% if grid.isPagerSectionVisible %}
+                        {{ grid_pager(grid) }}
+                    {% endif %}
+                    {% if grid.exports|length > 0 %}
+                        {{ grid_exports(grid) }}
+                    {% endif %}
+                    {#{% if grid.tweaks|length > 0 %}#}
+                    {#{{ grid_tweaks(grid) }}#}
+                    {#{% endif %}#}
+                </div>
+                {% if withjs %}
+                    {{ grid_scripts(grid) }}
+                {% endif %}
+            </form>
+        {% else %}
+            {{ grid_no_data(grid) }}
+        {% endif %}
+    </div>
+{% endblock grid %}
+
+
+
+{% block grid_titles %}
+    <thead>
+    <tr class="grid-row-titles">
+        {% for column in grid.columns %}
+            {% if column.visible(grid.isReadyForExport) %}
+                <th class="{% if column.align != 'left' %}align-{{ column.align }}{% endif %}{% if loop.last %} last-column{% endif %}"{% if(column.size > -1) %} style="width:{{ column.size }}px;"{% endif %}>
+                    {%- spaceless %}
+                        {% if column.type == 'massaction' %}
+                            <input type="checkbox" class="grid-mass-selector"
+                                   onclick="{{ grid.hash }}_markVisible(this.checked);"/>
+                        {% else %}
+                            {% set columnTitle = grid.prefixTitle ~ column.title ~ '__abbr' %}
+                            {% if columnTitle|trans == columnTitle %}
+                                {% set columnTitle = grid.prefixTitle ~ column.title %}
+                            {% endif %}
+                            {% if (column.sortable) %}
+                                <a class="order" href="{{ grid_url('order', grid, column) }}&page=fitbase_user_export"
+                                   title="{{ 'Order by'|trans }} {{ columnTitle|trans }}">{{ columnTitle|trans }}</a>
+                                {% if column.order == 'asc' %}
+                                    <div class="sort_up"></div>
+                                {% elseif column.order == 'desc' %}
+                                    <div class="sort_down"></div>
+                                {% endif %}
+                            {% else %}
+                                {{ columnTitle|trans }}
+                            {% endif %}
+                        {% endif %}
+                    {% endspaceless -%}
+                </th>
+            {% endif %}
+        {% endfor %}
+    </tr>
+    </thead>
+{% endblock grid_titles %}
+
+
+{% block grid_rows %}
+    {% for row in grid.rows %}
+        {% set last_row = loop.last %}
+        <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+            {% for column in grid.columns %}
+                {% if column.visible(grid.isReadyForExport) %}
+                    <td class="grid-column-{{ column.renderBlockId }}{% if column.align != 'left' %} align-{{ column.align }}{% endif %}{% if loop.last %} last-column{% endif %}{% if last_row %} last-row{% endif %}">{{ grid_cell(column, row, grid)|raw }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% else %}
+        {{ grid_no_result(grid) }}
+    {% endfor %}
+{% endblock grid_rows %}
+
+
+
+
+{% block grid_scripts_reset %}
+    {#function {{ grid.hash }}_reset()#}
+    {#{#}
+    {#{{ grid.hash }}_goto('{{ grid_url('reset', grid) }}');#}
+
+    {#return false;#}
+    {#}#}
+{% endblock grid_scripts_reset %}
+
+
+{% block grid_scripts_previous_page %}
+    {#function {{ grid.hash }}_previousPage()#}
+    {#{#}
+    {#{{ grid.hash }}_goto('{{ grid_url('page', grid, grid.page - 1) }}');#}
+
+    {#return false;#}
+    {#}#}
+{% endblock grid_scripts_previous_page %}
+
+{% block grid_scripts_next_page %}
+    {#function {{ grid.hash }}_nextPage()#}
+    {#{#}
+    {#{{ grid.hash }}_goto('{{ grid_url('page', grid, grid.page + 1) }}');#}
+
+    {#return false;#}
+    {#}#}
+{% endblock grid_scripts_next_page %}
+
+
+{% block grid_scripts_enter_page %}
+    {#function {{ grid.hash }}_enterPage(event, page)#}
+    {#{#}
+    {#key = event.which;#}
+
+    {#if (window.event) {#}
+    {#key = window.event.keyCode; //IE#}
+    {#}#}
+
+    {#if (key == 13) {#}
+    {#{{ grid.hash }}_goto('{{ grid_url('page', grid) }}' + page);#}
+
+    {#return false;#}
+    {#}#}
+    {#}#}
+{% endblock grid_scripts_enter_page %}
+
+
+{% block grid_scripts_results_per_page %}
+    {#function {{ grid.hash }}_resultsPerPage(limit)#}
+    {#{#}
+    {#{{ grid.hash }}_goto('{{ grid_url('limit', grid) }}' + limit);#}
+
+    {#return true;#}
+    {#}#}
+{% endblock grid_scripts_results_per_page %}

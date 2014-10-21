@@ -1,0 +1,137 @@
+{% extends "FitbaseQuestionnaireBundle::modal.html.twig" %}
+
+{% block form_row %}
+    {% spaceless %}
+        <tr>
+            <td class="col-md-8">{{ form_label(form) }}</td>
+            <td class="col-md-4">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+                {{ form_errors(form) }}
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group alert alert-warning">
+                            {{ error.message }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_rows %}
+    {% spaceless %}
+        <table class="table table-hover">
+            <tbody>
+            {% for child in form %}
+                {{ form_row(child) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <label class="{% if multiple %}checkbox{% else %}radio-inline{% endif %}">
+                    {{ form_widget(child) }}
+                    {{ form_label(child) }}
+                </label>
+                {{ form_errors(child) }}
+
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+
+{% block text_labeled_widget %}
+    {% spaceless %}
+        <div class="col-md-4">
+            {% set type = type|default('text') %}
+            {{ block('form_widget_simple') }}
+        </div>
+        <label style="padding-left: 0px; padding-top: 7px;" class="col-md-8 control-label">{{ text }}</label>
+    {% endspaceless %}
+{% endblock text_labeled_widget %}
+
+
+{% block slider_widget %}
+    {% spaceless %}
+        <div id="{{ id }}"></div>
+        {% set type = type|default('hidden') %}
+        {{ block('form_widget_simple') }}
+        <script type="text/javascript">
+            jQuery(function () {
+                jQuery('div[id={{ id }}]').slider({
+                    min: {{ min }},
+                    max: {{ max }},
+                    value: {{ def }},
+                    slide: function (event, ui) {
+                        jQuery('input[id={{ id }}]').val(ui.value)
+                    }
+                });
+            });
+        </script>
+        {{ form_errors(form) }}
+    {% endspaceless %}
+{% endblock slider_widget %}
+
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="modal-title">Allgemeiner Gesundheitsstatus</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 errors">
+                        {% if form.parent is empty %}
+                            {{ form_errors(form) }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ block('form_rows') }}
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" name="save" id="question_section_save" type="submit">
+                    Weiter
+                </button>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block content %}
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            {% form_theme form _self %}
+
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock content %}

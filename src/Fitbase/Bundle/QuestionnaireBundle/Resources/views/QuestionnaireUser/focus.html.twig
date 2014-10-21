@@ -1,0 +1,97 @@
+{% extends "FitbaseQuestionnaireBundle::modal.html.twig" %}
+
+{% block form_row %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if label is not sameas(false) %}
+            {{ label|trans({}, translation_domain) }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div class="panel panel-default" {{ block('widget_container_attributes') }}>
+            <div class="panel-body page-5" id="modal-exercise-focus">
+                <img src="/wp-content/plugins/fitbase/assets/img/muskel_auswahl_5.jpg"/>
+                {% for child in form %}
+                    <div class="text-{{ child.vars.value|focus_style }}">
+                        <label>
+                            {{ form_widget(child) }}
+                            {{ form_label(child) }}
+                        </label>
+
+                        <p>
+                            <small>
+                                {{ child.vars.value|focus_desc }}
+                            </small>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+
+{% block focus_widget %}
+    {% spaceless %}
+        <div class="modal-content" {{ block('widget_container_attributes') }}>
+            {% spaceless %}
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="modal-title">Schwerpunkt ermitteln</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 errors">
+                            {% if form.parent is empty %}
+                                {{ form_errors(form) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="margin-bottom: 10px;">Bitte wählen Sie den Bereich, in dem Sie die größte
+                                Belastung
+                                verspüren (z.B. Schmerzen, Verspannungen).</p>
+
+                            {{ block('form_rows') }}
+                            {{ form_rest(form) }}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" name="save" id="question_section_save" type="submit">
+                        Weiter
+                    </button>
+                </div>
+            {% endspaceless %}
+        </div>
+    {% endspaceless %}
+{% endblock focus_widget %}
+
+
+
+
+
+{% block content %}
+    {% spaceless %}
+        <div class="modal-dialog">
+            {% form_theme form _self %}
+
+            {{ form(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock content %}

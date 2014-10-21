@@ -1,0 +1,78 @@
+{% extends "FitbaseCompanyBundle::company.html.twig" %}
+
+
+{% block content %}
+
+    {% for message in flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2 style="margin: 11px 15px 0px 15px;">
+            Unternehmen
+            <a class="add-new-h2" href="?page=company_create">
+                Neu hinzufügen
+            </a>
+        </h2>
+
+        <form method="get">
+            <table class="wp-list-table widefat">
+                <thead>
+                <tr>
+                    <th class="manage-column">Id</th>
+                    <th class="manage-column">Name</th>
+                    <th class="manage-column">Kommentar</th>
+                    <th class="manage-column">Background-Farbe</th>
+                    <th class="manage-column">Header-Farbe</th>
+                    <th class="manage-column">Footer-Farbe</th>
+                    <th class="manage-column">Date</th>
+                    <th class="manage-column">&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if companies|length > 0 %}
+                    {% for company in companies %}
+                        <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                            <td>{{ company.id }}</td>
+                            <td class="username column-username">
+                                {% if company.logo %}
+                                    <img alt='{{ company.name }}' src="{{ company.logo }}" width="64px"/>
+                                {% endif %}
+                                <strong>
+                                    <a href="?page={{ page }}&company_id={{ company.id }}">
+                                        {{ company.name }}
+                                    </a>
+                                </strong>
+                            </td>
+                            <td>{{ company.description }}</td>
+                            <td style="background-color: #{{ company.colorBackground }}">
+                                {{ company.colorBackground }}
+                            </td>
+                            <td style="background-color: #{{ company.colorHeader }}">
+                                {{ company.colorHeader }}
+                            </td>
+                            <td style="background-color: #{{ company.colorFooter }}">
+                                {{ company.colorFooter }}
+                            </td>
+                            <td>{{ company.date|date('d.m.Y') }}</td>
+                            <td><a href="?page={{ page }}&company_id={{ company.id }}">ändern</a></td>
+                        </tr>
+                    {% endfor %}
+                    <tr style="background: #f2f0f0;">
+                        <td><b>Total: {{ companies|length }}</b></td>
+                        <td colspan="7"></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Keinen Unternehmen gefunden</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </form>
+        <br class="clear">
+    </div>
+    <div class="clear"></div>
+{% endblock content %}

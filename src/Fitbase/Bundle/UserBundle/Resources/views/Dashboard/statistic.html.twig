@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h4 class="short hue">Wochenaufgaben</h4>
+
+        <div class="circular-bar center" style="margin-top: -5px;">
+            <input data-displayinput="false" data-readonly="true" data-width="140" data-linecap="butt" data-thickness=1
+                   value="{{ weeklytasks }}" data-linecap="round" class="knob" style="display: none;"
+                   readonly="readonly">
+
+            <div class="circular-bar-content">
+                <strong>{{ weeklytasks }}%</strong>
+            </div>
+            Prozentsatz der verschickten Wochenaufgaben
+        </div>
+
+        <h4 class="short hue">Wochenquizze</h4>
+
+        <div class="circular-bar center" style="margin-top: -5px;">
+            <input data-displayinput="false" data-readonly="true" data-width="140" data-linecap="butt" data-thickness=1
+                   value="{{ weeklyquiz }}" data-linecap="round" class="knob" style="display: none;"
+                   readonly="readonly">
+
+            <div class="circular-bar-content">
+                <strong>{{ weeklyquiz }}%</strong>
+            </div>
+            Prozentsatz der verschickten Wochenquizze
+        </div>
+
+        <h4 class="short hue">Fragebogen</h4>
+
+        <div class="circular-bar center" style="margin-top: -5px;">
+            <input data-displayinput="false" data-readonly="true" data-width="140" data-linecap="butt" data-thickness=1
+                   value="{{ questionnaire }}" data-linecap="round" class="knob" style="display: none;"
+                   readonly="readonly">
+
+            <div class="circular-bar-content">
+                <strong>{{ questionnaire }}%</strong>
+            </div>
+            Prozentsatz der bearbeiteten Fragebogen
+        </div>
+    </div>
+</div>

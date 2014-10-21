@@ -1,0 +1,34 @@
+{% extends "FitbaseQuestionnaireBundle::admin.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Die Antwort auf die Frage des Fragebogens ändern
+            <a class="add-new-h2" href="?page=questionnaire">
+                Zurück zur Liste
+            </a>
+            <a class="add-new-h2" href="?page=questionnaire&question_id_edit={{ answer.question.questionnaire.id }}">
+                Zurück zum Fragebogen
+            </a>
+            <a class="add-new-h2" href="?page=questionnaire&question_id_edit={{ answer.question.id }}">
+                Zurück zur Frage
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {% form_theme form 'FitbaseQuestionnaireBundle:Questionnaire:form.html.twig' %}
+
+        {{ form(form) }}
+
+    </div>
+
+{% endblock content %}

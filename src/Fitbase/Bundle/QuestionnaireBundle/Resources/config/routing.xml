@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+
+    <route id="questionnaire_administration" pattern="/administration/questionnaire/list">
+        <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:list</default>
+    </route>
+
+    <route id="questionnaire_administration_statistic" pattern="/administration/questionnaire/statistic">
+        <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:statistic</default>
+    </route>
+
+    <route id="questionnaire_administration_show" pattern="/administration/questionnaire/show">
+        <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:show</default>
+    </route>
+
+
+    <route id="questionnaire" pattern="/mitgliederbereich/questionnaire">
+        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireUser:questionnaire</default>
+    </route>
+
+    <route id="questionnaire_password" pattern="/mitgliederbereich/questionnaire/password">
+        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireUser:password</default>
+    </route>
+</routes>

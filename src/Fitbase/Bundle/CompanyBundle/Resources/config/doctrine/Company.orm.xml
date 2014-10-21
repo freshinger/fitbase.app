@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\CompanyBundle\Entity\Company" table="fitbase_company"
+            repository-class="Fitbase\Bundle\CompanyBundle\Repository\CompanyRepository">
+
+        <id name="id" type="integer" column="company_id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="name" type="string" length="255" column="name"/>
+        <field name="description" type="text" column="description" nullable="true"/>
+        <field name="site" type="string" length="255" column="site" nullable="true"/>
+        <field name="date" type="datetime" column="date" nullable="true"/>
+
+        <field name="logo" type="string" length="255" column="logo" nullable="true"/>
+        <field name="logoWidth" type="integer" column="logo_width" nullable="true"/>
+        <field name="logoHeight" type="integer" column="logo_height" nullable="true"/>
+
+        <field name="colorHeader" type="string" length="255" column="color_header" nullable="true"/>
+        <field name="colorFooter" type="string" length="255" column="color_footer" nullable="true"/>
+        <field name="colorBackground" type="string" length="255" column="color_background" nullable="true"/>
+
+        <field name="questionnaire" type="boolean" column="questionnaire" nullable="true"/>
+        <field name="gamification" type="boolean" column="gamification" nullable="true"/>
+
+
+    </entity>
+</doctrine-mapping>

@@ -1,0 +1,92 @@
+{% extends "FitbaseQuestionnaireBundle::admin.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Das Fragebogen ändern
+            <a class="add-new-h2" href="?page=questionnaire">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {% form_theme form 'FitbaseQuestionnaireBundle:Questionnaire:form.html.twig' %}
+
+        {{ form(form) }}
+
+        <h2>
+            Fragen des Fragebogens
+        </h2>
+
+        <p>
+            Die Benutzer werden diese Fragen beantworten. Jede Frage hat auch die Liste mit der Antworten.
+            Die Antwortliste kann man in der Einstellungen der Frage regeln.
+        </p>
+        <table class="wp-list-table widefat">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Name und Beschreibung
+                </th>
+                <th class="manage-column">
+                    Type
+                </th>
+                <th class="manage-column">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collection|length > 0 %}
+                {% for question in collection %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>
+                            <h4>{{ question.name }}</h4>
+                            {% if question.description|length > 0 %}
+                                <p>{{ question.description }}</p>
+                            {% endif %}
+                        </td>
+                        <td nowrap>{{ question.type }}</td>
+                        <td>
+                            <a href="?page=questionnaire&question_id_edit={{ question.id }}">
+                                ändern
+                            </a>
+                            <a href="?page=questionnaire&question_id_remove={{ question.id }}">
+                                löschen
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <br/>
+
+        <h2>
+            Neue Frage anlegen
+        </h2>
+
+        <p>
+            Die angelegte Fragen werden sofort in der Frageliste hinzugefügt.
+        </p>
+
+        {% form_theme formQuestion 'FitbaseQuestionnaireBundle:Questionnaire:form.html.twig' %}
+
+        {{ form(formQuestion) }}
+
+
+    </div>
+
+{% endblock content %}

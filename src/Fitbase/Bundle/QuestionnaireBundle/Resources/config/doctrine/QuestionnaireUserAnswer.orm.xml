@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer"
+            table="fitbase_questionnaire_user_answer"
+            repository-class="Fitbase\Bundle\QuestionnaireBundle\Repository\QuestionnaireUserAnswerRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="text" type="text" column="text"/>
+
+        <field name="countPointHealth" type="integer" column="count_point_health"/>
+        <field name="countPointStrain" type="integer" column="count_point_strain"/>
+
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
+
+        <many-to-one field="question" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion">
+            <join-column name="question_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-one field="questionnaireUser"
+                     target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser">
+            <join-column name="questionnaire_user_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer">
+            <join-table name="fitbase_questionnaire_user_answer_choice">
+                <join-columns>
+                    <join-column name="user_answer_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="answer_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+    </entity>
+</doctrine-mapping>

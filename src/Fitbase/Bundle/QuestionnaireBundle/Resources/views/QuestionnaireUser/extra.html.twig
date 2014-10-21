@@ -1,0 +1,128 @@
+{% extends "FitbaseQuestionnaireBundle::modal.html.twig" %}
+
+
+{% block form_row %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if label is not sameas(false) %}
+            {{ label|trans({}, translation_domain) }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block form_rows %}
+    {% spaceless %}
+        <div class="panel panel-default">
+            <div class="panel-body page-6" id="modal-exercise-focus">
+                <img src="/wp-content/plugins/fitbase/assets/img/muskel_auswahl_6.jpg"/>
+                {% for child in form %}
+                    <div class="text-{{ child.vars.name|focus_style }}">
+                        <label>
+                            {{ form_row(child) }}
+                        </label>
+
+                        <p>
+                            <small>{{ child.vars.name|focus_desc }}</small>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block extra_widget %}
+    {% spaceless %}
+        <div class="modal-content" {{ block('widget_container_attributes') }}>
+            {% spaceless %}
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="modal-title">Schwerpunkt ermitteln</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 errors">
+                            {% if form.parent is empty %}
+                                {{ form_errors(form) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p style="margin-bottom: 10px;">Bitte wählen Sie den Bereich, in dem Sie die größte
+                                Belastung
+                                verspüren (z.B. Schmerzen, Verspannungen).</p>
+
+                            <div class="panel panel-default">
+                                <div class="panel-body page-6" id="modal-exercise-focus">
+                                    <img src="/wp-content/plugins/fitbase/assets/img/muskel_auswahl_6.jpg"/>
+
+                                    <div class="text-eye">
+                                        <label>
+                                            {{ form_row(form.au) }}
+                                        </label>
+
+                                        <p>
+                                            <small>Entspannungs- und Ausgleichsübungen für die Augen.</small>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-rsi">
+                                        <label>
+                                            {{ form_row(form.rs) }}
+                                        </label>
+
+                                        <p>
+                                            <small>Prävention von Hand-Arm- Beschwerden aufgrund intensiver Belastungen.
+                                            </small>
+                                        </p>
+                                    </div>
+
+                                    <div class="text-thera">
+                                        <label>
+                                            {{ form_row(form.th) }}
+                                        </label>
+
+                                        <p>
+                                            <small>Auch Übungen mit Thera-Band® einspielen.</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{ form_rest(form) }}
+                    <button class="btn btn-primary" name="save" id="question_section_save" type="submit">
+                        Weiter
+                    </button>
+                </div>
+            {% endspaceless %}
+        </div>
+    {% endspaceless %}
+{% endblock extra_widget %}
+
+
+
+{% block content %}
+    {% spaceless %}
+        <div class="modal-dialog">
+            {% form_theme form _self %}
+
+            {{ form(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock content %}

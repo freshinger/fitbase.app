@@ -1,0 +1,153 @@
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif %}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|raw }}</label>
+    {%- endif %}
+{%- endblock form_label %}
+
+{% block form_row %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group alert alert-warning">
+                            {{ error.message }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block form_rows %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block avatar_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-4">
+                <a href="#" class="avatar" id="monkey">
+                    {% include 'FitbaseGamificationBundle:Service:avatar_monkey.html.twig' %}
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="avatar" id="bear">
+                    {% include 'FitbaseGamificationBundle:Service:avatar_bear.html.twig' %}
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="avatar" id="deer">
+                    {% include 'FitbaseGamificationBundle:Service:avatar_deer.html.twig' %}
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                Übung macht den Meister.
+                Einem jeden Wohl bekannter
+                Spruch bringt uns hier weiter. Mit
+                ein wenig Disziplin und Routine
+                können Sie bald jede Übung ganz
+                geschickt durchführen!
+            </div>
+            <div class="col-md-4">
+                Eine starke Rückenmuskulatur gibt
+                Ihnen Stabilität. Nicht nur alltägliche
+                Rückenschmerzen verschwinden Schritt
+                für Schritt, auch schützten Sie damit Ihre
+                Wirbelsäule!
+            </div>
+            <div class="col-md-4">
+                Neben den Übungen für unsere
+                Muskulatur sollte man auch unser
+                Herz-Kreislaufsystem
+                nicht vergessen. Ein 20 minütiger zügiger
+                Spaziergang am Tag ist ein guter Anfang!
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <a href="#" class="avatar" id="crane">
+                    {% include 'FitbaseGamificationBundle:Service:avatar_crane.html.twig' %}
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="avatar" id="tiger">
+                    {% include 'FitbaseGamificationBundle:Service:avatar_tiger.html.twig' %}
+                </a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                Schon mal etwas von innerer Muskulatur
+                gehört? Mit Balance – und
+                Gleichgewichtsübungen trainieren Sie diese
+                und bringen Sie Ihren Körper bestens in Form!
+            </div>
+            <div class="col-md-4">
+                Ausdauerkraft, sag ich Ihnen!
+                Nicht nur wenige Wiederholungen mit
+                schweren Gewichten ist wichtig, sondern
+                auch viele Wiederholungen mit leichten
+                oder keinen Gewichten!
+            </div>
+        </div>
+        {% set type='hidden' %}
+        {{ block('form_widget_simple') }}
+        <script type="text/javascript">
+            jQuery(function () {
+                jQuery(document).on('click', 'a.avatar', function (event) {
+                    var element = jQuery(this);
+                    var form = element.closest('form');
+                    form.find('input[type=hidden]').val(element.attr('id'));
+                    form.submit();
+                    return false;
+                });
+            });
+        </script>
+    {% endspaceless %}
+{% endblock avatar_widget %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        <div class="modal-body" {{ block('widget_container_attributes') }}>
+            <div class="row">
+                <div class="col-md-12 errors">
+                    {% if form.parent is empty %}
+                        {{ form_errors(form) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ block('form_rows') }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_widget_compound %}

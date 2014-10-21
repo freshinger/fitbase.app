@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany" table="fitbase_questionnaire_company"
+            repository-class="Fitbase\Bundle\QuestionnaireBundle\Repository\QuestionnaireCompanyRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="intervalWeek" type="integer" column="interval_week"/>
+
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company">
+            <join-column name="company_id" referenced-column-name="company_id"/>
+        </many-to-one>
+
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+            <join-column name="questionnaire_id" referenced-column-name="id"/>
+        </many-to-one>
+
+    </entity>
+</doctrine-mapping>

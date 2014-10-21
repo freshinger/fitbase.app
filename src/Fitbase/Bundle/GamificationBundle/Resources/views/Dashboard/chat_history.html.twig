@@ -1,0 +1,48 @@
+{% extends "FitbaseGamificationBundle::ajax.html.twig" %}
+
+{% block content %}
+
+    {% if emotion is defined and emotion %}
+        <div class="chat-message alert alert-info">
+            <strong>Wie geht es dir heute?</strong>
+
+            <div>
+                <img src="/wp-content/uploads/smiles/{{ emotion.value|emotion }}.png" width="40px"/>
+
+                <p>{{ emotion.description }}</p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if collection is defined and collection %}
+        {% if collection|length > 0 %}
+            {% for answer in collection %}
+                <div class="chat-message alert alert-info">
+                    <strong>{{ answer.question.text }}</strong>
+
+                    <p>{{ answer.question.description|raw }}</p>
+
+                    <div>
+                        <span>{{ answer|feedback }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+
+    {% if form is defined and form %}
+        <div class="chat-message alert alert-info">
+            {% if question is defined and question %}
+                <strong>{{ question.text }}</strong>
+                <p>{{ question.description|raw }}</p>
+            {% endif %}
+
+            {% set formView = form.createView %}
+
+            {% form_theme formView "FitbaseGamificationBundle:Dashboard:form.html.twig" %}
+
+            {{ form(formView) }}
+
+        </div>
+    {% endif %}
+{%- endblock content %}

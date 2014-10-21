@@ -1,0 +1,50 @@
+{% block form_rows %}
+    {% spaceless %}
+        <table class="form-table">
+            <tbody>
+            {% for child in form %}
+                {{ form_row(child) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block form_row %}
+    {% spaceless %}
+        <tr>
+            <th>{{ form_label(form) }}</th>
+            <td>
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock form_row %}
+
+
+{% block button_row %}
+    {% spaceless %}
+        <tr>
+            <th>{{ form_widget(form) }}</th>
+            <td>&nbsp;</td>
+        </tr>
+    {% endspaceless %}
+{% endblock button_row %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <script type="text/javascript">
+                jQuery(function () {
+                    jQuery('body').trigger('form_error');
+                });
+            </script>
+            <p class="error">
+                {% for error in errors %}
+                    {{ error.message }}
+                {% endfor %}
+            </p>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

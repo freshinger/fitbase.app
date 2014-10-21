@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase_validator.user_password"
+                 class="Fitbase\Bundle\UserBundle\Form\Constraints\UserPasswordValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="fitbaseuser_password"/>
+        </service>
+
+
+        <service id="fitbase_validator.user_email_unique"
+                 class="Fitbase\Bundle\UserBundle\Form\Constraints\UserEmailUniqueValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="user_email_unique"/>
+        </service>
+
+    </services>
+
+</container>

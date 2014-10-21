@@ -1,0 +1,91 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+
+        <service id="fitbase_listener.questionnaire"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="questionnaire_create" method="onQuestionnaireCreateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_update" method="onQuestionnaireUpdateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_remove" method="onQuestionnaireRemoveEvent"/>
+        </service>
+
+        <service id="fitbase_listener.questionnaire_question"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireQuestionListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="questionnaire_question_create"
+                 method="onQuestionnaireQuestionCreateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_question_update"
+                 method="onQuestionnaireQuestionUpdateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_question_remove"
+                 method="onQuestionnaireQuestionRemoveEvent"/>
+        </service>
+
+        <service id="fitbase_listener.questionnaire_answer"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireAnswerListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="questionnaire_answer_create"
+                 method="onQuestionnaireAnswerCreateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_answer_update"
+                 method="onQuestionnaireAnswerUpdateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_answer_remove"
+                 method="onQuestionnaireAnswerRemoveEvent"/>
+        </service>
+
+        <service id="fitbase_listener.questionnaire_user"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireUserListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+
+            <tag name="kernel.event_listener" event="questionnaire_user_done" method="onQuestionnaireUserDoneEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_user_create"
+                 method="onQuestionnaireUserCreateEvent"/>
+
+            <tag name="kernel.event_listener" event="questionnaire_extra" method="onQuestionnaireExtra"/>
+            <tag name="kernel.event_listener" event="questionnaire_focus" method="onQuestionnaireFocus"/>
+            <tag name="kernel.event_listener" event="questionnaire_section" method="onQuestionnaireSection"/>
+            <tag name="kernel.event_listener" event="questionnaire_password" method="onQuestionnairePassword"/>
+            <tag name="kernel.event_listener" event="questionnaire_done" method="onQuestionnaireDone"/>
+        </service>
+
+
+        <service id="fitbase_listener.questionnaire_user_answer"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireUserAnswerListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="questionnaire_user_answer_create"
+                 method="onQuestionnaireUserAnswerCreateEvent"/>
+        </service>
+
+
+        <service id="fitbase_listener.questionnaire_company"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireCompanyListener">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_listener" event="questionnaire_company_create"
+                 method="onQuestionnaireCompanyCreateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_company_remove"
+                 method="onQuestionnaireCompanyRemoveEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_company_plan"
+                 method="onQuestionnaireCompanyPlanEvent"/>
+
+        </service>
+
+
+    </services>
+
+</container>

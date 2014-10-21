@@ -1,0 +1,69 @@
+{% extends "FitbaseUserBundle::user.html.twig" %}
+
+
+
+
+{% block content %}
+
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Benutzer anlegen
+            <a class="add-new-h2" href="?page=fitbase_user_export">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if imported|length > 0 %}
+            <table class="wp-list-table widefat">
+                <tr>
+                    <th class="manage-column">Id</th>
+                    <th class="manage-column">Vorname</th>
+                    <th class="manage-column">Nachname</th>
+                    <th class="manage-column">Email</th>
+                    <th class="manage-column">Kennung</th>
+                    <th class="manage-column">Unternemen</th>
+                </tr>
+                {% for user in imported %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>{{ loop.index }}</td>
+                        <td>{{ user.nameFirst }}</td>
+                        <td>{{ user.nameLast }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.login }}</td>
+                        <td>
+                            {% if user.company %}
+                                {{ user.company.name }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr style="background: #f2f0f0;">
+                    <td><b>Total: {{ imported|length }}</b></td>
+                    <td colspan="5"></td>
+                </tr>
+            </table>
+        {% endif %}
+
+        <h2>
+            Benutzer Importieren
+        </h2>
+
+        <p>
+            CSV-Datei (E-Mail-Adresse, Vorname, Nachname). Die Dateianhänge werden zum Benutzer per Email geschickt.
+        </p>
+
+        {% form_theme form 'FitbaseUserBundle:Administration:form.html.twig' %}
+
+        {{ form(form) }}
+
+    </div>
+
+{% endblock content %}

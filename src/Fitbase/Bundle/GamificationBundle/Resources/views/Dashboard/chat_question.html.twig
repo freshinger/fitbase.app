@@ -1,0 +1,15 @@
+{% extends "FitbaseGamificationBundle::ajax.html.twig" %}
+
+{% block content %}
+    <div class="chat-message alert alert-info">
+        {% if question is defined and question %}
+            <strong>{{ question.text }}</strong>
+            <p>{{ question.description|raw }}</p>
+        {% endif %}
+
+        {% form_theme form "FitbaseGamificationBundle:Dashboard:form.html.twig" %}
+
+        {{ form(form) }}
+
+    </div>
+{%- endblock content %}

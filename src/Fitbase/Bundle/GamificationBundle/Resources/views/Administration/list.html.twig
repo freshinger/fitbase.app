@@ -1,0 +1,152 @@
+{% extends "FitbaseGamificationBundle::administration.html.twig" %}
+
+
+{% block form_row -%}
+    {{- form_widget(form) -}}
+{%- endblock form_row %}
+
+{% block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row %}
+
+{% block content %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Wohlfühlgesprächfragen
+            <a class="add-new-h2" href="?page=gamification&question_create=true">
+                Neu hinzufügen
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <table class="wp-list-table widefat">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Text
+                </th>
+                <th class="manage-column">
+                    Start
+                </th>
+                <th class="manage-column">
+                    Type
+                </th>
+                <th class="manage-column">
+                    Question on True
+                </th>
+                <th class="manage-column">
+                    Question on False
+                </th>
+                <th class="manage-column">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if pagerfanta.nbResults > 0 %}
+                {% for question in pagerfanta.currentPageResults %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>
+                            <a href="?page=gamification&question_id_edit={{ question.id }}">
+                                {{ question.text }}
+                            </a>
+
+                            <p>{{ question.description }}</p>
+                        </td>
+                        <td>
+                            {{ question.start|boolean }}
+                        </td>
+                        <td>
+                            {{ question.type }}
+                        </td>
+                        <td>
+                            {% if question.questionTrue %}
+                                <a href="?page=gamification&question_id_edit={{ question.questionTrue.id }}">
+                                    {{ question.questionTrue.text }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if question.questionFalse %}
+                                <a href="?page=gamification&question_id_edit={{ question.questionFalse.id }}">
+                                    {{ question.questionFalse.text }}
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="?page=gamification&question_id_edit={{ question.id }}">
+                                ändern
+                            </a>
+                            <a href="?page=gamification&question_id_remove={{ question.id }}">
+                                löschen
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        {% if pagerfanta.haveToPaginate %}
+            <div class="tablenav bottom">
+                <div class="tablenav-pages">
+                    <span class="displaying-num">{{ pagerfanta.nbResults }}</span>
+                <span class="pagination-links">
+                    {% if pagerfanta.hasPreviousPage %}
+                        <a href="?page=gamification&navigate=1" title="Zur ersten Seite gehen"
+                           class="first-page ">«</a>
+                        <a href="?page=gamification&navigate={{ pagerfanta.previousPage }}"
+                           title="Zur vorherigen Seite gehen" class="prev-page">‹</a>
+                    {% else %}
+                        <a title="Zur ersten Seite gehen" class="first-page ">«</a>
+                        <a title="Zur vorherigen Seite gehen" class="prev-page disabled">‹</a>
+                    {% endif %}
+                    <span class="paging-input">{{ pagerfanta.currentPage }} von <span
+                                class="total-pages">{{ pagerfanta.nbPages }}</span></span>
+                    {% if pagerfanta.hasNextPage %}
+                        <a href="?page=gamification&navigate={{ pagerfanta.nextPage }}"
+                           title="Zur nächsten Seite gehen" class="next-page">›</a>
+                        <a href="?page=gamification&navigate={{ pagerfanta.nbPages }}"
+                           title="Zur letzten Seite gehen" class="last-page">»</a>
+                    {% else %}
+                        <a title="Zur nächsten Seite gehen" class="next-page disabled">›</a>
+                        <a title="Zur letzten Seite gehen" class="last-page disabled">»</a>
+                    {% endif %}
+                </span>
+                </div>
+                <br class="clear">
+            </div>
+        {% endif %}
+
+        <br/>
+
+        <h2>
+            Dialog Frage anlegen
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {% form_theme form 'FitbaseGamificationBundle:Administration:form.html.twig' %}
+
+        {{ form(form) }}
+
+
+    </div>
+
+
+{% endblock content %}

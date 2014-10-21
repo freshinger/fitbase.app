@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogFeedback"
+            table="fitbase_gamification_user_dialog_feedback"
+            repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationUserDialogFeedbackRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="date" type="date" column="date"/>
+        <field name="text" type="text" column="text"/>
+
+        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
+        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
+        <!--</many-to-one>-->
+
+        <many-to-one field="question"
+                     target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion">
+            <join-column name="question_id" referenced-column-name="id"/>
+        </many-to-one>
+
+    </entity>
+</doctrine-mapping>

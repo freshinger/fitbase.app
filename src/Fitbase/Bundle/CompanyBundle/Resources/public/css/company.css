@@ -1,0 +1,7 @@
+#TB_overlay {
+    z-index: 0 !important;
+}
+
+#company .form-field input, #company .form-field textarea {
+    width: 25em;
+}

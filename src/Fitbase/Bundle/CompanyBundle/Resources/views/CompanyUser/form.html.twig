@@ -1,0 +1,38 @@
+{% extends "form_table_layout.html.twig" %}
+
+{% block form_start %}
+    {% spaceless %}
+    {% endspaceless %}
+{% endblock form_start %}
+
+{% block form_end %}
+    {% spaceless %}
+    {% endspaceless %}
+{% endblock form_end %}
+
+
+{% block form_row %}
+    {% spaceless %}
+        <tr class="form-field">
+            <th>
+                {{ form_label(form) }}
+            </th>
+            <td>
+                {{ form_errors(form) }}
+                {{ form_widget(form) }}
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block button_row %}
+    {% spaceless %}
+        <tr>
+            <td>
+                {{ form_widget(form) }}
+            </td>
+            <td>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock button_row %}

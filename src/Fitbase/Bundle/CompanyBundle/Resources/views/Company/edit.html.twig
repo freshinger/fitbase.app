@@ -1,0 +1,107 @@
+{% extends "FitbaseCompanyBundle::company.html.twig" %}
+
+
+{% block content %}
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Die Unternehmen-Data ändern
+            <a class="add-new-h2" href="?page=unternehmen">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% form_theme form 'FitbaseCompanyBundle:Company:form.html.twig' %}
+
+        {{ form(form) }}
+
+        <br/>
+        <br/>
+        <br/>
+
+        <h2>
+            Die Fragenbogen
+            <a class="add-new-h2" href="?page=unternehmen">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+        Die Benutzer werden diese Fragen beantworten. Jede Frage hat auch die Liste mit der Antworten.
+        Die Antwortliste kann man in der Einstellungen der Frage regeln.
+
+        {% form_theme formQuestionnaire 'FitbaseCompanyBundle:Company:form.html.twig' %}
+
+        {{ form(formQuestionnaire) }}
+
+        <br/>
+        <br/>
+
+        <table class="wp-list-table widefat">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Id
+                </th>
+                <th class="manage-column">
+                    Name
+                </th>
+                <th class="manage-column">
+                    Description
+                </th>
+                <th class="manage-column">
+                    Interval
+                </th>
+                <th class="manage-column">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collection|length > 0 %}
+                {% for questionnaireCompany in collection %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>{{ loop.index }}</td>
+                        <td nowrap>{{ questionnaireCompany.questionnaire.name }}</td>
+                        <td>{{ questionnaireCompany.questionnaire.description }}</td>
+                        <td>In {{ questionnaireCompany.intervalWeek }} Woche(n) durchführen</td>
+                        <td>
+                            <a href="?page=unternehmen&company_id={{ questionnaireCompany.company.id }}&questionnaire_company_id_remove={{ questionnaireCompany.id }}">
+                                löschen
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+
+        <br/>
+        <br/>
+        <br/>
+
+        <h2>
+            Ein neues Fragenbogen für den Unternehmen anlegen
+            <a class="add-new-h2" href="?page=unternehmen">
+                Zurück zur Liste
+            </a>
+        </h2>
+
+        Die Benutzer werden diese Fragen beantworten. Jede Frage hat auch die Liste mit der Antworten.
+        Die Antwortliste kann man in der Einstellungen der Frage regeln.
+
+        {% form_theme formQuestionnaireCompany 'FitbaseCompanyBundle:Company:form.html.twig' %}
+
+        {{ form(formQuestionnaireCompany) }}
+    </div>
+
+{% endblock content %}
+

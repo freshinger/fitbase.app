@@ -1,0 +1,111 @@
+{% extends "FitbaseQuestionnaireBundle::admin.html.twig" %}
+
+
+{% block content %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Die frage des Fragebogens ändern
+            <a class="add-new-h2" href="?page=questionnaire">
+                Zurück zur Liste
+            </a>
+            <a class="add-new-h2" href="?page=questionnaire&questionnaire_id_edit={{ question.questionnaire.id }}">
+                Zurück zum Fragebogen
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        {% form_theme form 'FitbaseQuestionnaireBundle:Questionnaire:form.html.twig' %}
+
+        {{ form(form) }}
+
+        <h2>
+            Antworten auf die Frage
+            <a class="add-new-h2" href="?page=questionnaire">
+                Zurück zur Liste
+            </a>
+            <a class="add-new-h2" href="?page=questionnaire&questionnaire_id_edit={{ question.questionnaire.id }}">
+                Zurück zum Fragebogen
+            </a>
+        </h2>
+
+        <p>
+            Die Benutzer werden diese Fragen beantworten. Jede Frage hat auch die Liste mit der Antworten.
+            Die Antwortliste kann man in der Einstellungen der Frage regeln.
+        </p>
+        <table class="wp-list-table widefat">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Name
+                </th>
+                <th class="manage-column">
+                    Punkte für den Gesundheitszustand
+                </th>
+                <th class="manage-column">
+                    Punkte für die Belastung
+                </th>
+                <th class="manage-column">
+                    Beschreibung
+                </th>
+                <th class="manage-column">
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collection|length > 0 %}
+                {% for answer in collection %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td nowrap>{{ answer.name }}</td>
+                        <td nowrap>{{ answer.countPointHealth }}</td>
+                        <td nowrap>{{ answer.countPointStrain }}</td>
+                        <td>{{ answer.description }}</td>
+                        <td>
+                            <a href="?page=questionnaire&answer_id_edit={{ answer.id }}">
+                                ändern
+                            </a>
+                            <a href="?page=questionnaire&answer_id_remove={{ answer.id }}">
+                                löschen
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+
+        <br/>
+
+        <h2>
+            Eine neue Antwort anlegen
+            <a class="add-new-h2" href="?page=questionnaire">
+                Zurück zur Liste
+            </a>
+            <a class="add-new-h2" href="?page=questionnaire&questionnaire_id_edit={{ question.questionnaire.id }}">
+                Zurück zum Fragebogen
+            </a>
+        </h2>
+
+        <p>
+            Die angelegte Antworte werden sofort in der Antwortenliste hinzugefügt.
+        </p>
+
+        {% form_theme formAnswer 'FitbaseQuestionnaireBundle:Questionnaire:form.html.twig' %}
+
+        {{ form(formAnswer) }}
+
+
+    </div>
+
+{% endblock content %}

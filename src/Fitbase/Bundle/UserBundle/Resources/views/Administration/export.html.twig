@@ -1,0 +1,226 @@
+{% extends "FitbaseUserBundle::user.html.twig" %}
+
+
+
+{% block form_row -%}
+    {{- form_widget(form) -}}
+{%- endblock form_row %}
+
+{% block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row %}
+
+
+{% block content %}
+
+
+    {% if fileCsvUrl %}
+        <script type="text/javascript">
+            window.open('{{ fileCsvUrl }}');
+        </script>
+    {% endif %}
+
+    {% if fileExcelUrl %}
+        <script type="text/javascript">
+            window.open('{{ fileExcelUrl }}');
+        </script>
+    {% endif %}
+
+
+    <div class="wrap" style="margin: 11px 15px 0px 15px;">
+        <h2>
+            Benutzer zu exportieren
+            <a class="add-new-h2" href="?page=reminder_plan_create">
+                Neu hinzufügen
+            </a>
+            <a class="add-new-h2" href="?page=fitbase_user_import">
+                Benutzer importieren
+            </a>
+        </h2>
+
+        {% for message in flashbag.get('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+
+        <div class="tablenav top">
+            <div class="alignleft actions bulkactions" style="width: 100%">
+                {% form_theme form _self %}
+
+                {{ form(form) }}
+            </div>
+            <br class="clear">
+            {% if roles %}
+                <ul class="subsubsub">
+                    <li class="administrator">
+                        <a href="?page=fitbase_user_export">
+                            Alle
+                        </a> |
+                    </li>
+                    {% for role in roles %}
+                        <li class="administrator">
+                            <a href="#" id="{{ role.name }}" class="filter-role">
+                                {{ role.name }} <span class="count">({{ role.name|user_count }})</span>
+                            </a>
+                            {% if not loop.last %}
+                                |
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <ul class="subsubsub" style="float: right;">
+                <li class="administrator">
+                    <a href="?page=fitbase_user_export&export=csv">
+                        Als CSV exportieren
+                    </a> |
+                </li>
+                <li class="administrator">
+                    <a href="?page=fitbase_user_export&export=excel">
+                        Als Excel exportieren
+                    </a>
+                </li>
+            </ul>
+            <br class="clear">
+        </div>
+
+        <script type="text/javascript">
+            jQuery(function (event) {
+                jQuery('a.filter-role').click(function (event) {
+                    var jElement = jQuery(this);
+                    var jInput = jQuery('#user_search_string');
+                    var jForm = jQuery('form[name=user_search]');
+
+                    jInput.val(jElement.attr('id'));
+                    jForm.submit();
+                    return false;
+                });
+            });
+        </script>
+
+
+        <table class="wp-list-table widefat fixed">
+            <thead>
+            <tr>
+                <th class="manage-column">
+                    Id
+                </th>
+                <th class="manage-column">
+                    Benutzername
+                </th>
+                <th class="manage-column">
+                    Name
+                </th>
+                <th class="manage-column">
+                    Email
+                </th>
+                <th class="manage-column">
+                    Rolle
+                </th>
+                <th class="manage-column">
+                    Unternehmen
+                </th>
+                <th class="manage-column">
+                    Logins
+                </th>
+                <th class="manage-column">
+                    Videos
+                </th>
+                <th class="manage-column">
+                    Wochanaufgaben
+                </th>
+                <th class="manage-column">
+                    Registriert
+                </th>
+                <th class="manage-column">
+                    Letzter Login
+                </th>
+                <th class="manage-column">
+                    Browser
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if pagerfanta.nbResults > 0 %}
+                {% for statistic in pagerfanta.currentPageResults %}
+                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                        <td>{{ statistic.user.id }}</td>
+                        <td>
+                            <a href="/wp-admin/user-edit.php?user_id={{ statistic.user.id }}">
+                                {{ statistic.user.nicename }}
+                            </a>
+                        </td>
+                        <td>{{ statistic.user.displayName }}</td>
+                        <td>
+                            <a href="mailto:{{ statistic.user.email }}">
+                                {{ statistic.user.email }}
+                            </a>
+                        </td>
+                        <td>{{ statistic.user|user_role }}</td>
+                        <td>{{ statistic.user|company }}</td>
+                        <td>{{ statistic.countLogin }}</td>
+                        <td>{{ statistic.countVideo }}</td>
+                        <td>
+                            {% if statistic.countWeeklyTask %}
+                                {% if statistic.countWeeklyTaskProcessed %}
+                                    {{ statistic.countWeeklyTaskProcessed }} /
+                                {% endif %}
+                                {{ statistic.countWeeklyTask }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if statistic.user.registered %}
+                                {{ statistic.user.registered|date('d.m.Y') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if statistic.loggedAt %}
+                                {{ statistic.loggedAt|date('d.m.Y') }}
+                            {% endif %}
+                        </td>
+                        <td>{{ statistic.userAgent|browser }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="9">Kein Remind-Plan gefunden</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        {% if pagerfanta.haveToPaginate %}
+            <div class="tablenav bottom">
+                <div class="tablenav-pages">
+                    <span class="displaying-num">{{ pagerfanta.nbResults }}</span>
+                <span class="pagination-links">
+                    {% if pagerfanta.hasPreviousPage %}
+                        <a href="?page=fitbase_user_export&navigate=1" title="Zur ersten Seite gehen"
+                           class="first-page ">«</a>
+                        <a href="?page=fitbase_user_export&navigate={{ pagerfanta.previousPage }}"
+                           title="Zur vorherigen Seite gehen" class="prev-page">‹</a>
+                    {% else %}
+                        <a title="Zur ersten Seite gehen" class="first-page ">«</a>
+                        <a title="Zur vorherigen Seite gehen" class="prev-page disabled">‹</a>
+                    {% endif %}
+                    <span class="paging-input">{{ pagerfanta.currentPage }} von <span
+                                class="total-pages">{{ pagerfanta.nbPages }}</span></span>
+                    {% if pagerfanta.hasNextPage %}
+                        <a href="?page=fitbase_user_export&navigate={{ pagerfanta.nextPage }}"
+                           title="Zur nächsten Seite gehen" class="next-page">›</a>
+                        <a href="?page=fitbase_user_export&navigate={{ pagerfanta.nbPages }}"
+                           title="Zur letzten Seite gehen" class="last-page">»</a>
+                    {% else %}
+                        <a title="Zur nächsten Seite gehen" class="next-page disabled">›</a>
+                        <a title="Zur letzten Seite gehen" class="last-page disabled">»</a>
+                    {% endif %}
+                </span>
+                </div>
+                <br class="clear">
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock content %}
