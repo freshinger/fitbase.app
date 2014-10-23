@@ -38,6 +38,7 @@ class LoadWeeklytaskMetabolicData extends AbstractFixture implements OrderedFixt
         $item13005->setTag("Metabolic");
         $item13005->setCountPoint(1);
         $item13005->setName("Diäten");
+        $item13005->setCategory($this->getReference('category_metabolic'));
         $item13005->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <div>
@@ -71,6 +72,7 @@ EOT
         $item13002->setTag("Metabolic");
         $item13002->setCountPoint(1);
         $item13002->setName("Körperwahrnehmung");
+        $item13002->setCategory($this->getReference('category_metabolic'));
         $item13002->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <div>
@@ -100,6 +102,7 @@ EOT
         $item12999->setTag("Metabolic");
         $item12999->setCountPoint(1);
         $item12999->setName("Kohlenhydrate");
+        $item12999->setCategory($this->getReference('category_metabolic'));
         $item12999->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur heutigen Einheit im <b>ErnährungsCoach</b>! Heute befassen wir uns mit den Kohlenhydraten.</p>
@@ -135,6 +138,7 @@ EOT
         $item12996->setName("Lebensmittel Zucker");
         $item12996->setFormat("richhtml");
         $item12996->setTag("Metabolic");
+        $item12996->setCategory($this->getReference('category_metabolic'));
         $item12996->setCountPoint(1);
         $item12996->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -170,6 +174,7 @@ EOT
         $item12994->setName("Die LOGI - Methode");
         $item12994->setFormat("richhtml");
         $item12994->setTag("Metabolic");
+        $item12994->setCategory($this->getReference('category_metabolic'));
         $item12994->setCountPoint(1);
         $item12994->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
@@ -206,6 +211,7 @@ EOT
         $item12991->setName("Trinken");
         $item12991->setFormat("richhtml");
         $item12991->setTag("Metabolic");
+        $item12991->setCategory($this->getReference('category_metabolic'));
         $item12991->setCountPoint(1);
         $item12991->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
@@ -259,6 +265,7 @@ EOT
         $item12988->setName("Frühstück");
         $item12988->setFormat("richhtml");
         $item12988->setTag("Metabolic");
+        $item12988->setCategory($this->getReference('category_metabolic'));
         $item12988->setCountPoint(1);
         $item12988->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -296,6 +303,7 @@ EOT
         $item12984->setName("Öle & Fette");
         $item12984->setFormat("richhtml");
         $item12984->setTag("Metabolic");
+        $item12984->setCategory($this->getReference('category_metabolic'));
         $item12984->setCountPoint(1);
         $item12984->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -331,6 +339,7 @@ EOT
         $item12979->setName("Sport und Muskulatur");
         $item12979->setFormat("richhtml");
         $item12979->setTag("Metabolic");
+        $item12979->setCategory($this->getReference('category_metabolic'));
         $item12979->setCountPoint(1);
         $item12979->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -376,6 +385,7 @@ EOT
         $item12976->setName("Fisch und Fleisch");
         $item12976->setFormat("richhtml");
         $item12976->setTag("Metabolic");
+        $item12976->setCategory($this->getReference('category_metabolic'));
         $item12976->setCountPoint(1);
         $item12976->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -400,6 +410,7 @@ EOT
         $item12973->setName("Mittagessen");
         $item12973->setFormat("richhtml");
         $item12973->setTag("Metabolic");
+        $item12973->setCategory($this->getReference('category_metabolic'));
         $item12973->setCountPoint(1);
         $item12973->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -432,6 +443,7 @@ EOT
         $item12970->setName("Essverhalten");
         $item12970->setFormat("richhtml");
         $item12970->setTag("Metabolic");
+        $item12970->setCategory($this->getReference('category_metabolic'));
         $item12970->setCountPoint(1);
         $item12970->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -461,6 +473,7 @@ EOT
         $item12967->setName("Das volle Korn");
         $item12967->setFormat("richhtml");
         $item12967->setTag("Metabolic");
+        $item12967->setCategory($this->getReference('category_metabolic'));
         $item12967->setCountPoint(1);
         $item12967->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -497,6 +510,7 @@ EOT
         $item12963->setName("Das Mittagstief");
         $item12963->setFormat("richhtml");
         $item12963->setTag("Metabolic");
+        $item12963->setCategory($this->getReference('category_metabolic'));
         $item12963->setCountPoint(1);
         $item12963->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -534,6 +548,7 @@ EOT
         $item12960->setName("Die 8 Regeln von metabolic balance");
         $item12960->setFormat("richhtml");
         $item12960->setTag("Metabolic");
+        $item12960->setCategory($this->getReference('category_metabolic'));
         $item12960->setCountPoint(1);
         $item12960->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -556,6 +571,7 @@ EOT
         $item12957->setName("Milchprodukte");
         $item12957->setFormat("richhtml");
         $item12957->setTag("Metabolic");
+        $item12957->setCategory($this->getReference('category_metabolic'));
         $item12957->setCountPoint(1);
         $item12957->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -590,6 +606,7 @@ EOT
         $item12954->setName("Das Abendessen");
         $item12954->setFormat("richhtml");
         $item12954->setTag("Metabolic");
+        $item12954->setCategory($this->getReference('category_metabolic'));
         $item12954->setCountPoint(1);
         $item12954->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -622,6 +639,7 @@ EOT
         $item12951->setName("Kennzeichen guter Diäten");
         $item12951->setFormat("richhtml");
         $item12951->setTag("Metabolic");
+        $item12951->setCategory($this->getReference('category_metabolic'));
         $item12951->setCountPoint(1);
         $item12951->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -653,6 +671,7 @@ EOT
         $item12948->setName("Obst");
         $item12948->setFormat("richhtml");
         $item12948->setTag("Metabolic");
+        $item12948->setCategory($this->getReference('category_metabolic'));
         $item12948->setCountPoint(1);
         $item12948->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -690,6 +709,7 @@ EOT
         $item12945->setName("Naschen");
         $item12945->setFormat("richhtml");
         $item12945->setTag("Metabolic");
+        $item12945->setCategory($this->getReference('category_metabolic'));
         $item12945->setCountPoint(1);
         $item12945->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -721,6 +741,7 @@ EOT
         $item12942->setName("Butter oder Margarine");
         $item12942->setFormat("richhtml");
         $item12942->setTag("Metabolic");
+        $item12942->setCategory($this->getReference('category_metabolic'));
         $item12942->setCountPoint(1);
         $item12942->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -756,6 +777,7 @@ EOT
         $item13102->setName("Mindesthaltbarkeit");
         $item13102->setFormat("richhtml");
         $item13102->setTag("Metabolic");
+        $item13102->setCategory($this->getReference('category_metabolic'));
         $item13102->setCountPoint(1);
         $item13102->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -781,6 +803,7 @@ EOT
         $item12939->setName("Festliche Anlässe");
         $item12939->setFormat("richhtml");
         $item12939->setTag("Metabolic");
+        $item12939->setCategory($this->getReference('category_metabolic'));
         $item12939->setCountPoint(1);
         $item12939->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
@@ -826,6 +849,7 @@ EOT
         $item12937->setFormat("richhtml");
         $item12937->setTag("Metabolic");
         $item12937->setCountPoint(1);
+        $item12937->setCategory($this->getReference('category_metabolic'));
         $item12937->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
 <p style = "margin: 0; font - size: 14px; color: #333333; font-weight: normal; padding: 0; line-height: 22px; padding-bottom: 20px;" > herzlich Willkommen zur letzten Einheit im ErnährungsCoach!Wir befinden uns am Ende unseres ErnährungsCoaches und haben Ihnen heute eine Zusammenfassung aller Einheiten für Sie vorbereitet .</p >
@@ -855,6 +879,7 @@ EOT
         $item13011->setFormat("richhtml");
         $item13011->setTag("Metabolic");
         $item13011->setCountPoint(1);
+        $item13011->setCategory($this->getReference('category_metabolic'));
         $item13011->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]
 <p style = "margin: 0;font - size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px" > herzlich Willkommen zur heutigen Einheit im < b style = "font-size: 13px" > ErnährungsCoach</b > !Wir essen täglich mehrmals . Im besten Fall ernährt uns das Essen auch .</p >
@@ -890,6 +915,7 @@ EOT
         $item13014->setName("Willkommensemail");
         $item13014->setFormat("richhtml");
         $item13014->setTag("Metabolic");
+        $item13014->setCategory($this->getReference('category_metabolic'));
         $item13014->setCountPoint(1);
         $item13014->setContent(<<<EOT
 [back_to_parent text = "Zurück zur Übersicht“]

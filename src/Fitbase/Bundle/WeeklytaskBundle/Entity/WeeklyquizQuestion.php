@@ -191,4 +191,35 @@ class WeeklyquizQuestion
 
         return $string . $this->getName();
     }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answers
+     * @return WeeklyquizQuestion
+     */
+    public function addAnswer(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answers
+     */
+    public function removeAnswer(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
 }

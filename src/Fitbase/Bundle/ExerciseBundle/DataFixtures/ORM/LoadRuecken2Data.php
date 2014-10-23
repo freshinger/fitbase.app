@@ -39,6 +39,7 @@ class LoadRuecken2Data extends AbstractFixture implements OrderedFixtureInterfac
         $item630->setImage($this->getReference('picture_630.jpeg'));
         $item630->setVideo($this->getReference('video_630.webm'));
         $item630->setGallery($this->getReference('picture_630'));
+        $item630->setCategory($this->getReference('category_ruecken'));
         $item630->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -92,6 +93,7 @@ EOT
         $item631->setImage($this->getReference('picture_631.jpeg'));
         $item631->setVideo($this->getReference('video_631.webm'));
         $item631->setGallery($this->getReference('picture_631'));
+        $item631->setCategory($this->getReference('category_ruecken'));
         $item631->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -146,6 +148,7 @@ EOT
         $item632->setImage($this->getReference('picture_632.jpeg'));
         $item632->setVideo($this->getReference('video_632.webm'));
         $item632->setGallery($this->getReference('picture_632'));
+        $item632->setCategory($this->getReference('category_ruecken'));
         $item632->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -199,6 +202,7 @@ EOT
         $item633->setImage($this->getReference('picture_633.jpeg'));
         $item633->setVideo($this->getReference('video_633.webm'));
         $item633->setGallery($this->getReference('picture_633'));
+        $item633->setCategory($this->getReference('category_ruecken'));
         $item633->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -255,6 +259,7 @@ EOT
         $item634->setImage($this->getReference('picture_634.jpeg'));
         $item634->setVideo($this->getReference('video_634.webm'));
         $item634->setGallery($this->getReference('picture_634'));
+        $item634->setCategory($this->getReference('category_ruecken'));
         $item634->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -312,6 +317,7 @@ EOT
         $item635->setImage($this->getReference('picture_635.jpeg'));
         $item635->setVideo($this->getReference('video_635.webm'));
         $item635->setGallery($this->getReference('picture_635'));
+        $item635->setCategory($this->getReference('category_ruecken'));
         $item635->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -372,6 +378,7 @@ EOT
         $item636->setImage($this->getReference('picture_636.jpeg'));
         $item636->setVideo($this->getReference('video_636.webm'));
         $item636->setGallery($this->getReference('picture_636'));
+        $item636->setCategory($this->getReference('category_ruecken'));
         $item636->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -430,6 +437,7 @@ EOT
         $item637->setImage($this->getReference('picture_637.jpeg'));
         $item637->setVideo($this->getReference('video_637.webm'));
         $item637->setGallery($this->getReference('picture_637'));
+        $item637->setCategory($this->getReference('category_ruecken'));
         $item637->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -483,6 +491,7 @@ EOT
         $item638->setImage($this->getReference('picture_638.jpeg'));
         $item638->setVideo($this->getReference('video_638.webm'));
         $item638->setGallery($this->getReference('picture_638'));
+        $item638->setCategory($this->getReference('category_ruecken'));
         $item638->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -544,6 +553,7 @@ EOT
         $item639->setImage($this->getReference('picture_639.jpeg'));
         $item639->setVideo($this->getReference('video_639.webm'));
         $item639->setGallery($this->getReference('picture_639'));
+        $item639->setCategory($this->getReference('category_ruecken'));
         $item639->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">

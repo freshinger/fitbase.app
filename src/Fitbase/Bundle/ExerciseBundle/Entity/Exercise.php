@@ -254,4 +254,62 @@ class Exercise
     {
         return $this->gallery;
     }
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    private $category;
+
+
+    /**
+     * Set category
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     * @return Exercise
+     */
+    public function setCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Collection
+     */
+    private $collection;
+
+
+    /**
+     * Set collection
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Collection $collection
+     * @return Exercise
+     */
+    public function setCollection(\Application\Sonata\ClassificationBundle\Entity\Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
 }

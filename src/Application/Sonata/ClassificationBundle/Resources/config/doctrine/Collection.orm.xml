@@ -16,6 +16,10 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-
+        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
     </entity>
 </doctrine-mapping>

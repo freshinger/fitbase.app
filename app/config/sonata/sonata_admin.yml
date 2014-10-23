@@ -75,9 +75,9 @@ sonata_admin:
                 label_catalogue: SonataClassificationBundle
                 icon:            '<i class="fa fa-sitemap"></i>'
                 items:
-                    - sonata.classification.admin.category
+#                    - sonata.classification.admin.category
                     - sonata.classification.admin.tag
-                    - sonata.classification.admin.collection
+#                    - sonata.classification.admin.collection
 
             sonata.admin.group.site_builder:
                 label:           Site Builder
@@ -130,6 +130,8 @@ sonata_admin:
                 label: Übungen
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
+                    - sonata.classification.admin.category
+                    - fitbase.admin.collection
                     - fitbase.admin.exercise
 
 

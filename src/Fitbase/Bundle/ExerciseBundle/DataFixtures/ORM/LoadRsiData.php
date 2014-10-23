@@ -41,6 +41,7 @@ class LoadRsiData extends AbstractFixture implements OrderedFixtureInterface
         $item584->setImage($this->getReference('picture_584.jpeg'));
         $item584->setVideo($this->getReference('video_584.webm'));
         $item584->setGallery($this->getReference('picture_584'));
+        $item584->setCategory($this->getReference('category_rsi'));
         $item584->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -93,6 +94,7 @@ CONTENT
         $item585->setImage($this->getReference('picture_585.jpeg'));
         $item585->setVideo($this->getReference('video_585.webm'));
         $item585->setGallery($this->getReference('picture_585'));
+        $item585->setCategory($this->getReference('category_rsi'));
         $item585->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -147,6 +149,7 @@ CONTENT
         $item586->setImage($this->getReference('picture_586.jpeg'));
         $item586->setVideo($this->getReference('video_586.webm'));
         $item586->setGallery($this->getReference('picture_586'));
+        $item586->setCategory($this->getReference('category_rsi'));
         $item586->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -207,6 +210,7 @@ CONTENT
         $item587->setImage($this->getReference('picture_587.jpeg'));
         $item587->setVideo($this->getReference('video_587.webm'));
         $item587->setGallery($this->getReference('picture_587'));
+        $item587->setCategory($this->getReference('category_rsi'));
         $item587->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -263,6 +267,7 @@ CONTENT
         $item588->setImage($this->getReference('picture_588.jpeg'));
         $item588->setVideo($this->getReference('video_588.webm'));
         $item588->setGallery($this->getReference('picture_588'));
+        $item588->setCategory($this->getReference('category_rsi'));
         $item588->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -316,6 +321,7 @@ CONTENT
         $item589->setImage($this->getReference('picture_589.jpeg'));
         $item589->setVideo($this->getReference('video_589.webm'));
         $item589->setGallery($this->getReference('picture_589'));
+        $item589->setCategory($this->getReference('category_rsi'));
         $item589->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -375,6 +381,7 @@ CONTENT
         $item590->setImage($this->getReference('picture_590.jpeg'));
         $item590->setVideo($this->getReference('video_590.webm'));
         $item590->setGallery($this->getReference('picture_590'));
+        $item590->setCategory($this->getReference('category_rsi'));
         $item590->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -427,6 +434,7 @@ CONTENT
         $item591->setImage($this->getReference('picture_591.jpeg'));
         $item591->setVideo($this->getReference('video_591.webm'));
         $item591->setGallery($this->getReference('picture_591'));
+        $item591->setCategory($this->getReference('category_rsi'));
         $item591->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -485,6 +493,7 @@ CONTENT
         $item592->setImage($this->getReference('picture_592.jpeg'));
         $item592->setVideo($this->getReference('video_592.webm'));
         $item592->setGallery($this->getReference('picture_592'));
+        $item592->setCategory($this->getReference('category_rsi'));
         $item592->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">

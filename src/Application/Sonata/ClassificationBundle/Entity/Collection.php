@@ -37,4 +37,33 @@ class Collection extends BaseCollection
     {
         return $this->id;
     }
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    protected $category;
+
+
+    /**
+     * Set category
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     * @return Collection
+     */
+    public function setCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

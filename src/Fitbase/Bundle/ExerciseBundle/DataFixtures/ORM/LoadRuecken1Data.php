@@ -38,6 +38,7 @@ class LoadRuecken1Data extends AbstractFixture implements OrderedFixtureInterfac
         $item615->setImage($this->getReference('picture_615.jpeg'));
         $item615->setVideo($this->getReference('video_615.webm'));
         $item615->setGallery($this->getReference('picture_615'));
+        $item615->setCategory($this->getReference('category_ruecken'));
         $item615->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -94,6 +95,7 @@ EOT
         $item616->setImage($this->getReference('picture_616.jpeg'));
         $item616->setVideo($this->getReference('video_616.webm'));
         $item616->setGallery($this->getReference('picture_616'));
+        $item616->setCategory($this->getReference('category_ruecken'));
         $item616->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -152,6 +154,7 @@ EOT
         $item617->setImage($this->getReference('picture_617.jpeg'));
         $item617->setVideo($this->getReference('video_617.webm'));
         $item617->setGallery($this->getReference('picture_617'));
+        $item617->setCategory($this->getReference('category_ruecken'));
         $item617->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -208,6 +211,7 @@ EOT
         $item618->setImage($this->getReference('picture_618.jpeg'));
         $item618->setVideo($this->getReference('video_618.webm'));
         $item618->setGallery($this->getReference('picture_618'));
+        $item618->setCategory($this->getReference('category_ruecken'));
         $item618->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -262,6 +266,7 @@ EOT
         $item619->setImage($this->getReference('picture_619.jpeg'));
         $item619->setVideo($this->getReference('video_619.webm'));
         $item619->setGallery($this->getReference('picture_619'));
+        $item619->setCategory($this->getReference('category_ruecken'));
         $item619->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -325,6 +330,7 @@ EOT
         $item620->setImage($this->getReference('picture_620.jpeg'));
         $item620->setVideo($this->getReference('video_620.webm'));
         $item620->setGallery($this->getReference('picture_620'));
+        $item620->setCategory($this->getReference('category_ruecken'));
         $item620->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -382,6 +388,7 @@ EOT
         $item621->setImage($this->getReference('picture_621.jpeg'));
         $item621->setVideo($this->getReference('video_621.webm'));
         $item621->setGallery($this->getReference('picture_621'));
+        $item621->setCategory($this->getReference('category_ruecken'));
         $item621->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -440,6 +447,7 @@ EOT
         $item622->setImage($this->getReference('picture_622.jpeg'));
         $item622->setVideo($this->getReference('video_622.webm'));
         $item622->setGallery($this->getReference('picture_622'));
+        $item622->setCategory($this->getReference('category_ruecken'));
         $item622->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -496,6 +504,7 @@ EOT
         $item623->setImage($this->getReference('picture_623.jpeg'));
         $item623->setVideo($this->getReference('video_623.webm'));
         $item623->setGallery($this->getReference('picture_623'));
+        $item623->setCategory($this->getReference('category_ruecken'));
         $item623->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -558,6 +567,7 @@ EOT
         $item624->setImage($this->getReference('picture_624.jpeg'));
         $item624->setVideo($this->getReference('video_624.webm'));
         $item624->setGallery($this->getReference('picture_624'));
+        $item624->setCategory($this->getReference('category_ruecken'));
         $item624->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -619,6 +629,7 @@ EOT
         $item625->setImage($this->getReference('picture_625.jpeg'));
         $item625->setVideo($this->getReference('video_625.webm'));
         $item625->setGallery($this->getReference('picture_625'));
+        $item625->setCategory($this->getReference('category_ruecken'));
         $item625->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -678,6 +689,7 @@ EOT
         $item626->setImage($this->getReference('picture_626.jpeg'));
         $item626->setVideo($this->getReference('video_626.webm'));
         $item626->setGallery($this->getReference('picture_626'));
+        $item626->setCategory($this->getReference('category_ruecken'));
         $item626->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -732,6 +744,7 @@ EOT
         $item627->setImage($this->getReference('picture_627.jpeg'));
         $item627->setVideo($this->getReference('video_627.webm'));
         $item627->setGallery($this->getReference('picture_627'));
+        $item627->setCategory($this->getReference('category_ruecken'));
         $item627->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -786,6 +799,7 @@ EOT
         $item628->setImage($this->getReference('picture_628.jpeg'));
         $item628->setVideo($this->getReference('video_628.webm'));
         $item628->setGallery($this->getReference('picture_628'));
+        $item628->setCategory($this->getReference('category_ruecken'));
         $item628->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -845,6 +859,7 @@ EOT
         $item629->setImage($this->getReference('picture_629.jpeg'));
         $item629->setVideo($this->getReference('video_629.webm'));
         $item629->setGallery($this->getReference('picture_629'));
+        $item629->setCategory($this->getReference('category_ruecken'));
         $item629->setDescription(<<<EOT
 <div class="row">
 <div class="span4 col-md-4 column_last">

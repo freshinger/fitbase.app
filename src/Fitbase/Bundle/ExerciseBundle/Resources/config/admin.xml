@@ -15,6 +15,13 @@
             <argument/>
         </service>
 
+        <service id="fitbase.admin.collection" class="Fitbase\Bundle\ExerciseBundle\Admin\CollectionAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Collections"/>
+            <argument/>
+            <argument>Application\Sonata\ClassificationBundle\Entity\Collection</argument>
+            <argument/>
+        </service>
+
 
     </services>
 </container>

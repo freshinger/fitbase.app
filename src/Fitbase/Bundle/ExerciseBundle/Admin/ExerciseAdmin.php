@@ -41,7 +41,8 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
-            ->add('tag')
+            ->add('category')
+            ->add('collection')
             ->add('countPoint')
             ->end()
             ->with('Content', array('class' => 'col-md-6'))
@@ -62,7 +63,8 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Vorschaubild',
                 'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
             ))
-            ->add('tag')
+            ->add('category')
+            ->add('collection')
             ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -96,6 +98,8 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->add('countPoint')
             ->end()
             ->with('Media', array('class' => 'col-md-6'))
+            ->add('category', 'sonata_type_model_list', array('required' => false))
+            ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->add('video', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('gallery', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))

@@ -161,4 +161,61 @@ class Weeklytask
 
         return 'Neue Wochenaufgabe';
     }
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Collection
+     */
+    protected $collection;
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    protected $category;
+
+
+    /**
+     * Set collection
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Collection $collection
+     * @return Weeklytask
+     */
+    public function setCollection(\Application\Sonata\ClassificationBundle\Entity\Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     * @return Weeklytask
+     */
+    public function setCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

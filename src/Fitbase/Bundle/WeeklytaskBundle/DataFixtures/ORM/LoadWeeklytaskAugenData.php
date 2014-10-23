@@ -1,6 +1,7 @@
 <?php
 
-namespace Fitbase\Bundle\WeeklytaskBundle\DataFixture\ORM;;
+namespace Fitbase\Bundle\WeeklytaskBundle\DataFixture\ORM;
+;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -40,6 +41,7 @@ class LoadWeeklytaskAugenData extends AbstractFixture implements OrderedFixtureI
         $item2066->setWeekId(47);
         $item2066->setCountPoint(1);
         $item2066->setName("Wochenaufgabe 47");
+        $item2066->setCategory($this->getReference('category_augen'));
         $item2066->setContent(<<<EOT
 <em> Wir haben bereits verschiedene körperliche Symptome betrachtet, die durch Stress verursacht werden und uns zudem angeschaut, mit welchen Sofortmaßnahmen man dem entgegen wirken kann. In den kommenden Einheiten werfen wir einen Blick auf unsere Augen und die Auswirkungen von Stress auf das Sehen.</em>
 <strong> Warum strengt Bildschirmarbeit die Augen an ?</strong>
@@ -55,13 +57,13 @@ EOT
         $manager->persist($item2066);
 
 
-
         $item2069 = new Weeklytask();
         $item2069->setFormat("richhtml");
         $item2069->setTag("Augen");
         $item2069->setWeekId(48);
         $item2069->setCountPoint(1);
         $item2069->setName("Wochenaufgabe 48");
+        $item2069->setCategory($this->getReference('category_augen'));
         $item2069->setContent(<<<EOT
 <em> Die heutige Wochenaufgabe beschäftigt sich mit dem Zusammenhang von Stress und Sehen, erklärt wie trockene und müde Augen enstehen und wie Sie sie vermeiden.</em><strong></strong>
 <a href = "http://online-rueckenschule.de/wp-content/uploads/WA-48.png"><img src = "http://online-rueckenschule.de/wp-content/uploads/WA-48-300x198.png" alt = "WA 48" width = "300" height = "198" class="alignright wp-image-2126 size-medium" /></a><a href = "http://www.officephysio.de/memberarea/weeklytask/weeklytask48/augen/" rel = "attachment wp-att-5989"></a> Die meisten inneren Vorgänge des Körpers werden vom vegetativen, nicht willentlich beeinflussbaren, Nervensystem gesteuert. Ursprünglich gepolt als Kampf - und Fluchtmuster reagiert der Körper blitzschnell auf wahrgenommene Bedrohungen durch Ausschüttung von Hormonen und bestimmten Körperreaktionen(vgl. Wochenaufgaben 41 - 43).
@@ -83,6 +85,7 @@ EOT
         $item2071->setWeekId(49);
         $item2071->setCountPoint(1);
         $item2071->setName("Wochenaufgabe 49");
+        $item2071->setCategory($this->getReference('category_augen'));
         $item2071->setContent(<<<EOT
 Herzlich Willkommen zur 49. Wochenaufgabe, die sich erneut mit dem Zusammenhang von Sehen und Stress beschäftigt und der Frage auf den Grund geht, warum man bei Stress schlechter sieht.
 <span style = "color: #808080"> Eine kurze Wiederholung: Im vegetativen Nervensystem sprechen wir von zwei gegensätzlichen Funktionen:  </span>
@@ -109,6 +112,7 @@ EOT
         $item531->setTag("Augen");
         $item531->setCountPoint(1);
         $item531->setName("Sehen mit dem ganzen Gehirn ");
+        $item531->setCategory($this->getReference('category_augen'));
         $item531->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur zweiten Einheit Ihres Sehtrainings. Um die Chancen und Möglichkeiten des Sehtrainings kennen zu lernen, ist es wichtig, sich zuerst vor Augen zu führen, wie Sehen funktioniert.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Rein organisch gesehen  trifft dazu Licht auf das Auge und durchläuft mehrere lichtbrechende optische Medien, bevor es auf die hinten im Augapfel gelegene Netzhaut mit  lichtempfindlichen Zellen trifft. Im zentralen Bereich der Netzhaut ist eine scharfe, im umgebenden Areal unscharfe Abbildung vorhanden.  Im Idealfall sehen beide Augen ähnliche und gleichwertige Eindrücke.</p>
@@ -129,6 +133,7 @@ EOT
         $item532->setTag("Augen");
         $item532->setCountPoint(1);
         $item532->setName("Sehen - ein fast olympische Disziplin ");
+        $item532->setCategory($this->getReference('category_augen'));
         $item532->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur dritten Lektion Ihres Sehtrainings, die sich mit den unterschiedlichen Bereichen des Sehens beschäftigt.
 Von der Kindheit bis zum Erwachsenenalter durchläuft unser Sehen verschiedene Entwicklungsschritte, die mit der Verarbeitung der Seheindrücke im Gehirn korrespondieren.</p>
@@ -153,6 +158,7 @@ EOT
         $item533->setTag("Augen");
         $item533->setCountPoint(1);
         $item533->setName("Augenbeweglichkeit");
+        $item533->setCategory($this->getReference('category_augen'));
         $item533->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur vierten Einheit Ihres Sehtrainings, die sich mit der Augenbeweglichkeit beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Hoffentlich haben Sie in den vergangenen Tagen bereits unseren Email-Service genutzt und tägliche Übungen für die Augen gemacht. Die folgende Übung möchten wir heute einmal vertiefen:<span style="font-size: 13px"> </span></p>
@@ -186,6 +192,7 @@ EOT
         $item558->setTag("Augen");
         $item558->setCountPoint(1);
         $item558->setName("Anstrengung durch Bildschirmarbeit");
+        $item558->setCategory($this->getReference('category_augen'));
         $item558->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur fünften Einheit Ihres Sehtrainings, die sich mit der Frage beschäftigt, <strong>warum Bildschirmarbeit besonders anstrengend ist.</strong></p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Das Sehen geschieht in wechselseitiger Beeinflussung von Auge, Körper und Psyche des Menschen. Ursprünglich ist <strong>das Sehen in der Nähe</strong> an den Entspannungszustand des vegetativen Nervensystems gekoppelt.</p>
@@ -208,6 +215,7 @@ EOT
         $item559->setTag("Augen");
         $item559->setCountPoint(1);
         $item559->setName("Beidäugiges Sehen");
+        $item559->setCategory($this->getReference('category_augen'));
         $item559->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur sechstenEinheit Ihres Sehtrainings, die sich mit dem beidäugigen Sehen beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Hoffentlich haben Sie in den vergangenen Tagen bereits unseren Email-Service genutzt und tägliche Übungen für die Augen gemacht. Die folgende Übung möchten wir heute einmal vertiefen:</p>
@@ -240,6 +248,7 @@ EOT
         $item560->setTag("Augen");
         $item560->setCountPoint(1);
         $item560->setName("Der Tränenfilm");
+        $item560->setCategory($this->getReference('category_augen'));
         $item560->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur siebten Einheit Ihres Sehtrainings, die sich mit dem Tränenfilm beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Der Tränenfilm besteht aus drei verschiedenen Schichten. Die mittlere, wässrige Schicht ist die dickste und enthält Nähstoffe, antibakterielle Substanzen und Sauerstoff zur Versorgung der vorderen Augenfläche, der Hornhaut.</p>
@@ -262,6 +271,7 @@ EOT
         $item595->setTag("Augen");
         $item595->setCountPoint(1);
         $item595->setName("Willkommensemail");
+        $item595->setCategory($this->getReference('category_augen'));
         $item595->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Herzlich willkommen zu unserem AugenCoach, dem Online-Sehtraining. Im Rahmen dieses Coaches möchten wir Ihnen Gesundheitskompetenz für gesundes Sehen vermitteln und Antworten auf die folgenden Fragen liefern:</p>
 
@@ -290,6 +300,7 @@ EOT
         $item6395->setTag("Augen");
         $item6395->setCountPoint(1);
         $item6395->setName("Sehtraining");
+        $item6395->setCategory($this->getReference('category_augen'));
         $item6395->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur ersten Einheit im AugenCoach, dem Online-Sehtraining auf fitbase.de.
 Wir gehen heute folgender Frage nach:</p>
@@ -312,6 +323,7 @@ EOT
         $item6969->setTag("Augen");
         $item6969->setCountPoint(1);
         $item6969->setName("Flexibilität für die Augenlinse");
+        $item6969->setCategory($this->getReference('category_augen'));
         $item6969->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur achten Einheit Ihres Sehtrainings, die sich mit der Flexibilität der Augenlinse beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Hoffentlich haben Sie in den vergangenen Tagen bereits unseren Email-Service genutzt und tägliche Übungen für die Augen gemacht. Die folgende Übung möchten wir heute einmal vertiefen:</p>
@@ -346,6 +358,7 @@ EOT
         $item6986->setTag("Augen");
         $item6986->setCountPoint(1);
         $item6986->setName("Verschiedene Sichtweisen");
+        $item6986->setCategory($this->getReference('category_augen'));
         $item6986->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur neunten Einheit Ihres Sehtrainings, die sich mit Fehlsichtigkeiten beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Abweichungen im optischen System des Auges bezeichnet man als Fehlsichtigkeit. Es gibt verschiedene Ursachen, die sowohl vererbt als auch erworben sein können. Auch im Erwachsenenalter lässt sich das Sehen aber verändern und viele nicht gut gelaufene Entwicklungsschritte können wieder rückgängig gemacht werden.</p>
@@ -388,6 +401,7 @@ EOT
         $item6990->setTag("Augen");
         $item6990->setCountPoint(1);
         $item6990->setName("Wahrnehmung");
+        $item6990->setCategory($this->getReference('category_augen'));
         $item6990->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur zehnten Einheit Ihres Sehtrainings, die sich heute mit der Wahrnehmung beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><strong>Wahrnehmung - ist es wahr, was ich sehe?</strong>
@@ -417,6 +431,7 @@ EOT
         $item6995->setTag("Augen");
         $item6995->setCountPoint(1);
         $item6995->setName("Sehen im vegetativen Nervensystem");
+        $item6995->setCategory($this->getReference('category_augen'));
         $item6995->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur zwölften Einheit Ihres Sehtrainings, die sich erneut mit dem Sehen im vegetativen Nervensystem beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Die meisten inneren Vorgänge des Körpers werden vom vegetativen, nicht willentlich beeinflussbaren, Nervensystem gesteuert. Ursprünglich gepolt als Kampf- und Fluchtmuster reagiert der Körper blitzschnell auf wahrgenommene Bedrohungen durch Ausschüttung von Hormonen und bestimmten Körperreaktionen.</p>
@@ -436,6 +451,7 @@ EOT
         $item7001->setTag("Augen");
         $item7001->setCountPoint(1);
         $item7001->setName("Sehen und Stress");
+        $item7001->setCategory($this->getReference('category_augen'));
         $item7001->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur elften Einheit Ihres Sehtrainings, die sich erneut mit dem Zusammenhang von Sehen und Stress beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><strong>Auswirkung von Stress auf die Sehkraft</strong>
@@ -471,6 +487,7 @@ EOT
         $item7004->setTag("Augen");
         $item7004->setCountPoint(1);
         $item7004->setName("La Palma");
+        $item7004->setCategory($this->getReference('category_augen'));
         $item7004->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur 13. Einheit Ihres Sehtrainings, die sich mit einer Entspannungsübung beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><strong>La Palma für eine kurze Reise…</strong>
@@ -493,6 +510,7 @@ EOT
         $item7008->setTag("Augen");
         $item7008->setCountPoint(1);
         $item7008->setName("Trockene Augen");
+        $item7008->setCategory($this->getReference('category_augen'));
         $item7008->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur 14. Einheit Ihres Sehtrainings, die sich mit trockenen Augen beschäftigt.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><strong>Trockene Augen - Kein Thema zum Weinen!</strong></p>
@@ -527,6 +545,7 @@ EOT
         $item7011->setTag("Augen");
         $item7011->setCountPoint(1);
         $item7011->setName("Bewegtes Sehen");
+        $item7011->setCategory($this->getReference('category_augen'));
         $item7011->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur 15. Einheit Ihres Sehtrainings, die sich mit Bewegtem Sehen beschäftigt.</p>
@@ -551,6 +570,7 @@ EOT
         $item7015->setTag("Augen");
         $item7015->setCountPoint(1);
         $item7015->setName("Akkommodation");
+        $item7015->setCategory($this->getReference('category_augen'));
         $item7015->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur 16. Einheit Ihres Sehtrainings, die sich mit dem Scharfstellen der Augenlinse beschäftigt. Um in den verschiedenen Entfernungen scharf sehen zu können, verändert sich die Augenlinse in ihrer Krümmung. Dazu arbeitet die innere Augenmuskulatur, Ziliarmuskel genannt, der mit Bändern an der Augenlinse befestigt ist.</p>
@@ -574,6 +594,7 @@ EOT
         $item7018->setTag("Augen");
         $item7018->setCountPoint(1);
         $item7018->setName("Abschluss");
+        $item7018->setCategory($this->getReference('category_augen'));
         $item7018->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur 17. und letzten Einheit Ihres Sehtrainings, die die wichtigsten Inhalte noch einmal zusammenfasst.</p>
@@ -598,6 +619,7 @@ EOT
         $item7021->setTag("Augen");
         $item7021->setCountPoint(1);
         $item7021->setName("Das Ende");
+        $item7021->setCategory($this->getReference('category_augen'));
         $item7021->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">vielen Dank für Ihre Teilnahme an unserem Online-Training. Wir hoffen, Ihnen viele interessante theoretische und praktische Inhalte vermittelt zu haben, so dass Sie mit klarem Blick in die Zukunft schauen können.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Bitte nehmen Sie das Blatt Papier zur Hand, wo Sie zu Beginn notiert haben, welche Probleme Sie – gelegentlich oder häufig - mit den Augen haben. Können Sie Verbesserungen feststellen? Gibt es Bereiche, die Sie mit unseren gezeigten Übungen positiv beeinflussen können?
@@ -612,7 +634,7 @@ EOT
         );
         $manager->persist($item7021);
 
-    
+
         $manager->flush();
     }
 

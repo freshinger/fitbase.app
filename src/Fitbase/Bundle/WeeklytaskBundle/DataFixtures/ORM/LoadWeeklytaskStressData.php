@@ -33,14 +33,13 @@ class LoadWeeklytaskStressData extends AbstractFixture implements OrderedFixture
     {
         $manager->getClassMetaData(get_class(new Weeklytask()))->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
 
-
-
         $item2045 = new Weeklytask();
         $item2045->setFormat("richhtml");
         $item2045->setTag("Stress");
         $item2045->setWeekId(41);
         $item2045->setCountPoint(1);
         $item2045->setName("Wochenaufgabe 41");
+        $item2045->setCategory($this->getReference('category_stress'));
         $item2045->setContent(<<<EOT
 <em> In den letzten Einheiten ging es um die Muskelentspannung. Heute beschäftigen wir uns mit dem Gegenteil, nämlich um Stress und Verspannungen.</em>
 <strong> Was ist eigentlich Stress ?</strong>
@@ -70,6 +69,7 @@ EOT
         $item2047->setWeekId(42);
         $item2047->setCountPoint(1);
         $item2047->setName("Wochenaufgabe 42");
+        $item2047->setCategory($this->getReference('category_stress'));
         $item2047->setContent(<<<EOT
 <em> In der vergangen Einheit war vom Sympathicus und Parasympathicus – dem Anspannungs - und Entspannungszustand die Rede. Außerdem ging es um Muskelverspannungen als Folge stressbedingter Anspannung. Heute wollen wir einen Blick auf Stressmuster und Stressauslöser werfen.</em>
 <strong> Kein Leben ohne Stress - und ohne Stress kein Leben. </strong>
@@ -113,6 +113,7 @@ EOT
         $item2054->setWeekId(43);
         $item2054->setCountPoint(1);
         $item2054->setName("Wochenaufgabe 43");
+        $item2054->setCategory($this->getReference('category_stress'));
         $item2054->setContent(<<<EOT
 <em>In der vergangen Einheit haben wir die Stressphasen und typische Auswirkungen von Stress betrachtet. Heute wollen wir einen Blick auf die Folgen von Dauerstress werfen.</em>
     Unser Organismus reagiert auch heute noch nach dem uralten Schema, wie es sich in Jahrmillionen entwickelt hat. Denken wir zurück an die Stressreaktion in der Urzeit: Ein Mensch wird angegriffen und muss in kürzester Zeit entscheiden, ob er flieht oder kämpft. Der Körper stellt in einer Stress - Situation viel Energie bereit(vgl. Einheit 41), die in der Urzeit durch körperliche Aktivität(fliehen oder kämpfen) genutzt wurde. Dies ist heute jedoch nicht mehr möglich.
@@ -146,6 +147,7 @@ EOT
         $item2056->setWeekId(44);
         $item2056->setCountPoint(1);
         $item2056->setName("Wochenaufgabe 44");
+        $item2056->setCategory($this->getReference('category_stress'));
         $item2056->setContent(<<<EOT
 <em> In der vergangen Einheit haben wir die körperlichen Folgen von Dauerstress betrachtet. Heute geht es darum, wie wir diese negativen Folgen verhindern können.</em>
 Stress wird sehr unterschiedlich empfunden. Um eine Stress - Situation dauerhaft zu lösen, muss bei der Ursache angesetzt werden. Da das nicht immer möglich ist, möchten wir hier ein paar Möglichkeiten bei akutem Stress aufzeigen. Nicht alle Tipps helfen jedem, suchen Sie sich aus, was Sie anspricht:
@@ -177,6 +179,7 @@ EOT
         $item2058->setWeekId(45);
         $item2058->setCountPoint(1);
         $item2058->setName("Wochenaufgabe 45");
+        $item2058->setCategory($this->getReference('category_stress'));
         $item2058->setContent(<<<EOT
 Hatten Sie im Laufe der vergangenen Woche eine oder mehrere akute Stresssituation(en) ? Wenn nicht, freuen wir uns für Sie, wenn doch, hoffen wir, dass Sie sich die vergangene Einheit zur Hand genommen und sich eine Sofortmaßnahme ausgesucht haben. Haben Sie vielleicht gezielt Sport getrieben oder die die Progressive Muskelentspannung(Einheit 39, 40) angewandt ?
 Heute werfen wir einen Blick auf eine Methode bei Stress: Akupressur. Wir erklären die heilende Wirkung und zeigen beispielhaft die Anwendung.
@@ -206,6 +209,7 @@ EOT
         $item2060->setWeekId(46);
         $item2060->setCountPoint(1);
         $item2060->setName("Wochenaufgabe 46");
+        $item2060->setCategory($this->getReference('category_stress'));
         $item2060->setContent(<<<EOT
 <em> In den vergangenen Wochen haben Sie bereits Akupressur an sich selbst ausprobiert und haben sich mit dieser Thematik beschäftigt. Heute zeigen wir Ihnen eine letzte Anwendung mit der Sie relativ einen positiven Stimmungswechsel erzeugen können. Kurz: Akupressur gegen schlechte Laune.</em>
 <strong> Akupressur der Fingerspitzen </strong>
@@ -220,13 +224,12 @@ EOT
         $manager->persist($item2060);
 
 
-
-
         $item8277 = new Weeklytask();
         $item8277->setName("Tagesintervention Woche 6, Freitag");
         $item8277->setFormat("richhtml");
         $item8277->setTag("Stress");
         $item8277->setCountPoint(1);
+        $item8277->setCategory($this->getReference('category_stress'));
         $item8277->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben Sie erfahren, wie wahre soziale Nähe und nährende Beziehungen Ihnen bei Ihrer Stressbewältigung immens helfen können. Gute Freunde sind in vielfacher Hinsicht nützlich. Wie steht es um Ihre Freundschaften? Nehmen Sie sich am Wochenende einmal bewusst Zeit, Ihre Beziehungen zu analysieren und fertigen Sie eine Landkarte Ihres sozialen Netzes an. Neugierig? Dann laden Sie <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-6c_Soziales-Netz.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> unsere <b><i>Arbeitshilfe „Soziales Netz“</i></b> herunter. Wir wünschen Ihnen gute Erkenntnisse.
@@ -239,6 +242,7 @@ EOT
         $item8287->setFormat("richhtml");
         $item8287->setTag("Stress");
         $item8287->setCountPoint(1);
+        $item8287->setCategory($this->getReference('category_stress'));
         $item8287->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie schließen mit der heutigen Lerneinheit den Bereich <i>Instrumentelle Stresskompetenz </i>des <b>StressCoaches (BASIS) </b>ab. In dieser Einheit beschäftigen wir uns mit Kommunikation und stellen diese als wichtiges stressregulierendes Instrument vor.
 <p style="text-align: center"><img class="size-medium wp-image-8302 aligncenter" alt="Businessman Speaking with Client" src="https://www.fitbase.de/wp-content/uploads/stress-14-300x200.jpg" width="300" height="200" /></p>
@@ -288,6 +292,7 @@ EOT
         $item8273->setFormat("richhtml");
         $item8273->setTag("Stress");
         $item8273->setCountPoint(1);
+        $item8273->setCategory($this->getReference('category_stress'));
         $item8273->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir uns mit <i>Entscheidungen</i> beschäftigt. Wir haben festgestellt, dass wir alle praktisch ununterbrochen etwas entscheiden müssen - manchmal kleine Dinge, manchmal große Lebensthemen. Nicht selten wohnen dabei zwei Seelen in unserer Brust und wir haben Schwierigkeiten, den richtigen Weg zu erkennen oder den ersten Schritt zu machen. Versuchen Sie - sollten Sie wieder einmal in eine solche Situation geraten - einmal unsere <b><i>Entscheidungshilfe</i></b>, die Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-6a_Entscheidungshilfe.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> herunterladen können.
@@ -300,6 +305,7 @@ EOT
         $item8274->setFormat("richhtml");
         $item8274->setTag("Stress");
         $item8274->setCountPoint(1);
+        $item8274->setCategory($this->getReference('category_stress'));
         $item8274->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Die heutige Übung ist wieder eine <b><i>Gehirngymnastik</i></b> - sie lässt Ihre Gedanken ruhiger werden und hilft Stress mental und emotional abzubauen. Außerdem fördert sie Ihre Fähigkeit zu positivem Denken und Ihre Selbstwahrnehmung. Versuchen Sie sie daher besonders vor herausfordernden Situationen:
@@ -319,6 +325,7 @@ EOT
         $item8276->setFormat("richhtml");
         $item8276->setTag("Stress");
         $item8276->setCountPoint(1);
+        $item8276->setCategory($this->getReference('category_stress'));
         $item8276->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit erfahren Sie, wie gute Beziehungen Sie stärken und vor Stress schützen können.
@@ -359,6 +366,7 @@ EOT
         $item8121->setFormat("richhtml");
         $item8121->setTag("Stress");
         $item8121->setCountPoint(1);
+        $item8121->setCategory($this->getReference('category_stress'));
         $item8121->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Bei allen Zielen, Prioritäten und der weltbesten Planung - es gewinnt doch manchmal der Schlendrian und wir schieben Dinge auf. „<i>Ach wenn sich doch nur erst die nötige Motivation einstellen würde, dann ginge es gleich viel besser“. </i>Wir warten dann oft vergeblich. Deshalb:
@@ -378,6 +386,7 @@ EOT
         $item8272->setFormat("richhtml");
         $item8272->setTag("Stress");
         $item8272->setCountPoint(1);
+        $item8272->setCategory($this->getReference('category_stress'));
         $item8272->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit beschäftigen wir uns mit Entscheidungen.
@@ -416,6 +425,7 @@ EOT
         $item8119->setFormat("richhtml");
         $item8119->setTag("Stress");
         $item8119->setCountPoint(1);
+        $item8119->setCategory($this->getReference('category_stress'));
         $item8119->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern ging es um <i>Ziele</i>. Sie schaffen Klarheit und geben uns eine Richtung. Deshalb liefern sie einen grundlegenden Beitrag zu einem stressfreien Leben. Wichtig sind wohlgeformte Ziele. Dazu haben wir Ihnen eine Eselsbrücke vorgestellt. Mit der heutigen <b><i>Arbeitshilfe: Zielearbeit</i></b> möchten wir Ihnen ein wirksames Werkzeug für Ihre Zielearbeit an die Hand geben. Laden Sie sich die Arbeitshilfe <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-5a_Arbeitshilfe_Zielearbeit.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> herunter und probieren Sie sie aus. Viel Spaß dabei!
@@ -428,6 +438,7 @@ EOT
         $item8120->setFormat("richhtml");
         $item8120->setTag("Stress");
         $item8120->setCountPoint(1);
+        $item8120->setCategory($this->getReference('category_stress'));
         $item8120->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Seit gut vier Wochen arbeiten Sie ernsthaft an einer Verbesserung Ihrer Lebensqualität. Vergessen Sie dabei nicht diesen Grundsatz: <b><i>Nehmen Sie das Leben mit Humor!</i></b>
@@ -447,6 +458,7 @@ EOT
         $item8118->setFormat("richhtml");
         $item8118->setTag("Stress");
         $item8118->setCountPoint(1);
+        $item8118->setCategory($this->getReference('category_stress'));
         $item8118->setName("Einheit 10 - Von Prioritäten und dem Umgang mit der Zeit");
         $item8118->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
@@ -496,6 +508,7 @@ EOT
         $item8077->setFormat("richhtml");
         $item8077->setTag("Stress");
         $item8077->setCountPoint(1);
+        $item8077->setCategory($this->getReference('category_stress'));
         $item8077->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Die heutige Übung hilft, Ihre beiden Gehirnhälften zu verknüpfen - die linke, Logikhälfte mit der rechten, Gestalthälfte. Arbeiten diese gut zusammen, schaffen Sie es besser, aus Einzelheiten ein Gesamtbild zu erstellen und dabei rationales Denken mit bildhafter Vorstellungskraft zu verbinden. Wie? Sorgen Sie buchstäblich für ein <b><i>Neuronales Gewitter</i></b>, und das geht so:
@@ -510,6 +523,7 @@ EOT
         $item8117->setFormat("richhtml");
         $item8117->setTag("Stress");
         $item8117->setCountPoint(1);
+        $item8117->setCategory($this->getReference('category_stress'));
         $item8117->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In den nächsten Einheiten geht es um Ziele, Prioritäten und den gesunden Umgang mit unserer Zeit.
@@ -565,6 +579,7 @@ EOT
         $item8076->setFormat("richhtml");
         $item8076->setTag("Stress");
         $item8076->setCountPoint(1);
+        $item8076->setCategory($this->getReference('category_stress'));
         $item8076->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit geben wir Ihnen Hinweise für konstruktives Verhalten in Veränderungssituationen. Wir stellen Ihnen dazu ein Modell vor, das Ihnen als Grundlage bei der Auseinandersetzung mit Ihren  Stressoren dienen soll, aber auch weit darüber hinaus in Gestalt einer lösungsorientierten Haltung Ihr Leben bereichern kann:
@@ -602,6 +617,7 @@ EOT
         $item8074->setFormat("richhtml");
         $item8074->setTag("Stress");
         $item8074->setCountPoint(1);
+        $item8074->setCategory($this->getReference('category_stress'));
         $item8074->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben Sie etwas über <i>Stressoren</i> erfahren - die Stressauslöser. Sie haben gelernt, welche Arten es davon gibt und welche Faktoren Einfluss auf die Intensität Ihrer Stressreaktion haben. Wir möchten Sie heute einladen, etwas mehr über Ihre ganz persönlichen Stressauslöser zu erfahren. Unternehmen Sie einen ersten wichtigen Schritt auf dem (weiteren) Weg der Stressbewältigung. Laden Sie <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Einheit-07_Tagesintervention_Stressoren-Check.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> unseren <b><i>Stressoren-Check</i></b> herunter und bewerten Sie die dort genannten Stressoren danach, wie häufig sie diesen ausgesetzt sind und als wie belastend Sie sie empfinden. Vergessen Sie dabei auch Ihre Notizen aus dem Beobachtungsbogen nicht.
@@ -614,6 +630,7 @@ EOT
         $item8075->setFormat("richhtml");
         $item8075->setTag("Stress");
         $item8075->setCountPoint(1);
+        $item8075->setCategory($this->getReference('category_stress'));
         $item8075->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Mit der <i>Analyse Ihrer Stressauslöser</i> haben Sie den ersten wichtigen Schritt unternommen, ihren Stress zu beeinflussen. Das sind die nächsten <b><i>vier Schritte der Problemlösung</i></b> - wenden Sie diese nicht nur im Zusammenhang mit Ihrer Stressbewältigung, sondern bei allen Problemen zur Lösung an:
@@ -633,6 +650,7 @@ EOT
         $item8064->setFormat("richhtml");
         $item8064->setTag("Stress");
         $item8064->setCountPoint(1);
+        $item8064->setCategory($this->getReference('category_stress'));
         $item8064->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie schließen heute die <i>Einführung</i> des Moduls <b>StressFit (BASIS) </b>ab.
 Bevor Sie in den folgenden Wochen viele praktische Tipps zum Ausbau Ihrer persönlichen Stresskompetenz in den Bereichen <i>Instrumentelles</i> und <i>Regeneratives Stressmanagement</i> erhalten, wollen wir Sie in dieser Einheit noch mit etwas Grundlegendem vertraut machen.
@@ -662,6 +680,7 @@ EOT
         $item8073->setFormat("richhtml");
         $item8073->setTag("Stress");
         $item8073->setCountPoint(1);
+        $item8073->setCategory($this->getReference('category_stress'));
         $item8073->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Instrumentelle Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In den folgenden sieben Lerneinheiten geht es darum, die äußeren Belastungen und Anforderungen im beruflichen und privaten Bereich zu verändern, indem Sie Möglichkeiten kennenlernen, diese zu verringern oder ganz abzubauen. Am Ende des Blocks sollte es Ihnen möglich sein, Ihren Alltag stressfreier zu gestalten und, da wo es geht, die Entstehung von Stress von vornherein zu verhindern.
@@ -694,6 +713,7 @@ EOT
         $item8058->setFormat("richhtml");
         $item8058->setTag("Stress");
         $item8058->setCountPoint(1);
+        $item8058->setCategory($this->getReference('category_stress'));
         $item8058->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern ging es um ein weitreichendes modernes Phänomen - <i>Burnout</i>. Eigentlich nichts anderes als chronischer Stress. Ebenso wenig wie es eine einheitliche Definition für Burnout gibt, kann man allgemeingültige Regeln zur Vorbeugung aufstellen. Wir haben trotzdem einige <b><i>Tipps zur Burnoutprävention</i></b> in Form einer Checkliste zusammengestellt. Sie können Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Einheit-05_Tagesintervention_Checkliste-Burnoutprävention.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> herunterladen. Manches davon werden Sie im Modul StressFit wiederfinden - die Liste versteht sich insofern auch als eine kleine Zusammenfassung der Lerninhalte plus einiger anderer Aspekte. Viel Erfolg damit!
@@ -706,6 +726,7 @@ EOT
         $item8060->setFormat("richhtml");
         $item8060->setTag("Stress");
         $item8060->setCountPoint(1);
+        $item8060->setCategory($this->getReference('category_stress'));
         $item8060->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Wir möchten Ihnen heute ein einfaches Entspannungsverfahren vorstellen. Alles, was Sie dafür tun müssen, ist - sich mehrere Male am Tag etwa zwei Minuten Zeit zu nehmen. Sie werden verblüfft sein, wie gut unsere <b><i>Schnellentspannung</i></b> Ihrer Gesundheit tut. Gehen Sie dabei folgendermaßen vor:
@@ -727,6 +748,7 @@ EOT
         $item8061->setFormat("richhtml");
         $item8061->setTag("Stress");
         $item8061->setCountPoint(1);
+        $item8061->setCategory($this->getReference('category_stress'));
         $item8061->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben sie erfahren, dass es gut ist, wenn Sie ihr Leben zur Stress-Analyse aus der Distanz betrachten. Sie können dies gedanklich mit verschiedenen Übungen tun. So können Sie sich beispielsweise vorstellen, mit einem Ballon zu fliegen und mit einem Fernglas den Leser der <b>StressFit</b>-Tagesintervention zu beobachten. Oder Sie schauen von einem hohen Berg hinunter ins Tal, wo ihr Studienobjekt - Sie - in seinen Alltagsroutinen feststeckt.
@@ -740,6 +762,7 @@ EOT
         $item7972->setFormat("richhtml");
         $item7972->setTag("Stress");
         $item7972->setCountPoint(1);
+        $item7972->setCategory($this->getReference('category_stress'));
         $item7972->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<h4><span style="font-size: 13px">Guten Tag! Sie befinden sich in der </span><i style="font-size: 13px">Einführung</i><span style="font-size: 13px"> des </span><b style="font-size: 13px">StressCoaches.</b></h4>
 In dieser Einheit erfahren Sie, auf welchen unterschiedlichen Ebenen unser Stresserleben abläuft.
@@ -772,6 +795,7 @@ EOT
         $item7970->setFormat("richhtml");
         $item7970->setTag("Stress");
         $item7970->setCountPoint(1);
+        $item7970->setCategory($this->getReference('category_stress'));
         $item7970->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben Sie mit dem <b>StressCoach</b> begonnen. Sie werden in den nächsten 12 Wochen einiges über Stress lernen und ihre eigenen Stressbewältigungsfähigkeiten in vielfacher Hinsicht auf- oder ausbauen.
@@ -789,6 +813,7 @@ EOT
         $item7971->setFormat("richhtml");
         $item7971->setTag("Stress");
         $item7971->setCountPoint(1);
+        $item7971->setCategory($this->getReference('category_stress'));
         $item7971->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Vorgestern baten wir Sie, sich unseren <i>Beobachtungsbogen</i> herunterzuladen und auszudrucken. Wichtig ist, dass Sie diesen für die Dauer von zwei Wochen täglich ausfüllen. Versuchen Sie zudem, wirklich in jede Spalte etwas hineinzuschreiben. Sie werden später erfahren, wie bedeutsam das ist.
@@ -802,6 +827,7 @@ EOT
         $item7984->setFormat("richhtml");
         $item7984->setTag("Stress");
         $item7984->setCountPoint(1);
+        $item7984->setCategory($this->getReference('category_stress'));
         $item7984->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir Ihnen ein Bild geschenkt. Heute können Sie sich selbst eins schenken - ein inneres Bild.
@@ -816,6 +842,7 @@ EOT
         $item7977->setFormat("richhtml");
         $item7977->setTag("Stress");
         $item7977->setCountPoint(1);
+        $item7977->setCategory($this->getReference('category_stress'));
         $item7977->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Vorm Wochenende noch ein kleiner Tipp: Die meisten Menschen stürzen von der Arbeit direkt ins (oft nicht weniger stressige) Privatleben. Gönnen Sie sich abends nach der Arbeit und vorm Wochenende einen Übergang - machen Sie es wie ein <i>Tiefseetaucher</i>, der braucht auch eine <b><i>„Dekompressionsphase“</i></b> - tauchen Sie langsam auf aus dem Arbeitsalltag und gestalten Sie den Übergang ins Privatleben so sanft wir möglich. Nutzen Sie Rituale, um in der „anderen Welt“ anzukommen:
@@ -836,6 +863,7 @@ EOT
         $item7969->setFormat("richhtml");
         $item7969->setTag("Stress");
         $item7969->setCountPoint(1);
+        $item7969->setCategory($this->getReference('category_stress'));
         $item7969->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<h4><span style="font-size: 13px">Guten Tag! Sie befinden sich in der </span><i style="font-size: 13px">Einführung</i><span style="font-size: 13px"> des </span><b style="font-size: 13px">StressCoaches.</b></h4>
 In dieser Einheit möchten wir Ihnen einige grundsätzliche Informationen zum Thema Stress geben.
@@ -874,6 +902,7 @@ EOT
         $item7982->setFormat("richhtml");
         $item7982->setTag("Stress");
         $item7982->setCountPoint(1);
+        $item7982->setCategory($this->getReference('category_stress'));
         $item7982->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Wir baten Sie in den letzten Lerneinheiten, einmal zu sammeln, was Sie bereits erfolgreich zur Stressbewältigung einsetzen und Ihre Notizen den Ebenen des Stresserlebens zuzuordnen. Sehen Sie sich Ihre Aufzeichnungen einmal an, wir möchten Ihnen dazu etwas sagen: <i>„Sie machen das bereits hervorragend!“</i> Egal wie viel da steht und egal was da steht: Es handelt sich um Ihre Erfolge in Bezug auf Stressbewältigung - und die dürfen Sie ruhig einmal würdigen. Denken Sie daran: <b>Wertschätzung beginnt bei uns selbst!</b>
@@ -887,6 +916,7 @@ EOT
         $item7983->setFormat("richhtml");
         $item7983->setTag("Stress");
         $item7983->setCountPoint(1);
+        $item7983->setCategory($this->getReference('category_stress'));
         $item7983->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<h4><span style="font-size: 13px">Guten Tag! Sie befinden sich in der </span><i style="font-size: 13px">Einführung</i><span style="font-size: 13px"> des Moduls </span><b style="font-size: 13px">StressFit (BASIS).</b></h4>
 In dieser Einheit wollen wir uns noch einmal etwas genauer mit der körperlichen Stressreaktion beschäftigen. Seit Beginn des Moduls notieren Sie im <i>Beobachtungsbogen „Mein Stress“</i> unter anderem, was Sie in Stresssituationen empfinden. Schauen Sie sich Ihre Notizen dazu bitte an. Was steht dort?
@@ -911,6 +941,7 @@ EOT
         $item7981->setFormat("richhtml");
         $item7981->setTag("Stress");
         $item7981->setCountPoint(1);
+        $item7981->setCategory($this->getReference('category_stress'));
         $item7981->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gehören auch Sie zu den Menschen, die alles perfekt machen wollen? Freilich - unsere heutige Welt verlangt vermeintlich Perfektion von uns, doch nicht wenige verfallen dadurch leicht in Perfektionismus, den Drang, alles immer zu 100% erledigen zu müssen. Sie sind damit einem der wesentlichsten modernen Stressfaktoren verfallen - und leiden unter selbst gemachtem Stress. Merken Sie sich außerdem: „Perfektionismus ist der größte Feind der Perfektion!“
@@ -929,6 +960,7 @@ EOT
         $item7980->setFormat("richhtml");
         $item7980->setTag("Stress");
         $item7980->setCountPoint(1);
+        $item7980->setCategory($this->getReference('category_stress'));
         $item7980->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<h4><span style="font-size: 13px">Guten Tag! Sie befinden sich in der </span><i style="font-size: 13px">Einführung</i><span style="font-size: 13px"> des </span><b style="font-size: 13px">StressCoaches.</b></h4>
 In dieser Einheit erhalten Sie nähere Informationen zum Aufbau und Ablauf des Coaches.
@@ -961,6 +993,7 @@ EOT
         $item7919->setFormat("richhtml");
         $item7919->setTag("Stress");
         $item7919->setCountPoint(1);
+        $item7919->setCategory($this->getReference('category_stress'));
         $item7919->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]<h4>Herzlich willkommen</h4>
 Herzlich willkommen im <b>StressCoach</b> auf der Fitbase®. Sagen Sie auch manchmal Sachen wie: „Ich bin total im Stress.“, „Mein Leben ist echt stressig.“, „Mir wächst alles über den Kopf.“ oder „Ich stehe kurz vorm Burnout.“? Stress scheint aus unserer modernen Welt gar nicht mehr wegzudenken sein. Jede und jeder scheint das Phänomen zu kennen und darunter zu leiden. Doch:
@@ -1014,6 +1047,7 @@ EOT
         $item8054->setFormat("richhtml");
         $item8054->setTag("Stress");
         $item8054->setCountPoint(1);
+        $item8054->setCategory($this->getReference('category_stress'));
         $item8054->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich in der <i>Einführung</i> des Moduls <b>StressFit (BASIS).</b>
 In der vorigen Lerneinheit haben wir einen Ausflug in die Altsteinzeit unternommen und uns angesehen, warum wir in Stresssituationen überhaupt so reagieren wie wir reagieren und dass es sich bei der <b>körperlichen Stressreaktion</b> um ein uraltes Überlebensprogramm zur Vorbereitung auf Kampf oder Flucht handelt. Grundsätzlich also eine gute Sache - nur was fangen wir heute mit ihr an, da uns keine Säbelzahntiger mehr gegenüber stehen?
@@ -1046,6 +1080,7 @@ EOT
         $item8288->setFormat("richhtml");
         $item8288->setTag("Stress");
         $item8288->setCountPoint(1);
+        $item8288->setCategory($this->getReference('category_stress'));
         $item8288->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir Ihnen gezeigt, wie Sie mit guter <i>Kommunikation</i> die Kontrolle über Ihr Leben behalten oder zurückgewinnen können. Dabei ist es unter anderem wichtig, sprachlich Grenzen zu ziehen. Oft jedoch wollen andere über uns bestimmen. Dann ist es hilfreich, das Reiz-Reaktions-Muster, welches für unser Verhalten entscheidend ist, zu durchbrechen. Heute ein kleiner Kunstgriff dazu:
@@ -1066,6 +1101,7 @@ EOT
         $item8289->setFormat("richhtml");
         $item8289->setTag("Stress");
         $item8289->setCountPoint(1);
+        $item8289->setCategory($this->getReference('category_stress'));
         $item8289->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Am Montag haben wir Ihnen gezeigt, wie Sie mit guter <i>Kommunikation</i> die Kontrolle über Ihr Leben behalten oder zurückgewinnen können. Dabei ist es unter anderem wichtig, sprachlich Grenzen zu ziehen. Oft jedoch wollen andere über uns bestimmen. Dann ist es hilfreich, das Reiz-Reaktions-Muster, welches für unser Verhalten entscheidend ist, zu durchbrechen. Eine gute Möglichkeit bietet die Übung, die wir Ihnen gestern vorgestellt haben. Heute noch eine weitere Methode dazu:
@@ -1081,6 +1117,7 @@ EOT
         $item8290->setFormat("richhtml");
         $item8290->setTag("Stress");
         $item8290->setCountPoint(1);
+        $item8290->setCategory($this->getReference('category_stress'));
         $item8290->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich nun im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 Die folgenden zehn Lerneinheiten sollen dazu beitragen, körperliche und psychische Erregung in einem erträglichen Rahmen zu halten. Am Ende des Blocks sollte es Ihnen möglich sein, für regelmäßige Erholung zu sorgen und damit langfristig die eigene Belastbarkeit zu erhalten.
@@ -1120,6 +1157,7 @@ EOT
         $item8291->setFormat("richhtml");
         $item8291->setTag("Stress");
         $item8291->setCountPoint(1);
+        $item8291->setCategory($this->getReference('category_stress'));
         $item8291->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Möchten Sie die <b><i>Atemübung</i></b> von gestern vertiefen? Hier zwei <b><i>Varianten für Fortgeschrittene</i></b>:
@@ -1135,6 +1173,7 @@ EOT
         $item8292->setFormat("richhtml");
         $item8292->setTag("Stress");
         $item8292->setCountPoint(1);
+        $item8292->setCategory($this->getReference('category_stress'));
         $item8292->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 <p style="text-align: center"><img class="size-medium wp-image-8264 aligncenter" alt="Blond woman lying in field" src="https://www.fitbase.de/wp-content/uploads/stress16-297x300.jpg" width="297" height="300" /></p>
@@ -1163,6 +1202,7 @@ EOT
         $item8293->setFormat("richhtml");
         $item8293->setTag("Stress");
         $item8293->setCountPoint(1);
+        $item8293->setCategory($this->getReference('category_stress'));
         $item8293->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir Ihnen <i>Fantasiereisen</i> als wirksame Entspannungsmethode vorgestellt. Fantasie- und Traumreisen sind prima geeignet für alle, die mal „reinschnuppern“ wollen ins Thema „Bewusste Entspannung“. Heute möchten wir Sie zu einer solchen Reise einladen. Laden Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS-Download_Tagesintervention_Woche 8a_Fantasiereise-Die-See.mp3" target="_blank"><span style="text-decoration: underline">HIER</span></a> die <b><i>Fantasiereise „Die See“</i></b> herunter, nehmen Sie sich etwas Zeit (Dauer Fantasiereise = 8:51 min.), suchen Sie sich ein ruhiges Plätzchen - und dann genießen Sie…
@@ -1175,6 +1215,7 @@ EOT
         $item8294->setFormat("richhtml");
         $item8294->setTag("Stress");
         $item8294->setCountPoint(1);
+        $item8294->setCategory($this->getReference('category_stress'));
         $item8294->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Wie hat Ihnen der kleine Ausflug an „Die See“ gestern gefallen? Solche <i>Fantasiereisen</i> sind - wenn man sie sich regelmäßig, am besten täglich, gönnt - eine wirksame Methode gegen Stress. Sie schaffen kleine Inseln im Alltag, lassen uns buchstäblich abtauchen und unsere Gedanken und Empfindungen einmal auf Reisen gehen. Heute haben wir noch eine Fantasiereise für Sie. Laden Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit_BASIS-Download_Tagesintervention_Woche-8b_Fantasiereise_Die-Wiese.mp3" target="_blank"><span style="text-decoration: underline">HIER</span></a> die <b><i>Fantasiereise „Die Wiese“</i></b> herunter. Es handelt sich dabei um einen Text aus dem Buch <i>„Du spürst unter deinen Füßen das Gras“</i> von <i>Else Müller</i>. Bücher wie dieses möchten wir Ihnen empfehlen, wenn Sie sich weiter mit dem Thema Fantasiereisen auseinandersetzen wollen. Es gibt dieses Buch ebenfalls als CD - das eine eignet sich zum Vorlesen, das andere zum Selbstgenießen.
@@ -1188,6 +1229,7 @@ EOT
         $item8295->setFormat("richhtml");
         $item8295->setTag("Stress");
         $item8295->setCountPoint(1);
+        $item8295->setCategory($this->getReference('category_stress'));
         $item8295->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 
@@ -1213,6 +1255,7 @@ EOT
         $item8296->setFormat("richhtml");
         $item8296->setTag("Stress");
         $item8296->setCountPoint(1);
+        $item8296->setCategory($this->getReference('category_stress'));
         $item8296->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir Ihnen zwei wesentliche Entspannungsmethoden kurz vorgestellt. Heute möchten wir Sie einladen, eine davon einmal auszuprobieren - die progressive Muskelentspannung (PME).
@@ -1259,6 +1302,7 @@ EOT
         $item8297->setFormat("richhtml");
         $item8297->setTag("Stress");
         $item8297->setCountPoint(1);
+        $item8297->setCategory($this->getReference('category_stress'));
         $item8297->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit zeigen wir Ihnen, wie sie Sport und Fitness als Stresskiller nutzen.
@@ -1281,6 +1325,7 @@ EOT
         $item8298->setFormat("richhtml");
         $item8298->setTag("Stress");
         $item8298->setCountPoint(1);
+        $item8298->setCategory($this->getReference('category_stress'));
         $item8298->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 <i>Sport</i> stellt einen wichtigen Stresskiller dar - darum ging es gestern. Allerdings kommt es wie so oft auch hier auf eine gute Balance zwischen Aktivierung und Erholung. Also: Treiben Sie Sport - aber übertreiben Sie es nicht! Wir haben dazu unsere <b><i>Praxistipps „Sport“</i></b> zusammengestellt, die Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-9a_Praxistipps-Sport.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> herunterladen können. Bitte schreiben Sie auch konkret auf, was Sie an Ihrem Fitnessprogramm verändern wollen.
@@ -1293,6 +1338,7 @@ EOT
         $item8299->setFormat("richhtml");
         $item8299->setTag("Stress");
         $item8299->setCountPoint(1);
+        $item8299->setCategory($this->getReference('category_stress'));
         $item8299->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Frische Luft und Bewegung eigenen sich allgemein sehr gut zum Stressabbau.
@@ -1308,6 +1354,7 @@ EOT
         $item8300->setFormat("richhtml");
         $item8300->setTag("Stress");
         $item8300->setCountPoint(1);
+        $item8300->setCategory($this->getReference('category_stress'));
         $item8300->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit zeigen wir Ihnen, wie Sie mehr Bewegung in Ihren Alltag bringen und damit Ihren Körper vor schädigenden Auswirkungen von chronischem Stress schützen.
@@ -1349,6 +1396,7 @@ EOT
         $item8301->setFormat("richhtml");
         $item8301->setTag("Stress");
         $item8301->setCountPoint(1);
+        $item8301->setCategory($this->getReference('category_stress'));
         $item8301->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Es muss nicht immer Sport sein - bereits ganz normale <i>Alltagsbewegung</i> reicht aus, um unseren Organismus in Schwung und unseren Körper gesund zu halten. Darum ging es in der gestrigen Lerneinheit. Unsere Empfehlung: Bringen Sie Ihren Alltag in Bewegung! Ein erster wichtiger Schritt - Sie ahnen es - ist auch hier eine Analyse. Nutzen Sie dazu unser <b><i>Arbeitsblatt „Bewegung im Alltag“</i></b>, das Sie <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-9c_Arbeitsblatt-Alltagsbewegung.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> herunter laden können. Nehmen Sie Ihr Bewegungsverhalten im Alltag unter die Lupe und finden Sie Möglichkeiten für mehr Aktivität. Wir wünschen Ihnen ein schönes Wochenende!
@@ -1361,6 +1409,7 @@ EOT
         $item8320->setFormat("richhtml");
         $item8320->setTag("Stress");
         $item8320->setCountPoint(1);
+        $item8320->setCategory($this->getReference('category_stress'));
         $item8320->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit geht es um die wichtigste passive Erholungsmaßnahme. Sie ist so wichtig, dass unser Körper von ganz allein dafür sorgt, dass er sie bekommt - es geht um den Schlaf.
@@ -1392,6 +1441,7 @@ EOT
         $item8321->setFormat("richhtml");
         $item8321->setTag("Stress");
         $item8321->setCountPoint(1);
+        $item8321->setCategory($this->getReference('category_stress'));
         $item8321->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern ging es um den <i>Schlaf.</i> Machen Sie doch auch tagsüber mal die Augen zu - gönnen Sie sich, gerade wenn Sie viel am Bildschirm arbeiten, immer mal wieder eine <b><i>Augenentspannung</i></b>:
@@ -1409,6 +1459,7 @@ EOT
         $item8322->setFormat("richhtml");
         $item8322->setTag("Stress");
         $item8322->setCountPoint(1);
+        $item8322->setCategory($this->getReference('category_stress'));
         $item8322->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 
@@ -1447,6 +1498,7 @@ EOT
         $item8323->setFormat("richhtml");
         $item8323->setTag("Stress");
         $item8323->setCountPoint(1);
+        $item8323->setCategory($this->getReference('category_stress'));
         $item8323->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit geht es um die wohl wichtigste <i>aktive</i> Erholungsmaßnahme - den Urlaub. Auf diesen konzentrieren sich oft all unsere Wünsche und Bedürfnisse. Er soll uns für alle Belastungen in Beruf und Privatleben entschädigen - und wird dabei nicht selten selbst zur Belastung. Grund genug, Ihnen die nachfolgenden <b><i>Tipps für einen erholsamen Urlaub </i></b>zu geben.
@@ -1473,6 +1525,7 @@ EOT
         $item8324->setFormat("richhtml");
         $item8324->setTag("Stress");
         $item8324->setCountPoint(1);
+        $item8324->setCategory($this->getReference('category_stress'));
         $item8324->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Nutzen Sie einen <b><i>Kurzurlaub</i></b> ganz bewusst zur <i>räumlichen Distanzierung</i> und um sich über Ihre derzeitige Lebenssituation klar zu werden:
@@ -1492,6 +1545,7 @@ EOT
         $item8325->setFormat("richhtml");
         $item8325->setTag("Stress");
         $item8325->setCountPoint(1);
+        $item8325->setCategory($this->getReference('category_stress'));
         $item8325->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit erfahren Sie, wie Sie sich auch im Alltag Momente der Ruhe und Erholung gönnen und sich und Ihre Sinne verwöhnen.
@@ -1518,6 +1572,7 @@ EOT
         $item8326->setFormat("richhtml");
         $item8326->setTag("Stress");
         $item8326->setCountPoint(1);
+        $item8326->setCategory($this->getReference('category_stress'));
         $item8326->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern ging es um Ihre Zeit zum Wohlfühlen und Sinne verwöhnen: <i>Wellness</i> als gezielte Momente der Ruhe und Erholung. Leider gönnen sich viele Menschen diese Entspannung nur selten - aus Zeitmangel. Dabei schaffen bereits kleine Inseln im Alltag - gut vorbereitet und bewusst genutzt - Ruhe und Erholung und damit einen adäquaten Ausgleich zum Stress. Heute stellen wir Ihnen das <b><i>Wellnessprogramm „Startklar in 30 Minuten“</i></b> vor, dass Sie sich jeden Morgen vor der Arbeit, zum Teil unter der Dusche, in wenigen Minuten gönnen können. So tun Sie als Erstes sich selbst was Gutes und starten voller Schwung in den Tag. Laden Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-11a_Wellnessprogramm.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> unsere Anleitung dazu herunter.
@@ -1530,6 +1585,7 @@ EOT
         $item8327->setFormat("richhtml");
         $item8327->setTag("Stress");
         $item8327->setCountPoint(1);
+        $item8327->setCategory($this->getReference('category_stress'));
         $item8327->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Eine kleine Wellnesseinheit können Sie auch in den Arbeitsalltag einbauen und sich dabei zwischendurch etwas Gutes tun: Gerade bei der Arbeit am PC treten häufig Verspannungen im Gesichtsbereich auf. Stress fördert diese Anspannung noch und Kopfschmerzen können die Folge sein. Oftmals merkt man erst am Ende eines Arbeitstages, dass die Augenpartie extrem betroffen ist.
@@ -1543,6 +1599,7 @@ EOT
         $item8328->setFormat("richhtml");
         $item8328->setTag("Stress");
         $item8328->setCountPoint(1);
+        $item8328->setCategory($this->getReference('category_stress'));
         $item8328->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie befinden sich im Bereich <i>Regenerative Stresskompetenz</i> von <b>StressFit (BASIS).</b>
 In dieser Einheit beschäftigen Sie sich noch einmal ganz allgemein mit dem Genießen.
@@ -1571,6 +1628,7 @@ EOT
         $item8329->setFormat("richhtml");
         $item8329->setTag("Stress");
         $item8329->setCountPoint(1);
+        $item8329->setCategory($this->getReference('category_stress'));
         $item8329->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern ging´s um das <i>Genießen</i>. Wann haben Sie zuletzt etwas so richtig genossen? Was sind das überhaupt für Dinge, die Ihre ganz persönlichen Genusserlebnisse darstellen? In der heutigen Übung geht es darum, angenehme Erlebnisse zunächst für sich zu entdecken und diese dann gezielt zu planen. Laden Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-11c_Checkliste-Genusserlebnisse.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> die <b><i>Checkliste „Genusserlebnisse“</i></b> herunter, mithilfe derer Sie sich fragen können, wie gern und wie häufig Sie Angenehmes erleben. So ähnlich wie beim Stressoren-Check vom Beginn des Kurses haben Sie so eine schöne Hitliste ihrer persönlichen Genusserlebnisse. Beginnen Sie dann mit der Planung der ersten Highlights. Wir wünschen Ihnen viel Freude damit.
@@ -1583,6 +1641,7 @@ EOT
         $item8330->setFormat("richhtml");
         $item8330->setTag("Stress");
         $item8330->setCountPoint(1);
+        $item8330->setCategory($this->getReference('category_stress'));
         $item8330->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie beenden heute den Bereich <i>Regenerative Stresskompetenz</i> des BASIS-Moduls des <b>StressCoaches.</b>
 In dieser Einheit zeigen wir Ihnen, wie die kleinen Dinge in Ihrem Alltag ein Quell der Freude und des Genusses sein können. Dazu möchten wir Ihnen zunächst eine Geschichte erzählen:
@@ -1619,6 +1678,7 @@ EOT
         $item8331->setFormat("richhtml");
         $item8331->setTag("Stress");
         $item8331->setCountPoint(1);
+        $item8331->setCategory($this->getReference('category_stress'));
         $item8331->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Gestern haben wir Ihnen die Geschichte vom Italienischen Conte erzählt, der die Angewohnheit hatte, die schönen <i>genussvollen Kleinigkeiten des Alltags</i> mithilfe von Bohnen zu zählen. Diesen Tipp möchten wir Ihnen heute auch geben: Es müssen ja keine Bohnen sein - doch machen Sie sich zur Gewohnheit, auf Ihren Tag positiv zurückzublicken. Denken Sie vor dem Zubettgehen noch einmal an schöne Begebenheiten des Tages und notieren Sie Ihre Gedanken dazu. Wenn Sie mögen, laden Sie sich <a href="https://www.fitbase.de/wp-content/uploads/StressFit-BASIS_Download_Tagesintervention_Woche-12a_Positiver-Tagesrückblick.pdf" target="_blank"><span style="text-decoration: underline">HIER</span></a> unseren <b><i>Positiven Tagesrückblick</i></b> als Kopiervorlage herunter. Viel Freude damit!
@@ -1631,6 +1691,7 @@ EOT
         $item8332->setFormat("richhtml");
         $item8332->setTag("Stress");
         $item8332->setCountPoint(1);
+        $item8332->setCategory($this->getReference('category_stress'));
         $item8332->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag!
 Noch ein Tipp zum <i>Genießen</i> und für Ihren <i>positiven Tagesrückblick</i>: Die meisten Freuden, die das Leben lebenswert machen, wurzeln in unseren fünf Sinnen. Lernen Sie <b><i>mit allen Sinnen genießen!</i></b>
@@ -1656,6 +1717,7 @@ EOT
         $item8333->setFormat("richhtml");
         $item8333->setTag("Stress");
         $item8333->setCountPoint(1);
+        $item8333->setCategory($this->getReference('category_stress'));
         $item8333->setContent(<<<EOT
 [back_to_parent text="Zurück zur Übersicht“]Guten Tag! Sie beenden heute das BASIS<b>-</b>Modul des <b>StressCoaches.</b> In dieser Einheit fassen wir noch einmal alles zusammen, geben Ihnen abschließende Tipps zum weiteren Umgang mit Ihrem Stress und verabschieden uns von Ihnen.
 <b>Worum ging es?</b>

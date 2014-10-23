@@ -177,4 +177,26 @@ class Weeklyquiz
     }
 
 
-} 
+    /**
+     * Add questions
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion $questions
+     * @return Weeklyquiz
+     */
+    public function addQuestion(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion $questions
+     */
+    public function removeQuestion(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+}

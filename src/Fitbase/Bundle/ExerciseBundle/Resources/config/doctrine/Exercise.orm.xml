@@ -16,6 +16,16 @@
                 <cascade-all/>
             </cascade>
         </many-to-one>
+        <many-to-one field="collection" target-entity="Application\Sonata\ClassificationBundle\Entity\Collection">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
         <many-to-one field="video" target-entity="Application\Sonata\MediaBundle\Entity\Media">
             <cascade>
                 <cascade-all/>

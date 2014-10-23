@@ -15,8 +15,17 @@
         <field name="content" type="text" column="content"/>
         <field name="countPoint" type="integer" column="count_point" nullable="true"/>
         <field name="weekId" type="integer" column="week_id" nullable="true"/>
-
         <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz"/>
+        <many-to-one field="collection" target-entity="Application\Sonata\ClassificationBundle\Entity\Collection">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

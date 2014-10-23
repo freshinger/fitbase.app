@@ -39,6 +39,7 @@ class LoadRuecken3Data extends AbstractFixture implements OrderedFixtureInterfac
         $item602->setImage($this->getReference('picture_602.jpeg'));
         $item602->setVideo($this->getReference('video_602.webm'));
         $item602->setGallery($this->getReference('picture_602'));
+        $item602->setCategory($this->getReference('category_ruecken'));
         $item602->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -90,6 +91,7 @@ CONTENT
         $item603->setImage($this->getReference('picture_603.jpeg'));
         $item603->setVideo($this->getReference('video_603.webm'));
         $item603->setGallery($this->getReference('picture_603'));
+        $item603->setCategory($this->getReference('category_ruecken'));
         $item603->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -142,6 +144,7 @@ CONTENT
         $item604->setImage($this->getReference('picture_604.jpeg'));
         $item604->setVideo($this->getReference('video_604.webm'));
         $item604->setGallery($this->getReference('picture_604'));
+        $item604->setCategory($this->getReference('category_ruecken'));
         $item604->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -194,6 +197,7 @@ CONTENT
         $item605->setImage($this->getReference('picture_605.jpeg'));
         $item605->setVideo($this->getReference('video_605.webm'));
         $item605->setGallery($this->getReference('picture_605'));
+        $item605->setCategory($this->getReference('category_ruecken'));
         $item605->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -252,6 +256,7 @@ CONTENT
         $item606->setImage($this->getReference('picture_606.jpeg'));
         $item606->setVideo($this->getReference('video_606.webm'));
         $item606->setGallery($this->getReference('picture_606'));
+        $item606->setCategory($this->getReference('category_ruecken'));
         $item606->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -309,6 +314,7 @@ CONTENT
         $item607->setImage($this->getReference('picture_607.jpeg'));
         $item607->setVideo($this->getReference('video_607.webm'));
         $item607->setGallery($this->getReference('picture_607'));
+        $item607->setCategory($this->getReference('category_ruecken'));
         $item607->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -367,6 +373,7 @@ CONTENT
         $item608->setImage($this->getReference('picture_608.jpeg'));
         $item608->setVideo($this->getReference('video_608.webm'));
         $item608->setGallery($this->getReference('picture_608'));
+        $item608->setCategory($this->getReference('category_ruecken'));
         $item608->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -421,6 +428,7 @@ CONTENT
         $item609->setImage($this->getReference('picture_609.jpeg'));
         $item609->setVideo($this->getReference('video_609.webm'));
         $item609->setGallery($this->getReference('picture_609'));
+        $item609->setCategory($this->getReference('category_ruecken'));
         $item609->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -475,6 +483,7 @@ CONTENT
         $item610->setImage($this->getReference('picture_610.jpeg'));
         $item610->setVideo($this->getReference('video_610.webm'));
         $item610->setGallery($this->getReference('picture_610'));
+        $item610->setCategory($this->getReference('category_ruecken'));
         $item610->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -531,6 +540,7 @@ CONTENT
         $item611->setImage($this->getReference('picture_611.jpeg'));
         $item611->setVideo($this->getReference('video_611.webm'));
         $item611->setGallery($this->getReference('picture_611'));
+        $item611->setCategory($this->getReference('category_ruecken'));
         $item611->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -590,6 +600,7 @@ CONTENT
         $item612->setImage($this->getReference('picture_612.jpeg'));
         $item612->setVideo($this->getReference('video_612.webm'));
         $item612->setGallery($this->getReference('picture_612'));
+        $item612->setCategory($this->getReference('category_ruecken'));
         $item612->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -646,6 +657,7 @@ CONTENT
         $item613->setImage($this->getReference('picture_613.jpeg'));
         $item613->setVideo($this->getReference('video_613.webm'));
         $item613->setGallery($this->getReference('picture_613'));
+        $item613->setCategory($this->getReference('category_ruecken'));
         $item613->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">
@@ -709,6 +721,7 @@ CONTENT
         $item614->setImage($this->getReference('picture_614.jpeg'));
         $item614->setVideo($this->getReference('video_614.webm'));
         $item614->setGallery($this->getReference('picture_614'));
+        $item614->setCategory($this->getReference('category_ruecken'));
         $item614->setDescription(<<<CONTENT
 <div class="row">
 <div class="span4 col-md-4 column_last">

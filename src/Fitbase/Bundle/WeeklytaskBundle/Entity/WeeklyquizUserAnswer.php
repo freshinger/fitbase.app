@@ -244,4 +244,50 @@ class WeeklyquizUserAnswer
         return false;
     }
 
+
+    /**
+     * Add answerUser
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerUser
+     * @return WeeklyquizUserAnswer
+     */
+    public function addAnswerUser(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerUser)
+    {
+        $this->answerUser[] = $answerUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove answerUser
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerUser
+     */
+    public function removeAnswerUser(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerUser)
+    {
+        $this->answerUser->removeElement($answerUser);
+    }
+
+    /**
+     * Add answerRight
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerRight
+     * @return WeeklyquizUserAnswer
+     */
+    public function addAnswerRight(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerRight)
+    {
+        $this->answerRight[] = $answerRight;
+
+        return $this;
+    }
+
+    /**
+     * Remove answerRight
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerRight
+     */
+    public function removeAnswerRight(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer $answerRight)
+    {
+        $this->answerRight->removeElement($answerRight);
+    }
 }
