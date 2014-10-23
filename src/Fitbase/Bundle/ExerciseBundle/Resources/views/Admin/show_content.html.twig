@@ -14,8 +14,8 @@
             {% if object.gallery.galleryHasMedias is defined %}
                 {% if  object.gallery.galleryHasMedias %}
                     {% for galleryHasMedia in object.gallery.galleryHasMedias %}
-                        <a href="{% path galleryHasMedia, 'original' %}">
-                            {% thumbnail galleryHasMedia, 'thumbnail' with {'width': 158} %}
+                        <a href="{% path galleryHasMedia.media, 'original' %}">
+                            {% thumbnail galleryHasMedia.media, 'thumbnail' with {'width': 158} %}
                         </a>
                     {% endfor %}
                 {% endif %}
