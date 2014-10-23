@@ -12,18 +12,19 @@ file that was distributed with this source code.
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field %}
+    {% set parent = object %}
     {% set object = object.image %}
-    {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
-        <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}"
+    {% if admin.isGranted('EDIT', parent) and admin.hasRoute('edit') %}
+        <a href="{{ admin.generateUrl('edit', {'id' : parent|sonata_urlsafeid }) }}"
            style="float: left; margin-right: 6px;">{% thumbnail object, 'admin' with {'width': 90} %}</a>
     {% else %}
         {% thumbnail object, 'admin' with {'height': 90} %}
     {% endif %}
     </div>
-    {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
-        <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}"><strong>{{ object.name }}</strong></a>
+    {% if admin.isGranted('EDIT', parent) and admin.hasRoute('edit') %}
+        <a href="{{ admin.generateUrl('edit', {'id' : parent|sonata_urlsafeid }) }}"><strong>{{ parent.name }}</strong></a>
     {% else %}
-        <strong>{{ object.name }}</strong>
+        <strong>{{ parent.name }}</strong>
     {% endif %}
 
 

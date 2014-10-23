@@ -62,7 +62,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Vorschaubild',
                 'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
             ))
-            ->add('name')
             ->add('tag')
             ->add('countPoint')
             ->add('_action', 'actions', array(
