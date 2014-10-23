@@ -23,10 +23,10 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                abstract: { width: 100, quality: 100}
-                wide:     { width: 820, quality: 100}
-                small: { width: 100, quality: 100}
-                big:   { width: 1600 , quality: 100}
+                icon: { width: 100, quality: 100}
+                thumbnail: { width: 150, quality: 100}
+                preview: { width: 300, quality: 100}
+                original: { width: 800, quality: 100}
 
 #        news:
 #            providers:

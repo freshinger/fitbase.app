@@ -40,21 +40,15 @@ class LoadRuecken3Data extends AbstractFixture implements OrderedFixtureInterfac
         $item602->setVideo($this->getReference('video_602.webm'));
         $item602->setGallery($this->getReference('picture_602'));
         $item602->setDescription(<<<CONTENT
-
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kopfschaukeln</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -73,7 +67,6 @@ Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 mal zu jeder Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -84,7 +77,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -99,18 +91,15 @@ CONTENT
         $item603->setVideo($this->getReference('video_603.webm'));
         $item603->setGallery($this->getReference('picture_603'));
         $item603->setDescription(<<<CONTENT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Schulterkreisen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -128,7 +117,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">15 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -141,7 +129,6 @@ Oberer Rücken</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg">
 <img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" />
 </a>
-
 </div>
 </div>
 CONTENT
@@ -157,19 +144,14 @@ CONTENT
         $item604->setGallery($this->getReference('picture_604'));
         $item604->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Schulter öffnen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -188,7 +170,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -196,12 +177,10 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 oberer Rücken
-
 </div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -217,19 +196,14 @@ CONTENT
         $item605->setGallery($this->getReference('picture_605'));
         $item605->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Seitwärts beugen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -250,7 +224,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">5 Wiederholungen pro Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -266,7 +239,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -282,19 +254,14 @@ CONTENT
         $item606->setGallery($this->getReference('picture_606'));
         $item606->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Biceps/Trapezius am Tisch</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -304,7 +271,7 @@ Bitte führen Sie diese Übung im Sitzen durch.
 <ol class="numbered-list">
 	<li>Den Oberkörper leicht nach vorne neigen</li>
 	<li>Die Handflächen von unten an den Tisch drücken</li>
-	<li>Unter Druck den Oberkörper nach vorne ziehen, wobei Sie das Brustbein nach vorne / oben bewegen</li>
+	<li>Unter Druck den Oberkörper nach vorne ziehen, wobei Sie das Brustbein nach vorne/oben bewegen</li>
 	<li>Die Übung sollte etwas anstrengend sein. Kriterium: Leicht außer Atem geraten und etwas schwitzen. Sollten Ihre Muskeln anfangen zu zittern, ist das ein normales Zeichen dafür, dass die Muskulatur arbeitet.</li>
 </ol>
 </div>
@@ -314,7 +281,6 @@ Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">15 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -330,7 +296,6 @@ Bitte führen Sie diese Übung im Sitzen durch.
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -345,59 +310,52 @@ CONTENT
         $item607->setVideo($this->getReference('video_607.webm'));
         $item607->setGallery($this->getReference('picture_607'));
         $item607->setDescription(<<<CONTENT
-<div class="row" >
-
-    [display_exercise]
-<div class="span4 col-md-4 column_last" >
-<h4 style = "margin-bottom: 4px;" > Dips</h4 >
-    Bitte führen Sie diese Übung im Sitzen durch .
-<p class="back-to-parent" > [back_to_parent]</p >
-
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-info" ><span > Art der Übung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Art der Übung </h4 >
-<p class="tall" > Kräftigung</p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-tasks" ><span > Durchführungsanleitung</span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Durchführungsanleitung</h4 >
-<ol class="numbered-list" >
-	<li > Stellen Sie die Handflächen etwas mehr als Schulterbreit auf den Tisch </li >
-	<li > Üben Sie Druck mit den Handflächen auf die Tischplatte aus </li >
-	<li > Dabei das Brustbein noch weiter nach vorne / oben bewegen und einatmen,</li >
-	<li > Mit der Ausatmung zurück in die Grundhaltung </li >
-	<li > Die Übung sollte etwas anstrengend sein . Kriterium: Leicht außer Atem geraten und etwas schwitzen . Sollten Ihre Muskeln anfangen zu zittern, ist das ein normales Zeichen dafür, dass die Muskulatur arbeitet .</li >
-</ol >
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-clock-o" ><span > Anzahl der Wiederholung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Anzahl der Wiederholungen </h4 >
-<p class="tall" > 15 Wiederholungen </p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-male" ><span > Beanspruchte Muskelbereiche </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Beanspruchte Muskelbereiche </h4 >
-<ul >
-	<li > Oberer Rücken </li >
-	<li > Oberarme</li >
-</ul >
-</div >
-<div class="clear" ></div >
-</div >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" ><img src = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt = "" /></a >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg" ><img src = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt = "" /></a >
-
-</div >
-</div >
+<div class="row">
+<div class="span4 col-md-4 column_last">
+<h4 style = "margin-bottom: 4px;"> Dips</h4>
+    Bitte führen Sie diese Übung im Sitzen durch.
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span> Art der Übung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Art der Übung </h4>
+<p class="tall"> Kräftigung</p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span> Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Durchführungsanleitung</h4>
+<ol class="numbered-list">
+	<li> Stellen Sie die Handflächen etwas mehr als Schulterbreit auf den Tisch </li>
+	<li> Üben Sie Druck mit den Handflächen auf die Tischplatte aus </li>
+	<li> Dabei das Brustbein noch weiter nach vorne/oben bewegen und einatmen,</li>
+	<li> Mit der Ausatmung zurück in die Grundhaltung </li>
+	<li> Die Übung sollte etwas anstrengend sein. Kriterium: Leicht außer Atem geraten und etwas schwitzen. Sollten Ihre Muskeln anfangen zu zittern, ist das ein normales Zeichen dafür, dass die Muskulatur arbeitet.</li>
+</ol>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span> Anzahl der Wiederholung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Anzahl der Wiederholungen </h4>
+<p class="tall"> 15 Wiederholungen </p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span> Beanspruchte Muskelbereiche </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Beanspruchte Muskelbereiche </h4>
+<ul>
+	<li> Oberer Rücken </li>
+	<li> Oberarme</li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt = "" /></a>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt = "" /></a>
+</div>
+</div>
 CONTENT
         );
         $manager->persist($item607);
@@ -411,43 +369,37 @@ CONTENT
         $item608->setGallery($this->getReference('picture_608'));
         $item608->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
-<div class="span4 col - md - 4 column_last">
-<h4 style="margin - bottom: 4px;">Kopfwiderstand dynamisch vorne</h4>
+<div class="span4 col-md-4 column_last">
+<h4 style="margin-bottom: 4px;">Kopfwiderstand dynamisch vorne</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
-<p class="back - to - parent">[back_to_parent]</p>
-
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - info"><span>Art der Übung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - tasks"><span>Durchführungsanleitung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span>Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Durchführungsanleitung</h4>
-<ol class="numbered - list">
+<ol class="numbered-list">
 	<li>Führen Sie eine Hand an das Kinn</li>
 	<li>Schieben Sie Ihren Kopf gegen den Widerstand der Hand auf einer gedachten horizontalen Linie nach vorne</li>
 	<li>Der ausgeübte Druck sollte nicht zu stark sein und langsam ansteigen</li>
 </ol>
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - clock - o"><span>Anzahl der Wiederholung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span>Anzahl der Wiederholung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">2 x 5 Wiederholungen</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - male"><span>Beanspruchte Muskelbereiche</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span>Beanspruchte Muskelbereiche</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 <ul class="list-unstyled">
 	<li>Nackenmuskulatur</li>
@@ -455,8 +407,7 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise - picture - zoom area" href=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg"><img src=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg" alt="" /></a>
-
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
 </div>
 </div>
 CONTENT
@@ -471,55 +422,48 @@ CONTENT
         $item609->setVideo($this->getReference('video_609.webm'));
         $item609->setGallery($this->getReference('picture_609'));
         $item609->setDescription(<<<CONTENT
-<div class="row" >
-
-    [display_exercise]
-<div class="span4 col-md-4 column_last" >
-<h4 style = "margin-bottom: 4px" > Kopfwiderstand seitlich </h4 >
-    Sie können diese Übung im Stehen oder im Sitzen durchführen .
-<p class="back-to-parent" > [back_to_parent]</p >
-
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-info" ><span > Art der Übung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Art der Übung </h4 >
-<p class="tall" > Kräftigung </p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-tasks" ><span > Durchführungsanleitung</span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Durchführungsanleitung</h4 >
-<ol class="numbered-list" >
-	<li > Führen Sie die rechte Hand zur rechten Schläfe und bauen Sie einen leicht stärker werdenden Druck auf </li >
-	<li > Den Druck ca . 10 Sekunden halten </li >
-	<li > Entsprechend links </li >
-</ol >
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-clock-o" ><span > Anzahl der Wiederholung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Anzahl der Wiederholungen </h4 >
-<p class="tall" > 10 Sekunden pro Seite </p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-male" ><span > Beanspruchte Muskelbereiche </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Beanspruchte Muskelbereiche </h4 >
-<ul class="list-unstyled" >
-	<li > Nackenmuskulatur</li >
-</ul >
-</div >
-<div class="clear" ></div >
-</div >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" ><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a >
-
-</div >
-</div >
+<div class="row">
+<div class="span4 col-md-4 column_last">
+<h4 style = "margin-bottom: 4px"> Kopfwiderstand seitlich </h4>
+    Sie können diese Übung im Stehen oder im Sitzen durchführen.
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span> Art der Übung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Art der Übung </h4>
+<p class="tall"> Kräftigung </p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span> Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Durchführungsanleitung</h4>
+<ol class="numbered-list">
+	<li> Führen Sie die rechte Hand zur rechten Schläfe und bauen Sie einen leicht stärker werdenden Druck auf </li>
+	<li> Den Druck ca. 10 Sekunden halten </li>
+	<li> Entsprechend links </li>
+</ol>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span> Anzahl der Wiederholung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Anzahl der Wiederholungen </h4>
+<p class="tall"> 10 Sekunden pro Seite </p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span> Beanspruchte Muskelbereiche </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Beanspruchte Muskelbereiche </h4>
+<ul class="list-unstyled">
+	<li> Nackenmuskulatur</li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a>
+</div>
+</div>
 CONTENT
         );
         $manager->persist($item609);
@@ -533,26 +477,21 @@ CONTENT
         $item610->setGallery($this->getReference('picture_610'));
         $item610->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
-<div class="span4 col - md - 4 column_last">
-<h4 style="margin - bottom: 4px">Dehnung kurze Nackenmuskulatur</h4>
+<div class="span4 col-md-4 column_last">
+<h4 style="margin-bottom: 4px">Dehnung kurze Nackenmuskulatur</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
-<p class="back - to - parent">[back_to_parent]</p>
-
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - info"><span>Art der Übung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnen</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - tasks"><span>Durchführungsanleitung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span>Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Durchführungsanleitung</h4>
-<ol class="numbered - list">
+<ol class="numbered-list">
 	<li>Mit beiden Händen den Hinterkopf umgreifen</li>
 	<li>Dann die Halswirbelsäule vorsichtig in die Beugung drücken</li>
 	<li>Dabei das Kinn Richtung Brustbein bewegen, bis Sie einen Dehnungsreiz im Nacken und zwischen den Schulterblättern verspüren</li>
@@ -561,17 +500,16 @@ Bitte führen Sie diese Übung im Sitzen durch.
 </ol>
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - clock - o"><span>Anzahl der Wiederholung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span>Anzahl der Wiederholung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - male"><span>Beanspruchte Muskelbereiche</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span>Beanspruchte Muskelbereiche</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 <ul class="list-unstyled">
 	<li>Nackenmuskulatur</li>
@@ -579,8 +517,7 @@ Bitte führen Sie diese Übung im Sitzen durch.
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise - picture - zoom area" href=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg"><img src=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg" alt="" /></a>
-
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
 </div>
 </div>
 CONTENT
@@ -595,60 +532,53 @@ CONTENT
         $item611->setVideo($this->getReference('video_611.webm'));
         $item611->setGallery($this->getReference('picture_611'));
         $item611->setDescription(<<<CONTENT
-<div class="row" >
-
-    [display_exercise]
-<div class="span4 col-md-4 column_last" >
-<h4 style = "margin-bottom: 4px;" > 3. Dehnen – Hand - Unterarmdehnung </h4 >
-    Bitte führen Sie diese Übung im Stehen durch .
-<p class="back-to-parent" > [back_to_parent]</p >
-
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-info" ><span > Art der Übung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Art der Übung </h4 >
-<p class="tall" > Dehnung</p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-tasks" ><span > Durchführungsanleitung</span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Durchführungsanleitung</h4 >
-<ol class="numbered-list" >
-	<li > Bitte stehen / sitzen Sie aufrecht </li >
-	<li > Strecken Sie den rechten Arm aus und lassen Sie die Hand locker nach unten hängen </li >
-	<li > Üben Sie nun mit der linken Hand leichten Druck auf die rechte Hand aus, bis Sie einen Dehnungsreiz spüren </li >
-	<li > ca . 10 Sekunden halten </li >
-	<li > Anschließend drehen Sie die Hand nach außen </li >
-	<li > Üben Sie nun erneut Druck aus, bis Sie einen Dehnungsreiz spüren </li >
-	<li > ca . 10 Sekunden halten </li >
-	<li > entsprechend die andere Seite </li >
-</ol >
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-clock-o" ><span > Anzahl der Wiederholung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Anzahl der Wiederholungen </h4 >
-<p class="tall" > 20 Sekunden halten je Seite </p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-male" ><span > Beanspruchte Muskelbereiche </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Beanspruchte Muskelbereiche </h4 >
-<ul >
-	<li > Unterarme</li >
-</ul >
-</div >
-<div class="clear" ></div >
-</div >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" ><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a >
-
-</div >
-</div >
+<div class="row">
+<div class="span4 col-md-4 column_last">
+<h4 style = "margin-bottom: 4px;"> 3. Dehnen – Hand-Unterarmdehnung </h4>
+    Bitte führen Sie diese Übung im Stehen durch.
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span> Art der Übung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Art der Übung </h4>
+<p class="tall"> Dehnung</p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span> Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Durchführungsanleitung</h4>
+<ol class="numbered-list">
+	<li> Bitte stehen/sitzen Sie aufrecht </li>
+	<li> Strecken Sie den rechten Arm aus und lassen Sie die Hand locker nach unten hängen </li>
+	<li> Üben Sie nun mit der linken Hand leichten Druck auf die rechte Hand aus, bis Sie einen Dehnungsreiz spüren </li>
+	<li> ca. 10 Sekunden halten </li>
+	<li> Anschließend drehen Sie die Hand nach außen </li>
+	<li> Üben Sie nun erneut Druck aus, bis Sie einen Dehnungsreiz spüren </li>
+	<li> ca. 10 Sekunden halten </li>
+	<li> entsprechend die andere Seite </li>
+</ol>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span> Anzahl der Wiederholung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Anzahl der Wiederholungen </h4>
+<p class="tall"> 20 Sekunden halten je Seite </p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span> Beanspruchte Muskelbereiche </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Beanspruchte Muskelbereiche </h4>
+<ul>
+	<li> Unterarme</li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a>
+</div>
+</div>
 CONTENT
         );
         $manager->persist($item611);
@@ -662,26 +592,21 @@ CONTENT
         $item612->setGallery($this->getReference('picture_612'));
         $item612->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
-<div class="span4 col - md - 4 column_last">
-<h4 style="margin - bottom: 4px;">Nacken Dehnen</h4>
+<div class="span4 col-md-4 column_last">
+<h4 style="margin-bottom: 4px;">Nacken Dehnen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
-<p class="back - to - parent">[back_to_parent]</p>
-
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - info"><span>Art der Übung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnen</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - tasks"><span>Durchführungsanleitung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span>Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Durchführungsanleitung</h4>
-<ol class="numbered - list">
+<ol class="numbered-list">
 	<li>Linke Seite: rechtes Ohr ohne zu rotieren in Richtung rechte Schulter bewegen</li>
 	<li>Dann den linken Arm in Richtung Boden schieben, so dass Sie einen Dehnungsreiz in der Nackenmuskulatur verspüren</li>
 	<li>Den Handrücken nach oben ziehen, um den Dehnungsreiz zu verstärken</li>
@@ -690,17 +615,16 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 </ol>
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - clock - o"><span>Anzahl der Wiederholung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span>Anzahl der Wiederholung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden pro Seite</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - male"><span>Beanspruchte Muskelbereiche</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span>Beanspruchte Muskelbereiche</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 <ul class="list-unstyled">
 	<li>Nackenmuskeln</li>
@@ -708,8 +632,7 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise - picture - zoom area" href=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg"><img src=" / wp - content / uploads / muskelgruppen / 01_nackenmuskeln . jpg" alt="" /></a>
-
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
 </div>
 </div>
 CONTENT
@@ -724,64 +647,57 @@ CONTENT
         $item613->setVideo($this->getReference('video_613.webm'));
         $item613->setGallery($this->getReference('picture_613'));
         $item613->setDescription(<<<CONTENT
-<div class="row" >
-
-    [display_exercise]
-<div class="span4 col-md-4 column_last" >
-<h4 style = "margin-bottom: 4px;" > Nackendehnung Variante </h4 >
-    Sie können diese Übung im Stehen oder im Sitzen durchführen .
-<p class="back-to-parent" > [back_to_parent]</p >
-
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-info" ><span > Art der Übung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Art der Übung </h4 >
-<p class="tall" > Dehnen</p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-tasks" ><span > Durchführungsanleitung</span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Durchführungsanleitung</h4 >
-<ol class="numbered-list" >
-	<li > Bitte stehen / sitzen Sie aufrecht </li >
-	<li > Linke Seite: rechtes Ohr ohne zu rotieren in Richtung rechte Schulter bewegen </li >
-	<li > Dann den linken Arm in Richtung Boden schieben, so dass Sie einen Dehnungsreiz in der Nackenmuskulatur verspüren </li >
-	<li > Den Handrücken nach oben ziehen, um den Dehnungsreiz zu verstärken </li >
-	<li > 10 Sekunden halten </li >
-	<li > Anschließend aus derselben Position das Kinn leicht zur Schulter drehen und nach unten schauen </li >
-	<li > 10 Sekunden halten </li >
-	<li > Dann aus derselben Position das Kinn leicht nach oben führen und zur Decke schauen </li >
-	<li > 10 Sekunden halten </li >
-	<li > Langsam lösen und entsprechend mit der anderen Seite </li >
-</ol >
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-clock-o" ><span > Anzahl der Wiederholung </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Anzahl der Wiederholungen </h4 >
-<p class="tall" > 10 Sekunden je Position </p >
-
-</div >
-</div >
-<div class="feature-box" >
-<div class="feature-box-icon" ><i class="icon icon-male" ><span > Beanspruchte Muskelbereiche </span ></i ></div >
-<div class="feature-box-info" >
-<h4 class="shorter" > Beanspruchte Muskelbereiche </h4 >
-<ul class="list-unstyled" >
-	<li > Nackenmuskulatur</li >
-	<li > Unterarme</li >
-</ul >
-</div >
-<div class="clear" ></div >
-</div >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" ><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a >
-<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" ><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a >
-
-</div >
-</div >
+<div class="row">
+<div class="span4 col-md-4 column_last">
+<h4 style = "margin-bottom: 4px;"> Nackendehnung Variante </h4>
+    Sie können diese Übung im Stehen oder im Sitzen durchführen.
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span> Art der Übung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Art der Übung </h4>
+<p class="tall"> Dehnen</p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span> Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Durchführungsanleitung</h4>
+<ol class="numbered-list">
+	<li> Bitte stehen/sitzen Sie aufrecht </li>
+	<li> Linke Seite: rechtes Ohr ohne zu rotieren in Richtung rechte Schulter bewegen </li>
+	<li> Dann den linken Arm in Richtung Boden schieben, so dass Sie einen Dehnungsreiz in der Nackenmuskulatur verspüren </li>
+	<li> Den Handrücken nach oben ziehen, um den Dehnungsreiz zu verstärken </li>
+	<li> 10 Sekunden halten </li>
+	<li> Anschließend aus derselben Position das Kinn leicht zur Schulter drehen und nach unten schauen </li>
+	<li> 10 Sekunden halten </li>
+	<li> Dann aus derselben Position das Kinn leicht nach oben führen und zur Decke schauen </li>
+	<li> 10 Sekunden halten </li>
+	<li> Langsam lösen und entsprechend mit der anderen Seite </li>
+</ol>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span> Anzahl der Wiederholung </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Anzahl der Wiederholungen </h4>
+<p class="tall"> 10 Sekunden je Position </p>
+</div>
+</div>
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span> Beanspruchte Muskelbereiche </span></i></div>
+<div class="feature-box-info">
+<h4 class="shorter"> Beanspruchte Muskelbereiche </h4>
+<ul class="list-unstyled">
+	<li> Nackenmuskulatur</li>
+	<li> Unterarme</li>
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a>
+<a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a>
+</div>
+</div>
 CONTENT
         );
         $manager->persist($item613);
@@ -794,42 +710,38 @@ CONTENT
         $item614->setVideo($this->getReference('video_614.webm'));
         $item614->setGallery($this->getReference('picture_614'));
         $item614->setDescription(<<<CONTENT
-<div class="row">[display_exercise]
-<div class="span4 col - md - 4 column_last">
-<h4 style="margin - bottom: 4px;">Unterarmdehnung</h4>
+<div class="row">
+<div class="span4 col-md-4 column_last">
+<h4 style="margin-bottom: 4px;">Unterarmdehnung</h4>
 Bitte führen Sie diese Übung im Stehen durch.
-<p class="back - to - parent">[back_to_parent]</p>
-
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - info"><span>Art der Übung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnen</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - tasks"><span>Durchführungsanleitung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-tasks"><span>Durchführungsanleitung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Durchführungsanleitung</h4>
-<ol class="numbered - list">
+<ol class="numbered-list">
 	<li>Die Finger zeigen zum Körper</li>
 	<li>Dann die Ellenbogen durchdrücken und den Oberkörper soweit zurücklehnen, bis ein Dehnungsreiz in den Unterarmen zu spüren ist</li>
 	<li>Diesen Reiz ca. 25 Sekunden aufrecht erhalten und dann langsam absetzen</li>
 </ol>
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - clock - o"><span>Anzahl der Wiederholung</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-clock-o"><span>Anzahl der Wiederholung</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
-<div class="feature - box">
-<div class="feature - box - icon"><i class="icon icon - male"><span>Beanspruchte Muskelbereiche</span></i></div>
-<div class="feature - box - info">
+<div class="feature-box">
+<div class="feature-box-icon"><i class="icon icon-male"><span>Beanspruchte Muskelbereiche</span></i></div>
+<div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 <ul class="list-unstyled">
 	<li>Unterarme</li>
@@ -837,8 +749,7 @@ Bitte führen Sie diese Übung im Stehen durch.
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise - picture - zoom area" href=" / wp - content / uploads / muskelgruppen / 06_unterarm . jpg"><img src=" / wp - content / uploads / muskelgruppen / 06_unterarm . jpg" alt="" /></a>
-
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm. jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm. jpg" alt="" /></a>
 </div>
 </div>
 CONTENT

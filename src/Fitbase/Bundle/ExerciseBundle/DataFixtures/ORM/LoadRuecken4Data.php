@@ -26,7 +26,6 @@ class LoadRuecken4Data extends AbstractFixture implements OrderedFixtureInterfac
         return 2;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -43,19 +42,14 @@ class LoadRuecken4Data extends AbstractFixture implements OrderedFixtureInterfac
         $item556->setGallery($this->getReference('picture_556'));
         $item556->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Abduktion beidseits</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -77,7 +71,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -93,7 +86,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -109,19 +101,14 @@ CONTENT
         $item557->setGallery($this->getReference('picture_557'));
         $item557->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Außenrotation beidseits im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -144,7 +131,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -160,7 +146,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -176,19 +161,14 @@ CONTENT
         $item558->setGallery($this->getReference('picture_558'));
         $item558->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Außenrotation im Stand</h4>
 Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band® z.B. um ein Tischbein.
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -209,7 +189,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -226,7 +205,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/12_oberer_und_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/12_oberer_und_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -242,19 +220,14 @@ CONTENT
         $item559->setGallery($this->getReference('picture_559'));
         $item559->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Bizeps-Schultern</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -276,7 +249,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -293,10 +265,8 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
-
 CONTENT
         );
         $manager->persist($item559);
@@ -310,19 +280,14 @@ CONTENT
         $item560->setGallery($this->getReference('picture_560'));
         $item560->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Butterfly reverse</h4>
 Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -343,7 +308,6 @@ Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -359,7 +323,6 @@ Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -375,19 +338,14 @@ CONTENT
         $item561->setGallery($this->getReference('picture_561'));
         $item561->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Crosstrainer Oberkörper</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -408,7 +366,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">30 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -424,7 +381,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -440,19 +396,14 @@ CONTENT
         $item562->setGallery($this->getReference('picture_562'));
         $item562->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Crosstrainer schnell</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -473,7 +424,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">30 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -489,7 +439,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -505,19 +454,14 @@ CONTENT
         $item563->setGallery($this->getReference('picture_563'));
         $item563->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Innenrotation im Stand</h4>
 Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band® z.B. um ein Tischbein.
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -540,7 +484,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -555,7 +498,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -571,19 +513,14 @@ CONTENT
         $item564->setGallery($this->getReference('picture_564'));
         $item564->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kleiner Ball – großer Ball</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -608,7 +545,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -625,7 +561,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -641,19 +576,14 @@ CONTENT
         $item565->setGallery($this->getReference('picture_565'));
         $item565->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kopf hinten</h4>
 Sie können diese Übung im Sitzen oder im Stehen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -673,7 +603,6 @@ Sie können diese Übung im Sitzen oder im Stehen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -684,7 +613,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -700,19 +628,14 @@ CONTENT
         $item566->setGallery($this->getReference('picture_566'));
         $item566->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Rumpfrotation im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -734,7 +657,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -747,7 +669,6 @@ Rumpfmuskulatur</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg">
 <img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" />
 </a>
-
 </div>
 </div>
 CONTENT
@@ -763,19 +684,14 @@ CONTENT
         $item567->setGallery($this->getReference('picture_567'));
         $item567->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Rumpfrotation im Stand</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -5px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -797,7 +713,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -810,7 +725,6 @@ Rumpfmuskulatur</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg">
 <img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" />
 </a>
-
 </div>
 </div>
 CONTENT
@@ -826,19 +740,14 @@ CONTENT
         $item568->setGallery($this->getReference('picture_568'));
         $item568->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Spreizer</h4>
 Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -857,7 +766,6 @@ Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -889,19 +797,14 @@ CONTENT
         $item569->setGallery($this->getReference('picture_569'));
         $item569->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Squats mit Lang-Hantel</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Thera-Band®</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -926,7 +829,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -947,7 +849,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg">
 <img src="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg" alt="" />
 </a>
-
 </div>
 </div>
 CONTENT

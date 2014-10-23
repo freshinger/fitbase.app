@@ -1,7 +1,6 @@
 <?php
 
 namespace Fitbase\Bundle\ExerciseBundle\DataFixture\ORM;
-;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -42,19 +41,14 @@ class LoadRuecken2Data extends AbstractFixture implements OrderedFixtureInterfac
         $item630->setGallery($this->getReference('picture_630'));
         $item630->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Becken kippen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -72,7 +66,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -86,7 +79,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -101,18 +93,15 @@ EOT
         $item631->setVideo($this->getReference('video_631.webm'));
         $item631->setGallery($this->getReference('picture_631'));
         $item631->setDescription(<<<EOT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Lendenwirbelsäule</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -131,7 +120,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">15 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -145,7 +133,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -160,18 +147,15 @@ EOT
         $item632->setVideo($this->getReference('video_632.webm'));
         $item632->setGallery($this->getReference('picture_632'));
         $item632->setDescription(<<<EOT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px">LWS Kreisen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -190,7 +174,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10x links herum, 10x rechts herum</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -217,18 +200,15 @@ EOT
         $item633->setVideo($this->getReference('video_633.webm'));
         $item633->setGallery($this->getReference('picture_633'));
         $item633->setDescription(<<<EOT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Bauchmuskel</h4>
 Bitte führen Sie diese Übung tim Sitzen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -249,7 +229,6 @@ Bitte führen Sie diese Übung tim Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -263,7 +242,6 @@ Bitte führen Sie diese Übung tim Sitzen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -279,19 +257,14 @@ EOT
         $item634->setGallery($this->getReference('picture_634'));
         $item634->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">2. Kräftigung – Bauchmuskeln gerade</h4>
 Bitte stellen Sie die Lehne Ihres Stuhls maximal nach hinten und nehmen Sie die Grundhaltung ein
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -313,7 +286,6 @@ Bitte stellen Sie die Lehne Ihres Stuhls maximal nach hinten und nehmen Sie die 
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">15 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -327,7 +299,6 @@ Bitte stellen Sie die Lehne Ihres Stuhls maximal nach hinten und nehmen Sie die 
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -342,18 +313,16 @@ EOT
         $item635->setVideo($this->getReference('video_635.webm'));
         $item635->setGallery($this->getReference('picture_635'));
         $item635->setDescription(<<<EOT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Bauchmuskeln schräge</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -377,7 +346,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -391,7 +359,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -407,19 +374,14 @@ EOT
         $item636->setGallery($this->getReference('picture_636'));
         $item636->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Rotation vorgebeugt</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -442,7 +404,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">20 Wiederholungen je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -456,7 +417,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT
@@ -472,19 +432,14 @@ EOT
         $item637->setGallery($this->getReference('picture_637'));
         $item637->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">2. Kräftigung – Schreibtisch Lendenwirbel</h4>
 Bitte die Knie leicht gebeugt, mit einem geraden Rücken leicht nach vorne geneigt hinstellen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation, Kräftigung, Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -493,7 +448,7 @@ Bitte die Knie leicht gebeugt, mit einem geraden Rücken leicht nach vorne genei
 <h4 class="shorter">Durchführungsanleitung</h4>
 <ol class="numbered-list">
 	<li>Die Hände in etwa schulterbreit über dem Tisch schweben lassen</li>
-	<li>Spannung zwischen den Schulterblättern aufbauen und den Oberkörper ca. 45° - 60° nach vorne neigen</li>
+	<li>Spannung zwischen den Schulterblättern aufbauen und den Oberkörper ca. 45°-60° nach vorne neigen</li>
 	<li>Dann zurück in die Ausgangsposition, Rücken weiterhin leicht nach vorne geneigt</li>
 	<li>Die Übung sollte etwas anstrengend sein. Kriterium: Leicht außer Atem geraten und etwas schwitzen. Sollten Ihre Muskeln anfangen zu zittern, ist das ein normales Zeichen dafür, dass die Muskulatur arbeitet.</li>
 </ol>
@@ -504,7 +459,6 @@ Bitte die Knie leicht gebeugt, mit einem geraden Rücken leicht nach vorne genei
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">2 mal 15 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -531,19 +485,14 @@ EOT
         $item638->setGallery($this->getReference('picture_638'));
         $item638->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Squats</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -564,7 +513,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">12 Wiederholungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -583,7 +531,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg">
 <img src="/wp-content/uploads/muskelgruppen/10_unterer_ruecken.jpg" alt="" />
 </a>
-
 </div>
 </div>
 EOT
@@ -599,19 +546,14 @@ EOT
         $item639->setGallery($this->getReference('picture_639'));
         $item639->setDescription(<<<EOT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Tiefe Rückenmuskulatur</h4>
 Bitte führen Sie diese Übung im Sitzen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Kräftigung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -631,7 +573,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">60 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -645,7 +586,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 EOT

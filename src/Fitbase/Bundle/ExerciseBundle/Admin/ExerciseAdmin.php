@@ -47,6 +47,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->with('Content', array('class' => 'col-md-6'))
             ->add('description', null, array(
                 'safe' => true,
+                'template' => 'FitbaseExerciseBundle:Admin:show_content.html.twig'
             ))
             ->end();
     }

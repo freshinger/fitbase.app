@@ -43,19 +43,14 @@ class LoadAugenData extends AbstractFixture implements OrderedFixtureInterface
         $item500->setGallery($this->getReference('picture_500'));
         $item500->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Hinterkopf</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -74,7 +69,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholung</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -89,8 +83,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-&nbsp;
-
 </div>
 </div>
 CONTENT
@@ -106,19 +98,14 @@ CONTENT
         $item535->setGallery($this->getReference('picture_535'));
         $item535->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Nasenwurzel</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -137,7 +124,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -151,8 +137,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-&nbsp;
-
 </div>
 </div>
 CONTENT
@@ -168,19 +152,14 @@ CONTENT
         $item536->setGallery($this->getReference('picture_536'));
         $item536->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur obere Augenbraue</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -199,7 +178,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -215,7 +193,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-
 </div>
 </div>
 CONTENT
@@ -231,19 +208,14 @@ CONTENT
         $item537->setGallery($this->getReference('picture_537'));
         $item537->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur untere Augenbraue</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -262,7 +234,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -276,8 +247,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-&nbsp;
-
 </div>
 </div>
 CONTENT
@@ -293,19 +262,14 @@ CONTENT
         $item538->setGallery($this->getReference('picture_538'));
         $item538->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Schläfen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -324,7 +288,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -338,8 +301,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-&nbsp;
-
 </div>
 </div>
 CONTENT
@@ -355,19 +316,14 @@ CONTENT
         $item539->setGallery($this->getReference('picture_539'));
         $item539->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Stirnmitte</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -386,7 +342,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -400,7 +355,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-
 </div>
 </div>
 CONTENT
@@ -415,18 +369,15 @@ CONTENT
         $item540->setVideo($this->getReference('video_540.webm'));
         $item540->setGallery($this->getReference('picture_540'));
         $item540->setDescription(<<<CONTENT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Augenbewegung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -449,7 +400,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">Mehrere kreisende Bewegungen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -464,7 +414,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-
 </div>
 </div>
 CONTENT
@@ -480,19 +429,14 @@ CONTENT
         $item544->setGallery($this->getReference('picture_544'));
         $item544->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Palmieren</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Entspannung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -513,7 +457,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -527,8 +470,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-&nbsp;
-
 </div>
 </div>
 CONTENT

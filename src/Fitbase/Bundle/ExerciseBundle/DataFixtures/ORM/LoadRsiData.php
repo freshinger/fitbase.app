@@ -43,19 +43,14 @@ class LoadRsiData extends AbstractFixture implements OrderedFixtureInterface
         $item584->setGallery($this->getReference('picture_584'));
         $item584->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brust Dehnung</h4>
 Bitte führen Sie diese Übung im Sitzen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -75,7 +70,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -86,7 +80,6 @@ Brustmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -102,19 +95,14 @@ CONTENT
         $item585->setGallery($this->getReference('picture_585'));
         $item585->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brust Dehnung</h4>
 Bitte führen Sie diese Übung im Sitzen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -134,7 +122,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -142,12 +129,10 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 Brustmuskulatur
-
 </div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
-
 </div>
 </div>
 <div id="dc_vk_code"></div>
@@ -164,19 +149,14 @@ CONTENT
         $item586->setGallery($this->getReference('picture_586'));
         $item586->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brustdehnung gebeugt</h4>
 Bitte führen Sie diese Übung im Stehen durch
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -198,7 +178,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -214,7 +193,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-
 </div>
 </div>
 <div id="dc_vk_code"></div>
@@ -231,19 +209,14 @@ CONTENT
         $item587->setGallery($this->getReference('picture_587'));
         $item587->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Finger mobilisieren</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Mobilisation</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -264,7 +237,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">6x Faust, 2x Finger einzeln</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -278,9 +250,6 @@ Hände</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg">
 <img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" />
 </a>
-
-&nbsp;
-
 </div>
 </div>
 CONTENT
@@ -296,19 +265,14 @@ CONTENT
         $item588->setGallery($this->getReference('picture_588'));
         $item588->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Finger spreizen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -328,7 +292,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -336,12 +299,10 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Beanspruchte Muskelbereiche</h4>
 Unterarme
-
 </div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -357,19 +318,14 @@ CONTENT
         $item589->setGallery($this->getReference('picture_589'));
         $item589->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Hand-Unterarmdehnung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -393,7 +349,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">20 Sekunden halten je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -407,7 +362,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -423,19 +377,14 @@ CONTENT
         $item590->setGallery($this->getReference('picture_590'));
         $item590->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Handdehnung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -454,7 +403,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden je Seite</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -466,7 +414,6 @@ Hände</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -482,19 +429,14 @@ CONTENT
         $item591->setGallery($this->getReference('picture_591'));
         $item591->setDescription(<<<CONTENT
 <div class="row">
-
-[display_exercise]
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Nackendehnung Variante</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
-<p style="margin-top: -15px;">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnung</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -520,7 +462,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">10 Sekunden je Position</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -531,7 +472,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT
@@ -546,18 +486,15 @@ CONTENT
         $item592->setVideo($this->getReference('video_592.webm'));
         $item592->setGallery($this->getReference('picture_592'));
         $item592->setDescription(<<<CONTENT
-<div class="row">[display_exercise]
+<div class="row">
 <div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Unterarmdehnung</h4>
 Bitte führen Sie diese Übung im Stehen durch.
-<p class="back-to-parent">[back_to_parent]</p>
-
 <div class="feature-box">
 <div class="feature-box-icon"><i class="icon icon-info"><span>Art der Übung</span></i></div>
 <div class="feature-box-info">
 <h4 class="shorter">Art der Übung</h4>
 <p class="tall">Dehnen</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -576,7 +513,6 @@ Bitte führen Sie diese Übung im Stehen durch.
 <div class="feature-box-info">
 <h4 class="shorter">Anzahl der Wiederholungen</h4>
 <p class="tall">25 Sekunden</p>
-
 </div>
 </div>
 <div class="feature-box">
@@ -590,7 +526,6 @@ Bitte führen Sie diese Übung im Stehen durch.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-
 </div>
 </div>
 CONTENT

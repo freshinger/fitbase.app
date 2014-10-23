@@ -9,12 +9,39 @@
     </imports>
 
     <!--
-    <services>
-        <service id="fitbase_exercise.example" class="Fitbase\Bundle\ExerciseBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
     -->
+    <services>
+
+        <service id="fitbase_helper.media" class="Fitbase\Bundle\ExerciseBundle\Helper\MediaHelper">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="fitbase.media.provider.video" class="Fitbase\Bundle\ExerciseBundle\Service\FileVideoProvider">
+            <tag name="sonata.media.provider"/>
+            <argument>sonata.media.provider.file</argument>
+            <argument type="service" id="sonata.media.filesystem.local"/>
+            <argument type="service" id="sonata.media.cdn.server"/>
+            <argument type="service" id="sonata.media.generator.default"/>
+            <argument type="service" id="sonata.media.thumbnail.format"/>
+            <argument type="collection">
+                <argument>webm</argument>
+            </argument>
+            <argument type="collection">
+                <argument>video/webm</argument>
+            </argument>
+            <argument type="service" id="sonata.media.metadata.proxy"/>
+
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key='helper_thumbnail'>FitbaseExerciseBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>FitbaseExerciseBundle:Provider:video.html.twig</argument>
+                </argument>
+            </call>
+        </service>
+
+
+    </services>
 </container>

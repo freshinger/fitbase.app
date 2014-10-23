@@ -1,0 +1,28 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    <div class="row">
+        <div class="col-md-4">
+            {% if object.video is defined %}
+                {% if object.video %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ video(object.video) }}" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+            {% endif %}
+            {% if object.gallery.galleryHasMedias is defined %}
+                {% if  object.gallery.galleryHasMedias %}
+                    {% for galleryHasMedia in object.gallery.galleryHasMedias %}
+                        <a href="{% path galleryHasMedia, 'original' %}">
+                            {% thumbnail galleryHasMedia, 'thumbnail' with {'width': 158} %}
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            {{ object.description|raw }}
+        </div>
+    </div>
+{% endblock %}
