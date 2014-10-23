@@ -84,7 +84,7 @@ class LoadMediaImageData extends AbstractFixture implements ContainerAwareInterf
     {
         $galleryHasMedia = new \Application\Sonata\MediaBundle\Entity\GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
-        $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
+        $galleryHasMedia->setPosition((int)preg_replace("/picture_[0-9]+_(\d+)\.\w+/", "$1", $media->getName()));
         $galleryHasMedia->setEnabled(true);
 
         $gallery->addGalleryHasMedias($galleryHasMedia);
