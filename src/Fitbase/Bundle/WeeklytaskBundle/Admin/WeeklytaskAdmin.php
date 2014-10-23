@@ -55,9 +55,8 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ))
-            ->add('weekId', null, array(
-                'label' => 'Woche',
-            ))
+            ->add('priority')
+
             ->end();
     }
 
@@ -73,9 +72,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('tag')
             ->add('category')
             ->add('collection')
-            ->add('weekId', null, array(
-                'label' => 'Woche',
-            ))
+            ->add('priority')
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ))
@@ -123,7 +120,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->with('Options', array('class' => 'col-md-6'))
-            ->add('weekId', 'integer', array('label' => 'Woche'))
+            ->add('priority')
             ->add('countPoint', 'integer', array('label' => 'Punkte'))
             ->add('category', 'sonata_type_model_list', array('required' => false))
             ->add('collection', 'sonata_type_model_list', array('required' => false))

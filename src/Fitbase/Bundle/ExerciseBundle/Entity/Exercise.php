@@ -312,4 +312,33 @@ class Exercise
     {
         return $this->collection;
     }
+
+    /**
+     * @var integer
+     */
+    private $priority;
+
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Exercise
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 }

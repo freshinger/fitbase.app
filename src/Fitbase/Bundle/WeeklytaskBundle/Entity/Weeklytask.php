@@ -218,4 +218,33 @@ class Weeklytask
     {
         return $this->category;
     }
+
+    /**
+     * @var integer
+     */
+    private $priority;
+
+
+    /**
+     * Set priority
+     *
+     * @param integer $priority
+     * @return Weeklytask
+     */
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
+
+        return $this;
+    }
+
+    /**
+     * Get priority
+     *
+     * @return integer
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 }

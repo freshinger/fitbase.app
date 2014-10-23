@@ -41,6 +41,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('priority')
             ->add('category')
             ->add('collection')
             ->add('countPoint')
@@ -65,6 +66,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ))
             ->add('category')
             ->add('collection')
+            ->add('priority')
             ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -98,6 +100,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->add('countPoint')
             ->end()
             ->with('Media', array('class' => 'col-md-6'))
+            ->add('priority')
             ->add('category', 'sonata_type_model_list', array('required' => false))
             ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->add('video', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
