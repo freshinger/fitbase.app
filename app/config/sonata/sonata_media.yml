@@ -9,58 +9,67 @@ sonata_media:
             download:
                 mode: http # X-Sendfile | http
             providers:
-                - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
                 - sonata.media.provider.file
-                - sonata.media.provider.vimeo
 
             formats:
                 small: { width: 100, quality: 100}
                 big:   { width: 970 , quality: 100}
 
-        news:
+        exercise:
             providers:
+                - sonata.media.provider.file
                 - sonata.media.provider.image
 
             formats:
                 abstract: { width: 100, quality: 100}
                 wide:     { width: 820, quality: 100}
+                small: { width: 100, quality: 100}
+                big:   { width: 1600 , quality: 100}
 
-        sonata_collection:
-            providers:
-              - sonata.media.provider.image
+#        news:
+#            providers:
+#                - sonata.media.provider.image
+#
+#            formats:
+#                abstract: { width: 100, quality: 100}
+#                wide:     { width: 820, quality: 100}
 
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
+#        sonata_collection:
+#            providers:
+#              - sonata.media.provider.image
+#
+#            formats:
+#                preview: { width: 100, quality: 100}
+#                wide:    { width: 820, quality: 100}
+#
+#        sonata_category:
+#            providers:
+#              - sonata.media.provider.image
+#
+#            formats:
+#                preview: { width: 100, quality: 100}
+#                wide:    { width: 820, quality: 100}
 
-        sonata_category:
-            providers:
-              - sonata.media.provider.image
-
-            formats:
-                preview: { width: 100, quality: 100}
-                wide:    { width: 820, quality: 100}
-
-        sonata_product:
-            providers:
-                - sonata.media.provider.image
-
-            formats:
-                preview:   { width: 100, quality: 100}
-                small:     { width: 300, quality: 100}
-                large:     { width: 750, quality: 100}
+#        sonata_product:
+#            providers:
+#                - sonata.media.provider.image
+#
+#            formats:
+#                preview:   { width: 100, quality: 100}
+#                small:     { width: 300, quality: 100}
+#                large:     { width: 750, quality: 100}
 
     cdn:
         # define the public base url for the uploaded media
         server:
-            path:      %sonata_media.cdn.host%
+            path:      "/uploads"
 
     filesystem:
         # define where the uploaded file will be stored
         local:
-            directory:  %kernel.root_dir%/../web/uploads/media
+            directory:  %kernel.root_dir%/../web/uploads
             create:     true
 
     providers:
@@ -68,8 +77,10 @@ sonata_media:
         file:
             # the resizer must be set to false, otherwhise this can delete icon files from the fs
             resizer:    false
+            allowed_extensions: ['webm']
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
+           allowed_extensions: ['jpeg', 'jpg', 'png', 'bmp', 'gif']
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
         vimeo:
@@ -80,14 +91,14 @@ sonata_media:
             thumbnail: sonata.media.thumbnail.format          # default value
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
-        dailymotion:
-            thumbnail: sonata.media.thumbnail.format          # default value
+#        dailymotion:
+#            thumbnail: sonata.media.thumbnail.format          # default value
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
 
     pixlr:
         enabled:  true
-        referrer: Demo - Sonata Project
+        referrer: Fitbase - Sonata Project
 
     resizer:
         simple:

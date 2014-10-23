@@ -15,10 +15,27 @@ class WeeklyquizQuestion
     protected $quiz;
     protected $quizId;
     protected $name;
+    protected $format;
     protected $type;
     protected $description;
     protected $countPoint;
     protected $answers;
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
 
     /**
      * @param mixed $answers

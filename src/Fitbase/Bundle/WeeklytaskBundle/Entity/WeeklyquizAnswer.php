@@ -18,8 +18,25 @@ class WeeklyquizAnswer
     protected $question;
     protected $questionId;
     protected $name;
+    protected $format;
     protected $description;
     protected $correct;
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
 
 
     public function setQuiz($quiz)

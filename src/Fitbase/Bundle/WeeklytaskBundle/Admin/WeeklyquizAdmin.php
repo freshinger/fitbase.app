@@ -94,13 +94,8 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
-            ->add('task', null, array(
-                'label' => 'Wochenaufgabe',
-            ))
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('name')
             ->add('description', 'sonata_formatter_type', array(
                 'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
@@ -114,7 +109,9 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->with('Optionen', array('class' => 'col-md-6'))
+            ->add('task')
             ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->add('questions')
             ->end();
     }
 }

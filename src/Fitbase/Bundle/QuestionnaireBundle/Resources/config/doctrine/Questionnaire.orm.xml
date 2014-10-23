@@ -10,6 +10,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="name" type="string" column="name"/>
+        <field name="format" type="string" column="format" nullable="true"/>
         <field name="description" type="text" column="description"/>
 
         <one-to-many field="questions" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion"

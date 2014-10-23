@@ -132,7 +132,8 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\ReminderBundle\FitbaseReminderBundle(),
             new Fitbase\Bundle\QuestionnaireBundle\FitbaseQuestionnaireBundle(),
             new Fitbase\Bundle\StatisticBundle\FitbaseStatisticBundle(),
-            new \Fitbase\Bundle\GamificationBundle\FitbaseGamificationBundle(),
+            new Fitbase\Bundle\GamificationBundle\FitbaseGamificationBundle(),
+            new Fitbase\Bundle\ExerciseBundle\FitbaseExerciseBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

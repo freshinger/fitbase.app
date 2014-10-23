@@ -8,11 +8,11 @@
         {% for question in object.questions %}
             <li>
                 {{ question.name }}
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">show</a>
+                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_show', { id: question.id}) }}">show</a>
                 |
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: question.id}) }}">edit</a>
+                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_edit', { id: question.id}) }}">edit</a>
                 |
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: question.id}) }}">remove</a>
+                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_delete', { id: question.id}) }}">remove</a>
                 {% if question.description|length > 0 %}
                     <p>{{ question.description|raw }}</p>
                 {% endif %}

@@ -90,35 +90,35 @@ class WeeklyquizAnswerRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
-
-    /**
-     * Find list of records by id array
-     * @param $arrayId
-     * @return array
-     */
-    public function findAllById($arrayId)
-    {
-        $queryBuilder = $this->createQueryBuilder('WeeklyquizAnswer');
-
-        $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprIdArray($queryBuilder, $arrayId)
-        ));
-
-        return $queryBuilder->getQuery()->getResult();
-    }
-
-
-    /**
-     * Find one record by id or collection by id array
-     * @param mixed $id
-     * @return array|null|object
-     */
-    public function find($id)
-    {
-        if (is_array($id)) {
-            return $this->findAllById($id);
-        }
-
-        return $this->findOneBy(array('id' => $id));
-    }
+//
+//    /**
+//     * Find list of records by id array
+//     * @param $arrayId
+//     * @return array
+//     */
+//    public function findAllById($arrayId)
+//    {
+//        $queryBuilder = $this->createQueryBuilder('WeeklyquizAnswer');
+//
+//        $queryBuilder->where($queryBuilder->expr()->andX(
+//            $this->getExprIdArray($queryBuilder, $arrayId)
+//        ));
+//
+//        return $queryBuilder->getQuery()->getResult();
+//    }
+//
+//
+//    /**
+//     * Find one record by id or collection by id array
+//     * @param mixed $id
+//     * @return array|null|object
+//     */
+//    public function find($id)
+//    {
+//        if (is_array($id)) {
+//            return $this->findAllById($id);
+//        }
+//
+//        return $this->findOneBy(array('id' => $id));
+//    }
 }

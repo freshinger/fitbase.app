@@ -11,6 +11,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="name" type="string" column="name"/>
+        <field name="format" type="string" column="format" nullable="true"/>
         <field name="type" type="string" column="type"/>
         <field name="description" type="text" column="description"/>
 

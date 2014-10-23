@@ -15,10 +15,27 @@ class QuestionnaireQuestion
 {
     protected $id;
     protected $name;
+    protected $format;
     protected $type;
     protected $description;
     protected $questionnaire;
     protected $answers;
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
 
 
     public function __construct()

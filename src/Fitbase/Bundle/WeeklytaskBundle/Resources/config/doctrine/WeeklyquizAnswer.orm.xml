@@ -10,6 +10,7 @@
         </id>
 
         <field name="name" type="string" column="name"/>
+        <field name="format" type="string" column="format" nullable="true"/>
         <field name="description" type="text" column="description"/>
         <field name="correct" type="boolean" column="correct"/>
 

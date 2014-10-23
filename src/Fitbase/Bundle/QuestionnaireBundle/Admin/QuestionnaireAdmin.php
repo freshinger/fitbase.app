@@ -81,9 +81,21 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('General', array('class' => 'col-md-6'))
             ->add('name')
-            ->add('description')
+            ->add('description', 'sonata_formatter_type', array(
+                'label' => 'Beschreibung',
+                'event_dispatcher' => $this->container->get('event_dispatcher'),
+                'format_field' => 'format',
+                'source_field' => 'description',
+                'source_field_options' => array(
+                    'attr' => array('class' => 'span10', 'rows' => 20)
+                ),
+                'listener' => true,
+                'target_field' => 'content'
+            ))
+            ->end()
+            ->with('Fragen', array('class' => 'col-md-6'))
             ->add('questions')
             ->end();
     }

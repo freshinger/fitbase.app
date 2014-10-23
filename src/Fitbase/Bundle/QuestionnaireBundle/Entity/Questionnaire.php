@@ -17,6 +17,23 @@ class Questionnaire
     protected $name;
     protected $description;
     protected $questions;
+    protected $format;
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
 
     public function __construct()
     {

@@ -114,13 +114,19 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('General', array('class' => 'col-md-6'))
             ->add('name', null, array(
                 'label' => 'Name',
             ))
             ->add('tag', null, array(
                 'label' => 'Tags',
             ))
+            ->end()
+            ->with('Options', array('class' => 'col-md-6'))
+            ->add('weekId', 'integer', array('label' => 'Woche'))
+            ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->end()
+            ->with('Content', array('class' => 'col-md-12'))
             ->add('content', 'sonata_formatter_type', array(
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',
@@ -132,11 +138,6 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
                 'target_field' => 'content',
                 'label' => 'Text'
             ))
-            ->end()
-            ->with('Options', array('class' => 'col-md-6'))
-            ->add('weekId', 'integer', array('label' => 'Woche'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
-            ->end()
-        ;
+            ->end();
     }
 }

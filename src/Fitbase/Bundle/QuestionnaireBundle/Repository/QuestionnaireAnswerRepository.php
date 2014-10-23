@@ -83,33 +83,33 @@ class QuestionnaireAnswerRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-    /**
-     * Find list of records by id array
-     * @param $arrayId
-     * @return array
-     */
-    public function findAllById($arrayId)
-    {
-        $queryBuilder = $this->createQueryBuilder('QuestionnaireAnswer');
-
-        $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprIdArray($queryBuilder, $arrayId)
-        ));
-
-        return $queryBuilder->getQuery()->getResult();
-    }
+//    /**
+//     * Find list of records by id array
+//     * @param $arrayId
+//     * @return array
+//     */
+//    public function findAllById($arrayId)
+//    {
+//        $queryBuilder = $this->createQueryBuilder('QuestionnaireAnswer');
+//
+//        $queryBuilder->where($queryBuilder->expr()->andX(
+//            $this->getExprIdArray($queryBuilder, $arrayId)
+//        ));
+//
+//        return $queryBuilder->getQuery()->getResult();
+//    }
 
     /**
      * Find one or more records by id
      * @param mixed $mixed
      * @return array|null|object
      */
-    public function find($mixed)
-    {
-        if (is_array($mixed)) {
-            return $this->findAllById($mixed);
-        }
-
-        return $this->findOneBy(array('id' => $mixed));
-    }
+//    public function find($mixed)
+//    {
+//        if (is_array($mixed)) {
+//            return $this->findAllById($mixed);
+//        }
+//
+//        return $this->findOneBy(array('id' => $mixed));
+//    }
 }

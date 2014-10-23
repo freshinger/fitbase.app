@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\QuestionnaireBundle\Admin;
+namespace Fitbase\Bundle\ExerciseBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterface
+class ExerciseAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -41,12 +41,12 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
-            ->add('questionnaire')
-            ->add('type')
-            ->add('description')
-            ->add('answers', null, array(
-                'label' => 'Antworte',
-                'template' => 'FitbaseQuestionnaireBundle:Admin:question_show_answer.html.twig'
+            ->add('tag')
+            ->add('countPoint')
+            ->end()
+            ->with('Content', array('class' => 'col-md-6'))
+            ->add('description', null, array(
+                'safe' => true,
             ))
             ->end();
     }
@@ -57,10 +57,13 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('image', null, array(
+                'label' => 'Vorschaubild',
+                'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
+            ))
             ->add('name')
-            ->add('questionnaire')
-            ->add('type')
-            ->add('description')
+            ->add('tag')
+            ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -77,9 +80,8 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
     {
         $datagridMapper
             ->add('name')
-            ->add('questionnaire')
-            ->add('type')
-            ->add('description');
+            ->add('tag')
+            ->add('countPoint');
     }
 
     /**
@@ -88,35 +90,28 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Content', array('class' => 'col-md-6'))
+            ->with('General', array('class' => 'col-md-6'))
             ->add('name')
-            ->add('type', 'choice', array(
-                'required' => false,
-                'label' => 'Type',
-                'empty_value' => false,
-                'choices' => array(
-                    'checkbox' => 'Mehrwahl',
-                    'radiobutton' => 'Einzelwahl',
-                    'slider' => 'Slider',
-                    'selectbox' => 'Selectbox',
-                    'text' => 'Text',
-                ),
-            ))
+            ->add('tag')
+            ->add('countPoint')
+            ->end()
+            ->with('Media', array('class' => 'col-md-6'))
+            ->add('video', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
+            ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
+            ->add('gallery', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
+            ->end()
+            ->with('Content', array('class' => 'col-md-12'))
             ->add('description', 'sonata_formatter_type', array(
-                'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',
                 'source_field' => 'description',
                 'source_field_options' => array(
-                    'attr' => array('class' => 'span10', 'rows' => 20)
+                    'attr' => array('class' => 'span10', 'rows' => 80)
                 ),
                 'listener' => true,
-                'target_field' => 'content'
+                'target_field' => 'content',
+                'label' => 'Content'
             ))
-            ->end()
-            ->with('Integration', array('class' => 'col-md-6'))
-            ->add('questionnaire')
-            ->add('answers')
             ->end();
     }
 }
