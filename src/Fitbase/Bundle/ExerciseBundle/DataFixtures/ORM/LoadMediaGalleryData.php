@@ -97,7 +97,7 @@ class LoadMediaGalleryData extends AbstractFixture implements ContainerAwareInte
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-        $canada = Finder::create()->name('*.jpeg')->in(__DIR__ . '/../Gallery');
+        $canada = Finder::create()->name('*.jpeg')->in(__DIR__ . '/../data/Gallery');
 
         $i = 0;
         foreach ($canada as $file) {

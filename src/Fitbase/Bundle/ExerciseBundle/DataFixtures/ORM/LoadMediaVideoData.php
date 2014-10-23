@@ -45,7 +45,7 @@ class LoadMediaVideoData extends AbstractFixture implements ContainerAwareInterf
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-        $canada = Finder::create()->name('*.webm')->in(__DIR__ . '/../Video');
+        $canada = Finder::create()->name('*.webm')->in(__DIR__ . '/../data/Video');
 
         $i = 0;
         foreach ($canada as $file) {

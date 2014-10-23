@@ -45,7 +45,7 @@ class LoadMediaImageData extends AbstractFixture implements ContainerAwareInterf
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-        $canada = Finder::create()->name('*.jpeg')->in(__DIR__ . '/../Image');
+        $canada = Finder::create()->name('*.jpeg')->in(__DIR__ . '/../data/Image');
 
         $i = 0;
         foreach ($canada as $file) {
