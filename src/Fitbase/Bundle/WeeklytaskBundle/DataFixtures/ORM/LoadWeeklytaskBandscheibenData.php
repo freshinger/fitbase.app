@@ -32,7 +32,7 @@ class LoadWeeklytaskBandscheibenData extends AbstractFixture implements OrderedF
         $item2002 = new Weeklytask();
         $item2002->setFormat("richhtml");
         $item2002->setTag("Bandscheiben");
-        $item2002->setWeekId(34);
+        $item2002->setCategory($this->getReference('category_ruecken'));
         $item2002->setQuiz($this->getReference('weeklyquiz_34'));
         $item2002->setCountPoint(1);
         $item2002->setName("Wochenaufgabe 34");
@@ -48,7 +48,7 @@ EOT
         $item2008 = new Weeklytask();
         $item2008->setFormat("richhtml");
         $item2008->setTag("Bandscheiben");
-        $item2008->setWeekId(35);
+        $item2008->setCategory($this->getReference('category_ruecken'));
         $item2008->setQuiz($this->getReference('weeklyquiz_35'));
         $item2008->setCountPoint(1);
         $item2008->setName("Wochenaufgabe 35");
@@ -67,7 +67,7 @@ EOT
         $item2013 = new Weeklytask();
         $item2013->setFormat("richhtml");
         $item2013->setTag("Bandscheiben");
-        $item2013->setWeekId(36);
+        $item2013->setCategory($this->getReference('category_ruecken'));
         $item2013->setQuiz($this->getReference('weeklyquiz_36'));
         $item2013->setCountPoint(1);
         $item2013->setName("Wochenaufgabe 36");
@@ -85,7 +85,7 @@ EOT
         $item2024 = new Weeklytask();
         $item2024->setFormat("richhtml");
         $item2024->setTag("Bandscheiben");
-        $item2024->setWeekId(37);
+        $item2024->setCategory($this->getReference('category_ruecken'));
         $item2024->setQuiz($this->getReference('weeklyquiz_37'));
         $item2024->setCountPoint(1);
         $item2024->setName("Wochenaufgabe 37");
@@ -127,7 +127,7 @@ EOT
         $item2034 = new Weeklytask();
         $item2034->setFormat("richhtml");
         $item2034->setTag("Bandscheiben");
-        $item2034->setWeekId(38);
+        $item2034->setCategory($this->getReference('category_ruecken'));
         $item2034->setQuiz($this->getReference('weeklyquiz_38'));
         $item2034->setCountPoint(1);
         $item2034->setName("Wochenaufgabe 38");

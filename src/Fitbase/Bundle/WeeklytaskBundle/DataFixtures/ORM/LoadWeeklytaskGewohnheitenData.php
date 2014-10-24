@@ -31,7 +31,7 @@ class LoadWeeklytaskGewohnheitenData extends AbstractFixture implements OrderedF
         $item1894 = new Weeklytask();
         $item1894->setFormat("richhtml");
         $item1894->setTag("Gewohnheiten");
-        $item1894->setWeekId(15);
+        $item1894->setCategory($this->getReference('category_ruecken'));
         $item1894->setQuiz($this->getReference('weeklyquiz_15'));
         $item1894->setCountPoint(1);
         $item1894->setName("Wochenaufgabe 15");
@@ -60,7 +60,7 @@ EOT
         $item1897 = new Weeklytask();
         $item1897->setFormat("richhtml");
         $item1897->setTag("Gewohnheiten");
-        $item1897->setWeekId(16);
+        $item1897->setCategory($this->getReference('category_ruecken'));
         $item1897->setQuiz($this->getReference('weeklyquiz_16'));
         $item1897->setCountPoint(1);
         $item1897->setName("Wochenaufgabe 16");
@@ -89,7 +89,7 @@ EOT
         $item1906 = new Weeklytask();
         $item1906->setFormat("richhtml");
         $item1906->setTag("Gewohnheiten");
-        $item1906->setWeekId(17);
+        $item1906->setCategory($this->getReference('category_ruecken'));
         $item1906->setQuiz($this->getReference('weeklyquiz_17'));
         $item1906->setCountPoint(1);
         $item1906->setName("Wochenaufgabe 17");

@@ -32,7 +32,7 @@ class LoadWeeklytaskEntspannungData extends AbstractFixture implements OrderedFi
         $item2039 = new Weeklytask();
         $item2039->setFormat("richhtml");
         $item2039->setTag("Entspannung");
-        $item2039->setWeekId(39);
+        $item2039->setCategory($this->getReference('category_ruecken'));
         $item2039->setQuiz($this->getReference('weeklyquiz_39'));
         $item2039->setCountPoint(1);
         $item2039->setName("Wochenaufgabe 39");
@@ -92,7 +92,7 @@ EOT
         $item2043 = new Weeklytask();
         $item2043->setFormat("richhtml");
         $item2043->setTag("Entspannung");
-        $item2043->setWeekId(40);
+        $item2043->setCategory($this->getReference('category_ruecken'));
         $item2043->setQuiz($this->getReference('weeklyquiz_40'));
         $item2043->setCountPoint(1);
         $item2043->setName("Wochenaufgabe 40");

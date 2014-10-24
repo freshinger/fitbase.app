@@ -185,5 +185,13 @@ class LoadCategoryData extends AbstractFixture implements ContainerAwareInterfac
         $this->getCategoryManager()->save($travels);
         $this->setReference('category_metabolic', $travels);
 
+        $travels = $this->getCategoryManager()->create();
+        $travels->setName('Ernährung');
+        $travels->setSlug('ernaehrung');
+        $travels->setDescription('ernaehrung');
+        $travels->setEnabled(true);
+        $this->getCategoryManager()->save($travels);
+        $this->setReference('category_ernaehrung', $travels);
+
     }
 }

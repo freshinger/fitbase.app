@@ -33,7 +33,7 @@ class LoadWeeklytaskNervenData extends AbstractFixture implements OrderedFixture
         $item1985 = new Weeklytask();
         $item1985->setFormat("richhtml");
         $item1985->setTag("Nerven");
-        $item1985->setWeekId(30);
+        $item1985->setCategory($this->getReference('category_ruecken'));
         $item1985->setQuiz($this->getReference('weeklyquiz_30'));
         $item1985->setCountPoint(1);
         $item1985->setName("Wochenaufgabe 30");
@@ -53,7 +53,7 @@ EOT
         $item1990 = new Weeklytask();
         $item1990->setFormat("richhtml");
         $item1990->setTag("Nerven");
-        $item1990->setWeekId(31);
+        $item1990->setCategory($this->getReference('category_ruecken'));
         $item1990->setQuiz($this->getReference('weeklyquiz_31'));
         $item1990->setCountPoint(1);
         $item1990->setName("Wochenaufgabe 31");
@@ -72,7 +72,7 @@ EOT
         $item1996 = new Weeklytask();
         $item1996->setFormat("richhtml");
         $item1996->setTag("Nerven");
-        $item1996->setWeekId(32);
+        $item1996->setCategory($this->getReference('category_ruecken'));
         $item1996->setQuiz($this->getReference('weeklyquiz_32'));
         $item1996->setCountPoint(1);
         $item1996->setName("Wochenaufgabe 32");
@@ -93,7 +93,7 @@ EOT
         $item1999 = new Weeklytask();
         $item1999->setFormat("richhtml");
         $item1999->setTag("Nerven");
-        $item1999->setWeekId(33);
+        $item1999->setCategory($this->getReference('category_ruecken'));
         $item1999->setQuiz($this->getReference('weeklyquiz_33'));
         $item1999->setCountPoint(1);
         $item1999->setName("Wochenaufgabe 33");

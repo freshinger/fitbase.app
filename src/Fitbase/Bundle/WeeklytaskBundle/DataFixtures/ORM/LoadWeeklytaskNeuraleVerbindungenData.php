@@ -33,7 +33,7 @@ class LoadWeeklytaskNeuraleVerbindungenData extends AbstractFixture implements O
         $item1911 = new Weeklytask();
         $item1911->setFormat("richhtml");
         $item1911->setTag("Neuronale Verbindungen");
-        $item1911->setWeekId(18);
+        $item1911->setCategory($this->getReference('category_ruecken'));
         $item1911->setQuiz($this->getReference('weeklyquiz_18'));
         $item1911->setCountPoint(1);
         $item1911->setName("Wochenaufgabe 18");
@@ -57,7 +57,7 @@ EOT
         $item1920 = new Weeklytask();
         $item1920->setFormat("richhtml");
         $item1920->setTag("Neuronale Verbindungen");
-        $item1920->setWeekId(19);
+        $item1920->setCategory($this->getReference('category_ruecken'));
         $item1920->setQuiz($this->getReference('weeklyquiz_19'));
         $item1920->setCountPoint(1);
         $item1920->setName("Wochenaufgabe 19");
@@ -78,7 +78,7 @@ EOT
         $item1925 = new Weeklytask();
         $item1925->setFormat("richhtml");
         $item1925->setTag("Neuronale Verbindungen");
-        $item1925->setWeekId(20);
+        $item1925->setCategory($this->getReference('category_ruecken'));
         $item1925->setQuiz($this->getReference('weeklyquiz_20'));
         $item1925->setCountPoint(1);
         $item1925->setName("Wochenaufgabe 20");
@@ -109,7 +109,7 @@ EOT
         $item1936 = new Weeklytask();
         $item1936->setFormat("richhtml");
         $item1936->setTag("Neuronale Verbindungen");
-        $item1936->setWeekId(21);
+        $item1936->setCategory($this->getReference('category_ruecken'));
         $item1936->setQuiz($this->getReference('weeklyquiz_21'));
         $item1936->setCountPoint(1);
         $item1936->setName("Wochenaufgabe 21");
@@ -135,7 +135,7 @@ EOT
         $item1940 = new Weeklytask();
         $item1940->setFormat("richhtml");
         $item1940->setTag("Neuronale Verbindungen");
-        $item1940->setWeekId(22);
+        $item1940->setCategory($this->getReference('category_ruecken'));
         $item1940->setCountPoint(1);
         $item1940->setName("Wochenaufgabe 22");
         $item1940->setContent(<<<EOT
@@ -156,7 +156,7 @@ EOT
         $item1944 = new Weeklytask();
         $item1944->setFormat("richhtml");
         $item1944->setTag("Neuronale Verbindungen");
-        $item1944->setWeekId(23);
+        $item1944->setCategory($this->getReference('category_ruecken'));
         $item1944->setCountPoint(1);
         $item1944->setName("Wochenaufgabe 23");
         $item1944->setContent(<<<EOT

@@ -32,7 +32,7 @@ class LoadWeeklytaskKoerperhaltungData extends AbstractFixture implements Ordere
         $item1703 = new Weeklytask();
         $item1703->setFormat("richhtml");
         $item1703->setTag("Koerperhaltung");
-        $item1703->setWeekId(7);
+        $item1703->setCategory($this->getReference('category_ruecken'));
         $item1703->setQuiz($this->getReference('weeklyquiz_7'));
         $item1703->setCountPoint(2);
         $item1703->setName("Wochenaufgabe 07");
@@ -60,7 +60,7 @@ EOT
         $item1707 = new Weeklytask();
         $item1707->setFormat("richhtml");
         $item1707->setTag("Koerperhaltung");
-        $item1707->setWeekId(8);
+        $item1707->setCategory($this->getReference('category_ruecken'));
         $item1707->setQuiz($this->getReference('weeklyquiz_8'));
         $item1707->setCountPoint(2);
         $item1707->setName("Wochenaufgabe 08");

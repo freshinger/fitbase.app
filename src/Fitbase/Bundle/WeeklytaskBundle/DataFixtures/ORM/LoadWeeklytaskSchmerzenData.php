@@ -34,7 +34,7 @@ class LoadWeeklytaskSchmerzenData extends AbstractFixture implements OrderedFixt
         $item1952 = new Weeklytask();
         $item1952->setFormat("richhtml");
         $item1952->setTag("Schmerzen");
-        $item1952->setWeekId(24);
+        $item1952->setCategory($this->getReference('category_ruecken'));
         $item1952->setQuiz($this->getReference('weeklyquiz_24'));
         $item1952->setCountPoint(1);
         $item1952->setName("Wochenaufgabe 24");
@@ -62,7 +62,7 @@ EOT
         $item1958 = new Weeklytask();
         $item1958->setFormat("richhtml");
         $item1958->setTag("Schmerzen");
-        $item1958->setWeekId(25);
+        $item1958->setCategory($this->getReference('category_ruecken'));
         $item1958->setQuiz($this->getReference('weeklyquiz_25'));
         $item1958->setCountPoint(1);
         $item1958->setName("Wochenaufgabe 25");
@@ -84,7 +84,7 @@ EOT
         $item1964 = new Weeklytask();
         $item1964->setFormat("richhtml");
         $item1964->setTag("Schmerzen");
-        $item1964->setWeekId(26);
+        $item1964->setCategory($this->getReference('category_ruecken'));
         $item1964->setQuiz($this->getReference('weeklyquiz_26'));
         $item1964->setCountPoint(1);
         $item1964->setName("Wochenaufgabe 26");
@@ -110,7 +110,7 @@ EOT
         $item1968 = new Weeklytask();
         $item1968->setFormat("richhtml");
         $item1968->setTag("Schmerzen");
-        $item1968->setWeekId(27);
+        $item1968->setCategory($this->getReference('category_ruecken'));
         $item1968->setQuiz($this->getReference('weeklyquiz_27'));
         $item1968->setCountPoint(1);
         $item1968->setName("Wochenaufgabe 27");

@@ -32,7 +32,7 @@ class LoadWeeklytaskVerspannungenData extends AbstractFixture implements Ordered
         $item1973 = new Weeklytask();
         $item1973->setFormat("richhtml");
         $item1973->setTag("Verspannungen");
-        $item1973->setWeekId(28);
+        $item1973->setCategory($this->getReference('category_ruecken'));
         $item1973->setQuiz($this->getReference('weeklyquiz_28'));
         $item1973->setCountPoint(1);
         $item1973->setName("Wochenaufgabe 28");

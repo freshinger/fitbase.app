@@ -34,6 +34,7 @@ class LoadWeeklytaskArbeitsplatzergonomieData extends AbstractFixture implements
         $item1644->setTag("Arbeitsplatzergonomie");
         $item1644->setWeekId(1);
         $item1644->setQuiz($this->getReference('weeklyquiz_1'));
+        $item615->setCategory($this->getReference('category_ruecken'));
         $item1644->setCountPoint(2);
         $item1644->setName("Wochenaufgabe 01");
         $item1644->setContent(<<<EOT
@@ -67,7 +68,7 @@ EOT
         $item1662 = new Weeklytask();
         $item1662->setFormat("richhtml");
         $item1662->setTag("Arbeitsplatzergonomie");
-        $item1662->setWeekId(2);
+        $item1662->setCategory($this->getReference('category_ruecken'));
         $item1662->setQuiz($this->getReference('weeklyquiz_2'));
         $item1662->setCountPoint(1);
         $item1662->setName("Wochenaufgabe 02");
@@ -93,7 +94,7 @@ EOT
         $item1672 = new Weeklytask();
         $item1672->setFormat("richhtml");
         $item1672->setTag("Arbeitsplatzergonomie");
-        $item1672->setWeekId(3);
+        $item1672->setCategory($this->getReference('category_ruecken'));
         $item1672->setQuiz($this->getReference('weeklyquiz_3'));
         $item1672->setCountPoint(1);
         $item1672->setName("Wochenaufgabe 03");
@@ -116,7 +117,7 @@ EOT
         $item1679 = new Weeklytask();
         $item1679->setFormat("richhtml");
         $item1679->setTag("Arbeitsplatzergonomie");
-        $item1679->setWeekId(4);
+        $item1679->setCategory($this->getReference('category_ruecken'));
         $item1679->setQuiz($this->getReference('weeklyquiz_4'));
         $item1679->setCountPoint(2);
         $item1679->setName("Wochenaufgabe 04");
@@ -147,7 +148,7 @@ EOT
         $item1684 = new Weeklytask();
         $item1684->setFormat("richhtml");
         $item1684->setTag("Arbeitsplatzergonomie");
-        $item1684->setWeekId(5);
+        $item1684->setCategory($this->getReference('category_ruecken'));
         $item1684->setQuiz($this->getReference('weeklyquiz_5'));
         $item1684->setCountPoint(1);
         $item1684->setName("Wochenaufgabe 05");
@@ -179,7 +180,7 @@ EOT
         $item1694 = new Weeklytask();
         $item1694->setFormat("richhtml");
         $item1694->setTag("Arbeitsplatzergonomie");
-        $item1694->setWeekId(6);
+        $item1694->setCategory($this->getReference('category_ruecken'));
         $item1694->setQuiz($this->getReference('weeklyquiz_6'));
         $item1694->setCountPoint(1);
         $item1694->setName("Wochenaufgabe 06");

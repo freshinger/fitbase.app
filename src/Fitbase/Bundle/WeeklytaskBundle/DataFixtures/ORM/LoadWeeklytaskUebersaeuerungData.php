@@ -32,7 +32,7 @@ class LoadWeeklytaskUebersaeuerungData extends AbstractFixture implements Ordere
         $item1977 = new Weeklytask();
         $item1977->setFormat("richhtml");
         $item1977->setTag("Übersäuerung");
-        $item1977->setWeekId(29);
+        $item1977->setCategory($this->getReference('category_ruecken'));
         $item1977->setQuiz($this->getReference('weeklyquiz_29'));
         $item1977->setCountPoint(1);
         $item1977->setName("Wochenaufgabe 29");

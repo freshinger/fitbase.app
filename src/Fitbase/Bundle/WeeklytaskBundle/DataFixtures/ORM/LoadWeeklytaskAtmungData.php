@@ -30,7 +30,7 @@ class LoadWeeklytaskAtmungData extends AbstractFixture implements OrderedFixture
         $item1712 = new Weeklytask();
         $item1712->setFormat("richhtml");
         $item1712->setTag("Atmung");
-        $item1712->setWeekId(9);
+        $item1712->setCategory($this->getReference('category_ruecken'));
         $item1712->setQuiz($this->getReference('weeklyquiz_9'));
         $item1712->setCountPoint(1);
         $item1712->setName("Wochenaufgabe 09");
@@ -61,7 +61,7 @@ EOT
         $item1715 = new Weeklytask();
         $item1715->setFormat("richhtml");
         $item1715->setTag("Atmung");
-        $item1715->setWeekId(10);
+        $item1715->setCategory($this->getReference('category_ruecken'));
         $item1715->setQuiz($this->getReference('weeklyquiz_10'));
         $item1715->setCountPoint(1);
         $item1715->setName("Wochenaufgabe 10");
@@ -82,7 +82,7 @@ EOT
         $item1721 = new Weeklytask();
         $item1721->setFormat("richhtml");
         $item1721->setTag("Atmung");
-        $item1721->setWeekId(11);
+        $item1721->setCategory($this->getReference('category_ruecken'));
         $item1721->setQuiz($this->getReference('weeklyquiz_11'));
         $item1721->setCountPoint(1);
         $item1721->setName("Wochenaufgabe 11");
@@ -109,7 +109,7 @@ EOT
         $item1728 = new Weeklytask();
         $item1728->setFormat("richhtml");
         $item1728->setTag("Atmung");
-        $item1728->setWeekId(12);
+        $item1728->setCategory($this->getReference('category_ruecken'));
         $item1728->setQuiz($this->getReference('weeklyquiz_12'));
         $item1728->setCountPoint(1);
         $item1728->setName("Wochenaufgabe 12");
@@ -132,6 +132,7 @@ EOT
         $item1732 = new Weeklytask();
         $item1732->setFormat("richhtml");
         $item1732->setTag("Atmung");
+        $item1732->setCategory($this->getReference('category_ruecken'));
         $item1732->setWeekId(13);
         $item1732->setCountPoint(1);
         $item1732->setName("Wochenaufgabe 13");
@@ -159,7 +160,7 @@ EOT
         $item1740 = new Weeklytask();
         $item1740->setFormat("richhtml");
         $item1740->setTag("Atmung");
-        $item1740->setWeekId(14);
+        $item1740->setCategory($this->getReference('category_ruecken'));
         $item1740->setCountPoint(1);
         $item1740->setName("Wochenaufgabe 14");
         $item1740->setContent(<<<EOT
