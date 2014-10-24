@@ -39,7 +39,7 @@ class LoadErnaerungData extends AbstractFixture implements OrderedFixtureInterfa
         $item3586->setFormat("richhtml");
         $item3586->setTag("Ernärung");
         $item3586->setCategory($this->getReference('category_ernaehrung'));
-        $item3586->setDescription(<<<CONTENT
+        $item3586->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zu unserem ErnährungsCoach! Im Rahmen dieses Coaches möchten wir Ihnen Gesundheitskompetenz für eine gesunde Ernährung vermitteln.</p>
 <p style="margin: 0px;font-size: 14px;color: #333333;font-weight: normal;padding: 0px 0px 20px;line-height: 22px;text-align: center"><img class=" wp-image-4840 aligncenter" alt="kf_1" src="https://www.fitbase.de/wp-content/uploads/kf_1.png" width="320" height="216" /></p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">Essen und Ernährung sind komplexe Bereiche und wir haben für Sie 24 Einheiten aus den folgenden fünf Bereichen vorbereitet:</p>
@@ -68,7 +68,7 @@ CONTENT
         $item4115->setFormat("richhtml");
         $item4115->setTag("Ernärung");
         $item4115->setCategory($this->getReference('category_ernaehrung'));
-        $item4115->setDescription(<<<CONTENT
+        $item4115->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px">herzlich Willkommen zur ersten Einheit im <b style="font-size: 13px">ErnährungsCoach</b>! Wir essen täglich mehrmals. Im besten Fall ernährt uns das Essen auch.</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><b style="font-size: 13px"> Thema: Was ist eigentlich gesundes Essen für den Menschen ?</b></p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><b style="font-size: 13px"> Inhalt: Artgerechte Ernährung für den Menschen.</b></p>
@@ -107,7 +107,7 @@ CONTENT
         $item6552->setFormat("richhtml");
         $item6552->setTag("Ernärung");
         $item6552->setCategory($this->getReference('category_ernaehrung'));
-        $item6552->setDescription(<<<CONTENT
+        $item6552->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur siebten Einheit im ErnährungsCoach!Wir beleuchten heute, wie man richtig trinkt.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema:</strong> Trinken
 <strong> Inhalt:</strong> Wirkung und Funktion von Flüssigkeit. Gute / schlechte Getränke.</div>
@@ -157,7 +157,7 @@ CONTENT
         $item6553->setFormat("richhtml");
         $item6553->setTag("Ernärung");
         $item6553->setCategory($this->getReference('category_ernaehrung'));
-        $item6553->setDescription(<<<CONTENT
+        $item6553->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur fünften Einheit im ErnährungsCoach!Überall geht es um Kalorien zählen und abnehmen. Gibt es auch einen anderen Ansatz für eine gesunde Ernährung ?</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"> Thema: LOGI
 Inhalt: LOGI ist keine typische Diät. Die LOGI-Idee </div>
@@ -192,7 +192,7 @@ CONTENT
         $item6554->setFormat("richhtml");
         $item6554->setTag("Ernärung");
         $item6554->setCategory($this->getReference('category_ernaehrung'));
-        $item6554->setDescription(<<<CONTENT
+        $item6554->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur fünften Einheit im ErnährungsCoach!Nach den Kohlenhydraten in der vergangenen Einheit geht es heute um Zucker.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema: Zucker </strong>
 <strong> Inhalt: Deklaration und Zuckergehalt; Süßstoffe </strong></div>
@@ -225,7 +225,7 @@ CONTENT
         $item6555->setFormat("richhtml");
         $item6555->setTag("Ernärung");
         $item6555->setCategory($this->getReference('category_ernaehrung'));
-        $item6555->setDescription(<<<CONTENT
+        $item6555->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur achten Einheit im Modul ErnährungsFit!Jeden Morgen frühstücken wir. Mal zu Hause, mal unterwegs, mal bei der Arbeit. Mal Brötchen, mal Müsli, mal ein Croissant.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema:</strong> Frühstück
 <strong> Inhalt:</strong> Zusammensetzung gutes Frühstück und Wirkung auf den Blutzuckerspiegel /
@@ -261,7 +261,7 @@ CONTENT
         $item6556->setFormat("richhtml");
         $item6556->setTag("Ernärung");
         $item6556->setCategory($this->getReference('category_ernaehrung'));
-        $item6556->setDescription(<<<CONTENT
+        $item6556->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur neunten Einheit im Modul ErnährungsFit!Wir befassen uns heute mit Ölen und Fetten – gut oder schlecht ?</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Öle & amp; Fette
     <strong>Inhalt </strong>: Ölwechsel </div>
@@ -296,7 +296,7 @@ CONTENT
         $item6485->setFormat("richhtml");
         $item6485->setTag("Ernärung");
         $item6485->setCategory($this->getReference('category_ernaehrung'));
-        $item6485->setDescription(<<<CONTENT
+        $item6485->setContent(<<<CONTENT
 <div>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur zweiten Einheit im <b>ErnährungsCoach </b> !Nach einer kurzen Einführung in der vergangenen Einheit, geht es heute um das Dauerthema „Wann nehme ich zu ?“</p>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"><b style="font-size: 13px"> Thema:                 Kalorienbilanz + Bauchumfang </b></p>
@@ -330,7 +330,7 @@ CONTENT
         $item6493->setFormat("richhtml");
         $item6493->setTag("Ernärung");
         $item6493->setCategory($this->getReference('category_ernaehrung'));
-        $item6493->setDescription(<<<CONTENT
+        $item6493->setContent(<<<CONTENT
 <div>
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur dritten Einheit im <b>ErnährungsCoach </b> !Jeder kennt das Gefühl, Hunger zu haben bzw. satt zu sein. Wo aber liegt der Unterschied zwischen Sattheit und Sättigung ?</p>
 &nbsp;
@@ -365,7 +365,7 @@ CONTENT
         $item6497->setFormat("richhtml");
         $item6497->setTag("Ernärung");
         $item6497->setCategory($this->getReference('category_ernaehrung'));
-        $item6497->setDescription(<<<CONTENT
+        $item6497->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur vierten Einheit im <b>ErnährungsCoach </b> !Heute befassen wir uns mit den Kohlenhydraten.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px">
 <b> Thema:                 Kohlenhydrate </b>
@@ -406,7 +406,7 @@ CONTENT
         $item6575->setFormat("richhtml");
         $item6575->setTag("Ernärung");
         $item6575->setCategory($this->getReference('category_ernaehrung'));
-        $item6575->setDescription(<<<CONTENT
+        $item6575->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur zehnten Einheit im ErnährungsCoach!Wir befassen uns heute mit Bio-Nahrungsmitteln.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Bio
     <strong>Inhalt </strong>: Wirklich Bio ? Wie wird kontrolliert ? Welche unterschiedlichen Bio-Siegel gibt es ?</div>
@@ -440,7 +440,7 @@ CONTENT
         $item6576->setFormat("richhtml");
         $item6576->setTag("Ernärung");
         $item6576->setCategory($this->getReference('category_ernaehrung'));
-        $item6576->setDescription(<<<CONTENT
+        $item6576->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur elften Einheit im ErnährungsCoach!Wir befassen uns heute mit den Nahrungsmitteln Fisch und Fleisch sowie mit zwei leckeren Rezepten.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Fisch und Fleisch
     <strong>Inhalt </strong>: Pro & amp; Contra. Zubereitungstipps </div>
@@ -473,7 +473,7 @@ CONTENT
         $item6577->setFormat("richhtml");
         $item6577->setTag("Ernärung");
         $item6577->setCategory($this->getReference('category_ernaehrung'));
-        $item6577->setDescription(<<<CONTENT
+        $item6577->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 12. Einheit im ErnährungsCoach!Das Mittagessen ist kaum wegzudenken aus unserem Lebensstil. Doch wie sieht ein gutes Mittagessen, das uns durch die zweite Tageshälfte bringen soll, aus ?</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"> Thema: Mittagessen
 Inhalt: Zusammensetzung gutes Mittagessen. Rezept </div>
@@ -504,7 +504,7 @@ CONTENT
         $item6592->setFormat("richhtml");
         $item6592->setTag("Ernärung");
         $item6592->setCategory($this->getReference('category_ernaehrung'));
-        $item6592->setDescription(<<<CONTENT
+        $item6592->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 13. Einheit im ErnährungsCoach!Es gibt soviele Legenden und Halbwahrheiten rund um die Ernährung. Eine wollen wir uns heute genauer anschauen:</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Mahlzeitenrhythmus
     <strong>Inhalt </strong>: Kaiser-König-Bettelmann: Muss das sein ? Essen nach 18h.</div>
@@ -532,7 +532,7 @@ CONTENT
         $item6599->setFormat("richhtml");
         $item6599->setTag("Ernärung");
         $item6599->setCategory($this->getReference('category_ernaehrung'));
-        $item6599->setDescription(<<<CONTENT
+        $item6599->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 14. Einheit im ErnährungsCoach!Heute geht um das volle Korn.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Vollkornprodukte
     <strong>Inhalt </strong>: Was ist das Besondere ?</div>
@@ -569,7 +569,7 @@ CONTENT
         $item6603->setFormat("richhtml");
         $item6603->setTag("Ernärung");
         $item6603->setCategory($this->getReference('category_ernaehrung'));
-        $item6603->setDescription(<<<CONTENT
+        $item6603->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 15. Einheit im ErnährungsCoach!Kennen Sie das auch, mittags in ein tiefes Loch zu fallen und sich nicht konzentrieren zu können ?</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Mittagstief und Konzentrationsfähigkeit
     <strong>Inhalt </strong>: Selbstbeobachtung </div>
@@ -605,7 +605,7 @@ CONTENT
         $item6608->setFormat("richhtml");
         $item6608->setTag("Ernärung");
         $item6608->setCategory($this->getReference('category_ernaehrung'));
-        $item6608->setDescription(<<<CONTENT
+        $item6608->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 16. Einheit im ErnährungsCoach!Heute geht es um die (Mindest)haltbarkeit von Lebensmitteln.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Mindesthaltbarkeit
     <strong>Inhalt </strong>: Was besagt das MHD ? Wie kann ich selbst rausfinden, was noch gut ist ?</div>
@@ -642,7 +642,7 @@ CONTENT
         $item6612->setFormat("richhtml");
         $item6612->setTag("Ernärung");
         $item6612->setCategory($this->getReference('category_ernaehrung'));
-        $item6612->setDescription(<<<CONTENT
+        $item6612->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 17. Einheit im ErnährungsCoach!Heute geht es um Milchprodukte.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Milch-und Milchprodukte
     <strong>Inhalt </strong>: Vorteil / nachteil für den Menschen. Allergien. Einkaufstipps </div>
@@ -674,7 +674,7 @@ CONTENT
         $item6615->setFormat("richhtml");
         $item6615->setTag("Ernärung");
         $item6615->setCategory($this->getReference('category_ernaehrung'));
-        $item6615->setDescription(<<<CONTENT
+        $item6615->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 18. Einheit im ErnährungsCoach!Heute geht es um das Abendessen und eine gute Zusammensetzung.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Abendessen
 <strong>Inhalt </strong>: Zusammensetzung gutes Abendessen. Rezept.</div>
@@ -705,7 +705,7 @@ CONTENT
         $item6619->setFormat("richhtml");
         $item6619->setTag("Ernärung");
         $item6619->setCategory($this->getReference('category_ernaehrung'));
-        $item6619->setDescription(<<<CONTENT
+        $item6619->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 19. Einheit im ErnährungsCoach!Heute geht es noch einmal um Diäten.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Kennzeichen guter Diäten
 <strong>Inhalt </strong>: Zwischen Rationalität und Emotionalität </div>
@@ -735,7 +735,7 @@ CONTENT
         $item6623->setTag("Ernärung");
         $item6623->setFormat("richhtml");
         $item6623->setCategory($this->getReference('category_ernaehrung'));
-        $item6623->setDescription(<<<CONTENT
+        $item6623->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 20. Einheit im Modul ErnährungsFit!Heute geht es um Obst in verschiedenen Ausführungen.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Obst
 <strong>Inhalt </strong>: Welches Obst ist besonders gut ? Frisch vs. TK vs. Konserve vs. getrocknet </div>
@@ -771,7 +771,7 @@ CONTENT
         $item6628->setTag("Ernärung");
         $item6628->setFormat("richhtml");
         $item6628->setCategory($this->getReference('category_ernaehrung'));
-        $item6628->setDescription(<<<CONTENT
+        $item6628->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 21. Einheit im ErnährungsCoach!Heute geht es um Naschen und den Umgang mit Süßigkeiten.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Naschen
     <strong>Inhalt </strong>: Richtig Naschen </div>
@@ -804,7 +804,7 @@ CONTENT
         $item6631->setTag("Ernärung");
         $item6631->setFormat("richhtml");
         $item6631->setCategory($this->getReference('category_ernaehrung'));
-        $item6631->setDescription(<<<CONTENT
+        $item6631->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 22. Einheit im ErnährungsCoach!Die heutige Einheit beschäftigt sich mit Butter, Margarine und Ölen.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Butter, Margarine und Öle – alles eine Frage der Qualität!
 <strong>Inhalt </strong>: Herstellung. Was ist empfehlenswert ?</div>
@@ -840,7 +840,7 @@ CONTENT
         $item6634->setFormat("richhtml");
         $item6634->setTag("Ernärung");
         $item6634->setCategory($this->getReference('category_ernaehrung'));
-        $item6634->setDescription(<<<CONTENT
+        $item6634->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 23. Einheit im ErnährungsCoach!In der heutigen Einheit dreht sich alles um Eier.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Eier
     <strong>Inhalt </strong>: Eier. Cholesterin.</div>
@@ -874,7 +874,7 @@ CONTENT
         $item6637->setTag("Ernärung");
         $item6637->setFormat("richhtml");
         $item6637->setCategory($this->getReference('category_ernaehrung'));
-        $item6637->setDescription(<<<CONTENT
+        $item6637->setContent(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur letzten Einheit im ErnährungsCoach!Wir befinden uns am Ende unseres ErnährungsCoaches und haben Ihnen heute eine Zusammenfassung aller Einheiten für Sie vorbereitet.</p>
 <div style="border-width: 1px;border-style: solid;border-color: #F2F2F2;padding: 1em 1em;margin: 0;font-size: 14px;color: #333333;font-weight: normal;line-height: 22px;padding-bottom: 20px"><strong> Thema</strong>: Zusammenfassung
     <strong>Inhalt </strong>: Das WAS, WIE, WANN, WIEVIEL & amp; WOFÜR des richtigen Essens.</div>
