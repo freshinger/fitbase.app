@@ -99,9 +99,6 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ))
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
-            ))
-            ->add('weekId', null, array(
-                'label' => 'Woche',
             ));
     }
 

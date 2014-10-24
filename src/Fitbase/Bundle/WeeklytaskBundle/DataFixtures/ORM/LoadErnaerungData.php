@@ -36,6 +36,7 @@ class LoadErnaerungData extends AbstractFixture implements OrderedFixtureInterfa
 
         $item3586 = new Weeklytask();
         $item3586->setName("Willkommensemail");
+        $item3586->setFormat("richhtml");
         $item3586->setTag("Ernärung");
         $item3586->setCategory($this->getReference('category_ernaehrung'));
         $item3586->setDescription(<<<CONTENT
@@ -64,6 +65,7 @@ CONTENT
 
         $item4115 = new Weeklytask();
         $item4115->setName("Ernährungswissen");
+        $item4115->setFormat("richhtml");
         $item4115->setTag("Ernärung");
         $item4115->setCategory($this->getReference('category_ernaehrung'));
         $item4115->setDescription(<<<CONTENT
@@ -102,6 +104,7 @@ CONTENT
 
         $item6552 = new Weeklytask();
         $item6552->setName("Trinken");
+        $item6552->setFormat("richhtml");
         $item6552->setTag("Ernärung");
         $item6552->setCategory($this->getReference('category_ernaehrung'));
         $item6552->setDescription(<<<CONTENT
@@ -151,6 +154,7 @@ CONTENT
 
         $item6553 = new Weeklytask();
         $item6553->setName("Die LOGI-Methode");
+        $item6553->setFormat("richhtml");
         $item6553->setTag("Ernärung");
         $item6553->setCategory($this->getReference('category_ernaehrung'));
         $item6553->setDescription(<<<CONTENT
@@ -185,6 +189,7 @@ CONTENT
 
         $item6554 = new Weeklytask();
         $item6554->setName("Lebensmittel Zucker");
+        $item6554->setFormat("richhtml");
         $item6554->setTag("Ernärung");
         $item6554->setCategory($this->getReference('category_ernaehrung'));
         $item6554->setDescription(<<<CONTENT
@@ -217,6 +222,7 @@ CONTENT
 
         $item6555 = new Weeklytask();
         $item6555->setName("Frühstück");
+        $item6555->setFormat("richhtml");
         $item6555->setTag("Ernärung");
         $item6555->setCategory($this->getReference('category_ernaehrung'));
         $item6555->setDescription(<<<CONTENT
@@ -252,6 +258,7 @@ CONTENT
 
         $item6556 = new Weeklytask();
         $item6556->setName("Öle & amp; Fette");
+        $item6556->setFormat("richhtml");
         $item6556->setTag("Ernärung");
         $item6556->setCategory($this->getReference('category_ernaehrung'));
         $item6556->setDescription(<<<CONTENT
@@ -286,6 +293,7 @@ CONTENT
 
         $item6485 = new Weeklytask();
         $item6485->setName("Diäten");
+        $item6485->setFormat("richhtml");
         $item6485->setTag("Ernärung");
         $item6485->setCategory($this->getReference('category_ernaehrung'));
         $item6485->setDescription(<<<CONTENT
@@ -319,6 +327,7 @@ CONTENT
 
         $item6493 = new Weeklytask();
         $item6493->setName("Körperwahrnehmung");
+        $item6493->setFormat("richhtml");
         $item6493->setTag("Ernärung");
         $item6493->setCategory($this->getReference('category_ernaehrung'));
         $item6493->setDescription(<<<CONTENT
@@ -353,6 +362,7 @@ CONTENT
 
         $item6497 = new Weeklytask();
         $item6497->setName("Kohlenhydrate");
+        $item6497->setFormat("richhtml");
         $item6497->setTag("Ernärung");
         $item6497->setCategory($this->getReference('category_ernaehrung'));
         $item6497->setDescription(<<<CONTENT
@@ -393,6 +403,7 @@ CONTENT
 
         $item6575 = new Weeklytask();
         $item6575->setName("BioBio");
+        $item6575->setFormat("richhtml");
         $item6575->setTag("Ernärung");
         $item6575->setCategory($this->getReference('category_ernaehrung'));
         $item6575->setDescription(<<<CONTENT
@@ -426,6 +437,7 @@ CONTENT
 
         $item6576 = new Weeklytask();
         $item6576->setName("Fisch und Fleisch");
+        $item6576->setFormat("richhtml");
         $item6576->setTag("Ernärung");
         $item6576->setCategory($this->getReference('category_ernaehrung'));
         $item6576->setDescription(<<<CONTENT
@@ -458,6 +470,7 @@ CONTENT
 
         $item6577 = new Weeklytask();
         $item6577->setName("Mittagessen");
+        $item6577->setFormat("richhtml");
         $item6577->setTag("Ernärung");
         $item6577->setCategory($this->getReference('category_ernaehrung'));
         $item6577->setDescription(<<<CONTENT
@@ -488,6 +501,7 @@ CONTENT
 
         $item6592 = new Weeklytask();
         $item6592->setName("Essverhalten");
+        $item6592->setFormat("richhtml");
         $item6592->setTag("Ernärung");
         $item6592->setCategory($this->getReference('category_ernaehrung'));
         $item6592->setDescription(<<<CONTENT
@@ -515,6 +529,7 @@ CONTENT
 
         $item6599 = new Weeklytask();
         $item6599->setName("Das volle Korn");
+        $item6599->setFormat("richhtml");
         $item6599->setTag("Ernärung");
         $item6599->setCategory($this->getReference('category_ernaehrung'));
         $item6599->setDescription(<<<CONTENT
@@ -551,6 +566,7 @@ CONTENT
 
         $item6603 = new Weeklytask();
         $item6603->setName("Das Mittagstief");
+        $item6603->setFormat("richhtml");
         $item6603->setTag("Ernärung");
         $item6603->setCategory($this->getReference('category_ernaehrung'));
         $item6603->setDescription(<<<CONTENT
@@ -586,6 +602,7 @@ CONTENT
 
         $item6608 = new Weeklytask();
         $item6608->setName("Mindesthaltbarkeitsdatum");
+        $item6608->setFormat("richhtml");
         $item6608->setTag("Ernärung");
         $item6608->setCategory($this->getReference('category_ernaehrung'));
         $item6608->setDescription(<<<CONTENT
@@ -622,6 +639,7 @@ CONTENT
 
         $item6612 = new Weeklytask();
         $item6612->setName("Milchprodukte");
+        $item6612->setFormat("richhtml");
         $item6612->setTag("Ernärung");
         $item6612->setCategory($this->getReference('category_ernaehrung'));
         $item6612->setDescription(<<<CONTENT
@@ -653,6 +671,7 @@ CONTENT
 
         $item6615 = new Weeklytask();
         $item6615->setName("Das Abendessen");
+        $item6615->setFormat("richhtml");
         $item6615->setTag("Ernärung");
         $item6615->setCategory($this->getReference('category_ernaehrung'));
         $item6615->setDescription(<<<CONTENT
@@ -683,6 +702,7 @@ CONTENT
 
         $item6619 = new Weeklytask();
         $item6619->setName("Kennzeichen guter Diäten");
+        $item6619->setFormat("richhtml");
         $item6619->setTag("Ernärung");
         $item6619->setCategory($this->getReference('category_ernaehrung'));
         $item6619->setDescription(<<<CONTENT
@@ -713,6 +733,7 @@ CONTENT
         $item6623 = new Weeklytask();
         $item6623->setName("Obst");
         $item6623->setTag("Ernärung");
+        $item6623->setFormat("richhtml");
         $item6623->setCategory($this->getReference('category_ernaehrung'));
         $item6623->setDescription(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 20. Einheit im Modul ErnährungsFit!Heute geht es um Obst in verschiedenen Ausführungen.</p>
@@ -748,6 +769,7 @@ CONTENT
         $item6628 = new Weeklytask();
         $item6628->setName("Naschen");
         $item6628->setTag("Ernärung");
+        $item6628->setFormat("richhtml");
         $item6628->setCategory($this->getReference('category_ernaehrung'));
         $item6628->setDescription(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 21. Einheit im ErnährungsCoach!Heute geht es um Naschen und den Umgang mit Süßigkeiten.</p>
@@ -780,6 +802,7 @@ CONTENT
         $item6631 = new Weeklytask();
         $item6631->setName("Butter oder Margarine");
         $item6631->setTag("Ernärung");
+        $item6631->setFormat("richhtml");
         $item6631->setCategory($this->getReference('category_ernaehrung'));
         $item6631->setDescription(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur 22. Einheit im ErnährungsCoach!Die heutige Einheit beschäftigt sich mit Butter, Margarine und Ölen.</p>
@@ -814,6 +837,7 @@ CONTENT
 
         $item6634 = new Weeklytask();
         $item6634->setName("Eier");
+        $item6634->setFormat("richhtml");
         $item6634->setTag("Ernärung");
         $item6634->setCategory($this->getReference('category_ernaehrung'));
         $item6634->setDescription(<<<CONTENT
@@ -848,6 +872,7 @@ CONTENT
         $item6637 = new Weeklytask();
         $item6637->setName("Zusammenfassung");
         $item6637->setTag("Ernärung");
+        $item6637->setFormat("richhtml");
         $item6637->setCategory($this->getReference('category_ernaehrung'));
         $item6637->setDescription(<<<CONTENT
 <p style="margin: 0;font-size: 14px;color: #333333;font-weight: normal;padding: 0;line-height: 22px;padding-bottom: 20px"> herzlich Willkommen zur letzten Einheit im ErnährungsCoach!Wir befinden uns am Ende unseres ErnährungsCoaches und haben Ihnen heute eine Zusammenfassung aller Einheiten für Sie vorbereitet.</p>

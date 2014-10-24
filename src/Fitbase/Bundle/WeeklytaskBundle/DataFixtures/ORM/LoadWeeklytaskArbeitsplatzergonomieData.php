@@ -34,7 +34,7 @@ class LoadWeeklytaskArbeitsplatzergonomieData extends AbstractFixture implements
         $item1644->setTag("Arbeitsplatzergonomie");
         $item1644->setWeekId(1);
         $item1644->setQuiz($this->getReference('weeklyquiz_1'));
-        $item615->setCategory($this->getReference('category_ruecken'));
+        $item1644->setCategory($this->getReference('category_ruecken'));
         $item1644->setCountPoint(2);
         $item1644->setName("Wochenaufgabe 01");
         $item1644->setContent(<<<EOT
