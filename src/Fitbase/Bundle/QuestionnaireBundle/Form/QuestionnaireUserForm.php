@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Form;
 
 use Fitbase\Bundle\AufgabeBundle\Entity\WeeklytaskUserQuiz;
+use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +30,7 @@ class QuestionnaireUserForm extends AbstractType implements ContainerAwareInterf
     {
         $this->questionnaireUser = $questionnaireUser;
 
-        $repositoryWeeklytaskQuestion = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklytaskQuestion = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 
         $this->collectionQuestionnaireQuestion = $repositoryWeeklytaskQuestion

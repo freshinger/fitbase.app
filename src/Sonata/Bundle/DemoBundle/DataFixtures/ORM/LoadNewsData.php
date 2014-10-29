@@ -63,64 +63,68 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
         $collection->setName('General');
         $this->getCollectionManager()->save($collection);
 
-        foreach (range(1, 20) as $id) {
-            $post = $postManager->create();
-            $post->setAuthor($this->getReference('user-johndoe'));
+        /*
 
-            $post->setCollection($collection);
-            $post->setAbstract($faker->sentence(30));
-            $post->setEnabled(true);
-            $post->setTitle($faker->sentence(6));
-            $post->setPublicationDateStart($faker->dateTimeBetween('-30 days', '-1 days'));
+                foreach (range(1, 20) as $id) {
+                    $post = $postManager->create();
+                    $post->setAuthor($this->getReference('user-johndoe'));
 
-            $id = $this->getReference('sonata-media-0')->getId();
+                    $post->setCollection($collection);
+                    $post->setAbstract($faker->sentence(30));
+                    $post->setEnabled(true);
+                    $post->setTitle($faker->sentence(6));
+                    $post->setPublicationDateStart($faker->dateTimeBetween('-30 days', '-1 days'));
 
-            $raw =<<<RAW
-### Gist Formatter
+                    $id = $this->getReference('sonata-media-0')->getId();
 
-Now a specific gist from github
+                    $raw =<<<RAW
+        ### Gist Formatter
 
-<% gist '1552362', 'gistfile1.txt' %>
+        Now a specific gist from github
 
-### Media Formatter
+        <% gist '1552362', 'gistfile1.txt' %>
 
-Load a media from a <code>SonataMediaBundle</code> with a specific format
+        ### Media Formatter
 
-<% media $id, 'big' %>
+        Load a media from a <code>SonataMediaBundle</code> with a specific format
 
-RAW
-;
+        <% media $id, 'big' %>
 
-            $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
-                $faker->sentence(rand(3, 6)),
-                $faker->text(1000),
-                $faker->sentence(rand(3, 6)),
-                $faker->text(1000)
-            );
+        RAW
+        ;
 
-            $post->setRawContent($raw);
-            $post->setContentFormatter('markdown');
+                    $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
+                        $faker->sentence(rand(3, 6)),
+                        $faker->text(1000),
+                        $faker->sentence(rand(3, 6)),
+                        $faker->text(1000)
+                    );
 
-            $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
-            $post->setCommentsDefaultStatus(CommentInterface::STATUS_VALID);
+                    $post->setRawContent($raw);
+                    $post->setContentFormatter('markdown');
 
-            foreach($tags as $tag) {
-                $post->addTags($tag);
-            }
+                    $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+                    $post->setCommentsDefaultStatus(CommentInterface::STATUS_VALID);
 
-            foreach(range(1, $faker->randomDigit + 2) as $commentId) {
-                $comment = $this->getCommentManager()->create();
-                $comment->setEmail($faker->email);
-                $comment->setName($faker->name);
-                $comment->setStatus(CommentInterface::STATUS_VALID);
-                $comment->setMessage($faker->sentence(25));
-                $comment->setUrl($faker->url);
+                    foreach($tags as $tag) {
+                        $post->addTags($tag);
+                    }
 
-                $post->addComments($comment);
-            }
+                    foreach(range(1, $faker->randomDigit + 2) as $commentId) {
+                        $comment = $this->getCommentManager()->create();
+                        $comment->setEmail($faker->email);
+                        $comment->setName($faker->name);
+                        $comment->setStatus(CommentInterface::STATUS_VALID);
+                        $comment->setMessage($faker->sentence(25));
+                        $comment->setUrl($faker->url);
 
-            $postManager->save($post);
-        }
+                        $post->addComments($comment);
+                    }
+
+                    $postManager->save($post);
+                }
+
+                */
     }
 
     public function getPoolFormatter()

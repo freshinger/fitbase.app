@@ -62,10 +62,7 @@ class Builder extends ContainerAware
             'route' => 'sonata_news_archive',
         ));
         $menu->addChild('Übungen', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/uebungen'
-            )
+            'route' => 'exercises',
         ));
         $menu->addChild('Häufige Fragen', array(
             'route' => 'page_slug',
@@ -75,9 +72,6 @@ class Builder extends ContainerAware
         ));
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',
-//            'routeParameters' => array(
-//                'path' => '/profil'
-//            )
         ));
         $menu->addChild('Abmelden', array(
             'route' => 'page_slug',

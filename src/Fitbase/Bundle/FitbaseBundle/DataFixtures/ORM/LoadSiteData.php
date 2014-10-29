@@ -61,7 +61,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $online_rueckenschule->setEnabledFrom(new \DateTime('now'));
         $online_rueckenschule->setEnabledTo(new \DateTime('+10 years'));
         $online_rueckenschule->setRelativePath("/online-rueckenschule");
-        $online_rueckenschule->setIsDefault(false);
+        $online_rueckenschule->setIsDefault(true);
 
         $this->getSiteManager()->save($online_rueckenschule);
         $this->addReference('online-rueckenschule', $online_rueckenschule);

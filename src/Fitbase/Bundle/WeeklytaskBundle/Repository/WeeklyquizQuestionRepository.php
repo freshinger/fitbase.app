@@ -5,6 +5,7 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Repository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 
 class WeeklyquizQuestionRepository extends EntityRepository
 {
@@ -35,8 +36,8 @@ class WeeklyquizQuestionRepository extends EntityRepository
     {
         if (!empty($userQuiz)) {
 
-            $queryBuilder->setParameter('quizId', $userQuiz->getQuizId());
-            return $queryBuilder->expr()->eq('WeeklyquizQuestion.quizId', ':quizId');
+            $queryBuilder->setParameter('quiz', $userQuiz->getQuizId());
+            return $queryBuilder->expr()->eq('WeeklyquizQuestion.quiz', ':quiz');
         }
 
         return $queryBuilder->expr()->eq('0', '1');

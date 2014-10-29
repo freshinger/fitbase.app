@@ -42,7 +42,10 @@ class WeeklytaskUserRepository extends EntityRepository
      */
     protected function getExprUser($queryBuilder, $user)
     {
-        return $this->getExprUserId($queryBuilder, $user->getId());
+        if (is_object($user)) {
+            return $this->getExprUserId($queryBuilder, $user->getId());
+        }
+        return null;
     }
 
     /**

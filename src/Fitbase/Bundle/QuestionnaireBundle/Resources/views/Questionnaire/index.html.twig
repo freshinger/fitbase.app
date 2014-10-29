@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="modal-title">
+            {{ questionnaire.name }}
+        </h3>
+
+        <p class="modal-description">
+            {{ questionnaire.description|raw }}
+        </p>
+    </div>
+</div>
+
+{% form_theme form "FitbaseQuestionnaireBundle::form.html.twig" %}
+
+{{ form(form) }}

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Fitbase\Bundle\FitbaseBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -23,7 +23,7 @@ use Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Doctrine\Orm\ContentRepositoryTe
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadPageData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadFitbasePageData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     private $container;
 
@@ -314,8 +314,8 @@ CONTENT
         // Add homepage bottom container
         $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'content_bottom',
+            'page' => $homepage,
+            'code' => 'content_bottom',
         ), function ($container) {
             $container->setSetting('layout', '{{ CONTENT }}');
         }));
@@ -324,8 +324,8 @@ CONTENT
         // Add homepage newsletter container
         $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'bottom_newsletter',
+            'page' => $homepage,
+            'code' => 'bottom_newsletter',
         ), function ($container) {
             $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
         }));
@@ -339,8 +339,8 @@ CONTENT
         // Add homepage embed tweet container
         $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'bottom_embed',
+            'page' => $homepage,
+            'code' => 'bottom_embed',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
         }));
@@ -895,10 +895,10 @@ CONTENT
     /**
      * Creates simple content pages
      *
-     * @param SiteInterface $site    A Site entity instance
-     * @param string        $url     A page URL
-     * @param string        $title   A page title
-     * @param string        $content A text content
+     * @param SiteInterface $site A Site entity instance
+     * @param string $url A page URL
+     * @param string $title A page title
+     * @param string $content A text content
      *
      * @return void
      */
@@ -923,8 +923,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -963,8 +963,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -1003,8 +1003,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -1107,8 +1107,8 @@ CONTENT
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'footer'
+            'page' => $global,
+            'code' => 'footer'
         ), function ($container) {
             $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
         }));
@@ -1118,32 +1118,32 @@ CONTENT
         // Footer : add 3 children block containers (left, center, right)
         $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content'
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content',
+            'page' => $global,
+            'code' => 'content',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content'
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content'
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));

@@ -55,7 +55,7 @@ class WeeklytaskController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function weeklytaskShowAction($unique, Request $request)
+    public function weeklytaskShowAction($unique = null, Request $request)
     {
         $weeklytask = null;
         if (($user = $this->get('user')->current())) {
@@ -71,9 +71,8 @@ class WeeklytaskController extends Controller
 //                    }
 //                }
 
-                }
+            }
         }
-
 
         return $this->render('FitbaseWeeklytaskBundle:Weeklytask:show.html.twig', array(
             'weeklytask' => $weeklytask,

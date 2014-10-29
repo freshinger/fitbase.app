@@ -39,7 +39,7 @@ class QuestionnaireQuestionSliderType extends QuestionnaireQuestionAbstractType
      */
     protected function getCollectionAnswer()
     {
-        return $this->container->get('fitbase_entity_manager')
+        return $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer')
             ->findAllByQuestionAndOrderByName($this->questionnaireQuestion);
     }

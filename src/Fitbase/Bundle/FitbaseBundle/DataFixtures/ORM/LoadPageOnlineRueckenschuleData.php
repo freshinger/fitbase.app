@@ -89,10 +89,6 @@ class LoadPageOnlineRueckenschuleData extends AbstractFixture implements Contain
                 $this->addReference('online-rueckenschule-dashboard', $dashboard);
 
 
-                if (($uebungen = $this->createPage($site, $global, "Übungen", "Übungen - Online - Rückenschule", "uebungen"))) {
-                    $this->addReference('online-rueckenschule-uebungen', $uebungen);
-                }
-
                 if (($questions = $this->createPage($site, $global, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
                     $this->addReference('online-rueckenschule-questions', $questions);
                 }

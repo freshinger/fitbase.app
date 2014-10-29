@@ -80,11 +80,11 @@ class WeeklyquizQuestionType extends AbstractType implements ContainerAwareInter
      */
     public function getDefaultsRadio(WeeklyquizQuestion $weeklytaskQuestion)
     {
-        $repositoryWeeklyquizAnswer = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquizAnswer = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 
         $collectionQuestions = $repositoryWeeklyquizAnswer->findBy(array(
-            'questionId' => $weeklytaskQuestion->getId()
+            'question' => $weeklytaskQuestion
         ));
 
 
@@ -108,11 +108,11 @@ class WeeklyquizQuestionType extends AbstractType implements ContainerAwareInter
      */
     public function getDefaultsCheckbox(WeeklyquizQuestion $weeklytaskQuestion)
     {
-        $repositoryWeeklyquizAnswer = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquizAnswer = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 
         $collectionQuestions = $repositoryWeeklyquizAnswer->findBy(array(
-            'questionId' => $weeklytaskQuestion->getId()
+            'question' => $weeklytaskQuestion
         ));
 
         $choices = array();

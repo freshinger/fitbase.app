@@ -32,7 +32,7 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
     {
         $this->weeklytaskUserQuiz = $weeklytaskUserQuiz;
 
-        $repositoryWeeklyquizQuestion = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquizQuestion = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 
         $this->collectionWeeklyTaskQuizQuestion = $repositoryWeeklyquizQuestion
@@ -61,7 +61,7 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
     {
         assert(is_object($this->weeklytaskUserQuiz));
 
-        $repositoryWeeklyquizQuestion = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquizQuestion = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 
         if (!empty($this->collectionWeeklyTaskQuizQuestion)) {

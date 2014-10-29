@@ -40,72 +40,72 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
     public function load(ObjectManager $manager)
     {
-        $gallery = $this->getGalleryManager()->create();
+//        $gallery = $this->getGalleryManager()->create();
+//
+//        $manager = $this->getMediaManager();
+//        $faker = $this->getFaker();
+//
+//        $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
+//        $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
+//        $switzerland = Finder::create()->name('switzerland_2012-05-19_006.jpg')->in(__DIR__.'/../data/files/sylvain-switzerland');
 
-        $manager = $this->getMediaManager();
-        $faker = $this->getFaker();
+//        $i = 0;
+//        foreach ($canada as $file) {
+//            $media = $manager->create();
+//            $media->setBinaryContent($file);
+//            $media->setEnabled(true);
+//            $media->setName('Canada');
+//            $media->setDescription('Canada');
+//            $media->setAuthorName('Gilles Rosenbaum');
+//            $media->setCopyright('CC BY-NC-SA 4.0');
+//
+//            $this->addReference('sonata-media-'.($i++), $media);
+//
+//            $manager->save($media, 'default', 'sonata.media.provider.image');
+//
+//            $this->addMedia($gallery, $media);
+//        }
 
-        $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
-        $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
-        $switzerland = Finder::create()->name('switzerland_2012-05-19_006.jpg')->in(__DIR__.'/../data/files/sylvain-switzerland');
+//        foreach ($paris as $file) {
+//            $media = $manager->create();
+//            $media->setBinaryContent($file);
+//            $media->setEnabled(true);
+//            $media->setName('Paris');
+//            $media->setDescription('Paris');
+//            $media->setAuthorName('Hugo Briand');
+//            $media->setCopyright("CC BY-NC-SA 4.0");
+//
+//            $this->addReference('sonata-media-'.($i++), $media);
+//
+//            $manager->save($media, 'default', 'sonata.media.provider.image');
+//
+//            $this->addMedia($gallery, $media);
+//        }
 
-        $i = 0;
-        foreach ($canada as $file) {
-            $media = $manager->create();
-            $media->setBinaryContent($file);
-            $media->setEnabled(true);
-            $media->setName('Canada');
-            $media->setDescription('Canada');
-            $media->setAuthorName('Gilles Rosenbaum');
-            $media->setCopyright('CC BY-NC-SA 4.0');
-
-            $this->addReference('sonata-media-'.($i++), $media);
-
-            $manager->save($media, 'default', 'sonata.media.provider.image');
-
-            $this->addMedia($gallery, $media);
-        }
-
-        foreach ($paris as $file) {
-            $media = $manager->create();
-            $media->setBinaryContent($file);
-            $media->setEnabled(true);
-            $media->setName('Paris');
-            $media->setDescription('Paris');
-            $media->setAuthorName('Hugo Briand');
-            $media->setCopyright("CC BY-NC-SA 4.0");
-
-            $this->addReference('sonata-media-'.($i++), $media);
-
-            $manager->save($media, 'default', 'sonata.media.provider.image');
-
-            $this->addMedia($gallery, $media);
-        }
-
-        foreach ($switzerland as $file) {
-            $media = $manager->create();
-            $media->setBinaryContent($file);
-            $media->setEnabled(true);
-            $media->setName('Switzerland');
-            $media->setDescription('Switzerland');
-            $media->setAuthorName('Sylvain Deloux');
-            $media->setCopyright('CC BY-NC-SA 4.0');
-
-            $this->addReference('sonata-media-'.($i++), $media);
-
-            $manager->save($media, 'default', 'sonata.media.provider.image');
-
-            $this->addMedia($gallery, $media);
-        }
-
-        $gallery->setEnabled(true);
-        $gallery->setName($faker->sentence(4));
-        $gallery->setDefaultFormat('small');
-        $gallery->setContext('default');
-
-        $this->getGalleryManager()->update($gallery);
-
-        $this->addReference('media-gallery', $gallery);
+//        foreach ($switzerland as $file) {
+//            $media = $manager->create();
+//            $media->setBinaryContent($file);
+//            $media->setEnabled(true);
+//            $media->setName('Switzerland');
+//            $media->setDescription('Switzerland');
+//            $media->setAuthorName('Sylvain Deloux');
+//            $media->setCopyright('CC BY-NC-SA 4.0');
+//
+//            $this->addReference('sonata-media-'.($i++), $media);
+//
+//            $manager->save($media, 'default', 'sonata.media.provider.image');
+//
+//            $this->addMedia($gallery, $media);
+//        }
+//
+//        $gallery->setEnabled(true);
+//        $gallery->setName($faker->sentence(4));
+//        $gallery->setDefaultFormat('small');
+//        $gallery->setContext('default');
+//
+//        $this->getGalleryManager()->update($gallery);
+//
+//        $this->addReference('media-gallery', $gallery);
     }
 
     /**

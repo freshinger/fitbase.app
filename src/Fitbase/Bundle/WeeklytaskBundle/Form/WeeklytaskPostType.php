@@ -37,7 +37,7 @@ class WeeklytaskPostType extends AbstractType implements ContainerAwareInterface
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $repositoryPost = $this->container->get('fitbase_entity_manager')
+        $repositoryPost = $this->container->get('entity_manager')
             ->getRepository('Ekino\WordpressBundle\Entity\Post');
 
         $choices = array();

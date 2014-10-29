@@ -32,7 +32,7 @@ class WeeklyquizType extends AbstractType implements ContainerAwareInterface
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $repositoryWeeklyquiz = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquiz = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 
         $choices = array();

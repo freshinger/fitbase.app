@@ -57,35 +57,13 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
     {
         // PHP Fan collection
         $php = $this->getCollectionManager()->create();
-        $php->setName("PHP Fan");
-        $php->setSlug("php-fan");
-        $php->setDescription("Everything a PHP Fan needs.");
+        $php->setName("Example");
+        $php->setSlug("example");
+        $php->setDescription("Just a example collection.");
         $php->setEnabled(true);
         $this->getCollectionManager()->save($php);
 
-        $this->setReference('php_collection', $php);
-
-        // Travels collection
-        $travel = $this->getCollectionManager()->create();
-        $travel->setName("Travels");
-        $travel->setSlug("travels");
-        $travel->setDescription("Every travels you want");
-        $travel->setEnabled(true);
-        $this->getCollectionManager()->save($travel);
-
-        $this->setReference('travel_collection', $travel);
-
-        // Dummy collection
-        $dummy = $this->getCollectionManager()->create();
-        $dummy->setName("Dummys");
-        $dummy->setSlug("Dummys");
-        $dummy->setDescription("Every dummys you want");
-        $dummy->setEnabled(true);
-        $this->getCollectionManager()->save($dummy);
-
-        $this->setReference('dummy_collection', $dummy);
-
-        $manager->flush();
+        $this->setReference('example_collection', $php);
     }
 
     /**
