@@ -24,11 +24,6 @@
                 <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
             </constraint>
         </property>
-        <property name="weekId">
-            <constraint name="NotBlank">
-                <option name="message">Dieses Feld darf nich leer sein</option>
-            </constraint>
-        </property>
     </class>
 
     <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">

@@ -56,7 +56,6 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Punkte',
             ))
             ->add('priority')
-
             ->end();
     }
 
@@ -103,22 +102,34 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array('class' => 'col-md-6'))
+            ->with('General', array(
+                'class' => 'col-md-6'))
             ->add('name', null, array(
                 'label' => 'Name',
             ))
             ->add('tag', null, array(
+                'required' => false,
                 'label' => 'Tags',
             ))
             ->end()
             ->with('Options', array('class' => 'col-md-6'))
-            ->add('priority')
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
-            ->add('category', 'sonata_type_model_list', array('required' => false))
-            ->add('collection', 'sonata_type_model_list', array('required' => false))
+            ->add('priority', null, array(
+                'required' => false,
+            ))
+            ->add('countPoint', 'integer', array(
+                'required' => false,
+                'label' => 'Punkte',
+            ))
+            ->add('category', 'sonata_type_model_list', array(
+                'required' => false
+            ))
+            ->add('collection', 'sonata_type_model_list', array(
+                'required' => false
+            ))
             ->end()
             ->with('Content', array('class' => 'col-md-12'))
             ->add('content', 'sonata_formatter_type', array(
+                'required' => false,
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',
                 'source_field' => 'content',
