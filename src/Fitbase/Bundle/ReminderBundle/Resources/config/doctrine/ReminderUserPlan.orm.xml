@@ -9,7 +9,8 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="userId" type="integer" column="user_id"/>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
 
 
         <many-to-one field="reminder" target-entity="Fitbase\Bundle\ReminderBundle\Entity\ReminderUser"

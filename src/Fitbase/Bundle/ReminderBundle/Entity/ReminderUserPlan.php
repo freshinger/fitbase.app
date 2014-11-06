@@ -5,7 +5,7 @@ namespace Fitbase\Bundle\ReminderBundle\Entity;
 class ReminderUserPlan
 {
     protected $id;
-    protected $userId;
+    protected $user;
     protected $reminder;
     protected $item;
     protected $date;
@@ -94,29 +94,18 @@ class ReminderUserPlan
     }
 
     /**
-     * @param mixed $userId
+     * @return mixed
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
-        return $this;
+        return $this->user;
     }
 
     /**
-     * @return mixed
+     * @param mixed $user
      */
-    public function getUserId()
+    public function setUser($user)
     {
-        return $this->userId;
-    }
-
-
-    public function __toString()
-    {
-
-        return implode(' ', array(
-            $this->getUserId(),
-            $this->getDate()->format('Y.m.d H:i')
-        ));
+        $this->user = $user;
     }
 }

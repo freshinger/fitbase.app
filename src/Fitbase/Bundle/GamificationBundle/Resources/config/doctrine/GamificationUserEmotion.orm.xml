@@ -4,20 +4,18 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUserEmotion"
-            table="fitbase_gamification_user_emotion"
+            table="ors_gamification_user_emotion"
             repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationUserEmotionRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 
         <field name="date" type="date" column="date"/>
-        <field name="value" type="integer" column="value"/>
-        <field name="description" type="text" column="description"/>
-        <field name="hidden" type="integer" column="hidden "/>
+        <field name="value" type="integer" column="value" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
+        <field name="hidden" type="integer" column="hidden" nullable="true"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
 
     </entity>
 </doctrine-mapping>

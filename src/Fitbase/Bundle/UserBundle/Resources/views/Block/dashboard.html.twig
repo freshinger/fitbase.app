@@ -1,0 +1,23 @@
+{{ form_errors(form) }}
+
+{% form_theme form _self %}
+
+<div class="panel-info">
+    <h2>{{ "title_user_account" | trans({}, 'SonataUserBundle') }}</h2>
+
+    <div class="panel-body">
+        <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
+            {{ form_widget(form) }}
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel-info">
+        <h2>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
+
+        <div class="panel-body">
+            {% render url("sonata_user_change_password") %}
+        </div>
+    </div>
+</div>

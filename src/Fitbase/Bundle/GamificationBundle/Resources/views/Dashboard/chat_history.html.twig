@@ -18,11 +18,11 @@
         {% if collection|length > 0 %}
             {% for answer in collection %}
                 <div class="chat-message alert alert-info">
-                    <strong>{{ answer.question.text }}</strong>
+                    <strong class="text">{{ answer.question.text }}</strong>
 
-                    <p>{{ answer.question.description|raw }}</p>
+                    <p class="description">{{ answer.question.description|raw }}</p>
 
-                    <div>
+                    <div class="feedback">
                         <span>{{ answer|feedback }}</span>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ class ReminderUser
     /**
      * @var integer
      */
-    protected $userId;
+    protected $user;
 
     /**
      * @var integer
@@ -108,19 +108,18 @@ class ReminderUser
     }
 
     /**
-     * @param int $userId
+     * @return int
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
+        return $this->user;
     }
 
     /**
-     * @return int
+     * @param int $user
      */
-    public function getUserId()
+    public function setUser($user)
     {
-        return $this->userId;
+        $this->user = $user;
     }
-
 }

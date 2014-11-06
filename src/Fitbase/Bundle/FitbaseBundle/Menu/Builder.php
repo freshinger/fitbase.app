@@ -56,8 +56,11 @@ class Builder extends ContainerAware
             )
         ));
         $menu->addChild('Wochenaufgaben', array(
-            'route' => 'weeklytask',
-        ));
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/wochenaufgaben'
+            )));
+
         $menu->addChild('Blog', array(
             'route' => 'sonata_news_archive',
         ));
@@ -73,6 +76,7 @@ class Builder extends ContainerAware
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',
         ));
+
         $menu->addChild('Abmelden', array(
             'route' => 'page_slug',
             'routeParameters' => array(

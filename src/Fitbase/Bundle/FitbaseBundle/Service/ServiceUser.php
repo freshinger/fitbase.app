@@ -20,8 +20,7 @@ class ServiceUser extends ContainerAware
     public function current()
     {
         if (($token = $this->container->get('security.context')->getToken())) {
-
-            if (($user = $token->getUser())) {
+            if (is_object(($user = $token->getUser()))) {
                 return $user;
             }
         }

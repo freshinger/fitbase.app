@@ -1,26 +1,39 @@
+<style>
+    .ui-accordion .ui-accordion-header {
+        margin-top: 15px;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        border: none !important;
+        font-weight: normal !important;
+        color: #003B71 !important;
+        background: none !important;
+
+    }
+
+    .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover {
+        border: none !important;
+        font-weight: normal !important;
+        color: #003B71 !important;
+        background: none !important;
+    }
+
+    .ui-helper-reset {
+        line-height: 27px !important;
+    }
+
+</style>
 <div class="panel panel-default">
 
     <div class="panel-body">
+        <h4 class="short hue">Wohlfühlgespräch</h4>
 
-        {% if gamification is defined and gamification %}
-            <h4 class="short hue">Wanderer</h4>
-            <p>
-                Helfen Sie mir dabei
-                den Baum zu begrünen,
-                damit ich mich bald
-                weiterentwickeln kann!
-                Und auch der Unter-
-                nehmenswald soll grünen!
-            </p>
-            {{ gamification.avatar|raw }}
-        {% endif %}
+        <p>
+            Das Wohlfühlgespräch befragt Sie täglich nach Ihrem
+            Befinden und hilft Ihnen damit sich besser zu reflektieren.
+        </p>
 
         <div id="accordion">
-            <h4>
-                Führe heute dein Wohlfühlgespräch
-                durch!
-            </h4>
-
             <div id="avatar_chat">
                 <div class="chat-message alert alert-info">
                     <strong>Nur Ihre aktuelle Stimmung und Ihre glücklichen Momente werden gespeichert!</strong>
@@ -31,32 +44,14 @@
 
         <script type="text/javascript">
             jQuery(function () {
-
-                jQuery("#accordion").accordion({
-                    active: false,
-                    collapsible: true
-                });
-
                 jQuery('#avatar_chat').chat({
                     'width': '100%',
                     'padding': '8px',
-                    'height': '385px',
+                    'height': '278px',
                     'overflow-y': 'scroll'
                 });
             });
         </script>
-        <p>
-            Wenn Sie das Wohlfühlgespräch in Ihrer Situation nicht mehr weiterhilft, dann
-            suchen Sie doch den Kontakt bei der
-
-        <div class="row">
-            <div class="col-md-4">
-                <a target="_blank" href="http://www.telefonseelsorge.de" class="btn btn-primary btn-block">
-                    Telefonseelsorge
-                </a>
-            </div>
-        </div>
-        </p>
     </div>
 </div>
 

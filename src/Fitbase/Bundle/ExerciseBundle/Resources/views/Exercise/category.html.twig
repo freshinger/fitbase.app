@@ -1,12 +1,53 @@
-<div class="row">
-    {% for category in collection %}
-        <div class="col-md-4">
-            {% if not category.parent %}
-                <h4>{{ category.name }}</h4>
-                <a href="">
-                    <img src="">
-                </a>
-            {% endif %}
+{{ sonata_block_render_event('breadcrumb', { 'context': 'exercises_category', 'current_uri': app.request.requestUri }) }}
+
+{% if categories|length > 0 %}
+    <h1>Categorien ({{ categories|length }})</h1>
+    {% if exercises|length > 0 %}
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-4">
+                    <a href="{{ path('exercises_category', {'unique': category.slug}) }}">
+                        <h4>{{ category.name }}</h4>
+                        {% if category.media is defined %}
+                            {% thumbnail category.media, 'icon' with {'100': 250} %}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
+    {% else %}
+        <div class="row">
+            {% for category in categories %}
+                {% if not category.parent %}
+                    <div class="col-md-4">
+                        <a href="{{ path('exercises_category', {'unique': category.slug}) }}">
+                            <h4>{{ category.name }}</h4>
+                        </a>
+                        <a href="{{ path('exercises_category', {'unique': category.slug}) }}">
+                            {% if category.media is defined %}
+                                {% thumbnail category.media, 'preview' with {'width': 250} %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+
+{% if exercises|length > 0 %}
+    <h1>Übungen ({{ exercises|length }})</h1>
+    <div class="row">
+        {% for exercise in exercises %}
+            <div class="col-md-4">
+                <h4>{{ exercise.name }}</h4>
+                <a href="{{ path('exercise', {'unique': exercise.id}) }}">
+                    {% if exercise.image is defined %}
+                        {% thumbnail exercise.image, 'preview' with {'width': 250} %}
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+

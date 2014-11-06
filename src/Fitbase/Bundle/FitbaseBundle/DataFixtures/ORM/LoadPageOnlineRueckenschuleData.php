@@ -85,17 +85,25 @@ class LoadPageOnlineRueckenschuleData extends AbstractFixture implements Contain
             $menu->setPage($global);
 
 
-            if (($dashboard = $this->createPage($site, $global, "Dashboard", "Dashboard - Online - Rückenschule", ""))) {
+            if (($dashboard = $this->createDashboard($site, $global, "Dashboard", "Dashboard - Online - Rückenschule", ""))) {
                 $this->addReference('online-rueckenschule-dashboard', $dashboard);
+            }
+
+            if (($dashboard = $this->createPageWeeklytask($site, $global, "Wochenaufgaben", "Wochenaufgaben - Online - Rückenschule", ""))) {
+                $this->addReference('online-rueckenschule-wochenaufgaben', $dashboard);
+            }
 
 
-                if (($questions = $this->createPage($site, $global, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
-                    $this->addReference('online-rueckenschule-questions', $questions);
-                }
+            if (($dashboard = $this->createPageProfile($site, $global, "Profil", "Profil - Online - Rückenschule", ""))) {
+                $this->addReference('online-rueckenschule-profil', $dashboard);
+            }
 
-                if (($questions = $this->createPage($site, $global, "Abmelden", "Abmelden - Online - Rückenschule", "abmelden"))) {
-                    $this->addReference('online-rueckenschule-abmelden', $questions);
-                }
+            if (($questions = $this->createPage($site, $global, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
+                $this->addReference('online-rueckenschule-questions', $questions);
+            }
+
+            if (($questions = $this->createPage($site, $global, "Abmelden", "Abmelden - Online - Rückenschule", "abmelden"))) {
+                $this->addReference('online-rueckenschule-abmelden', $questions);
             }
 
 
@@ -240,6 +248,166 @@ CONTENT
                 $page->setPosition(1);
                 $page->setDecorate(1);
                 $page->setSite($site);
+
+                $pageManager->save($page);
+
+                return $page;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Create Dashboard with gamification block
+     * @param $site
+     * @param $parent
+     * @param $name
+     * @param $title
+     * @param $slug
+     * @return null|object
+     */
+    protected function createDashboard($site, $parent, $name, $title, $slug)
+    {
+        if (($pageManager = $this->getPageManager())) {
+
+            if (($page = $pageManager->create())) {
+
+                $page->setName($name);
+                $page->setTitle($title);
+                $page->setSlug($slug);
+                $page->setUrl("/$slug");
+                $page->setCreatedAt(new \DateTime("now"));
+                $page->setUpdatedAt(new \DateTime("now"));
+                $page->setRouteName("page_slug");
+                $page->setType("sonata.page.service.default");
+                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
+                $page->setParent($parent);
+                $page->setTemplateCode("default");
+                $page->setEdited(1);
+                $page->setEnabled(1);
+                $page->setPosition(1);
+                $page->setDecorate(1);
+                $page->setSite($site);
+
+                $page->addBlocks($content = $this->getBlockInteractor()->createNewContainer(array(
+                    'enabled' => true,
+                    'page' => $page,
+                    'code' => 'content',
+                )));
+                $content->setType('fitbase.block.dashboard_gamification');
+
+
+                $pageManager->save($page);
+
+                return $page;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Create page with weeklytask block
+     * @param $site
+     * @param $parent
+     * @param $name
+     * @param $title
+     * @param $slug
+     * @return null|object
+     */
+    protected function createPageWeeklytask($site, $parent, $name, $title, $slug)
+    {
+        if (($pageManager = $this->getPageManager())) {
+
+            if (($page = $pageManager->create())) {
+
+                $page->setName($name);
+                $page->setTitle($title);
+                $page->setSlug($slug);
+                $page->setUrl("/$slug");
+                $page->setCreatedAt(new \DateTime("now"));
+                $page->setUpdatedAt(new \DateTime("now"));
+                $page->setRouteName("page_slug");
+                $page->setType("sonata.page.service.default");
+                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
+                $page->setParent($parent);
+                $page->setTemplateCode("default");
+                $page->setEdited(1);
+                $page->setEnabled(1);
+                $page->setPosition(1);
+                $page->setDecorate(1);
+                $page->setSite($site);
+
+                $page->addBlocks($content = $this->getBlockInteractor()->createNewContainer(array(
+                    'enabled' => true,
+                    'page' => $page,
+                    'code' => 'content',
+                )));
+                $content->setType('fitbase.block.dashboard_weeklytask');
+
+
+                $pageManager->save($page);
+
+                return $page;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Create page with weeklytask block
+     * @param $site
+     * @param $parent
+     * @param $name
+     * @param $title
+     * @param $slug
+     * @return null|object
+     */
+    protected function createPageProfile($site, $parent, $name, $title, $slug)
+    {
+        if (($pageManager = $this->getPageManager())) {
+            $blockManager = $this->getBlockManager();
+
+            if (($page = $pageManager->create())) {
+
+                $page->setName($name);
+                $page->setTitle($title);
+                $page->setSlug($slug);
+                $page->setUrl("/$slug");
+                $page->setCreatedAt(new \DateTime("now"));
+                $page->setUpdatedAt(new \DateTime("now"));
+                $page->setRouteName("page_slug");
+                $page->setType("sonata.page.service.default");
+                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
+                $page->setParent($parent);
+                $page->setTemplateCode("default");
+                $page->setEdited(1);
+                $page->setEnabled(1);
+                $page->setPosition(1);
+                $page->setDecorate(1);
+                $page->setSite($site);
+
+                $page->addBlocks($content = $this->getBlockInteractor()->createNewContainer(array(
+                    'enabled' => true,
+                    'page' => $page,
+                    'code' => 'content',
+                )));
+
+                $content->addChildren($reminder = $blockManager->create());
+
+                $reminder->setType('fitbase.block.dashboard_reminder');
+                $reminder->setPosition(1);
+                $reminder->setEnabled(true);
+                $reminder->setPage($page);
+
+                $content->addChildren($profile = $blockManager->create());
+
+                $profile->setType('fitbase.block.dashboard_profile');
+                $profile->setPosition(2);
+                $profile->setEnabled(true);
+                $profile->setPage($page);
+
 
                 $pageManager->save($page);
 

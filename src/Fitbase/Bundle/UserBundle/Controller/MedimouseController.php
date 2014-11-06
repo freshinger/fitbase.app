@@ -14,7 +14,7 @@ use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class MedimouseController extends WordpressControllerAbstract
+class MedimouseController extends Controller
 {
     public function eingabeAction()
     {

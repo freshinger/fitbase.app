@@ -52,6 +52,35 @@
         </service>
 
 
+        <service id="fitbase.weeklytasks.block.breadcrumb"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Block\Breadcrumb\WeeklytasksBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>weeklytasks</argument>
+            <argument>fitbase.weeklytasks.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+
+        <service id="fitbase.weeklytask.block.breadcrumb"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Block\Breadcrumb\WeeklytaskBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>weeklytask</argument>
+            <argument>fitbase.weeklytask.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 </container>

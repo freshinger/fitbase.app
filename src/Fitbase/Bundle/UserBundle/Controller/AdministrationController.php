@@ -20,12 +20,13 @@ use Fitbase\Bundle\UserBundle\Form\UserSearchForm;
 use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\FormError;
 
 
-class AdministrationController extends WordpressControllerAbstract
+class AdministrationController extends Controller
 {
     /**
      * Action to import user from csv file

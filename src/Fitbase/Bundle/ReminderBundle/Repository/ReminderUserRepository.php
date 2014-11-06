@@ -7,19 +7,17 @@ use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
 
 class ReminderUserRepository extends EntityRepository
 {
-
-
     /**
      * Get all user-tasks
      * @param $queryBuilder
      * @param $user
      * @return mixed
      */
-    protected function getExprUser($queryBuilder, $user)
+    protected function getExprUser($queryBuilder, $user = null)
     {
         if (!empty($user)) {
-            $queryBuilder->setParameter(':userId', $user->getId());
-            return $queryBuilder->expr()->eq('ReminderUser.userId', ':userId');
+            $queryBuilder->setParameter(':user', $user->getId());
+            return $queryBuilder->expr()->eq('ReminderUser.user', ':user');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -139,7 +137,7 @@ class ReminderUserRepository extends EntityRepository
      * @param $user
      * @return mixed
      */
-    public function findOneByUser($user)
+    public function findOneByUser($user = null)
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
 
@@ -173,7 +171,7 @@ class ReminderUserRepository extends EntityRepository
             }
 
             $reminder = $this->findOneBy(array(
-                'userId' => $user->getId()
+                'user' => $user->getId()
             ));
 
             if ($reminder instanceof ReminderUser) {

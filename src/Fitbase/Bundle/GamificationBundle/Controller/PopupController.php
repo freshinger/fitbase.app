@@ -19,9 +19,6 @@ class PopupController extends GamificationCompanyController
      */
     protected function avatarAction(Request $request)
     {
-        // TODO: Remove
-        return new Response('');
-
         if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
 
             $repositoryGamificationUser = $this->get('fitbase_entity_manager')

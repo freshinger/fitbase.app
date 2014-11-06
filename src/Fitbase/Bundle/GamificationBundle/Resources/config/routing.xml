@@ -23,6 +23,10 @@
         <default key="_controller">FitbaseGamificationBundle:Dashboard:chat</default>
     </route>
 
+    <route id="gamification_dashboard_avatar" path="/mitgliederbereich/dashboard/avatar">
+        <default key="_controller">FitbaseGamificationBundle:Dashboard:avatar</default>
+    </route>
+
     <route id="gamification_dashboard_tree" path="/mitgliederbereich/dashboard/tree">
         <default key="_controller">FitbaseGamificationBundle:Dashboard:tree</default>
     </route>

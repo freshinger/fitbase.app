@@ -9,6 +9,10 @@
 namespace Fitbase\Bundle\GamificationBundle\Helper;
 
 
+use \Graph;
+use \JpGraph\JpGraph;
+use \UniversalTheme;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
@@ -33,6 +37,8 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         return array(
             new \Twig_SimpleFunction('color', array($this, 'getTreeColor')),
             new \Twig_SimpleFunction('emotion', array($this, 'getEmotion')),
+            new \Twig_SimpleFunction('image', array($this, 'image')),
+            new \Twig_SimpleFunction('graph', array($this, 'graph')),
         );
     }
 
@@ -47,9 +53,108 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
             new \Twig_SimpleFilter('tree', array($this, 'getUserTree')),
             new \Twig_SimpleFilter('forest', array($this, 'getCompanyForest')),
             new \Twig_SimpleFilter('forestPercent', array($this, 'getCompanyPercent')),
-
             new \Twig_SimpleFilter('emotion', array($this, 'getEmotion')),
         );
+    }
+
+    /**
+     * Draw agraph image
+     * @param null $statistic
+     * @return string
+     */
+    public function graph($statistic = null)
+    {
+        if (empty($statistic)) {
+            $statistic = array(
+                array(
+                    'date' => $this->container->get('datetime')->getDateTime('now'),
+                    'count_point_total' => 0,
+                )
+            );
+        }
+
+        $dataMonthCacheArray = array();
+        foreach ($statistic as $element) {
+
+            if (isset($element['date'])) {
+                if (($data = $element['date'])) {
+                    $dateString = $this->container->get('translator')->trans($data->format("F"));
+                    if (!isset($dataMonthCache[$dateString])) {
+                        $dataMonthCacheArray[$dateString] = array();
+                    }
+
+                    array_push($dataMonthCacheArray[$dateString], (int)$element['count_point_total']);
+                }
+            }
+        }
+
+        $values = array();
+        if (!empty($dataMonthCacheArray)) {
+            foreach ($dataMonthCacheArray as $cache) {
+                array_push($values, max($cache));
+            }
+        }
+
+        JpGraph::load();
+        JpGraph::module('line');
+        JpGraph::module('bar');
+
+
+        $graph = new Graph(285, 325, 'auto');
+        $graph->SetScale("textlin");
+
+        $graph->SetTheme(new UniversalTheme);
+        $graph->SetMargin(50, 40, 40, 40);
+        $graph->img->SetAngle(0);
+
+        $graph->SetBox(false);
+
+        $graph->ygrid->Show(false);
+        $graph->ygrid->SetFill(false);
+        $graph->xaxis->SetTickLabels(array_keys($dataMonthCacheArray));
+
+        $graph->yaxis->HideLine(false);
+        $graph->yaxis->HideTicks(false, false);
+        $graph->yaxis->SetTickLabels(array(0, 1, 10, 20, 100, 200, 500, 1000, 10000));
+
+        $graph->SetBackgroundGradient('#FFFFFF', '#FFFFFF', GRAD_HOR, BGRAD_PLOT);
+
+        $b1plot = new \BarPlot($values);
+        $b1plot->SetFillGradient("#c0e3e8", "#FFFFFF", GRAD_HOR);
+        $b1plot->SetWidth(60);
+        $b1plot->SetWeight(0);
+        $graph->Add($b1plot);
+
+        $graph->Stroke(_IMG_HANDLER);
+
+        //Start buffering
+        ob_start();
+        $graph->img->Stream();
+        $image = ob_get_contents();
+        ob_end_clean();
+
+        return '<img src="data:image/png;base64,' . base64_encode($image) . '"  />';
+    }
+
+    /**
+     * Convert svg image to png
+     * @param $content
+     * @param int $width
+     * @return null|string
+     */
+    public function image($content, $width = 275)
+    {
+        if (!strlen($content)) {
+            return null;
+        }
+
+        $imagick = new \Imagick();
+        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->readImageBlob('<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $content);
+        $imagick->scaleImage($width, 0);
+        $imagick->setImageFormat("png");
+
+        return '<img src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
     }
 
     /**

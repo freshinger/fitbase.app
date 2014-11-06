@@ -1,0 +1,53 @@
+{% block form_rows -%}
+    {% for child in form %}
+        <div class="row">
+            <div class="col-md-10">
+                {{- form_row(child) -}}
+            </div>
+        </div>
+    {% endfor %}
+{%- endblock form_rows %}
+
+{% block form_row -%}
+    {{- form_label(form) -}}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{%- endblock form_row %}
+
+{% block button_row -%}
+    <br/>
+    {{- form_widget(form) -}}
+{%- endblock button_row %}
+
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        <p>{{ label|trans({}, translation_domain) }}</p>
+    {%- endif %}
+{%- endblock form_label %}
+
+
+{% block reminder_pause_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-12">
+                {% if form.parent is empty %}
+                    {{ form_errors(form) }}
+                {% endif %}
+                {{- form_errors(form.pause) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {{- form_row(form.pause) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                {{ form_rest(form) }}
+                {{ form_row(form.save) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock reminder_pause_widget %}

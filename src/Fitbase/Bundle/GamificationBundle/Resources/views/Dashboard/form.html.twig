@@ -2,6 +2,7 @@
     {{- form_widget(form) -}}
 {%- endblock button_row %}
 
+
 {% block form_errors %}
     {% spaceless %}
         {% if errors|length > 0 %}
@@ -48,10 +49,12 @@
 
 {% block gamification_dialog_user_answer_widget %}
     {% spaceless %}
-        {% if feedback is defined and feedback %}
-            <p>{{ feedback }}</p>
-        {% else %}
-            <p>Ein schöner Sommerurlaub</p>
+        {% if feedback is defined %}
+            {% if feedback is null %}
+                <p>Ein schöner Sommerurlaub</p>
+            {% else %}
+                <p>{{ feedback }}</p>
+            {% endif %}
         {% endif %}
         {{- block('form_widget_compound') -}}
     {% endspaceless %}

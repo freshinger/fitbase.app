@@ -134,6 +134,7 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\StatisticBundle\FitbaseStatisticBundle(),
             new Fitbase\Bundle\GamificationBundle\FitbaseGamificationBundle(),
             new Fitbase\Bundle\ExerciseBundle\FitbaseExerciseBundle(),
+            new Fitbase\Bundle\UserBundle\FitbaseUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -152,6 +153,6 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 }

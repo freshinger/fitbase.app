@@ -25,56 +25,20 @@ class WeeklytaskController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function weeklytaskAction(Request $request)
-    {
-        $countWeeklytaskDone = 0;
-        $countWeeklytaskPointDone = 0;
-        $collectionWeeklytaskActual = array();
-        $collectionWeeklytaskArchive = array();
-
-        if (($user = $this->get('user')->current())) {
-            $weeklytaskRepository = $this->get('entity_manager')->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-
-            $countWeeklytaskDone = $weeklytaskRepository->findCountByUserAndDone($user);
-            $countWeeklytaskPointDone = $weeklytaskRepository->findSumPointByUserAndDone($user);
-
-            $collectionWeeklytaskActual = $weeklytaskRepository->findAllByUserAndNotDone($user);
-            $collectionWeeklytaskArchive = $weeklytaskRepository->findAllByUserAndDone($user);
-        }
-
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:list.html.twig', array(
-            'countWeeklytaskDone' => $countWeeklytaskDone,
-            'countWeeklytaskPointDone' => $countWeeklytaskPointDone,
-            'collectionWeeklytaskActual' => $collectionWeeklytaskActual,
-            'collectionWeeklytaskArchive' => $collectionWeeklytaskArchive,
-        ));
-    }
-
-    /**
-     * Display current task status
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function weeklytaskShowAction($unique = null, Request $request)
+    public function viewAction(Request $request, $unique = null)
     {
         $weeklytask = null;
-        if (($user = $this->get('user')->current())) {
 
-            $repositoryWeeklytask = $this->get('entity_manager')
-                ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+        $entityManager = $this->get('entity_manager');
+        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
-            if (($weeklytask = $repositoryWeeklytask->find($unique))) {
-//                if (($weeklytaskUser = $repositoryWeeklytaskUser->findOneByUserAndPost($user, $post))) {
-//                    if (!$weeklytaskUser->getDone()) {
-//                        $weeklytaskUserEvent = new WeeklytaskUserEvent($weeklytaskUser);
-//                        $this->get('event_dispatcher')->dispatch('weeklytask_user_done', $weeklytaskUserEvent);
-//                    }
-//                }
-
-            }
+        if (($weeklytask = $repositoryWeeklytask->find($unique))) {
+            $event = new WeeklytaskEvent($weeklytask);
+            $this->get('event_dispatcher')->dispatch('weeklytask_user_view', $event);
+            $this->get('logger')->debug('[fitbase] weeklytask view', array($weeklytask->getId()));
         }
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:show.html.twig', array(
+        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
             'weeklytask' => $weeklytask,
         ));
     }

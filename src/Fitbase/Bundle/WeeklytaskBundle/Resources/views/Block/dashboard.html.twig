@@ -1,3 +1,5 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytasks', 'current_uri': app.request.requestUri }) }}
+
 <div class="row">
     <div class="col-md-5">
         <a href="http://online-rueckenschule.de/wp-content/uploads/frau-stretching-300x285.jpg">
@@ -105,7 +107,7 @@
                         <td class="shade center" nowrap>
                             {% set code = task.weeklytaskId|quizCode %}
                             {% if code|length > 0 %}
-                                <a href="#">
+                                <a href="?quizcode={{ code }}">
                                     {{ task.weeklytaskId|quizName }}
                                 </a>
                             {% endif %}

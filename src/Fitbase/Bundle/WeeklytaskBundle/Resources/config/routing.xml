@@ -9,13 +9,8 @@
     </route>
 
     <route id="weeklytask_show" pattern="/{unique}">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytaskShow</default>
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:view</default>
     </route>
-
-    <route id="weeklytask" pattern="/">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>
-    </route>
-
 
     <!--<route id="weeklytask" pattern="/administration/weeklytask/list">-->
     <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>-->

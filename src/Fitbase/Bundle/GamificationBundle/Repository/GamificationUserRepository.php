@@ -16,14 +16,14 @@ class GamificationUserRepository extends EntityRepository
     /**
      * Get expression to find record by user id
      * @param $queryBuilder
-     * @param $userId
+     * @param $user
      * @return mixed
      */
-    public function getExprUserId($queryBuilder, $userId)
+    public function getExprUser($queryBuilder, $user)
     {
-        if (!empty($userId)) {
+        if (is_object($user)) {
 
-            $queryBuilder->setParameter('userId', $userId);
+            $queryBuilder->setParameter('userId', $user->getId());
             return $queryBuilder->expr()->eq('GamificationUser.user', ':userId');
         }
 
@@ -40,7 +40,7 @@ class GamificationUserRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder('GamificationUser');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprUserId($queryBuilder, $user->getId())
+            $this->getExprUser($queryBuilder, $user)
         ));
 
         $queryBuilder->setMaxResults(1);

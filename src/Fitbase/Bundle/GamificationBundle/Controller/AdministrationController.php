@@ -11,13 +11,14 @@ use Fitbase\Bundle\GamificationBundle\Form\GamificationDialogQuestionFinishForm;
 use Fitbase\Bundle\GamificationBundle\Form\GamificationDialogQuestionForm;
 use Fitbase\Bundle\GamificationBundle\Form\GamificationDialogQuestionNoticeForm;
 use Fitbase\Bundle\GamificationBundle\Form\GamificationDialogQuestionTextForm;
+use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdministrationController extends Controller
+class AdministrationController extends WordpressControllerAbstract
 {
     /**
      * Display administration interface

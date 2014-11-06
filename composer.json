@@ -77,7 +77,8 @@
 
         "incenteev/composer-parameter-handler": "~2.0",
         "webonaute/doctrine-fixtures-generator-bundle": "v1.0.2",
-        "genemu/form-bundle": "v2.2.2"
+        "genemu/form-bundle": "v2.2.2",
+        "jpgraph/jpgraph": "dev-master"
     },
 
     "require-dev": {

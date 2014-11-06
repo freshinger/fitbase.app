@@ -19,9 +19,10 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Tests\Controller;
 
 
-class UserDashboardController extends WordpressControllerAbstract
+class UserDashboardController extends Controller
 {
     /**
      * Display form to change user focus

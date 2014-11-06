@@ -10,11 +10,13 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="userId" type="integer" column="user_id"/>
-        <field name="pause" type="integer" column="pause"/>
-        <field name="pauseStart" type="datetime" column="pause_start"/>
+        <field name="pause" type="integer" column="pause" nullable="true"/>
+        <field name="pauseStart" type="datetime" column="pause_start" nullable="true"/>
         <field name="sendWeeklytask" type="integer" column="send_weeklytask" nullable="true"/>
         <field name="sendWeeklyquiz" type="integer" column="send_weeklyquiz" nullable="true"/>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+
 
     </entity>
 </doctrine-mapping>

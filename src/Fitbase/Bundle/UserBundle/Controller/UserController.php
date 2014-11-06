@@ -12,12 +12,10 @@ use Fitbase\Bundle\UserBundle\Form\PasswordForm;
 use Fitbase\Bundle\UserBundle\Form\UserPauseForm;
 use Fitbase\Bundle\UserBundle\Form\UserProfileForm;
 use Fitbase\Bundle\UserBundle\Form\UserSearchForm;
-use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController extends WordpressControllerAbstract
+class UserController extends Controller
 {
     /**
      * Display password form

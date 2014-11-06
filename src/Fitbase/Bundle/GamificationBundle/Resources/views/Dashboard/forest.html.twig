@@ -1,9 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <h4 class="short hue">
-            Zu {{ company|forestPercent }}% ist der Wald
-            bereits begrünt!
-        </h4>
-        {% include 'FitbaseGamificationBundle:Service:forest.html.twig' with { 'percent': company|forestPercent } %}
+        <h4 class="short hue">Der Unternehmenswald</h4>
+        {% if forest is defined %}
+            {{ image(forest)|raw }}
+            {#{{ forest|raw }}#}
+        {% endif %}
+        <p>Der Unternehmenswald ist bisher mit {{ points }} Blättern begrünt</p>
     </div>
 </div>

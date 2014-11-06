@@ -44,9 +44,15 @@ class DashboardController extends GamificationCompanyController
             $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
             $datetime = $this->get('datetime')->getDateTime('now');
-            $datetime->modify('-4 week');
+            $datetime->modify('-12 week');
 
             $statistic = $repositoryGamificationUserPointlog->findAllByUserGroupByWeek($user, $datetime);
+        }
+
+        if (count($statistic)) {
+            foreach ($statistic as $index => $element) {
+                $statistic[$index]['date'] = $this->get('datetime')->getDateTime($element['date']);
+            }
         }
 
         return $this->render('FitbaseGamificationBundle:Dashboard:statistic.html.twig', array(
@@ -86,32 +92,58 @@ class DashboardController extends GamificationCompanyController
     }
 
     /**
+     *
+     * @param Request $request
+     * @return Response
+     */
+    protected function avatarAction(Request $request)
+    {
+        $avatar = null;
+        $gamification = null;
+
+        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+            $managerEntity = $this->container->get('fitbase_entity_manager');
+            $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+
+            if (($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+                $avatar = $this->get('gamification')->getSvgAvatar($gamification);
+            }
+        }
+
+        return $this->render('FitbaseGamificationBundle:Dashboard:avatar.html.twig', array(
+            'avatar' => $avatar,
+            'gamification' => $gamification,
+        ));
+    }
+
+    /**
      * Display tree with activity statistic for user
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function treeAction(Request $request)
     {
+        $tree = null;
+        $points = null;
         $gamification = null;
 
+        $managerEntity = $this->container->get('fitbase_entity_manager');
         if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
-
-            $managerEntity = $this->container->get('fitbase_entity_manager');
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
-            $gamification = $repositoryGamificationUser->findOneByUser($user);
-        }
-
-        $percent = 0;
-
-        $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
-        if (($GamificationUserPointlog = $repositoryGamificationUserPointlog->findOneLastByUser($user))) {
-            $percent = $this->get('gamification')->getPointPercent($GamificationUserPointlog->getCountPoint());
+            if (($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+                $tree = $this->get('gamification')->getSvgTree($gamification);
+                $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
+                if (($gamificationUserPointlog = $repositoryGamificationUserPointlog->findOneLastByUser($user))) {
+                    $points = $gamificationUserPointlog->getCountPointTotal();
+                }
+            }
         }
 
         return $this->render('FitbaseGamificationBundle:Dashboard:tree.html.twig', array(
+            'tree' => $tree,
+            'points' => $points,
             'gamification' => $gamification,
-            'percent' => $percent
         ));
     }
 
@@ -133,8 +165,32 @@ class DashboardController extends GamificationCompanyController
             }
         }
 
+        $countPointlogPoint = 0;
+        if (is_object($company)) {
+            $repositoryUserMeta = $managerEntity->getRepository('Ekino\WordpressBundle\Entity\UserMeta');
+            $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
+
+            $collectionUserMeta = $repositoryUserMeta->findBy(array(
+                'key' => 'user_company_id',
+                'value' => $company->getId(),
+            ));
+
+            $collectionUser = array();
+            foreach ($collectionUserMeta as $userMeta) {
+                array_push($collectionUser, $userMeta->getUser());
+            }
+
+            $countPointlogPoint = 0;
+            $collectionGamificationUserPointlog = $repositoryGamificationUserPointlog->findAllByUserIdArray($collectionUser);
+            foreach ($collectionGamificationUserPointlog as $pointlog) {
+                $countPointlogPoint += $pointlog->getCountPointTotal();
+            }
+        }
+
         return $this->render('FitbaseGamificationBundle:Dashboard:forest.html.twig', array(
-            'company' => $company
+            'forest' => $this->get('gamification')->getSvgForest(),
+            'company' => $company,
+            'points' => $countPointlogPoint,
         ));
     }
 

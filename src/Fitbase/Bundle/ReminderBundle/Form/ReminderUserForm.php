@@ -24,7 +24,7 @@ class ReminderUserForm extends AbstractType
             ))
             ->add('sendWeeklyquiz', 'checkbox', array(
                 'required' => false,
-                'label' => 'Die Wochenquizzen versenden',
+                'label' => 'Die Wochenquizze versenden',
             ))
             ->add('save', 'submit', array(
                 'label' => 'Speichern',

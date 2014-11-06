@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GamificationCompanyController extends Controller
+class GamificationCompanyController extends WordpressControllerAbstract
 {
     protected $user = null;
     protected $company = null;
@@ -81,14 +81,14 @@ class GamificationCompanyController extends Controller
             case 'boolean':
                 $type = new GamificationUserDialogAnswerBooleanForm();
 
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
             case 'notice':
                 $type = new GamificationUserDialogAnswerNoticeForm();
 
                 $answer->setValue(1);
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
             case 'feedback':
@@ -96,32 +96,32 @@ class GamificationCompanyController extends Controller
                 $type->setContainer($this->container);
 
                 $answer->setValue(1);
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
             case 'finish':
                 $type = new GamificationUserDialogAnswerFinishForm();
 
                 $answer->setValue(1);
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
             case 'trash':
                 $type = new GamificationUserDialogAnswerTrashForm();
 
                 $answer->setValue(1);
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
             default:
                 $type = new GamificationUserDialogAnswerFinishForm();
 
                 $answer->setValue(1);
-                $answer->setDescription('No description required');
+//                $answer->setDescription('No description required');
 
                 break;
         }
-
+        $answer->setQuestion($question);
         return $this->createForm($type, $answer);
     }
 

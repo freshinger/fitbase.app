@@ -28,6 +28,8 @@ class User extends BaseUser
      */
     protected $id;
 
+    protected $titel;
+
     /**
      * Get id
      *
@@ -36,5 +38,21 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitel()
+    {
+        return $this->titel;
+    }
+
+    /**
+     * @param mixed $titel
+     */
+    public function setTitel($titel)
+    {
+        $this->titel = $titel;
     }
 }

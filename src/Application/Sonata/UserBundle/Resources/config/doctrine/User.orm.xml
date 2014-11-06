@@ -7,8 +7,11 @@
     <entity name="Application\Sonata\UserBundle\Entity\User" table="fos_user_user">
 
         <id name="id" column="id" type="integer">
-            <generator strategy="AUTO" />
+            <generator strategy="AUTO"/>
         </id>
+
+        <field name="titel" type="string" column="titel" nullable="true"/>
+
 
     </entity>
 

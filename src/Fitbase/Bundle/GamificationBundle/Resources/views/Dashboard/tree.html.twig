@@ -1,21 +1,24 @@
-<div class="panel panel-default">
-    <div class="panel-body">
-        <h4 class="short hue">
-            Zu {{ percent }}% ist Ihr Baum
-            bereits begrünt!
-        </h4>
-        {% if gamification is defined and gamification %}
-            {{ gamification.tree|raw }}
-            <script type="text/javascript">
-                jQuery(function () {
-                    var container = jQuery(document);
-                    container.trigger({
-                        type: 'percentHealthUser',
-                        percent: '{{ percent }}'
-                    });
-                });
-            </script>
-        {% endif %}
-    </div>
-</div>
+{% extends "FitbaseGamificationBundle::dashboard.html.twig" %}
 
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4 class="short hue">
+                Ihr Gesundheitsbaum
+            </h4>
+
+            {% if tree is defined %}
+                {{ image(tree)|raw }}
+                {#{{ tree|raw }}#}
+            {% endif %}
+
+
+            {% if points is defined and points %}
+                <p>Sie haben {{ points }} Blätter gesammelt </p>
+            {% else %}
+                <p>Sie haben noch keine Blätter gesammelt </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

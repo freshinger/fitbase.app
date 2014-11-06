@@ -47,7 +47,7 @@ clean:
 	php app/console cache:warmup --env=dev
 
 dev:
-	php -S localhost:8000 -t web
+	php54 -S localhost:8000 -t web
 
 bower:
 	bower install

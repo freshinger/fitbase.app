@@ -59,7 +59,7 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
 
         }
 
-        return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:weeklytask.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(
             'countWeeklytaskDone' => $countWeeklytaskDone,
             'countWeeklytaskPointDone' => $countWeeklytaskPointDone,
             'collectionWeeklytaskActual' => $collectionWeeklytaskActual,

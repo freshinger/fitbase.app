@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion"
-            table="fitbase_gamification_dialog_question"
+            table="ors_gamification_dialog_question"
             repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationDialogQuestionRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
@@ -12,7 +12,7 @@
 
         <field name="text" type="text" column="text"/>
         <field name="type" type="string" column="type"/>
-        <field name="start" type="integer" column="start"/>
+        <field name="start" type="integer" column="start" nullable="true"/>
         <field name="positive" type="integer" column="positive" nullable="true"/>
         <field name="description" type="text" column="description" nullable="true"/>
 

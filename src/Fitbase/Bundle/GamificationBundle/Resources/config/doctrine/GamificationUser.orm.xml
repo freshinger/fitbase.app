@@ -3,18 +3,16 @@
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUser" table="fitbase_gamification_user"
+    <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUser" table="ors_gamification_user"
             repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationUserRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="avatar" type="text" column="avatar"/>
-        <field name="tree" type="text" column="tree"/>
+        <field name="avatar" type="text" column="avatar" nullable="true"/>
+        <field name="tree" type="text" column="tree" nullable="true"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
 
     </entity>
 </doctrine-mapping>
