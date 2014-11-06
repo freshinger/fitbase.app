@@ -24,6 +24,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -82,22 +83,28 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
 
 
         $form = $this->container->get('form.factory')->create(new ReminderUserItemForm(), $reminderItem);
-        if (!$this->container->get('request')->isMethodSafe()) {
+        if ($this->container->get('request')->get($form->getName())) {
             $form->handleRequest($this->container->get('request'));
             if ($form->isValid()) {
 
                 $event = new ReminderUserItemEvent($reminderItem);
                 $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
+
+                $request = $this->container->get('request');
+                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
             }
         }
 
         $formReminder = $this->container->get('form.factory')->create(new ReminderUserForm(), $reminder);
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
-            if ($form->isValid()) {
+        if ($this->container->get('request')->get($formReminder->getName())) {
+            $formReminder->handleRequest($this->container->get('request'));
+            if ($formReminder->isValid()) {
 
                 $event = new ReminderUserEvent($reminder);
                 $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+
+                $request = $this->container->get('request');
+                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
             }
         }
 

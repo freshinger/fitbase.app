@@ -12,7 +12,6 @@
 
         <field name="titel" type="string" column="titel" nullable="true"/>
 
-
     </entity>
 
 </doctrine-mapping>

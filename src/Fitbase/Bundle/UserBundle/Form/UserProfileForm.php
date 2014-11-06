@@ -23,8 +23,8 @@ class UserProfileForm extends AbstractType
                 'required' => false,
                 'label' => 'Anrede',
                 'choices' => array(
-                    'Frau' => 'Frau',
-                    'Herr' => 'Herr',
+                    'f' => 'Frau',
+                    'm' => 'Herr',
                 ),
                 'empty_value' => 'Bitte wählen',
             ))
