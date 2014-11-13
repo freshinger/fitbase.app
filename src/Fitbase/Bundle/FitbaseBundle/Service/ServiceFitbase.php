@@ -22,7 +22,7 @@ class ServiceFitbase extends ContainerAware
         global $module_parent_page_id;
 
         if (!empty($module_parent_page_id)) {
-            $managerEntityFitbase = $this->container->get('doctrine.orm.fitbase_entity_manager');
+            $managerEntityFitbase = $this->container->get('doctrine.orm.entity_manager');
             $repositoryPost = $managerEntityFitbase->getRepository('Fitbase\Bundle\FitbaseBundle\Entity\Post');
             return $repositoryPost->find($module_parent_page_id);
         }
@@ -34,11 +34,11 @@ class ServiceFitbase extends ContainerAware
      * Get current user for fitbase
      * @return null
      */
-    public function getCurrentUser()
+    public function current()
     {
         $apiWordpress = $this->container->get('fitbase_wordpress.api');
         if (($userCurrent = $apiWordpress->wpGetCurrentUser())) {
-            $managerEntityFitbase = $this->container->get('doctrine.orm.fitbase_entity_manager');
+            $managerEntityFitbase = $this->container->get('doctrine.orm.entity_manager');
             $repositoryUser = $managerEntityFitbase->getRepository('Fitbase\Bundle\FitbaseBundle\Entity\User');
             return $repositoryUser->find($userCurrent->ID);
         }

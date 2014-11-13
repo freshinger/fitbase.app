@@ -45,25 +45,46 @@ class LoadMediaVideoData extends AbstractFixture implements ContainerAwareInterf
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-        $canada = Finder::create()->name('*.webm')->in(__DIR__ . '/../data/Video');
+        $i = 0;
+        if (($videos = $this->getVideoWebM())) {
+            foreach ($videos as $file) {
+
+                $media = $manager->create();
+                $media->setBinaryContent($file);
+                $media->setEnabled(true);
+                $media->setName($file->getFilename());
+                $media->setDescription($file->getFilename());
+                $media->setAuthorName('Fitbase');
+                $media->setCopyright('Fitbase');
+
+                $this->addReference($file->getFilename(), $media);
+
+                $manager->save($media, 'exercise', 'sonata.media.provider.file');
+
+                $this->addMedia($gallery, $media);
+            }
+        }
 
         $i = 0;
-        foreach ($canada as $file) {
+        if (($videos = $this->getVideoMp4())) {
+            foreach ($videos as $file) {
 
-            $media = $manager->create();
-            $media->setBinaryContent($file);
-            $media->setEnabled(true);
-            $media->setName($file->getFilename());
-            $media->setDescription($file->getFilename());
-            $media->setAuthorName('Fitbase');
-            $media->setCopyright('Fitbase');
+                $media = $manager->create();
+                $media->setBinaryContent($file);
+                $media->setEnabled(true);
+                $media->setName($file->getFilename());
+                $media->setDescription($file->getFilename());
+                $media->setAuthorName('Fitbase');
+                $media->setCopyright('Fitbase');
 
-            $this->addReference($file->getFilename(), $media);
+                $this->addReference($file->getFilename(), $media);
 
-            $manager->save($media, 'exercise', 'sonata.media.provider.file');
+                $manager->save($media, 'exercise', 'sonata.media.provider.file');
 
-            $this->addMedia($gallery, $media);
+                $this->addMedia($gallery, $media);
+            }
         }
+
 
         $gallery->setEnabled(true);
         $gallery->setName('Videos');
@@ -73,6 +94,24 @@ class LoadMediaVideoData extends AbstractFixture implements ContainerAwareInterf
         $this->getGalleryManager()->update($gallery);
 
         $this->addReference('fitbase-video', $gallery);
+    }
+
+    /**
+     * Get all WebM videos
+     * @return Finder
+     */
+    protected function getVideoWebM()
+    {
+        return Finder::create()->name('*.webm')->in(__DIR__ . '/../data/Video/webm');
+    }
+
+    /**
+     * Get all WebM videos
+     * @return Finder
+     */
+    protected function getVideoMp4()
+    {
+        return Finder::create()->name('*.mp4')->in(__DIR__ . '/../data/Video/mp4');
     }
 
     /**

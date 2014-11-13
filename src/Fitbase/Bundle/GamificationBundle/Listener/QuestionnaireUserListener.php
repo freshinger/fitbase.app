@@ -25,7 +25,7 @@ class QuestionnaireUserListener extends ContainerAware
 
         $datetime = $this->container->get('datetime');
 
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklytaskQuizPlan = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
         $GamificationUserPointlog = new GamificationUserPointlog();

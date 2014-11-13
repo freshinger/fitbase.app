@@ -19,8 +19,8 @@ class ReminderUserPlanListener extends ContainerAware
 
         $plan->setProcessed(true);
 
-        $this->container->get('fitbase_entity_manager')->persist($plan);
-        $this->container->get('fitbase_entity_manager')->flush($plan);
+        $this->container->get('entity_manager')->persist($plan);
+        $this->container->get('entity_manager')->flush($plan);
     }
 
     /**
@@ -31,13 +31,13 @@ class ReminderUserPlanListener extends ContainerAware
     {
         assert(($reminderItem = $event->getEntity()));
 
-        $repositoryReminderPlan = $this->container->get('fitbase_entity_manager')
+        $repositoryReminderPlan = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');
 
         if (($reminderPlan = $repositoryReminderPlan->findOneByReminderItemAndNotProcessed($reminderItem))) {
 
-            $this->container->get('fitbase_entity_manager')->remove($reminderPlan);
-            $this->container->get('fitbase_entity_manager')->flush($reminderPlan);
+            $this->container->get('entity_manager')->remove($reminderPlan);
+            $this->container->get('entity_manager')->flush($reminderPlan);
         }
     }
 }

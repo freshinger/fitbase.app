@@ -20,7 +20,6 @@ class ServiceGamification extends ContainerAware
      */
     public function getSvgTree(\Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamification = null)
     {
-
         $tree = $this->container->get('templating')
             ->render('FitbaseGamificationBundle:SVG:tree.svg.twig');
 
@@ -113,45 +112,5 @@ class ServiceGamification extends ContainerAware
     {
         return $this->container->get('templating')
             ->render('FitbaseGamificationBundle:SVG:avatar_tiger.svg.twig');
-    }
-
-    /**
-     * Get points as percent
-     * @param $points
-     * @return float
-     */
-    public function getPointPercent($points)
-    {
-        return round((($pointsPercent = (($points * 100) / 2600)) > 0) ? $pointsPercent : 0);
-    }
-
-    /**
-     * Display forest
-     * @param $points
-     * @param int $width
-     * @param int $height
-     * @return mixed
-     */
-    public function forest($points, $width = 533, $height = 300)
-    {
-        $view = 'FitbaseGamificationBundle:SVG:forest.svg.twig';
-        return $this->container->get('templating')->render($view, array(
-            'percent' => $this->getPointPercent($points)
-        ));
-    }
-
-    /**
-     * Build a tree
-     * @param $points
-     * @param int $width
-     * @param int $height
-     * @return array
-     */
-    public function tree($points, $width = 300, $height = 300)
-    {
-        $view = 'FitbaseGamificationBundle:SVG:tree.svg.twig';
-        return $this->container->get('templating')->render($view, array(
-            'percent' => $this->getPointPercent($points),
-        ));
     }
 }

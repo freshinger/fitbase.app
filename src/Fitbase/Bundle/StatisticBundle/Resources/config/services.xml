@@ -11,18 +11,15 @@
     </imports>
 
     <services>
-        <service id="fitbase_shortcode.statistic_widget"
-                 class="Fitbase\Bundle\StatisticBundle\Controller\WidgetController">
+
+
+        <service id="statistic" class="Fitbase\Bundle\StatisticBundle\Service\ServiceStatistic">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
-        <service id="fitbase_shortcode.statistic"
-                 class="Fitbase\Bundle\StatisticBundle\Controller\StatisticController">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
+
+
     </services>
 
 </container>

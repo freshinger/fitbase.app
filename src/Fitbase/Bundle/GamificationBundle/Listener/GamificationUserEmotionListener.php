@@ -22,9 +22,9 @@ class GamificationUserEmotionListener extends ContainerAware
      */
     public function onGamificationUserDialogAnswerHideCollectionEvent(GamificationUserDialogAnswerEvent $event)
     {
-        if (($user = $this->container->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->container->get('user')->current())) {
 
-            $repositoryGamificationUserEmotion = $this->container->get('fitbase_entity_manager')
+            $repositoryGamificationUserEmotion = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserEmotion');
 
             $datetime = $this->container->get('datetime')->getDateTime('now');
@@ -32,8 +32,8 @@ class GamificationUserEmotionListener extends ContainerAware
 
                 $emotion->setHidden(1);
 
-                $this->container->get('fitbase_entity_manager')->persist($emotion);
-                $this->container->get('fitbase_entity_manager')->flush($emotion);
+                $this->container->get('entity_manager')->persist($emotion);
+                $this->container->get('entity_manager')->flush($emotion);
             }
         }
     }
@@ -46,7 +46,7 @@ class GamificationUserEmotionListener extends ContainerAware
     {
         assert(($gamificationUserEmotion = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($gamificationUserEmotion);
-        $this->container->get('fitbase_entity_manager')->flush($gamificationUserEmotion);
+        $this->container->get('entity_manager')->persist($gamificationUserEmotion);
+        $this->container->get('entity_manager')->flush($gamificationUserEmotion);
     }
 }

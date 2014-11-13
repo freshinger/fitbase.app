@@ -29,8 +29,8 @@ class ReminderCreateEmptyCommand extends ContainerAwareCommand
     {
         $logger = $this->getContainer()->get('logger');
 
-        $managerUser = $this->getContainer()->get('fitbase_manager.user');
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
+        $managerUser = $this->getContainer()->get('user');
+        $repositoryReminder = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         $logger->info('Pause expire task, start');

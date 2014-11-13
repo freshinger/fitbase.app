@@ -12,14 +12,15 @@ namespace Fitbase\Bundle\GamificationBundle\Listener;
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog;
 use Fitbase\Bundle\GamificationBundle\Event\GamificationUserPointlogEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\EventDispatcher\Event;
 
 class WeeklyquizUserListener extends ContainerAware
 {
     /**
      * Fetch event for done user quiz
-     * @param \Fitbase\Bundle\AufgabeBundle\Event\WeeklytaskUserQuizEvent $event
+     * @param  $event
      */
-    public function onWeeklytaskUserQuizDoneEvent(\Fitbase\Bundle\AufgabeBundle\Event\WeeklytaskUserQuizEvent $event)
+    public function onWeeklytaskUserQuizDoneEvent(Event $event)
     {
         assert(($weeklytaskUserQuiz = $event->getEntity()));
 
@@ -32,7 +33,7 @@ class WeeklyquizUserListener extends ContainerAware
         $GamificationUserPointlog->setCountPoint($weeklytaskUserQuiz->getCountPoint());
 
         $countPointTotal = $GamificationUserPointlog->getCountPoint();
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklytaskQuizPlan = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
         if (($GamificationUserPointlogLast = $repositoryWeeklytaskQuizPlan->findOneLastByUser($weeklytaskUserQuiz->getUser()))) {

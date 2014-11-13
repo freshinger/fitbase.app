@@ -33,7 +33,7 @@ class QuestionSectionForm extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $entityManager = $this->container->get('fitbase_entity_manager');
+        $entityManager = $this->container->get('entity_manager');
         $repositoryResult = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Result');
         $repositoryAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Answer');
         $repositoryQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Question');
@@ -57,7 +57,7 @@ class QuestionSectionForm extends AbstractType
      */
     protected function getFieldAttributes($question)
     {
-        $entityManager = $this->container->get('fitbase_entity_manager');
+        $entityManager = $this->container->get('entity_manager');
         $repositoryResult = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Result');
         $repositoryAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Answer');
 

@@ -79,7 +79,7 @@ class ReminderHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getUserName($id)
     {
-        if (($user = $this->container->get('fitbase_manager.user')->find($id))) {
+        if (($user = $this->container->get('user')->find($id))) {
             return $user->getDisplayName();
         }
         return $id;

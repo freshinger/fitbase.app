@@ -122,4 +122,12 @@ class ReminderUser
     {
         $this->user = $user;
     }
+
+    public function __toString()
+    {
+        if (($user = $this->getUser())) {
+            return "Reminder for: {$user}";
+        }
+        return null;
+    }
 }

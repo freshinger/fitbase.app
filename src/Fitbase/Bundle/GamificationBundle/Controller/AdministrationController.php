@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdministrationController extends WordpressControllerAbstract
+class AdministrationController extends Controller
 {
     /**
      * Display administration interface
@@ -35,7 +35,7 @@ class AdministrationController extends WordpressControllerAbstract
             return $this->removeAction($request, $unique);
         }
 
-        $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+        $repositoryGamificationDialogQuestion = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
         $pagerfanta = new Pagerfanta(new DoctrineORMAdapter(
@@ -101,7 +101,7 @@ class AdministrationController extends WordpressControllerAbstract
      */
     public function removeAction(Request $request, $unique)
     {
-        $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+        $repositoryGamificationDialogQuestion = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
         $gamificationDialogQuestion = $repositoryGamificationDialogQuestion->find($unique);
@@ -122,7 +122,7 @@ class AdministrationController extends WordpressControllerAbstract
      */
     public function updateAction(Request $request, $unique)
     {
-        $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+        $repositoryGamificationDialogQuestion = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
         $gamificationDialogQuestion = $repositoryGamificationDialogQuestion->find($unique);

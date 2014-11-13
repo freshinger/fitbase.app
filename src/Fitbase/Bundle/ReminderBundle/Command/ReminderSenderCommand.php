@@ -35,9 +35,9 @@ class ReminderSenderCommand extends ContainerAwareCommand
 
         $dateTime = $this->getContainer()->get('datetime');
 
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
+        $repositoryReminder = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
-        $repositoryReminderPlan = $this->getContainer()->get('fitbase_entity_manager')
+        $repositoryReminderPlan = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');
 
         $logger->info('Reminder sender, start');

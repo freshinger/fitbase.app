@@ -23,6 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -57,30 +58,25 @@ class ProfileDashboardBlockService extends BaseBlockService implements Container
 //        }
         }
 
-
         $form = $this->container->get('sonata.user.profile.form');
         $formHandler = $this->container->get('sonata.user.profile.form.handler');
 
-        $process = $formHandler->process($user);
-//        if ($process) {
-//            $this->setFlash('sonata_user_success', 'profile.flash.updated');
-//
-//            return new RedirectResponse($this->generateUrl('sonata_user_profile_show'));
-//        }
+        if (($process = $formHandler->process($user))) {
+            $this->container->get('session')->getFlashBag()
+                ->set('sonata_user_success', 'profile.flash.updated');
+        }
 
-//        $formAuthentication = $this->container->get('sonata.user.authentication.form');
-//        $formHandler = $this->container->get('sonata.user.authentication.form_handler');
+        $formPassword = $this->container->get('fos_user.change_password.form');
+        $formHandlerPassword = $this->container->get('fos_user.change_password.form.handler');
 
-//        $process = $formHandler->process($user);
-//        if ($process) {
-//            $this->setFlash('sonata_user_success', 'profile.flash.updated');
-//
-//            return new RedirectResponse($this->generateUrl('sonata_user_profile_show'));
-//        }
+        if (($process = $formHandlerPassword->process($user))) {
+            $this->container->get('session')->getFlashBag()
+                ->set('fos_user_success', 'change_password.flash.success');
+        }
 
-
-        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard.html.twig', array(
+        return $this->renderResponse('FitbaseUserBundle:Block:dashboard.html.twig', array(
             'form' => $form->createView(),
+            'formPassword' => $formPassword->createView(),
         ));
     }
 

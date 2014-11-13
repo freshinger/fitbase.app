@@ -1,0 +1,39 @@
+{% extends 'FitbaseWeeklytaskBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="row">
+
+        {% if weeklyquiz is defined and weeklyquiz %}
+            <div class="col-md-12">
+                <h3 class="modal-title">
+                    {{ weeklyquiz.name }}
+                </h3>
+
+                <p class="modal-description">
+                    {{ weeklyquiz.description|raw }}
+                </p>
+            </div>
+        {% endif %}
+
+    </div>
+
+    {% if form is defined and form %}
+        {% form_theme form "FitbaseWeeklytaskBundle::form.html.twig" %}
+        {{ form(form) }}
+    {% endif %}
+
+    <script type="text/javascript">
+        $(function () {
+            var container = $(document);
+            {% if notices is defined and notices %}
+            {% for notice in notices %}
+            var event = $.extend({
+                type: 'weeklyquiz_user_notice'
+            }, {{ notice|raw|json_encode()|raw }});
+            container.trigger(event);
+            {% endfor %}
+            {% endif %}
+        });
+    </script>
+{% endblock %}
+

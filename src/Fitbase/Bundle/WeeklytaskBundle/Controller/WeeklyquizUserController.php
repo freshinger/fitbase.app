@@ -28,9 +28,9 @@ class WeeklyquizUserController extends Controller
     public function weeklyquizUserAjaxAction(Request $request)
     {
         if (($quizCode = $request->get('quizcode'))) {
-            if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+            if (($user = $this->get('user')->current())) {
 
-                $managerEntity = $this->get('fitbase_entity_manager');
+                $managerEntity = $this->get('entity_manager');
                 $repositoryWeeklyquizAnswer = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
                 $repositoryWeeklyquizQuestion = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
                 $repositoryWeeklyquizUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
@@ -66,7 +66,7 @@ class WeeklyquizUserController extends Controller
                                 $weeklytaskUserAnswer->setCountPoint(($weeklytaskUserAnswer->getCorrect() ? $question->getCountPoint() : 0));
 
                                 $eventUserAnswer = new WeeklyquizUserAnswerEvent($weeklytaskUserAnswer);
-                                $this->get('event_dispatcher')->dispatch('weeklytask_user_answer_create', $eventUserAnswer);
+                                $this->get('event_dispatcher')->dispatch('weeklyquiz_user_answer_done', $eventUserAnswer);
 
 
                                 if ($answers instanceof WeeklyquizAnswer) {
@@ -88,7 +88,7 @@ class WeeklyquizUserController extends Controller
                             }
 
                             $weeklytaskUserQuizEvent = new WeeklyquizUserEvent($weeklytaskUserQuiz);
-                            $this->get('event_dispatcher')->dispatch('weeklytask_user_quiz_done', $weeklytaskUserQuizEvent);
+                            $this->get('event_dispatcher')->dispatch('weeklyquiz_user_done', $weeklytaskUserQuizEvent);
 
                             return new Response(json_encode($notices), 200);
                         }
@@ -110,9 +110,9 @@ class WeeklyquizUserController extends Controller
     public function weeklyquizUserAction(Request $request)
     {
         if (($quizCode = $request->get('quizcode'))) {
-            if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+            if (($user = $this->get('user')->current())) {
 
-                $managerEntity = $this->get('fitbase_entity_manager');
+                $managerEntity = $this->get('entity_manager');
 
                 $repositoryWeeklyquiz = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
                 $repositoryWeeklyquizAnswer = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');

@@ -69,7 +69,7 @@ class ExerciseController extends Controller
 
         if (($exercise = $repositoryExercise->findOneById($unique))) {
             $event = new ExerciseEvent($exercise);
-            $this->get('event_dispatcher')->dispatch('exercise_user_view', $event);
+            $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
             $this->get('logger')->debug('[fitbase] exercise view', array($exercise->getId()));
         }
 

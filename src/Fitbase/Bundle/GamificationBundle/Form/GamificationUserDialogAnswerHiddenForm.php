@@ -16,7 +16,6 @@ class GamificationUserDialogAnswerHiddenForm extends GamificationUserDialogAnswe
     {
         $builder
             ->add('value', 'hidden')
-            ->add('questionId', 'hidden')
             ->add('description', 'hidden');
     }
 }

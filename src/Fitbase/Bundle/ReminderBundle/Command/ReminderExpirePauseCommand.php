@@ -28,7 +28,7 @@ class ReminderExpirePauseCommand extends ContainerAwareCommand
     {
         $logger = $this->getContainer()->get('logger');
 
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
+        $repositoryReminder = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         $logger->info('Pause expire task, start');

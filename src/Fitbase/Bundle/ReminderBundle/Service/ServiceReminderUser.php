@@ -20,7 +20,7 @@ class ServiceReminderUser extends ContainerAware
      */
     public function getIsPause($user)
     {
-        $repositoryReminder = $this->container->get('fitbase_entity_manager')
+        $repositoryReminder = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         if (($reminder = $repositoryReminder->findOneByUser($user))) {

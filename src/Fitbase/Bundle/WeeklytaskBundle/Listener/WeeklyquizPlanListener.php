@@ -19,12 +19,12 @@ class WeeklyquizPlanListener extends ContainerAware
     {
         assert(($weeklytaskQuiz = $event->getEntity()));
 
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklyquizPlan = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan');
         if (($collectionWeeklyquizPlan = $repositoryWeeklyquizPlan->findAllByWeeklyquiz($weeklytaskQuiz))) {
             foreach ($collectionWeeklyquizPlan as $weeklytaskQuizPlan) {
-                $this->container->get('fitbase_entity_manager')->remove($weeklytaskQuizPlan);
-                $this->container->get('fitbase_entity_manager')->flush($weeklytaskQuizPlan);
+                $this->container->get('entity_manager')->remove($weeklytaskQuizPlan);
+                $this->container->get('entity_manager')->flush($weeklytaskQuizPlan);
             }
         }
     }
@@ -42,8 +42,8 @@ class WeeklyquizPlanListener extends ContainerAware
         $weeklytaskQuizPlan->setProcessed(true);
         $weeklytaskQuizPlan->setProcessedDate($serviceDateTime->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytaskQuizPlan);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytaskQuizPlan);
+        $this->container->get('entity_manager')->persist($weeklytaskQuizPlan);
+        $this->container->get('entity_manager')->flush($weeklytaskQuizPlan);
     }
 
     /**
@@ -54,8 +54,8 @@ class WeeklyquizPlanListener extends ContainerAware
     {
         assert(($weeklytaskUserQuiz = $event->getEntity()));
 
-        $managerUser = $this->container->get('fitbase_manager.user');
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerUser = $this->container->get('user');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklytask = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
         if (($weeklytask = $repositoryWeeklytask->findOneByWeekId($weeklytaskUserQuiz->getWeekId()))) {
@@ -72,8 +72,8 @@ class WeeklyquizPlanListener extends ContainerAware
                 $weeklytaskPlan->setWeeklytaskId($weeklytaskUserQuiz->getWeeklytaskId());
                 $weeklytaskPlan->setDate($dateNext);
 
-                $this->container->get('fitbase_entity_manager')->persist($weeklytaskPlan);
-                $this->container->get('fitbase_entity_manager')->flush($weeklytaskPlan);
+                $this->container->get('entity_manager')->persist($weeklytaskPlan);
+                $this->container->get('entity_manager')->flush($weeklytaskPlan);
             }
         }
     }

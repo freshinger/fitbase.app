@@ -14,9 +14,9 @@ class WidgetController extends Controller
      */
     public function statisticUserAction(Request $request)
     {
-        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->get('user')->current();
 
-        $repositoryVideoStatistic = $this->get('fitbase_entity_manager')
+        $repositoryVideoStatistic = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
         $videoCount = $repositoryVideoStatistic->getUserViewCountLastWeek($user->getId(),

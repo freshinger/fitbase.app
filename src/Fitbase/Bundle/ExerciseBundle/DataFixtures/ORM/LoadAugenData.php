@@ -39,7 +39,8 @@ class LoadAugenData extends AbstractFixture implements OrderedFixtureInterface
         $item500->setFormat("richhtml");
         $item500->setTag("Augen");
         $item500->setImage($this->getReference('picture_500.jpeg'));
-        $item500->setVideo($this->getReference('video_500.webm'));
+        $item500->setMp4($this->getReference('video_500.mp4'));
+        $item500->setWebm($this->getReference('video_500.webm'));
         $item500->setGallery($this->getReference('picture_500'));
         $item500->setCategory($this->getReference('category_augen'));
         $item500->setDescription(<<<CONTENT
@@ -95,7 +96,8 @@ CONTENT
         $item535->setFormat("richhtml");
         $item535->setTag("Augen");
         $item535->setImage($this->getReference('picture_535.jpeg'));
-        $item535->setVideo($this->getReference('video_535.webm'));
+        $item535->setMp4($this->getReference('video_535.mp4'));
+        $item535->setWebm($this->getReference('video_535.webm'));
         $item535->setGallery($this->getReference('picture_535'));
         $item535->setCategory($this->getReference('category_augen'));
         $item535->setDescription(<<<CONTENT
@@ -150,7 +152,8 @@ CONTENT
         $item536->setFormat("richhtml");
         $item536->setTag("Augen");
         $item536->setImage($this->getReference('picture_536.jpeg'));
-        $item536->setVideo($this->getReference('video_536.webm'));
+        $item536->setMp4($this->getReference('video_536.mp4'));
+        $item536->setWebm($this->getReference('video_536.webm'));
         $item536->setGallery($this->getReference('picture_536'));
         $item536->setCategory($this->getReference('category_augen'));
         $item536->setDescription(<<<CONTENT
@@ -207,7 +210,8 @@ CONTENT
         $item537->setFormat("richhtml");
         $item537->setTag("Augen");
         $item537->setImage($this->getReference('picture_537.jpeg'));
-        $item537->setVideo($this->getReference('video_537.webm'));
+        $item537->setMp4($this->getReference('video_537.mp4'));
+        $item537->setWebm($this->getReference('video_537.webm'));
         $item537->setGallery($this->getReference('picture_537'));
         $item537->setCategory($this->getReference('category_augen'));
         $item537->setDescription(<<<CONTENT
@@ -262,7 +266,8 @@ CONTENT
         $item538->setFormat("richhtml");
         $item538->setTag("Augen");
         $item538->setImage($this->getReference('picture_538.jpeg'));
-        $item538->setVideo($this->getReference('video_538.webm'));
+        $item538->setMp4($this->getReference('video_538.mp4'));
+        $item538->setWebm($this->getReference('video_538.webm'));
         $item538->setGallery($this->getReference('picture_538'));
         $item538->setCategory($this->getReference('category_augen'));
         $item538->setDescription(<<<CONTENT
@@ -317,7 +322,8 @@ CONTENT
         $item539->setFormat("richhtml");
         $item539->setTag("Augen");
         $item539->setImage($this->getReference('picture_539.jpeg'));
-        $item539->setVideo($this->getReference('video_539.webm'));
+        $item539->setMp4($this->getReference('video_539.mp4'));
+        $item539->setWebm($this->getReference('video_539.webm'));
         $item539->setGallery($this->getReference('picture_539'));
         $item539->setCategory($this->getReference('category_augen'));
         $item539->setDescription(<<<CONTENT
@@ -372,7 +378,8 @@ CONTENT
         $item540->setFormat("richhtml");
         $item540->setTag("Augen");
         $item540->setImage($this->getReference('picture_540.jpeg'));
-        $item540->setVideo($this->getReference('video_540.webm'));
+        $item540->setMp4($this->getReference('video_540.mp4'));
+        $item540->setWebm($this->getReference('video_540.webm'));
         $item540->setGallery($this->getReference('picture_540'));
         $item540->setCategory($this->getReference('category_augen'));
         $item540->setDescription(<<<CONTENT
@@ -432,7 +439,8 @@ CONTENT
         $item544->setFormat("richhtml");
         $item544->setTag("Augen");
         $item544->setImage($this->getReference('picture_544.jpeg'));
-        $item544->setVideo($this->getReference('video_544.webm'));
+        $item544->setMp4($this->getReference('video_544.mp4'));
+        $item544->setWebm($this->getReference('video_544.webm'));
         $item544->setGallery($this->getReference('picture_544'));
         $item544->setCategory($this->getReference('category_augen'));
         $item544->setDescription(<<<CONTENT

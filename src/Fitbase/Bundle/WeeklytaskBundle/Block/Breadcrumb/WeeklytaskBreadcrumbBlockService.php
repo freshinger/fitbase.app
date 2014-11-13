@@ -42,7 +42,7 @@ class WeeklytaskBreadcrumbBlockService extends WeeklytasksBreadcrumbBlockService
         $menu = parent::getRootMenu($blockContext);
 
         $menu->addChild('Wochenaufgabe', array(
-            'route' => 'weeklytask_show',
+            'route' => 'weeklytask_view',
             'routeParameters' => array(
                 'unique' => $this->container->get('request')->get('unique')
             ),

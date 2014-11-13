@@ -25,22 +25,22 @@ class GamificationDialogQuestionListener extends ContainerAware
 
         if ($question->getStart()) {
 
-            $repositoryGamificationDialogQuestion = $this->container->get('fitbase_entity_manager')
+            $repositoryGamificationDialogQuestion = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
             if (($questionStart = $repositoryGamificationDialogQuestion->findOneByStart())) {
 
                 $questionStart->setStart(0);
 
-                $this->container->get('fitbase_entity_manager')->persist($questionStart);
-                $this->container->get('fitbase_entity_manager')->flush($questionStart);
+                $this->container->get('entity_manager')->persist($questionStart);
+                $this->container->get('entity_manager')->flush($questionStart);
             }
         }
 
         $question->setDescription(stripslashes($question->getDescription()));
 
-        $this->container->get('fitbase_entity_manager')->persist($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->persist($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
     /**
@@ -53,7 +53,7 @@ class GamificationDialogQuestionListener extends ContainerAware
 
         if ($question->getStart()) {
 
-            $repositoryGamificationDialogQuestion = $this->container->get('fitbase_entity_manager')
+            $repositoryGamificationDialogQuestion = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
             if (($questionStart = $repositoryGamificationDialogQuestion->findOneByStart())) {
@@ -61,16 +61,16 @@ class GamificationDialogQuestionListener extends ContainerAware
 
                     $questionStart->setStart(0);
 
-                    $this->container->get('fitbase_entity_manager')->persist($questionStart);
-                    $this->container->get('fitbase_entity_manager')->flush($questionStart);
+                    $this->container->get('entity_manager')->persist($questionStart);
+                    $this->container->get('entity_manager')->flush($questionStart);
                 }
             }
         }
 
         $question->setDescription(stripslashes($question->getDescription()));
 
-        $this->container->get('fitbase_entity_manager')->persist($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->persist($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
     /**
@@ -81,8 +81,8 @@ class GamificationDialogQuestionListener extends ContainerAware
     {
         assert(($question = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->remove($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
 }

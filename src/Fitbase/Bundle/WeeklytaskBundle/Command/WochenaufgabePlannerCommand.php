@@ -31,12 +31,12 @@ class WochenaufgabePlannerCommand extends ContainerAwareCommand
 
         $logger->info('Wochenaufgaben, start planner');
 
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
+        $repositoryReminder = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
         if (($collection = $repositoryReminder->findAllByNotPause())) {
             foreach ($collection as $reminder) {
-                if (($user = $this->getContainer()->get('fitbase_manager.user')->find($reminder->getUserId()))) {
+                if (($user = $this->getContainer()->get('user')->find($reminder->getUserId()))) {
 
                     $event = new UserEvent($user);
                     $this->getContainer()->get('event_dispatcher')

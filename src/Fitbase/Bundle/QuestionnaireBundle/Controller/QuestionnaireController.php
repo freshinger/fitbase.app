@@ -41,7 +41,7 @@ class QuestionnaireController extends Controller
 
 //    public function statisticAction(Request $request)
 //    {
-//        $repositoryQuestionnaireUser = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireUser = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
 //
 //        $questionnaireSearch = new QuestionnaireSearch();
@@ -65,7 +65,7 @@ class QuestionnaireController extends Controller
 //            'formSearch' => $formSearch->createView(),
 //            'pagerfanta' => $pagerfanta,
 //            'flashbag' => $this->get('session')->getFlashBag(),
-//            'user' => $this->get('fitbase_manager.user')->getCurrentUser(),
+//            'user' => $this->get('user')->current(),
 //        ));
 //    }
 
@@ -108,7 +108,7 @@ class QuestionnaireController extends Controller
 //        }
 //
 //
-//        $repositoryQuestionnaire = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaire = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire');
 //
 //        $questionnaireSearch = new QuestionnaireSearch();
@@ -132,7 +132,7 @@ class QuestionnaireController extends Controller
 //            'formSearch' => $formSearch->createView(),
 //            'pagerfanta' => $pagerfanta,
 //            'flashbag' => $this->get('session')->getFlashBag(),
-//            'user' => $this->get('fitbase_manager.user')->getCurrentUser(),
+//            'user' => $this->get('user')->current(),
 //        ));
 //    }
 //
@@ -147,7 +147,7 @@ class QuestionnaireController extends Controller
 //            return new Response('', 200);
 //        }
 //
-//        $managerEntity = $this->get('fitbase_entity_manager');
+//        $managerEntity = $this->get('entity_manager');
 //        $repositoryQuestionnaire = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire');
 //
 //        $questionnaireUser = new QuestionnaireUser();
@@ -177,7 +177,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireAnswerRemoveAction($request, $unique)
 //    {
-//        $repositoryQuestionnaireAnswer = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireAnswer = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer');
 //
 //        $answer = $repositoryQuestionnaireAnswer->find($unique);
@@ -199,7 +199,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireAnswerUpdateAction($request, $unique)
 //    {
-//        $repositoryQuestionnaireAnswer = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireAnswer = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer');
 //
 //        $answer = $repositoryQuestionnaireAnswer->find($unique);
@@ -233,7 +233,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireQuestionRemoveAction($request, $unique)
 //    {
-//        $repositoryQuestionnaireQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 //
 //        $question = $repositoryQuestionnaireQuestion->find($unique);
@@ -253,7 +253,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireQuestionUpdateAction($request, $unique)
 //    {
-//        $repositoryQuestionnaireQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 //
 //        $question = $repositoryQuestionnaireQuestion->find($unique);
@@ -287,7 +287,7 @@ class QuestionnaireController extends Controller
 //            }
 //        }
 //
-//        $repositoryQuestionnaireAnswer = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireAnswer = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer');
 //
 //        switch ($question->getType()) {
@@ -316,7 +316,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireRemoveAction($request, $unique)
 //    {
-//        $repositoryQuestionnaire = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaire = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire');
 //
 //        $questionnaire = $repositoryQuestionnaire->find($unique);
@@ -338,7 +338,7 @@ class QuestionnaireController extends Controller
 //     */
 //    public function questionnaireUpdateAction(Request $request, $unique)
 //    {
-//        $repositoryQuestionnaire = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaire = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire');
 //
 //        $questionnaire = $repositoryQuestionnaire->find($unique);
@@ -372,7 +372,7 @@ class QuestionnaireController extends Controller
 //            }
 //        }
 //
-//        $repositoryQuestionnaireQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryQuestionnaireQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 //
 //

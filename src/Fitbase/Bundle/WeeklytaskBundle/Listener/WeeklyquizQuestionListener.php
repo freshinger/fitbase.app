@@ -18,7 +18,7 @@ class WeeklyquizQuestionListener extends ContainerAware
     {
         assert(($weeklytaskQuiz = $event->getEntity()));
 
-        $repositoryQuestion = $this->container->get('fitbase_entity_manager')
+        $repositoryQuestion = $this->container->get('entity_manager')
             ->getREpository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 
         if (($collection = $repositoryQuestion->findAllByQuiz($weeklytaskQuiz))) {
@@ -37,8 +37,8 @@ class WeeklyquizQuestionListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -49,8 +49,8 @@ class WeeklyquizQuestionListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->remove($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -61,8 +61,8 @@ class WeeklyquizQuestionListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
 
     }
 

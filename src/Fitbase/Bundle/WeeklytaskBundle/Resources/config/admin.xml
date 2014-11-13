@@ -9,9 +9,19 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Quizze"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Wochenquizze"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.weeklyquiz_user" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklyquizUserAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="User-Weeklyquiz"/>
+            <argument/>
+            <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser</argument>
             <argument/>
         </service>
 
@@ -41,7 +51,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Plan"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Wochenquizze"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan</argument>
             <argument/>
@@ -51,17 +61,28 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Aufgaben"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenaufgaben"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask</argument>
             <argument/>
         </service>
 
+        <service id="fitbase.admin.weeklytask_user" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklytaskUserAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="User-Weeklkytask"/>
+            <argument/>
+            <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser</argument>
+            <argument/>
+        </service>
+
+
         <service id="fitbase.admin.weeklytask_plan" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklytaskPlanAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Plan"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenaufgaben"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan</argument>
             <argument/>

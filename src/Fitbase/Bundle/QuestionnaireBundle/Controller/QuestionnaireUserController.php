@@ -57,12 +57,12 @@ class QuestionnaireUserController extends Controller
      */
     public function questionnaireAction(Request $request)
     {
-        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->get('user')->current();
         if (empty($user) or !$this->isDisplayQuestionnaire($user)) {
             return new Response('');
         }
 
-        $managerEntity = $this->get('fitbase_entity_manager');
+        $managerEntity = $this->get('entity_manager');
         $repositoryQuestionnaireUser = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
         $repositoryQuestionnaireAnswer = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer');
         $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
@@ -182,12 +182,12 @@ class QuestionnaireUserController extends Controller
      */
     public function passwordAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
             if ($this->isDisplayPasswordReset($user)) {
 
                 $form = $this->createForm(new PasswordForm(), new Password());
                 return $this->render('FitbaseQuestionnaireBundle:QuestionnaireUser:password.html.twig', array(
-                    'user' => $this->get('fitbase_manager.user')->getCurrentUser(),
+                    'user' => $this->get('user')->current(),
                     'form' => $form->createView(),
                 ));
             }
@@ -213,7 +213,7 @@ class QuestionnaireUserController extends Controller
 
             $this->get('logger')->info('Password popup submit, post');
 
-            if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+            if (($user = $this->get('user')->current())) {
                 if ($this->isDisplayPasswordReset($user)) {
 
                     $this->get('logger')->info('Password popup submit, display form');
@@ -251,9 +251,9 @@ class QuestionnaireUserController extends Controller
 //    {
 //        $request = $this->get('request');
 //        $modalPage = $request->get('questionnaire', null);
-//        $userManager = $this->get('fitbase_manager.user');
+//        $userManager = $this->get('user');
 //
-//        if (($user = $userManager->getCurrentUser())) {
+//        if (($user = $userManager->current())) {
 ////            if (!$user->getMetaValue('user_questionnaire_completed'))
 //            {
 ////                if (($company = $userManager->getCompany($user)))
@@ -338,7 +338,7 @@ class QuestionnaireUserController extends Controller
 //     */
 //    public function resultAction(Request $request)
 //    {
-//        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+//        $user = $this->get('user')->current();
 //
 //        $wordpress = $this->container->get('fitbase_wordpress.api');
 //
@@ -347,7 +347,7 @@ class QuestionnaireUserController extends Controller
 //        $rs = $wordpress->wpGetUserMeta($user->getId(), 'user_exercise_rsi', true);
 //        $th = $wordpress->wpGetUserMeta($user->getId(), 'user_exercise_thera', true);
 //
-//        $repositoryQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Result');
 //
 //        $event = new Event();
@@ -372,7 +372,7 @@ class QuestionnaireUserController extends Controller
 //     */
 //    public function extraAction(Request $request)
 //    {
-//        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+//        $user = $this->get('user')->current();
 //
 //        $wordpress = $this->container->get('fitbase_wordpress.api');
 //
@@ -425,7 +425,7 @@ class QuestionnaireUserController extends Controller
 //     */
 //    public function focusAction(Request $request)
 //    {
-//        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+//        $user = $this->get('user')->current();
 //
 //        $wordpress = $this->container->get('fitbase_wordpress.api');
 //
@@ -519,7 +519,7 @@ class QuestionnaireUserController extends Controller
 //                    $this->get('event_dispatcher')->dispatch('questionnaire_section', $event);
 //
 //                    $section += 1;
-//                    $repositoryQuestion = $this->get('fitbase_entity_manager')
+//                    $repositoryQuestion = $this->get('entity_manager')
 //                        ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Question');
 //
 //                    if ($repositoryQuestion->isSectionExists($section)) {
@@ -541,7 +541,7 @@ class QuestionnaireUserController extends Controller
     public function welcomeAction(Request $request)
     {
         return $this->render('FitbaseQuestionnaireBundle:QuestionnaireUser:welcome.html.twig', array(
-            'user' => $this->get('fitbase_manager.user')->getCurrentUser()
+            'user' => $this->get('user')->current()
         ));
     }
 }

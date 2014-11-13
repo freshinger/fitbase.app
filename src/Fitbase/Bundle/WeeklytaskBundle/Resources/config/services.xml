@@ -10,7 +10,7 @@
         <import resource="listeners.xml"/>
         <import resource="validators.xml"/>
     </imports>
-    
+
     <!--
     <parameters>
         <parameter key="fitbase_aufgabe.example.class">Fitbase\Bundle\WeeklytaskBundle\Example</parameter>
@@ -18,7 +18,8 @@
 
     -->
     <services>
-        <service id="fitbase_shortcode.wochenaufgaben" class="Fitbase\Bundle\WeeklytaskBundle\Controller\WochenAufgabeController">
+        <service id="fitbase_shortcode.wochenaufgaben"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Controller\WochenAufgabeController">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -80,7 +81,20 @@
             </call>
         </service>
 
+        <service id="fitbase.weeklytask_user.block.breadcrumb"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Block\Breadcrumb\WeeklytaskUserBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
 
+            <argument>weeklytask_user</argument>
+            <argument>fitbase.weeklytask_user.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
     </services>
 
 </container>

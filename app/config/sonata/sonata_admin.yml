@@ -59,6 +59,13 @@ sonata_admin:
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery
                     - sonata.comment.admin.thread
+                    - fitbase.admin.questionnaire
+                    - fitbase.admin.gamification_question
+                    - fitbase.admin.exercise
+                    - fitbase.admin.weeklytask
+                    - fitbase.admin.weeklyquiz
+                    - sonata.classification.admin.category
+                    - fitbase.admin.collection
 
             sonata.admin.group.ecommerce:
                 label:           sonata_ecommerce
@@ -80,7 +87,7 @@ sonata_admin:
 #                    - sonata.classification.admin.collection
 
             sonata.admin.group.site_builder:
-                label:           Site Builder
+                label:           Fitbase Siten
                 label_catalogue: SonataDemoBundle
                 icon:            '<i class="fa fa-puzzle-piece"></i>'
                 items:
@@ -92,75 +99,95 @@ sonata_admin:
                 label_catalogue: SonataAdminBundle
                 icon:            '<i class="fa fa-cogs"></i>'
                 items:
-                    - sonata.user.admin.user
+#                    - sonata.user.admin.user
                     - sonata.user.admin.group
                     - sonata.page.admin.site
                     - sonata.notification.admin.message
 
-            sonata.admin.group.demo:
-                label: Demo
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - sonata.demo.admin.car
-                    - sonata.demo.admin.engine
-                    - sonata.demo.admin.color
-                    - sonata.demo.admin.material
+#            sonata.admin.group.demo:
+#                label: Demo
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - sonata.demo.admin.car
+#                    - sonata.demo.admin.engine
+#                    - sonata.demo.admin.color
+#                    - sonata.demo.admin.material
 
-            sonata.admin.group.gamification:
-                label: Gamification
+            fitbase.admin.group.user:
+                label: Fitbase Benutzer
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
-                    - fitbase.admin.gamification_question
-
-            sonata.admin.group.company:
-                label: Unternehmen
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
+                    - sonata.user.admin.user
                     - fitbase.admin.company
 
-            sonata.admin.group.reminder:
-                label: Reminder
+            fitbase.admin.group.reminder:
+                label: Fitbase Reminder
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
-                    - fitbase.admin.reminder
-                    - fitbase.admin.reminder_item
                     - fitbase.admin.reminder_plan
-
-            sonata.admin.group.exercise:
-                label: Übungen
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - sonata.classification.admin.category
-                    - fitbase.admin.collection
-                    - fitbase.admin.exercise
-
-
-            sonata.admin.group.weeklytask:
-                label: Wochenaufgaben
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - fitbase.admin.weeklytask
                     - fitbase.admin.weeklytask_plan
-
-            sonata.admin.group.weeklyquiz:
-                label: Wochenquizze
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - fitbase.admin.weeklyquiz
                     - fitbase.admin.weeklyquiz_plan
 
-            sonata.admin.group.questionnaire:
-                label: Questionnaire
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - fitbase.admin.questionnaire
+#            sonata.admin.group.company:
+#                label: Unternehmen
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.company
 
-            sonata.admin.group.statistic:
-                label: Statistics
+#            sonata.admin.group.reminder:
+#                label: Reminder
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.reminder
+#                    - fitbase.admin.reminder_item
+#                    - fitbase.admin.reminder_plan
+
+#            sonata.admin.group.exercise:
+#                label: Übungen
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - sonata.classification.admin.category
+#                    - fitbase.admin.collection
+#                    - fitbase.admin.exercise
+
+
+#            sonata.admin.group.weeklytask:
+#                label: Wochenaufgaben
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.weeklytask
+#                    - fitbase.admin.weeklytask_plan
+
+#            sonata.admin.group.weeklyquiz:
+#                label: Wochenquizze
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.weeklyquiz
+#                    - fitbase.admin.weeklyquiz_plan
+
+#            sonata.admin.group.questionnaire:
+#                label: Questionnaire
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.questionnaire
+#                    - fitbase.admin.questionnaire_user
+
+#            sonata.admin.group.statistic:
+#                label: Statistics
+#                icon:  '<i class="fa fa-play-circle"></i>'
+#                items:
+#                    - fitbase.admin.statistic
+#                    - fitbase.admin.statistic_exercise
+
+
+            fitbase.admin.group.system:
+                label: Fitbase System
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
-                    - fitbase.admin.statistic
-                    - fitbase.admin.statistic_exercise
+                    - fitbase.admin.reminder_user
+                    - fitbase.admin.questionnaire_user
+                    - fitbase.admin.weeklytask_user
+                    - fitbase.admin.weeklyquiz_user
 
 
     assets:

@@ -27,9 +27,9 @@ class MedimouseController extends Controller
             if ($form->isValid()) {
 
                 $entity->setRegistered(new \DateTime());
-                $entity->setLogin($this->container->get('fitbase_manager.user')->generateLogin($entity));
-                $entity->setDisplayName($this->container->get('fitbase_manager.user')->generateName($entity));
-                $entity->setPassword($this->container->get('fitbase_manager.user')->generatePassword());
+                $entity->setLogin($this->container->get('user')->generateLogin($entity));
+                $entity->setDisplayName($this->container->get('user')->generateName($entity));
+                $entity->setPassword($this->container->get('user')->generatePassword());
                 $entity->setRole('teilnehmer');
 
                 $eventUserMedimouse = new UserMedimouseEvent($entity);

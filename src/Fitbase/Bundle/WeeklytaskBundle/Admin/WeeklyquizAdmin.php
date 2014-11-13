@@ -109,7 +109,6 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('task')
             ->add('countPoint', 'integer', array('label' => 'Punkte'))
             ->add('questions')
             ->end();

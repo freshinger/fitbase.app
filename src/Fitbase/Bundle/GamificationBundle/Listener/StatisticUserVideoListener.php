@@ -23,7 +23,7 @@ class StatisticUserVideoListener extends ContainerAware
     {
         assert(($statistic = $event->getEntity()), 'Statistic object can not be empty');
 
-        $userManager = $this->container->get('fitbase_manager.user');
+        $userManager = $this->container->get('user');
         if (($user = $userManager->find($statistic->getUserId()))) {
             $datetime = $this->container->get('datetime');
 
@@ -33,7 +33,7 @@ class StatisticUserVideoListener extends ContainerAware
             $GamificationUserPointlog->setText('Das Video wurde angeschaut');
             $GamificationUserPointlog->setCountPoint(1);
 
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+            $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
             $countPointTotal = $GamificationUserPointlog->getCountPoint();

@@ -6,7 +6,7 @@
     <h2>{{ "title_user_account" | trans({}, 'SonataUserBundle') }}</h2>
 
     <div class="panel-body">
-        <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
+        <form action="" method="POST" class="form-horizontal">
             {{ form_widget(form) }}
         </form>
     </div>
@@ -17,7 +17,13 @@
         <h2>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
 
         <div class="panel-body">
-            {% render url("sonata_user_change_password") %}
+            {% form_theme formPassword "MopaBootstrapBundle:Form:fields.html.twig" %}
+            <form action="" method="POST" class="form-horizontal">
+                {{ form_widget(formPassword) }}
+                <button type="submit" class="btn btn-danger">
+                    <i class="icon-lock icon-white glyphicon glyphicon-lock"></i>&nbsp;{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+                </button>
+            </form>
         </div>
     </div>
 </div>

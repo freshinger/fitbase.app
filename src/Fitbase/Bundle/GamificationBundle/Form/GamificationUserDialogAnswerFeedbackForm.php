@@ -17,7 +17,6 @@ class GamificationUserDialogAnswerFeedbackForm extends GamificationUserDialogAns
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('questionId', 'hidden')
             ->add('submit', 'submit', array(
                 'label' => 'Ok',
                 'attr' => array(
@@ -36,12 +35,12 @@ class GamificationUserDialogAnswerFeedbackForm extends GamificationUserDialogAns
     {
         parent::buildView($view, $form, $options);
 
-        $repositoryGamificationUserDialogFeedback = $this->container->get('fitbase_entity_manager')
+        $repositoryGamificationUserDialogFeedback = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogFeedback');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
         if (($feedback = $repositoryGamificationUserDialogFeedback->findTextRandomByUserAndPositive($user))) {
-            $view->vars['feedback'] = $feedback;
+            $view->vars['feedback'] = $feedback->getText();
         }
     }
 }

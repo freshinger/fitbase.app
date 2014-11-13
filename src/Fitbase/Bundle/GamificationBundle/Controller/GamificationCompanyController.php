@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GamificationCompanyController extends WordpressControllerAbstract
+class GamificationCompanyController extends Controller
 {
     protected $user = null;
     protected $company = null;
@@ -38,11 +38,11 @@ class GamificationCompanyController extends WordpressControllerAbstract
     {
         if ($this->user == null) {
 
-            $this->user = $this->get('fitbase_manager.user')->getCurrentUser();
+            $this->user = $this->get('user')->current();
 
             if ($this->company == null) {
 
-                $managerEntity = $this->container->get('fitbase_entity_manager');
+                $managerEntity = $this->container->get('entity_manager');
                 $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
                 $this->company = $repositoryCompany->findOneByUser($this->user);
             }

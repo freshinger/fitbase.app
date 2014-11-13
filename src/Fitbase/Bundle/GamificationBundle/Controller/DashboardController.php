@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class DashboardController extends GamificationCompanyController
+class DashboardController extends Controller
 {
     /**
      * Displau point statistic for user
@@ -38,9 +38,9 @@ class DashboardController extends GamificationCompanyController
             )
         );
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+            $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
             $datetime = $this->get('datetime')->getDateTime('now');
@@ -69,8 +69,8 @@ class DashboardController extends GamificationCompanyController
     {
         $gamification = null;
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+        if (($user = $this->get('user')->current())) {
+            $managerEntity = $this->container->get('entity_manager');
 
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
@@ -101,8 +101,8 @@ class DashboardController extends GamificationCompanyController
         $avatar = null;
         $gamification = null;
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+        if (($user = $this->get('user')->current())) {
+            $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
             if (($gamification = $repositoryGamificationUser->findOneByUser($user))) {
@@ -127,8 +127,8 @@ class DashboardController extends GamificationCompanyController
         $points = null;
         $gamification = null;
 
-        $managerEntity = $this->container->get('fitbase_entity_manager');
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        $managerEntity = $this->container->get('entity_manager');
+        if (($user = $this->get('user')->current())) {
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
             if (($gamification = $repositoryGamificationUser->findOneByUser($user))) {
@@ -155,9 +155,9 @@ class DashboardController extends GamificationCompanyController
     protected function forestAction(Request $request)
     {
         $company = null;
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+            $managerEntity = $this->container->get('entity_manager');
             $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
             if (($companyId = $user->getMetaValue('user_company_id'))) {
@@ -250,13 +250,13 @@ class DashboardController extends GamificationCompanyController
         // we do not know what kind of form there are
         // we have to get a question first, that
         // we can calculate a form type using a question
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
             $formTemp = $this->createForm(new GamificationUserDialogAnswerHiddenForm(), new GamificationUserDialogAnswer());
             if ($request->get($formTemp->getName())) {
                 $formTemp->handleRequest($request);
                 if (($userAnswer = $formTemp->getData())) {
 
-                    $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+                    $repositoryGamificationDialogQuestion = $this->get('entity_manager')
                         ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
                     if (($question = $repositoryGamificationDialogQuestion->find($userAnswer->getQuestionId()))) {
@@ -309,9 +309,9 @@ class DashboardController extends GamificationCompanyController
      */
     protected function chatEmotionAjaxAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $repositoryGamificationUserEmotion = $this->get('fitbase_entity_manager')
+            $repositoryGamificationUserEmotion = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserEmotion');
 
             $datetime = $this->get('datetime')->getDateTime('now');
@@ -327,7 +327,7 @@ class DashboardController extends GamificationCompanyController
                     if ($form->isValid()) {
 
                         $eventGamificationUserEmotion = new GamificationUserEmotionEvent($gamificationUserEmotion);
-                        $this->get('event_dispatcher')->dispatch('gamification_user_emotion_create', $eventGamificationUserEmotion);
+                        $this->get('event_dispatcher')->dispatch('gamification_user_emotion_done', $eventGamificationUserEmotion);
                         // Show initial chat procedure
                         // after emotion-dialog
                         return $this->chatInitialAjaxAction($request);
@@ -352,7 +352,7 @@ class DashboardController extends GamificationCompanyController
      */
     protected function chatNextAjaxAction(Request $request, GamificationUserDialogAnswer $answer)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
             if (($questionNew = $this->getQuestionNext($answer))) {
                 // Needs to choose form with respect to question type
                 // as example, yes/no questions and text questions
@@ -396,8 +396,8 @@ class DashboardController extends GamificationCompanyController
      */
     protected function chatInitialAjaxAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
-            $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+        if (($user = $this->get('user')->current())) {
+            $repositoryGamificationDialogQuestion = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
             // Get first question in questionnaire
             // first question marked as start=true
@@ -424,12 +424,12 @@ class DashboardController extends GamificationCompanyController
      */
     protected function chatHistoryAjaxAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $repositoryGamificationUserDialogAnswer = $this->get('fitbase_entity_manager')
+            $repositoryGamificationUserDialogAnswer = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogAnswer');
 
-            $repositoryGamificationUserEmotion = $this->get('fitbase_entity_manager')
+            $repositoryGamificationUserEmotion = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserEmotion');
 
             $datetime = $this->get('datetime')->getDateTime('now');
@@ -453,7 +453,7 @@ class DashboardController extends GamificationCompanyController
 
             } else {
 
-                $repositoryGamificationDialogQuestion = $this->get('fitbase_entity_manager')
+                $repositoryGamificationDialogQuestion = $this->get('entity_manager')
                     ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
 
                 if (($question = $repositoryGamificationDialogQuestion->findOneByStart())) {

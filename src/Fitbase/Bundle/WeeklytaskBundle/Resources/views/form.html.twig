@@ -126,9 +126,11 @@
             </div>
         </div>
         <div class="modal-footer">
-            <span style="margin-right: 25%;">
-                Sie erhalten maximal {{ points }} Punkte für dieses Quiz
-            </span>
+            {% if points is defined and points %}
+                <span style="margin-right: 25%;">
+                    Sie erhalten maximal {{ points }} Punkte für dieses Quiz
+                </span>
+            {% endif %}
             <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
                 Quiz auswerten
             </button>

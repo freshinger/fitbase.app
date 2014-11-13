@@ -12,11 +12,11 @@ class BuilderMentee extends ContainerAware
         $mentee->setNameLast($user->getMetaValue('last_name'));
         $mentee->setRegisteredAt($user->getRegistered());
         $mentee->setMentees(unserialize(unserialize($user->getMetaValue('mentees_ids'))));
-        $mentee->setIsMentor($this->container->get('fitbase_manager.user')->getIserUserMentor($user));
-        $mentee->setCountCredit($this->container->get('fitbase_manager.user')->getCountCredit($user));
-        $mentee->setCompany($this->container->get('fitbase_manager.user')->getCompany($user));
-        $mentee->setMentors($this->container->get('fitbase_manager.user')->getMentors($user));
-        $mentee->setModules($this->container->get('fitbase_manager.user')->getModules($user));
+        $mentee->setIsMentor($this->container->get('user')->getIserUserMentor($user));
+        $mentee->setCountCredit($this->container->get('user')->getCountCredit($user));
+        $mentee->setCompany($this->container->get('user')->getCompany($user));
+        $mentee->setMentors($this->container->get('user')->getMentors($user));
+        $mentee->setModules($this->container->get('user')->getModules($user));
         $mentee->setTextEmail('');
 
         return $mentee;

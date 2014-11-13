@@ -18,7 +18,7 @@ class EmailListener extends ContainerAware
 
         $logger = $this->container->get('logger');
 
-        $user = $this->container->get('fitbase_manager.user')->find($plan->getUserId());
+        $user = $this->container->get('user')->find($plan->getUserId());
 
         if ($user == null) {
             $logger->info('Reminder, user not exists');
@@ -31,7 +31,7 @@ class EmailListener extends ContainerAware
 
         $dateTime = $this->container->get('datetime');
 
-        $statisticRepository = $this->container->get('fitbase_entity_manager')
+        $statisticRepository = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise');
 
         $content = $this->container->get('templating')->render('FitbaseReminderBundle:Email:reminder.html.twig', array(

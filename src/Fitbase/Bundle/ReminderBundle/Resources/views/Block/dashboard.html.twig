@@ -4,19 +4,6 @@
 {% block content %}
     {% spaceless %}
 
-
-        <div class="panel-info">
-            <h2>{{ "Erinnerungsfunktion pausieren" | trans({}, 'FitbaseReminderBundle') }}</h2>
-
-            <div class="panel-body">
-                {% form_theme formReminderPause "FitbaseReminderBundle:Block:form_reminder_pause.html.twig" %}
-
-                {{ form(formReminderPause) }}
-
-            </div>
-        </div>
-
-
         <div class="panel-info">
             <h2>{{ "Wochenaufgaben" | trans({}, 'FitbaseReminderBundle') }}</h2>
 
@@ -30,6 +17,27 @@
             </div>
         </div>
 
+        <div class="panel-info">
+            <h2>{{ "Erinnerungsfunktion pausieren" | trans({}, 'FitbaseReminderBundle') }}</h2>
+
+            <div class="panel-body">
+
+                {% if reminder.pause is defined and reminder.pause %}
+                    <div class="row">
+                        <div class="col-md-10 alert alert-info">
+                            Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
+                            {{ reminder.pause }} Wochen pausiert.
+                            Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% form_theme formReminderPause "FitbaseReminderBundle:Block:form_reminder_pause.html.twig" %}
+
+                {{ form(formReminderPause) }}
+
+            </div>
+        </div>
 
 
         <div class="panel-info">
@@ -64,7 +72,7 @@
                             <tr class="{{ loop.index is even ? 'alternate' : '' }}">
                                 <td>{{ item.day|day }}</td>
                                 <td>{{ item.time|date('H:i') }}</td>
-                                <td><a href="#">löschen</a></td>
+                                <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
                             </tr>
                         {% endfor %}
                         <tr style="background: #f2f0f0;">

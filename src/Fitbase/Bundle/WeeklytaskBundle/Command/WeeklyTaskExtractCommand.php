@@ -42,11 +42,11 @@ class WeeklyTaskExtractCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $managerUser = $this->getContainer()->get('fitbase_manager.user');
-        $repositoryWeeklytask = $this->getContainer()->get('fitbase_entity_manager')
+        $managerUser = $this->getContainer()->get('user');
+        $repositoryWeeklytask = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
-        $repositoryPost = $this->getContainer()->get('fitbase_entity_manager')
+        $repositoryPost = $this->getContainer()->get('entity_manager')
             ->getRepository('Ekino\WordpressBundle\Entity\Post');
 
         $filesystem = new Filesystem();

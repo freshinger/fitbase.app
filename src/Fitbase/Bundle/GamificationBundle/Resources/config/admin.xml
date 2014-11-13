@@ -10,7 +10,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="Fragen"/>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="Wohlfühlgespräch"/>
             <argument/>
             <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion</argument>
             <argument/>

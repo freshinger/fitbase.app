@@ -28,34 +28,36 @@ use Fitbase\Bundle\WeeklytaskBundle\Form\WeeklyquizUserForm;
 
 class WeeklyquizController extends Controller
 {
-    public function indexAction(Request $request)
-    {
-        $managerEntity = $this->get('entity_manager');
-        $repositoryWeeklyquiz = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
-//        $repositoryWeeklyquizQuestion = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
-//        $repositoryWeeklyquizUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-
-
-        if (($weeklyquiz = $repositoryWeeklyquiz->findOneById(13))) {
-            //TODO:
-        }
-
-        $weeklytaskUserQuiz = new WeeklyquizUser();
-        $weeklytaskUserQuiz->setQuizId(13);
-
-        $formBuilder = new WeeklyquizUserForm();
-        $formBuilder->setContainer($this->container);
-        $formBuilder->setWeeklyquizUser($weeklytaskUserQuiz);
-
-        $form = $this->createForm($formBuilder, array());
-
-
-        return $this->render('FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquiz.html.twig', array(
-            'form' => $form->createView(),
-            'weeklyquiz' => $weeklyquiz,
-        ));
-    }
-
+    /**
+     * Show quiz for user
+     * @param Request $request
+     * @param null $unique
+     * @return Response
+     */
+//    public function userViewAction(Request $request, $unique = null)
+//    {
+//        $managerEntity = $this->get('entity_manager');
+//        $repositoryWeeklyquiz = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
+//
+//        if (($weeklyquiz = $repositoryWeeklyquiz->findOneById(13))) {
+//            //TODO: store statistic
+//        }
+//
+//        $weeklytaskUserQuiz = new WeeklyquizUser();
+//        $weeklytaskUserQuiz->setQuizId(13);
+//
+//        $formBuilder = new WeeklyquizUserForm();
+//        $formBuilder->setContainer($this->container);
+//        $formBuilder->setWeeklyquizUser($weeklytaskUserQuiz);
+//
+//        $form = $this->createForm($formBuilder, array());
+//
+//
+//        return $this->render('FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquiz.html.twig', array(
+//            'form' => $form->createView(),
+//            'weeklyquiz' => $weeklyquiz,
+//        ));
+//    }
 
 
 //    public function weeklyquizAction(Request $request)
@@ -95,7 +97,7 @@ class WeeklyquizController extends Controller
 //            $formSearch->handleRequest($request);
 //        }
 //
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 //
 //
@@ -128,7 +130,7 @@ class WeeklyquizController extends Controller
 //            return new Response('', 200);
 //        }
 //
-//        $managerEntity = $this->get('fitbase_entity_manager');
+//        $managerEntity = $this->get('entity_manager');
 //        $repositoryWeeklytask = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 //
 //        $weeklytaskUserQuiz = new WeeklyquizUser();
@@ -154,7 +156,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizRemoveAction(Request $request, $unique)
 //    {
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 //
 //        if (($weeklytask = $repositoryWeeklytask->find($unique))) {
@@ -175,7 +177,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizCreateAction(Request $request)
 //    {
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 //
 //        $form = $this->createForm(new WeeklyquizForm(), new Weeklyquiz());
@@ -205,7 +207,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizUpdateAction(Request $request, $unique = null)
 //    {
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 //
 //        if (($weeklytaskQuiz = $repositoryWeeklytask->find($unique))) {
@@ -238,7 +240,7 @@ class WeeklyquizController extends Controller
 //                }
 //            }
 //
-//            $repositoryWeeklyquizQuestion = $this->get('fitbase_entity_manager')
+//            $repositoryWeeklyquizQuestion = $this->get('entity_manager')
 //                ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 //
 //
@@ -260,7 +262,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizQuestionUpdateAction(Request $request, $unique = null)
 //    {
-//        $repositoryWeeklyquizQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklyquizQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 //
 //        if (($weeklytaskQuestion = $repositoryWeeklyquizQuestion->find($unique))) {
@@ -295,7 +297,7 @@ class WeeklyquizController extends Controller
 //                }
 //            }
 //
-//            $repositoryWeeklyquizAnswer = $this->get('fitbase_entity_manager')
+//            $repositoryWeeklyquizAnswer = $this->get('entity_manager')
 //                ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 //
 //            return $this->render('FitbaseWeeklytaskBundle:Weeklyquiz:weeklyquiz_question_update.html.twig', array(
@@ -316,7 +318,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizQuestionRemoveAction(Request $request, $unique = null)
 //    {
-//        $repositoryWeeklyquizQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklyquizQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 //
 //        if (($weeklytaskQuestion = $repositoryWeeklyquizQuestion->find($unique))) {
@@ -340,7 +342,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizAnswerUpdateAction(Request $request, $unique)
 //    {
-//        $repositoryWeeklyquizQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklyquizQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 //
 //        if (($weeklytaskAnswer = $repositoryWeeklyquizQuestion->find($unique))) {
@@ -375,7 +377,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklyquizAnswerRemoveAction(Request $request, $unique)
 //    {
-//        $repositoryWeeklyquizQuestion = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklyquizQuestion = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 //
 //        if (($weeklytaskAnswer = $repositoryWeeklyquizQuestion->find($unique))) {
@@ -402,7 +404,7 @@ class WeeklyquizController extends Controller
 //            $this->weeklytaskQuizPlanSendAction($request, $unique);
 //        }
 //
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan');
 //
 //
@@ -436,7 +438,7 @@ class WeeklyquizController extends Controller
 //     */
 //    public function weeklytaskQuizPlanSendAction(Request $request, $unique)
 //    {
-//        $repositoryWeeklytask = $this->get('fitbase_entity_manager')
+//        $repositoryWeeklytask = $this->get('entity_manager')
 //            ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan');
 //
 //        if (($weeklytaskQuizPlan = $repositoryWeeklytask->find($unique))) {

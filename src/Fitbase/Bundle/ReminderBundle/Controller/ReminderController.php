@@ -23,12 +23,12 @@ class ReminderController extends Controller
      */
     public function setupAction(Request $request)
     {
-        $entityManager = $this->get('fitbase_entity_manager');
+        $entityManager = $this->get('entity_manager');
 
         $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
         $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             assert(($reminder = $repositoryReminder->findOneByUser($user)));
 
@@ -80,11 +80,11 @@ class ReminderController extends Controller
      */
     public function setupWeeklytaskAction(Request $request)
     {
-        $entityManager = $this->get('fitbase_entity_manager');
+        $entityManager = $this->get('entity_manager');
 
         $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
             assert(($reminder = $repositoryReminder->findOneByUser($user)));
 
             $form = $this->createForm(new ReminderUserForm(), $reminder);

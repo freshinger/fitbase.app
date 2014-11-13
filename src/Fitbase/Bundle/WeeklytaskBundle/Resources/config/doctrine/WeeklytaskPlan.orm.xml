@@ -9,16 +9,14 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask">
-            <join-column name="task_id" referenced-column-name="id"/>
-        </many-to-one>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
 
-        <field name="userId" type="integer" column="user_id"/>
-        <field name="weekId" type="integer" column="week_id"/>
+        <field name="weekId" type="integer" column="week_id" nullable="true"/>
 
-        <field name="date" type="datetime" column="date"/>
-        <field name="processed" type="boolean" column="processed"/>
-        <field name="processedDate" type="datetime" column="processed_date"/>
+        <field name="date" type="datetime" column="date" nullable="true"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>
 
     </entity>
 </doctrine-mapping>

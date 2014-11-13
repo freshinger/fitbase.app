@@ -1,4 +1,4 @@
-{{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask', 'current_uri': app.request.requestUri }) }}
+{{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask_user', 'current_uri': app.request.requestUri }) }}
 
 {% if weeklytask %}
     <div class="row">
@@ -15,7 +15,6 @@
     <div class="main">
         {% if weeklytaskUser.done %}
             <div class="big-button center">
-                <img src="/wp-content/uploads/icon_check_green.png" alt="{{ weeklytaskUser.postId|postTitle }}"/>
                 <strong>Diese Wochenaufgabe wurde bereits erledigt</strong>
             </div>
         {% else %}

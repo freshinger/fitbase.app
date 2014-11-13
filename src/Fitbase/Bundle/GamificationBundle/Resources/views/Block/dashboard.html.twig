@@ -1,22 +1,26 @@
-{{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
+{% extends 'FitbaseGamificationBundle::layout.html.twig' %}
 
-<div class="row">
-    <div class="col-md-4" style="height: 400px;">
-        {% include "FitbaseGamificationBundle:Block:dashboard_avatar.html.twig" with { 'avatar': avatar, 'points': points  } %}
+{% block content %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
+
+    <div class="row">
+        <div class="col-md-4" style="height: 500px;">
+            {% include "FitbaseGamificationBundle:Block:dashboard_avatar.html.twig" with { 'avatar': avatar, 'points': points  } %}
+        </div>
+        <div class="col-md-4" style="height: 500px;">
+            {% include "FitbaseGamificationBundle:Block:dashboard_buttons.html.twig" %}
+        </div>
+        <div class="col-md-4" style="height: 500px;">
+            {% include "FitbaseGamificationBundle:Block:dashboard_chat.html.twig" %}
+        </div>
+        <div class="col-md-4">
+            {% include "FitbaseGamificationBundle:Block:dashboard_tree.html.twig" with { 'tree': tree, 'points': points } %}
+        </div>
+        <div class="col-md-4">
+            {% include "FitbaseGamificationBundle:Block:dashboard_statistic.html.twig" with { 'statistic': statistic, 'points': points } %}
+        </div>
+        <div class="col-md-4">
+            {% include "FitbaseGamificationBundle:Block:dashboard_forest.html.twig" with { 'forest': forest, 'points': points } %}
+        </div>
     </div>
-    <div class="col-md-4" style="height: 400px;">
-        {% include "FitbaseGamificationBundle:Block:dashboard_buttons.html.twig" %}
-    </div>
-    <div class="col-md-4" style="height: 400px;">
-        {% include "FitbaseGamificationBundle:Block:dashboard_chat.html.twig" %}
-    </div>
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_tree.html.twig" with { 'tree': tree, 'points': points } %}
-    </div>
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_statistic.html.twig" with { 'statistic': statistic, 'points': points } %}
-    </div>
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_forest.html.twig" with { 'forest': forest, 'points': points } %}
-    </div>
-</div>
+{% endblock %}

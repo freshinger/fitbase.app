@@ -123,7 +123,7 @@ class AdministrationController extends Controller
             $form->isValid();
         }
 
-        $queryBuilder = $this->get('fitbase_entity_manager')
+        $queryBuilder = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic')
             ->getQueryBuilderUserStatistic($entity);
 
@@ -164,7 +164,7 @@ class AdministrationController extends Controller
             $entity->setOrder('id');
             $entity->setBy('desc');
 
-            $queryBuilder = $this->get('fitbase_entity_manager')
+            $queryBuilder = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic')
                 ->getQueryBuilderUserStatistic($entity);
 

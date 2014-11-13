@@ -92,9 +92,6 @@
         </property>
     </class>
 
-    <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan">
-    </class>
-
     <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizPlan">
     </class>
 

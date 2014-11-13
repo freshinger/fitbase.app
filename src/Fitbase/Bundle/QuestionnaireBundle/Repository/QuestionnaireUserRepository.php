@@ -15,6 +15,20 @@ use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion;
 class QuestionnaireUserRepository extends EntityRepository
 {
     /**
+     * Find not pause records
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprNotPause($queryBuilder)
+    {
+        $queryBuilder->setParameter(':pause', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('QuestionnaireUser.pause', ':pause'),
+            $queryBuilder->expr()->isNull('QuestionnaireUser.pause')
+        );
+    }
+
+    /**
      * Get all not done tasks
      * @param $queryBuilder
      * @return mixed
@@ -98,6 +112,21 @@ class QuestionnaireUserRepository extends EntityRepository
         }
 
         return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    public function findOneByUserAndNotDoneAndNotPause($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprNotDone($queryBuilder),
+            $this->getExprNotPause($queryBuilder)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
     /**

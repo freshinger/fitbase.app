@@ -27,8 +27,8 @@ class GamificationUserDialogAnswerListener extends ContainerAware
 
         $answer->setHidden(true);
 
-        $this->container->get('fitbase_entity_manager')->persist($answer);
-        $this->container->get('fitbase_entity_manager')->flush($answer);
+        $this->container->get('entity_manager')->persist($answer);
+        $this->container->get('entity_manager')->flush($answer);
     }
 
     /**
@@ -39,7 +39,7 @@ class GamificationUserDialogAnswerListener extends ContainerAware
     {
         assert(($answer = $event->getEntity()));
 
-        $repositoryGamificationUserDialogAnswer = $this->container->get('fitbase_entity_manager')
+        $repositoryGamificationUserDialogAnswer = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogAnswer');
         // Try to find answers for current day
         // if found, show answers in chat
@@ -62,9 +62,9 @@ class GamificationUserDialogAnswerListener extends ContainerAware
     {
         assert(($answer = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($answer);
-        $this->container->get('fitbase_entity_manager')->flush($answer);
-        $this->container->get('fitbase_entity_manager')->refresh($answer);
+        $this->container->get('entity_manager')->persist($answer);
+        $this->container->get('entity_manager')->flush($answer);
+        $this->container->get('entity_manager')->refresh($answer);
 
         if (($answerText = $answer->getDescription())) {
             $this->container->get('gamification_cache')->set($answer->getId(), $answerText);
@@ -79,8 +79,8 @@ class GamificationUserDialogAnswerListener extends ContainerAware
     {
         assert(($answer = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($answer);
-        $this->container->get('fitbase_entity_manager')->flush($answer);
+        $this->container->get('entity_manager')->persist($answer);
+        $this->container->get('entity_manager')->flush($answer);
     }
 
     /**
@@ -91,8 +91,8 @@ class GamificationUserDialogAnswerListener extends ContainerAware
     {
         assert(($answer = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($answer);
-        $this->container->get('fitbase_entity_manager')->flush($answer);
+        $this->container->get('entity_manager')->remove($answer);
+        $this->container->get('entity_manager')->flush($answer);
     }
 
     /**
@@ -112,7 +112,7 @@ class GamificationUserDialogAnswerListener extends ContainerAware
             $GamificationUserPointlog->setText('Das Wohlfühlgeshpäch wurde durchgeführt');
             $GamificationUserPointlog->setCountPoint(1);
 
-            $managerEntity = $this->container->get('fitbase_entity_manager');
+            $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
             $countPointTotal = $GamificationUserPointlog->getCountPoint();

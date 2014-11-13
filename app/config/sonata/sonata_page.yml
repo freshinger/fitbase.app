@@ -32,6 +32,8 @@ sonata_page:
         - sonata_cache_js_async
         - sonata_cache_js_sync
         - sonata_cache_apc
+        - gamification_health_chat
+        - gamification_health_emotion
 
     cache_invalidation:
         service:  sonata.page.cache.invalidation.simple

@@ -22,7 +22,7 @@ class GamificationUserPointlogListener extends ContainerAware
     {
         assert(($GamificationUserPointlog = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($GamificationUserPointlog);
-        $this->container->get('fitbase_entity_manager')->flush($GamificationUserPointlog);
+        $this->container->get('entity_manager')->persist($GamificationUserPointlog);
+        $this->container->get('entity_manager')->flush($GamificationUserPointlog);
     }
 }

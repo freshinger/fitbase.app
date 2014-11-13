@@ -90,22 +90,22 @@ class WeeklyquizAnswerRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
-//
-//    /**
-//     * Find list of records by id array
-//     * @param $arrayId
-//     * @return array
-//     */
-//    public function findAllById($arrayId)
-//    {
-//        $queryBuilder = $this->createQueryBuilder('WeeklyquizAnswer');
-//
-//        $queryBuilder->where($queryBuilder->expr()->andX(
-//            $this->getExprIdArray($queryBuilder, $arrayId)
-//        ));
-//
-//        return $queryBuilder->getQuery()->getResult();
-//    }
+
+    /**
+     * Find list of records by id array
+     * @param $arrayId
+     * @return array
+     */
+    public function findAllByIdArray($arrayId)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizAnswer');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprIdArray($queryBuilder, $arrayId)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 //
 //
 //    /**

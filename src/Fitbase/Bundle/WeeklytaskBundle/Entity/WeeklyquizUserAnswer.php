@@ -14,8 +14,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class WeeklyquizUserAnswer
 {
     protected $id;
-    protected $quiz;
     protected $user;
+    protected $userQuiz;
     protected $question;
     protected $answerUser;
     protected $answerRight;
@@ -29,6 +29,22 @@ class WeeklyquizUserAnswer
     {
         $this->answerUser = new ArrayCollection();
         $this->answerRight = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserQuiz()
+    {
+        return $this->userQuiz;
+    }
+
+    /**
+     * @param mixed $userQuiz
+     */
+    public function setUserQuiz($userQuiz)
+    {
+        $this->userQuiz = $userQuiz;
     }
 
     /**
@@ -133,22 +149,6 @@ class WeeklyquizUserAnswer
     public function getQuestion()
     {
         return $this->question;
-    }
-
-    /**
-     * @param mixed $quiz
-     */
-    public function setQuiz($quiz)
-    {
-        $this->quiz = $quiz;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuiz()
-    {
-        return $this->quiz;
     }
 
     /**

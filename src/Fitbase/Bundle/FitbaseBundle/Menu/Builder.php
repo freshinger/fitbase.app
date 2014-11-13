@@ -77,12 +77,12 @@ class Builder extends ContainerAware
             'route' => 'sonata_user_profile_show',
         ));
 
-        $menu->addChild('Abmelden', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/logout'
-            )
-        ));
+//        $menu->addChild('Abmelden', array(
+//            'route' => 'page_slug',
+//            'routeParameters' => array(
+//                'path' => '/logout'
+//            )
+//        ));
 
 
 //        $shopMenuParams = array('route' => 'sonata_catalog_index');

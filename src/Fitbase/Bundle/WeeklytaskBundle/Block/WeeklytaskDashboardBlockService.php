@@ -49,14 +49,18 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
         $collectionWeeklytaskArchive = array();
 
         if (($user = $this->serviceUser->current())) {
-            $weeklytaskRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
 
-            $countWeeklytaskDone = $weeklytaskRepository->findCountByUserAndDone($user);
-            $countWeeklytaskPointDone = $weeklytaskRepository->findSumPointByUserAndDone($user);
+            $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+            $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+            $weeklyquizUserAnswerRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
 
-            $collectionWeeklytaskActual = $weeklytaskRepository->findAllByUserAndNotDone($user);
-            $collectionWeeklytaskArchive = $weeklytaskRepository->findAllByUserAndDone($user);
+            $countWeeklytaskDone = $weeklytaskUserRepository->findCountByUserAndDone($user);
+            $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
+            $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
+            $countWeeklytaskPointDone += $weeklyquizUserAnswerRepository->findSumPointByUser($user);
 
+            $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user);
+            $collectionWeeklytaskArchive = $weeklytaskUserRepository->findAllByUserAndDone($user);
         }
 
         return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(

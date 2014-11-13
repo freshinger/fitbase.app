@@ -8,6 +8,14 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ReminderUserListener extends ContainerAware
 {
+    public function onReminderUserCreateEvent(ReminderUserEvent $event)
+    {
+        assert(($reminder = $event->getEntity()));
+
+        $this->container->get('entity_manager')->persist($reminder);
+        $this->container->get('entity_manager')->flush($reminder);
+    }
+
     /**
      * Update user reminder
      * @param ReminderUserEvent $event
@@ -16,8 +24,8 @@ class ReminderUserListener extends ContainerAware
     {
         assert(($reminder = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($reminder);
-        $this->container->get('fitbase_entity_manager')->flush($reminder);
+        $this->container->get('entity_manager')->persist($reminder);
+        $this->container->get('entity_manager')->flush($reminder);
     }
 
     /**
@@ -32,8 +40,8 @@ class ReminderUserListener extends ContainerAware
 
         $reminder->setPauseStart($dateTime->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($reminder);
-        $this->container->get('fitbase_entity_manager')->flush($reminder);
+        $this->container->get('entity_manager')->persist($reminder);
+        $this->container->get('entity_manager')->flush($reminder);
     }
 
     /**
@@ -47,8 +55,8 @@ class ReminderUserListener extends ContainerAware
         $reminder->setPause(null);
         $reminder->setPauseStart(null);
 
-        $this->container->get('fitbase_entity_manager')->persist($reminder);
-        $this->container->get('fitbase_entity_manager')->flush($reminder);
+        $this->container->get('entity_manager')->persist($reminder);
+        $this->container->get('entity_manager')->flush($reminder);
     }
 
     /**
@@ -92,8 +100,8 @@ class ReminderUserListener extends ContainerAware
 
         $logger = $this->container->get('logger');
         $dateTime = $this->container->get('datetime');
-        $userManager = $this->container->get('fitbase_manager.user');
-        $entityManager = $this->container->get('fitbase_entity_manager');
+        $userManager = $this->container->get('user');
+        $entityManager = $this->container->get('entity_manager');
 
         $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
         $repositoryReminderPlan = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');

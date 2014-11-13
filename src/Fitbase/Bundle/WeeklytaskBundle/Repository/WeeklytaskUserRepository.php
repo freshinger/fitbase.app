@@ -71,8 +71,8 @@ class WeeklytaskUserRepository extends EntityRepository
     protected function getExprUserId($queryBuilder, $userId)
     {
         if (!empty($userId)) {
-            $queryBuilder->setParameter('userId', $userId);
-            return $queryBuilder->expr()->eq('WeeklytaskUser.userId', ':userId');
+            $queryBuilder->setParameter('user', $userId);
+            return $queryBuilder->expr()->eq('WeeklytaskUser.user', ':user');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
@@ -86,8 +86,8 @@ class WeeklytaskUserRepository extends EntityRepository
     protected function getExprWeeklytaskId($queryBuilder, $weeklytaskId)
     {
         if (!empty($weeklytaskId)) {
-            $queryBuilder->setParameter('weeklytaskId', $weeklytaskId);
-            return $queryBuilder->expr()->eq('WeeklytaskUser.weeklytaskId', ':weeklytaskId');
+            $queryBuilder->setParameter('task', $weeklytaskId);
+            return $queryBuilder->expr()->eq('WeeklytaskUser.task', ':task');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }

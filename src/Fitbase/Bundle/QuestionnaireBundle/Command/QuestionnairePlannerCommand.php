@@ -27,7 +27,7 @@ class QuestionnairePlannerCommand extends ContainerAwareCommand
         $logger = $this->getContainer()->get('logger');
         $logger->info('Questionnaire, start planner');
 
-        $managerEntity = $this->getContainer()->get('fitbase_entity_manager');
+        $managerEntity = $this->getContainer()->get('entity_manager');
 
         $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
         $repositoryUserMeta = $managerEntity->getRepository('Ekino\WordpressBundle\Entity\UserMeta');

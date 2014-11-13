@@ -7,18 +7,19 @@
     <services>
 
 
-        <service id="fitbase_listener.reminder_user" class="Fitbase\Bundle\ReminderBundle\Listener\UserListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="fitbaseuser_created" method="onUserCreatedEvent"/>
-            <tag name="kernel.event_listener" event="reminder_notxists" method="onUserCreatedEvent"/>
-        </service>
+        <!--<service id="fitbase_listener.reminder_user" class="Fitbase\Bundle\ReminderBundle\Listener\UserListener">-->
+        <!--<call method="setContainer">-->
+        <!--<argument type="service" id="service_container"/>-->
+        <!--</call>-->
+        <!--<tag name="kernel.event_listener" event="fitbaseuser_created" method="onUserCreatedEvent"/>-->
+        <!--<tag name="kernel.event_listener" event="reminder_notxists" method="onUserCreatedEvent"/>-->
+        <!--</service>-->
 
         <service id="fitbase_listener.reminder" class="Fitbase\Bundle\ReminderBundle\Listener\ReminderUserListener">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <tag name="kernel.event_listener" event="reminder_create" method="onReminderUserCreateEvent"/>
             <tag name="kernel.event_listener" event="reminder_update" method="onReminderUserUpdateEvent"/>
             <tag name="kernel.event_listener" event="reminder_planner" method="onReminderUserPlanner"/>
             <tag name="kernel.event_listener" event="reminder_stop_pause" method="onReminderUserPauseStopEvent"/>

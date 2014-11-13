@@ -7,11 +7,6 @@
         <constraint name="Fitbase\Bundle\GamificationBundle\Form\Constraints\GamificationUserDialogAnswer">
             <option name="message">Beantworte bitte die Frage</option>
         </constraint>
-        <property name="value">
-            <constraint name="NotBlank">
-                <option name="message">Beantworte bitte die Frage</option>
-            </constraint>
-        </property>
     </class>
 
 

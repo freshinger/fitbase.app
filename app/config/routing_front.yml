@@ -93,3 +93,7 @@ fitbase_weeklytask:
 fitbase_questionnaire:
     resource: "@FitbaseQuestionnaireBundle/Resources/config/routing.xml"
     prefix:   /questionnaire
+
+fitbase_gamification:
+    resource: "@FitbaseGamificationBundle/Resources/config/routing.xml"
+    prefix:   /gamification

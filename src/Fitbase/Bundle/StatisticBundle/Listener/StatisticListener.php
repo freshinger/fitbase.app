@@ -33,8 +33,8 @@ class StatisticListener extends ContainerAware
         $userStatistic->setUserAgent(null);
         $userStatistic->setLoggedAt(null);
 
-        $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-        $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+        $this->container->get('entity_manager')->persist($userStatistic);
+        $this->container->get('entity_manager')->flush($userStatistic);
     }
 
     /**
@@ -45,16 +45,16 @@ class StatisticListener extends ContainerAware
     {
         assert(($user = $event->getEntity()));
 
-        $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+        $userStatisticRepository = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
         if (!($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
-            $taskCountProcessed = $this->container->get('fitbase_entity_manager')
+            $taskCountProcessed = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\AufgabeBundle\Entity\WeeklyTasks')
                 ->getTaskCountProcessed($user);
 
-            $videoCountProcessed = $this->container->get('fitbase_entity_manager')
+            $videoCountProcessed = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
                 ->getUserViewCountTotal($user->getId());
 
@@ -69,8 +69,8 @@ class StatisticListener extends ContainerAware
                 $userStatistic->setLoggedAt($dateTime->getDateTime($datetime));
             }
 
-            $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-            $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+            $this->container->get('entity_manager')->persist($userStatistic);
+            $this->container->get('entity_manager')->flush($userStatistic);
         }
     }
 
@@ -82,24 +82,24 @@ class StatisticListener extends ContainerAware
     {
         assert(is_object(($task = $event->getEntity())));
 
-        $managerUser = $this->container->get('fitbase_manager.user');
+        $managerUser = $this->container->get('user');
 
         if (($user = $managerUser->find($task->getUserId()))) {
 
-            $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+            $userStatisticRepository = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
             if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
-                $weeklyTaskRepository = $this->container->get('fitbase_entity_manager')
+                $weeklyTaskRepository = $this->container->get('entity_manager')
                     ->getRepository('Fitbase\Bundle\AufgabeBundle\Entity\WeeklyTasks');
 
                 $userStatistic->setCountWeeklyTask(
                     $weeklyTaskRepository->getTaskCount($user)
                 );
 
-                $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-                $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+                $this->container->get('entity_manager')->persist($userStatistic);
+                $this->container->get('entity_manager')->flush($userStatistic);
             }
         }
     }
@@ -114,20 +114,20 @@ class StatisticListener extends ContainerAware
         assert(($user = $event->getUser()));
         assert(($post = $event->getEntity()));
 
-        $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+        $userStatisticRepository = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
         if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
-            $weeklyTaskRepository = $this->container->get('fitbase_entity_manager')
+            $weeklyTaskRepository = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\AufgabeBundle\Entity\WeeklyTasks');
 
             $userStatistic->setCountWeeklyTaskProcessed(
                 $weeklyTaskRepository->getTaskCountProcessed($user)
             );
 
-            $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-            $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+            $this->container->get('entity_manager')->persist($userStatistic);
+            $this->container->get('entity_manager')->flush($userStatistic);
         }
     }
 
@@ -139,12 +139,12 @@ class StatisticListener extends ContainerAware
     {
         assert(($user = $event->getEntity()));
 
-        $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+        $userStatisticRepository = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
         if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
-            $weeklyTaskRepository = $this->container->get('fitbase_entity_manager')
+            $weeklyTaskRepository = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\AufgabeBundle\Entity\WeeklyTasks');
 
             $userStatistic->setCountWeeklyTask(
@@ -155,8 +155,8 @@ class StatisticListener extends ContainerAware
                 $weeklyTaskRepository->getTaskCountProcessed($user)
             );
 
-            $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-            $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+            $this->container->get('entity_manager')->persist($userStatistic);
+            $this->container->get('entity_manager')->flush($userStatistic);
         }
     }
 
@@ -170,7 +170,7 @@ class StatisticListener extends ContainerAware
         assert(($statistic = $event->getEntity()), 'Statistic object can not be empty');
 
         $dateTime = $this->container->get('datetime');
-        $userManager = $this->container->get('fitbase_manager.user');
+        $userManager = $this->container->get('user');
         $userMetaManager = $this->container->get('fitbase_manager.user_meta');
 
         if (($user = $userManager->find($statistic->getUserId()))) {
@@ -181,7 +181,7 @@ class StatisticListener extends ContainerAware
             $userMetaManager->setUserMeta($user, 'user_last_login', $dateTime->getDateTime('now')->format('Y-m-d h:i:s'));
             $userMetaManager->setUserMeta($user, 'user_last_login_browser', $statistic->getUserAgent());
 
-            $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+            $userStatisticRepository = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
             if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
@@ -190,8 +190,8 @@ class StatisticListener extends ContainerAware
                 $userStatistic->setUserAgent($statistic->getUserAgent());
                 $userStatistic->setCountLogin($userStatistic->getCountLogin() + 1);
 
-                $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-                $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+                $this->container->get('entity_manager')->persist($userStatistic);
+                $this->container->get('entity_manager')->flush($userStatistic);
             }
         }
     }
@@ -204,33 +204,33 @@ class StatisticListener extends ContainerAware
     {
         assert(($statistic = $event->getEntity()), 'Statistic object can not be empty');
 
-        $isStatisticExists = $this->container->get('fitbase_entity_manager')
+        $isStatisticExists = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
             ->getStatisticExists($statistic);
 
         if (!$isStatisticExists) {
 
-            $this->container->get('fitbase_entity_manager')->persist($statistic);
-            $this->container->get('fitbase_entity_manager')->flush($statistic);
+            $this->container->get('entity_manager')->persist($statistic);
+            $this->container->get('entity_manager')->flush($statistic);
         }
 
-        $userManager = $this->container->get('fitbase_manager.user');
+        $userManager = $this->container->get('user');
 
         if (($user = $userManager->find($statistic->getUserId()))) {
 
-            $userStatisticRepository = $this->container->get('fitbase_entity_manager')
+            $userStatisticRepository = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic');
 
             if (($userStatistic = $userStatisticRepository->findOneBy(array('user' => $user)))) {
 
-                $videoCountProcessed = $this->container->get('fitbase_entity_manager')
+                $videoCountProcessed = $this->container->get('entity_manager')
                     ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatisticExercise')
                     ->getUserViewCountTotal($user->getId());
 
                 $userStatistic->setCountVideo($videoCountProcessed);
 
-                $this->container->get('fitbase_entity_manager')->persist($userStatistic);
-                $this->container->get('fitbase_entity_manager')->flush($userStatistic);
+                $this->container->get('entity_manager')->persist($userStatistic);
+                $this->container->get('entity_manager')->flush($userStatistic);
             }
         }
     }

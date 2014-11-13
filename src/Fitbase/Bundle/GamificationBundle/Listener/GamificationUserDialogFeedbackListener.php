@@ -50,8 +50,8 @@ class GamificationUserDialogFeedbackListener extends ContainerAware
     {
         assert(($feedback = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($feedback);
-        $this->container->get('fitbase_entity_manager')->flush($feedback);
+        $this->container->get('entity_manager')->persist($feedback);
+        $this->container->get('entity_manager')->flush($feedback);
     }
 
     /**
@@ -63,8 +63,8 @@ class GamificationUserDialogFeedbackListener extends ContainerAware
         assert(($feedback = $event->getEntity()));
 
 
-        $this->container->get('fitbase_entity_manager')->persist($feedback);
-        $this->container->get('fitbase_entity_manager')->flush($feedback);
+        $this->container->get('entity_manager')->persist($feedback);
+        $this->container->get('entity_manager')->flush($feedback);
     }
 
     /**
@@ -76,8 +76,8 @@ class GamificationUserDialogFeedbackListener extends ContainerAware
         assert(($feedback = $event->getEntity()));
 
 
-        $this->container->get('fitbase_entity_manager')->remove($feedback);
-        $this->container->get('fitbase_entity_manager')->flush($feedback);
+        $this->container->get('entity_manager')->remove($feedback);
+        $this->container->get('entity_manager')->flush($feedback);
     }
 
 }

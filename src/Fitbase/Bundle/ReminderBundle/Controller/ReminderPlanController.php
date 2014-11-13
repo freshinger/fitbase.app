@@ -18,7 +18,7 @@ class ReminderPlanController extends Controller
      */
     public function sendAction($id)
     {
-        $plan = $this->get('fitbase_entity_manager')
+        $plan = $this->get('entity_manager')
             ->find('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan', $id);
 
         if ($plan instanceof ReminderUserPlan) {
@@ -39,12 +39,12 @@ class ReminderPlanController extends Controller
             $this->sendAction($id);
         }
 
-        $plans = $this->get('fitbase_entity_manager')
+        $plans = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan')
             ->findReminderPlanListCurrent();
 
 
-        $repositoryReminderUserPlan = $this->get('fitbase_entity_manager')
+        $repositoryReminderUserPlan = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');
 
         $pagerfantaProcessed = new Pagerfanta(new DoctrineORMAdapter(

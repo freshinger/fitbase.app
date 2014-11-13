@@ -55,10 +55,11 @@ class ReminderUserAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('user')
+            ->add('sendWeeklytask', 'boolean')
+            ->add('sendWeeklyquiz', 'boolean')
             ->add('pause')
             ->add('pauseStart')
-            ->add('sendWeeklytask')
-            ->add('sendWeeklyquiz')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

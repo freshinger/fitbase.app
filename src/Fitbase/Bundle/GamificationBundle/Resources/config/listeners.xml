@@ -30,7 +30,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_answer_create"
+            <tag name="kernel.event_listener" event="weeklyquiz_user_answer_done"
                  method="onWeeklytaskUserAnswerCreateEvent"/>
         </service>
 
@@ -40,7 +40,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_done" method="onWeeklytaskUserQuizDoneEvent"/>
+            <tag name="kernel.event_listener" event="weeklyquiz_user_done" method="onWeeklytaskUserQuizDoneEvent"/>
         </service>
 
 
@@ -115,7 +115,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="gamification_user_emotion_create"
+            <tag name="kernel.event_listener" event="gamification_user_emotion_done"
                  method="onGamificationUserEmotionCreateEvent"/>
             <tag name="kernel.event_listener" event="gamification_dialog_user_answer_hide_collection"
                  method="onGamificationUserDialogAnswerHideCollectionEvent"/>

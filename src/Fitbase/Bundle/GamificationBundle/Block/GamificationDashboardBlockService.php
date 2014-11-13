@@ -8,6 +8,9 @@
 namespace Fitbase\Bundle\GamificationBundle\Block;
 
 
+use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
+use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
+use Fitbase\Bundle\GamificationBundle\Form\GamificationUserForm;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
@@ -17,6 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -44,27 +48,43 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $points = null;
-        $statistic = null;
+        $statistic = array();
         $gamification = null;
+
         if (($user = $this->container->get('user')->current())) {
             $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
-            if (($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-                $repositoryGamificationUserPointlog = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
-                if (($gamificationUserPointlog = $repositoryGamificationUserPointlog->findOneLastByUser($user))) {
-                    $points = $gamificationUserPointlog->getCountPointTotal();
-                }
+            if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+                $gamificationUser = new GamificationUser();
+                $gamificationUser->setUser($user);
 
-                $datetime = $this->container->get('datetime')->getDateTime('now');
-                $datetime->modify('-12 week');
+                $formType = new GamificationUserForm();
+                $formType->setContainer($this->container);
 
-                if (($statistic = $repositoryGamificationUserPointlog->findAllByUserGroupByWeek($user, $datetime))) {
-                    foreach ($statistic as $index => $element) {
-                        $statistic[$index]['date'] = $this->container->get('datetime')->getDateTime($element['date']);
+                $form = $this->container->get('form.factory')->create($formType, $gamificationUser);
+                if ($this->container->get('request')->get($form->getName())) {
+                    $form->handleRequest($this->container->get('request'));
+                    if ($form->isValid()) {
+
+                        $eventGamificationUser = new GamificationUserEvent($gamificationUser);
+                        $this->container->get('event_dispatcher')->dispatch('gamification_user_create', $eventGamificationUser);
+
+                        $request = $this->container->get('request');
+                        return new RedirectResponse($this->container->get('router')->generate($request->get('_route'), array(
+                            'path' => $request->get('path')
+                        )));
                     }
                 }
+
+                return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:avatar.html.twig', array(
+                    'form' => $form->createView(),
+                    'user' => $this->container->get('user')->current()
+                ));
             }
+
+            $points = $this->container->get('statistic')->points($user);
+            $statistic = $this->container->get('statistic')->statistic($user);
         }
 
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array(

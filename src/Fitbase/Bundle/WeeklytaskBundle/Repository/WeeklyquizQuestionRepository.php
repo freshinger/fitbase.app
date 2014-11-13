@@ -36,7 +36,7 @@ class WeeklyquizQuestionRepository extends EntityRepository
     {
         if (!empty($userQuiz)) {
 
-            $queryBuilder->setParameter('quiz', $userQuiz->getQuizId());
+            $queryBuilder->setParameter('quiz', $userQuiz->getQuiz()->getId());
             return $queryBuilder->expr()->eq('WeeklyquizQuestion.quiz', ':quiz');
         }
 

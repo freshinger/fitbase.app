@@ -6,7 +6,7 @@
 
     <!--<services>-->
 
-    <!--<service id="fitbase_manager.user" class="Fitbase\Bundle\UserBundle\Service\ServiceUserManager">-->
+    <!--<service id="user" class="Fitbase\Bundle\UserBundle\Service\ServiceUserManager">-->
     <!--<argument type="service" id="doctrine.orm.entity_manager"/>-->
     <!--<argument>Ekino\WordpressBundle\Entity\User</argument>-->
     <!--<call method="setContainer">-->

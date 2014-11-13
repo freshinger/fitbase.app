@@ -16,8 +16,8 @@ class WeeklytaskListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -28,8 +28,8 @@ class WeeklytaskListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->remove($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -40,8 +40,8 @@ class WeeklytaskListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
 }

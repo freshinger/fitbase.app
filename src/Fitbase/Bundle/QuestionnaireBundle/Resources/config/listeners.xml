@@ -52,6 +52,8 @@
             <tag name="kernel.event_listener" event="questionnaire_user_done" method="onQuestionnaireUserDoneEvent"/>
             <tag name="kernel.event_listener" event="questionnaire_user_create"
                  method="onQuestionnaireUserCreateEvent"/>
+            <tag name="kernel.event_listener" event="questionnaire_user_update"
+                 method="onQuestionnaireUserUpdateEvent"/>
 
             <tag name="kernel.event_listener" event="questionnaire_extra" method="onQuestionnaireExtra"/>
             <tag name="kernel.event_listener" event="questionnaire_focus" method="onQuestionnaireFocus"/>

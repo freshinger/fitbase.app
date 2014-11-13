@@ -25,8 +25,8 @@ class QuestionnaireCompanyListener extends ContainerAware
         assert(is_object(($questionnaireCompany = $event->getEntity())));
 
 
-        $this->container->get('fitbase_entity_manager')->persist($questionnaireCompany);
-        $this->container->get('fitbase_entity_manager')->flush($questionnaireCompany);
+        $this->container->get('entity_manager')->persist($questionnaireCompany);
+        $this->container->get('entity_manager')->flush($questionnaireCompany);
     }
 
     /**
@@ -36,8 +36,8 @@ class QuestionnaireCompanyListener extends ContainerAware
     {
         assert(is_object(($questionnaireCompany = $event->getEntity())));
 
-        $this->container->get('fitbase_entity_manager')->remove($questionnaireCompany);
-        $this->container->get('fitbase_entity_manager')->flush($questionnaireCompany);
+        $this->container->get('entity_manager')->remove($questionnaireCompany);
+        $this->container->get('entity_manager')->flush($questionnaireCompany);
     }
 
     /**
@@ -51,7 +51,7 @@ class QuestionnaireCompanyListener extends ContainerAware
 
         $datetime = $this->container->get('datetime');
 
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryQuestionnaireUser = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
         $repositoryQuestionnaireCompany = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
 

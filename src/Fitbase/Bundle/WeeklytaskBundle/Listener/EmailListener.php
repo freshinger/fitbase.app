@@ -19,11 +19,11 @@ class EmailListener extends ContainerAware
         assert(is_object(($weeklytaskQuizPlan = $event->getEntity())));
 
         $logger = $this->container->get('logger');
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
         // Check if user exists
         // if no break up and do nothing
-        if (!($user = $this->container->get('fitbase_manager.user')->find($weeklytaskQuizPlan->getUserId()))) {
+        if (!($user = $this->container->get('user')->find($weeklytaskQuizPlan->getUserId()))) {
             $logger->info('Weekly quiz sender, user not exists', array($weeklytaskQuizPlan->getUserId()));
             return;
         }
@@ -77,7 +77,7 @@ class EmailListener extends ContainerAware
         assert(is_object(($weeklytaskPlan = $event->getEntity())));
 
         $logger = $this->container->get('logger');
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
         $repositoryWeeklytask = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
         $repositoryWeeklytaskUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');

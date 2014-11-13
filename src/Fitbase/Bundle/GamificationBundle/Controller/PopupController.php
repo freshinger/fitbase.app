@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PopupController extends GamificationCompanyController
+class PopupController extends Controller
 {
     /**
      * Display avatar popup if not exists
@@ -19,15 +19,15 @@ class PopupController extends GamificationCompanyController
      */
     protected function avatarAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $repositoryGamificationUser = $this->get('fitbase_entity_manager')
+            $repositoryGamificationUser = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
             if (!($repositoryGamificationUser->findOneByUser($user))) {
 
                 $gamificationUser = new GamificationUser();
-                $gamificationUser->setUser($this->get('fitbase_manager.user')->getCurrentUser());
+                $gamificationUser->setUser($this->get('user')->current());
 
                 $formType = new GamificationUserForm();
                 $formType->setContainer($this->container);
@@ -46,7 +46,7 @@ class PopupController extends GamificationCompanyController
 
                 return $this->render('FitbaseGamificationBundle:Popup:avatar.html.twig', array(
                     'form' => $form->createView(),
-                    'user' => $this->get('fitbase_manager.user')->getCurrentUser()
+                    'user' => $this->get('user')->current()
                 ));
             }
         }

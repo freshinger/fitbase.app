@@ -69,7 +69,7 @@ class UserController extends Controller
     {
         $request = $this->get('request');
 
-        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->get('user')->current();
 
         $entity = new UserProfile();
         $entity->setId($user->getId());
@@ -112,7 +112,7 @@ class UserController extends Controller
     {
         $request = $this->get('request');
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             $entity = new UserProfile();
             $entity->setId($user->getId());
@@ -141,9 +141,9 @@ class UserController extends Controller
      */
     public function pauseAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $repositoryReminder = $this->container->get('fitbase_entity_manager')
+            $repositoryReminder = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\UserReminder');
 
             if (($reminder = $repositoryReminder->findOneByUser($user))) {

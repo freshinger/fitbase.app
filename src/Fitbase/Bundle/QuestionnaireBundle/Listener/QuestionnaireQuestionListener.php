@@ -16,8 +16,8 @@ class QuestionnaireQuestionListener extends ContainerAware
         assert(is_object(($question = $event->getEntity())));
 
 
-        $this->container->get('fitbase_entity_manager')->persist($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->persist($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
     /**
@@ -29,8 +29,8 @@ class QuestionnaireQuestionListener extends ContainerAware
         assert(is_object(($question = $event->getEntity())));
 
 
-        $this->container->get('fitbase_entity_manager')->persist($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->persist($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
     /**
@@ -42,8 +42,8 @@ class QuestionnaireQuestionListener extends ContainerAware
         assert(is_object(($question = $event->getEntity())));
 
 
-        $this->container->get('fitbase_entity_manager')->remove($question);
-        $this->container->get('fitbase_entity_manager')->flush($question);
+        $this->container->get('entity_manager')->remove($question);
+        $this->container->get('entity_manager')->flush($question);
     }
 
 }

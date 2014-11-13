@@ -17,9 +17,9 @@ class WeeklytaskUserListener extends ContainerAware
 {
     /**
      * Process weekly task done event to add user points
-     * @param \Fitbase\Bundle\AufgabeBundle\Event\WeeklytaskUserEvent $event
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent $event
      */
-    public function onWeeklytaskUserDoneEvent(\Fitbase\Bundle\AufgabeBundle\Event\WeeklytaskUserEvent $event)
+    public function onWeeklytaskUserDoneEvent(\Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent $event)
     {
         assert(($weeklytaskUser = $event->getEntity()));
 
@@ -32,7 +32,7 @@ class WeeklytaskUserListener extends ContainerAware
         $GamificationUserPointlog->setCountPoint($weeklytaskUser->getCountPoint());
 
         $countPointTotal = $GamificationUserPointlog->getCountPoint();
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklytaskQuizPlan = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUserPointlog');
 
         if (($GamificationUserPointlogLast = $repositoryWeeklytaskQuizPlan->findOneLastByUser($weeklytaskUser->getUser()))) {

@@ -53,8 +53,8 @@ class ReminderUserPlanRepository extends EntityRepository
     protected function getExprUser($queryBuilder, $user)
     {
         if (!empty($user)) {
-            $queryBuilder->setParameter('userId', $user->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.userId', ':userId');
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('ReminderUserPlan.user', ':user');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -67,8 +67,8 @@ class ReminderUserPlanRepository extends EntityRepository
     protected function getExprReminder($queryBuilder, $reminder)
     {
         if (!empty($reminder)) {
-            $queryBuilder->setParameter('reminderId', $reminder->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.reminderId', ':reminderId');
+            $queryBuilder->setParameter('reminder', $reminder->getId());
+            return $queryBuilder->expr()->eq('ReminderUserPlan.reminder', ':reminder');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -82,8 +82,8 @@ class ReminderUserPlanRepository extends EntityRepository
     protected function getExprReminderItem($queryBuilder, $reminderItem)
     {
         if (!empty($reminderItem)) {
-            $queryBuilder->setParameter('reminderItemId', $reminderItem->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.reminderItemId', ':reminderItemId');
+            $queryBuilder->setParameter('item', $reminderItem->getId());
+            return $queryBuilder->expr()->eq('ReminderUserPlan.item', ':item');
         }
         return $queryBuilder->expr()->eq('1', '0');
 

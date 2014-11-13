@@ -37,7 +37,8 @@ class LoadRuecken2Data extends AbstractFixture implements OrderedFixtureInterfac
         $item630->setFormat("richhtml");
         $item630->setTag("Rücken");
         $item630->setImage($this->getReference('picture_630.jpeg'));
-        $item630->setVideo($this->getReference('video_630.webm'));
+        $item630->setMp4($this->getReference('video_630.mp4'));
+        $item630->setWebm($this->getReference('video_630.webm'));
         $item630->setGallery($this->getReference('picture_630'));
         $item630->setCategory($this->getReference('category_ruecken'));
         $item630->setDescription(<<<EOT
@@ -91,7 +92,8 @@ EOT
         $item631->setFormat("richhtml");
         $item631->setTag("Rücken");
         $item631->setImage($this->getReference('picture_631.jpeg'));
-        $item631->setVideo($this->getReference('video_631.webm'));
+        $item631->setMp4($this->getReference('video_631.mp4'));
+        $item631->setWebm($this->getReference('video_631.webm'));
         $item631->setGallery($this->getReference('picture_631'));
         $item631->setCategory($this->getReference('category_ruecken'));
         $item631->setDescription(<<<EOT
@@ -146,7 +148,8 @@ EOT
         $item632->setFormat("richhtml");
         $item632->setTag("Rücken");
         $item632->setImage($this->getReference('picture_632.jpeg'));
-        $item632->setVideo($this->getReference('video_632.webm'));
+        $item632->setMp4($this->getReference('video_632.mp4'));
+        $item632->setWebm($this->getReference('video_632.webm'));
         $item632->setGallery($this->getReference('picture_632'));
         $item632->setCategory($this->getReference('category_ruecken'));
         $item632->setDescription(<<<EOT
@@ -200,7 +203,8 @@ EOT
         $item633->setFormat("richhtml");
         $item633->setTag("Rücken");
         $item633->setImage($this->getReference('picture_633.jpeg'));
-        $item633->setVideo($this->getReference('video_633.webm'));
+        $item633->setMp4($this->getReference('video_633.mp4'));
+        $item633->setWebm($this->getReference('video_633.webm'));
         $item633->setGallery($this->getReference('picture_633'));
         $item633->setCategory($this->getReference('category_ruecken'));
         $item633->setDescription(<<<EOT
@@ -257,7 +261,8 @@ EOT
         $item634->setFormat("richhtml");
         $item634->setTag("Rücken");
         $item634->setImage($this->getReference('picture_634.jpeg'));
-        $item634->setVideo($this->getReference('video_634.webm'));
+        $item634->setMp4($this->getReference('video_634.mp4'));
+        $item634->setWebm($this->getReference('video_634.webm'));
         $item634->setGallery($this->getReference('picture_634'));
         $item634->setCategory($this->getReference('category_ruecken'));
         $item634->setDescription(<<<EOT
@@ -315,7 +320,8 @@ EOT
         $item635->setFormat("richhtml");
         $item635->setTag("Rücken");
         $item635->setImage($this->getReference('picture_635.jpeg'));
-        $item635->setVideo($this->getReference('video_635.webm'));
+        $item635->setMp4($this->getReference('video_635.mp4'));
+        $item635->setWebm($this->getReference('video_635.webm'));
         $item635->setGallery($this->getReference('picture_635'));
         $item635->setCategory($this->getReference('category_ruecken'));
         $item635->setDescription(<<<EOT
@@ -376,7 +382,8 @@ EOT
         $item636->setFormat("richhtml");
         $item636->setTag("Rücken");
         $item636->setImage($this->getReference('picture_636.jpeg'));
-        $item636->setVideo($this->getReference('video_636.webm'));
+        $item636->setMp4($this->getReference('video_636.mp4'));
+        $item636->setWebm($this->getReference('video_636.webm'));
         $item636->setGallery($this->getReference('picture_636'));
         $item636->setCategory($this->getReference('category_ruecken'));
         $item636->setDescription(<<<EOT
@@ -435,7 +442,8 @@ EOT
         $item637->setFormat("richhtml");
         $item637->setTag("Rücken");
         $item637->setImage($this->getReference('picture_637.jpeg'));
-        $item637->setVideo($this->getReference('video_637.webm'));
+        $item637->setMp4($this->getReference('video_637.mp4'));
+        $item637->setWebm($this->getReference('video_637.webm'));
         $item637->setGallery($this->getReference('picture_637'));
         $item637->setCategory($this->getReference('category_ruecken'));
         $item637->setDescription(<<<EOT
@@ -489,7 +497,8 @@ EOT
         $item638->setFormat("richhtml");
         $item638->setTag("Rücken");
         $item638->setImage($this->getReference('picture_638.jpeg'));
-        $item638->setVideo($this->getReference('video_638.webm'));
+        $item638->setMp4($this->getReference('video_638.mp4'));
+        $item638->setWebm($this->getReference('video_638.webm'));
         $item638->setGallery($this->getReference('picture_638'));
         $item638->setCategory($this->getReference('category_ruecken'));
         $item638->setDescription(<<<EOT
@@ -551,7 +560,8 @@ EOT
         $item639->setFormat("richhtml");
         $item639->setTag("Rücken");
         $item639->setImage($this->getReference('picture_639.jpeg'));
-        $item639->setVideo($this->getReference('video_639.webm'));
+        $item639->setMp4($this->getReference('video_639.mp4'));
+        $item639->setWebm($this->getReference('video_639.webm'));
         $item639->setGallery($this->getReference('picture_639'));
         $item639->setCategory($this->getReference('category_ruecken'));
         $item639->setDescription(<<<EOT

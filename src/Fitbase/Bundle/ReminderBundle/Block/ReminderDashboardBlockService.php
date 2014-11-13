@@ -61,24 +61,44 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
 
         if (($user = $this->container->get('user')->current())) {
             $reminderItem->setUser($user);
-            if (($reminder = $repositoryReminder->findOneByUser($user))) {
-                $reminderItem->setReminder($reminder);
-                if (($collection = $repositoryReminderItem->findAllByReminder($reminder))) {
-                    //TODO:
+
+            if (!($reminder = $repositoryReminder->findOneByUser($user))) {
+
+                $reminder = new ReminderUser();
+                $reminder->setUser($user);
+                $reminder->setPause(false);
+                $reminder->setSendWeeklyquiz(true);
+                $reminder->setSendWeeklytask(true);
+
+                $event = new ReminderUserEvent($reminder);
+                $this->container->get('event_dispatcher')->dispatch('reminder_create', $event);
+            }
+
+
+            if (($unique = $this->container->get('request')->get('stoppause'))) {
+
+                $reminder->setPause(false);
+                $reminder->setPauseStart(null);
+
+                $event = new ReminderUserEvent($reminder);
+                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+            }
+
+
+            if (($unique = $this->container->get('request')->get('uniqueitem'))) {
+
+                if (($item = $repositoryReminderItem->findOneByUserAndId($user, $unique))) {
+
+                    $event = new ReminderUserItemEvent($item);
+                    $this->container->get('event_dispatcher')->dispatch('reminder_item_remove', $event);
+
+                    $event = new ReminderUserItemEvent($item);
+                    $this->container->get('event_dispatcher')->dispatch('reminder_item_removed', $event);
                 }
             }
 
-//            if (($id = $request->get('reminder_item_id'))) {
-//                if (($item = $repositoryReminderItem->findOneByUserAndId($user, $id))) {
-//
-//                    $event = new ReminderUserItemEvent($item);
-//                    $this->get('event_dispatcher')->dispatch('reminder_item_remove', $event);
-//
-//                    $event = new ReminderUserItemEvent($item);
-//                    $this->get('event_dispatcher')->dispatch('reminder_item_removed', $event);
-//
-//                    $this->get('session')->getFlashBag()->add('reminder', 'Neues Reminder wurde erfolgreich geloescht.');
-//                }
+            $reminderItem->setReminder($reminder);
+            $collection = $repositoryReminderItem->findAllByReminder($reminder);
         }
 
 
@@ -90,8 +110,8 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
                 $event = new ReminderUserItemEvent($reminderItem);
                 $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
 
-                $request = $this->container->get('request');
-                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
+//                $request = $this->container->get('request');
+//                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
             }
         }
 
@@ -103,22 +123,29 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
                 $event = new ReminderUserEvent($reminder);
                 $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
 
-                $request = $this->container->get('request');
-                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
+//                $request = $this->container->get('request');
+//                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
             }
         }
 
         $formReminderPause = $this->container->get('form.factory')->create(new ReminderUserPauseForm(), $reminder);
+        if ($this->container->get('request')->get($formReminderPause->getName())) {
+            $formReminderPause->handleRequest($this->container->get('request'));
+            if ($formReminderPause->isValid()) {
 
+                $reminder->setPauseStart($this->container->get('datetime')->getDateTime('now'));
 
-        //TODO: remove
-        $collection = $repositoryReminderItem->findAll();
+//                $event = new ReminderUserEvent($reminder);
+//                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+            }
+        }
 
         return $this->renderPrivateResponse('FitbaseReminderBundle:Block:dashboard.html.twig', array(
+            'items' => $collection,
+            'reminder' => $reminder,
             'formReminder' => $formReminder->createView(),
             'formReminderItem' => $form->createView(),
             'formReminderPause' => $formReminderPause->createView(),
-            'items' => $collection,
         ));
     }
 
@@ -129,4 +156,4 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
     {
         return 'Dashboard (Reminder)';
     }
-} 
+}

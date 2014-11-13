@@ -26,6 +26,8 @@ class WeeklyquizUserAnswerRepository extends EntityRepository
      * Get expression to find record by user id
      * @param $queryBuilder
      * @param $userId
+     * @deprecated
+     * @todo replace with getExprUser
      * @return mixed
      */
     public function getExprUserId($queryBuilder, $userId)
@@ -51,6 +53,24 @@ class WeeklyquizUserAnswerRepository extends EntityRepository
 
             $queryBuilder->setParameter('quizId', $quizId);
             return $queryBuilder->expr()->eq('WeeklyquizUserAnswer.quiz', ':quizId');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
+     *
+     * @param $queryBuilder
+     * @param $weeklyquizUser
+     * @return mixed
+     */
+    public function getExprWeeklyquizUser($queryBuilder, $weeklyquizUser)
+    {
+        if (!empty($weeklyquizUser)) {
+
+            $queryBuilder->setParameter('userQuiz', $weeklyquizUser->getId());
+            return $queryBuilder->expr()->eq('WeeklyquizUserAnswer.userQuiz', ':userQuiz');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
@@ -160,5 +180,41 @@ class WeeklyquizUserAnswerRepository extends EntityRepository
         $queryBuilder->setMaxResults(1);
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Find records by weeklyquiz user and user
+     * @param $user
+     * @param $weeklyquizUser
+     * @return array
+     */
+    public function findAllByUserAndUserQuiz($user, $weeklyquizUser)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUserAnswer');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprWeeklyquizUser($queryBuilder, $weeklyquizUser)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get sum points
+     * @param $user
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findSumPointByUser($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUserAnswer');
+        $queryBuilder->select('SUM(WeeklyquizUserAnswer.countPoint)');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user)
+        ));
+
+        return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 }

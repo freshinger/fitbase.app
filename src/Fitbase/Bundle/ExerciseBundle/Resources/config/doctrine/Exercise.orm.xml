@@ -27,7 +27,12 @@
                 <cascade-all/>
             </cascade>
         </many-to-one>
-        <many-to-one field="video" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+        <many-to-one field="webm" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+        <many-to-one field="mp4" target-entity="Application\Sonata\MediaBundle\Entity\Media">
             <cascade>
                 <cascade-all/>
             </cascade>

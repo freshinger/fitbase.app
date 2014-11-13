@@ -22,12 +22,12 @@ class GamificationUserListener extends ContainerAware
     {
         assert(($gamificationUser = $event->getEntity()));
 
-        $repositoryGamificationUser = $this->container->get('fitbase_entity_manager')
+        $repositoryGamificationUser = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
         $gamificationUser->setTree(
             $this->container->get('templating')
-                ->render('FitbaseGamificationBundle:Service:tree.html.twig')
+                ->render('FitbaseGamificationBundle:SVG:tree.svg.twig')
         );
 
         if (($gamificationUserCurrent = $repositoryGamificationUser->findOneByUser($gamificationUser->getUser()))) {
@@ -35,13 +35,13 @@ class GamificationUserListener extends ContainerAware
             $gamificationUserCurrent->setAvatar($gamificationUser->getAvatar());
             $gamificationUserCurrent->setTree($gamificationUser->getTree());
 
-            $this->container->get('fitbase_entity_manager')->persist($gamificationUserCurrent);
-            $this->container->get('fitbase_entity_manager')->flush($gamificationUserCurrent);
+            $this->container->get('entity_manager')->persist($gamificationUserCurrent);
+            $this->container->get('entity_manager')->flush($gamificationUserCurrent);
 
         } else {
 
-            $this->container->get('fitbase_entity_manager')->persist($gamificationUser);
-            $this->container->get('fitbase_entity_manager')->flush($gamificationUser);
+            $this->container->get('entity_manager')->persist($gamificationUser);
+            $this->container->get('entity_manager')->flush($gamificationUser);
         }
 
     }

@@ -13,9 +13,9 @@
         <field name="date" type="date" column="date"/>
         <field name="value" type="integer" column="value" nullable="true"/>
         <field name="hidden" type="integer" column="hidden" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-
         <many-to-one field="question"
                      target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion"/>
 

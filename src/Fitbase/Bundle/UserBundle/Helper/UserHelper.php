@@ -193,7 +193,7 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getFirstName($user)
     {
-        return $this->container->get('fitbase_manager.user')->getUserFirstName($user);
+        return $this->container->get('user')->getUserFirstName($user);
     }
 
     /**
@@ -203,7 +203,7 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getLastName($user)
     {
-        return $this->container->get('fitbase_manager.user')->getUserLastName($user);
+        return $this->container->get('user')->getUserLastName($user);
     }
 
     /**
@@ -213,7 +213,7 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getCompanyName($user)
     {
-        if (($company = $this->container->get('fitbase_manager.user')->getCompany($user))) {
+        if (($company = $this->container->get('user')->getCompany($user))) {
             return $company->getName();
         }
         return null;
@@ -227,7 +227,7 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
     public function getModulesName($user)
     {
         $result = array();
-        $modules = $this->container->get('fitbase_manager.user')->getModules($user);
+        $modules = $this->container->get('user')->getModules($user);
         if (!empty($modules) and count($modules)) {
             foreach ($modules as $module) {
                 array_push($result, $module->getTitle());

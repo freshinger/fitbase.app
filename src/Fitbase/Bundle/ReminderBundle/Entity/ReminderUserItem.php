@@ -97,4 +97,9 @@ class ReminderUserItem
     {
         $this->user = $user;
     }
+
+    public function __toString()
+    {
+        return "{$this->getDay()}" . $this->getTime()->format('H:i:s');
+    }
 }

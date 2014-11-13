@@ -28,8 +28,8 @@ class WochenaufgabeSenderCommand extends ContainerAwareCommand
     {
         $logger = $this->getContainer()->get('logger');
         $dateTime = $this->getContainer()->get('datetime');
-        $managerUser = $this->getContainer()->get('fitbase_manager.user');
-        $repositoryWeeklyTask = $this->getContainer()->get('fitbase_entity_manager')
+        $managerUser = $this->getContainer()->get('user');
+        $repositoryWeeklyTask = $this->getContainer()->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyTasks');
 
 
