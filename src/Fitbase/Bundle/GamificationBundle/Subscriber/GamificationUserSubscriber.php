@@ -6,14 +6,26 @@
  * Time: 11:30 AM
  */
 
-namespace Fitbase\Bundle\GamificationBundle\Listener;
+namespace Fitbase\Bundle\GamificationBundle\Subscriber;
 
 
 use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class GamificationUserListener extends ContainerAware
+class GamificationUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    /**
+     * Get subscribers
+     * @return array
+     */
+    public static function getSubscribedEvents()
+    {
+        return array(
+            'gamification_user_create' => array('onGamificationUserCreateEvent', -128),
+        );
+    }
+
     /**
      * Store gamification user object
      * @param GamificationUserEvent $event
@@ -22,8 +34,9 @@ class GamificationUserListener extends ContainerAware
     {
         assert(($gamificationUser = $event->getEntity()));
 
-        $repositoryGamificationUser = $this->container->get('entity_manager')
-            ->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryGamificationUser = $entityManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
         $gamificationUser->setTree(
             $this->container->get('templating')
@@ -37,12 +50,10 @@ class GamificationUserListener extends ContainerAware
 
             $this->container->get('entity_manager')->persist($gamificationUserCurrent);
             $this->container->get('entity_manager')->flush($gamificationUserCurrent);
-
-        } else {
-
-            $this->container->get('entity_manager')->persist($gamificationUser);
-            $this->container->get('entity_manager')->flush($gamificationUser);
+            return;
         }
 
+        $this->container->get('entity_manager')->persist($gamificationUser);
+        $this->container->get('entity_manager')->flush($gamificationUser);
     }
 }

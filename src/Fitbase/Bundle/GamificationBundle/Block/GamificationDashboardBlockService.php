@@ -52,6 +52,38 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
         $gamification = null;
 
         if (($user = $this->container->get('user')->current())) {
+
+            $managerEntity = $this->container->get('entity_manager');
+            $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+
+            if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+                return $this->executeAvatarForm($blockContext, $response);
+            }
+
+            $points = $this->container->get('statistic')->points($user);
+            $statistic = $this->container->get('statistic')->statistic($user);
+        }
+
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array(
+            'points' => $points,
+            'statistic' => $statistic,
+            'gamification' => $gamification,
+            'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
+            'tree' => $this->container->get('gamification')->getSvgTree($gamification),
+            'forest' => $this->container->get('gamification')->getSvgForest($gamification),
+        ));
+    }
+
+    /**
+     * Display avatar choice form
+     * @param BlockContextInterface $blockContext
+     * @param Response $response
+     * @return Response
+     */
+    protected function executeAvatarForm(BlockContextInterface $blockContext, Response $response = null)
+    {
+        if (($user = $this->container->get('user')->current())) {
+
             $managerEntity = $this->container->get('entity_manager');
             $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
@@ -70,10 +102,7 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
                         $eventGamificationUser = new GamificationUserEvent($gamificationUser);
                         $this->container->get('event_dispatcher')->dispatch('gamification_user_create', $eventGamificationUser);
 
-                        $request = $this->container->get('request');
-                        return new RedirectResponse($this->container->get('router')->generate($request->get('_route'), array(
-                            'path' => $request->get('path')
-                        )));
+                        return $this->execute($blockContext, $response);
                     }
                 }
 
@@ -82,19 +111,7 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
                     'user' => $this->container->get('user')->current()
                 ));
             }
-
-            $points = $this->container->get('statistic')->points($user);
-            $statistic = $this->container->get('statistic')->statistic($user);
         }
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array(
-            'points' => $points,
-            'statistic' => $statistic,
-            'gamification' => $gamification,
-            'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
-            'tree' => $this->container->get('gamification')->getSvgTree($gamification),
-            'forest' => $this->container->get('gamification')->getSvgForest($gamification),
-        ));
     }
 
     /**

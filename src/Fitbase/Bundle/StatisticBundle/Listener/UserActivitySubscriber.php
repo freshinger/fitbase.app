@@ -29,7 +29,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
             'weeklyquiz_user_answer_done' => array('onWeeklyquizUserAnswerDone', -128),
             'gamification_user_emotion_done' => array('onGamificationUserEmotionDone', -128),
             'gamification_dialog_user_answer_done' => array('onGamificationUserAnswerDone', -128),
-
+            'questionnaire_user_done' => array('onQuestionnaireUserDoneEvent', -128),
         );
     }
 
@@ -165,5 +165,47 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         $this->container->get('entity_manager')->persist($activity);
         $this->container->get('entity_manager')->flush($activity);
     }
+
+    /**
+     * Store user activity from questionnaire
+     * @param Event $event
+     */
+    public function onQuestionnaireUserDoneEvent(Event $event)
+    {
+        assert(is_object(($questionnaireUser = $event->getEntity())));
+
+        $datetime = $this->container->get('datetime');
+        $questionnaire = $this->container->get('questionnaire');
+
+        $activity = new UserActivity();
+        $activity->setUser($questionnaireUser->getUser());
+        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+        $activity->setCountPoint(
+            $questionnaire->getHealthPercent(
+                $questionnaireUser->getCountPointHealth()
+            )
+        );
+        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($questionnaireUser->getUser()));
+        $activity->setText('Das Fragebogen wurde bearbeitet und das Gesundheitszustand wurde eingeschätzt');
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+
+
+        $activity = new UserActivity();
+        $activity->setUser($questionnaireUser->getUser());
+        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+        $activity->setCountPoint(
+            $questionnaire->getStrainPercent(
+                $questionnaireUser->getCountPointStrain()
+            )
+        );
+        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($questionnaireUser->getUser()));
+        $activity->setText('Das Fragebogen wurde bearbeitet und die Belastung wurde eingeschätzt');
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
 
 }

@@ -24,7 +24,7 @@
         </service>
 
 
-        <service id="fitbase.subscriber.user_activity"
+        <service id="fitbase.subscriber.UserActivity"
                  class="Fitbase\Bundle\StatisticBundle\Listener\UserActivitySubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
