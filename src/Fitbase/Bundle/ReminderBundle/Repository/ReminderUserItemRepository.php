@@ -62,6 +62,21 @@ class ReminderUserItemRepository extends EntityRepository
     /**
      *
      * @param $queryBuilder
+     * @param $type
+     * @return mixed
+     */
+    protected function getExprType($queryBuilder, $type)
+    {
+        if (strlen($type)) {
+            $queryBuilder->setParameter('type', $type);
+            return $queryBuilder->expr()->eq('ReminderUserItem.type', ':type');
+        }
+        return $queryBuilder->expr()->eq('1', '0');
+    }
+
+    /**
+     *
+     * @param $queryBuilder
      * @param $dayId
      * @return mixed
      */
@@ -103,6 +118,26 @@ class ReminderUserItemRepository extends EntityRepository
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprReminder($queryBuilder, $reminder)
+        ));
+
+        $queryBuilder->orderBy('ReminderUserItem.day', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     *
+     * @param $reminder
+     * @param $type
+     * @return array
+     */
+    public function findAllByReminderAndType($reminder, $type)
+    {
+        $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprReminder($queryBuilder, $reminder),
+            $this->getExprType($queryBuilder, $type)
         ));
 
         $queryBuilder->orderBy('ReminderUserItem.day', 'ASC');

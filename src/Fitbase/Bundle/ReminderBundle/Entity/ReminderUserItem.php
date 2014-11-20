@@ -14,9 +14,26 @@ class ReminderUserItem
 
     protected $id;
     protected $user;
+    protected $type;
     protected $reminder;
     protected $day;
     protected $time;
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
     /**
      * @return mixed

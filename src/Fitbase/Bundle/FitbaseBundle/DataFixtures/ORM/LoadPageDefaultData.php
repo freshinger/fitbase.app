@@ -23,7 +23,7 @@ use Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Doctrine\Orm\ContentRepositoryTe
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadPageOnlineRueckenschuleData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     private $container;
 
@@ -43,7 +43,8 @@ class LoadPageOnlineRueckenschuleData extends AbstractFixture implements Contain
      */
     public function load(ObjectManager $manager)
     {
-        if (($site = $this->getReference('online-rueckenschule'))) {
+        if (($site = $this->getReference('default'))) {
+
             $pageManager = $this->getPageManager();
             $blockManager = $this->getBlockManager();
             $blockInteractor = $this->getBlockInteractor();
@@ -84,26 +85,22 @@ class LoadPageOnlineRueckenschuleData extends AbstractFixture implements Contain
             $menu->setEnabled(true);
             $menu->setPage($global);
 
+            if (($homepage = $this->createHomePage($site))) {
+                if (($dashboard = $this->createPageWeeklytask($site, $homepage, "Theorie Einheiten", "Theorie Einheiten - Online - Rückenschule", ""))) {
+                    $this->addReference('online-rueckenschule-wochenaufgaben', $dashboard);
+                }
 
-            if (($dashboard = $this->createDashboard($site, $global, "Dashboard", "Dashboard - Online - Rückenschule", ""))) {
-                $this->addReference('online-rueckenschule-dashboard', $dashboard);
-            }
+                if (($dashboard = $this->createPageProfile($site, $homepage, "Profil", "Profil - Online - Rückenschule", ""))) {
+                    $this->addReference('online-rueckenschule-profil', $dashboard);
+                }
 
-            if (($dashboard = $this->createPageWeeklytask($site, $global, "Wochenaufgaben", "Wochenaufgaben - Online - Rückenschule", ""))) {
-                $this->addReference('online-rueckenschule-wochenaufgaben', $dashboard);
-            }
+                if (($questions = $this->createPage($site, $homepage, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
+                    $this->addReference('online-rueckenschule-questions', $questions);
+                }
 
-
-            if (($dashboard = $this->createPageProfile($site, $global, "Profil", "Profil - Online - Rückenschule", ""))) {
-                $this->addReference('online-rueckenschule-profil', $dashboard);
-            }
-
-            if (($questions = $this->createPage($site, $global, "Häufige Fragen", "Häufige Fragen - Online - Rückenschule", "haeufige-fragen"))) {
-                $this->addReference('online-rueckenschule-questions', $questions);
-            }
-
-            if (($questions = $this->createPage($site, $global, "Abmelden", "Abmelden - Online - Rückenschule", "abmelden"))) {
-                $this->addReference('online-rueckenschule-abmelden', $questions);
+                if (($questions = $this->createPage($site, $homepage, "Abmelden", "Abmelden - Online - Rückenschule", "abmelden"))) {
+                    $this->addReference('online-rueckenschule-abmelden', $questions);
+                }
             }
 
 
@@ -221,6 +218,183 @@ CONTENT
     }
 
 
+//    /**
+//     * Create page
+//     * @param $site
+//     * @return null|object
+//     */
+//    public function createHomePage($site)
+//    {
+//        if (($pageManager = $this->getPageManager())) {
+//
+//            if (($page = $pageManager->create())) {
+//
+//                $page->setName('Homepage');
+//                $page->setTitle('Homepage');
+//                $page->setSlug('Homepage');
+//                $page->setUrl('/');
+//                $page->setCreatedAt(new \DateTime("now"));
+//                $page->setUpdatedAt(new \DateTime("now"));
+//                $page->setRouteName("homepage");
+//                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
+//                $page->setTemplateCode("default");
+//                $page->setEdited(1);
+//                $page->setEnabled(1);
+//                $page->setPosition(1);
+//                $page->setDecorate(1);
+//                $page->setSite($site);
+//                $pageManager->save($page);
+//
+//
+//                assert(($content = $this->getBlockInteractor()->createNewContainer(array(
+//                    'enabled' => true,
+//                    'page' => $page,
+//                    'code' => 'content',
+//                ))));
+//                $page->addBlocks($content);
+//                $content->addChildren(($dashboard = $this->getBlockManager()->create()));
+//                $dashboard->setType('fitbase.block.dashboard_gamification');
+//                $dashboard->setPage($page);
+//                $dashboard->setEnabled(true);
+//
+//
+//                return $page;
+//            }
+//        }
+//        return null;
+//    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createHomePage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $this->addReference('page-homepage', $homepage = $pageManager->create());
+        $homepage->setSlug('/');
+        $homepage->setUrl('/');
+        $homepage->setName('Dashboard');
+        $homepage->setTitle('Dashboard');
+        $homepage->setEnabled(true);
+        $homepage->setDecorate(0);
+        $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $homepage->setTemplateCode('2columns');
+        $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
+        $homepage->setSite($site);
+
+        $pageManager->save($homepage);
+
+        // CREATE A HEADER BLOCK
+        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'content_top',
+        )));
+
+        $contentTop->setName('The container top container');
+
+        $blockManager->save($contentTop);
+
+//        // add a block text
+//        $contentTop->addChildren($text = $blockManager->create());
+//        $text->setType('sonata.block.service.text');
+//        $text->setSetting('content', <<<CONTENT
+//<div class="col-md-3 welcome"><h2>Welcome</h2></div>
+//<div class="col-md-9">
+//    <p>
+//        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
+//        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
+//    </p>
+//
+//    <p>
+//        First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
+//        blocks.
+//    </p>
+//</div>
+//CONTENT
+//        );
+//        $text->setPosition(1);
+//        $text->setEnabled(true);
+//        $text->setPage($homepage);
+
+
+        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'content',
+        )));
+        $content->setName('The content container');
+        $blockManager->save($content);
+
+        // Add media gallery block
+        $content->addChildren($gallery = $blockManager->create());
+        $gallery->setType('fitbase.block.dashboard_gamification');
+//        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
+        $gallery->setSetting('context', 'default');
+        $gallery->setSetting('format', 'big');
+        $gallery->setPosition(1);
+        $gallery->setEnabled(true);
+        $gallery->setPage($homepage);
+//
+//        // Add recent products block
+//        $content->addChildren($newProductsBlock = $blockManager->create());
+//        $newProductsBlock->setType('sonata.product.block.recent_products');
+//        $newProductsBlock->setSetting('number', 4);
+//        $newProductsBlock->setSetting('title', 'New products');
+//        $newProductsBlock->setPosition(2);
+//        $newProductsBlock->setEnabled(true);
+//        $newProductsBlock->setPage($homepage);
+
+//        // Add homepage bottom container
+//        $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
+//            'enabled' => true,
+//            'page' => $homepage,
+//            'code' => 'content_bottom',
+//        ), function ($container) {
+//            $container->setSetting('layout', '{{ CONTENT }}');
+//        }));
+//        $bottom->setName('The bottom content container');
+//
+//        // Add homepage newsletter container
+//        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
+//            'enabled' => true,
+//            'page' => $homepage,
+//            'code' => 'bottom_newsletter',
+//        ), function ($container) {
+//            $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
+//        }));
+//        $bottomNewsletter->setName('The bottom newsetter container');
+//        $bottomNewsletter->addChildren($newsletter = $blockManager->create());
+//        $newsletter->setType('sonata.demo.block.newsletter');
+//        $newsletter->setPosition(1);
+//        $newsletter->setEnabled(true);
+//        $newsletter->setPage($homepage);
+//
+//        // Add homepage embed tweet container
+//        $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
+//            'enabled' => true,
+//            'page' => $homepage,
+//            'code' => 'bottom_embed',
+//        ), function ($container) {
+//            $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
+//        }));
+//        $bottomEmbed->setName('The bottom embedded tweet container');
+//        $bottomEmbed->addChildren($embedded = $blockManager->create());
+//        $embedded->setType('sonata.seo.block.twitter.embed');
+//        $embedded->setPosition(1);
+//        $embedded->setEnabled(true);
+//        $embedded->setSetting('tweet', "https://twitter.com/dunglas/statuses/438337742565826560");
+//        $embedded->setSetting('lang', "en");
+//        $embedded->setPage($homepage);
+
+        $pageManager->save($homepage);
+
+        return $homepage;
+    }
+
     /**
      * Create page
      * @param $site
@@ -325,7 +499,7 @@ CONTENT
                 $page->setName($name);
                 $page->setTitle($title);
                 $page->setSlug($slug);
-                $page->setUrl("/$slug");
+                $page->setUrl("/" . strtolower($slug));
                 $page->setCreatedAt(new \DateTime("now"));
                 $page->setUpdatedAt(new \DateTime("now"));
                 $page->setRouteName("page_slug");

@@ -12,6 +12,9 @@
 
         <field name="titel" type="string" column="titel" nullable="true"/>
 
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
+        <many-to-one field="focus" target-entity="Application\Sonata\ClassificationBundle\Entity\Category"/>
+
     </entity>
 
 </doctrine-mapping>

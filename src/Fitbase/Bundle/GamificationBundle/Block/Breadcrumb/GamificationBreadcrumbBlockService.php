@@ -29,10 +29,11 @@ class GamificationBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
         $menu = parent::getRootMenu($blockContext);
 
         $menu->addChild('Dashboard', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/dashboard'
-            ),
+            'path' => '/',
+//            'route' => 'page_slug',
+//            'routeParameters' => array(
+//                'path' => '/dashboard'
+//            ),
             'extras' => array(
                 'translation_domain' => 'FitbaseGamificationBundle'
             ),

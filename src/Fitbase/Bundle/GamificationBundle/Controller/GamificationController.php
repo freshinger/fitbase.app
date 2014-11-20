@@ -83,8 +83,10 @@ class GamificationController extends Controller
                     return $question->getQuestionTrue();
                 }
             }
+
             return null;
         }
+
         $entityManager = $this->get('entity_manager');
         $repositoryGamificationDialogQuestion = $entityManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion');
         return $repositoryGamificationDialogQuestion->findOneByStart();
@@ -148,7 +150,6 @@ class GamificationController extends Controller
             if (($question = $this->getQuestion($collection))) {
                 return $this->healthChatFormAction($request, $user, $question, $collection);
             }
-
             return $this->render('FitbaseGamificationBundle:Gamification:health_chat_done.html.twig', array(
                 'question' => $question,
                 'collection' => $collection,

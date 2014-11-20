@@ -10,11 +10,10 @@
             <generator strategy="AUTO"/>
         </id>
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-
         <many-to-one field="reminder" target-entity="Fitbase\Bundle\ReminderBundle\Entity\ReminderUser"
                      inversed-by="items"/>
 
-
+        <field name="type" type="string" column="type" length="255"/>
         <field name="day" type="integer" length="1" column="day"/>
         <field name="time" type="time" column="time"/>
 

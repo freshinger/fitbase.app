@@ -12,8 +12,6 @@
 
         <field name="pause" type="integer" column="pause" nullable="true"/>
         <field name="pauseStart" type="datetime" column="pause_start" nullable="true"/>
-        <field name="sendWeeklytask" type="integer" column="send_weeklytask" nullable="true"/>
-        <field name="sendWeeklyquiz" type="integer" column="send_weeklyquiz" nullable="true"/>
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
 

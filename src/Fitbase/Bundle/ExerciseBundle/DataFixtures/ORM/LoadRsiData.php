@@ -44,8 +44,6 @@ class LoadRsiData extends AbstractFixture implements OrderedFixtureInterface
         $item584->setGallery($this->getReference('picture_584'));
         $item584->setCategory($this->getReference('category_rsi'));
         $item584->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brust Dehnung</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box">
@@ -82,8 +80,6 @@ Brustmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item584);
@@ -98,8 +94,6 @@ CONTENT
         $item585->setGallery($this->getReference('picture_585'));
         $item585->setCategory($this->getReference('category_rsi'));
         $item585->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brust Dehnung</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box">
@@ -137,9 +131,6 @@ Brustmuskulatur
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
-</div>
-</div>
-<div id="dc_vk_code"></div>
 CONTENT
         );
         $manager->persist($item585);
@@ -154,8 +145,6 @@ CONTENT
         $item586->setGallery($this->getReference('picture_586'));
         $item586->setCategory($this->getReference('category_rsi'));
         $item586->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brustdehnung gebeugt</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -199,9 +188,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
-<div id="dc_vk_code"></div>
 CONTENT
         );
         $manager->persist($item586);
@@ -216,8 +202,6 @@ CONTENT
         $item587->setGallery($this->getReference('picture_587'));
         $item587->setCategory($this->getReference('category_rsi'));
         $item587->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Finger mobilisieren</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -258,8 +242,6 @@ Hände</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg">
 <img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" />
 </a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item587);
@@ -274,8 +256,6 @@ CONTENT
         $item588->setGallery($this->getReference('picture_588'));
         $item588->setCategory($this->getReference('category_rsi'));
         $item588->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Finger spreizen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -313,8 +293,6 @@ Unterarme
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item588);
@@ -329,8 +307,6 @@ CONTENT
         $item589->setGallery($this->getReference('picture_589'));
         $item589->setCategory($this->getReference('category_rsi'));
         $item589->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Hand-Unterarmdehnung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -374,8 +350,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item589);
@@ -390,8 +364,6 @@ CONTENT
         $item590->setGallery($this->getReference('picture_590'));
         $item590->setCategory($this->getReference('category_rsi'));
         $item590->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Handdehnung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -428,8 +400,6 @@ Hände</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item590);
@@ -444,8 +414,6 @@ CONTENT
         $item591->setGallery($this->getReference('picture_591'));
         $item591->setCategory($this->getReference('category_rsi'));
         $item591->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Nackendehnung Variante</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -488,8 +456,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item591);
@@ -504,8 +470,6 @@ CONTENT
         $item592->setGallery($this->getReference('picture_592'));
         $item592->setCategory($this->getReference('category_rsi'));
         $item592->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Unterarmdehnung</h4>
 Bitte führen Sie diese Übung im Stehen durch.
 <div class="feature-box">
@@ -544,8 +508,6 @@ Bitte führen Sie diese Übung im Stehen durch.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item592);

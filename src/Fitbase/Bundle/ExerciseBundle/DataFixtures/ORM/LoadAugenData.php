@@ -44,8 +44,6 @@ class LoadAugenData extends AbstractFixture implements OrderedFixtureInterface
         $item500->setGallery($this->getReference('picture_500'));
         $item500->setCategory($this->getReference('category_augen'));
         $item500->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Hinterkopf</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -85,8 +83,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item500);
@@ -101,8 +97,6 @@ CONTENT
         $item535->setGallery($this->getReference('picture_535'));
         $item535->setCategory($this->getReference('category_augen'));
         $item535->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Nasenwurzel</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -141,8 +135,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item535);
@@ -157,8 +149,6 @@ CONTENT
         $item536->setGallery($this->getReference('picture_536'));
         $item536->setCategory($this->getReference('category_augen'));
         $item536->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur obere Augenbraue</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -199,8 +189,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item536);
@@ -215,8 +203,6 @@ CONTENT
         $item537->setGallery($this->getReference('picture_537'));
         $item537->setCategory($this->getReference('category_augen'));
         $item537->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur untere Augenbraue</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -255,8 +241,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item537);
@@ -271,8 +255,6 @@ CONTENT
         $item538->setGallery($this->getReference('picture_538'));
         $item538->setCategory($this->getReference('category_augen'));
         $item538->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Schläfen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -311,8 +293,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item538);
@@ -327,8 +307,6 @@ CONTENT
         $item539->setGallery($this->getReference('picture_539'));
         $item539->setCategory($this->getReference('category_augen'));
         $item539->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Akupressur Stirnmitte</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -367,8 +345,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item539);
@@ -383,8 +359,6 @@ CONTENT
         $item540->setGallery($this->getReference('picture_540'));
         $item540->setCategory($this->getReference('category_augen'));
         $item540->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Augenbewegung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -428,8 +402,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/1.png"></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item540);
@@ -444,8 +416,6 @@ CONTENT
         $item544->setGallery($this->getReference('picture_544'));
         $item544->setCategory($this->getReference('category_augen'));
         $item544->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Palmieren</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -485,8 +455,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </ul>
 </div>
 <div class="clear"></div>
-</div>
-</div>
 </div>
 CONTENT
         );

@@ -46,7 +46,7 @@ class Builder extends ContainerAware
         $menu->addChild('Dashboard', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/dashboard'
+                'path' => '/'
             )
         ));
         $menu->addChild('Übungen', array(
@@ -55,10 +55,10 @@ class Builder extends ContainerAware
                 'path' => '/uebungen'
             )
         ));
-        $menu->addChild('Wochenaufgaben', array(
+        $menu->addChild('Theorie Einheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/wochenaufgaben'
+                'path' => '/theorie-einheiten'
             )));
 
         $menu->addChild('Blog', array(
@@ -67,12 +67,7 @@ class Builder extends ContainerAware
         $menu->addChild('Übungen', array(
             'route' => 'exercises',
         ));
-        $menu->addChild('Häufige Fragen', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/haeufige-fragen'
-            )
-        ));
+
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',
         ));

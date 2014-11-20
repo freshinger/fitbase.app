@@ -14,6 +14,7 @@ use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
+use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemWeeklytaskForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
@@ -25,6 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -67,13 +69,9 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
                 $reminder = new ReminderUser();
                 $reminder->setUser($user);
                 $reminder->setPause(false);
-                $reminder->setSendWeeklyquiz(true);
-                $reminder->setSendWeeklytask(true);
-
                 $event = new ReminderUserEvent($reminder);
                 $this->container->get('event_dispatcher')->dispatch('reminder_create', $event);
             }
-
 
             if (($unique = $this->container->get('request')->get('stoppause'))) {
 
@@ -98,55 +96,136 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
             }
 
             $reminderItem->setReminder($reminder);
-            $collection = $repositoryReminderItem->findAllByReminder($reminder);
+            $collection = $repositoryReminderItem->findAllByReminderAndType($reminder, 'exercise');
+            $collectionWeeklytask = $repositoryReminderItem->findAllByReminderAndType($reminderItem->getReminder(), 'weeklytask');
+
         }
 
+        $formReminderItem = $this->renderReminderUserItemForm($this->container->get('request'), $reminderItem, function ($reminderItem) use (&$collection) {
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
+            $collection = $repositoryReminderItem->findAllByReminderAndType($reminderItem->getReminder(), 'exercise');
+        });
 
-        $form = $this->container->get('form.factory')->create(new ReminderUserItemForm(), $reminderItem);
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
-            if ($form->isValid()) {
 
+        $formReminderItemWeeklytask = $this->renderReminderUserItemWeeklytaskForm($this->container->get('request'), $reminderItem, function ($reminderItem) use (&$collectionWeeklytask) {
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
+            $collectionWeeklytask = $repositoryReminderItem->findAllByReminderAndType($reminderItem->getReminder(), 'weeklytask');
+        });
+
+
+        $formReminderPause = $this->renderReminderUserPauseForm($this->container->get('request'), $reminder);
+
+        return $this->renderPrivateResponse('FitbaseReminderBundle:Block:dashboard.html.twig', array(
+            'items' => $collection,
+            'itemsWeeklytask' => $collectionWeeklytask,
+            'reminder' => $reminder,
+            'formReminderItem' => $formReminderItem->createView(),
+            'formReminderItemWeeklytask' => $formReminderItemWeeklytask->createView(),
+            'formReminderPause' => $formReminderPause->createView(),
+        ));
+    }
+
+    /**
+     * Render reminder and process item form
+     * @param $request
+     * @param $reminderItem
+     * @param null $callback
+     * @return mixed
+     */
+    protected function renderReminderUserItemWeeklytaskForm(Request $request, $reminderItem, $callback = null)
+    {
+        $formReminderItem = $this->container->get('form.factory')->create(new ReminderUserItemWeeklytaskForm(), $reminderItem);
+        if ($this->container->get('request')->get($formReminderItem->getName())) {
+            $formReminderItem->handleRequest($this->container->get('request'));
+            if ($formReminderItem->isValid()) {
+                $reminderItem->setType('weeklytask');
                 $event = new ReminderUserItemEvent($reminderItem);
                 $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
 
-//                $request = $this->container->get('request');
-//                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
+                if ($callback instanceof \Closure) {
+                    $callback ($reminderItem);
+                }
             }
         }
+        return $formReminderItem;
+    }
 
-        $formReminder = $this->container->get('form.factory')->create(new ReminderUserForm(), $reminder);
+    /**
+     * Render reminder and process item form
+     * @param $request
+     * @param $reminderItem
+     * @param null $callback
+     * @return mixed
+     */
+    protected function renderReminderUserItemForm(Request $request, $reminderItem, $callback = null)
+    {
+        $formReminderItem = $this->container->get('form.factory')->create(new ReminderUserItemForm(), $reminderItem);
+        if ($this->container->get('request')->get($formReminderItem->getName())) {
+            $formReminderItem->handleRequest($this->container->get('request'));
+            if ($formReminderItem->isValid()) {
+                $reminderItem->setType('exercise');
+                $event = new ReminderUserItemEvent($reminderItem);
+                $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
+
+                if ($callback instanceof \Closure) {
+                    $callback ($reminderItem);
+                }
+            }
+        }
+        return $formReminderItem;
+    }
+
+
+    /**
+     * Render and process reminder user form
+     * @param $request
+     * @param $reminder
+     * @return mixed
+     */
+    protected function renderReminderUserForm(Request $request, ReminderUser $entity, $callback = null)
+    {
+        $formReminder = $this->container->get('form.factory')->create(new ReminderUserForm(), $entity);
         if ($this->container->get('request')->get($formReminder->getName())) {
             $formReminder->handleRequest($this->container->get('request'));
             if ($formReminder->isValid()) {
 
-                $event = new ReminderUserEvent($reminder);
+                $event = new ReminderUserEvent($entity);
                 $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
 
-//                $request = $this->container->get('request');
-//                return new RedirectResponse($this->container->get('router')->generate($request->get('_route')));
+                if ($callback instanceof \Closure) {
+                    $callback ($entity);
+                }
             }
         }
 
-        $formReminderPause = $this->container->get('form.factory')->create(new ReminderUserPauseForm(), $reminder);
+        return $formReminder;
+    }
+
+    /**
+     * Render and process reminder pause form
+     * @param $request
+     * @param $reminder
+     */
+    protected function renderReminderUserPauseForm(Request $request, ReminderUser $entity, $callback = null)
+    {
+        $formReminderPause = $this->container->get('form.factory')->create(new ReminderUserPauseForm(), $entity);
         if ($this->container->get('request')->get($formReminderPause->getName())) {
             $formReminderPause->handleRequest($this->container->get('request'));
             if ($formReminderPause->isValid()) {
 
-                $reminder->setPauseStart($this->container->get('datetime')->getDateTime('now'));
+                $entity->setPauseStart($this->container->get('datetime')->getDateTime('now'));
 
-//                $event = new ReminderUserEvent($reminder);
-//                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+                $event = new ReminderUserEvent($entity);
+                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+
+                if ($callback instanceof \Closure) {
+                    $callback ($entity);
+                }
             }
         }
-
-        return $this->renderPrivateResponse('FitbaseReminderBundle:Block:dashboard.html.twig', array(
-            'items' => $collection,
-            'reminder' => $reminder,
-            'formReminder' => $formReminder->createView(),
-            'formReminderItem' => $form->createView(),
-            'formReminderPause' => $formReminderPause->createView(),
-        ));
+        return $formReminderPause;
     }
 
     /**

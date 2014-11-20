@@ -39,32 +39,18 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function load(ObjectManager $manager)
     {
-        $fitbase = $this->getSiteManager()->create();
-
-        $fitbase->setHost('localhost');
-        $fitbase->setEnabled(true);
-        $fitbase->setName('Fitbase');
-        $fitbase->setEnabledFrom(new \DateTime('now'));
-        $fitbase->setEnabledTo(new \DateTime('+10 years'));
-        $fitbase->setRelativePath("/Fitbase");
-        $fitbase->setIsDefault(false);
-        $this->getSiteManager()->save($fitbase);
-
-        $this->addReference('fitbase', $fitbase);
-
-
         $online_rueckenschule = $this->getSiteManager()->create();
 
         $online_rueckenschule->setHost('localhost');
         $online_rueckenschule->setEnabled(true);
-        $online_rueckenschule->setName('Online-Rückenschule');
+        $online_rueckenschule->setName('Default');
         $online_rueckenschule->setEnabledFrom(new \DateTime('now'));
         $online_rueckenschule->setEnabledTo(new \DateTime('+10 years'));
-        $online_rueckenschule->setRelativePath("/online-rueckenschule");
+        $online_rueckenschule->setRelativePath("/default");
         $online_rueckenschule->setIsDefault(true);
 
         $this->getSiteManager()->save($online_rueckenschule);
-        $this->addReference('online-rueckenschule', $online_rueckenschule);
+        $this->addReference('default', $online_rueckenschule);
     }
 
     /**

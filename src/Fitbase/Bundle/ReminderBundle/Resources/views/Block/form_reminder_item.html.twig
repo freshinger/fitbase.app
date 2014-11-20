@@ -63,3 +63,32 @@
         </div>
     {% endspaceless %}
 {% endblock reminder_item_widget %}
+
+{% block reminder_item_weeklytask_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-md-12">
+                {% if form.parent is empty %}
+                    {{ form_errors(form) }}
+                {% endif %}
+                {{- form_errors(form.day) -}}
+                {{- form_errors(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {{- form_widget(form.day) -}}
+            </div>
+            <div class="col-md-8">
+                {{- form_widget(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                {{ form_rest(form) }}
+                {{ form_row(form.save) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock reminder_item_weeklytask_widget %}

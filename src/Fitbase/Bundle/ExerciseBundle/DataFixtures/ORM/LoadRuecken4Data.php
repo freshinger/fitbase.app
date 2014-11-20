@@ -43,8 +43,6 @@ class LoadRuecken4Data extends AbstractFixture implements OrderedFixtureInterfac
         $item556->setGallery($this->getReference('picture_556'));
         $item556->setCategory($this->getReference('category_ruecken'));
         $item556->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Abduktion beidseits</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -88,8 +86,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item556);
@@ -104,8 +100,6 @@ CONTENT
         $item557->setGallery($this->getReference('picture_557'));
         $item557->setCategory($this->getReference('category_ruecken'));
         $item557->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Außenrotation beidseits im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -150,8 +144,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item557);
@@ -166,8 +158,6 @@ CONTENT
         $item558->setGallery($this->getReference('picture_558'));
         $item558->setCategory($this->getReference('category_ruecken'));
         $item558->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Außenrotation im Stand</h4>
 Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band® z.B. um ein Tischbein.
 <div class="feature-box">
@@ -211,8 +201,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/12_oberer_und_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/12_oberer_und_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item558);
@@ -227,8 +215,6 @@ CONTENT
         $item559->setGallery($this->getReference('picture_559'));
         $item559->setCategory($this->getReference('category_ruecken'));
         $item559->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Bizeps-Schultern</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -273,8 +259,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item559);
@@ -289,8 +273,6 @@ CONTENT
         $item560->setGallery($this->getReference('picture_560'));
         $item560->setCategory($this->getReference('category_ruecken'));
         $item560->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Butterfly reverse</h4>
 Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 <div class="feature-box">
@@ -333,8 +315,6 @@ Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item560);
@@ -349,8 +329,6 @@ CONTENT
         $item561->setGallery($this->getReference('picture_561'));
         $item561->setCategory($this->getReference('category_ruecken'));
         $item561->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Crosstrainer Oberkörper</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -393,8 +371,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item561);
@@ -409,8 +385,6 @@ CONTENT
         $item562->setGallery($this->getReference('picture_562'));
         $item562->setCategory($this->getReference('category_ruecken'));
         $item562->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Crosstrainer schnell</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -453,8 +427,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item562);
@@ -469,8 +441,6 @@ CONTENT
         $item563->setGallery($this->getReference('picture_563'));
         $item563->setCategory($this->getReference('category_ruecken'));
         $item563->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Innenrotation im Stand</h4>
 Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band® z.B. um ein Tischbein.
 <div class="feature-box">
@@ -514,8 +484,6 @@ Bitten führen Sie diese Übung im Stehen durch. Bitte legen Sie das Thera-Band�
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item563);
@@ -530,8 +498,6 @@ CONTENT
         $item564->setGallery($this->getReference('picture_564'));
         $item564->setCategory($this->getReference('category_ruecken'));
         $item564->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kleiner Ball – großer Ball</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -579,8 +545,6 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/13_gesamter_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg"><img src="/wp-content/uploads/muskelgruppen/14_oberarm_unterarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item564);
@@ -595,8 +559,6 @@ CONTENT
         $item565->setGallery($this->getReference('picture_565'));
         $item565->setCategory($this->getReference('category_ruecken'));
         $item565->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kopf hinten</h4>
 Sie können diese Übung im Sitzen oder im Stehen durchführen
 <div class="feature-box">
@@ -633,8 +595,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item565);
@@ -649,8 +609,6 @@ CONTENT
         $item566->setGallery($this->getReference('picture_566'));
         $item566->setCategory($this->getReference('category_ruecken'));
         $item566->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Rumpfrotation im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -691,8 +649,6 @@ Rumpfmuskulatur</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg">
 <img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" />
 </a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item566);
@@ -707,8 +663,6 @@ CONTENT
         $item567->setGallery($this->getReference('picture_567'));
         $item567->setCategory($this->getReference('category_ruecken'));
         $item567->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Rumpfrotation im Stand</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -749,8 +703,6 @@ Rumpfmuskulatur</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg">
 <img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" />
 </a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item567);
@@ -765,8 +717,6 @@ CONTENT
         $item568->setGallery($this->getReference('picture_568'));
         $item568->setCategory($this->getReference('category_ruecken'));
         $item568->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Spreizer</h4>
 Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 <div class="feature-box">
@@ -808,8 +758,6 @@ Bitte führen Sie diese Übung im Sitzen oder im Stehen durch
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item568);
@@ -824,8 +772,6 @@ CONTENT
         $item569->setGallery($this->getReference('picture_569'));
         $item569->setCategory($this->getReference('category_ruecken'));
         $item569->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Squats mit Lang-Hantel</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -877,8 +823,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg">
 <img src="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg" alt="" />
 </a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item569);

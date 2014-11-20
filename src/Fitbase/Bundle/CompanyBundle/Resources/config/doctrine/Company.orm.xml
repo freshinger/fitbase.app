@@ -6,12 +6,12 @@
     <entity name="Fitbase\Bundle\CompanyBundle\Entity\Company" table="fitbase_company"
             repository-class="Fitbase\Bundle\CompanyBundle\Repository\CompanyRepository">
 
-        <id name="id" type="integer" column="company_id">
+        <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
         <field name="name" type="string" length="255" column="name"/>
         <field name="description" type="text" column="description" nullable="true"/>
-        <field name="site" type="string" length="255" column="site" nullable="true"/>
+        <field name="url" type="string" length="255" column="url" nullable="true"/>
         <field name="date" type="datetime" column="date" nullable="true"/>
 
         <field name="logo" type="string" length="255" column="logo" nullable="true"/>
@@ -25,6 +25,8 @@
         <field name="questionnaire" type="boolean" column="questionnaire" nullable="true"/>
         <field name="gamification" type="boolean" column="gamification" nullable="true"/>
 
+
+        <many-to-one field="site" target-entity="Application\Sonata\PageBundle\Entity\Site"/>
 
     </entity>
 </doctrine-mapping>

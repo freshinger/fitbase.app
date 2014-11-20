@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogAnswer"
-            table="ors_gamification_user_dialog_answer"
+            table="fitbase_gamification_user_dialog_answer"
             repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationUserDialogAnswerRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

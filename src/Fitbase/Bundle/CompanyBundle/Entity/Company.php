@@ -10,6 +10,7 @@ class Company
     protected $id;
     protected $name;
     protected $description;
+    protected $url;
     protected $site;
     protected $date;
 
@@ -25,6 +26,22 @@ class Company
     protected $gamification;
 
     protected $textEmail;
+
+    /**
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param mixed $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
 
     /**
      * @param mixed $gamification

@@ -10,59 +10,62 @@
 
     {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
 
-    <div class="row">
-        <div class="col-md-6">
-            {% if exercise.webm is defined %}
-                {% if exercise.webm %}
+    {% if exercise is defined and exercise %}
+        <div class="row">
+            <div class="col-md-5">
+                {% if exercise.webm is defined %}
+                    {% if exercise.webm %}
 
-                    {% set width='320' %}
-                    {% set height='240' %}
+                        {% set width='320' %}
+                        {% set height='240' %}
 
-                    <video width="{{ width }}" height="{{ height }}" controls>
-                        <source src="{{ video(exercise.webm) }}" type="video/webm">
+                        <video width="{{ width }}" height="{{ height }}" controls>
+                            <source src="{{ video(exercise.webm) }}" type="video/webm">
 
-                        {% if exercise.mp4 is defined %}
-                            {% if exercise.mp4 %}
-                                <object class="flashplayer" width="{{ width }}" height="{{ height }}"
-                                        type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
-                                    <param name="movie" value="/flash/player.swf?v1.3.5"/>
-                                    <param name="quality" value="high"/>
-                                    <param name="menu" value="false"/>
-                                    <param name="scale" value="noscale"/>
-                                    <param name="allowfullscreen" value="true">
-                                    <param name="allowscriptaccess" value="always">
-                                    <param name="swlivevonnect" value="true"/>
-                                    <param name="cachebusting" value="false">
-                                    <param name="flashvars"
-                                           value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}"/>
-                                </object>
+                            {% if exercise.mp4 is defined %}
+                                {% if exercise.mp4 %}
+                                    <object class="flashplayer" width="{{ width }}" height="{{ height }}"
+                                            type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
+                                        <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                        <param name="quality" value="high"/>
+                                        <param name="menu" value="false"/>
+                                        <param name="scale" value="noscale"/>
+                                        <param name="allowfullscreen" value="true">
+                                        <param name="allowscriptaccess" value="always">
+                                        <param name="swlivevonnect" value="true"/>
+                                        <param name="cachebusting" value="false">
+                                        <param name="flashvars"
+                                               value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}"/>
+                                    </object>
 
-                                <script type="text/javascript">
-                                    $(function () {
-                                        var flashplayer = $('.flashplayer');
-                                        if (!flashplayer.flash()) {
-                                            flashplayer.remove();
-                                        }
-                                    });
-                                </script>
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            var flashplayer = $('.flashplayer');
+                                            if (!flashplayer.flash()) {
+                                                flashplayer.remove();
+                                            }
+                                        });
+                                    </script>
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    </video>
+                        </video>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
 
-            {% if exercise.gallery.galleryHasMedias is defined %}
-                {% if  exercise.gallery.galleryHasMedias %}
-                    {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
-                        <a href="{% path galleryHasMedia.media, 'original' %}">
-                            {% thumbnail galleryHasMedia.media, 'preview' with {'width': 320} %}
-                        </a>
-                    {% endfor %}
+                {% if exercise.gallery.galleryHasMedias is defined %}
+                    {% if  exercise.gallery.galleryHasMedias %}
+                        {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
+                            <a href="{% path galleryHasMedia.media, 'original' %}">
+                                {% thumbnail galleryHasMedia.media, 'preview' with {'width': 320} %}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
+            </div>
+            <div class="col-md-7">
+                {{ exercise.description|raw }}
+            </div>
         </div>
-        <div class="col-md-6">
-            {{ exercise.description|raw }}
-        </div>
-    </div>
+    {% endif %}
+
 {% endblock %}

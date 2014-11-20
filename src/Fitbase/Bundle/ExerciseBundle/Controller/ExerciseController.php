@@ -15,15 +15,17 @@ class ExerciseController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+        $exercises = array();
+        $categories = array();
 
-        $categories = $repositoryCategory->findAll();
-        $exercises = $repositoryExercise->findAll();
+        $serviceExercise = $this->get('exercise');
+        if (($user = $this->get('user')->current())) {
+
+            $categories = $serviceExercise->categories($user);
+            $exercises = $serviceExercise->exercises($user);
+        }
 
         return $this->render('FitbaseExerciseBundle:Exercise:index.html.twig', array(
-            'exercises' => $exercises,
             'categories' => $categories,
         ));
     }
@@ -36,16 +38,14 @@ class ExerciseController extends Controller
      */
     public function categoryAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+        $exercises = array();
+        $categories = array();
 
-        $exercises = null;
-        $categories = null;
+        $serviceExercise = $this->get('exercise');
+        if (($user = $this->get('user')->current())) {
 
-        if (($category = $repositoryCategory->findOneBySlug($unique))) {
-            $exercises = $repositoryExercise->findByCategory($category);
-            $categories = $repositoryCategory->findByParent($category);
+            $categories = $serviceExercise->categories($user, $unique);
+            $exercises = $serviceExercise->exercises($user, $unique);
         }
 
         return $this->render('FitbaseExerciseBundle:Exercise:category.html.twig', array(
@@ -62,16 +62,23 @@ class ExerciseController extends Controller
      */
     public function viewAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
         $exercise = null;
 
-        if (($exercise = $repositoryExercise->findOneById($unique))) {
-            $event = new ExerciseEvent($exercise);
-            $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
-            $this->get('logger')->debug('[fitbase] exercise view', array($exercise->getId()));
+        $serviceExercise = $this->get('exercise');
+        if (($user = $this->get('user')->current())) {
+            $exercise = $serviceExercise->exercise($user, $unique);
         }
+
+//        $entityManager = $this->get('entity_manager');
+//        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+//
+//        $exercise = null;
+//
+//        if (($exercise = $repositoryExercise->findOneById($unique))) {
+//            $event = new ExerciseEvent($exercise);
+//            $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
+//            $this->get('logger')->debug('[fitbase] exercise view', array($exercise->getId()));
+//        }
 
         return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
             'exercise' => $exercise,

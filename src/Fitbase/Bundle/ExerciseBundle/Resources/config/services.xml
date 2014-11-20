@@ -12,6 +12,13 @@
     -->
     <services>
 
+
+        <service id="exercise" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceExercise">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
         <service id="fitbase_helper.media" class="Fitbase\Bundle\ExerciseBundle\Helper\MediaHelper">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

@@ -1,6 +1,8 @@
 {% extends 'FitbaseWeeklytaskBundle::layout.html.twig' %}
 
 {% block content %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklyquiz_user', 'current_uri': app.request.requestUri }) }}
+
     <div class="row">
 
         {% if weeklyquiz is defined and weeklyquiz %}
@@ -18,7 +20,7 @@
     </div>
 
     {% if form is defined and form %}
-        {% form_theme form "FitbaseWeeklytaskBundle::form.html.twig" %}
+        {% form_theme form "FitbaseWeeklytaskBundle:Weeklytask:view_quiz_form.html.twig" %}
         {{ form(form) }}
     {% endif %}
 

@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\WeeklytaskBundle\Listener;
 
 
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskPlanEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
@@ -11,7 +12,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class WeeklytaskUserListener extends ContainerAware
 {
-
     /**
      * Mark weekly task as completed
      * @param WeeklytaskUserEvent $event
@@ -28,6 +28,17 @@ class WeeklytaskUserListener extends ContainerAware
 
             $this->container->get('entity_manager')->persist($weeklytaskUser);
             $this->container->get('entity_manager')->flush($weeklytaskUser);
+
+            if (($quiz = $weeklytask->getQuiz())) {
+
+                $weeklyquizUser = new WeeklyquizUser();
+                $weeklyquizUser->setQuiz($quiz);
+                $weeklyquizUser->setUser($weeklytaskUser->getUser());
+                $weeklyquizUser->setDate($this->container->get('datetime')->getDateTime('next friday'));
+
+                $this->container->get('entity_manager')->persist($weeklyquizUser);
+                $this->container->get('entity_manager')->flush($weeklyquizUser);
+            }
         }
     }
 

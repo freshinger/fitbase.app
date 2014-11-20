@@ -13,18 +13,29 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ReminderUserForm extends AbstractType
+class ReminderUserItemWeeklytaskForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('sendWeeklytask', 'checkbox', array(
+            ->add('day', 'choice', array(
                 'required' => false,
-                'label' => 'Die Wochenaufgaben versenden',
+                'label' => 'Tag',
+                'empty_value' => 'Tag der Woche',
+                'choices' => array(
+                    '1' => 'Montag',
+                    '2' => 'Dienstag',
+                    '3' => 'Mittwoch',
+                    '4' => 'Donnerstag',
+                    '5' => 'Freitag',
+                    '6' => 'Samstag',
+                    '7' => 'Sonntag',
+                ),
             ))
-            ->add('sendWeeklyquiz', 'checkbox', array(
+            ->add('time', 'time', array(
+                'empty_value' => array('hour' => 'hh', 'minute' => 'mm'),
                 'required' => false,
-                'label' => 'Die Wochenquizze versenden',
+                'label' => 'Stunde',
             ))
             ->add('save', 'submit', array(
                 'label' => 'Speichern',
@@ -37,7 +48,7 @@ class ReminderUserForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitbase\Bundle\ReminderBundle\Entity\ReminderUser'
+            'data_class' => 'Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem'
         ));
     }
 
@@ -48,6 +59,6 @@ class ReminderUserForm extends AbstractType
 
     public function getName()
     {
-        return 'reminder';
+        return 'reminder_item_weeklytask';
     }
 } 

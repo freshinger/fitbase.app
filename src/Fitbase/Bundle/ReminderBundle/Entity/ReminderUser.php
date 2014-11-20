@@ -24,41 +24,6 @@ class ReminderUser
      */
     protected $pauseStart;
 
-    protected $sendWeeklytask;
-    protected $sendWeeklyquiz;
-
-    /**
-     * @param mixed $sendWeeklyquiz
-     */
-    public function setSendWeeklyquiz($sendWeeklyquiz)
-    {
-        $this->sendWeeklyquiz = $sendWeeklyquiz;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSendWeeklyquiz()
-    {
-        return (boolean)$this->sendWeeklyquiz;
-    }
-
-    /**
-     * @param mixed $sendWeeklytask
-     */
-    public function setSendWeeklytask($sendWeeklytask)
-    {
-        $this->sendWeeklytask = $sendWeeklytask;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSendWeeklytask()
-    {
-        return (boolean)$this->sendWeeklytask;
-    }
-
     /**
      * @param int $id
      */

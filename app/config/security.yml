@@ -52,7 +52,7 @@ security:
         api:
             pattern:   /api/(.*)
             http_basic:
-                realm:         "Secured Demo Area"
+                realm:         "Fitbase Demo Area"
                 provider:       in_memory
 
             stateless: true

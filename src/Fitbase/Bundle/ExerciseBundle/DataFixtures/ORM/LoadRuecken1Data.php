@@ -41,8 +41,6 @@ class LoadRuecken1Data extends AbstractFixture implements OrderedFixtureInterfac
         $item615->setGallery($this->getReference('picture_615'));
         $item615->setCategory($this->getReference('category_ruecken'));
         $item615->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px">Schulter öffnen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -83,8 +81,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg">
 <img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" />
 </a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item615);
@@ -99,8 +95,6 @@ EOT
         $item616->setGallery($this->getReference('picture_616'));
         $item616->setCategory($this->getReference('category_ruecken'));
         $item616->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Seitwärts beugen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -143,8 +137,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item616);
@@ -159,8 +151,6 @@ EOT
         $item617->setGallery($this->getReference('picture_617'));
         $item617->setCategory($this->getReference('category_ruecken'));
         $item617->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brustrotation</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -201,8 +191,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item617);
@@ -217,8 +205,6 @@ EOT
         $item618->setGallery($this->getReference('picture_618'));
         $item618->setCategory($this->getReference('category_ruecken'));
         $item618->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Brustwirbelsäule mobilisieren</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box">
@@ -257,8 +243,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item618);
@@ -273,8 +257,6 @@ EOT
         $item619->setGallery($this->getReference('picture_619'));
         $item619->setCategory($this->getReference('category_ruecken'));
         $item619->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Butterfly</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box">
@@ -322,8 +304,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg">
 <img src="/wp-content/uploads/muskelgruppen/15_oberarm_oberschenkel.jpg" alt="" />
 </a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item619);
@@ -338,8 +318,6 @@ EOT
         $item620->setGallery($this->getReference('picture_620'));
         $item620->setCategory($this->getReference('category_ruecken'));
         $item620->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Nackenschaukeln</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -381,8 +359,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item620);
@@ -397,8 +373,6 @@ EOT
         $item621->setGallery($this->getReference('picture_621'));
         $item621->setCategory($this->getReference('category_ruecken'));
         $item621->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Schreibtisch Liegestütz</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <p style="margin-top: -15px;">[back_to_parent]</p>
@@ -441,8 +415,6 @@ Bitte führen Sie diese Übung im Stehen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item621);
@@ -457,8 +429,6 @@ EOT
         $item622->setGallery($this->getReference('picture_622'));
         $item622->setCategory($this->getReference('category_ruecken'));
         $item622->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Einigeln – volle Streckung</h4>
 Bitte führen Sie diese Übung im Sitzen durch
 <div class="feature-box">
@@ -499,8 +469,6 @@ Bitte führen Sie diese Übung im Sitzen durch
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item622);
@@ -515,8 +483,6 @@ EOT
         $item623->setGallery($this->getReference('picture_623'));
         $item623->setCategory($this->getReference('category_ruecken'));
         $item623->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Latissimus im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -563,8 +529,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg">
 <img src="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item623);
@@ -579,8 +543,6 @@ EOT
         $item624->setGallery($this->getReference('picture_624'));
         $item624->setCategory($this->getReference('category_ruecken'));
         $item624->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Trapezius im Sitz</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -626,8 +588,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/09_brust_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item624);
@@ -642,8 +602,6 @@ EOT
         $item625->setGallery($this->getReference('picture_625'));
         $item625->setCategory($this->getReference('category_ruecken'));
         $item625->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px">Seitwärts Drehung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -687,8 +645,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item625);
@@ -703,8 +659,6 @@ EOT
         $item626->setGallery($this->getReference('picture_626'));
         $item626->setCategory($this->getReference('category_ruecken'));
         $item626->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px"> Trizeps </h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -743,8 +697,7 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a></div>
-</div>
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
 EOT
         );
         $manager->persist($item626);
@@ -759,8 +712,6 @@ EOT
         $item627->setGallery($this->getReference('picture_627'));
         $item627->setCategory($this->getReference('category_ruecken'));
         $item627->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px">Brustmuskel Dehnen</h4>
 Bitte führen Sie diese Übung im Stehen durch
 <div class="feature-box">
@@ -799,8 +750,7 @@ Bitte führen Sie diese Übung im Stehen durch
 </div>
 <div class="clear"></div>
 </div>
-<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a></div>
-</div>
+<a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/08_brust.jpg"><img src="/wp-content/uploads/muskelgruppen/08_brust.jpg" alt="" /></a>
 EOT
         );
         $manager->persist($item627);
@@ -815,8 +765,6 @@ EOT
         $item628->setGallery($this->getReference('picture_628'));
         $item628->setCategory($this->getReference('category_ruecken'));
         $item628->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Seitwärts beugen Dehnung</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -860,8 +808,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/07_mittlerer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item628);
@@ -876,8 +822,6 @@ EOT
         $item629->setGallery($this->getReference('picture_629'));
         $item629->setCategory($this->getReference('category_ruecken'));
         $item629->setDescription(<<<EOT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Supraspinatus/ Schulterblattmuskulatur</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="feature-box">
@@ -918,8 +862,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 EOT
         );
         $manager->persist($item629);

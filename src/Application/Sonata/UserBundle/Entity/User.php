@@ -28,7 +28,48 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var integer $titel
+     */
     protected $titel;
+
+    /**
+     * @var integer $companys
+     */
+    protected $company;
+
+    /**
+     * @var $site
+     */
+    protected $site;
+
+    /**
+     * @var \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    private $focus;
+
+    /**
+     * Set category
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $focus
+     * @return Exercise
+     */
+    public function setFocus(\Application\Sonata\ClassificationBundle\Entity\Category $focus = null)
+    {
+        $this->focus = $focus;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     */
+    public function getFocus()
+    {
+        return $this->focus;
+    }
 
     /**
      * Get id
@@ -55,4 +96,37 @@ class User extends BaseUser
     {
         $this->titel = $titel;
     }
+
+    /**
+     * @return int
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param int $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param mixed $site
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
 }
