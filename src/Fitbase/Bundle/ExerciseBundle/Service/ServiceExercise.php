@@ -15,6 +15,18 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceExercise extends ContainerAware
 {
     /**
+     * @param $datetime
+     * @return mixed
+     */
+    public function send($datetime)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+        return $repositoryWeeklytaskUser->findAllNotProcessedByDateTime($datetime);
+    }
+
+
+    /**
      *
      * @param $user
      * @return array

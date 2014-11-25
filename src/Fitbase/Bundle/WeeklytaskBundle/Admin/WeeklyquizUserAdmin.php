@@ -84,7 +84,7 @@ class WeeklyquizUserAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('General', array('class' => 'col-md-6'))
             ->add('user')
             ->add('quiz')
             ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))

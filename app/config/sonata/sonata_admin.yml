@@ -119,7 +119,6 @@ sonata_admin:
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - fitbase.admin.user
-                    - fitbase.admin.reminder_user
                     - fitbase.admin.questionnaire_user
                     - fitbase.admin.weeklytask_user
                     - fitbase.admin.weeklyquiz_user

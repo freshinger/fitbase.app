@@ -58,6 +58,43 @@ class WeeklytaskRepository extends EntityRepository
     }
 
     /**
+     * Get expression to find record by user id
+     * @param $queryBuilder
+     * @param $user
+     * @return mixed
+     */
+    protected function getExprNotUser($queryBuilder, $user)
+    {
+        if (!empty($user)) {
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->isNull('WeeklytaskUser.user'),
+                $queryBuilder->expr()->neq('WeeklytaskUser.user', ':user')
+            );
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     *
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprNotDateTime($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->isNull('WeeklytaskUser.date'),
+                $queryBuilder->expr()->gt('WeeklytaskUser.date', ':datetime')
+            );
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
      * Find one weekly task by week id
      * @param $weekId
      * @return mixed
@@ -159,4 +196,47 @@ class WeeklytaskRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 
+    /**
+     * Find all categories by priority
+     * @param $user
+     * @param $category
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneNexByUserAndCategory($user, $category)
+    {
+        $queryBuilder = $this->createQueryBuilder('Weeklytask');
+        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprCategory($queryBuilder, $category),
+            $this->getExprNotUser($queryBuilder, $user)
+        ));
+
+        $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Find all categories by priority
+     * @param $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneNextByUser($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('Weeklytask');
+        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->orX(
+            $this->getExprNotUser($queryBuilder, $user)
+        ));
+
+        $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }

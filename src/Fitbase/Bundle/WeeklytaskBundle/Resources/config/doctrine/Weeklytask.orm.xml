@@ -16,6 +16,10 @@
         <field name="countPoint" type="integer" column="count_point" nullable="true"/>
         <field name="priority" type="integer" column="priority" nullable="true"/>
         <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz"/>
+
+        <one-to-many field="userTask" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser"
+                     mapped-by="task"/>
+
         <many-to-one field="collection" target-entity="Application\Sonata\ClassificationBundle\Entity\Collection">
             <cascade>
                 <cascade-all/>

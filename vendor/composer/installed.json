@@ -7397,5 +7397,187 @@
             "jpgraph",
             "pie"
         ]
+    },
+    {
+        "name": "bariew/phpquery",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bariew/phpquery.git",
+            "reference": "3ac25ea176ce27c6999a2aa87dcd895956d81c35"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bariew/phpquery/zipball/3ac25ea176ce27c6999a2aa87dcd895956d81c35",
+            "reference": "3ac25ea176ce27c6999a2aa87dcd895956d81c35",
+            "shasum": ""
+        },
+        "time": "2014-10-03 08:45:37",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "phpQuery/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Tobiasz Cudnik",
+                "email": "tobiasz.cudnik@gmail.com",
+                "homepage": "https://github.com/TobiaszCudnik",
+                "role": "Developer"
+            },
+            {
+                "name": "didier Belot",
+                "role": "Packager"
+            }
+        ],
+        "description": "phpQuery is a server-side, chainable, CSS3 selector driven Document Object Model (DOM) API based on jQuery JavaScript Library",
+        "homepage": "http://code.google.com/p/phpquery/"
+    },
+    {
+        "name": "robloach/component-installer",
+        "version": "0.0.12",
+        "version_normalized": "0.0.12.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/RobLoach/component-installer.git",
+            "reference": "1864f25db21fc173e02a359f646acd596c1b0460"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/1864f25db21fc173e02a359f646acd596c1b0460",
+            "reference": "1864f25db21fc173e02a359f646acd596c1b0460",
+            "shasum": ""
+        },
+        "require": {
+            "kriswallsmith/assetic": "1.*",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "composer/composer": "1.*"
+        },
+        "time": "2013-08-31 23:46:48",
+        "type": "composer-installer",
+        "extra": {
+            "class": "ComponentInstaller\\Installer"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ComponentInstaller": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Rob Loach",
+                "email": "robloach@gmail.com",
+                "homepage": "http://robloach.net"
+            }
+        ],
+        "description": "Allows installation of Components via Composer."
+    },
+    {
+        "name": "components/jquery",
+        "version": "1.11.1",
+        "version_normalized": "1.11.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/components/jquery.git",
+            "reference": "923b3973ed5b6e465a621d3032106fc6832a9a3c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/components/jquery/zipball/923b3973ed5b6e465a621d3032106fc6832a9a3c",
+            "reference": "923b3973ed5b6e465a621d3032106fc6832a9a3c",
+            "shasum": ""
+        },
+        "require": {
+            "robloach/component-installer": "*"
+        },
+        "time": "2014-10-10 05:49:59",
+        "type": "component",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "jquery.js"
+                ],
+                "files": [
+                    "jquery.min.js",
+                    "jquery-migrate.js",
+                    "jquery-migrate.min.js",
+                    "jquery.min.map"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "John Resig",
+                "email": "jeresig@gmail.com"
+            }
+        ],
+        "description": "jQuery JavaScript Library",
+        "homepage": "http://jquery.com"
+    },
+    {
+        "name": "bcc/cron-manager-bundle",
+        "version": "v2.4.1",
+        "version_normalized": "2.4.1.0",
+        "target-dir": "BCC/CronManagerBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/michelsalib/BCCCronManagerBundle.git",
+            "reference": "4eda5bdcce7c594e9232d4535305884d5f0adeab"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/michelsalib/BCCCronManagerBundle/zipball/4eda5bdcce7c594e9232d4535305884d5f0adeab",
+            "reference": "4eda5bdcce7c594e9232d4535305884d5f0adeab",
+            "shasum": ""
+        },
+        "require": {
+            "components/jquery": "1.*",
+            "symfony/assetic-bundle": "~2",
+            "symfony/symfony": "~2",
+            "twbs/bootstrap": "~3"
+        },
+        "time": "2014-04-17 16:26:19",
+        "type": "symfony-bundle",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "BCC\\CronManagerBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michel Salib",
+                "email": "michelsalib@hotmail.com",
+                "homepage": "http://www.michelsalib.com"
+            }
+        ],
+        "description": "A cron table manager bundle for Symfony2",
+        "homepage": "http://github.com/michelsalib/BCCCronManagerBundle",
+        "keywords": [
+            "cron management"
+        ]
     }
 ]

@@ -64,7 +64,10 @@
                             </td>
                             <td class="shade center">{{ task.doneDate|date('d.m.Y') }}</td>
                             <td class="shade center">
-                                {{ task.task.quiz }}
+                                {% set userQuiz = task.userQuiz %}
+                                {% if userQuiz is defined and userQuiz %}
+                                    {{ userQuiz.quiz }}
+                                {% endif %}
                             </td>
                             <td class="shade center">{{ task.task.countPoint }}</td>
                         </tr>
@@ -124,10 +127,11 @@
                                 {{ task.doneDate|date('d.m.Y') }}
                             </td>
                             <td class="shade center">
-                                {% if task.task.quiz is defined and task.task.quiz %}
-                                    {% set pointsWeeklyquiz = task.task.quiz.countPoint %}
-                                    <a href="{{ path('weeklyquiz_user_view', { 'unique': task.id } ) }}">
-                                        {{ task.task.quiz }}
+                                {% set userQuiz = task.userQuiz %}
+                                {% if userQuiz is defined and userQuiz %}
+                                    {% set pointsWeeklyquiz = userQuiz.quiz.countPoint %}
+                                    <a href="{{ path('weeklyquiz_user_view', { 'unique': userQuiz.id } ) }}">
+                                        {{ userQuiz.quiz }} {{ userQuiz.id }}
                                     </a>
                                 {% endif %}
                             </td>

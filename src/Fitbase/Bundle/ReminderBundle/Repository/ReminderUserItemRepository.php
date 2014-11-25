@@ -90,6 +90,20 @@ class ReminderUserItemRepository extends EntityRepository
     }
 
     /**
+     * Expression to get items for not paused reminders
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprNotPaused($queryBuilder)
+    {
+        $queryBuilder->setParameter(':pause', 0);
+        return $queryBuilder->expr()->orx(
+            $queryBuilder->expr()->isNull('ReminderUser.pause'),
+            $queryBuilder->expr()->eq('ReminderUser.pause', ':pause')
+        );
+    }
+
+    /**
      * Get reminder items by user
      * @param $user
      * @return array
@@ -165,7 +179,6 @@ class ReminderUserItemRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-
     /**
      * Find reminder items by day and reminder
      * @param $reminder
@@ -179,6 +192,26 @@ class ReminderUserItemRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprReminder($queryBuilder, $reminder),
             $this->getExprDay($queryBuilder, $day)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
+     * Find all item-records for not paused reminders
+     * @param $day
+     * @return array
+     */
+    public function findAllNotPausedByDayAndType($day = null, $type = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
+        $queryBuilder->leftJoin('ReminderUserItem.reminder', 'ReminderUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprDay($queryBuilder, $day),
+            $this->getExprType($queryBuilder, $type),
+            $this->getExprNotPaused($queryBuilder)
         ));
 
         return $queryBuilder->getQuery()->getResult();

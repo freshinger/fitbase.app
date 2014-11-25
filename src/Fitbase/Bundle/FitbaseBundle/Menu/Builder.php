@@ -34,15 +34,16 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-//        $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
-//
-//        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
-//
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
         ));
 
         $menu = $factory->createItem('main', $menuOptions);
+        if (!($this->container->get('user')->current())) {
+            return $menu;
+        }
+
+
         $menu->addChild('Dashboard', array(
             'route' => 'page_slug',
             'routeParameters' => array(

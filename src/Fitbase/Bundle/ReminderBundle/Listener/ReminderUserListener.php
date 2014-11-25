@@ -2,7 +2,7 @@
 
 namespace Fitbase\Bundle\ReminderBundle\Listener;
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan;
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -104,7 +104,7 @@ class ReminderUserListener extends ContainerAware
         $entityManager = $this->container->get('entity_manager');
 
         $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-        $repositoryReminderPlan = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');
+        $repositoryReminderPlan = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan');
 
         if (($user = $userManager->find($reminder->getUserId()))) {
 
@@ -127,7 +127,7 @@ class ReminderUserListener extends ContainerAware
                             $reminder->getId()
                         ));
 
-                        $plan = new ReminderUserPlan();
+                        $plan = new ReminderPlan();
                         $plan->setDate($reminderItem->getTime());
                         $plan->setUserId($reminder->getUserId());
                         $plan->setReminderId($reminder->getId());

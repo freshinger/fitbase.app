@@ -12,3 +12,7 @@ sonata_user_admin:
 sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix:   /media
+
+BCCCronManagerBundle:
+    resource: "@BCCCronManagerBundle/Resources/config/routing.xml"
+    prefix:   /cron/manager

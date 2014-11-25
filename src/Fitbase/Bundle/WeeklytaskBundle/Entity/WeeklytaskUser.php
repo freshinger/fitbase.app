@@ -179,4 +179,61 @@ class WeeklytaskUser
         return null;
     }
 
+    /**
+     * @var boolean
+     */
+    private $processed;
+
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return WeeklytaskUser
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+
+        return $this;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser
+     */
+    private $userQuiz;
+
+
+    /**
+     * Set userQuiz
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $userQuiz
+     * @return WeeklytaskUser
+     */
+    public function setUserQuiz(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $userQuiz = null)
+    {
+        $this->userQuiz = $userQuiz;
+
+        return $this;
+    }
+
+    /**
+     * Get userQuiz
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser
+     */
+    public function getUserQuiz()
+    {
+        return $this->userQuiz;
+    }
 }

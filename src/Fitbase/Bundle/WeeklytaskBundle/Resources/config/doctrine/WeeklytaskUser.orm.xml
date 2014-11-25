@@ -11,11 +11,13 @@
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
+        <one-to-one field="userQuiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser"
+                    inversed-by="userTask"/>
 
-        <field name="weekId" type="integer" column="week_id" nullable="true"/>
-        <field name="code" type="boolean" column="code" nullable="true"/>
+        <field name="code" type="string" column="code" nullable="true"/>
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="done" type="boolean" column="done" nullable="true"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
         <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
         <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 

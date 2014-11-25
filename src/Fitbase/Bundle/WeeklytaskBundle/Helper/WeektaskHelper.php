@@ -321,7 +321,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
     public function getPostDateNext($post)
     {
         if (($user = $this->container->get('user')->current())) {
-            if (($date = $this->container->get('fitbase_service.weeklytask')->getPostNextDate($user, $post))) {
+            if (($date = $this->container->get('weeklytask')->getPostNextDate($user, $post))) {
                 return $date->format('d.m.Y');
             }
         }

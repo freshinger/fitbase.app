@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\UserBundle\Admin;
 
+use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -34,6 +35,27 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     {
         $this->container = $container;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($object)
+    {
+        $event = new UserEvent($object);
+        $this->container->get('event_dispatcher')->dispatch('user_created', $event);
+        $this->container->get('logger')->debug('[fitbase] user_created event');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($object)
+    {
+        $event = new UserEvent($object);
+        $this->container->get('event_dispatcher')->dispatch('user_updated', $event);
+        $this->container->get('logger')->debug('[fitbase] user_updated event');
+    }
+
 
     /**
      * {@inheritdoc}

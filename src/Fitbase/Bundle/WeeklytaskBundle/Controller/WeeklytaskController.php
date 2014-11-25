@@ -52,20 +52,12 @@ class WeeklytaskController extends Controller
 
         if (($user = $this->get('user')->current())) {
             $entityManager = $this->get('entity_manager');
-            $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-            if (($weeklytaskUser = $repositoryWeeklytask->find($unique))) {
-                if (($weeklytask = $weeklytaskUser->getTask()) and ($weeklyquiz = $weeklytask->getQuiz())) {
-                    $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-                    if (($weeklyquizUser = $repositoryWeeklyquiz->findOneByUserAndQuiz($user, $weeklyquiz))) {
-
-                        if ($weeklyquizUser->getDone()) {
-                            return $this->showUserQuizViewFormDoneAction($request, $user, $weeklyquizUser);
-                        }
-
-                        return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
-
-                    }
+            $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+            if (($weeklyquizUser = $repositoryWeeklyquiz->findOneByUserAndUnique($user, $unique))) {
+                if ($weeklyquizUser->getDone()) {
+                    return $this->showUserQuizViewFormDoneAction($request, $user, $weeklyquizUser);
                 }
+                return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
             }
         }
 
@@ -88,7 +80,6 @@ class WeeklytaskController extends Controller
         $formBuilder = new WeeklyquizUserForm();
         $formBuilder->setContainer($this->container);
         $formBuilder->setWeeklyquizUser($weeklyquizUser);
-
 
         $form = $this->createForm($formBuilder, array());
         if ($request->get($form->getName())) {
@@ -141,7 +132,7 @@ class WeeklytaskController extends Controller
         return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
-            'weeklyquiz' => $weeklyquizUser->getQuiz(),
+            'weeklyquiz' => $weeklyquizUser,
         ));
     }
 

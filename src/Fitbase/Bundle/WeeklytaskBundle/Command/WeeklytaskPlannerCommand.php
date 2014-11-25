@@ -3,16 +3,21 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\Event;
 
 class WeeklytaskPlannerCommand extends ContainerAwareCommand
 {
+    /**
+     * Configure current console task
+     */
     protected function configure()
     {
         $this->setName('fitbase:weeklytask:planner')
-            ->setDescription('Weekly task planner command, fill planning table by user data');
+            ->setDescription('Create Weeklyquiz-User association');
     }
 
     /**
@@ -23,26 +28,27 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $logger = $this->getContainer()->get('logger');
-        $logger->info('Weekly task, start planner');
+        $datetime = $this->get('datetime')->getDateTime('now');
 
-        $managerUser = $this->getContainer()->get('user');
-        $repositoryReminder = $this->getContainer()->get('entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+        $day = $datetime->format('N');
+        if (($collection = $this->get('reminder')->getItemsWeeklytask($day))) {
+            foreach ($collection as $reminderUserItem) {
+                if (($user = $reminderUserItem->getUser())) {
 
-        if (($collection = $repositoryReminder->findAllByNotPauseAndSendWeeklytask())) {
-            foreach ($collection as $key => $reminder) {
-
-                if (($user = $managerUser->find($reminder->getUserId()))) {
-
-                    $logger->info('Weekly task, plan for user', array($user->getId()));
-
-                    $this->getContainer()->get('event_dispatcher')
-                        ->dispatch('weeklytask_user_plan', new UserEvent($user));
+                    $event = new WeeklytaskReminderEvent($reminderUserItem);
+                    $this->get('event_dispatcher')->dispatch('weeklytask_reminder_create', $event);
                 }
             }
         }
+    }
 
-        $logger->info('Weekly task, end planner');
+    /**
+     * Get service from container
+     * @param $name
+     * @return object
+     */
+    protected function get($name)
+    {
+        return $this->getContainer()->get($name);
     }
 }

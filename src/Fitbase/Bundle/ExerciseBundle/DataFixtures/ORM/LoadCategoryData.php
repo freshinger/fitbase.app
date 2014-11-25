@@ -112,7 +112,7 @@ class LoadCategoryData extends AbstractFixture implements ContainerAwareInterfac
 
         $travels = $this->getCategoryManager()->create();
         $travels->setName('Übersäuerung');
-        $travels->setSlug('uebersäuerung');
+        $travels->setSlug('uebersaeuerung');
         $travels->setDescription('uebersäuerung');
         $travels->setEnabled(true);
         $travels->setMedia($image);

@@ -9,6 +9,43 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
 class WeeklyquizUserRepository extends EntityRepository
 {
+    protected function getExprUnique($queryBuilder, $unique)
+    {
+        if (!empty($unique)) {
+            $queryBuilder->setParameter('unique', $unique);
+            return $queryBuilder->expr()->eq('WeeklyquizUser.id', ':unique');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeLt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->lt('WeeklyquizUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function  getExprNotProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('WeeklyquizUser.processed', ':processed'),
+            $queryBuilder->expr()->isNull('WeeklyquizUser.processed')
+        );
+    }
+
     /**
      * Get expression to find record by userF
      * @param $queryBuilder
@@ -299,6 +336,38 @@ class WeeklyquizUserRepository extends EntityRepository
         ));
 
         return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+    }
+
+
+    public function findOneByUserAndUnique($user, $unique)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprUnique($queryBuilder, $unique)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Find quizze by not processed and date
+     * @param $datetime
+     * @return array
+     */
+    public function findAllNotProcessedByDateTime($datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprDateTimeLt($queryBuilder, $datetime),
+            $this->getExprNotProcessed($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
 

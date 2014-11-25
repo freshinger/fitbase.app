@@ -182,4 +182,61 @@ class WeeklyquizUser
         $this->task = $task;
     }
 
+    /**
+     * @var boolean
+     */
+    private $processed;
+
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return WeeklyquizUser
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+
+        return $this;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser
+     */
+    private $userTask;
+
+
+    /**
+     * Set userTask
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask
+     * @return WeeklyquizUser
+     */
+    public function setUserTask(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask = null)
+    {
+        $this->userTask = $userTask;
+
+        return $this;
+    }
+
+    /**
+     * Get userTask
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser
+     */
+    public function getUserTask()
+    {
+        return $this->userTask;
+    }
 }

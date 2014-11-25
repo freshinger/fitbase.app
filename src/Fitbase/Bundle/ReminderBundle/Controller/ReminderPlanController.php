@@ -2,7 +2,8 @@
 
 namespace Fitbase\Bundle\ReminderBundle\Controller;
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan;
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan;
+use Fitbase\Bundle\ReminderBundle\Event\ReminderPlanEvent;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserPlanEvent;
 use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -19,11 +20,11 @@ class ReminderPlanController extends Controller
     public function sendAction($id)
     {
         $plan = $this->get('entity_manager')
-            ->find('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan', $id);
+            ->find('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan', $id);
 
-        if ($plan instanceof ReminderUserPlan) {
+        if ($plan instanceof ReminderPlan) {
 
-            $event = new ReminderUserPlanEvent($plan);
+            $event = new ReminderPlanEvent($plan);
             $this->get('event_dispatcher')->dispatch('reminder_sender', $event);
 
             $this->get('session')->getFlashBag()->add('notice', 'Ein Reminder wurde erfolgreich versendet');
@@ -40,12 +41,12 @@ class ReminderPlanController extends Controller
         }
 
         $plans = $this->get('entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan')
+            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan')
             ->findReminderPlanListCurrent();
 
 
         $repositoryReminderUserPlan = $this->get('entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan');
+            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan');
 
         $pagerfantaProcessed = new Pagerfanta(new DoctrineORMAdapter(
             $repositoryReminderUserPlan->findAllProcessedQueryBuilder()

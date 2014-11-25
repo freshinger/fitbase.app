@@ -9,21 +9,21 @@
 namespace Fitbase\Bundle\ReminderBundle\Event;
 
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan;
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan;
 use Symfony\Component\EventDispatcher\Event;
 
-class ReminderUserPlanEvent extends Event
+class ReminderPlanEvent extends Event
 {
 
     protected $entity;
 
-    public function __construct(ReminderUserPlan $entity)
+    public function __construct(ReminderPlan $entity)
     {
         $this->entity = $entity;
     }
 
     /**
-     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan $entity
+     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan $entity
      */
     public function setEntity($entity)
     {
@@ -31,7 +31,7 @@ class ReminderUserPlanEvent extends Event
     }
 
     /**
-     * @return \Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan
+     * @return \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan
      */
     public function getEntity()
     {

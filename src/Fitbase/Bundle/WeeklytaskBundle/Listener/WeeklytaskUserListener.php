@@ -28,17 +28,6 @@ class WeeklytaskUserListener extends ContainerAware
 
             $this->container->get('entity_manager')->persist($weeklytaskUser);
             $this->container->get('entity_manager')->flush($weeklytaskUser);
-
-            if (($quiz = $weeklytask->getQuiz())) {
-
-                $weeklyquizUser = new WeeklyquizUser();
-                $weeklyquizUser->setQuiz($quiz);
-                $weeklyquizUser->setUser($weeklytaskUser->getUser());
-                $weeklyquizUser->setDate($this->container->get('datetime')->getDateTime('next friday'));
-
-                $this->container->get('entity_manager')->persist($weeklyquizUser);
-                $this->container->get('entity_manager')->flush($weeklyquizUser);
-            }
         }
     }
 

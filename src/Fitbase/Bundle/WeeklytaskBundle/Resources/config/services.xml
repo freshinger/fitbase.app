@@ -8,6 +8,7 @@
         <import resource="admin.xml"/>
         <import resource="blocks.xml"/>
         <import resource="listeners.xml"/>
+        <import resource="subscribers.xml"/>
         <import resource="validators.xml"/>
     </imports>
 
@@ -18,6 +19,21 @@
 
     -->
     <services>
+
+
+        <service id="weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Services\ServiceWeeklytask">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="weeklyquiz" class="Fitbase\Bundle\WeeklytaskBundle\Services\ServiceWeeklyquiz">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
         <service id="fitbase_shortcode.wochenaufgaben"
                  class="Fitbase\Bundle\WeeklytaskBundle\Controller\WochenAufgabeController">
             <call method="setContainer">
@@ -32,11 +48,6 @@
             <tag name="twig.extension"/>
         </service>
 
-        <service id="fitbase_service.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Services\ServiceWeeklytask">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
 
         <service id="fitbase_formtype.post" class="Fitbase\Bundle\WeeklytaskBundle\Form\WeeklytaskPostType">
             <call method="setContainer">

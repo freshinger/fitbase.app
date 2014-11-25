@@ -4,9 +4,8 @@ namespace Fitbase\Bundle\ReminderBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class ReminderUserPlanRepository extends EntityRepository
+class ReminderPlanRepository extends EntityRepository
 {
-
     /**
      * Get expression by max date
      * @param $queryBuilder
@@ -16,7 +15,7 @@ class ReminderUserPlanRepository extends EntityRepository
     protected function getExprDate($queryBuilder, $date)
     {
         $queryBuilder->setParameter('dateMax', $date);
-        return $queryBuilder->expr()->eq('ReminderUserPlan.date', ':dateMax');
+        return $queryBuilder->expr()->eq('ReminderPlan.date', ':dateMax');
     }
 
     /**
@@ -28,7 +27,7 @@ class ReminderUserPlanRepository extends EntityRepository
     protected function getExprDateMax($queryBuilder, $date)
     {
         $queryBuilder->setParameter('dateMax', $date);
-        return $queryBuilder->expr()->lte('ReminderUserPlan.date', ':dateMax');
+        return $queryBuilder->expr()->lte('ReminderPlan.date', ':dateMax');
     }
 
     /**
@@ -40,8 +39,8 @@ class ReminderUserPlanRepository extends EntityRepository
     {
         $queryBuilder->setParameter('processed', false);
         return $queryBuilder->expr()->orx(
-            $queryBuilder->expr()->isNull('ReminderUserPlan.processed'),
-            $queryBuilder->expr()->eq('ReminderUserPlan.processed', ':processed')
+            $queryBuilder->expr()->isNull('ReminderPlan.processed'),
+            $queryBuilder->expr()->eq('ReminderPlan.processed', ':processed')
         );
     }
 
@@ -54,7 +53,7 @@ class ReminderUserPlanRepository extends EntityRepository
     {
         if (!empty($user)) {
             $queryBuilder->setParameter('user', $user->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.user', ':user');
+            return $queryBuilder->expr()->eq('ReminderPlan.user', ':user');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -68,7 +67,7 @@ class ReminderUserPlanRepository extends EntityRepository
     {
         if (!empty($reminder)) {
             $queryBuilder->setParameter('reminder', $reminder->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.reminder', ':reminder');
+            return $queryBuilder->expr()->eq('ReminderPlan.reminder', ':reminder');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -83,7 +82,7 @@ class ReminderUserPlanRepository extends EntityRepository
     {
         if (!empty($reminderItem)) {
             $queryBuilder->setParameter('item', $reminderItem->getId());
-            return $queryBuilder->expr()->eq('ReminderUserPlan.item', ':item');
+            return $queryBuilder->expr()->eq('ReminderPlan.item', ':item');
         }
         return $queryBuilder->expr()->eq('1', '0');
 
@@ -96,14 +95,14 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findOneByReminderItemAndNotProcessed($reminderItem)
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprReminderItem($queryBuilder, $reminderItem),
             $this->getExprNotProcessed($queryBuilder)
         ));
 
         $queryBuilder->setMaxResults(1)
-            ->addOrderBy('ReminderUserPlan.id', 'DESC');
+            ->addOrderBy('ReminderPlan.id', 'DESC');
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
@@ -117,7 +116,7 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findOneByUserAndReminderAndDate($user, $reminder, $datetime)
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
             $this->getExprReminder($queryBuilder, $reminder),
@@ -125,7 +124,7 @@ class ReminderUserPlanRepository extends EntityRepository
         ));
 
         $queryBuilder->setMaxResults(1)
-            ->addOrderBy('ReminderUserPlan.id', 'DESC');
+            ->addOrderBy('ReminderPlan.id', 'DESC');
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
@@ -137,13 +136,13 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findReminderPlanListCurrent()
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('ReminderUserPlan.processed', ':processed')
+            $queryBuilder->expr()->eq('ReminderPlan.processed', ':processed')
         ));
 
         $queryBuilder->setParameter("processed", false);
-        $queryBuilder->orderBy('ReminderUserPlan.date', 'DESC');
+        $queryBuilder->orderBy('ReminderPlan.date', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }
 
@@ -154,15 +153,15 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findReminderPlanArchiveList($serviceDate)
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('ReminderUserPlan.processed', ':processed'),
-            $queryBuilder->expr()->gte('ReminderUserPlan.date', ':date')
+            $queryBuilder->expr()->eq('ReminderPlan.processed', ':processed'),
+            $queryBuilder->expr()->gte('ReminderPlan.date', ':date')
         ));
 
         $queryBuilder->setParameter("processed", true);
         $queryBuilder->setParameter("date", $serviceDate->getDateTime('now -14 days'));
-        $queryBuilder->orderBy('ReminderUserPlan.date', 'DESC');
+        $queryBuilder->orderBy('ReminderPlan.date', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }
 
@@ -172,13 +171,13 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findAllProcessedQueryBuilder()
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('ReminderUserPlan.processed', ':processed')
+            $queryBuilder->expr()->eq('ReminderPlan.processed', ':processed')
         ));
 
         $queryBuilder->setParameter('processed', true);
-        $queryBuilder->orderBy('ReminderUserPlan.date', 'DESC');
+        $queryBuilder->orderBy('ReminderPlan.date', 'DESC');
 
         return $queryBuilder;
     }
@@ -192,7 +191,7 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findAllByReminderAndDayAndNotProcessed($reminder, $date)
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprReminder($queryBuilder, $reminder),
             $this->getExprDateMax($queryBuilder, $date),
@@ -210,10 +209,10 @@ class ReminderUserPlanRepository extends EntityRepository
      */
     public function findPlanListToSend($serviceDate)
     {
-        $queryBuilder = $this->createQueryBuilder('ReminderUserPlan');
+        $queryBuilder = $this->createQueryBuilder('ReminderPlan');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $queryBuilder->expr()->eq('ReminderUserPlan.processed', ':processed'),
-            $queryBuilder->expr()->lte('ReminderUserPlan.date', ':dateMax')
+            $queryBuilder->expr()->eq('ReminderPlan.processed', ':processed'),
+            $queryBuilder->expr()->lte('ReminderPlan.date', ':dateMax')
         ));
         $queryBuilder->setParameter("processed", false);
 
@@ -221,7 +220,7 @@ class ReminderUserPlanRepository extends EntityRepository
         $dateMax->setTime($dateMax->format('H'), 59, 59);
         $queryBuilder->setParameter("dateMax", $dateMax);
 
-        $queryBuilder->orderBy('ReminderUserPlan.id', 'DESC');
+        $queryBuilder->orderBy('ReminderPlan.id', 'DESC');
         return $queryBuilder->getQuery()->getResult();
     }
 

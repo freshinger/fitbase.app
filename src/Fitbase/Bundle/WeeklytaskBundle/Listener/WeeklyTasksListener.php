@@ -80,7 +80,7 @@ class WeeklyTasksListener extends ContainerAware
             return;
         }
 
-        $dateTime = $this->container->get('fitbase_service.weeklytask');
+        $dateTime = $this->container->get('weeklytask');
 
         $next = $dateTime->getUserNextDate($user);
         // Set time to 4 o'clock am

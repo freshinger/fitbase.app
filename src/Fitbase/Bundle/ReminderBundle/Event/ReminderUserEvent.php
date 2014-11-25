@@ -23,7 +23,7 @@ class ReminderUserEvent extends Event
     }
 
     /**
-     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan $entity
+     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan $entity
      */
     public function setEntity($entity)
     {
@@ -31,7 +31,7 @@ class ReminderUserEvent extends Event
     }
 
     /**
-     * @return \Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan
+     * @return \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan
      */
     public function getEntity()
     {

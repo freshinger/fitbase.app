@@ -22,6 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class GamificationDashboardBlockService extends BaseBlockService implements ContainerAwareInterface

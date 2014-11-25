@@ -4,7 +4,7 @@ namespace Fitbase\Bundle\ReminderBundle\Controller;
 
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan;
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserPlanEvent;

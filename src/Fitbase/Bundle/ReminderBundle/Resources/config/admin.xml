@@ -31,7 +31,7 @@
             </call>
             <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Übungen"/>
             <argument/>
-            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan</argument>
+            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan</argument>
             <argument/>
         </service>
 

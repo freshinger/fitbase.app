@@ -24,6 +24,20 @@ class WeeklytaskUserRepository extends EntityRepository
     }
 
     /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function  getExprNotProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('WeeklytaskUser.processed', ':processed'),
+            $queryBuilder->expr()->isNull('WeeklytaskUser.processed')
+        );
+    }
+
+    /**
      * Get all not done tasks
      * @param $queryBuilder
      * @return mixed
@@ -78,6 +92,34 @@ class WeeklytaskUserRepository extends EntityRepository
     }
 
     /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTime($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->eq('WeeklytaskUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeLt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->lt('WeeklytaskUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * Get expr by weeklytask id
      * @param $queryBuilder
      * @param $weeklytaskId
@@ -112,6 +154,22 @@ class WeeklytaskUserRepository extends EntityRepository
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
+
+    /**
+     * Get expr by category
+     * @param $queryBuilder
+     * @param $string
+     * @return mixed
+     */
+    protected function getExprCategory($queryBuilder, $string)
+    {
+        if (!empty($string)) {
+            $queryBuilder->setParameter('category', $string);
+            return $queryBuilder->expr()->eq('Weeklytask.category', ':category');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
 
     /**
      * Find one by weeklytask User object
@@ -275,4 +333,39 @@ class WeeklytaskUserRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+
+    public function findAllNotProcessedByDateTime($datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprDateTimeLt($queryBuilder, $datetime),
+            $this->getExprNotProcessed($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
+     * @param $user
+     * @param $datetime
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUserAndDateTime($user, $datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDateTime($queryBuilder, $datetime)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 }

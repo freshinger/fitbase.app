@@ -43,7 +43,7 @@ class WeeklytaskPlanListener extends ContainerAware
 
         if (($weeklytask = $repositoryWeeklytask->findOneByWeekId($weeklytaskUser->getWeekId()))) {
             $user = $managerUser->find($weeklytaskUser->getUserId());
-            $serviceWeeklytask = $this->container->get('fitbase_service.weeklytask');
+            $serviceWeeklytask = $this->container->get('weeklytask');
             if (($dateNext = $serviceWeeklytask->getUserNextDate($user))) {
                 $dateNext->setTime(4, 0, 0);
 

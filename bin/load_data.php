@@ -61,11 +61,11 @@ function execute_commands($commands, $output)
 }
 
 // find out the default php runtime
-$bin = 'php';
+$bin = 'php54';
 
-if (defined('PHP_BINARY')) {
-    $bin = PHP_BINARY;
-}
+//if (defined('PHP_BINARY')) {
+//    //$bin = PHP_BINARY;
+//}
 
 $output->writeln("<info>Resetting demo</info>");
 
@@ -82,7 +82,7 @@ $success = execute_commands(array(
     $bin . ' ./app/console doctrine:database:drop --force',
     $bin . ' ./app/console doctrine:database:create',
     $bin . ' ./app/console doctrine:schema:update --force',
-    $bin . '  -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug',
+    $bin . '  -d memory_limit=1024M ./app/console doctrine:fixtures:load --no-interaction --verbose --env=dev --no-debug',
     $bin . ' ./app/console sonata:news:sync-comments-count',
     $bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug',
     $bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug',

@@ -1,0 +1,42 @@
+{% extends '::email.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if user is defined and user %}
+                <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+            {% endif %}
+            <p>
+                Erinnerung-Funtion
+            </p>
+
+            <p>Wir wünschen Ihnen viel Spaß!</p>
+
+            <p>Ihr Online-Rückenschule Team</p>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="true btn btn btn-success btn-ds" href="#">
+                        Button 1 adf asdf
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="true btn btn btn-success btn-ds" href="#">
+                        Button 1 adf asdf
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="true btn btn btn-success btn-ds" href="#">
+                        Button 1 adf asdf
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="true btn btn btn-success btn-ds" href="#">
+                        Button 1 adf asdf
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}

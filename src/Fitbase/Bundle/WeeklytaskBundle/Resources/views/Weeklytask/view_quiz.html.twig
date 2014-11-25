@@ -6,13 +6,14 @@
     <div class="row">
 
         {% if weeklyquiz is defined and weeklyquiz %}
+            {% set quiz = weeklyquiz.quiz %}
             <div class="col-md-12">
                 <h3 class="modal-title">
-                    {{ weeklyquiz.name }}
+                    {{ quiz.name }}
                 </h3>
 
                 <p class="modal-description">
-                    {{ weeklyquiz.description|raw }}
+                    {{ quiz.description|raw }}
                 </p>
             </div>
         {% endif %}
