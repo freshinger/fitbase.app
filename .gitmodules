@@ -31,3 +31,4 @@
 [submodule "vendor/jpgraph/jpgraph"]
 	path = vendor/jpgraph/jpgraph
 	url = git://github.com/ztec/JpGraph.git
+	
