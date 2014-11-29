@@ -25,10 +25,9 @@
 [submodule "vendor/stephpy/TimelineBundle"]
 	path = vendor/stephpy/TimelineBundle
 	url = git://github.com/stephpy/timeline-bundle.git
-[submodule "vendor/stephpy/timeline"]
-	path = vendor/stephpy/timeline
-	url = git://github.com/stephpy/timeline.git
 [submodule "vendor/jpgraph/jpgraph"]
 	path = vendor/jpgraph/jpgraph
 	url = git://github.com/ztec/JpGraph.git
-	
+[submodule "vendor/stephpy/timeline"]
+	path = vendor/stephpy/timeline
+	url = git://github.com/stephpy/timeline.git
