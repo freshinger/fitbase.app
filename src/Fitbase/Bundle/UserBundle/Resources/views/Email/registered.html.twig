@@ -1,46 +1,50 @@
 {% extends '::email.html.twig' %}
 
 {% block content %}
+    <div class="row" style="min-height: 300px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="text-div">Hallo {{ user.firstname }} {{ user.lastname }}!<br/>
+                <br/>
+                Willkommen bei der Fitbase. In dieser Email erhalten Sie Ihre
+                Zugangsdaten, die Sie bei Ihrem nächsten Besuch auf fitbase.de nutzen können.<br><br/>
+                Bei Fragen besuchen Sie bitte unsere FAQs oder
+                kontaktieren uns unter <a href="mailto:info@fitbase.de">info@fitbase.de</a>.<br><br/>
 
-    <div class="text-div">Hallo {{ user.firstname }} {{ user.lastname }}!<br/>
-        <br/>
-        Willkommen bei der Fitbase. In dieser Email erhalten Sie Ihre
-        Zugangsdaten, die Sie bei Ihrem nächsten Besuch auf ... nutzen können.<br><br/>
-        Bei Fragen besuchen Sie bitte unsere FAQs oder
-        kontaktieren uns unter
-        {#<a href="mailto:info@{{ host }}">info@{{ host }}</a>.<br><br/>#}
-
-
-        {#<p style="text-align: center;">#}
-        {#<a href="{{ asset('/login') }}?login_code={{ user|login_code }}">#}
-        {#<img class="size-full wp-image-5427 aligncenter" title="Jetzt einloggen"#}
-        {#alt="Jetzt einloggen "#}
-        {#src="{{ asset('/wp-content/uploads/email/activate.png') }}"/>#}
-        {#</a>#}
-        {#</p>#}
-        <br/>
-        <strong>Ihre Zugangsdaten</strong><br/>
-        Mit den folgenden Zugangsdaten können Sie sich auf {{ url('sonata_user_security_login') }} einloggen. <br/>
-        <br/>
-        <table>
-            <tr>
-                <td>E-Mail-Adresse:</td>
-                <td width="10"></td>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <td>Benutzername:</td>
-                <td width="10"></td>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <td>Passwort:</td>
-                <td width="10"></td>
-                <td>{{ user.plainPassword }}</td>
-            </tr>
-        </table>
-        <br/>
-        <br/>
-        {#Viel Spaß und Erfolg wünscht das Team von {{ host }}<br/>#}
+                {#<p style="text-align: center;">#}
+                {#<a href="{{ asset('/login') }}?login_code={{ user|login_code }}">#}
+                {#<img class="size-full wp-image-5427 aligncenter" title="Jetzt einloggen"#}
+                {#alt="Jetzt einloggen "#}
+                {#src="{{ asset('/wp-content/uploads/email/activate.png') }}"/>#}
+                {#</a>#}
+                {#</p>#}
+                <br/>
+                <strong>Ihre Zugangsdaten</strong><br/>
+                Mit den folgenden Zugangsdaten können Sie sich auf {{ url('sonata_user_security_login') }} einloggen.
+                <br/>
+                <br/>
+                <table>
+                    <tr>
+                        <td>E-Mail-Adresse:</td>
+                        <td width="10"></td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Benutzername:</td>
+                        <td width="10"></td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Passwort:</td>
+                        <td width="10"></td>
+                        <td>{{ user.plainPassword }}</td>
+                    </tr>
+                </table>
+                <br/>
+                <br/>
+                Viel Spaß und Erfolg wünscht das Team von Fitbase<br/>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
     </div>
 {% endblock content %}
