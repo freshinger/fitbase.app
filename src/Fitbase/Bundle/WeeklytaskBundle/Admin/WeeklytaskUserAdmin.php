@@ -60,6 +60,7 @@ class WeeklytaskUserAdmin extends Admin implements ContainerAwareInterface
             ->add('date')
             ->add('done')
             ->add('doneDate')
+            ->add('processed')
             ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
