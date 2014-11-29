@@ -4,12 +4,16 @@
     <div class="row">
         {% if  task is defined %}
             <div class="col-md-12">
-                <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
-
+                {% if user is defined and user %}
+                    <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+                {% endif %}
                 <p>
                     passend zum Freitag, wollen wir Sie an Ihr Quiz erinnern,
-                    mit dem Sie Ihr Wissen über die letzte Wochenaufgabe zum Thema: {{ task.category }} überprüfen
-                    können.
+                    mit dem Sie Ihr Wissen über die letzte Infoeinheit
+                    {% if task is defined and task %}
+                        zum Thema: {{ task.category }}
+                    {% endif %}
+                    überprüfen können.
                 </p>
 
                 <p>Wir wünschen Ihnen viel Spaß!</p>
