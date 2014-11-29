@@ -2,6 +2,7 @@
 
 namespace Fitbase\Bundle\ReminderBundle\Listener;
 
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -10,9 +11,88 @@ class ReminderUserListener extends ContainerAware
     public function onReminderUserCreateEvent(ReminderUserEvent $event)
     {
         assert(($reminder = $event->getEntity()));
-
         $this->container->get('entity_manager')->persist($reminder);
         $this->container->get('entity_manager')->flush($reminder);
+
+        if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
+            $datetime->setTime(10, 0);
+
+            if (($user = $reminder->getUser())) {
+
+                $entity1 = new ReminderUserItem();
+                $entity1->setReminder($reminder);
+                $entity1->setUser($user);
+                $entity1->setDay(1);
+                $entity1->setTime($datetime);
+                $entity1->setType('exercise');
+                $this->container->get('entity_manager')->persist($entity1);
+
+
+                $entity2 = new ReminderUserItem();
+                $entity2->setReminder($reminder);
+                $entity2->setUser($user);
+                $entity2->setDay(2);
+                $entity2->setTime($datetime);
+                $entity2->setType('exercise');
+                $this->container->get('entity_manager')->persist($entity2);
+
+                $entity3 = new ReminderUserItem();
+                $entity3->setReminder($reminder);
+                $entity3->setUser($user);
+                $entity3->setDay(3);
+                $entity3->setTime($datetime);
+                $entity3->setType('exercise');
+                $this->container->get('entity_manager')->persist($entity3);
+
+                $entity4 = new ReminderUserItem();
+                $entity4->setReminder($reminder);
+                $entity4->setUser($user);
+                $entity4->setDay(4);
+                $entity4->setTime($datetime);
+                $entity4->setType('exercise');
+                $this->container->get('entity_manager')->persist($entity4);
+
+                $entity5 = new ReminderUserItem();
+                $entity5->setReminder($reminder);
+                $entity5->setUser($user);
+                $entity5->setDay(5);
+                $entity5->setTime($datetime);
+                $entity5->setType('exercise');
+                $this->container->get('entity_manager')->persist($entity5);
+
+
+                $datetime->setTime(4, 0);
+
+                $entity1 = new ReminderUserItem();
+                $entity1->setReminder($reminder);
+                $entity1->setUser($user);
+                $entity1->setDay(1);
+                $entity1->setTime($datetime);
+                $entity1->setType('weeklytask');
+                $this->container->get('entity_manager')->persist($entity1);
+
+
+                $entity3 = new ReminderUserItem();
+                $entity3->setReminder($reminder);
+                $entity3->setUser($user);
+                $entity3->setDay(3);
+                $entity3->setTime($datetime);
+                $entity3->setType('weeklytask');
+                $this->container->get('entity_manager')->persist($entity3);
+
+
+                $entity5 = new ReminderUserItem();
+                $entity5->setReminder($reminder);
+                $entity5->setUser($user);
+                $entity5->setDay(5);
+                $entity5->setTime($datetime);
+                $entity5->setType('weeklytask');
+                $this->container->get('entity_manager')->persist($entity5);
+
+                $this->container->get('entity_manager')->flush();
+
+            }
+        }
     }
 
     /**
