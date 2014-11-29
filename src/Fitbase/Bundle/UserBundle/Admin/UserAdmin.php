@@ -47,6 +47,15 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
+    public function postPersist($object)
+    {
+        $event = new UserEvent($object);
+        $this->container->get('event_dispatcher')->dispatch('user_created', $event);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($object)
     {
         $event = new UserEvent($object);
