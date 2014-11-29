@@ -6,11 +6,6 @@
                 <source>title_user_account</source>
                 <target>Persönliche Information</target>
             </trans-unit>
-            <trans-unit id="sonata_seo_homepage_breadcrumb">
-                <source>sonata_seo_homepage_breadcrumb</source>
-                <target>Mitgliederbereich</target>
-            </trans-unit>
-
             <trans-unit id="title_user_authentication">
                 <source>title_user_authentication</source>
                 <target>Einloggen für Mitglieder</target>
