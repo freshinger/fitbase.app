@@ -48,7 +48,7 @@ imports:
 framework:
     #esi:                   ~
     translator:
-        fallback:           en
+        fallback:           de
     secret:                 %secret%
     router:
         resource:           "%kernel.root_dir%/config/routing.yml"
