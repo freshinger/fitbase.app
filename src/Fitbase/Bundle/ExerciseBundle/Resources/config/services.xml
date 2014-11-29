@@ -6,11 +6,19 @@
 
     <imports>
         <import resource="admin.xml"/>
+        <import resource="subscribers.xml"/>
     </imports>
 
     <!--
     -->
     <services>
+
+
+        <service id="exercise" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceExercise">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
         <service id="fitbase_helper.media" class="Fitbase\Bundle\ExerciseBundle\Helper\MediaHelper">
             <call method="setContainer">
@@ -18,6 +26,48 @@
             </call>
             <tag name="twig.extension"/>
         </service>
+
+        <service id="fitbase.exercises.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\ExercisesBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>exercises</argument>
+            <argument>fitbase.exercises.block.breadcrumbb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+        <service id="fitbase.exercises.category.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\CategoryBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>exercises_category</argument>
+            <argument>fitbase.exercises.category.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.exercise.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\ExerciseBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>exercise</argument>
+            <argument>fitbase.exercise.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
         <service id="fitbase.media.provider.video" class="Fitbase\Bundle\ExerciseBundle\Service\FileVideoProvider">
             <tag name="sonata.media.provider"/>

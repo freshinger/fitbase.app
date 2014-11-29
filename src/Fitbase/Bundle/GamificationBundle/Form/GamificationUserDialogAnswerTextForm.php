@@ -22,7 +22,6 @@ class GamificationUserDialogAnswerTextForm extends GamificationUserDialogAnswerA
                 )
             ))
             ->add('value', 'hidden')
-            ->add('questionId', 'hidden')
             ->add('submit', 'submit', array(
                 'label' => 'Antworten',
                 'attr' => array(

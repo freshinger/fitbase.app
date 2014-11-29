@@ -19,7 +19,7 @@ class CompanyUserListener extends ContainerAware
         if (($company = $userImport->getCompany())) {
 
             $logger->info('User import, try to find user', array($userImport->getId()));
-            $managerUser = $this->container->get('fitbase_manager.user');
+            $managerUser = $this->container->get('user');
             if (($user = $managerUser->find($userImport->getId()))) {
 
                 $logger->info('User import, try to find user meta', array($userImport->getId()));
@@ -53,7 +53,7 @@ class CompanyUserListener extends ContainerAware
                 (string)$user,
             ));
 
-        $managerUser = $this->container->get('fitbase_manager.user');
+        $managerUser = $this->container->get('user');
         if (($company = $companyUser->getCompany())) {
             $managerUser->saveUserMeta($companyUser->getUser(), 'user_company_id', $company->getId());
             $this->container->get('logger')

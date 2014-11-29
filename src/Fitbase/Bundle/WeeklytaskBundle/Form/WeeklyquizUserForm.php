@@ -28,7 +28,7 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
      * @param WeeklyquizUser $weeklytaskUserQuiz
      * @return $this
      */
-    public function setWeeklyquizUser(WeeklyquizUser $weeklytaskUserQuiz)
+    public function setWeeklyquizUser(WeeklyquizUser $weeklytaskUserQuiz = null)
     {
         $this->weeklytaskUserQuiz = $weeklytaskUserQuiz;
 
@@ -59,7 +59,10 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        assert(is_object($this->weeklytaskUserQuiz));
+        if (!is_object($this->weeklytaskUserQuiz)) {
+            return;
+        }
+
 
         $repositoryWeeklyquizQuestion = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
@@ -98,6 +101,10 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         parent::buildView($view, $form, $options);
+
+        if (!is_object($this->weeklytaskUserQuiz)) {
+            return;
+        }
 
         $countPointTotal = $this->weeklytaskUserQuiz->getCountPoint();
         if (!empty($this->collectionWeeklyTaskQuizQuestion)) {

@@ -27,15 +27,15 @@ class GamificationUserDialogFeedbackRepository extends EntityRepository
     /**
      * Get expression to find record by user id
      * @param $queryBuilder
-     * @param $userId
+     * @param $user
      * @return mixed
      */
-    public function getExprUserId($queryBuilder, $userId)
+    public function getExprUser($queryBuilder, $user)
     {
-        if (!empty($userId)) {
+        if (!empty($user)) {
 
-            $queryBuilder->setParameter('userId', $userId);
-            return $queryBuilder->expr()->eq('GamificationUserDialogFeedback.user', ':userId');
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('GamificationUserDialogFeedback.user', ':user');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
@@ -47,27 +47,15 @@ class GamificationUserDialogFeedbackRepository extends EntityRepository
      */
     public function findTextRandomByUserAndPositive($user)
     {
-        $sql = "SELECT ors_gamification_user_dialog_feedback.text as text
-                  FROM ors_gamification_user_dialog_feedback
-                  JOIN ors_gamification_dialog_question ON ors_gamification_dialog_question.id=ors_gamification_user_dialog_feedback.question_id
-                  WHERE ors_gamification_user_dialog_feedback.user_id=:user
-                  AND ors_gamification_dialog_question.positive=:positive
-                  ORDER BY RAND()
-                  LIMIT 1";
+        $queryBuilder = $this->createQueryBuilder('GamificationUserDialogFeedback');
 
-        $query = $this->getEntityManager()
-            ->getConnection()
-            ->prepare($sql);
-
-        $query->execute(array(
-            'user' => $user->getId(),
-            'positive' => 1
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user)
         ));
 
-        if (($result = $query->fetch())) {
-            return array_shift($result);
-        }
+        $queryBuilder->addOrderBy('GamificationUserDialogFeedback.id', 'DESC');
+        $queryBuilder->setMaxResults(1);
 
-        return null;
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 }

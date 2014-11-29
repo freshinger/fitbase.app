@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        {% if gamification is defined and gamification %}
+            <h4 class="short hue">Ihr Charakter</h4>
+        {% else %}
+            <h4 class="short hue">Wählen Sie bitte einen Avatar</h4>
+        {% endif %}
+        <p>
+            Ich bin Ihr Charakter. Helfen Sie mir, den Baum zu begrünen,
+            damit ich mich weiterentwickeln kann und einen Platz zum Wohnen habe.
+        </p>
+
+        {% if avatar is defined %}
+            {{ image(avatar)|raw }}
+        {% endif %}
+    </div>
+    <div class="panel-footer">
+        <p>
+            Sie begrünen den Baum indem Sie Übungen,
+            Infoeinheiten oder ein Wohlfühlgespräch durchführen.
+        </p>
+    </div>
+</div>
+
+

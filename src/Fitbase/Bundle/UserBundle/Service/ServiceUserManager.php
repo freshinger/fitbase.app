@@ -33,7 +33,7 @@ class ServiceUserManager extends \Ekino\WordpressBundle\Manager\UserManager impl
     {
         if (($company = $user->getMetaValue('user_company_id'))) {
 
-            $repositoryCompany = $this->container->get('fitbase_entity_manager')
+            $repositoryCompany = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
             return $repositoryCompany->find($company);
@@ -381,7 +381,7 @@ class ServiceUserManager extends \Ekino\WordpressBundle\Manager\UserManager impl
      */
     public function getUserDailyFocusMedimouse($association)
     {
-        assert(($user = $this->getCurrentUser()), 'User can not be empty');
+        assert(($user = $this->current()), 'User can not be empty');
         $this->container->get('logger')->info('User Exercise, get current by rules', array((string)$user));
 
         if (($profile = $user->getMetaValue('medimouseTrainingsSchema'))) {
@@ -406,11 +406,11 @@ class ServiceUserManager extends \Ekino\WordpressBundle\Manager\UserManager impl
      * Get current user from wordpres service
      * @return User
      */
-    public function getCurrentUser()
+    public function current()
     {
         return $this->container
             ->get('fitbase_service.wordpress')
-            ->getCurrentUser();
+            ->current();
     }
 
     /**
@@ -518,7 +518,7 @@ class ServiceUserManager extends \Ekino\WordpressBundle\Manager\UserManager impl
     {
         if (($modules = $user->getMetaValue('booked_modules'))) {
             if (!empty($modules) and ($modules = unserialize($modules))) {
-                return $this->container->get('fitbase_entity_manager')
+                return $this->container->get('entity_manager')
                     ->getRepository('\Ekino\WordpressBundle\Entity\Post')
                     ->findBy(array('id' => array_keys($modules)));
             }

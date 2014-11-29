@@ -15,21 +15,6 @@ class GamificationUserDialogAnswerBooleanForm extends GamificationUserDialogAnsw
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('value', 'hidden')
-            ->add('questionId', 'hidden')
-            ->add('true', 'submit', array(
-                'label' => 'Ja',
-                'attr' => array(
-                    'style' => 'margin: 7px; width: 60px',
-                    'class' => 'btn btn-success btn-ds',
-                ),
-            ))
-            ->add('false', 'submit', array(
-                'label' => 'Nein',
-                'attr' => array(
-                    'style' => 'margin: 7px; width: 60px',
-                    'class' => 'btn btn-danger btn-ds',
-                ),
-            ));
+            ->add('value', new BooleanButtonsType());
     }
 }

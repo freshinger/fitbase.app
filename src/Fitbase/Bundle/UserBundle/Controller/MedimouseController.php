@@ -14,7 +14,7 @@ use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class MedimouseController extends WordpressControllerAbstract
+class MedimouseController extends Controller
 {
     public function eingabeAction()
     {
@@ -27,9 +27,9 @@ class MedimouseController extends WordpressControllerAbstract
             if ($form->isValid()) {
 
                 $entity->setRegistered(new \DateTime());
-                $entity->setLogin($this->container->get('fitbase_manager.user')->generateLogin($entity));
-                $entity->setDisplayName($this->container->get('fitbase_manager.user')->generateName($entity));
-                $entity->setPassword($this->container->get('fitbase_manager.user')->generatePassword());
+                $entity->setLogin($this->container->get('user')->generateLogin($entity));
+                $entity->setDisplayName($this->container->get('user')->generateName($entity));
+                $entity->setPassword($this->container->get('user')->generatePassword());
                 $entity->setRole('teilnehmer');
 
                 $eventUserMedimouse = new UserMedimouseEvent($entity);

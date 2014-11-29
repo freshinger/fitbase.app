@@ -199,4 +199,4 @@ class UserStatistic
         return $this->userId;
     }
 
-} 
+}

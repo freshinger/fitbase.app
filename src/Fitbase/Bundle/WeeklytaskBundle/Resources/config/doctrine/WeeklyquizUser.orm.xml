@@ -8,18 +8,21 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="quizId" type="integer" column="quiz_id"/>
-        <field name="userId" type="integer" column="user_id"/>
-        <field name="weekId" type="integer" column="week_id"/>
-        <field name="weeklytaskId" type="integer" column="weeklytask_id"/>
-        <field name="code" type="string" column="code"/>
-        <field name="done" type="boolean" column="done"/>
-        <field name="doneDate" type="datetime" column="done_date"/>
-        <field name="countPoint" type="integer" column="count_point"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-            <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz"/>
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
+        <one-to-one field="userTask" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser"
+                    inversed-by="userQuiz"/>
+
+
+        <field name="date" type="datetime" column="date" nullable="true"/>
+        <field name="code" type="string" column="code" nullable="true"/>
+        <field name="done" type="boolean" column="done" nullable="true"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
+
 
     </entity>
 </doctrine-mapping>

@@ -15,8 +15,8 @@ class CompanyListener extends ContainerAware
     {
         assert(($company = $event->getEntity()), 'Company can not be empty');
 
-        $this->container->get('fitbase_entity_manager')->persist($company);
-        $this->container->get('fitbase_entity_manager')->flush($company);
+        $this->container->get('entity_manager')->persist($company);
+        $this->container->get('entity_manager')->flush($company);
 
 
         $this->container->get('event_dispatcher')
@@ -31,8 +31,8 @@ class CompanyListener extends ContainerAware
     {
         assert(($company = $event->getEntity()), 'Company can not be empty');
 
-        $this->container->get('fitbase_entity_manager')->persist($company);
-        $this->container->get('fitbase_entity_manager')->flush($company);
+        $this->container->get('entity_manager')->persist($company);
+        $this->container->get('entity_manager')->flush($company);
 
         $this->container->get('event_dispatcher')
             ->dispatch('fitbase_company_created', new CompanyEvent($company));

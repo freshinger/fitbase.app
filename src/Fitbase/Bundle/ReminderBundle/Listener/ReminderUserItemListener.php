@@ -22,8 +22,8 @@ class ReminderUserItemListener extends ContainerAware
     {
         assert(($item = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($item);
-        $this->container->get('fitbase_entity_manager')->flush($item);
+        $this->container->get('entity_manager')->persist($item);
+        $this->container->get('entity_manager')->flush($item);
     }
 
     /**
@@ -34,8 +34,8 @@ class ReminderUserItemListener extends ContainerAware
     {
         assert(($item = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($item);
-        $this->container->get('fitbase_entity_manager')->flush($item);
+        $this->container->get('entity_manager')->remove($item);
+        $this->container->get('entity_manager')->flush($item);
     }
 
 } 

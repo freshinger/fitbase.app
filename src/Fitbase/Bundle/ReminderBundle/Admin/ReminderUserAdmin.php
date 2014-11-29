@@ -42,10 +42,6 @@ class ReminderUserAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('pause')
             ->add('pauseStart')
-            ->end()
-            ->with('Tasks', array('class' => 'col-md-6'))
-            ->add('sendWeeklytask')
-            ->add('sendWeeklyquiz')
             ->end();
     }
 
@@ -55,10 +51,9 @@ class ReminderUserAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('user')
             ->add('pause')
             ->add('pauseStart')
-            ->add('sendWeeklytask')
-            ->add('sendWeeklyquiz')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -75,9 +70,7 @@ class ReminderUserAdmin extends Admin implements ContainerAwareInterface
     {
         $datagridMapper
             ->add('pause')
-            ->add('pauseStart')
-            ->add('sendWeeklytask')
-            ->add('sendWeeklyquiz');
+            ->add('pauseStart');
     }
 
     /**
@@ -89,10 +82,6 @@ class ReminderUserAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('pause')
             ->add('pauseStart')
-            ->end()
-            ->with('Tasks', array('class' => 'col-md-6'))
-            ->add('sendWeeklytask')
-            ->add('sendWeeklyquiz')
             ->end();
     }
 }

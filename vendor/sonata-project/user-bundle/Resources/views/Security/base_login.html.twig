@@ -13,12 +13,15 @@ file that was distributed with this source code.
 
 {% block fos_user_content %}
     <div class="row">
+        <div class="col-md-3">
+            {#{% render controller("FOSUserBundle:Registration:register") %}#}
+        </div>
         <div class="col-md-6">
-            <div class="panel panel-info">
+            <div class="panel-info">
 
-                <div class="panel-heading">
-                    <h2 class="panel-title">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
-                </div>
+                {#<div class="panel-heading">#}
+                    <h2 style="margin-left: 30px;">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+                {#</div>#}
 
                 <div class="panel-body">
 
@@ -76,8 +79,7 @@ file that was distributed with this source code.
             </div>
 
         </div>
-        <div class="col-md-6">
-            {% render controller("FOSUserBundle:Registration:register") %}
+        <div class="col-md-3">
         </div>
     </div>
 {% endblock fos_user_content %}

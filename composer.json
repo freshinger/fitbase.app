@@ -77,7 +77,10 @@
 
         "incenteev/composer-parameter-handler": "~2.0",
         "webonaute/doctrine-fixtures-generator-bundle": "v1.0.2",
-        "genemu/form-bundle": "v2.2.2"
+        "genemu/form-bundle": "v2.2.2",
+        "jpgraph/jpgraph": "dev-master",
+        "bariew/phpquery": "1.0.2",
+        "bcc/cron-manager-bundle": "v2.4.1"
     },
 
     "require-dev": {

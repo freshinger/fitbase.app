@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4 class="short hue">Der Unternehmenswald</h4>
+        {% if forest is defined %}
+            {{ image(forest)|raw }}
+        {% endif %}
+    </div>
+    <div class="panel-footer">
+        <p>
+            {% if points is defined and points %}
+                Der Unternehmenswald ist bisher mit {{ points }} Blättern begrünt
+            {% else %}
+                Sie haben noch keine Blätter gesammelt
+            {% endif %}
+        </p>
+    </div>
+</div>

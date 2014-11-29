@@ -19,7 +19,7 @@ class WeeklytaskPlan
     /**
      * @var integer
      */
-    private $userId;
+    private $user;
 
     /**
      * @var integer
@@ -127,19 +127,19 @@ class WeeklytaskPlan
     }
 
     /**
-     * @param int $userId
+     * @return int
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
+        return $this->user;
     }
 
     /**
-     * @return int
+     * @param int $user
      */
-    public function getUserId()
+    public function setUser($user)
     {
-        return $this->userId;
+        $this->user = $user;
     }
 
     /**
@@ -156,5 +156,18 @@ class WeeklytaskPlan
     public function getWeekId()
     {
         return $this->weekId;
+    }
+
+    /**
+     * Convert object to string
+     * @return string
+     */
+    public function __toString()
+    {
+        if (($user = $this->getUser())) {
+            if (($task = $this->getTask())) {
+                return "{$user}: $task";
+            }
+        }
     }
 }

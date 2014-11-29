@@ -21,7 +21,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_manager
+            id: fos_user.user_provider.username_email
 
         in_memory:
             memory:
@@ -52,7 +52,7 @@ security:
         api:
             pattern:   /api/(.*)
             http_basic:
-                realm:         "Secured Demo Area"
+                realm:         "Fitbase Demo Area"
                 provider:       in_memory
 
             stateless: true
@@ -60,6 +60,7 @@ security:
         # This firewall is used to handle the public login area
         # This part is handled by the FOS User Bundle
         main:
+            entry_point: fitbase.entry_point.login
             pattern:      .*
             context:        user
             form_login:
@@ -75,6 +76,7 @@ security:
                 invalidate_session: false
                 handlers: ['sonata.page.cms_manager_selector', 'sonata.basket.factory']
             anonymous:    true
+
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users

@@ -2,7 +2,8 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Fitbase\Bundle\ExerciseBundle\Entity\Exercise" table="fitbase_exercise">
+    <entity name="Fitbase\Bundle\ExerciseBundle\Entity\Exercise" table="fitbase_exercise"
+            repository-class="Fitbase\Bundle\ExerciseBundle\Repository\ExerciseRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
@@ -27,7 +28,12 @@
                 <cascade-all/>
             </cascade>
         </many-to-one>
-        <many-to-one field="video" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+        <many-to-one field="webm" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+        <many-to-one field="mp4" target-entity="Application\Sonata\MediaBundle\Entity\Media">
             <cascade>
                 <cascade-all/>
             </cascade>

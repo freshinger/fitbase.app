@@ -82,6 +82,18 @@ fos_comment:
     prefix: /comments
     defaults: { _format: html }
 
-weeklytask:
-    resource: '@FitbaseWeeklytaskBundle/Resources/config/routing.xml'
-    prefix: /wochanaufgaben
+fitbase_exercise:
+    resource: "@FitbaseExerciseBundle/Resources/config/routing.xml"
+    prefix:   /uebungen
+
+fitbase_weeklytask:
+    resource: "@FitbaseWeeklytaskBundle/Resources/config/routing.xml"
+    prefix:   /wochenaufgaben
+
+fitbase_questionnaire:
+    resource: "@FitbaseQuestionnaireBundle/Resources/config/routing.xml"
+    prefix:   /questionnaire
+
+fitbase_gamification:
+    resource: "@FitbaseGamificationBundle/Resources/config/routing.xml"
+    prefix:   /gamification

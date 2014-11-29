@@ -11,17 +11,13 @@
         </id>
 
         <field name="date" type="date" column="date"/>
-        <field name="value" type="integer" column="value"/>
-        <field name="hidden" type="integer" column="hidden "/>
+        <field name="value" type="integer" column="value" nullable="true"/>
+        <field name="hidden" type="integer" column="hidden" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
-
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <many-to-one field="question"
-                     target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion">
-            <join-column name="question_id" referenced-column-name="id"/>
-        </many-to-one>
+                     target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion"/>
 
     </entity>
 </doctrine-mapping>

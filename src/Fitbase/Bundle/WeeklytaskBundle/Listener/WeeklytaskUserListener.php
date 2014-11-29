@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\WeeklytaskBundle\Listener;
 
 
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskPlanEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
@@ -12,6 +13,25 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class WeeklytaskUserListener extends ContainerAware
 {
     /**
+     * Mark weekly task as completed
+     * @param WeeklytaskUserEvent $event
+     */
+    public function onWeeklytaskUserDoneEvent(WeeklytaskUserEvent $event)
+    {
+        assert(($weeklytaskUser = $event->getEntity()));
+
+        if (($weeklytask = $weeklytaskUser->getTask())) {
+
+            $weeklytaskUser->setDone(true);
+            $weeklytaskUser->setCountPoint($weeklytask->getCountPoint());
+            $weeklytaskUser->setDoneDate($this->container->get('datetime')->getDateTime('now'));
+
+            $this->container->get('entity_manager')->persist($weeklytaskUser);
+            $this->container->get('entity_manager')->flush($weeklytaskUser);
+        }
+    }
+
+    /**
      * On create weekly task event
      * @param UserEvent $event
      */
@@ -20,7 +40,7 @@ class WeeklytaskUserListener extends ContainerAware
         assert(($user = $event->getEntity()));
 
         $logger = $this->container->get('logger');
-        $entityManager = $this->container->get('fitbase_entity_manager');
+        $entityManager = $this->container->get('entity_manager');
         $serviceDateTime = $this->container->get('datetime');
         $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
         $repositoryWeeklytaskPlan = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan');
@@ -75,7 +95,7 @@ class WeeklytaskUserListener extends ContainerAware
         assert(($user = $event->getEntity()));
 
         $logger = $this->container->get('logger');
-        $repositoryWeeklytaskPlan = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklytaskPlan = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan');
 
         $serviceDateTime = $this->container->get('datetime');
@@ -103,34 +123,13 @@ class WeeklytaskUserListener extends ContainerAware
     {
         assert(($weeklytaskUser = $event->getEntity()));
 
-        $repositoryWeeklytaskUser = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklytaskUser = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
 
         if (!($weeklytaskUserExist = $repositoryWeeklytaskUser->findOneByWeeklytaskUser($weeklytaskUser))) {
 
-            $this->container->get('fitbase_entity_manager')->persist($weeklytaskUser);
-            $this->container->get('fitbase_entity_manager')->flush($weeklytaskUser);
+            $this->container->get('entity_manager')->persist($weeklytaskUser);
+            $this->container->get('entity_manager')->flush($weeklytaskUser);
         }
     }
-
-    /**
-     * Mark weekly task as completed
-     * @param WeeklytaskUserEvent $event
-     */
-    public function onWeeklytaskUserDoneEvent(WeeklytaskUserEvent $event)
-    {
-        assert(($weeklytaskUser = $event->getEntity()));
-
-        $logger = $this->container->get('logger');
-        $logger->info('Weekly task, done event', array($weeklytaskUser->getId()));
-
-        $serviceDateTime = $this->container->get('datetime');
-
-        $weeklytaskUser->setDone(true);
-        $weeklytaskUser->setDoneDate($serviceDateTime->getDateTime());
-
-        $this->container->get('fitbase_entity_manager')->persist($weeklytaskUser);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytaskUser);
-    }
-
 }

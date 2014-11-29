@@ -42,7 +42,7 @@ class ChangePasswordFormHandler
     {
         $this->form->setData(new ChangePassword());
 
-        if ('POST' === $this->request->getMethod()) {
+        if ($this->request->get($this->form->getName())) {
             $this->form->bind($this->request);
 
             if ($this->form->isValid()) {

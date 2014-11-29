@@ -40,18 +40,11 @@ class WeeklyquizPlanAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('quiz', null, array(
-                'label' => 'Weeklyquiz',
-            ))
-            ->add('Date', null, array(
-                'label' => 'Date',
-            ))
-            ->add('processed', null, array(
-                'label' => 'Gesendet',
-            ))
-            ->add('processedDate', null, array(
-                'label' => 'Gesendet am:',
-            ))
+            ->add('user')
+            ->add('quiz')
+            ->add('date')
+            ->add('processed')
+            ->add('processedDate')
             ->end();
     }
 
@@ -61,18 +54,11 @@ class WeeklyquizPlanAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('quiz', null, array(
-                'label' => 'Weeklyquiz',
-            ))
-            ->add('date', null, array(
-                'label' => 'Date',
-            ))
-            ->add('processed', null, array(
-                'label' => 'Gesendet',
-            ))
-            ->add('processedDate', null, array(
-                'label' => 'Gesendet am:',
-            ))
+            ->add('user')
+            ->add('quiz')
+            ->add('date')
+            ->add('processed')
+            ->add('processedDate')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -88,18 +74,8 @@ class WeeklyquizPlanAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('quiz', null, array(
-                'label' => 'Weeklyquiz',
-            ))
-            ->add('date', null, array(
-                'label' => 'Date',
-            ))
-            ->add('processed', null, array(
-                'label' => 'Gesendet',
-            ))
-            ->add('processedDate', null, array(
-                'label' => 'Gesendet am:',
-            ));
+            ->add('user')
+            ->add('quiz');
     }
 
     /**
@@ -109,12 +85,9 @@ class WeeklyquizPlanAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->with('General')
-            ->add('quiz', null, array(
-                'label' => 'Weeklyquiz',
-            ))
-            ->add('date', 'sonata_type_datetime_picker', array(
-                'label' => 'Date',
-            ))
+            ->add('user')
+            ->add('quiz')
+            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
             ->end();
     }
 }

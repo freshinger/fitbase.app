@@ -1,0 +1,23 @@
+{% extends 'FitbaseQuestionnaireBundle::layout.html.twig' %}
+
+{% block content %}
+
+    {% if questionnaire is defined and questionnaire %}
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="modal-title">
+                    {{ questionnaire.name }}
+                </h3>
+
+                <p class="modal-description">
+                    {{ questionnaire.description|raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% form_theme form "FitbaseQuestionnaireBundle::form.html.twig" %}
+
+    {{ form(form) }}
+
+{% endblock %}

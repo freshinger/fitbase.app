@@ -7,6 +7,54 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceWeeklytask extends ContainerAware
 {
     /**
+     * @param $datetime
+     * @return mixed
+     */
+    public function toSend($datetime)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        return $repositoryWeeklytaskUser->findAllNotProcessedByDateTime($datetime);
+    }
+
+
+    /**
+     * Get nex weekly task with respect to category, priority
+     * and already done tasks
+     * @param $user
+     * @param $focus
+     * @return mixed
+     */
+    public function getNextByFocus($user, $focus, $datetime)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+        $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
+            return $repositoryWeeklytask->findOneNexByUserAndCategory($user, $focus);
+        }
+        return null;
+    }
+
+    /**
+     * Get nex weekly task with respect to priority
+     * and already done tasks
+     * @param $user
+     * @return mixed
+     */
+    public function getNextRandom($user, $datetime)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+        $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
+            return $repositoryWeeklytask->findOneNextByUser($user);
+        }
+        return null;
+    }
+
+
+    /**
      * Get first start date
      * @param $user
      * @return int

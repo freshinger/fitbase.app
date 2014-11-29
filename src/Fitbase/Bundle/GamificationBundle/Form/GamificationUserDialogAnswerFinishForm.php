@@ -14,6 +14,6 @@ class GamificationUserDialogAnswerFinishForm extends GamificationUserDialogAnswe
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('questionId', 'hidden');
+        $builder->add('value', 'hidden');
     }
 }

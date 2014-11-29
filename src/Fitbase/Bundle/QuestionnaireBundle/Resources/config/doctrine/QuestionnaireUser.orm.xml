@@ -10,26 +10,16 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="date" type="datetime" column="date"/>
-        <field name="done" type="boolean" column="done"/>
-        <field name="doneDate" type="datetime" column="done_date"/>
+        <field name="date" type="datetime" column="date" nullable="true"/>
+        <field name="pause" type="boolean" column="pause" nullable="true"/>
+        <field name="done" type="boolean" column="done" nullable="true"/>
+        <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
 
-        <field name="countPointHealth" type="integer" column="count_point_health"/>
-        <field name="countPointStrain" type="integer" column="count_point_strain"/>
+        <field name="countPointHealth" type="integer" column="count_point_health" nullable="true"/>
+        <field name="countPointStrain" type="integer" column="count_point_strain" nullable="true"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
-
-        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
-            <join-column name="questionnaire_id" referenced-column-name="id"/>
-        </many-to-one>
-
-
-        <many-to-one field="questionnaireCompany"
-                     target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany">
-            <join-column name="questionnaire_company_id" referenced-column-name="id"/>
-        </many-to-one>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire"/>
 
 
     </entity>

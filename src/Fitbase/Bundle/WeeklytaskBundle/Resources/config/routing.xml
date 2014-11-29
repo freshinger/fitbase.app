@@ -4,16 +4,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="weeklyquiz" pattern="/weeklyquiz">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklyquiz:index</default>
+    <route id="weeklyquiz_user_view" pattern="/quiz/user/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userQuizView</default>
     </route>
 
-    <route id="weeklytask_show" pattern="/{unique}">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytaskShow</default>
-    </route>
-
-    <route id="weeklytask" pattern="/">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>
+    <route id="weeklytask_user_view" pattern="/user/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userView</default>
     </route>
 
 

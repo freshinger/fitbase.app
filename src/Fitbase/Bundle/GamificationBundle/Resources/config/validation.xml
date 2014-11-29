@@ -4,16 +4,9 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="Fitbase\Bundle\GamificationBundle\Entity\GamificationUserDialogAnswer">
-        <property name="value">
-            <constraint name="NotBlank">
-                <option name="message">Beantworte bitte die Frage</option>
-            </constraint>
-        </property>
-        <property name="description">
-            <constraint name="NotBlank">
-                <option name="message">Beantworte bitte die Frage</option>
-            </constraint>
-        </property>
+        <constraint name="Fitbase\Bundle\GamificationBundle\Form\Constraints\GamificationUserDialogAnswer">
+            <option name="message">Beantworte bitte die Frage</option>
+        </constraint>
     </class>
 
 

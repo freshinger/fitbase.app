@@ -12,6 +12,27 @@
 
     <services>
 
+        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlockService"
+                 public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.header_company</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyFooterBlockService"
+                 public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.footer_company</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
         <service id="fitbase_manager.company" class="Fitbase\Bundle\CompanyBundle\Service\ServiceCompany">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
@@ -29,6 +50,17 @@
                 <argument type="service" id="service_container"/>
             </call>
         </service>
+
+
+        <service id="fitbase.subscriber.CompanyCategorySubscriber"
+                 class="Fitbase\Bundle\CompanyBundle\Subscriber\CompanyCategorySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 </container>

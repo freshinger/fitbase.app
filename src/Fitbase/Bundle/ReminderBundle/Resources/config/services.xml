@@ -7,6 +7,7 @@
 
     <imports>
         <import resource="admin.xml"/>
+        <import resource="blocks.xml"/>
         <import resource="listeners.xml"/>
     </imports>
 
@@ -32,6 +33,18 @@
             </call>
         </service>
 
+
+        <service id="reminder" class="Fitbase\Bundle\ReminderBundle\Service\ServiceReminder">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="mail" class="Fitbase\Bundle\ReminderBundle\Service\ServiceMailer">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
     </services>
 

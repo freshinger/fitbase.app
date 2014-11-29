@@ -1,0 +1,24 @@
+{% if collection is defined and collection %}
+    {% for answer in collection %}
+        {% set feedback = answer|feedback %}
+        {% if feedback is defined and feedback %}
+            <div class="chat-message alert alert-info">
+                <div class="feedback">
+                    <span>{{ feedback }}</span>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="chat-message alert alert-info">
+    {% if question is defined and question %}
+        <strong>{{ question.text }}</strong>
+        <p>{{ question.description|raw }}</p>
+    {% endif %}
+
+    {% form_theme form "FitbaseGamificationBundle:Gamification:health_chat_form.html.twig" %}
+
+    {{ form(form) }}
+
+</div>

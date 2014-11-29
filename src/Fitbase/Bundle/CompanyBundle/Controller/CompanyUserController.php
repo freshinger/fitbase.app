@@ -20,7 +20,7 @@ class CompanyUserController extends Controller
      */
     public function styleAction()
     {
-        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->get('user')->current();
         $company = $company = $this->get('fitbase_manager.company')->getUserCompany($user);
 
         if (empty($user)) {
@@ -42,9 +42,9 @@ class CompanyUserController extends Controller
      */
     public function updateAction()
     {
-        $managerUser = $this->get('fitbase_manager.user');
+        $managerUser = $this->get('user');
 
-        $user = $managerUser->getCurrentUser();
+        $user = $managerUser->current();
         $company = $managerUser->getCompany($user);
 
         if (($id = $this->get('request')->get('user_id'))) {

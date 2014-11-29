@@ -3,6 +3,7 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,27 +24,23 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $logger = $this->getContainer()->get('logger');
-        $logger->info('Weekly task, start sender');
+        $datetime = $this->get('datetime')->getDateTime('now');
+        if (($collection = $this->get('weeklytask')->toSend($datetime))) {
+            foreach ($collection as $weeklytaskUser) {
 
-        $managerUser = $this->getContainer()->get('fitbase_manager.user');
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
-
-        if (($collection = $repositoryReminder->findAllByNotPauseAndSendWeeklytask())) {
-            foreach ($collection as $key => $reminder) {
-
-                if (($user = $managerUser->find($reminder->getUserId()))) {
-
-                    $logger->info('Weekly task, sender for user', array($user->getId()));
-
-                    $this->getContainer()->get('event_dispatcher')
-                        ->dispatch('weeklytask_user_send', new UserEvent($user));
-                }
+                $event = new WeeklytaskUserEvent($weeklytaskUser);
+                $this->get('event_dispatcher')->dispatch('weeklytask_reminder_send', $event);
             }
         }
-
-        $logger->info('Weekly task, end sender');
     }
 
+    /**
+     * Get service from container
+     * @param $name
+     * @return object
+     */
+    protected function get($name)
+    {
+        return $this->getContainer()->get($name);
+    }
 }

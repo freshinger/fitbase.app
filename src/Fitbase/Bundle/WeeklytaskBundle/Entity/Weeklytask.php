@@ -155,7 +155,7 @@ class Weeklytask
      */
     public function __toString()
     {
-        if($this->getId()) {
+        if ($this->getId()) {
             return $this->getName();
         }
 
@@ -246,5 +246,65 @@ class Weeklytask
     public function getPriority()
     {
         return $this->priority;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask
+     */
+    private $userTask;
+
+
+    /**
+     * Set userTasks
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $userTasks
+     * @return Weeklytask
+     */
+    public function setUserTask(\Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $userTask = null)
+    {
+        $this->userTask = $userTask;
+
+        return $this;
+    }
+
+    /**
+     * Get userTasks
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask
+     */
+    public function getUserTask()
+    {
+        return $this->userTask;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->userTask = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add userTask
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask
+     * @return Weeklytask
+     */
+    public function addUserTask(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask)
+    {
+        $this->userTask[] = $userTask;
+
+        return $this;
+    }
+
+    /**
+     * Remove userTask
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask
+     */
+    public function removeUserTask(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask)
+    {
+        $this->userTask->removeElement($userTask);
     }
 }

@@ -83,21 +83,21 @@ class QuestionnaireAnswerRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-//    /**
-//     * Find list of records by id array
-//     * @param $arrayId
-//     * @return array
-//     */
-//    public function findAllById($arrayId)
-//    {
-//        $queryBuilder = $this->createQueryBuilder('QuestionnaireAnswer');
-//
-//        $queryBuilder->where($queryBuilder->expr()->andX(
-//            $this->getExprIdArray($queryBuilder, $arrayId)
-//        ));
-//
-//        return $queryBuilder->getQuery()->getResult();
-//    }
+    /**
+     * Find list of records by id array
+     * @param $arrayId
+     * @return array
+     */
+    public function findAllById($arrayId)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireAnswer');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprIdArray($queryBuilder, $arrayId)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 
     /**
      * Find one or more records by id

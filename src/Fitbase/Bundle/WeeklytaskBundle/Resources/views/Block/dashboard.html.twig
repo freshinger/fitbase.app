@@ -1,0 +1,184 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytasks', 'current_uri': app.request.requestUri }) }}
+
+<div class="row">
+    <div class="col-md-5">
+        <a href="http://online-rueckenschule.de/wp-content/uploads/frau-stretching-300x285.jpg">
+            <img src="http://online-rueckenschule.de/wp-content/uploads/frau-stretching-300x285.jpg"
+                 alt="frau-stretching-300x285" class="alignleft size-full wp-image-1785" height="285"
+                 width="300"/>
+        </a>
+    </div>
+    <div class="col-md-7">
+        Die Fitbase unterstützt Sie dabei,<strong> Ihre Lebensweise aktiver, bewusster
+            und gesünder</strong> zu gestalten. Dazu stellen wir Ihnen <strong>jede Woche eine kurze
+            Aufgabe</strong>. Die Aufgaben sind thematisch aufeinander aufgebaut und stellen Ihnen zudem auch
+        umfassendes Wissen zur Verfügung.
+
+        <div class="row">
+            <div class="col-md-8">
+                <h4>Ihre gesammelten Punkte:</h4>
+            </div>
+            <div class="col-md-4">
+                <h4><strong>{{ countWeeklytaskPointDone }}</strong></h4>
+            </div>
+            <div class="col-md-8">
+                <h4>Ihre erledigten Wochenaufgaben:</h4>
+            </div>
+            <div class="col-md-4">
+                <h4><strong>{{ countWeeklytaskDone }}</strong></h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<h2>Meine aktuelle Wochenaufgabe</h2>
+<div class="row">
+    <div class="col-md-12 top10">
+        <h4>Sehen Sie unten Ihre Übersicht welche Aufgaben Sie schon erledigt haben und welche noch ausstehen.</h4>
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
+            <tr>
+                <th>Wochenaufgabe</th>
+                <th class="fixed">Bereich</th>
+                <th class="fixed">Status</th>
+                <th class="fixed">Datum</th>
+                <th class="fixed">Quiz</th>
+                <th class="fixed">Punkte</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collectionWeeklytaskActual|length > 0 %}
+                {% for task in collectionWeeklytaskActual %}
+                    {% if task is defined and task %}
+                        <tr>
+                            <td class="shade">
+                                <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
+                                    {{ task.task }}
+                                </a>
+                            </td>
+                            <td class="shade center">{{ task.task.tag }}</td>
+                            <td class="shade center">
+                                Noch nicht erledigt
+                            </td>
+                            <td class="shade center">{{ task.doneDate|date('d.m.Y') }}</td>
+                            <td class="shade center">
+                                {% set userQuiz = task.userQuiz %}
+                                {% if userQuiz is defined and userQuiz %}
+                                    {{ userQuiz.quiz }}
+                                {% endif %}
+                            </td>
+                            <td class="shade center">{{ task.task.countPoint }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr style="background: #f2f0f0;">
+                    <td nowrap><b>Total: {{ collectionWeeklytaskActual|length }}</b></td>
+                    <td colspan="6"></td>
+                </tr>
+            {% else %}
+                <tr style="background: #f2f0f0;">
+                    <td colspan="7">Keine Aufgaben wurde bearbeitet</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<h2>Übersicht Wochenaufgaben</h2>
+
+<div class="row">
+    <div class="col-md-12 top10">
+
+        <table class="table table-striped table-hover table-responsive">
+            <thead>
+            <tr>
+                <th class="fixed">Wochenaufgabe</th>
+                <th class="fixed">Bereich</th>
+                <th class="fixed">Status</th>
+                <th class="fixed">Datum</th>
+                <th class="fixed">Quiz</th>
+                <th class="fixed">Punkte</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if collectionWeeklytaskArchive|length > 0 %}
+                {% for task in collectionWeeklytaskArchive %}
+                    {% if task is defined and task %}
+                        {% set pointsWeeklytask = task.task.countPoint %}
+                        {% set pointsWeeklyquiz = 0 %}
+                        {% set pointsWeeklyquizAnswers = get_weeklyquiz_user_answer_points(task.task.quiz) %}
+                        <tr>
+                            <td class="shade">
+                                <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
+                                    {{ task.task }}
+                                </a>
+                            </td>
+                            <td class="shade center">
+                                {{ task.task.tag }}
+                            </td>
+                            <td class="shade center">
+                                Erledigt
+                            </td>
+                            <td class="shade center">
+                                {{ task.doneDate|date('d.m.Y') }}
+                            </td>
+                            <td class="shade center">
+                                {% set userQuiz = task.userQuiz %}
+                                {% if userQuiz is defined and userQuiz %}
+                                    {% set pointsWeeklyquiz = userQuiz.quiz.countPoint %}
+                                    <a href="{{ path('weeklyquiz_user_view', { 'unique': userQuiz.id } ) }}">
+                                        {{ userQuiz.quiz }} {{ userQuiz.id }}
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td class="shade center" width="25%">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Wochenaufgabe:
+                                    </div>
+                                    <div class="col-md-1">
+                                        {{ pointsWeeklytask }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        Wochenquiz:
+                                    </div>
+                                    <div class="col-md-1">
+                                        {{ pointsWeeklyquiz }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        Quiz-Antworte:
+                                    </div>
+                                    <div class="col-md-1">
+                                        {{ pointsWeeklyquizAnswers }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <b>Total:</b>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <b>
+                                            {{ pointsWeeklytask + pointsWeeklyquiz + pointsWeeklyquizAnswers }}
+                                        </b>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr style="background: #f2f0f0;">
+                    <td nowrap><b>Total: {{ collectionWeeklytaskArchive|length }}</b></td>
+                    <td colspan="6"></td>
+                </tr>
+            {% else %}
+                <tr style="background: #f2f0f0;">
+                    <td colspan="7">Keine Aufgaben wurde bearbeitet</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.block.dashboard_gamification"
+                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDashboardBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_gamification</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.gamification.block.breadcrumb"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Breadcrumb\GamificationBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>gamification</argument>
+            <argument>fitbase.gamification.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+
+    </services>
+
+
+</container>

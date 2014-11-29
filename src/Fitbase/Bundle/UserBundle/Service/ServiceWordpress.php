@@ -29,14 +29,14 @@ class ServiceWordpress extends ContainerAware
     /**
      * @return mixed
      */
-    public function getCurrentUser()
+    public function current()
     {
         $current_user = $this->container
             ->get('fitbase_wordpress.api')
             ->wpGetCurrentUser();
 
         return $this->container
-            ->get('fitbase_manager.user')
+            ->get('user')
             ->find($current_user->ID);
     }
 

@@ -16,11 +16,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class AvatarDataTransformer implements DataTransformerInterface, ContainerAwareInterface
 {
     protected $association = array(
-        'bear' => 'FitbaseGamificationBundle:Service:avatar_bear.html.twig',
-        'crane' => 'FitbaseGamificationBundle:Service:avatar_crane.html.twig',
-        'deer' => 'FitbaseGamificationBundle:Service:avatar_deer.html.twig',
-        'monkey' => 'FitbaseGamificationBundle:Service:avatar_monkey.html.twig',
-        'tiger' => 'FitbaseGamificationBundle:Service:avatar_tiger.html.twig',
+        'bear' => 'FitbaseGamificationBundle:SVG:avatar_bear.svg.twig',
+        'crane' => 'FitbaseGamificationBundle:SVG:avatar_crane.svg.twig',
+        'deer' => 'FitbaseGamificationBundle:SVG:avatar_deer.svg.twig',
+        'monkey' => 'FitbaseGamificationBundle:SVG:avatar_monkey.svg.twig',
+        'tiger' => 'FitbaseGamificationBundle:SVG:avatar_tiger.svg.twig',
     );
 
     /**

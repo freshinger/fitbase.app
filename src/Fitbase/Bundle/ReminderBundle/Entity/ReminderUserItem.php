@@ -13,10 +13,27 @@ class ReminderUserItem
 {
 
     protected $id;
-    protected $userId;
+    protected $user;
+    protected $type;
     protected $reminder;
     protected $day;
     protected $time;
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
     /**
      * @return mixed
@@ -83,20 +100,23 @@ class ReminderUserItem
     }
 
     /**
-     * @param mixed $userId
+     * @return mixed
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
+        return $this->user;
     }
 
     /**
-     * @return mixed
+     * @param mixed $user
      */
-    public function getUserId()
+    public function setUser($user)
     {
-        return $this->userId;
+        $this->user = $user;
     }
 
-
+    public function __toString()
+    {
+        return "{$this->getDay()}" . $this->getTime()->format('H:i:s');
+    }
 }

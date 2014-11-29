@@ -14,7 +14,7 @@ use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ExerciseController extends WordpressControllerAbstract
+class ExerciseController extends Controller
 {
     public function exerciseAction()
     {

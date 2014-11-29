@@ -26,8 +26,8 @@ class WeeklyTasksListener extends ContainerAware
         $task->setProcessed(true);
         $task->setProcessedDate($this->container->get('datetime')->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($task);
-        $this->container->get('fitbase_entity_manager')->flush($task);
+        $this->container->get('entity_manager')->persist($task);
+        $this->container->get('entity_manager')->flush($task);
     }
 
 
@@ -42,7 +42,7 @@ class WeeklyTasksListener extends ContainerAware
     {
         assert(is_object(($user = $event->getEntity())));
         $logger = $this->container->get('logger');
-        $entityManager = $this->container->get('fitbase_entity_manager');
+        $entityManager = $this->container->get('entity_manager');
         $postMetaRepository = $entityManager->getRepository('Ekino\WordpressBundle\Entity\PostMeta');
         $weeklyTaskRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyTasks');
 
@@ -80,7 +80,7 @@ class WeeklyTasksListener extends ContainerAware
             return;
         }
 
-        $dateTime = $this->container->get('fitbase_service.weeklytask');
+        $dateTime = $this->container->get('weeklytask');
 
         $next = $dateTime->getUserNextDate($user);
         // Set time to 4 o'clock am
@@ -93,8 +93,8 @@ class WeeklyTasksListener extends ContainerAware
         $task->setTaskId($post->getId());
         $task->setProcessed(false);
 
-        $this->container->get('fitbase_entity_manager')->persist($task);
-        $this->container->get('fitbase_entity_manager')->flush($task);
+        $this->container->get('entity_manager')->persist($task);
+        $this->container->get('entity_manager')->flush($task);
 
         $logger->info('Wochenaufgaben, task created', array(
             $task->getId()
@@ -115,8 +115,8 @@ class WeeklyTasksListener extends ContainerAware
         $task->setDone(true);
         $task->setDoneDate($this->container->get('datetime')->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($task);
-        $this->container->get('fitbase_entity_manager')->flush($task);
+        $this->container->get('entity_manager')->persist($task);
+        $this->container->get('entity_manager')->flush($task);
 
         $this->container->get('logger')->info('Weekly process task, done', array((string)$task));
     }

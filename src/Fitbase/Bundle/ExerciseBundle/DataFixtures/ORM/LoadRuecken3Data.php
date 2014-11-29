@@ -37,12 +37,11 @@ class LoadRuecken3Data extends AbstractFixture implements OrderedFixtureInterfac
         $item602->setFormat("richhtml");
         $item602->setTag("Rücken");
         $item602->setImage($this->getReference('picture_602.jpeg'));
-        $item602->setVideo($this->getReference('video_602.webm'));
+        $item602->setMp4($this->getReference('video_602.mp4'));
+        $item602->setWebm($this->getReference('video_602.webm'));
         $item602->setGallery($this->getReference('picture_602'));
         $item602->setCategory($this->getReference('category_ruecken'));
         $item602->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kopfschaukeln</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box">
@@ -78,8 +77,6 @@ Nackenmuskulatur</div>
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item602);
@@ -89,12 +86,11 @@ CONTENT
         $item603->setFormat("richhtml");
         $item603->setTag("Rücken");
         $item603->setImage($this->getReference('picture_603.jpeg'));
-        $item603->setVideo($this->getReference('video_603.webm'));
+        $item603->setMp4($this->getReference('video_603.mp4'));
+        $item603->setWebm($this->getReference('video_603.webm'));
         $item603->setGallery($this->getReference('picture_603'));
         $item603->setCategory($this->getReference('category_ruecken'));
         $item603->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Schulterkreisen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -131,8 +127,6 @@ Oberer Rücken</div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg">
 <img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" />
 </a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item603);
@@ -142,12 +136,11 @@ CONTENT
         $item604->setFormat("richhtml");
         $item604->setTag("Rücken");
         $item604->setImage($this->getReference('picture_604.jpeg'));
-        $item604->setVideo($this->getReference('video_604.webm'));
+        $item604->setMp4($this->getReference('video_604.mp4'));
+        $item604->setWebm($this->getReference('video_604.webm'));
         $item604->setGallery($this->getReference('picture_604'));
         $item604->setCategory($this->getReference('category_ruecken'));
         $item604->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Schulter öffnen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -184,8 +177,6 @@ oberer Rücken
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item604);
@@ -195,12 +186,11 @@ CONTENT
         $item605->setFormat("richhtml");
         $item605->setTag("Rücken");
         $item605->setImage($this->getReference('picture_605.jpeg'));
-        $item605->setVideo($this->getReference('video_605.webm'));
+        $item605->setMp4($this->getReference('video_605.mp4'));
+        $item605->setWebm($this->getReference('video_605.webm'));
         $item605->setGallery($this->getReference('picture_605'));
         $item605->setCategory($this->getReference('category_ruecken'));
         $item605->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Seitwärts beugen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -243,8 +233,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg"><img src="/wp-content/uploads/muskelgruppen/03_bauchmuskeln.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item605);
@@ -254,12 +242,11 @@ CONTENT
         $item606->setFormat("richhtml");
         $item606->setTag("Rücken");
         $item606->setImage($this->getReference('picture_606.jpeg'));
-        $item606->setVideo($this->getReference('video_606.webm'));
+        $item606->setMp4($this->getReference('video_606.mp4'));
+        $item606->setWebm($this->getReference('video_606.webm'));
         $item606->setGallery($this->getReference('picture_606'));
         $item606->setCategory($this->getReference('category_ruecken'));
         $item606->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Biceps/Trapezius am Tisch</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box">
@@ -301,8 +288,6 @@ Bitte führen Sie diese Übung im Sitzen durch.
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src="/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt="" /></a>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src="/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item606);
@@ -312,12 +297,11 @@ CONTENT
         $item607->setFormat("richhtml");
         $item607->setTag("Rücken");
         $item607->setImage($this->getReference('picture_607.jpeg'));
-        $item607->setVideo($this->getReference('video_607.webm'));
+        $item607->setMp4($this->getReference('video_607.mp4'));
+        $item607->setWebm($this->getReference('video_607.webm'));
         $item607->setGallery($this->getReference('picture_607'));
         $item607->setCategory($this->getReference('category_ruecken'));
         $item607->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style = "margin-bottom: 4px;"> Dips</h4>
     Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box">
@@ -360,8 +344,6 @@ CONTENT
 </div>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg"><img src = "/wp-content/uploads/muskelgruppen/02_oberer_ruecken.jpg" alt = "" /></a>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/04_oberarm.jpg" alt = "" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item607);
@@ -371,12 +353,11 @@ CONTENT
         $item608->setFormat("richhtml");
         $item608->setTag("Rücken");
         $item608->setImage($this->getReference('picture_608.jpeg'));
-        $item608->setVideo($this->getReference('video_608.webm'));
+        $item608->setMp4($this->getReference('video_608.mp4'));
+        $item608->setWebm($this->getReference('video_608.webm'));
         $item608->setGallery($this->getReference('picture_608'));
         $item608->setCategory($this->getReference('category_ruecken'));
         $item608->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Kopfwiderstand dynamisch vorne</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -415,8 +396,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item608);
@@ -426,12 +405,11 @@ CONTENT
         $item609->setFormat("richhtml");
         $item609->setTag("Rücken");
         $item609->setImage($this->getReference('picture_609.jpeg'));
-        $item609->setVideo($this->getReference('video_609.webm'));
+        $item609->setMp4($this->getReference('video_609.mp4'));
+        $item609->setWebm($this->getReference('video_609.webm'));
         $item609->setGallery($this->getReference('picture_609'));
         $item609->setCategory($this->getReference('category_ruecken'));
         $item609->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style = "margin-bottom: 4px"> Kopfwiderstand seitlich </h4>
     Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -470,8 +448,6 @@ CONTENT
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item609);
@@ -481,12 +457,11 @@ CONTENT
         $item610->setFormat("richhtml");
         $item610->setTag("Rücken");
         $item610->setImage($this->getReference('picture_610.jpeg'));
-        $item610->setVideo($this->getReference('video_610.webm'));
+        $item610->setMp4($this->getReference('video_610.mp4'));
+        $item610->setWebm($this->getReference('video_610.webm'));
         $item610->setGallery($this->getReference('picture_610'));
         $item610->setCategory($this->getReference('category_ruecken'));
         $item610->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px">Dehnung kurze Nackenmuskulatur</h4>
 Bitte führen Sie diese Übung im Sitzen durch.
 <div class="feature-box">
@@ -527,8 +502,6 @@ Bitte führen Sie diese Übung im Sitzen durch.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item610);
@@ -538,12 +511,11 @@ CONTENT
         $item611->setFormat("richhtml");
         $item611->setTag("Rücken");
         $item611->setImage($this->getReference('picture_611.jpeg'));
-        $item611->setVideo($this->getReference('video_611.webm'));
+        $item611->setMp4($this->getReference('video_611.mp4'));
+        $item611->setWebm($this->getReference('video_611.webm'));
         $item611->setGallery($this->getReference('picture_611'));
         $item611->setCategory($this->getReference('category_ruecken'));
         $item611->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style = "margin-bottom: 4px;"> 3. Dehnen – Hand-Unterarmdehnung </h4>
     Bitte führen Sie diese Übung im Stehen durch.
 <div class="feature-box">
@@ -587,8 +559,6 @@ CONTENT
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item611);
@@ -598,12 +568,11 @@ CONTENT
         $item612->setFormat("richhtml");
         $item612->setTag("Rücken");
         $item612->setImage($this->getReference('picture_612.jpeg'));
-        $item612->setVideo($this->getReference('video_612.webm'));
+        $item612->setMp4($this->getReference('video_612.mp4'));
+        $item612->setWebm($this->getReference('video_612.webm'));
         $item612->setGallery($this->getReference('picture_612'));
         $item612->setCategory($this->getReference('category_ruecken'));
         $item612->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Nacken Dehnen</h4>
 Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -644,8 +613,6 @@ Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg"><img src="/wp-content/uploads/muskelgruppen/01_nackenmuskeln. jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item612);
@@ -655,12 +622,11 @@ CONTENT
         $item613->setFormat("richhtml");
         $item613->setTag("Rücken");
         $item613->setImage($this->getReference('picture_613.jpeg'));
-        $item613->setVideo($this->getReference('video_613.webm'));
+        $item613->setMp4($this->getReference('video_613.mp4'));
+        $item613->setWebm($this->getReference('video_613.webm'));
         $item613->setGallery($this->getReference('picture_613'));
         $item613->setCategory($this->getReference('category_ruecken'));
         $item613->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style = "margin-bottom: 4px;"> Nackendehnung Variante </h4>
     Sie können diese Übung im Stehen oder im Sitzen durchführen.
 <div class="feature-box">
@@ -708,8 +674,6 @@ CONTENT
 </div>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg"><img src = "/wp-content/uploads/muskelgruppen/01_nackenmuskeln.jpg" alt = "" /></a>
 <a class="exercise-picture-zoom area" href = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg"><img src = "/wp-content/uploads/muskelgruppen/06_unterarm.jpg" alt = "" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item613);
@@ -719,12 +683,11 @@ CONTENT
         $item614->setFormat("richhtml");
         $item614->setTag("Rücken");
         $item614->setImage($this->getReference('picture_614.jpeg'));
-        $item614->setVideo($this->getReference('video_614.webm'));
+        $item614->setMp4($this->getReference('video_614.mp4'));
+        $item614->setWebm($this->getReference('video_614.webm'));
         $item614->setGallery($this->getReference('picture_614'));
         $item614->setCategory($this->getReference('category_ruecken'));
         $item614->setDescription(<<<CONTENT
-<div class="row">
-<div class="span4 col-md-4 column_last">
 <h4 style="margin-bottom: 4px;">Unterarmdehnung</h4>
 Bitte führen Sie diese Übung im Stehen durch.
 <div class="feature-box">
@@ -763,8 +726,6 @@ Bitte führen Sie diese Übung im Stehen durch.
 <div class="clear"></div>
 </div>
 <a class="exercise-picture-zoom area" href="/wp-content/uploads/muskelgruppen/06_unterarm. jpg"><img src="/wp-content/uploads/muskelgruppen/06_unterarm. jpg" alt="" /></a>
-</div>
-</div>
 CONTENT
         );
         $manager->persist($item614);

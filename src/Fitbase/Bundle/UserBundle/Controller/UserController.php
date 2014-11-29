@@ -12,12 +12,10 @@ use Fitbase\Bundle\UserBundle\Form\PasswordForm;
 use Fitbase\Bundle\UserBundle\Form\UserPauseForm;
 use Fitbase\Bundle\UserBundle\Form\UserProfileForm;
 use Fitbase\Bundle\UserBundle\Form\UserSearchForm;
-use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController extends WordpressControllerAbstract
+class UserController extends Controller
 {
     /**
      * Display password form
@@ -71,7 +69,7 @@ class UserController extends WordpressControllerAbstract
     {
         $request = $this->get('request');
 
-        $user = $this->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->get('user')->current();
 
         $entity = new UserProfile();
         $entity->setId($user->getId());
@@ -114,7 +112,7 @@ class UserController extends WordpressControllerAbstract
     {
         $request = $this->get('request');
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             $entity = new UserProfile();
             $entity->setId($user->getId());
@@ -143,9 +141,9 @@ class UserController extends WordpressControllerAbstract
      */
     public function pauseAction(Request $request)
     {
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
-            $repositoryReminder = $this->container->get('fitbase_entity_manager')
+            $repositoryReminder = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\UserReminder');
 
             if (($reminder = $repositoryReminder->findOneByUser($user))) {

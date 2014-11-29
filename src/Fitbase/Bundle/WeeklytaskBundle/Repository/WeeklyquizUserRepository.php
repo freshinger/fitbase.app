@@ -4,9 +4,48 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Repository;
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
 class WeeklyquizUserRepository extends EntityRepository
 {
+    protected function getExprUnique($queryBuilder, $unique)
+    {
+        if (!empty($unique)) {
+            $queryBuilder->setParameter('unique', $unique);
+            return $queryBuilder->expr()->eq('WeeklyquizUser.id', ':unique');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeLt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->lt('WeeklyquizUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function  getExprNotProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('WeeklyquizUser.processed', ':processed'),
+            $queryBuilder->expr()->isNull('WeeklyquizUser.processed')
+        );
+    }
+
     /**
      * Get expression to find record by userF
      * @param $queryBuilder
@@ -17,8 +56,8 @@ class WeeklyquizUserRepository extends EntityRepository
     {
         if (!empty($user)) {
 
-            $queryBuilder->setParameter('userId', $user->getId());
-            return $queryBuilder->expr()->eq('WeeklyquizUser.userId', ':userId');
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('WeeklyquizUser.user', ':user');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
@@ -58,6 +97,8 @@ class WeeklyquizUserRepository extends EntityRepository
     /**
      * Find record by quiz id
      * @param $queryBuilder
+     * @deprecated
+     * @todo replace to getExprQuiz
      * @param $quizId
      * @return mixed
      */
@@ -65,13 +106,29 @@ class WeeklyquizUserRepository extends EntityRepository
     {
         if (!empty($quizId)) {
 
-            $queryBuilder->setParameter('quizId', $quizId);
-            return $queryBuilder->expr()->eq('WeeklyquizUser.quizId', ':quizId');
+            $queryBuilder->setParameter('quiz', $quizId);
+            return $queryBuilder->expr()->eq('WeeklyquizUser.quiz', ':quiz');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
     }
 
+    /**
+     * Find record by quiz id
+     * @param $queryBuilder
+     * @param $quiz
+     * @return mixed
+     */
+    protected function getExprQuiz($queryBuilder, Weeklyquiz $quiz = null)
+    {
+        if (!empty($quiz)) {
+
+            $queryBuilder->setParameter('quiz', $quiz->getId());
+            return $queryBuilder->expr()->eq('WeeklyquizUser.quiz', ':quiz');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
 
     /**
      * Get expression to find records by company id
@@ -97,18 +154,29 @@ class WeeklyquizUserRepository extends EntityRepository
     /**
      * Find records by weekly task id
      * @param $queryBuilder
-     * @param $weeklytaskId
+     * @param $task
      * @return mixed
      */
-    protected function getExprWeeklytaskId($queryBuilder, $weeklytaskId)
+    protected function getExprWeeklytask($queryBuilder, $task)
     {
-        if (!empty($weeklytaskId)) {
+        if (!empty($task)) {
 
-            $queryBuilder->setParameter('weeklytaskId', $weeklytaskId);
-            return $queryBuilder->expr()->eq('WeeklyquizUser.weeklytaskId', ':weeklytaskId');
+            $queryBuilder->setParameter('task', $task->getId());
+            return $queryBuilder->expr()->eq('WeeklyquizUser.task', ':task');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get all not done tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprDone($queryBuilder)
+    {
+        $queryBuilder->setParameter('done', true);
+        return $queryBuilder->expr()->eq('WeeklyquizUser.done', ':done');
     }
 
     /**
@@ -149,8 +217,30 @@ class WeeklyquizUserRepository extends EntityRepository
     }
 
     /**
+     * Find weeklyquiz user object
+     * @param $user
+     * @param Weeklyquiz $weeklyquiz
+     * @internal param WeeklytaskUser $weeklytaskUser
+     * @return array
+     */
+    public function findOneByUserAndQuiz($user, Weeklyquiz $weeklyquiz = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprQuiz($queryBuilder, $weeklyquiz)
+        ));
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
      * Find one record by user and quiz id
      * @param $user
+     * @deprecated
+     * @todo replace by findOneByUserAndQuiz
      * @param $quizId
      * @return mixed
      */
@@ -228,5 +318,57 @@ class WeeklyquizUserRepository extends EntityRepository
 
         return 0;
     }
+
+    /**
+     * Get sum points
+     * @param $user
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findSumPointByUserAndDone($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+        $queryBuilder->select('SUM(WeeklyquizUser.countPoint)');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDone($queryBuilder)
+        ));
+
+        return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
+    }
+
+
+    public function findOneByUserAndUnique($user, $unique)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprUnique($queryBuilder, $unique)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Find quizze by not processed and date
+     * @param $datetime
+     * @return array
+     */
+    public function findAllNotProcessedByDateTime($datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprDateTimeLt($queryBuilder, $datetime),
+            $this->getExprNotProcessed($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
 
 }

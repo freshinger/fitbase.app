@@ -111,6 +111,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
                 'required' => false,
                 'label' => 'Tags',
             ))
+            ->add('quiz')
             ->end()
             ->with('Options', array('class' => 'col-md-6'))
             ->add('priority', null, array(

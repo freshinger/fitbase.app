@@ -15,11 +15,11 @@ class QuestionnaireUserAnswerListener extends ContainerAware
      * On create questionnaire user event
      * @param QuestionnaireUserEvent $event
      */
-    public function onQuestionnaireUserAnswerCreateEvent(QuestionnaireUserEvent $event)
+    public function onQuestionnaireUserAnswerCreateEvent($event)
     {
         assert(is_object(($questionnaireUserAnswer = $event->getEntity())));
 
-        $this->container->get('fitbase_entity_manager')->persist($questionnaireUserAnswer);
-        $this->container->get('fitbase_entity_manager')->flush($questionnaireUserAnswer);
+        $this->container->get('entity_manager')->persist($questionnaireUserAnswer);
+        $this->container->get('entity_manager')->flush($questionnaireUserAnswer);
     }
 }

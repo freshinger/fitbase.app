@@ -13,12 +13,12 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class GamificationEmotionDataTransformer implements DataTransformerInterface
 {
-    protected $association = array(
-        1 => -2,
-        2 => -1,
-        3 => 0,
-        4 => 1,
-        5 => 1,
+    protected $cache = array(
+        'anger' => -2,
+        'sad' => -1,
+        'normal' => 0,
+        'gut' => 1,
+        'happy' => 2,
     );
 
     /**
@@ -28,7 +28,7 @@ class GamificationEmotionDataTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        return array_search($value, $this->association);
+        return array_search($value, $this->cache);
     }
 
     /**
@@ -38,8 +38,8 @@ class GamificationEmotionDataTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if (isset($this->association[$value])) {
-            return $this->association[$value];
+        if (isset($this->cache[$value])) {
+            return $this->cache[$value];
         }
         return null;
     }

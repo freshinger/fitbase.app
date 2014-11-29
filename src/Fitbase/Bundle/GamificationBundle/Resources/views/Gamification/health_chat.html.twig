@@ -1,0 +1,41 @@
+{% if collection is defined and collection %}
+    {% if collection|length > 0 %}
+        {% for answer in collection %}
+            {% if answer.question is defined and answer.question %}
+                {% if not answer.hidden %}
+                    {% set questionHistory = answer.question %}
+                    <div class="chat-message alert alert-info">
+                        <strong class="text">
+                            {{ questionHistory.text }}
+                        </strong>
+
+                        <p class="description">
+                            {{ questionHistory.description|raw }}
+                            {{ feedback(questionHistory) }}
+                        </p>
+                    </div>
+                    {% set answer = answer(answer) %}
+                    {% if answer is defined and answer %}
+                        <div class="chat-message alert alert-info">
+                            <div class="feedback">
+                                <span>{{ answer }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+<div class="chat-message alert alert-info">
+    {% if question is defined and question %}
+        <strong>{{ question.text }}</strong>
+        <p>{{ question.description|raw }}</p>
+    {% endif %}
+
+    {% form_theme form "FitbaseGamificationBundle:Gamification:health_chat_form.html.twig" %}
+
+    {{ form(form) }}
+
+</div>

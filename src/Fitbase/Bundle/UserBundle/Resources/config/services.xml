@@ -5,15 +5,26 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <imports>
+        <import resource="admin.xml"/>
+        <import resource="blocks.xml"/>
         <import resource="managers.xml"/>
         <import resource="forms.xml"/>
         <import resource="listeners.xml"/>
         <import resource="validators.xml"/>
-        <import resource="pages.xml"/>
-        <import resource="shortcodes.xml"/>
+        <!--<import resource="pages.xml"/>-->
+        <!--<import resource="shortcodes.xml"/>-->
+        <import resource="subscribers.xml"/>
     </imports>
 
     <services>
+
+
+        <service id="codegenerator" class="Fitbase\Bundle\UserBundle\Service\ServiceCodegenerator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
         <service id="fitbase_service.wordpress" class="Fitbase\Bundle\UserBundle\Service\ServiceWordpress">
             <call method="setContainer">

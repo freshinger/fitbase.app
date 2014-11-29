@@ -109,10 +109,10 @@
             <span style="margin-right: 25%;">
                 {#Sie erhalten maximal {{ points }} Punkte für dieses Quiz#}
             </span>
-            <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
+            <button class="btn btn-primary" name="save" type="submit">
                 Die Antworte speichern
             </button>
-            <a class="btn btn-primary" data-dismiss="modal" id="weeklytask_user_quiz_answer_close">
+            <a class="btn btn-primary" href="?pause=true">
                 Später machen
             </a>
         </div>
@@ -133,13 +133,13 @@
                 {% set type = type|default('hidden') %}
                 {{ block('form_widget_simple') }}
                 <script type="text/javascript">
-                    jQuery(function () {
-                        jQuery('div[id={{ id }}]').slider({
+                    $(function () {
+                        $('div[id={{ id }}]').slider({
                             min: parseInt('{{ min }}'),
                             max: parseInt('{{ max }}'),
                             value: parseInt('{{ value }}'),
                             slide: function (event, ui) {
-                                jQuery('input[id={{ id }}]').val(ui.value)
+                                $('input[id={{ id }}]').val(ui.value)
                             }
                         });
                     });

@@ -1,0 +1,139 @@
+{% extends "FitbaseReminderBundle:Block:block.html.twig" %}
+
+
+{% block content %}
+    {% spaceless %}
+
+        <div class="panel-info">
+            <h2>{{ "Erinnerungsfunktion pausieren" | trans({}, 'FitbaseReminderBundle') }}</h2>
+
+            <div class="panel-body">
+
+                {% if reminder.pause is defined and reminder.pause %}
+                    <div class="row">
+                        <div class="col-md-10 alert alert-info">
+                            Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
+                            {{ reminder.pause }} Wochen pausiert.
+                            Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% form_theme formReminderPause "FitbaseReminderBundle:Block:form_reminder_pause.html.twig" %}
+
+                {{ form(formReminderPause) }}
+
+            </div>
+        </div>
+
+
+        <div class="panel-info">
+            <h2>{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</h2>
+
+            <p>Hier können sie die Versendung der Emails mit der Wochenaufgaben und der Wochenquizzen ausschalten. </p>
+
+            <div class="panel-body">
+
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="manage-column">
+                            {{ "Tag" | trans({}, 'FitbaseReminderBundle') }}
+                        </th>
+                        <th class="manage-column">
+                            {{ "Zeit" | trans({}, 'FitbaseReminderBundle') }}
+                        </th>
+                        <th class="manage-column">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if itemsWeeklytask|length > 0 %}
+                        {% for item in itemsWeeklytask %}
+                            <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                                <td>{{ item.day|day }}</td>
+                                <td>{{ item.time|date('H:i') }}</td>
+                                <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
+                            </tr>
+                        {% endfor %}
+                        <tr style="background: #f2f0f0;">
+                            <td><b>Total: {{ itemsWeeklytask|length }}</b></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">
+                                {{ "Keine Erinnerungen gefunden" | trans({}, 'FitbaseReminderBundle') }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+
+                {% form_theme formReminderItemWeeklytask "FitbaseReminderBundle:Block:form_reminder_item.html.twig" %}
+
+                {{ form(formReminderItemWeeklytask) }}
+
+            </div>
+        </div>
+
+
+        <div class="panel-info">
+            <h2>{{ "Erinnerungsfunktion" | trans({}, 'FitbaseReminderBundle') }}</h2>
+
+            <p>
+                Nutzen Sie die Erinnerungsfunktion, um zur gewählten Zeit per E-Mail auf Ihre Übung aufmerksam gemacht
+                zu
+                werden – am besten jeden Tag. Sie können die Emailadresse in Ihrem Profil jederzeit ändern. Alle Übungen
+                sind speziell auf die Durchführung im Büro abgestimmt. Wir empfehlen, die Übungen täglich durchzuführen,
+                z.B. um 10 Uhr.
+            </p>
+
+            <div class="panel-body">
+
+
+                <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="manage-column">
+                            {{ "Tag" | trans({}, 'FitbaseReminderBundle') }}
+                        </th>
+                        <th class="manage-column">
+                            {{ "Zeit" | trans({}, 'FitbaseReminderBundle') }}
+                        </th>
+                        <th class="manage-column">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if items|length > 0 %}
+                        {% for item in items %}
+                            <tr class="{{ loop.index is even ? 'alternate' : '' }}">
+                                <td>{{ item.day|day }}</td>
+                                <td>{{ item.time|date('H:i') }}</td>
+                                <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
+                            </tr>
+                        {% endfor %}
+                        <tr style="background: #f2f0f0;">
+                            <td><b>Total: {{ items|length }}</b></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">
+                                {{ "Keine Erinnerungen gefunden" | trans({}, 'FitbaseReminderBundle') }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+
+                {% form_theme formReminderItem "FitbaseReminderBundle:Block:form_reminder_item.html.twig" %}
+
+                {{ form(formReminderItem) }}
+
+            </div>
+        </div>
+
+
+
+    {% endspaceless %}
+{% endblock content %}

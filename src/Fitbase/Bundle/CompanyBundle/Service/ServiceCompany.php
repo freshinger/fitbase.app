@@ -21,7 +21,7 @@ class ServiceCompany extends ContainerAware
     public function getUserCompany($user)
     {
         if (!empty($user)) {
-            return $this->container->get('fitbase_manager.user')
+            return $this->container->get('user')
                 ->getCompany($user);
         }
 
@@ -36,7 +36,7 @@ class ServiceCompany extends ContainerAware
     public function getCompany($company_id)
     {
         if (!empty($company_id)) {
-            return $this->container->get('fitbase_entity_manager')
+            return $this->container->get('entity_manager')
                 ->find('Fitbase\Bundle\CompanyBundle\Entity\Company', $company_id);
         }
 

@@ -19,9 +19,10 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Tests\Controller;
 
 
-class UserDashboardController extends WordpressControllerAbstract
+class UserDashboardController extends Controller
 {
     /**
      * Display form to change user focus
@@ -31,7 +32,7 @@ class UserDashboardController extends WordpressControllerAbstract
     public function optionAction(Request $request)
     {
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             return $this->render('FitbaseUserBundle:Dashboard:option.html.twig', array(
                 'eye' => $user->getMetaValue('user_exercise_eye'),
@@ -69,11 +70,11 @@ class UserDashboardController extends WordpressControllerAbstract
         $countQuestionnaire = 0;
         $countQuestionnaireUser = 0;
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             if (($companyId = $user->getMetaValue('user_company_id'))) {
 
-                $managerEntity = $this->get('fitbase_entity_manager');
+                $managerEntity = $this->get('entity_manager');
                 $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
                 if (($company = $repositoryCompany->find($companyId))) {
@@ -114,11 +115,11 @@ class UserDashboardController extends WordpressControllerAbstract
     public function statisticPointAction(Request $request)
     {
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             if (($companyId = $user->getMetaValue('user_company_id'))) {
 
-                $managerEntity = $this->get('fitbase_entity_manager');
+                $managerEntity = $this->get('entity_manager');
                 $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
                 if (($company = $repositoryCompany->find($companyId))) {
@@ -142,14 +143,14 @@ class UserDashboardController extends WordpressControllerAbstract
     {
         $statistic = array();
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
 //            if (($companyId = $user->getMetaValue('user_company_id')))
             {
                 $companyId = 5;
 
 
-                $managerEntity = $this->get('fitbase_entity_manager');
+                $managerEntity = $this->get('entity_manager');
                 $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
                 if (($company = $repositoryCompany->find($companyId))) {
@@ -184,16 +185,16 @@ class UserDashboardController extends WordpressControllerAbstract
         $healthCommon = 0;
         $strainCommon = 0;
 
-        if (($user = $this->get('fitbase_manager.user')->getCurrentUser())) {
+        if (($user = $this->get('user')->current())) {
 
             if (($companyId = $user->getMetaValue('user_company_id'))) {
 
-                $repositoryCompany = $this->get('fitbase_entity_manager')
+                $repositoryCompany = $this->get('entity_manager')
                     ->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
                 if (($company = $repositoryCompany->find($companyId))) {
 
-                    $repositoryQuestionnaireUser = $this->get('fitbase_entity_manager')
+                    $repositoryQuestionnaireUser = $this->get('entity_manager')
                         ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
 
                     $collection = $repositoryQuestionnaireUser->findAllByCompany($company);

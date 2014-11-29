@@ -7,127 +7,36 @@
 
     <services>
 
-        <service id="fitbase_listener.gamification.questionnaire"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\QuestionnaireUserListener">
+        <service id="fitbase.subscriber.GamificationUser"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="questionnaire_user_done" method="onQuestionnaireUserDoneEvent"/>
         </service>
 
-
-        <service id="fitbase_listener.gamification.statistic_user_video"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\StatisticUserVideoListener">
+        <service id="fitbase.subscriber.GamificationUserEmotion"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserEmotionSubscriber">
+            <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="statistic_video" method="onStatisticUserVideoEvent"/>
         </service>
 
-
-        <service id="fitbase_listener.gamification.weeklyquiz_user_answer"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\WeeklyquizUserAnswerListener">
+        <service id="fitbase.subscriber.GamificationUserDialogAnswer"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserDialogAnswerSubscriber">
+            <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_answer_create"
-                 method="onWeeklytaskUserAnswerCreateEvent"/>
         </service>
 
-
-        <service id="fitbase_listener.gamification.weeklyquiz_user"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\WeeklyquizUserListener">
+        <service id="fitbase.subscriber.GamificationUserDialogFeedback"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserDialogFeedbackSubscriber">
+            <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_done" method="onWeeklytaskUserQuizDoneEvent"/>
-        </service>
-
-
-        <service id="fitbase_listener.gamification.weeklytask_user"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\WeeklytaskUserListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_done" method="onWeeklytaskUserDoneEvent"/>
-        </service>
-
-        <service id="fitbase_listener.gamification.pointlog_user"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationUserPointlogListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_pointlog_user_create"
-                 method="onGamificationUserPointlogCreateEvent"/>
-        </service>
-
-        <service id="fitbase_listener.gamification.dialog_question"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationDialogQuestionListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_dialog_question_create"
-                 method="onGamificationDialogQuestionCreateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_question_update"
-                 method="onGamificationDialogQuestionUpdateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_question_remove"
-                 method="onGamificationDialogQuestionRemoveEvent"/>
-        </service>
-
-        <service id="fitbase_listener.gamification.dialog_user_answer"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationUserDialogAnswerListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_hide"
-                 method="onGamificationUserDialogAnswerHideEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_hide_collection"
-                 method="onGamificationUserDialogAnswerHideCollectionEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_create"
-                 method="onGamificationUserDialogAnswerCreateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_update"
-                 method="onGamificationUserDialogAnswerUpdateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_remove"
-                 method="onGamificationUserDialogAnswerRemoveEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_finish"
-                 method="onGamificationUserDialogAnswerFinishEvent"/>
-        </service>
-
-        <service id="fitbase_listener.gamification.dialog_user_feedback"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationUserDialogFeedbackListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_create"
-                 method="onGamificationUserDialogAnswerCreateEvent"/>
-
-            <tag name="kernel.event_listener" event="gamification_dialog_user_feedback_create"
-                 method="onGamificationUserDialogFeedbackCreateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_feedback_update"
-                 method="onGamificationUserDialogFeedbackUpdateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_feedback_remove"
-                 method="onGamificationUserDialogFeedbackRemoveEvent"/>
-        </service>
-
-
-        <service id="fitbase_listener.gamification.user_emotion"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationUserEmotionListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_user_emotion_create"
-                 method="onGamificationUserEmotionCreateEvent"/>
-            <tag name="kernel.event_listener" event="gamification_dialog_user_answer_hide_collection"
-                 method="onGamificationUserDialogAnswerHideCollectionEvent"/>
-        </service>
-
-
-        <service id="fitbase_listener.gamification.user"
-                 class="Fitbase\Bundle\GamificationBundle\Listener\GamificationUserListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="gamification_user_create" method="onGamificationUserCreateEvent"/>
         </service>
 
 

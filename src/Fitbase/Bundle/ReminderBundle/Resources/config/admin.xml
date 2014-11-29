@@ -5,11 +5,11 @@
 
     <services>
 
-        <service id="fitbase.admin.reminder" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserAdmin">
+        <service id="fitbase.admin.reminder_user" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Reminder"/>
+            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Erinnerungen"/>
             <argument/>
             <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUser</argument>
             <argument/>
@@ -25,15 +25,6 @@
             <argument/>
         </service>
 
-        <service id="fitbase.admin.reminder_plan" class="Fitbase\Bundle\ReminderBundle\Admin\ReminderUserPlanAdmin">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="sonata.admin" manager_type="orm" group="Reminder" label="Reminder Plan"/>
-            <argument/>
-            <argument>Fitbase\Bundle\ReminderBundle\Entity\ReminderUserPlan</argument>
-            <argument/>
-        </service>
 
     </services>
 </container>

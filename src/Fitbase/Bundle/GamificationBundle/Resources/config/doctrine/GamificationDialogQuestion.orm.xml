@@ -12,7 +12,7 @@
 
         <field name="text" type="text" column="text"/>
         <field name="type" type="string" column="type"/>
-        <field name="start" type="integer" column="start"/>
+        <field name="start" type="integer" column="start" nullable="true"/>
         <field name="positive" type="integer" column="positive" nullable="true"/>
         <field name="description" type="text" column="description" nullable="true"/>
 

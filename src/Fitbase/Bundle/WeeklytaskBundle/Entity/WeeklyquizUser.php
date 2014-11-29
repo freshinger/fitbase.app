@@ -12,15 +12,31 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Entity;
 class WeeklyquizUser
 {
     protected $id;
-    protected $quizId;
+    protected $quiz;
     protected $user;
-    protected $userId;
     protected $weekId;
-    protected $weeklytaskId;
+    protected $task;
+    protected $date;
     protected $code;
     protected $done;
     protected $doneDate;
     protected $countPoint;
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
 
     /**
      * @param mixed $user
@@ -103,38 +119,6 @@ class WeeklyquizUser
     }
 
     /**
-     * @param mixed $weeklytaskId
-     */
-    public function setWeeklytaskId($weeklytaskId)
-    {
-        $this->weeklytaskId = $weeklytaskId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWeeklytaskId()
-    {
-        return $this->weeklytaskId;
-    }
-
-    /**
-     * @param mixed $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
      * @param mixed $code
      */
     public function setCode($code)
@@ -167,20 +151,92 @@ class WeeklyquizUser
     }
 
     /**
-     * @param mixed $quizId
+     * @return mixed
      */
-    public function setQuizId($quizId)
+    public function getQuiz()
     {
-        $this->quizId = $quizId;
+        return $this->quiz;
+    }
+
+    /**
+     * @param mixed $quiz
+     */
+    public function setQuiz($quiz)
+    {
+        $this->quiz = $quiz;
     }
 
     /**
      * @return mixed
      */
-    public function getQuizId()
+    public function getTask()
     {
-        return $this->quizId;
+        return $this->task;
     }
 
+    /**
+     * @param mixed $task
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+    }
 
+    /**
+     * @var boolean
+     */
+    private $processed;
+
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return WeeklyquizUser
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+
+        return $this;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser
+     */
+    private $userTask;
+
+
+    /**
+     * Set userTask
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask
+     * @return WeeklyquizUser
+     */
+    public function setUserTask(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $userTask = null)
+    {
+        $this->userTask = $userTask;
+
+        return $this;
+    }
+
+    /**
+     * Get userTask
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser
+     */
+    public function getUserTask()
+    {
+        return $this->userTask;
+    }
 }

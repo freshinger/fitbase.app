@@ -61,7 +61,7 @@ class UserListener extends ContainerAware
     public function onUserMedimouseCreateEvent(UserMedimouseEvent $event)
     {
         assert(is_object(($medimouse = $event->getEntity())), "Event Entity Object can not be empty");
-        assert(is_object(($managerUser = $this->container->get('fitbase_manager.user'))), "User Manager service can not be empty");
+        assert(is_object(($managerUser = $this->container->get('user'))), "User Manager service can not be empty");
 
         $this->container->get('logger')->info('Medimouse task', array($medimouse));
 
@@ -131,7 +131,7 @@ class UserListener extends ContainerAware
     {
         assert(is_object(($password = $event->getEntity())), "Password Object can not be empty");
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $wordpress = $this->container->get('fitbase_wordpress.api');
 
@@ -160,7 +160,7 @@ class UserListener extends ContainerAware
 
         $wordpress = $this->container->get('fitbase_wordpress.api');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $wordpress->wpUpdateUserMeta($user->getId(), 'user_form_of_address', $profile->getAnrede());
         $wordpress->wpUpdateUserMeta($user->getId(), 'user_title', $profile->getTitel());
@@ -176,7 +176,7 @@ class UserListener extends ContainerAware
         $wordpress->wpUpdateUserMeta($user->getId(), 'user_privacy', $profile->getShowInStatistic());
 
         $user->setEmail($user->getEmail());
-        $this->container->get('fitbase_manager.user')->save($user, true);
+        $this->container->get('user')->save($user, true);
     }
 
 }

@@ -3,14 +3,45 @@
 {% block field %}
     <div class="row">
         <div class="col-md-4">
-            {% if object.video is defined %}
-                {% if object.video %}
-                    <video width="320" height="240" controls>
-                        <source src="{{ video(object.video) }}" type="video/webm">
-                        Your browser does not support the video tag.
+            {% if object.webm is defined %}
+                {% if object.webm %}
+
+                    {% set width='320' %}
+                    {% set height='240' %}
+
+                    <video width="{{ width }}" height="{{ height }}" controls>
+                        <source src="{{ video(object.webm) }}" type="video/webm">
+
+                        {% if object.mp4 is defined %}
+                            {% if object.mp4 %}
+                                <object class="flashplayer" width="{{ width }}" height="{{ height }}"
+                                        type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
+                                    <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                    <param name="quality" value="high"/>
+                                    <param name="menu" value="false"/>
+                                    <param name="scale" value="noscale"/>
+                                    <param name="allowfullscreen" value="true">
+                                    <param name="allowscriptaccess" value="always">
+                                    <param name="swlivevonnect" value="true"/>
+                                    <param name="cachebusting" value="false">
+                                    <param name="flashvars"
+                                           value="skin=/flash/skins/mySkin.swf&video={{ video(object.mp4) }}"/>
+                                </object>
+
+                                <script type="text/javascript">
+                                    $(function () {
+                                        var flashplayer = $('.flashplayer');
+                                        if (!flashplayer.flash()) {
+                                            flashplayer.remove();
+                                        }
+                                    });
+                                </script>
+                            {% endif %}
+                        {% endif %}
                     </video>
                 {% endif %}
             {% endif %}
+
             {% if object.gallery.galleryHasMedias is defined %}
                 {% if  object.gallery.galleryHasMedias %}
                     {% for galleryHasMedia in object.gallery.galleryHasMedias %}

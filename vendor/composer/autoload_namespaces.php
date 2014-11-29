@@ -37,6 +37,7 @@ return array(
     'Knp\\Bundle\\MenuBundle' => array($vendorDir . '/knplabs/knp-menu-bundle'),
     'Knp\\Bundle\\MarkdownBundle' => array($vendorDir . '/knplabs/knp-markdown-bundle'),
     'JsonpCallbackValidator' => array($vendorDir . '/willdurand/jsonp-callback-validator/src'),
+    'JpGraph' => array($vendorDir . '/jpgraph/jpgraph/lib'),
     'JMS\\SerializerBundle' => array($vendorDir . '/jms/serializer-bundle'),
     'JMS\\Serializer' => array($vendorDir . '/jms/serializer/src'),
     'JMS\\SecurityExtraBundle' => array($vendorDir . '/jms/security-extra-bundle'),
@@ -71,6 +72,7 @@ return array(
     'Doctrine\\Bundle\\MigrationsBundle' => array($vendorDir . '/doctrine/doctrine-migrations-bundle'),
     'Doctrine\\Bundle\\FixturesBundle' => array($vendorDir . '/doctrine/doctrine-fixtures-bundle'),
     'Doctrine\\Bundle\\DoctrineBundle' => array($vendorDir . '/doctrine/doctrine-bundle'),
+    'ComponentInstaller' => array($vendorDir . '/robloach/component-installer/src'),
     'CG\\' => array($vendorDir . '/jms/cg/src'),
     'Buzz' => array($vendorDir . '/kriswallsmith/buzz/lib'),
     'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src', $vendorDir . '/behat/mink-selenium2-driver/src'),
@@ -80,6 +82,7 @@ return array(
     'Behat\\CommonContexts' => array($vendorDir . '/behat/common-contexts'),
     'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
     'Bazinga\\Bundle\\FakerBundle' => array($vendorDir . '/willdurand/faker-bundle'),
+    'BCC\\CronManagerBundle' => array($vendorDir . '/bcc/cron-manager-bundle'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
     '' => array($baseDir . '/src'),
 );

@@ -15,11 +15,27 @@ class QuestionnaireUser
     protected $date;
     protected $user;
     protected $questionnaire;
-    protected $questionnaireCompany;
+    protected $pause;
     protected $done;
     protected $doneDate;
     protected $countPointHealth;
     protected $countPointStrain;
+
+    /**
+     * @return mixed
+     */
+    public function getPause()
+    {
+        return $this->pause;
+    }
+
+    /**
+     * @param mixed $pause
+     */
+    public function setPause($pause)
+    {
+        $this->pause = $pause;
+    }
 
     /**
      * @param mixed $countPointHealth
@@ -83,22 +99,6 @@ class QuestionnaireUser
     public function getDoneDate()
     {
         return $this->doneDate;
-    }
-
-    /**
-     * @param mixed $questionnaireCompany
-     */
-    public function setQuestionnaireCompany($questionnaireCompany)
-    {
-        $this->questionnaireCompany = $questionnaireCompany;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuestionnaireCompany()
-    {
-        return $this->questionnaireCompany;
     }
 
     /**

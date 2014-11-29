@@ -4,35 +4,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-
-    <route id="gamification_popup_avatar" path="/administration/popup/avatar">
-        <default key="_controller">FitbaseGamificationBundle:Popup:avatar</default>
+    <route id="gamification_health_chat" path="/health/chat">
+        <default key="_controller">FitbaseGamificationBundle:Gamification:healthChat</default>
     </route>
 
-
-    <route id="gamification_administration_list" path="/administration/gamification/question/list">
-        <default key="_controller">FitbaseGamificationBundle:Administration:list</default>
-    </route>
-
-
-    <route id="gamification_dashboard_chat_ajax" path="/mitgliederbereich/gamification/ajax/chat">
-        <default key="_controller">FitbaseGamificationBundle:Dashboard:chatAjax</default>
-    </route>
-
-    <route id="gamification_dashboard_chat" path="/mitgliederbereich/dashboard/chat">
-        <default key="_controller">FitbaseGamificationBundle:Dashboard:chat</default>
-    </route>
-
-    <route id="gamification_dashboard_tree" path="/mitgliederbereich/dashboard/tree">
-        <default key="_controller">FitbaseGamificationBundle:Dashboard:tree</default>
-    </route>
-
-    <route id="gamification_dashboard_forest" path="/mitgliederbereich/dashboard/forest">
-        <default key="_controller">FitbaseGamificationBundle:Dashboard:forest</default>
-    </route>
-
-    <route id="gamification_dashboard_statistic" pattern="/mitgliederbereich/dashboard/statistic/point/user">
-        <default key="_controller">FitbaseGamificationBundle:Dashboard:statistic</default>
+    <route id="gamification_health_emotion" path="/health/emotion">
+        <default key="_controller">FitbaseGamificationBundle:Gamification:healthEmotion</default>
     </route>
 
 

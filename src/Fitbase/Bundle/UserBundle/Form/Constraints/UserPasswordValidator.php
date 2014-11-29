@@ -27,7 +27,7 @@ class UserPasswordValidator extends ConstraintValidator implements ContainerAwar
      */
     public function validate($entity, Constraint $constraint)
     {
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
         $wordpress = $this->container->get('fitbase_wordpress.api');
         if (!$wordpress->wpCheckPassword($entity, $user->getPassword())) {
             $this->context->addViolation($constraint->message, array());

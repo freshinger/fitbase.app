@@ -11,13 +11,11 @@
         </id>
 
         <field name="date" type="date" column="date"/>
-        <field name="value" type="integer" column="value"/>
-        <field name="description" type="text" column="description"/>
-        <field name="hidden" type="integer" column="hidden "/>
+        <field name="value" type="integer" column="value" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
+        <field name="hidden" type="integer" column="hidden" nullable="true"/>
 
-        <!--<many-to-one field="user" target-entity="Ekino\WordpressBundle\Entity\User">-->
-        <!--<join-column name="user_id" referenced-column-name="ID"/>-->
-        <!--</many-to-one>-->
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
 
     </entity>
 </doctrine-mapping>

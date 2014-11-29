@@ -12,7 +12,7 @@ class ReminderUser
     /**
      * @var integer
      */
-    protected $userId;
+    protected $user;
 
     /**
      * @var integer
@@ -23,41 +23,6 @@ class ReminderUser
      * @var datetime
      */
     protected $pauseStart;
-
-    protected $sendWeeklytask;
-    protected $sendWeeklyquiz;
-
-    /**
-     * @param mixed $sendWeeklyquiz
-     */
-    public function setSendWeeklyquiz($sendWeeklyquiz)
-    {
-        $this->sendWeeklyquiz = $sendWeeklyquiz;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSendWeeklyquiz()
-    {
-        return (boolean)$this->sendWeeklyquiz;
-    }
-
-    /**
-     * @param mixed $sendWeeklytask
-     */
-    public function setSendWeeklytask($sendWeeklytask)
-    {
-        $this->sendWeeklytask = $sendWeeklytask;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSendWeeklytask()
-    {
-        return (boolean)$this->sendWeeklytask;
-    }
 
     /**
      * @param int $id
@@ -108,19 +73,26 @@ class ReminderUser
     }
 
     /**
-     * @param int $userId
+     * @return int
      */
-    public function setUserId($userId)
+    public function getUser()
     {
-        $this->userId = $userId;
+        return $this->user;
     }
 
     /**
-     * @return int
+     * @param int $user
      */
-    public function getUserId()
+    public function setUser($user)
     {
-        return $this->userId;
+        $this->user = $user;
     }
 
+    public function __toString()
+    {
+        if (($user = $this->getUser())) {
+            return "Reminder for: {$user}";
+        }
+        return null;
+    }
 }

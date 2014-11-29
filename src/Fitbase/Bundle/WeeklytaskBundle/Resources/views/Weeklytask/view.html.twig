@@ -1,0 +1,29 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask_user', 'current_uri': app.request.requestUri }) }}
+
+{% if weeklytask %}
+    <div class="row">
+        <div class="col-md-12 top10">
+            <h2>{{ weeklytask.name }}</h2>
+            <br/>
+
+            <p>{{ weeklytask.content|raw }}</p>
+        </div>
+    </div>
+{% endif %}
+
+{% if weeklytaskUser is defined %}
+    <div class="main">
+        {% if weeklytaskUser.done %}
+            <div class="big-button center">
+                <strong>Diese Wochenaufgabe wurde bereits erledigt</strong>
+            </div>
+        {% else %}
+            <div class="big-button center">
+                <a href="?processed=true" class="btn btn-primary">
+                    Ich habe diese Aufgabe erledigt
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+

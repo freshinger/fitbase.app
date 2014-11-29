@@ -47,7 +47,12 @@ class Exercise
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      */
-    private $video;
+    private $mp4;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $webm;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
@@ -183,12 +188,12 @@ class Exercise
     /**
      * Set video
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $video
+     * @param \Application\Sonata\MediaBundle\Entity\Media $webm
      * @return Exercise
      */
-    public function setVideo(\Application\Sonata\MediaBundle\Entity\Media $video = null)
+    public function setWebm(\Application\Sonata\MediaBundle\Entity\Media $webm = null)
     {
-        $this->video = $video;
+        $this->webm = $webm;
 
         return $this;
     }
@@ -198,9 +203,32 @@ class Exercise
      *
      * @return \Application\Sonata\MediaBundle\Entity\Media
      */
-    public function getVideo()
+    public function getWebm()
     {
-        return $this->video;
+        return $this->webm;
+    }
+
+    /**
+     * Set video
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $mp4
+     * @return Exercise
+     */
+    public function setMp4(\Application\Sonata\MediaBundle\Entity\Media $mp4 = null)
+    {
+        $this->mp4 = $mp4;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getMp4()
+    {
+        return $this->mp4;
     }
 
     /**

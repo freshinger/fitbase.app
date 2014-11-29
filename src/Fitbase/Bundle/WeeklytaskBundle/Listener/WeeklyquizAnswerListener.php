@@ -18,7 +18,7 @@ class WeeklyquizAnswerListener extends ContainerAware
     {
         assert(($weeklytaskQuiz = $event->getEntity()));
 
-        $repositoryQuestion = $this->container->get('fitbase_entity_manager')
+        $repositoryQuestion = $this->container->get('entity_manager')
             ->getREpository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 
         if (($collection = $repositoryQuestion->findAllByQuiz($weeklytaskQuiz))) {
@@ -37,7 +37,7 @@ class WeeklyquizAnswerListener extends ContainerAware
     {
         assert(($weeklytaskQuestion = $event->getEntity()));
 
-        $repositoryAnswer = $this->container->get('fitbase_entity_manager')
+        $repositoryAnswer = $this->container->get('entity_manager')
             ->getREpository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
 
         if (($collection = $repositoryAnswer->findAllByQuestion($weeklytaskQuestion))) {
@@ -56,8 +56,8 @@ class WeeklyquizAnswerListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -68,8 +68,8 @@ class WeeklyquizAnswerListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->remove($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->remove($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
     }
 
     /**
@@ -80,8 +80,8 @@ class WeeklyquizAnswerListener extends ContainerAware
     {
         assert(($weeklytask = $event->getEntity()));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytask);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytask);
+        $this->container->get('entity_manager')->persist($weeklytask);
+        $this->container->get('entity_manager')->flush($weeklytask);
 
     }
 }

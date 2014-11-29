@@ -18,7 +18,7 @@ class CompanyController extends Controller
             return $this->editAction($request, $unique);
         }
 
-        $companies = $this->get('fitbase_entity_manager')
+        $companies = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company')
             ->findAll();
 
@@ -62,7 +62,7 @@ class CompanyController extends Controller
      */
     public function editAction(Request $request, $unique)
     {
-        $company = $this->get('fitbase_entity_manager')
+        $company = $this->get('entity_manager')
             ->find('Fitbase\Bundle\CompanyBundle\Entity\Company', $unique);
 
         $form = $this->createForm(new CompanyForm(), $company);
@@ -90,7 +90,7 @@ class CompanyController extends Controller
             }
         }
 
-        $repositoryQuestionnaireCompany = $this->get('fitbase_entity_manager')
+        $repositoryQuestionnaireCompany = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
 
         if (($uniqueRemove = $request->get('questionnaire_company_id_remove'))) {

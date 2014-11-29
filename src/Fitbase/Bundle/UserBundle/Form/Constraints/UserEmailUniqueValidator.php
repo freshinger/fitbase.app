@@ -22,7 +22,7 @@ class UserEmailUniqueValidator extends ConstraintValidator implements ContainerA
 
     public function validate($entity, Constraint $constraint)
     {
-        if (($user = $this->container->get('fitbase_manager.user')->findOneBy(array('email' => $entity->getEmail())))) {
+        if (($user = $this->container->get('user')->findOneBy(array('email' => $entity->getEmail())))) {
 
             if ($user->getId() != $entity->getId()) {
                 $this->context->addViolation($constraint->message, array());

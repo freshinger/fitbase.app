@@ -30,8 +30,8 @@ class UserListener extends ContainerAware
         $reminder->setSendWeeklyquiz(1);
         $reminder->setSendWeeklytask(1);
 
-        $this->container->get('fitbase_entity_manager')->persist($reminder);
-        $this->container->get('fitbase_entity_manager')->flush($reminder);
+        $this->container->get('entity_manager')->persist($reminder);
+        $this->container->get('entity_manager')->flush($reminder);
 
         $datetime = $this->container->get('datetime');
 
@@ -46,8 +46,8 @@ class UserListener extends ContainerAware
             $item->setUserId($user->getId());
             $item->setReminderId($reminder->getId());
 
-            $this->container->get('fitbase_entity_manager')->persist($item);
-            $this->container->get('fitbase_entity_manager')->flush($item);
+            $this->container->get('entity_manager')->persist($item);
+            $this->container->get('entity_manager')->flush($item);
         }
 
 

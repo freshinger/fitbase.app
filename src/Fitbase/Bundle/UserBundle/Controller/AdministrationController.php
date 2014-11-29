@@ -20,12 +20,13 @@ use Fitbase\Bundle\UserBundle\Form\UserSearchForm;
 use Fitbase\Bundle\WordpressBundle\Controller\WordpressControllerAbstract;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Exception\LogicException;
 use Symfony\Component\Form\FormError;
 
 
-class AdministrationController extends WordpressControllerAbstract
+class AdministrationController extends Controller
 {
     /**
      * Action to import user from csv file
@@ -122,7 +123,7 @@ class AdministrationController extends WordpressControllerAbstract
             $form->isValid();
         }
 
-        $queryBuilder = $this->get('fitbase_entity_manager')
+        $queryBuilder = $this->get('entity_manager')
             ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic')
             ->getQueryBuilderUserStatistic($entity);
 
@@ -163,7 +164,7 @@ class AdministrationController extends WordpressControllerAbstract
             $entity->setOrder('id');
             $entity->setBy('desc');
 
-            $queryBuilder = $this->get('fitbase_entity_manager')
+            $queryBuilder = $this->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserStatistic')
                 ->getQueryBuilderUserStatistic($entity);
 

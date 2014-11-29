@@ -12,6 +12,18 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class QuestionnaireUserListener extends ContainerAware
 {
     /**
+     * On update questionnaire user event
+     * @param QuestionnaireUserEvent $event
+     */
+    public function onQuestionnaireUserUpdateEvent(QuestionnaireUserEvent $event)
+    {
+        assert(is_object(($questionnaireUser = $event->getEntity())));
+
+        $this->container->get('entity_manager')->persist($questionnaireUser);
+        $this->container->get('entity_manager')->flush($questionnaireUser);
+    }
+
+    /**
      * Set questionnaire user as done
      * @param QuestionnaireUserEvent $event
      */
@@ -22,8 +34,8 @@ class QuestionnaireUserListener extends ContainerAware
         $questionnaireUser->setDone(true);
         $questionnaireUser->setDoneDate($this->container->get('datetime')->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($questionnaireUser);
-        $this->container->get('fitbase_entity_manager')->flush($questionnaireUser);
+        $this->container->get('entity_manager')->persist($questionnaireUser);
+        $this->container->get('entity_manager')->flush($questionnaireUser);
     }
 
     /**
@@ -35,8 +47,8 @@ class QuestionnaireUserListener extends ContainerAware
         assert(is_object(($questionnaireUser = $event->getEntity())));
 
 
-        $this->container->get('fitbase_entity_manager')->persist($questionnaireUser);
-        $this->container->get('fitbase_entity_manager')->flush($questionnaireUser);
+        $this->container->get('entity_manager')->persist($questionnaireUser);
+        $this->container->get('entity_manager')->flush($questionnaireUser);
     }
 
     /**
@@ -60,7 +72,7 @@ class QuestionnaireUserListener extends ContainerAware
     {
         assert(($extra = $event->getEntity()), 'Extra object can not be empty');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $wordpress = $this->container->get('fitbase_wordpress.api');
 
@@ -84,7 +96,7 @@ class QuestionnaireUserListener extends ContainerAware
     {
         assert(($focus = $event->getEntity()), 'Focus object can not be empty');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $wordpress = $this->container->get('fitbase_wordpress.api');
 
@@ -104,11 +116,11 @@ class QuestionnaireUserListener extends ContainerAware
     {
         assert(($data = $event->getData()), 'Section data can not be empty');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $dateTime = $this->container->get('datetime')->getDateTime();
 
-        $resultRepository = $this->container->get('fitbase_entity_manager')
+        $resultRepository = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\Result');
 
         if (is_array($data) and count($data)) {
@@ -145,8 +157,8 @@ class QuestionnaireUserListener extends ContainerAware
                         (string)$result,
                     ));
 
-                $this->container->get('fitbase_entity_manager')->persist($result);
-                $this->container->get('fitbase_entity_manager')->flush($result);
+                $this->container->get('entity_manager')->persist($result);
+                $this->container->get('entity_manager')->flush($result);
             }
         }
     }
@@ -159,7 +171,7 @@ class QuestionnaireUserListener extends ContainerAware
     {
         assert(($password = $event->getEntity()), 'Password object can not be empty');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $wordpress = $this->container->get('fitbase_wordpress.api');
 

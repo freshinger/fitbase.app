@@ -1,0 +1,135 @@
+<h4 class="short hue">Wohlfühlgespräch</h4>
+
+<p>
+    Das Wohlfühlgespräch befragt Sie täglich nach Ihrem
+    Befinden und hilft Ihnen damit sich besser zu reflektieren.
+</p>
+
+<div id="accordion">
+    <div id="avatar_chat">
+        <div class="chat-message alert alert-info">
+            <strong>Nur Ihre aktuelle Stimmung und Ihre glücklichen Momente werden gespeichert!</strong>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    (function () {
+
+        $.fn.healthChat = function (path, callback) {
+
+            var container = $(this);
+
+            var processor = function (data) {
+
+                var element = $(data);
+                container.append(element);
+                container.scrollTop(container.prop('scrollHeight'));
+
+
+                var form = element.find('form');
+                var buttons = form.find('button');
+                if (form.is('form')) {
+                    form.on('submit', function (event) {
+                        form.remove();
+                        $.post(path, form.serialize(), processor);
+                        return false;
+                    });
+                    return false;
+                }
+
+                if (!form.is('form')) {
+                    callback(container);
+                    return false;
+                }
+            };
+
+            $.get(path, processor);
+        }
+
+
+        $.fn.healthEmotion = function (path, callback) {
+            var container = $(this);
+
+            $.get(path, function (data) {
+
+                var element = $(data);
+                container.append(element);
+
+                var form = element.find('form');
+                if (form.is('form')) {
+                    form.on('submit', function (event) {
+
+                        $.post(path, form.serialize(), function (data) {
+                            container.append($(data));
+                            callback(container);
+                        });
+                        return false;
+                    });
+                }
+
+                var emotions = element.find('a');
+                if (emotions.is('a')) {
+                    emotions.on('click', function (event) {
+                        var link = $(this);
+                        if (link.is('a')) {
+                            var input = form.find('input[id=gamification_user_emotion_value]');
+                            if (input.is('input')) {
+
+                                input.val(link.attr('id'));
+
+                                form.submit();
+
+                                emotions.unbind('click');
+                                emotions.on('click', function (event) {
+                                    return false;
+                                });
+                            }
+                        }
+
+                        return false;
+                    });
+                }
+
+                if (!form.is('form')) {
+                    callback(container);
+                    return false;
+                }
+            });
+        }
+
+
+    })($);
+
+    $(function () {
+
+        var container = $('#avatar_chat');
+        container.css({
+            'width': '100%',
+            'padding': '8px',
+            'height': '300px',
+            'overflow-y': 'scroll'
+        });
+
+
+        container.healthEmotion("{{ path('gamification_health_emotion') }}", function (container) {
+
+            container.healthChat("{{ path('gamification_health_chat') }}", function (container) {
+
+            });
+        });
+
+    });
+
+    {#jQuery(function () {#}
+    {#jQuery('#avatar_chat').chat({#}
+    {#'width': '100%',#}
+    {#'padding': '8px',#}
+    {#'height': '278px',#}
+    {#'overflow-y': 'scroll'#}
+    {#});#}
+    {#});#}
+</script>
+
+

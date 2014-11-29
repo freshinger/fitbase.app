@@ -13,14 +13,45 @@ class WeeklytaskUser
 {
     protected $id;
     protected $user;
-    protected $userId;
     protected $weekId;
-    protected $postId;
-    protected $weeklytaskId;
+    protected $task;
     protected $code;
+    protected $date;
     protected $done;
     protected $doneDate;
     protected $countPoint;
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param mixed $task
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+    }
 
     /**
      * @param mixed $user
@@ -87,22 +118,6 @@ class WeeklytaskUser
     }
 
     /**
-     * @param mixed $postId
-     */
-    public function setPostId($postId)
-    {
-        $this->postId = $postId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPostId()
-    {
-        return $this->postId;
-    }
-
-    /**
      * @param mixed $weekId
      */
     public function setWeekId($weekId)
@@ -151,36 +166,74 @@ class WeeklytaskUser
     }
 
     /**
-     * @param mixed $userId
+     * Convert object to string
+     * @return null|string
      */
-    public function setUserId($userId)
+    public function __toString()
     {
-        $this->userId = $userId;
+        if (($user = $this->getUser())) {
+            if (($task = $this->getTask())) {
+                return "{$user}: {$task}";
+            }
+        }
+        return null;
     }
 
     /**
-     * @return mixed
+     * @var boolean
      */
-    public function getUserId()
+    private $processed;
+
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return WeeklytaskUser
+     */
+    public function setProcessed($processed)
     {
-        return $this->userId;
+        $this->processed = $processed;
+
+        return $this;
     }
 
     /**
-     * @param mixed $weeklytaskId
+     * Get processed
+     *
+     * @return boolean
      */
-    public function setWeeklytaskId($weeklytaskId)
+    public function getProcessed()
     {
-        $this->weeklytaskId = $weeklytaskId;
+        return $this->processed;
     }
 
     /**
-     * @return mixed
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser
      */
-    public function getWeeklytaskId()
+    private $userQuiz;
+
+
+    /**
+     * Set userQuiz
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $userQuiz
+     * @return WeeklytaskUser
+     */
+    public function setUserQuiz(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $userQuiz = null)
     {
-        return $this->weeklytaskId;
+        $this->userQuiz = $userQuiz;
+
+        return $this;
     }
 
-
+    /**
+     * Get userQuiz
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser
+     */
+    public function getUserQuiz()
+    {
+        return $this->userQuiz;
+    }
 }

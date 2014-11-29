@@ -25,8 +25,8 @@ class WeeklytaskPlanListener extends ContainerAware
         $weeklytaskPlan->setProcessed(true);
         $weeklytaskPlan->setProcessedDate($serviceDateTime->getDateTime('now'));
 
-        $this->container->get('fitbase_entity_manager')->persist($weeklytaskPlan);
-        $this->container->get('fitbase_entity_manager')->flush($weeklytaskPlan);
+        $this->container->get('entity_manager')->persist($weeklytaskPlan);
+        $this->container->get('entity_manager')->flush($weeklytaskPlan);
     }
 
     /**
@@ -37,13 +37,13 @@ class WeeklytaskPlanListener extends ContainerAware
     {
         assert(($weeklytaskUser = $event->getEntity()));
 
-        $managerUser = $this->container->get('fitbase_manager.user');
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerUser = $this->container->get('user');
+        $managerEntity = $this->container->get('entity_manager');
         $repositoryWeeklytask = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
         if (($weeklytask = $repositoryWeeklytask->findOneByWeekId($weeklytaskUser->getWeekId()))) {
             $user = $managerUser->find($weeklytaskUser->getUserId());
-            $serviceWeeklytask = $this->container->get('fitbase_service.weeklytask');
+            $serviceWeeklytask = $this->container->get('weeklytask');
             if (($dateNext = $serviceWeeklytask->getUserNextDate($user))) {
                 $dateNext->setTime(4, 0, 0);
 
@@ -54,8 +54,8 @@ class WeeklytaskPlanListener extends ContainerAware
                 $weeklytaskPlan->setUserId($weeklytaskUser->getUserId());
                 $weeklytaskPlan->setDate($dateNext);
 
-                $this->container->get('fitbase_entity_manager')->persist($weeklytaskPlan);
-                $this->container->get('fitbase_entity_manager')->flush($weeklytaskPlan);
+                $this->container->get('entity_manager')->persist($weeklytaskPlan);
+                $this->container->get('entity_manager')->flush($weeklytaskPlan);
             }
         }
     }

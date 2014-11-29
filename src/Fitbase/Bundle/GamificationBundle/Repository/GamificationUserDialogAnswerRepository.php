@@ -73,7 +73,7 @@ class GamificationUserDialogAnswerRepository extends EntityRepository
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUserId($queryBuilder, $user->getId()),
-            $this->getExprNotHidden($queryBuilder),
+//            $this->getExprNotHidden($queryBuilder),
             $this->getExprDate($queryBuilder, $datetime)
         ));
 

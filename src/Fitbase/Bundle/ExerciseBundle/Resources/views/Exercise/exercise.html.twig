@@ -1,24 +1,70 @@
-<div class="row">
-    <div class="col-md-4">
-        {% if exercise.video is defined %}
-            {% if exercise.video %}
-                <video width="320" height="240" controls>
-                    <source src="{{ video(exercise.video) }}" type="video/webm">
-                    Your browser does not support the video tag.
-                </video>
-            {% endif %}
-        {% endif %}
-        {% if exercise.gallery.galleryHasMedias is defined %}
-            {% if  exercise.gallery.galleryHasMedias %}
-                {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
-                    <a href="{% path galleryHasMedia.media, 'original' %}">
-                        {% thumbnail galleryHasMedia.media, 'preview' with {'width': 300} %}
-                    </a>
-                {% endfor %}
-            {% endif %}
-        {% endif %}
-    </div>
-    <div class="col-md-8">
-        {{ exercise.description|raw }}
-    </div>
-</div>
+{% extends 'FitbaseExerciseBundle::layout.html.twig' %}
+
+{% block sonata_page_javascripts %}
+    {% javascripts '@FitbaseExerciseBundle/Resources/public/js/*' output='js/jquery.exercise.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
+
+    {% if exercise is defined and exercise %}
+        <div class="row">
+            <div class="col-md-7">
+                {% if exercise.webm is defined %}
+                    {% if exercise.webm %}
+
+                        {% set width='640' %}
+
+                        <video width="{{ width }}" controls>
+                            <source src="{{ video(exercise.webm) }}" type="video/webm">
+
+                            {% if exercise.mp4 is defined %}
+                                {% if exercise.mp4 %}
+                                    <object class="flashplayer" width="{{ width }}"
+                                            type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
+                                        <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                        <param name="quality" value="high"/>
+                                        <param name="menu" value="false"/>
+                                        <param name="scale" value="noscale"/>
+                                        <param name="allowfullscreen" value="true">
+                                        <param name="allowscriptaccess" value="always">
+                                        <param name="swlivevonnect" value="true"/>
+                                        <param name="cachebusting" value="false">
+                                        <param name="flashvars"
+                                               value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}"/>
+                                    </object>
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            var flashplayer = $('.flashplayer');
+                                            if (!flashplayer.flash()) {
+                                                flashplayer.remove();
+                                            }
+                                        });
+                                    </script>
+                                {% endif %}
+                            {% endif %}
+                        </video>
+                    {% endif %}
+                {% endif %}
+
+                {% if exercise.gallery.galleryHasMedias is defined %}
+                    {% if  exercise.gallery.galleryHasMedias %}
+                        {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
+                            <a href="{% path galleryHasMedia.media, 'original' %}">
+                                {% thumbnail galleryHasMedia.media, 'preview' with {'width': 320} %}
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="col-md-5">
+                {{ exercise.description|raw }}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

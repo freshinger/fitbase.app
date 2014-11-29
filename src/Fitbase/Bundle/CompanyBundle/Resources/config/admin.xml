@@ -5,7 +5,7 @@
 
     <services>
 
-        <service id="fitbase.admin.company" class="Fitbase\Bundle\CompanyBundle\Admin\CompanyAdmin">
+        <service id="fitbase.admin.Company" class="Fitbase\Bundle\CompanyBundle\Admin\CompanyAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
@@ -15,6 +15,26 @@
             <argument/>
         </service>
 
+        <service id="fitbase.admin.CompanyQuestionnaire"
+                 class="Fitbase\Bundle\CompanyBundle\Admin\CompanyQuestionnaireAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Unternehmen" label="Fragenbögen"/>
+            <argument/>
+            <argument>Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.CompanyCategory" class="Fitbase\Bundle\CompanyBundle\Admin\CompanyCategoryAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Unternehmen" label="Bereiche"/>
+            <argument/>
+            <argument>Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory</argument>
+            <argument/>
+        </service>
 
     </services>
 </container>

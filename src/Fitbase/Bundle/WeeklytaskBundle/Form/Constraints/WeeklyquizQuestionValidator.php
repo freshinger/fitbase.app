@@ -32,7 +32,7 @@ class WeeklyquizQuestionValidator extends ConstraintValidator implements Contain
             return false;
         }
 
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
         $repositoryWeeklyquizAnswer = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer');
         foreach ($entity as $questionId => $answerId) {

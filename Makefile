@@ -47,13 +47,13 @@ clean:
 	php app/console cache:warmup --env=dev
 
 dev:
-	php -S localhost:8000 -t web
+	php54 -S localhost:8000 -t web
 
 bower:
 	bower install
 
 load:
-	php bin/load_data.php
+	php54 bin/load_data.php
 
 assets:
 	if [ ! -f bin/yuicompressor.jar ]; then curl -L https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar > bin/yuicompressor.jar; fi;

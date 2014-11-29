@@ -22,6 +22,34 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    public function getFunctions()
+    {
+        return array(
+            new \Twig_SimpleFunction('get_weeklyquiz_user_answer_points', array($this, 'getWeeklyquizUserAnswerPoints')),
+        );
+    }
+
+    public function getWeeklyquizUserAnswerPoints($weeklyquiz = null)
+    {
+        $points = 0;
+
+        if (($user = $this->container->get('user')->current())) {
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+            if (($weeklyquizUser = $repositoryWeeklyquiz->findOneByUserAndQuiz($user, $weeklyquiz))) {
+                $repositoryWeeklyquizUserAnswer = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
+                if (($answersUser = $repositoryWeeklyquizUserAnswer->findAllByUserAndUserQuiz($user, $weeklyquizUser))) {
+                    foreach ($answersUser as $answerUser) {
+                        $points += $answerUser->getCountPoint();
+                    }
+                }
+            }
+        }
+
+        return $points;
+    }
+
+
     /**
      * @return array
      */
@@ -45,6 +73,8 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
             new \Twig_SimpleFilter('postTaskCategory', array($this, 'getPostTaskCategoryById')),
             new \Twig_SimpleFilter('statusIcon', array($this, 'getStatusIcon')),
             new \Twig_SimpleFilter('weeklytask_count', array($this, 'getWeeklytaskCountByCategory')),
+
+
         );
     }
 
@@ -54,9 +84,9 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getWeeklytaskCountPointAnswer(WeeklytaskUser $weeklytaskUser)
     {
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $repositoryWeeklyquizUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
         $weeklytaskUserQuiz = $repositoryWeeklyquizUser->findOneByUserAndWeeklytaskId($user, $weeklytaskUser->getWeeklytaskId());
@@ -81,9 +111,9 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getWeeklytaskCountPointQuiz(WeeklytaskUser $weeklytaskUser)
     {
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $repositoryWeeklyquizUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
         $weeklytaskUserQuiz = $repositoryWeeklyquizUser->findOneByUserAndWeeklytaskId($user, $weeklytaskUser->getWeeklytaskId());
@@ -101,9 +131,9 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getWeeklytaskCountPointTotal(WeeklytaskUser $weeklytaskUser)
     {
-        $managerEntity = $this->container->get('fitbase_entity_manager');
+        $managerEntity = $this->container->get('entity_manager');
 
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
         $repositoryWeeklyquizUser = $managerEntity->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
         $weeklytaskUserQuiz = $repositoryWeeklyquizUser->findOneByUserAndWeeklytaskId($user, $weeklytaskUser->getWeeklytaskId());
@@ -130,9 +160,9 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getQuizCodeByWeeklytaskId($weeklytaskId)
     {
-        $user = $this->container->get('fitbase_manager.user')->getCurrentUser();
+        $user = $this->container->get('user')->current();
 
-        $repositoryWeeklyquiz = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquiz = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
 
         if (($weeklytaskUserQuiz = $repositoryWeeklyquiz->findOneByUserAndWeeklytaskId($user, $weeklytaskId))) {
@@ -149,7 +179,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getQuizNameByWeeklytaskId($weeklytaskId)
     {
-        $repositoryWeeklyquiz = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklyquiz = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 
         if (($weeklytaskQuiz = $repositoryWeeklyquiz->findOneByWeeklytaskId($weeklytaskId))) {
@@ -165,7 +195,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getCategoryByWeeklytaskId($weeklytaskId)
     {
-        $repositoryWeeklytask = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklytask = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
         if (($weeklytask = $repositoryWeeklytask->find($weeklytaskId))) {
@@ -192,7 +222,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getWeeklytaskCountByCategory($string = null)
     {
-        $repositoryWeeklytask = $this->container->get('fitbase_entity_manager')
+        $repositoryWeeklytask = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
         return $repositoryWeeklytask->findCountByCategory($string);
@@ -207,7 +237,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
     {
         if ($weeklytaskId != null) {
 
-            $repositoryWeeklytask = $this->container->get('fitbase_entity_manager')
+            $repositoryWeeklytask = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
             if (($weeklytaskQuiz = $repositoryWeeklytask->find($weeklytaskId))) {
@@ -226,7 +256,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
     {
         if ($postId != null) {
 
-            $entityManager = $this->container->get('fitbase_entity_manager');
+            $entityManager = $this->container->get('entity_manager');
             if (($post = $entityManager->find('Ekino\WordpressBundle\Entity\Post', $postId))) {
                 return $post->getTitle();
             }
@@ -243,7 +273,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
     {
         if ($quizId !== null) {
 
-            $repositoryWeeklyquiz = $this->container->get('fitbase_entity_manager')
+            $repositoryWeeklyquiz = $this->container->get('entity_manager')
                 ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 
             if (($weeklytaskQuiz = $repositoryWeeklyquiz->find($quizId))) {
@@ -262,7 +292,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getPostTaskPermalinkById($unique)
     {
-        $post = $this->container->get('fitbase_entity_manager')
+        $post = $this->container->get('entity_manager')
             ->find('Ekino\WordpressBundle\Entity\Post', $unique);
 
         return $this->container
@@ -290,8 +320,8 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getPostDateNext($post)
     {
-        if (($user = $this->container->get('fitbase_manager.user')->getCurrentUser())) {
-            if (($date = $this->container->get('fitbase_service.weeklytask')->getPostNextDate($user, $post))) {
+        if (($user = $this->container->get('user')->current())) {
+            if (($date = $this->container->get('weeklytask')->getPostNextDate($user, $post))) {
                 return $date->format('d.m.Y');
             }
         }
@@ -305,7 +335,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getPostTaskCategoryById($unique)
     {
-        $post = $this->container->get('fitbase_entity_manager')
+        $post = $this->container->get('entity_manager')
             ->find('Ekino\WordpressBundle\Entity\Post', $unique);
 
         if ($post !== null) {
@@ -317,7 +347,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
 
     public function getPostTaskTitleById($unique)
     {
-        $post = $this->container->get('fitbase_entity_manager')
+        $post = $this->container->get('entity_manager')
             ->find('Ekino\WordpressBundle\Entity\Post', $unique);
 
         if (!empty($post)) {
@@ -333,7 +363,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getPostTaskWeekById($unique)
     {
-        $post = $this->container->get('fitbase_entity_manager')
+        $post = $this->container->get('entity_manager')
             ->find('Ekino\WordpressBundle\Entity\Post', $unique);
 
         if ($post !== null) {
@@ -348,7 +378,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
      */
     public function getPostTaskPointsById($unique)
     {
-        $post = $this->container->get('fitbase_entity_manager')
+        $post = $this->container->get('entity_manager')
             ->find('Ekino\WordpressBundle\Entity\Post', $unique);
 
         if ($post !== null) {

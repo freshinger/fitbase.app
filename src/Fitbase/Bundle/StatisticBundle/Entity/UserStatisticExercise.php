@@ -81,4 +81,4 @@ class UserStatisticExercise
         return $this->userId;
     }
 
-} 
+}

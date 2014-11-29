@@ -37,8 +37,8 @@ class ReminderUserItemRepository extends EntityRepository
     protected function getExprUser($queryBuilder, $user)
     {
         if (!empty($user)) {
-            $queryBuilder->setParameter('userId', $user->getId());
-            return $queryBuilder->expr()->eq('ReminderUserItem.userId', ':userId');
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('ReminderUserItem.user', ':user');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -53,8 +53,23 @@ class ReminderUserItemRepository extends EntityRepository
     protected function getExprReminder($queryBuilder, $reminder)
     {
         if (!empty($reminder)) {
-            $queryBuilder->setParameter('reminderId', $reminder->getId());
-            return $queryBuilder->expr()->eq('ReminderUserItem.reminderId', ':reminderId');
+            $queryBuilder->setParameter('reminder', $reminder->getId());
+            return $queryBuilder->expr()->eq('ReminderUserItem.reminder', ':reminder');
+        }
+        return $queryBuilder->expr()->eq('1', '0');
+    }
+
+    /**
+     *
+     * @param $queryBuilder
+     * @param $type
+     * @return mixed
+     */
+    protected function getExprType($queryBuilder, $type)
+    {
+        if (strlen($type)) {
+            $queryBuilder->setParameter('type', $type);
+            return $queryBuilder->expr()->eq('ReminderUserItem.type', ':type');
         }
         return $queryBuilder->expr()->eq('1', '0');
     }
@@ -72,6 +87,20 @@ class ReminderUserItemRepository extends EntityRepository
             return $queryBuilder->expr()->eq('ReminderUserItem.day', ':dayId');
         }
         return $queryBuilder->expr()->eq('1', '0');
+    }
+
+    /**
+     * Expression to get items for not paused reminders
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprNotPaused($queryBuilder)
+    {
+        $queryBuilder->setParameter(':pause', 0);
+        return $queryBuilder->expr()->orx(
+            $queryBuilder->expr()->isNull('ReminderUser.pause'),
+            $queryBuilder->expr()->eq('ReminderUser.pause', ':pause')
+        );
     }
 
     /**
@@ -111,6 +140,26 @@ class ReminderUserItemRepository extends EntityRepository
     }
 
     /**
+     *
+     * @param $reminder
+     * @param $type
+     * @return array
+     */
+    public function findAllByReminderAndType($reminder, $type)
+    {
+        $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprReminder($queryBuilder, $reminder),
+            $this->getExprType($queryBuilder, $type)
+        ));
+
+        $queryBuilder->orderBy('ReminderUserItem.day', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
      * Find Reminder item by user and id
      * @param $user
      * @param $id
@@ -130,7 +179,6 @@ class ReminderUserItemRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-
     /**
      * Find reminder items by day and reminder
      * @param $reminder
@@ -144,6 +192,26 @@ class ReminderUserItemRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprReminder($queryBuilder, $reminder),
             $this->getExprDay($queryBuilder, $day)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
+     * Find all item-records for not paused reminders
+     * @param $day
+     * @return array
+     */
+    public function findAllNotPausedByDayAndType($day = null, $type = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
+        $queryBuilder->leftJoin('ReminderUserItem.reminder', 'ReminderUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprDay($queryBuilder, $day),
+            $this->getExprType($queryBuilder, $type),
+            $this->getExprNotPaused($queryBuilder)
         ));
 
         return $queryBuilder->getQuery()->getResult();

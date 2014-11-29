@@ -22,6 +22,17 @@
 
             <tag name="kernel.event_listener" event="fitbaseuser_created" method="onUserCreatedEvent"/>
         </service>
+
+
+        <service id="fitbase.subscriber.UserActivity"
+                 class="Fitbase\Bundle\StatisticBundle\Listener\UserActivitySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 </container>

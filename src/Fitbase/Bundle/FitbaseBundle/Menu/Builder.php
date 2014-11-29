@@ -34,51 +34,54 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-//        $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
-//
-//        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
-//
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
         ));
 
         $menu = $factory->createItem('main', $menuOptions);
-        $menu->addChild('Dashboard', array(
+        if (!($this->container->get('user')->current())) {
+            return $menu;
+        }
+
+
+        $menu->addChild('Startseite', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/dashboard'
+                'path' => '/'
             )
         ));
-        $menu->addChild('Übungen', array(
+
+        $menu->addChild('Aktivitäten', array(
+            'route' => 'focus',
+        ));
+
+//        $menu->addChild('Übungen', array(
+//            'route' => 'page_slug',
+//            'routeParameters' => array(
+//                'path' => '/uebungen'
+//            )
+//        ));
+        $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/uebungen'
-            )
-        ));
-        $menu->addChild('Wochenaufgaben', array(
-            'route' => 'weeklytask',
-        ));
-        $menu->addChild('Blog', array(
-            'route' => 'sonata_news_archive',
-        ));
-        $menu->addChild('Übungen', array(
-            'route' => 'exercises',
-        ));
-        $menu->addChild('Häufige Fragen', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/haeufige-fragen'
-            )
-        ));
+                'path' => '/infoeinheiten'
+            )));
+
+//        $menu->addChild('Blog', array(
+//            'route' => 'sonata_news_archive',
+//        ));
+
+
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',
         ));
-        $menu->addChild('Abmelden', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/logout'
-            )
-        ));
+
+//        $menu->addChild('Abmelden', array(
+//            'route' => 'page_slug',
+//            'routeParameters' => array(
+//                'path' => '/logout'
+//            )
+//        ));
 
 
 //        $shopMenuParams = array('route' => 'sonata_catalog_index');

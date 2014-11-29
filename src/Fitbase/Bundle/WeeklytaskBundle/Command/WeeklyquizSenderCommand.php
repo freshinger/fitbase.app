@@ -1,6 +1,7 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
+use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -23,26 +24,23 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $logger = $this->getContainer()->get('logger');
-        $logger->info('Weekly quiz, start sender');
+        $datetime = $this->get('datetime')->getDateTime('now');
+        if (($collection = $this->get('weeklyquiz')->toSend($datetime))) {
+            foreach ($collection as $weeklyquizUser) {
 
-        $managerUser = $this->getContainer()->get('fitbase_manager.user');
-        $repositoryReminder = $this->getContainer()->get('fitbase_entity_manager')
-            ->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
-
-        if (($collection = $repositoryReminder->findAllByNotPauseAndSendWeeklyquiz())) {
-            foreach ($collection as $key => $reminder) {
-
-                if (($user = $managerUser->find($reminder->getUserId()))) {
-
-                    $logger->info('Weekly quiz, sender for user', array($user->getId()));
-
-                    $this->getContainer()->get('event_dispatcher')
-                        ->dispatch('weeklytask_user_quiz_send', new UserEvent($user));
-                }
+                $event = new WeeklyquizUserEvent($weeklyquizUser);
+                $this->get('event_dispatcher')->dispatch('weeklyquiz_reminder_send', $event);
             }
         }
+    }
 
-        $logger->info('Weekly quiz, end sender');
+    /**
+     * Get service from container
+     * @param $name
+     * @return object
+     */
+    protected function get($name)
+    {
+        return $this->getContainer()->get($name);
     }
 }

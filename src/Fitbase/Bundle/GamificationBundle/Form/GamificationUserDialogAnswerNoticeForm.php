@@ -15,7 +15,6 @@ class GamificationUserDialogAnswerNoticeForm extends GamificationUserDialogAnswe
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('questionId', 'hidden')
             ->add('submit', 'submit', array(
                 'label' => 'Ok',
                 'attr' => array(

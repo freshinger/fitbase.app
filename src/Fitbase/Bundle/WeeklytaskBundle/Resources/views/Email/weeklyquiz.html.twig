@@ -1,0 +1,27 @@
+{% extends '::email.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        {% if  task is defined %}
+            <div class="col-md-12">
+                <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+
+                <p>
+                    passend zum Freitag, wollen wir Sie an Ihr Quiz erinnern,
+                    mit dem Sie Ihr Wissen über die letzte Wochenaufgabe zum Thema: {{ task.category }} überprüfen
+                    können.
+                </p>
+
+                <p>Wir wünschen Ihnen viel Spaß!</p>
+
+                <p>Ihr Fitbase Team</p>
+
+                <a class="true btn btn btn-success btn-ds"
+                   href="{{ url('weeklyquiz_user_view', {'unique': userQuiz.id}) }}">
+                    Das Quiz starten {{ userQuiz.id }}
+                </a>
+
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
