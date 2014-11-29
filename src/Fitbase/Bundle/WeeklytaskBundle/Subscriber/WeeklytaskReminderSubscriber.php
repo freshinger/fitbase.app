@@ -46,9 +46,9 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
                 $this->container->get('mail')->mail($user->getEmail(), $title, $content);
             }
 
-//            $weeklyquizUser->setProcessed(1);
-//            $this->container->get('entity_manager')->persist($weeklyquizUser);
-//            $this->container->get('entity_manager')->flush($weeklyquizUser);
+            $weeklyquizUser->setProcessed(1);
+            $this->container->get('entity_manager')->persist($weeklyquizUser);
+            $this->container->get('entity_manager')->flush($weeklyquizUser);
         }
     }
 
@@ -72,9 +72,9 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
                 $this->container->get('mail')->mail($user->getEmail(), $title, $content);
             }
 
-//            $weeklytaskUser->setProcessed(1);
-//            $this->container->get('entity_manager')->persist($weeklytaskUser);
-//            $this->container->get('entity_manager')->flush($weeklytaskUser);
+            $weeklytaskUser->setProcessed(1);
+            $this->container->get('entity_manager')->persist($weeklytaskUser);
+            $this->container->get('entity_manager')->flush($weeklytaskUser);
         }
     }
 
