@@ -23,7 +23,7 @@ class ServiceMailer extends ContainerAware
     {
         $message = \Swift_Message::newInstance();
         $message->setTo($email);
-        $message->setFrom(array('alex@fitbase.de' => 'alex'));
+        $message->setFrom(array('info@fitbase.de' => 'Fitbase'));
         $message->setSubject($title);
         $message->setContentType("text/html");
         $message->setBody($content);
