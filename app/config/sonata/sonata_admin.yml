@@ -119,6 +119,7 @@ sonata_admin:
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - fitbase.admin.user
+                    - fitbase.admin.exercise_user
                     - fitbase.admin.questionnaire_user
                     - fitbase.admin.weeklytask_user
                     - fitbase.admin.weeklyquiz_user
@@ -135,7 +136,6 @@ sonata_admin:
 #                label: Fitbase Reminder
 #                icon:  '<i class="fa fa-play-circle"></i>'
 #                items:
-#                    - fitbase.admin.reminder_plan
 #                    - fitbase.admin.weeklytask_plan
 #                    - fitbase.admin.weeklyquiz_plan
 
@@ -151,7 +151,6 @@ sonata_admin:
 #                items:
 #                    - fitbase.admin.reminder
 #                    - fitbase.admin.reminder_item
-#                    - fitbase.admin.reminder_plan
 
 #            sonata.admin.group.exercise:
 #                label: Übungen

@@ -12,19 +12,18 @@
 
     {% if exercise is defined and exercise %}
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-7">
                 {% if exercise.webm is defined %}
                     {% if exercise.webm %}
 
-                        {% set width='320' %}
-                        {% set height='240' %}
+                        {% set width='640' %}
 
-                        <video width="{{ width }}" height="{{ height }}" controls>
+                        <video width="{{ width }}" controls>
                             <source src="{{ video(exercise.webm) }}" type="video/webm">
 
                             {% if exercise.mp4 is defined %}
                                 {% if exercise.mp4 %}
-                                    <object class="flashplayer" width="{{ width }}" height="{{ height }}"
+                                    <object class="flashplayer" width="{{ width }}"
                                             type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
                                         <param name="movie" value="/flash/player.swf?v1.3.5"/>
                                         <param name="quality" value="high"/>
@@ -62,7 +61,7 @@
                     {% endif %}
                 {% endif %}
             </div>
-            <div class="col-md-7">
+            <div class="col-md-5">
                 {{ exercise.description|raw }}
             </div>
         </div>

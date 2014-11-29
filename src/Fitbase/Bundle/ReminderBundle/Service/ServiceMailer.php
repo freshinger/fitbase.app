@@ -43,12 +43,10 @@ class ServiceMailer extends ContainerAware
     {
         $cids = array();
         if (($images = $this->sources($content))) {
-            foreach ($images as $key => $image) {
-                if (($embed = $message->embed(\Swift_Image::fromPath($image)))) {
-                    array_push($cids, $embed);
-                }
+            foreach ($images as $pathRaw => $data) {
+                $content = str_replace($pathRaw, 'data:image/png;base64,' . base64_encode($data), $content);
             }
-            $message->setBody(str_replace($images, $cids, $content));
+            $message->setBody($content);
             return true;
         }
         $message->setBody($content);
@@ -70,11 +68,12 @@ class ServiceMailer extends ContainerAware
         $htmlImages = pq('img');
         if ($htmlImages->count()) {
             foreach ($htmlImages as $image) {
-                $path = pq($image)->attr('src');
-                if (strpos($path, 'http') === false) {
-                    $path = $this->container->get('kernel')->getRootDir() . "/../web$path";
+                $pathRaw = pq($image)->attr('src');
+                $pathMod = pq($image)->attr('src');
+                if (strpos($pathMod, 'http') === false) {
+                    $pathMod = $this->container->get('kernel')->getRootDir() . "/../web$pathMod";
                 }
-                array_push($srcImages, $path);
+                $srcImages[$pathRaw] = file_get_contents($pathMod);
             }
         }
 

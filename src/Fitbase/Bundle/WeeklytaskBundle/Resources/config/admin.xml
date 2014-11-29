@@ -61,7 +61,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Theorie Einheiten"/>
+            <tag name="sonata.admin" manager_type="orm" group="Infoeinheiten" label="Infoeinheiten"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask</argument>
             <argument/>
@@ -71,7 +71,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Theorie Einheit"/>
+            <tag name="sonata.admin" manager_type="orm" group="Infoeinheiten" label="Infoeinheit"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser</argument>
             <argument/>
@@ -82,7 +82,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenaufgaben" label="Wochenaufgaben"/>
+            <tag name="sonata.admin" manager_type="orm" group="Infoeinheiten" label="Infoeinheiten"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskPlan</argument>
             <argument/>

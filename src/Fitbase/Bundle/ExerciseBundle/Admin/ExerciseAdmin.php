@@ -85,6 +85,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
         $datagridMapper
             ->add('name')
             ->add('tag')
+            ->add('category')
             ->add('countPoint');
     }
 

@@ -1,0 +1,18 @@
+{% extends 'FitbaseGamificationBundle:Block:dashboard_activity.html.twig' %}
+
+{% block content %}
+
+    <p>
+        Durch einen Klick auf den Button
+        gelangen Sie direkt zur Wochenaufgaben und die Quizze.
+    </p>
+    <a href="{{ path('page_slug', {'path': '/infoeinheiten'}) }}" class="btn btn-primary btn-block">
+        Die Wochenaufgaben erledigen
+    </a>
+    <br/>
+
+    {% include "FitbaseGamificationBundle:Block:dashboard_chat.html.twig" %}
+
+{% endblock %}
+
+

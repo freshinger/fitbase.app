@@ -9,7 +9,7 @@
             gelangen Sie direkt zur heutigen Übung.
         </p>
 
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ path('focus_exercise') }}" class="btn btn-primary btn-block">
             Heutige Übung starten
         </a>
 
@@ -19,7 +19,7 @@
             Durch einen Klick auf den Button
             gelangen Sie direkt zur Wochenaufgaben und die Quizze.
         </p>
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ path('page_slug', {'path': '/infoeinheiten'}) }}" class="btn btn-primary btn-block">
             Die Wochenaufgaben erledigen
         </a>
         <br/>

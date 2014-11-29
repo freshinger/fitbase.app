@@ -90,6 +90,8 @@ sonata_block:
         fitbase.block.dashboard_reminder:
         fitbase.block.dashboard_weeklytask:
         fitbase.block.dashboard_gamification:
+        fitbase.block.header_company:
+        fitbase.block.footer_company:
 
         # Formatter
         sonata.formatter.block.formatter:

@@ -38,7 +38,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
             if (($user = $exerciseUser->getUser())) {
 
-                $title = $this->container->get('translator')->trans('Ihre Online-Rückenschule.de Erinnerung');
+                $title = $this->container->get('translator')->trans('Ihre Fitbase Erinnerung');
                 $content = $this->container->get('templating')->render('FitbaseExerciseBundle:Email:exercise.html.twig', array(
                     'user' => $exerciseUser->getUser(),
                 ));

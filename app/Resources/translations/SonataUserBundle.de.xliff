@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <trans-unit id="title_user_account">
+                <source>title_user_account</source>
+                <target>Persönliche Information</target>
+            </trans-unit>
+            <trans-unit id="title_user_authentication">
+                <source>title_user_authentication</source>
+                <target>Einloggen für Mitglieder</target>
+            </trans-unit>
+            <trans-unit id="link_register">
+                <source>link_register</source>
+                <target>Registrieren</target>
+            </trans-unit>
+            <trans-unit id="link_login">
+                <source>link_login</source>
+                <target>Anmelden</target>
+            </trans-unit>
+            <trans-unit id="link_logout">
+                <source>link_logout</source>
+                <target>Abmelden</target>
+            </trans-unit>
+            <trans-unit id="forgotten_password">
+                <source>forgotten_password</source>
+                <target>Ich habe das Passwort vergessen</target>
+            </trans-unit>
+            <trans-unit id="sonata_user_profile_breadcrumb_index">
+                <source>sonata_user_profile_breadcrumb_index</source>
+                <target>Einstellungen</target>
+            </trans-unit>
+            <trans-unit id="sonata_change_password_link">
+                <source>sonata_change_password_link</source>
+                <target>Passwort ändern</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

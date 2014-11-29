@@ -4,12 +4,21 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="exercise" path="/{unique}">
-        <default key="_controller">FitbaseExerciseBundle:Exercise:view</default>
+
+    <route id="focus_exercise" path="/focus/exercise">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:focusExercise</default>
+    </route>
+
+    <route id="focus" path="/focus">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:focus</default>
     </route>
 
     <route id="exercises_category" path="/category/{unique}">
         <default key="_controller">FitbaseExerciseBundle:Exercise:category</default>
+    </route>
+
+    <route id="exercise" path="/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:view</default>
     </route>
 
     <route id="exercises" path="/">

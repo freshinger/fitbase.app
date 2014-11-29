@@ -52,10 +52,8 @@ class ProfileDashboardBlockService extends BaseBlockService implements Container
     {
         $user = null;
 
-        if (($user = $this->container->get('user')->current())) {
-//        if (!is_object($user) || !$user instanceof UserInterface) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
+        if (!($user = $this->container->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         $form = $this->container->get('sonata.user.profile.form');

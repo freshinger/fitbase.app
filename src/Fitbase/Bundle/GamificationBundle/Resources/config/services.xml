@@ -35,17 +35,6 @@
         </service>
 
 
-        <service id="fitbase.gamification.block.breadcrumb"
-                 class="Fitbase\Bundle\GamificationBundle\Block\Breadcrumb\GamificationBreadcrumbBlockService">
-            <tag name="sonata.block"/>
-            <tag name="sonata.breadcrumb"/>
-
-            <argument>gamification</argument>
-            <argument>fitbase.gamification.block.breadcrumb</argument>
-            <argument type="service" id="templating"/>
-            <argument type="service" id="knp_menu.menu_provider"/>
-            <argument type="service" id="knp_menu.factory"/>
-        </service>
 
 
     </services>

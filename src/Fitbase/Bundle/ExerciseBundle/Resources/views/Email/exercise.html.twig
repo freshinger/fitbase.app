@@ -1,42 +1,33 @@
 {% extends '::email.html.twig' %}
 
 {% block content %}
-    <div class="row">
+    <div class="row" style="min-height: 300px;">
+        <div class="col-md-3"></div>
         <div class="col-md-6">
             {% if user is defined and user %}
                 <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+
+                {% set focus = user.focus %}
+                {% if focus is defined and focus %}
+                    Hiermit möchten wir Sie an Ihre {{ focus.name }}-Übung erinnern.
+                    Bitte klicken Sie auf das Button, um direkt zur Übung zu gelangen.
+
+                    Viel Spaß und einen schönen Tag wünscht Ihnen die Fitbase!
+
+                    <br/>
+                    <br/>
+
+                    <p>
+                        <a class="true btn btn btn-success btn-ds" href="{{ url('focus') }}"
+                           style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
+                            Mein Focus
+                        </a>
+                    </p>
+
+                {% endif %}
             {% endif %}
-            <p>
-                Erinnerung-Funtion
-            </p>
-
-            <p>Wir wünschen Ihnen viel Spaß!</p>
-
-            <p>Ihr Online-Rückenschule Team</p>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <a class="true btn btn btn-success btn-ds" href="#">
-                        Button 1 adf asdf
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="true btn btn btn-success btn-ds" href="#">
-                        Button 1 adf asdf
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="true btn btn btn-success btn-ds" href="#">
-                        Button 1 adf asdf
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="true btn btn btn-success btn-ds" href="#">
-                        Button 1 adf asdf
-                    </a>
-                </div>
-            </div>
 
         </div>
+        <div class="col-md-3"></div>
     </div>
 {% endblock content %}

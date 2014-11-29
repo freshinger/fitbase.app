@@ -31,7 +31,7 @@ class WeeklytasksBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Wochenaufgaben', array(
+        $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(
                 'path' => '/wochenaufgaben'

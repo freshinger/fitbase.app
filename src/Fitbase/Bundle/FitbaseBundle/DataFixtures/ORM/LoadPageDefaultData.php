@@ -63,7 +63,47 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
                 'page' => $global,
                 'code' => 'header',
             )));
-            $header->setName('The header container');
+            $header->setName('Header');
+
+
+            $global->addBlocks($headerCompany = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'header-company',
+            )));
+            $headerCompany->setPosition(2);
+
+            $header->addChildren($headerCompany);
+
+            $headerCompany->setName('Header (Company)');
+            $headerCompany->setPosition(1);
+            $headerCompany->addChildren($blockCompany = $blockManager->create());
+
+            $blockCompany->setName('Header Block (Company)');
+            $blockCompany->setType('fitbase.block.header_company');
+            $blockCompany->setPosition(1);
+            $blockCompany->setEnabled(true);
+            $blockCompany->setPage($global);
+
+
+            $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
+                'enabled' => true,
+                'page' => $global,
+                'code' => 'header-top',
+            ), function ($container) {
+                $container->setSetting('layout', '<div class="pull-right">{{ CONTENT }}</div>');
+            }));
+
+            $headerTop->setPosition(1);
+
+            $header->addChildren($headerTop);
+            $headerTop->addChildren($account = $blockManager->create());
+
+            $account->setType('sonata.user.block.account');
+            $account->setPosition(2);
+            $account->setEnabled(true);
+            $account->setPage($global);
+
 
             $global->addBlocks($headerMenu = $blockInteractor->createNewContainer(array(
                 'enabled' => true,
@@ -86,7 +126,7 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
             $menu->setPage($global);
 
             if (($homepage = $this->createHomePage($site))) {
-                if (($dashboard = $this->createPageWeeklytask($site, $homepage, "Theorie Einheiten", "Theorie Einheiten - Online - Rückenschule", ""))) {
+                if (($dashboard = $this->createPageWeeklytask($site, $homepage, "Infoeinheiten", "Infoeinheiten - Online - Rückenschule", ""))) {
                     $this->addReference('online-rueckenschule-wochenaufgaben', $dashboard);
                 }
 
@@ -113,156 +153,30 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
             }));
 
             $footer->setName('The footer container');
-            // Footer : add 3 children block containers (left, center, right)
-            $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
+
+            $global->addBlocks($footerCompany = $blockInteractor->createNewContainer(array(
                 'enabled' => true,
                 'page' => $global,
-                'code' => 'content'
-            ), function ($container) {
-                $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
-            }));
+                'code' => 'footer-company',
+            )));
+            $headerCompany->setPosition(2);
 
-            $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
-                'enabled' => true,
-                'page' => $global,
-                'code' => 'content',
-            ), function ($container) {
-                $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
-            }));
+            $footer->addChildren($footerCompany);
 
-            $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
-                'enabled' => true,
-                'page' => $global,
-                'code' => 'content'
-            ), function ($container) {
-                $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
-            }));
+            $footerCompany->setName('Footer (Company)');
+            $footerCompany->setPosition(1);
+            $footerCompany->addChildren($blockCompany = $blockManager->create());
 
-            $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
-                'enabled' => true,
-                'page' => $global,
-                'code' => 'content'
-            ), function ($container) {
-                $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
-            }));
-
-            // Footer left: add a simple text block
-            $footerLeft->addChildren($text = $blockManager->create());
-
-            $text->setType('sonata.block.service.text');
-            $text->setSetting('content', <<<CONTENT
-<h2>Fitbase</h2>
-<p><a href="http://twitter.com/fitbase" target="_blank">Follow Fitbase on Twitter</a></p>
-CONTENT
-            );
-
-            $text->setPosition(1);
-            $text->setEnabled(true);
-            $text->setPage($global);
-
-            // Footer left links
-            $footerLinksLeft->addChildren($text = $blockManager->create());
-
-            $text->setType('sonata.block.service.text');
-            $text->setSetting('content', <<<CONTENT
-<h4>PRODUCTS</h4>
-<ul class="links">
-    <li><a href="http://fitbase.de">Fitbase</a></li>
-    <li><a href="http://online-rueckenschule.de">Online-Rückenschule</a></li>
-    <li><a href="http://officephysio.de">Officephysio</a></li>
-</ul>
-CONTENT
-            );
-
-            $text->setPosition(1);
-            $text->setEnabled(true);
-            $text->setPage($global);
-
-            // Footer middle links
-            $footerLinksCenter->addChildren($text = $blockManager->create());
-
-            $text->setType('sonata.block.service.text');
-            $text->setSetting('content', <<<CONTENT
-<h4>ABOUT</h4>
-<ul class="links">
-    <li><a href="/about" target="_blank">About Fitbase</a></li>
-    <li><a href="/legal-notes">Legal notes</a></li>
-    <li><a href="/terms-and-conditions">Terms</a></li>
-</ul>
-CONTENT
-            );
-
-            $text->setPosition(1);
-            $text->setEnabled(true);
-            $text->setPage($global);
-
-            // Footer right links
-            $footerLinksRight->addChildren($text = $blockManager->create());
-
-            $text->setType('sonata.block.service.text');
-            $text->setSetting('content', <<<CONTENT
-<h4>COMMUNITY</h4>
-<ul class="links">
-    <li><a href="/blog">Blog</a></li>
-    <li><a href="/contact-us">Contact us</a></li>
-</ul>
-CONTENT
-            );
-
-            $text->setPosition(1);
-            $text->setEnabled(true);
-            $text->setPage($global);
+            $blockCompany->setName('Footer Block (Company)');
+            $blockCompany->setType('fitbase.block.footer_company');
+            $blockCompany->setPosition(1);
+            $blockCompany->setEnabled(true);
+            $blockCompany->setPage($global);
 
             $pageManager->save($global);
         }
     }
 
-
-//    /**
-//     * Create page
-//     * @param $site
-//     * @return null|object
-//     */
-//    public function createHomePage($site)
-//    {
-//        if (($pageManager = $this->getPageManager())) {
-//
-//            if (($page = $pageManager->create())) {
-//
-//                $page->setName('Homepage');
-//                $page->setTitle('Homepage');
-//                $page->setSlug('Homepage');
-//                $page->setUrl('/');
-//                $page->setCreatedAt(new \DateTime("now"));
-//                $page->setUpdatedAt(new \DateTime("now"));
-//                $page->setRouteName("homepage");
-//                $page->setRequestMethod("GET|POST|HEAD|DELETE|PUT");
-//                $page->setTemplateCode("default");
-//                $page->setEdited(1);
-//                $page->setEnabled(1);
-//                $page->setPosition(1);
-//                $page->setDecorate(1);
-//                $page->setSite($site);
-//                $pageManager->save($page);
-//
-//
-//                assert(($content = $this->getBlockInteractor()->createNewContainer(array(
-//                    'enabled' => true,
-//                    'page' => $page,
-//                    'code' => 'content',
-//                ))));
-//                $page->addBlocks($content);
-//                $content->addChildren(($dashboard = $this->getBlockManager()->create()));
-//                $dashboard->setType('fitbase.block.dashboard_gamification');
-//                $dashboard->setPage($page);
-//                $dashboard->setEnabled(true);
-//
-//
-//                return $page;
-//            }
-//        }
-//        return null;
-//    }
 
     /**
      * @param SiteInterface $site
@@ -281,7 +195,7 @@ CONTENT
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('2columns');
+        $homepage->setTemplateCode('default');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
@@ -297,29 +211,6 @@ CONTENT
         $contentTop->setName('The container top container');
 
         $blockManager->save($contentTop);
-
-//        // add a block text
-//        $contentTop->addChildren($text = $blockManager->create());
-//        $text->setType('sonata.block.service.text');
-//        $text->setSetting('content', <<<CONTENT
-//<div class="col-md-3 welcome"><h2>Welcome</h2></div>
-//<div class="col-md-9">
-//    <p>
-//        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
-//        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
-//    </p>
-//
-//    <p>
-//        First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
-//        blocks.
-//    </p>
-//</div>
-//CONTENT
-//        );
-//        $text->setPosition(1);
-//        $text->setEnabled(true);
-//        $text->setPage($homepage);
-
 
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,

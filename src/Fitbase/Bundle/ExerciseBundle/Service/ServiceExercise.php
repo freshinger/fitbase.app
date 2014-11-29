@@ -25,7 +25,6 @@ class ServiceExercise extends ContainerAware
         return $repositoryWeeklytaskUser->findAllNotProcessedByDateTime($datetime);
     }
 
-
     /**
      *
      * @param $user
@@ -55,6 +54,16 @@ class ServiceExercise extends ContainerAware
     public function exercises($user, $unique = null)
     {
         $entityManager = $this->container->get('entity_manager');
+
+        if (is_array(($categories = $unique))) {
+            $result = array();
+            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+            foreach ($categories as $category) {
+                $result = array_merge($result, $repositoryExercise->findAllByCategory($category));
+            }
+            return $result;
+        }
+
 
         if (($company = $user->getCompany())) {
 

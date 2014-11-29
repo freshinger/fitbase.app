@@ -11,8 +11,9 @@
         <import resource="forms.xml"/>
         <import resource="listeners.xml"/>
         <import resource="validators.xml"/>
-        <import resource="pages.xml"/>
-        <import resource="shortcodes.xml"/>
+        <!--<import resource="pages.xml"/>-->
+        <!--<import resource="shortcodes.xml"/>-->
+        <import resource="subscribers.xml"/>
     </imports>
 
     <services>

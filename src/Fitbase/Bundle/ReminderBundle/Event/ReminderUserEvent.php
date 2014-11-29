@@ -22,17 +22,11 @@ class ReminderUserEvent extends Event
         $this->entity = $entity;
     }
 
-    /**
-     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan $entity
-     */
     public function setEntity($entity)
     {
         $this->entity = $entity;
     }
 
-    /**
-     * @return \Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan
-     */
     public function getEntity()
     {
         return $this->entity;

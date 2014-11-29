@@ -103,7 +103,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         JpGraph::module('bar');
 
 
-        $graph = new Graph(285, 325, 'auto');
+        $graph = new Graph(335, 360, 'auto');
         $graph->SetScale("textlin");
 
         $graph->SetTheme(new UniversalTheme);
@@ -135,7 +135,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $image = ob_get_contents();
         ob_end_clean();
 
-        return '<img src="data:image/png;base64,' . base64_encode($image) . '"  />';
+        return '<img style="width: 100%;" src="data:image/png;base64,' . base64_encode($image) . '"  />';
     }
 
     /**
@@ -144,7 +144,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      * @param int $width
      * @return null|string
      */
-    public function image($content, $width = 275)
+    public function image($content, $width = 335)
     {
         if (!strlen($content)) {
             return null;
@@ -156,7 +156,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $imagick->scaleImage($width, 0);
         $imagick->setImageFormat("png");
 
-        return '<img src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
+        return '<img style="width: 100%;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
     }
 
     /**

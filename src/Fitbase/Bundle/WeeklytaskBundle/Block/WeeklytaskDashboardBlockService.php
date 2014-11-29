@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class WeeklytaskDashboardBlockService extends BaseBlockService
 {
@@ -43,25 +44,24 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        if (!($user = $this->serviceUser->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
         $countWeeklytaskDone = 0;
         $countWeeklytaskPointDone = 0;
-        $collectionWeeklytaskActual = array();
-        $collectionWeeklytaskArchive = array();
 
-        if (($user = $this->serviceUser->current())) {
+        $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+        $weeklyquizUserAnswerRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
 
-            $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-            $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-            $weeklyquizUserAnswerRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
+        $countWeeklytaskDone += $weeklytaskUserRepository->findCountByUserAndDone($user);
+        $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
+        $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
+        $countWeeklytaskPointDone += $weeklyquizUserAnswerRepository->findSumPointByUser($user);
 
-            $countWeeklytaskDone = $weeklytaskUserRepository->findCountByUserAndDone($user);
-            $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
-            $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
-            $countWeeklytaskPointDone += $weeklyquizUserAnswerRepository->findSumPointByUser($user);
-
-            $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user);
-            $collectionWeeklytaskArchive = $weeklytaskUserRepository->findAllByUserAndDone($user);
-        }
+        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user);
+        $collectionWeeklytaskArchive = $weeklytaskUserRepository->findAllByUserAndDone($user);
 
         return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(
             'countWeeklytaskDone' => $countWeeklytaskDone,
@@ -76,6 +76,6 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
      */
     public function getName()
     {
-        return 'Wochenaufgaben Dashboard (Benutzer)';
+        return 'Dashboard (Wochenaufgaben)';
     }
 } 

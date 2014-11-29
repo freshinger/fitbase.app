@@ -28,7 +28,7 @@ class CategoryBreadcrumbBlockService extends ExercisesBreadcrumbBlockService
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Kategorie', array(
+        $menu->addChild('Bereich', array(
             'route' => 'exercises_category',
             'routeParameters' => array(
                 'unique' => $this->container->get('request')->get('unique')

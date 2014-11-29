@@ -11,19 +11,12 @@ namespace Fitbase\Bundle\GamificationBundle\Block;
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
 use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
 use Fitbase\Bundle\GamificationBundle\Form\GamificationUserForm;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class GamificationDashboardBlockService extends BaseBlockService implements ContainerAwareInterface
 {
@@ -52,23 +45,36 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
         $statistic = array();
         $gamification = null;
 
-        if (($user = $this->container->get('user')->current())) {
-
-            $managerEntity = $this->container->get('entity_manager');
-            $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
-
-            if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-                return $this->executeAvatarForm($blockContext, $response);
-            }
-
-            $points = $this->container->get('statistic')->points($user);
-            $statistic = $this->container->get('statistic')->statistic($user);
+        if (!($user = $this->container->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        $managerEntity = $this->container->get('entity_manager');
+        $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+
+        if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+            return $this->executeAvatarForm($blockContext, $response);
+        }
+
+        $points = $this->container->get('statistic')->points($user);
+        $statistic = $this->container->get('statistic')->statistic($user);
+
+        $blockFocus = new DashboardFocusBlockService('DashboardFocus', $this->templating);
+        $blockFocus->setContainer($this->container);
+        $responseFocus = $blockFocus->execute($blockContext, $response);
+
+        $activityFocus = new DashboardActivityBlockService('DashboardActivity', $this->templating);
+        $activityFocus->setContainer($this->container);
+        $responseActivity = $activityFocus->execute($blockContext, $response);
+
+
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array(
+            'block_focus' => $responseFocus->getContent(),
+            'block_activity' => $responseActivity->getContent(),
             'points' => $points,
             'statistic' => $statistic,
             'gamification' => $gamification,
+            'user' => $this->container->get('user')->current(),
             'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
             'tree' => $this->container->get('gamification')->getSvgTree($gamification),
             'forest' => $this->container->get('gamification')->getSvgForest($gamification),

@@ -37,4 +37,50 @@ class Category extends BaseCategory
     {
         return $this->id;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $exercises;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->exercises = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add exercises
+     *
+     * @param \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercises
+     * @return Category
+     */
+    public function addExercise(\Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercises)
+    {
+        $this->exercises[] = $exercises;
+
+        return $this;
+    }
+
+    /**
+     * Remove exercises
+     *
+     * @param \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercises
+     */
+    public function removeExercise(\Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercises)
+    {
+        $this->exercises->removeElement($exercises);
+    }
+
+    /**
+     * Get exercises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExercises()
+    {
+        return $this->exercises;
+    }
 }

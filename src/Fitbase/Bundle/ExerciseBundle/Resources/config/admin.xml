@@ -15,6 +15,17 @@
             <argument/>
         </service>
 
+        <service id="fitbase.admin.exercise_user" class="Fitbase\Bundle\ExerciseBundle\Admin\ExerciseUserAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Übungen"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser</argument>
+            <argument/>
+        </service>
+
+
         <service id="fitbase.admin.category" class="Fitbase\Bundle\ExerciseBundle\Admin\CategoryAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Bereiche"/>
             <call method="setContainer">

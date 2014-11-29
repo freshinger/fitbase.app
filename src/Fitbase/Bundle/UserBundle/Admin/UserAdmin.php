@@ -15,7 +15,6 @@ use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -39,11 +38,10 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
-    public function postPersist($object)
+    public function prePersist($object)
     {
         $event = new UserEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('user_created', $event);
-        $this->container->get('logger')->debug('[fitbase] user_created event');
+        $this->container->get('event_dispatcher')->dispatch('user_create', $event);
     }
 
     /**
@@ -53,9 +51,26 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     {
         $event = new UserEvent($object);
         $this->container->get('event_dispatcher')->dispatch('user_updated', $event);
-        $this->container->get('logger')->debug('[fitbase] user_updated event');
     }
 
+    /**
+     * Create new object instance
+     * @return mixed|void
+     */
+    public function getNewInstance()
+    {
+        if (($object = parent::getNewInstance())) {
+            do {
+                $code = $this->container->get('codegenerator')->password(5);
+                $object->setUsername("benutzer_" . strtolower($code));
+            } while ($this->container->get('user')->username($object->getUsername()));
+            $object->setEnabled(true);
+            $object->setPlainPassword($this->container->get('codegenerator')->password(8));
+
+            return $object;
+        }
+        return false;
+    }
 
     /**
      * {@inheritdoc}
@@ -101,18 +116,17 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ->add('firstname', null, array('required' => true))
             ->add('lastname', null, array('required' => true))
             ->add('email')
-            ->add('username', 'hidden', array(
+            ->add('username', 'text', array(
                 'required' => true,
-                'data' => $this->container->get('codegenerator')->password(8)
             ))
             ->add('plainPassword', 'text', array(
-                'required' => true,
+                'required' => false,
                 'read_only' => true,
-                'data' => $this->container->get('codegenerator')->password(8)
             ))
             ->add('focus', null, array('required' => true))
             ->end()
             ->with('Profile', array('class' => 'col-md-6'))
+            ->add('enabled')
             ->add('gender', 'sonata_user_gender', array(
                 'required' => false,
                 'translation_domain' => $this->getTranslationDomain()

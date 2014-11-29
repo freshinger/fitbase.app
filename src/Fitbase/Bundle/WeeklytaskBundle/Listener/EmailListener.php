@@ -46,7 +46,7 @@ class EmailListener extends ContainerAware
         $weeklytaskUserQuiz = $repositoryWeeklyquizUser->findOneByUserAndQuizId($user, $weeklytaskQuizPlan->getQuizId());
 
         $email = $user->getEmail();
-        $title = 'Ihr Online-Rückenschule.de Quiz';
+        $title = 'Ihr Fitbase Quiz';
 
         $content = $this->container->get('templating')->render('FitbaseWeeklytaskBundle:Email:quiz.html.twig', array(
             'user' => $user,
@@ -103,7 +103,7 @@ class EmailListener extends ContainerAware
             $logger->info('Weekly task sender, task found', array($user->getId(), $post->getId(),));
 
             $email = $user->getEmail();
-            $title = 'Ihr Online-Rückenschule.de Wochenaufgabe';
+            $title = 'Ihr Fitbase Wochenaufgabe';
             $content = $this->container->get('templating')->render('FitbaseWeeklytaskBundle:Email:task.html.twig', array(
                 'task' => $post,
                 'taskPoints' => $weeklytask->getCountPoint(),

@@ -26,4 +26,11 @@ class ServiceUser extends ContainerAware
         }
         return null;
     }
+
+    public function username($name)
+    {
+        return $this->container->get('fos_user.user_manager')->findUsersBy(array(
+            'username' => $name
+        ));
+    }
 }

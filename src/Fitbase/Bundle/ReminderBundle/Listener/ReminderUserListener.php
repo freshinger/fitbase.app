@@ -2,7 +2,6 @@
 
 namespace Fitbase\Bundle\ReminderBundle\Listener;
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -96,57 +95,57 @@ class ReminderUserListener extends ContainerAware
      */
     public function onReminderUserPlanner(ReminderUserEvent $event)
     {
-        assert(($reminder = $event->getEntity()));
-
-        $logger = $this->container->get('logger');
-        $dateTime = $this->container->get('datetime');
-        $userManager = $this->container->get('user');
-        $entityManager = $this->container->get('entity_manager');
-
-        $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-        $repositoryReminderPlan = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan');
-
-        if (($user = $userManager->find($reminder->getUserId()))) {
-
-            $date = $dateTime->getDateTime('now');
-
-            if (($collection = $repositoryReminderItem->findAllByReminderAndDay($reminder, $date->format('N')))) {
-
-                $logger->info('Reminder planner task, reminders', array(
-                    count($collection)
-                ));
-
-                foreach ($collection as $reminderItem) {
-
-                    $reminderPlan = $repositoryReminderPlan->findOneByUserAndReminderAndDate(
-                        $user, $reminder, $reminderItem->getTime());
-
-                    if (empty($reminderPlan)) {
-
-                        $logger->info('Reminder planner task, existed plan not found', array(
-                            $reminder->getId()
-                        ));
-
-                        $plan = new ReminderPlan();
-                        $plan->setDate($reminderItem->getTime());
-                        $plan->setUserId($reminder->getUserId());
-                        $plan->setReminderId($reminder->getId());
-                        $plan->setReminderItemId($reminderItem->getId());
-                        $plan->setProcessed(false);
-
-                        $entityManager->persist($plan);
-                        $entityManager->flush($plan);
-
-                        continue;
-                    }
-
-                    $logger->info('Reminder planner task, existed plan found', array(
-                        $reminder->getId(),
-                        $reminderPlan->getId(),
-                        $reminderItem->getTime()->format('Y-m-d H:i:s')
-                    ));
-                }
-            }
-        }
+//        assert(($reminder = $event->getEntity()));
+//
+//        $logger = $this->container->get('logger');
+//        $dateTime = $this->container->get('datetime');
+//        $userManager = $this->container->get('user');
+//        $entityManager = $this->container->get('entity_manager');
+//
+//        $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
+//        $repositoryReminderPlan = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderPlan');
+//
+//        if (($user = $userManager->find($reminder->getUserId()))) {
+//
+//            $date = $dateTime->getDateTime('now');
+//
+//            if (($collection = $repositoryReminderItem->findAllByReminderAndDay($reminder, $date->format('N')))) {
+//
+//                $logger->info('Reminder planner task, reminders', array(
+//                    count($collection)
+//                ));
+//
+//                foreach ($collection as $reminderItem) {
+//
+//                    $reminderPlan = $repositoryReminderPlan->findOneByUserAndReminderAndDate(
+//                        $user, $reminder, $reminderItem->getTime());
+//
+//                    if (empty($reminderPlan)) {
+//
+//                        $logger->info('Reminder planner task, existed plan not found', array(
+//                            $reminder->getId()
+//                        ));
+//
+//                        $plan = new ReminderPlan();
+//                        $plan->setDate($reminderItem->getTime());
+//                        $plan->setUserId($reminder->getUserId());
+//                        $plan->setReminderId($reminder->getId());
+//                        $plan->setReminderItemId($reminderItem->getId());
+//                        $plan->setProcessed(false);
+//
+//                        $entityManager->persist($plan);
+//                        $entityManager->flush($plan);
+//
+//                        continue;
+//                    }
+//
+//                    $logger->info('Reminder planner task, existed plan found', array(
+//                        $reminder->getId(),
+//                        $reminderPlan->getId(),
+//                        $reminderItem->getTime()->format('Y-m-d H:i:s')
+//                    ));
+//                }
+//            }
+//        }
     }
 }

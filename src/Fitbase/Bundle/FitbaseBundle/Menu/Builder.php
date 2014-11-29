@@ -44,30 +44,33 @@ class Builder extends ContainerAware
         }
 
 
-        $menu->addChild('Dashboard', array(
+        $menu->addChild('Startseite', array(
             'route' => 'page_slug',
             'routeParameters' => array(
                 'path' => '/'
             )
         ));
-        $menu->addChild('Übungen', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/uebungen'
-            )
+
+        $menu->addChild('Aktivitäten', array(
+            'route' => 'focus',
         ));
-        $menu->addChild('Theorie Einheiten', array(
+
+//        $menu->addChild('Übungen', array(
+//            'route' => 'page_slug',
+//            'routeParameters' => array(
+//                'path' => '/uebungen'
+//            )
+//        ));
+        $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/theorie-einheiten'
+                'path' => '/infoeinheiten'
             )));
 
-        $menu->addChild('Blog', array(
-            'route' => 'sonata_news_archive',
-        ));
-        $menu->addChild('Übungen', array(
-            'route' => 'exercises',
-        ));
+//        $menu->addChild('Blog', array(
+//            'route' => 'sonata_news_archive',
+//        ));
+
 
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',

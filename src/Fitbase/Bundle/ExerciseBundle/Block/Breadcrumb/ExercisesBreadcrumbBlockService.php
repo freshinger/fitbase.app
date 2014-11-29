@@ -40,7 +40,7 @@ class ExercisesBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService imp
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Übungen', array(
+        $menu->addChild('Activitäten', array(
             'route' => 'exercises',
             'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
         ));

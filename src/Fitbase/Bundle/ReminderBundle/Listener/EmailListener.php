@@ -45,7 +45,7 @@ class EmailListener extends ContainerAware
         ));
 
         $this->container->get('fitbase_mailer')
-            ->mail($user->getEmail(), 'Ihr Online-Rückenschule.de Erinnerungsservice', $content);
+            ->mail($user->getEmail(), 'Ihr Fitbase Erinnerungsservice', $content);
 
         $event = new ReminderUserPlanEvent($plan);
         $this->container->get('event_dispatcher')->dispatch('reminder_sent', $event);

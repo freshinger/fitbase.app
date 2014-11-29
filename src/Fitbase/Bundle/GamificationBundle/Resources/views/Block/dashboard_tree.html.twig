@@ -7,11 +7,14 @@
         {% if tree is defined %}
             {{ image(tree)|raw }}
         {% endif %}
-
-        {% if points is defined and points %}
-            <p>Sie haben {{ points }} Blätter gesammelt </p>
-        {% else %}
-            <p>Sie haben noch keine Blätter gesammelt </p>
-        {% endif %}
+    </div>
+    <div class="panel-footer">
+        <p>
+            {% if points is defined and points %}
+                Sie haben {{ points }} Blätter gesammelt
+            {% else %}
+                Sie haben noch keine Blätter gesammelt
+            {% endif %}
+        </p>
     </div>
 </div>
