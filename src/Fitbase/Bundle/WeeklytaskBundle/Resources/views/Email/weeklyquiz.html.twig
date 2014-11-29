@@ -9,7 +9,7 @@
                     <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
                 {% endif %}
                 <p>
-                    passend zum Freitag, wollen wir Sie an Ihr Quiz erinnern,
+                    wir wollen Sie an Ihr Quiz erinnern,
                     mit dem Sie Ihr Wissen über die letzte Infoeinheit
                     {% if task is defined and task %}
                         zum Thema: {{ task.category }}
@@ -22,8 +22,9 @@
                 <p>Ihr Fitbase Team</p>
 
                 <a class="true btn btn btn-success btn-ds"
-                   href="{{ url('weeklyquiz_user_view', {'unique': userQuiz.id}) }}">
-                    Das Quiz starten {{ userQuiz.id }}
+                   href="{{ url('weeklyquiz_user_view', {'unique': userQuiz.id}) }}"
+                   style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
+                    Das Quiz starten
                 </a>
 
             </div>
