@@ -36,7 +36,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class ExceptionListener extends ContainerAware implements AuthenticationEntryPointInterface
+class LoginEntryPointListener extends ContainerAware implements AuthenticationEntryPointInterface
 {
     /**
      * @param Request $request
