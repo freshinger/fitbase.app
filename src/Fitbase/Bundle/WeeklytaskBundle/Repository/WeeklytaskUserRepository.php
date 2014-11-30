@@ -226,7 +226,7 @@ class WeeklytaskUserRepository extends EntityRepository
      * @param $user
      * @return array
      */
-    public function findAllByUserAndNotDone($user)
+    public function findAllByUserAndNotDone($user, $limit = null)
     {
         $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
 
@@ -234,6 +234,10 @@ class WeeklytaskUserRepository extends EntityRepository
             $this->getExprUser($queryBuilder, $user),
             $this->getExprNotDone($queryBuilder)
         ));
+
+        if (!empty($limit)) {
+            $queryBuilder->setMaxResults($limit);
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }
