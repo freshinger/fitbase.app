@@ -3,6 +3,9 @@
 {% block content %}
     <div class="row" style="min-height: 300px;">
         <div class="col-md-12">
+            {% if user is defined and user %}
+                <p>Hallo {{ user.firstname }} {{ user.lastname }}.</p>
+            {% endif %}
             Wenn die E-Mail nicht richtig angezeigt wird, klick
             {% if userTask is defined %}
                 <a href="{{ url('weeklytask_user_view', {'unique': userTask.id}) }}">
