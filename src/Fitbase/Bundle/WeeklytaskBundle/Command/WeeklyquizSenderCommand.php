@@ -24,6 +24,7 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // TODO: change to global config
         $context = $this->getContainer()->get('router')->getContext();
         $context->setHost('app.fitbase.de');
         $context->setScheme('http');
