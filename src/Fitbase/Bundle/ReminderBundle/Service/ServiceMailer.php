@@ -33,6 +33,53 @@ class ServiceMailer extends ContainerAware
         }
     }
 
+//    /**
+//     * Replace content images to attaches
+//     * @param $message
+//     * @param $content
+//     * @return mixed
+//     */
+//    protected function images($message, $content)
+//    {
+//        $cids = array();
+//        if (($images = $this->sources($content))) {
+//            foreach ($images as $pathRaw => $data) {
+//                $content = str_replace($pathRaw, 'data:image/png;base64,' . base64_encode($data), $content);
+//            }
+//            $message->setBody($content);
+//            return true;
+//        }
+//        $message->setBody($content);
+//        return true;
+//    }
+//
+//
+//    /**
+//     * Extract images from content
+//     * @param $content
+//     * @return array
+//     */
+//    protected function sources($content)
+//    {
+//        $srcImages = array();
+//
+//        \phpQuery::newDocumentHTML($content);
+//
+//        $htmlImages = pq('img');
+//        if ($htmlImages->count()) {
+//            foreach ($htmlImages as $image) {
+//                $pathRaw = pq($image)->attr('src');
+//                $pathMod = pq($image)->attr('src');
+//                if (strpos($pathMod, 'http') === false) {
+//                    $pathMod = $this->container->get('kernel')->getRootDir() . "/../web$pathMod";
+//                }
+//                $srcImages[$pathRaw] = file_get_contents($pathMod);
+//            }
+//        }
+//
+//        return $srcImages;
+//    }
+
     /**
      * Replace content images to attaches
      * @param $message
@@ -43,10 +90,12 @@ class ServiceMailer extends ContainerAware
     {
         $cids = array();
         if (($images = $this->sources($content))) {
-            foreach ($images as $pathRaw => $data) {
-                $content = str_replace($pathRaw, 'data:image/png;base64,' . base64_encode($data), $content);
+            foreach ($images as $key => $image) {
+                if (($embed = $message->embed(\Swift_Image::fromPath($image)))) {
+                    array_push($cids, $embed);
+                }
             }
-            $message->setBody($content);
+            $message->setBody(str_replace($images, $cids, $content));
             return true;
         }
         $message->setBody($content);
@@ -68,12 +117,11 @@ class ServiceMailer extends ContainerAware
         $htmlImages = pq('img');
         if ($htmlImages->count()) {
             foreach ($htmlImages as $image) {
-                $pathRaw = pq($image)->attr('src');
-                $pathMod = pq($image)->attr('src');
-                if (strpos($pathMod, 'http') === false) {
-                    $pathMod = $this->container->get('kernel')->getRootDir() . "/../web$pathMod";
+                $path = pq($image)->attr('src');
+                if (strpos($path, 'http') === false) {
+                    $path = $this->container->get('kernel')->getRootDir() . "/../web$path";
                 }
-                $srcImages[$pathRaw] = file_get_contents($pathMod);
+                array_push($srcImages, $path);
             }
         }
 

@@ -36,7 +36,7 @@ class UserEmailSubscriber extends ContainerAware implements EventSubscriberInter
     {
         if (($user = $event->getEntity())) {
 
-            $title = $this->container->get('translator')->trans('Willkommen');
+            $title = $this->container->get('translator')->trans('Willkommen bei Fitbase.de');
             $content = $this->container->get('templating')->render('FitbaseUserBundle:Email:registered.html.twig', array(
                 'user' => $user,
             ));
