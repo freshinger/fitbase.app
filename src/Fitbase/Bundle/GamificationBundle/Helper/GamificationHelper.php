@@ -145,7 +145,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      * @param int $width
      * @return null|string
      */
-    public function avatar($content, $width = 400)
+    public function avatar($content, $width = 100, $height = 117)
     {
         if (!strlen($content)) {
             return null;
@@ -154,7 +154,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
         $imagick->readImageBlob('<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $content);
-        $imagick->scaleImage($width, 0);
+        $imagick->scaleImage($width, $height);
         $imagick->setImageFormat("png");
 
         return '<img style="width: ' . $width . 'px;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
