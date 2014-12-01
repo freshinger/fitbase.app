@@ -31,6 +31,10 @@ class ExerciseSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $context = $this->getContainer()->get('router')->getContext();
+        $context->setHost('app.fitbase.de');
+        $context->setScheme('http');
+
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('exercise')->send($datetime))) {
             foreach ($collection as $exerciseUser) {
