@@ -157,7 +157,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $imagick->scaleImage($width, $height);
         $imagick->setImageFormat("png");
 
-        return '<img style="width: ' . $width . 'px;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
+        return '<img style="display: block; margin-left: auto; margin-right: auto;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
     }
 
     /**
