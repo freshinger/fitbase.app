@@ -400,7 +400,7 @@ class QuestionnaireController extends Controller
 //                $eventQuestionnaire = new QuestionnaireEvent($form->getData());
 //                $this->get('event_dispatcher')->dispatch('questionnaire_create', $eventQuestionnaire);
 //
-//                $this->get('session')->getFlashBag()->add('notice', 'Die Fragenbogen wurden erfolgreich angelegt.');
+//                $this->get('session')->getFlashBag()->add('notice', 'Die Fragebogen wurden erfolgreich angelegt.');
 //
 //                return $this->redirect('?page=questionnaire');
 //            }

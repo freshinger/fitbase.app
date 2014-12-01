@@ -46,10 +46,53 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user, 4);
 
+
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_focus.html.twig', array(
             'user' => $user,
+            'nextWeeklytask' => $this->getNextIntervalWeeklytask($user),
+
             'collection' => $collectionWeeklytaskActual,
         ));
+    }
+
+    /**
+     * Get next
+     * @param $user
+     * @return int
+     */
+    protected function getNextIntervalWeeklytask($user)
+    {
+        $dayNext = 0;
+        $dayCurrent = 0;
+
+        if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
+            $dayNext = (int)$datetime->format('N');
+            $dayCurrent = (int)$datetime->format('N');
+
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryReminderUserItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
+
+            if (($collection = $repositoryReminderUserItem->findAllByUserAndType($user, 'weeklytask'))) {
+
+                $keyLast = max(array_keys($collection));
+                foreach ($collection as $key => $reminderUserItem) {
+                    if ($key == $keyLast) {
+                        if (isset($collection[0]) and ($reminderUserItem = $collection[0])) {
+                            $dayNext = (int)$collection[0]->getDay();
+                            break;
+                        }
+                    } else {
+                        if (($day = $reminderUserItem->getDay())) {
+                            if ($day > $dayCurrent) {
+                                $dayNext = (int)$day;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $dayNext - $dayCurrent;
     }
 
     /**

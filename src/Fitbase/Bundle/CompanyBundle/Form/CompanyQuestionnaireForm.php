@@ -17,7 +17,7 @@ class CompanyQuestionnaireForm extends AbstractType
         $builder
             ->add('questionnaire', 'choice', array(
                 'required' => false,
-                'label' => 'Fragenbogen',
+                'label' => 'Fragebogen',
                 'empty_value' => false,
                 'choices' => array(
                     0 => 'Nicht anzeigen',
