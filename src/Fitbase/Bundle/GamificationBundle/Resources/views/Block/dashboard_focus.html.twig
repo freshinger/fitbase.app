@@ -43,9 +43,6 @@
                                     <td class="shade">
                                         {{ task.task }}
                                     </td>
-                                    <td class="shade center">
-                                        {{ task.date|date('d.m.Y') }}
-                                    </td>
                                     <td class="shade">
                                         <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
                                             {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
