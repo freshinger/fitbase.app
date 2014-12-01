@@ -51,10 +51,10 @@ sonata_block:
         sonata.product.block.variations_form:
         sonata.customer.block.recent_customers:
         sonata.basket.block.nb_items:
-            cache: sonata.page.cache.js_async
+            #cache: sonata.page.cache.js_async
             contexts: [user]
         sonata.basket.block.nb_items:
-            cache: sonata.page.cache.js_async
+            #cache: sonata.page.cache.js_async
             contexts: [user]
 
         # TimelineBundle's Blocks
@@ -65,7 +65,7 @@ sonata_block:
 
         # UserBundle's Blocks
         sonata.user.block.account:
-            cache: sonata.page.cache.js_async
+            #cache: sonata.page.cache.js_async
             #cache: sonata.page.cache.esi
             contexts: [user]
         sonata.user.block.menu:
