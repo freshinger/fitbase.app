@@ -4,6 +4,7 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Repository;
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskSearch;
 
 class WeeklytaskRepository extends EntityRepository
@@ -217,14 +218,13 @@ class WeeklytaskRepository extends EntityRepository
     public function findOneNexByUserAndCategory($user, $category)
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
-        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser')
-            ->where('WeeklytaskUser.user != :user')
-            ->setParameter('user', $user);
+        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser', 'WITH', 'Weeklytask.id=WeeklytaskUser.task AND WeeklytaskUser.user != :user');
+        $queryBuilder->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprCategory($queryBuilder, $category),
+//            $this->getExprNotUser($queryBuilder, $user),
             $this->getExprPriorityNotNull($queryBuilder)
-//            $this->getExprNotUser($queryBuilder, $user)
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
@@ -242,9 +242,8 @@ class WeeklytaskRepository extends EntityRepository
     public function findOneNextByUser($user)
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
-        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser')
-            ->where('WeeklytaskUser.user != :user')
-            ->setParameter('user', $user);
+        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser', 'WITH', 'Weeklytask.id=WeeklytaskUser.task AND WeeklytaskUser.user != :user');
+        $queryBuilder->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->orX(
 //            $this->getExprNotUser($queryBuilder, $user),
