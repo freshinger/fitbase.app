@@ -2,7 +2,7 @@
     <div class="panel-body todays-exercise">
 
         <h4 class="short hue">
-            {{ 'Ihr Focus'|trans({}, 'FitbaseGamificationBundle') }}
+            {{ 'Ihr Fokus'|trans({}, 'FitbaseGamificationBundle') }}
         </h4>
 
         {% set category = user.focus %}
@@ -26,7 +26,7 @@
                 {% if nextWeeklytask is defined and nextWeeklytask %}
                     <p>Ihre nächste Infoeinheit erhalten Sie in {{ nextWeeklytask }} Tagen.</p>
                 {% endif %}
-                
+
                 {% if nextExercise is defined and nextExercise %}
                     <p>Ihre nächste Aktivität ist geplant in {{ nextExercise }} Stunden.</p>
                 {% endif %}
