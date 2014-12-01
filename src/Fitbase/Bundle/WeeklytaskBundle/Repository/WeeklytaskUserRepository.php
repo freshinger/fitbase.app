@@ -4,6 +4,7 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Repository;
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskSearch;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
@@ -70,7 +71,7 @@ class WeeklytaskUserRepository extends EntityRepository
      */
     protected function getExprTask($queryBuilder, $task)
     {
-        if (!empty($task)) {
+        if ($task instanceof Weeklytask) {
             $queryBuilder->setParameter('task', $task->getId());
             return $queryBuilder->expr()->eq('WeeklytaskUser.task', ':task');
         }
