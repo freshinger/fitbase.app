@@ -1,6 +1,6 @@
-{% extends 'FitbaseGamificationBundle::layout.html.twig' %}
+{% extends sonata_block.templates.block_base %}
 
-{% block content %}
+{% block block %}
     {{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
 
     <div class="row">
