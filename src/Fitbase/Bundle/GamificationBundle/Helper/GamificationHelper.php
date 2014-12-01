@@ -39,6 +39,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         return array(
             new \Twig_SimpleFunction('graph', array($this, 'graph')),
             new \Twig_SimpleFunction('image', array($this, 'image')),
+            new \Twig_SimpleFunction('avatar', array($this, 'avatar')),
             new \Twig_SimpleFunction('emotion', array($this, 'getEmotion')),
             new \Twig_SimpleFunction('answer', array($this, 'getAnswer')),
             new \Twig_SimpleFunction('feedback', array($this, 'getFeedback')),
@@ -144,7 +145,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      * @param int $width
      * @return null|string
      */
-    public function image($content, $width = 400)
+    public function avatar($content, $width = 400)
     {
         if (!strlen($content)) {
             return null;
@@ -157,6 +158,27 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $imagick->setImageFormat("png");
 
         return '<img style="width: ' . $width . 'px;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
+    }
+
+    /**
+     * Convert svg image to png
+     * @param $content
+     * @param int $width
+     * @return null|string
+     */
+    public function image($content, $width = 400)
+    {
+        if (!strlen($content)) {
+            return null;
+        }
+
+        $imagick = new \Imagick();
+        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->readImageBlob('<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $content);
+        $imagick->scaleImage($width, 0);
+        $imagick->setImageFormat("png");
+
+        return '<img style="width: 100%;" src="data:image/png;base64,' . base64_encode($imagick) . '"  />';
     }
 
     /**
