@@ -24,6 +24,11 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // TODO: change to global config
+        $context = $this->getContainer()->get('router')->getContext();
+        $context->setHost('app.fitbase.de');
+        $context->setScheme('http');
+
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('weeklytask')->toSend($datetime))) {
             foreach ($collection as $weeklytaskUser) {
