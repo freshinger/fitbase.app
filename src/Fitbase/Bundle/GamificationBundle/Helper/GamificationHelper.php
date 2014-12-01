@@ -103,7 +103,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         JpGraph::module('bar');
 
 
-        $graph = new Graph(335, 360, 'auto');
+        $graph = new Graph(335, 400, 'auto');
         $graph->SetScale("textlin");
 
         $graph->SetTheme(new UniversalTheme);
@@ -144,7 +144,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      * @param int $width
      * @return null|string
      */
-    public function image($content, $width = 335)
+    public function image($content, $width = 400)
     {
         if (!strlen($content)) {
             return null;
