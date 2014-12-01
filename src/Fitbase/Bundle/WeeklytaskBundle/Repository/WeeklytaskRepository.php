@@ -218,12 +218,9 @@ class WeeklytaskRepository extends EntityRepository
     public function findOneNexByUserAndCategory($user, $category)
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
-        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser', 'WITH', 'Weeklytask.id=WeeklytaskUser.task AND WeeklytaskUser.user != :user');
-        $queryBuilder->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprCategory($queryBuilder, $category),
-//            $this->getExprNotUser($queryBuilder, $user),
             $this->getExprPriorityNotNull($queryBuilder)
         ));
 
@@ -242,11 +239,8 @@ class WeeklytaskRepository extends EntityRepository
     public function findOneNextByUser($user)
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
-        $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser', 'WITH', 'Weeklytask.id=WeeklytaskUser.task AND WeeklytaskUser.user != :user');
-        $queryBuilder->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->orX(
-//            $this->getExprNotUser($queryBuilder, $user),
             $this->getExprPriorityNotNull($queryBuilder)
         ));
 
