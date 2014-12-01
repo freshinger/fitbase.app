@@ -122,6 +122,25 @@ class ReminderUserItemRepository extends EntityRepository
     }
 
     /**
+     * Find all records by user and type
+     * @param $user
+     * @param $type
+     * @return array
+     */
+    public function findAllByUserAndType($user, $type)
+    {
+        $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprType($queryBuilder, $type)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
      * Get reminder items by reminder object
      * @param $reminder
      * @return array
