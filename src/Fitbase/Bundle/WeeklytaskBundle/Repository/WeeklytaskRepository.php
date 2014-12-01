@@ -9,6 +9,17 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskSearch;
 class WeeklytaskRepository extends EntityRepository
 {
     /**
+     *
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprPriorityNotNull($queryBuilder)
+    {
+        return $queryBuilder->expr()->isNotNull('Weeklytask.priority');
+    }
+
+
+    /**
      * Get expression to find records by string
      * @param $queryBuilder
      * @param $string
@@ -210,7 +221,8 @@ class WeeklytaskRepository extends EntityRepository
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprCategory($queryBuilder, $category),
-            $this->getExprNotUser($queryBuilder, $user)
+            $this->getExprNotUser($queryBuilder, $user),
+            $this->getExprPriorityNotNull($queryBuilder)
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
@@ -231,7 +243,8 @@ class WeeklytaskRepository extends EntityRepository
         $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser');
 
         $queryBuilder->where($queryBuilder->expr()->orX(
-            $this->getExprNotUser($queryBuilder, $user)
+            $this->getExprNotUser($queryBuilder, $user),
+            $this->getExprPriorityNotNull($queryBuilder)
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
