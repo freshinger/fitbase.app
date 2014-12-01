@@ -215,7 +215,7 @@ class WeeklytaskRepository extends EntityRepository
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneNexByUserAndCategory($user, $category)
+    public function findAllByCategoryAndPriority($category)
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
 
@@ -225,9 +225,8 @@ class WeeklytaskRepository extends EntityRepository
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
-        $queryBuilder->setMaxResults(1);
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
@@ -236,7 +235,7 @@ class WeeklytaskRepository extends EntityRepository
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneNextByUser($user)
+    public function findAllByPriority()
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
 
@@ -245,8 +244,7 @@ class WeeklytaskRepository extends EntityRepository
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
-        $queryBuilder->setMaxResults(1);
 
-        return $queryBuilder->getQuery()->getOneOrNullResult();
+        return $queryBuilder->getQuery()->getResult();
     }
 }

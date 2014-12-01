@@ -31,17 +31,15 @@ class ServiceWeeklytask extends ContainerAware
         $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
         $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
+
             // TODO: refactoring to reduce sql queries
-            if (($collection = $repositoryWeeklytask->findOneNexByUserAndCategory($user, $focus))) {
+            if (($collection = $repositoryWeeklytask->findAllByCategoryAndPriority($focus))) {
                 foreach ($collection as $weeklytask) {
                     if (!$repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask)) {
                         return $weeklytask;
                     }
                 }
             }
-
-
-            return $repositoryWeeklytask->findOneNexByUserAndCategory($user, $focus);
         }
         return null;
     }
@@ -58,7 +56,15 @@ class ServiceWeeklytask extends ContainerAware
         $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
         $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
-            return $repositoryWeeklytask->findOneNextByUser($user);
+
+            // TODO: refactoring to reduce sql queries
+            if (($collection = $repositoryWeeklytask->findAllByPriority())) {
+                foreach ($collection as $weeklytask) {
+                    if (!$repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask)) {
+                        return $weeklytask;
+                    }
+                }
+            }
         }
         return null;
     }
