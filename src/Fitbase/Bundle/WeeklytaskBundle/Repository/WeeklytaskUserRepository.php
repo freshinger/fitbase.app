@@ -63,6 +63,21 @@ class WeeklytaskUserRepository extends EntityRepository
     }
 
     /**
+     *
+     * @param $queryBuilder
+     * @param $task
+     * @return mixed
+     */
+    protected function getExprTask($queryBuilder, $task)
+    {
+        if (!empty($task)) {
+            $queryBuilder->setParameter('task', $task->getId());
+            return $queryBuilder->expr()->eq('WeeklytaskUser.task', ':task');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * @param $queryBuilder
      * @param $post
      * @return mixed
@@ -351,7 +366,6 @@ class WeeklytaskUserRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
-
     /**
      * @param $user
      * @param $datetime
@@ -365,6 +379,26 @@ class WeeklytaskUserRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
             $this->getExprDateTime($queryBuilder, $datetime)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param $user
+     * @param $task
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUserAndTask($user, $task)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprTask($queryBuilder, $task)
         ));
 
         $queryBuilder->setMaxResults(1);
