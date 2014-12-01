@@ -218,7 +218,7 @@ class WeeklytaskRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
         $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser')
-            ->where('WeeklytaskUser != :user')
+            ->where('WeeklytaskUser.user != :user')
             ->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->andX(
@@ -243,7 +243,7 @@ class WeeklytaskRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('Weeklytask');
         $queryBuilder->leftJoin('Weeklytask.userTask', 'WeeklytaskUser')
-            ->where('WeeklytaskUser != :user')
+            ->where('WeeklytaskUser.user != :user')
             ->setParameter('user', $user);
 
         $queryBuilder->where($queryBuilder->expr()->orX(
