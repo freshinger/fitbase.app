@@ -8,7 +8,7 @@
             {% endif %}
             Wenn die E-Mail nicht richtig angezeigt wird, klick
             {% if userTask is defined %}
-                <a href="{{ url('weeklytask_user_view', {'unique': userTask.id}) }}">
+                <a href="{{ sign(user, url('weeklytask_user_view', {'unique': userTask.id})) }}">
                     hier
                 </a>
             {% endif %}
