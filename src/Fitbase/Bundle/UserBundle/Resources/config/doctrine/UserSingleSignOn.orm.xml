@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\UserBundle\Entity\UserSingleSignOn" table="fitbase_user_singlesignon"
+            repository-class="Fitbase\Bundle\UserBundle\Repository\UserSingleSignOnRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <field name="code" type="string" column="code" length="255"/>
+        <field name="date" type="datetime" column="date"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processedDate" nullable="true"/>
+    </entity>
+</doctrine-mapping>
