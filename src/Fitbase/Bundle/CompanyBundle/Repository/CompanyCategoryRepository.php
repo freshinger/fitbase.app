@@ -28,6 +28,21 @@ class CompanyCategoryRepository extends EntityRepository
      * @param $category
      * @return mixed
      */
+    protected function getExprCategory($queryBuilder, $category)
+    {
+        if (!empty($category)) {
+            $queryBuilder->setParameter('category', $category->getId());
+            return $queryBuilder->expr()->eq('CompanyCategory.category', ':category');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Find records by category aprent
+     * @param $queryBuilder
+     * @param $category
+     * @return mixed
+     */
     protected function getExprCategoryParent($queryBuilder, $category)
     {
         if (!empty($category)) {
@@ -79,6 +94,20 @@ class CompanyCategoryRepository extends EntityRepository
         ));
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    public function findOneByCompanyAndCategory(Company $company, $category = null)
+    {
+        $queryBuilder = $this->createQueryBuilder('CompanyCategory');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprCompany($queryBuilder, $company),
+            $this->getExprCategory($queryBuilder, $category)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
     /**

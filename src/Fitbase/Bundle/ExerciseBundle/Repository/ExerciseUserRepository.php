@@ -55,11 +55,25 @@ class ExerciseUserRepository extends EntityRepository
      * @param $userId
      * @return mixed
      */
-    protected function getExprUser($queryBuilder, $user)
+    protected function getExprUser($queryBuilder, $user = null)
     {
         if (!empty($user)) {
             $queryBuilder->setParameter('user', $user->getId());
             return $queryBuilder->expr()->eq('ExerciseUser.user', ':user');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param null $id
+     * @return mixed
+     */
+    protected function getExprId($queryBuilder, $id = null)
+    {
+        if (!empty($id)) {
+            $queryBuilder->setParameter('id', $id);
+            return $queryBuilder->expr()->eq('ExerciseUser.id', ':id');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
@@ -100,5 +114,26 @@ class ExerciseUserRepository extends EntityRepository
         ));
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     *
+     * @param $user
+     * @param $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUserAndId($user, $id)
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprId($queryBuilder, $id)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 }

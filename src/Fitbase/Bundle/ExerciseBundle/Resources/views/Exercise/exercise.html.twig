@@ -6,65 +6,152 @@
     {% endjavascripts %}
 {% endblock %}
 
+
 {% block content %}
 
     {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
 
-    {% if exercise is defined and exercise %}
+
+    {% if exerciseUser is defined and exerciseUser %}
         <div class="row">
             <div class="col-md-7">
-                {% if exercise.webm is defined %}
-                    {% if exercise.webm %}
 
-                        {% set width='640' %}
+                {% block content_video %}
+                    {% if exercise is defined and exercise %}
+                        {% if exercise.webm is defined %}
+                            {% if exercise.webm %}
 
-                        <video width="{{ width }}" controls>
-                            <source src="{{ video(exercise.webm) }}" type="video/webm">
+                                {% set width='540' %}
+                                {% set height='320' %}
 
-                            {% if exercise.mp4 is defined %}
-                                {% if exercise.mp4 %}
-                                    <object class="flashplayer" width="{{ width }}"
-                                            type="application/x-shockwave-flash" data="/flash/player.swf?v1.3.5">
-                                        <param name="movie" value="/flash/player.swf?v1.3.5"/>
-                                        <param name="quality" value="high"/>
-                                        <param name="menu" value="false"/>
-                                        <param name="scale" value="noscale"/>
-                                        <param name="allowfullscreen" value="true">
-                                        <param name="allowscriptaccess" value="always">
-                                        <param name="swlivevonnect" value="true"/>
-                                        <param name="cachebusting" value="false">
-                                        <param name="flashvars"
-                                               value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}"/>
-                                    </object>
+                                <video width="{{ width }}" controls autoplay>
+                                    <source src="{{ video(exercise.webm) }}" type="video/webm">
 
-                                    <script type="text/javascript">
-                                        $(function () {
-                                            var flashplayer = $('.flashplayer');
-                                            if (!flashplayer.flash()) {
-                                                flashplayer.remove();
-                                            }
-                                        });
-                                    </script>
-                                {% endif %}
+                                    {% if exercise.mp4 is defined %}
+                                        {% if exercise.mp4 %}
+                                            <object class="flashplayer" width="{{ width }}" height="{{ height }}"
+                                                    type="application/x-shockwave-flash"
+                                                    data="/flash/player.swf?v1.3.5">
+                                                <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                                <param name="quality" value="high"/>
+                                                <param name="menu" value="false"/>
+                                                <param name="scale" value="noscale"/>
+                                                <param name="allowfullscreen" value="true">
+                                                <param name="allowscriptaccess" value="always">
+                                                <param name="swlivevonnect" value="true"/>
+                                                <param name="cachebusting" value="false">
+                                                <param name="flashvars"
+                                                       value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}&autoplay=1"/>
+                                            </object>
+
+                                            <script type="text/javascript">
+                                                $(function () {
+                                                    var flashplayer = $('.flashplayer');
+                                                    if (!flashplayer.flash()) {
+                                                        flashplayer.remove();
+                                                    }
+                                                });
+                                            </script>
+                                        {% endif %}
+                                    {% endif %}
+                                </video>
                             {% endif %}
-                        </video>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
+                {% endblock %}
 
-                {% if exercise.gallery.galleryHasMedias is defined %}
-                    {% if  exercise.gallery.galleryHasMedias %}
-                        {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
-                            <a href="{% path galleryHasMedia.media, 'original' %}">
-                                {% thumbnail galleryHasMedia.media, 'preview' with {'width': 320} %}
-                            </a>
-                        {% endfor %}
+                {% block content_navigation %}
+                    <style>
+                        ul.pagination {
+                            width: 540px;
+                        }
+
+                        div.text-wrap {
+                            text-overflow: ellipsis;
+                            width: 132px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+                    </style>
+                    <ul class="pagination">
+                        {% if step > 0 %}
+                            <li>
+                                <a href="{{ path('exercise_user', { 'unique': exerciseUser.id, 'step': (step - 1) }) }}">
+                                    <
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if exerciseUser.exercise0 is defined and exerciseUser.exercise0 %}
+                            <li {% if step == 0 %}class="active"{% endif %}>
+                                <a href="{{ path('exercise_user', { 'unique': exerciseUser.id, 'step': 0 }) }}">
+                                    <div class="text-wrap">
+                                        1. {{ exerciseUser.exercise0.name }}
+                                    </div>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if exerciseUser.exercise1 is defined and exerciseUser.exercise1 %}
+                            <li {% if step == 1 %}class="active"{% endif %} >
+                                <a href="{{ path('exercise_user', { 'unique': exerciseUser.id, 'step': 1 }) }}">
+                                    <div class="text-wrap">
+                                        2. {{ exerciseUser.exercise1.name }}
+                                    </div>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if exerciseUser.exercise2 is defined and exerciseUser.exercise2 %}
+                            <li {% if step == 2 %}class="active"{% endif %}>
+                                <a href="{{ path('exercise_user', { 'unique': exerciseUser.id, 'step': 2 }) }}">
+                                    <div class="text-wrap">
+                                        3. {{ exerciseUser.exercise2.name }}
+                                    </div>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% if step < 2 %}
+                            <li>
+                                <a href="{{ path('exercise_user', { 'unique': exerciseUser.id, 'step': (step + 1) }) }}">
+                                    >
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endblock %}
+
+                {% block content_image %}
+                    {% if exercise is defined and exercise %}
+                        {% if exercise.gallery.galleryHasMedias is defined %}
+                            {% if  exercise.gallery.galleryHasMedias %}
+                                <div class="row">
+                                    {% for galleryHasMedia in exercise.gallery.galleryHasMedias %}
+                                        <div class="col-md-6">
+                                            <span class="label label-default">
+                                            {{ loop.index }}
+                                            </span>
+                                            <a href="{% path galleryHasMedia.media, 'original' %}">
+                                                {% thumbnail galleryHasMedia.media, 'preview' with {'width': 260} %}
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
                     {% endif %}
-                {% endif %}
+                {% endblock %}
+
+
             </div>
             <div class="col-md-5">
-                {{ exercise.description|raw }}
+                {% if exercise is defined and exercise %}
+                    {{ exercise.description|raw }}
+                {% endif %}
             </div>
         </div>
     {% endif %}
 
 {% endblock %}
+

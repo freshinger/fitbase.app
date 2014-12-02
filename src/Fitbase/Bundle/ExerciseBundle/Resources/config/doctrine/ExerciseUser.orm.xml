@@ -10,7 +10,9 @@
         </id>
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="exercise" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise"/>
+        <many-to-one field="exercise0" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise"/>
+        <many-to-one field="exercise1" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise"/>
+        <many-to-one field="exercise2" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise"/>
 
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="done" type="boolean" column="done" nullable="true"/>
