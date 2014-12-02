@@ -14,8 +14,10 @@ sonata_media:
                 - sonata.media.provider.file
 
             formats:
-                small: { width: 100, quality: 100}
-                big:   { width: 970 , quality: 100}
+                icon: { width: 100, quality: 100}
+                thumbnail: { width: 150, quality: 100}
+                preview: { width: 300, quality: 100}
+                original: { width: 800, quality: 100}
 
         exercise:
             providers:
