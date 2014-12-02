@@ -115,6 +115,7 @@ class ExerciseController extends Controller
                     $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
                     return $this->redirect($this->generateUrl('exercise_user', array(
+                        '_sonata_page_skip' => true,
                         'unique' => $entity->getId(),
                         'step' => 0,
                     )));
@@ -158,6 +159,7 @@ class ExerciseController extends Controller
                     $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
                     return $this->redirect($this->generateUrl('exercise_user', array(
+                        '_sonata_page_skip' => true,
                         'unique' => $entity->getId(),
                         'step' => 0,
                     )));
