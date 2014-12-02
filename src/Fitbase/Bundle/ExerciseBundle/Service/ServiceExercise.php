@@ -26,23 +26,63 @@ class ServiceExercise extends ContainerAware
     }
 
     /**
-     *
+     * Get categories from user focus and user company
      * @param $user
      * @return array
      */
-    public function categories($user, $unique = null)
+    public function getFocusCategories($user, $subcategory = null)
     {
-        if (($company = $user->getCompany())) {
-
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-
-            if (($companyCategory = $repositoryCompanyCategory->findOneByCompanyAndCategorySlug($company, $unique))) {
-                return $repositoryCompanyCategory->findAllByCompanyAndCategoryParent($company, $companyCategory->getCategory());
-            }
-            return $repositoryCompanyCategory->findAllByCompany($company);
+        $category = $user->getFocus();
+        if ($subcategory !== null) {
+            $category = $subcategory;
         }
 
+        // if user has no company
+        // show subcategories from focus
+        if (($company = $user->getCompany())) {
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+            // Check is focus assigned to user company
+            // TODO: user have to contact administrator here
+            if (($companyCategory = $repositoryCompanyCategory->findOneByCompanyAndCategory($company, $category))) {
+                return $category->getChildren();
+            }
+        }
+
+        return array();
+    }
+
+    /**
+     * @param $user
+     * @return array
+     */
+    public function getFocusExercises($user, $subcategory = null)
+    {
+        $category = $user->getFocus();
+        if ($subcategory !== null) {
+            $category = $subcategory;
+        }
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+        $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+
+
+        if (($company = $user->getCompany())) {
+            // Check is focus assigned to user company
+            // TODO: user have to contact administrator here
+            if (($companyCategory = $repositoryCompanyCategory->findOneByCompanyAndCategory($company, $category))) {
+                $result = $repositoryExercise->findAllByCategory($category);
+
+                if (($categories = $category->getChildren())) {
+                    foreach ($categories as $categoryChild) {
+                        $result = array_merge($result, $repositoryExercise->findAllByCategory($categoryChild));
+                    }
+                }
+
+                return $result;
+            }
+        }
         return array();
     }
 
@@ -78,6 +118,7 @@ class ServiceExercise extends ContainerAware
         return array();
     }
 
+
     /**
      * Get exercise using user, company and category
      * @param $user
@@ -86,8 +127,25 @@ class ServiceExercise extends ContainerAware
      */
     public function exercise($user, $unique = null)
     {
-        if (($company = $user->getCompany())) {
+        if ($unique == null) {
+            if (($focus = $user->getFocus())) {
 
+                if (($exercises = $focus->getExercises())) {
+                    $index = rand(0, (count($exercises) - 1));
+
+                    if (isset($exercises[$index])) {
+                        if (($exercise = $exercises[$index])) {
+
+                            return $exercise;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        if (($company = $user->getCompany())) {
             $entityManager = $this->container->get('entity_manager');
             $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
 

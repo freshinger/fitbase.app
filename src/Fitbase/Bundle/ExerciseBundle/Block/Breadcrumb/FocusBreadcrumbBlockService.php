@@ -13,7 +13,7 @@ use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class ExercisesBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService implements ContainerAwareInterface
+class FocusBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService implements ContainerAwareInterface
 {
     protected $container;
 
@@ -22,7 +22,7 @@ class ExercisesBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService imp
      */
     public function getName()
     {
-        return 'fitbase.exercises.block.breadcrumb';
+        return 'fitbase.focus.block.breadcrumb';
     }
 
     /**
@@ -40,8 +40,8 @@ class ExercisesBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService imp
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Activitäten', array(
-            'route' => 'exercises',
+        $menu->addChild('Aktivitäten', array(
+            'route' => 'focus',
             'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
         ));
 

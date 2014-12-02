@@ -41,6 +41,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                 $title = $this->container->get('translator')->trans('Ihre Fitbase Erinnerung');
                 $content = $this->container->get('templating')->render('FitbaseExerciseBundle:Email:exercise.html.twig', array(
                     'user' => $exerciseUser->getUser(),
+                    'exerciseUser' => $exerciseUser,
                 ));
 
                 $this->container->get('mail')->mail($user->getEmail(), $title, $content);
@@ -72,14 +73,25 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                 $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
                 if (!$repositoryExerciseUser->findOneByUserAndDateTime($user, $datetime)) {
 
-                    $entity = new ExerciseUser();
-                    $entity->setDate(0);
-                    $entity->setProcessed(0);
-                    $entity->setUser($user);
-                    $entity->setDate($datetime);
+                    $serviceExercise = $this->container->get('exercise');
+                    if (($exercise0 = $serviceExercise->exercise($user))) {
+                        if (($exercise1 = $serviceExercise->exercise($user))) {
+                            if (($exercise2 = $serviceExercise->exercise($user))) {
 
-                    $this->container->get('entity_manager')->persist($entity);
-                    $this->container->get('entity_manager')->flush($entity);
+                                $entity = new ExerciseUser();
+                                $entity->setDone(0);
+                                $entity->setProcessed(0);
+                                $entity->setUser($user);
+                                $entity->setDate($datetime);
+                                $entity->setExercise0($exercise0);
+                                $entity->setExercise1($exercise1);
+                                $entity->setExercise2($exercise2);
+
+                                $this->container->get('entity_manager')->persist($entity);
+                                $this->container->get('entity_manager')->flush($entity);
+                            }
+                        }
+                    }
                 }
             }
         }

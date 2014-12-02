@@ -10,7 +10,7 @@
         <div class="row">
             {% if category is defined and category %}
                 <div class="col-md-4">
-                    <a href="{{ path('exercises_category', {'unique': category.slug}) }}">
+                    <a href="{{ path('focus', {'slug': category.slug}) }}">
                         {% if category.media is defined %}
                             {% thumbnail category.media, 'preview' with {'width': 100} %}
                         {% endif %}
