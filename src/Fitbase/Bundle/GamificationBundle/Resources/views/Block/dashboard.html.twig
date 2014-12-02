@@ -1,23 +1,19 @@
-{% extends sonata_block.templates.block_base %}
+{{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
 
-{% block block %}
-    {{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
-
-    <div class="row">
-        <div class="col-md-4">
-            {% include "FitbaseGamificationBundle:Block:dashboard_avatar.html.twig" with { 'avatar': avatar, 'points': points  } %}
-        </div>
-        <div class="col-md-4">{{ block_focus|raw }}</div>
-        <div class="col-md-4" style="min-height: 460px;">{{ block_activity|raw }}</div>
-
-        <div class="col-md-4">
-            {% include "FitbaseGamificationBundle:Block:dashboard_tree.html.twig" with { 'tree': tree, 'points': points } %}
-        </div>
-        <div class="col-md-4">
-            {% include "FitbaseGamificationBundle:Block:dashboard_statistic.html.twig" with { 'statistic': statistic, 'points': points } %}
-        </div>
-        <div class="col-md-4">
-            {% include "FitbaseGamificationBundle:Block:dashboard_forest.html.twig" with { 'forest': forest, 'points': points } %}
-        </div>
+<div class="row">
+    <div class="col-md-4">
+        {% include "FitbaseGamificationBundle:Block:dashboard_avatar.html.twig" with { 'avatar': avatar, 'points': points  } %}
     </div>
-{% endblock %}
+    <div class="col-md-4">{{ block_focus|raw }}</div>
+    <div class="col-md-4" style="min-height: 460px;">{{ block_activity|raw }}</div>
+
+    <div class="col-md-4">
+        {% include "FitbaseGamificationBundle:Block:dashboard_tree.html.twig" with { 'tree': tree, 'points': points } %}
+    </div>
+    <div class="col-md-4">
+        {% include "FitbaseGamificationBundle:Block:dashboard_statistic.html.twig" with { 'statistic': statistic, 'points': points } %}
+    </div>
+    <div class="col-md-4">
+        {% include "FitbaseGamificationBundle:Block:dashboard_forest.html.twig" with { 'forest': forest, 'points': points } %}
+    </div>
+</div>
