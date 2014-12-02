@@ -251,6 +251,9 @@ class WeeklytaskUserRepository extends EntityRepository
             $this->getExprNotDone($queryBuilder)
         ));
 
+        $queryBuilder->orderBy('WeeklytaskUser.date', 'ASC');
+
+
         if (!empty($limit)) {
             $queryBuilder->setMaxResults($limit);
         }
