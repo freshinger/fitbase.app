@@ -20,6 +20,14 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    public function getFunctions()
+    {
+        return array(
+            new \Twig_SimpleFunction('sign', array($this, 'getSign')),
+        );
+    }
+
+
     public function getFilters()
     {
         return array(
@@ -36,6 +44,26 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
             new \Twig_SimpleFilter('recommendation2', array($this, 'getRecommendation2')),
         );
     }
+
+    /**
+     * Get Single sign on link
+     * @param $user
+     * @param $link
+     * @return string
+     */
+    public function getSign($user, $link)
+    {
+        if (($code = $this->container->get('singlesignon')->code($user))) {
+            if (($query = parse_url($link))) {
+                if (isset($query['query'])) {
+                    return "$link&sign=$code";
+                }
+                return "$link?sign=$code";
+            }
+        }
+        return $link;
+    }
+
 
     /**
      * Generate login code
