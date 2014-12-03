@@ -82,7 +82,8 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
 
             if (isset($element['date'])) {
                 if (($data = $element['date'])) {
-                    $dateString = $this->container->get('translator')->trans($data->format("F"));
+                    $dateString = $this->container->get('translator')
+                        ->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
                     if (!isset($dataMonthCache[$dateString])) {
                         $dataMonthCacheArray[$dateString] = array();
                     }
