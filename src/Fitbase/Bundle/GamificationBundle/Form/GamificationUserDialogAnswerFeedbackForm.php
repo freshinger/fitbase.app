@@ -21,7 +21,7 @@ class GamificationUserDialogAnswerFeedbackForm extends GamificationUserDialogAns
                 'label' => 'Ok',
                 'attr' => array(
                     'style' => 'margin: 7px; width: 60px',
-                    'class' => 'btn btn-success btn-ds',
+                    'class' => 'btn btn-info btn-ds',
                 ),
             ));
     }

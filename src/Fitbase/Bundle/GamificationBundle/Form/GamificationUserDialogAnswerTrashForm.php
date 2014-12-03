@@ -17,10 +17,10 @@ class GamificationUserDialogAnswerTrashForm extends GamificationUserDialogAnswer
         $builder
             ->add('questionId', 'hidden')
             ->add('trash', 'submit', array(
-                'label' => 'Wegschmeiẞen',
+                'label' => 'Wegschmeißen',
                 'attr' => array(
                     'style' => 'margin: 7px',
-                    'class' => 'btn btn-success btn-ds',
+                    'class' => 'btn btn-info btn-ds',
                 ),
             ));
     }
