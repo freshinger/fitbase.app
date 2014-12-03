@@ -26,7 +26,7 @@ class GamificationUserDialogAnswerTextForm extends GamificationUserDialogAnswerA
                 'label' => 'Antworten',
                 'attr' => array(
                     'style' => 'margin: 7px',
-                    'class' => 'btn btn-success btn-ds',
+                    'class' => 'btn btn-info btn-ds',
                 ),
             ));
     }
