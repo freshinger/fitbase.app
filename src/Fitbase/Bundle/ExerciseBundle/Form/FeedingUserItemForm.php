@@ -23,9 +23,6 @@ class FeedingUserItemForm extends AbstractType
             ->add('group', null, array(
                 'disabled' => true,
                 'empty_value' => false,
-                'attr' => array(
-                    'class' => 'form-control'
-                ),
             ));
     }
 
