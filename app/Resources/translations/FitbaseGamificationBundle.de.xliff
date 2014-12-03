@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="" >
+        <body>
+            <trans-unit id="january">
+                <source>january</source>
+                <target>Januar</target>
+            </trans-unit>
+            <trans-unit id="february">
+                <source>february</source>
+                <target>Februar</target>
+            </trans-unit>
+            <trans-unit id="march">
+                <source>march</source>
+                <target>März</target>
+            </trans-unit>
+            <trans-unit id="april">
+                <source>april</source>
+                <target>April</target>
+            </trans-unit>
+            <trans-unit id="may">
+                <source>may</source>
+                <target>Mai</target>
+            </trans-unit>
+            <trans-unit id="june">
+                <source>june</source>
+                <target>Juni</target>
+            </trans-unit>
+            <trans-unit id="july">
+                <source>july</source>
+                <target>Juli</target>
+            </trans-unit>
+            <trans-unit id="august">
+                <source>august</source>
+                <target>August</target>
+            </trans-unit>
+            <trans-unit id="september">
+                <source>september</source>
+                <target>September</target>
+            </trans-unit>
+            <trans-unit id="october">
+                <source>october</source>
+                <target>Oktober</target>
+            </trans-unit>
+            <trans-unit id="november">
+                <source>november</source>
+                <target>November</target>
+            </trans-unit>
+            <trans-unit id="december">
+                <source>december</source>
+                <target>Dezember</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
