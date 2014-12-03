@@ -92,6 +92,13 @@ sonata_block:
         fitbase.block.dashboard_gamification:
         fitbase.block.header_company:
         fitbase.block.footer_company:
+        fitbase.block.dashboard_focus:
+        fitbase.block.dashboard_tree:
+        fitbase.block.dashboard_forest:
+        fitbase.block.dashboard_avatar:
+        fitbase.block.dashboard_activity:
+        fitbase.block.dashboard_statistic:
+
 
         # Formatter
         sonata.formatter.block.formatter:

@@ -5,7 +5,9 @@
         </h4>
 
         {% if tree is defined %}
-            {{ image(tree)|raw }}
+            <div class="tree">
+                {{ image(tree)|raw }}
+            </div>
         {% endif %}
     </div>
     <div class="panel-footer">

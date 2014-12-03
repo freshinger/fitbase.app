@@ -16,4 +16,12 @@ class GamificationUserDialogAnswerFinishForm extends GamificationUserDialogAnswe
     {
         $builder->add('value', 'hidden');
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'gamification_dialog_user_answer_finish';
+    }
 }

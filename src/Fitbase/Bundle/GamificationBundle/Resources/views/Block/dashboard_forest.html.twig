@@ -2,7 +2,9 @@
     <div class="panel-body">
         <h4 class="short hue">Der Unternehmenswald</h4>
         {% if forest is defined %}
-            {{ image(forest)|raw }}
+            <div class="forest">
+                {{ image(forest)|raw }}
+            </div>
         {% endif %}
     </div>
     <div class="panel-footer">

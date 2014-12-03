@@ -5,16 +5,6 @@
 
     <services>
 
-        <service id="fitbase.block.dashboard_gamification"
-                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDashboardBlockService" public="true">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_gamification</argument>
-            <argument type="service" id="templating"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
         <service id="fitbase.gamification.block.breadcrumb"
                  class="Fitbase\Bundle\GamificationBundle\Block\Breadcrumb\GamificationBreadcrumbBlockService">
             <tag name="sonata.block"/>
@@ -25,6 +15,77 @@
             <argument type="service" id="templating"/>
             <argument type="service" id="knp_menu.menu_provider"/>
             <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+        <service id="fitbase.block.dashboard_gamification"
+                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDashboardBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_gamification</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase.block.dashboard_focus"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardFocusBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_focus</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_tree"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardTreeBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_tree</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_forest"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardForestBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_forest</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_avatar"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardAvatarBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_avatar</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_activity"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardActivityBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_activity</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_statistic"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardStatisticBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_statistic</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
 
 

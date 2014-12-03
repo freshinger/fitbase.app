@@ -12,5 +12,20 @@
         <default key="_controller">FitbaseGamificationBundle:Gamification:healthEmotion</default>
     </route>
 
+    <route id="ajax_gamification_dashboard_tree" path="/health/tree">
+        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:tree</default>
+    </route>
+
+    <route id="ajax_gamification_dashboard_forest" path="/health/forest">
+        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:forest</default>
+    </route>
+
+    <route id="ajax_gamification_dashboard_avatar" path="/health/avatar">
+        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:avatar</default>
+    </route>
+
+    <route id="ajax_gamification_dashboard_statistic" path="/health/statistic">
+        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:statistic</default>
+    </route>
 
 </routes>

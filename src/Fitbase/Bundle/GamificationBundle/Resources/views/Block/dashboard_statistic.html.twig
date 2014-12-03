@@ -6,3 +6,11 @@
         {{ graph(statistic)|raw }}
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var container = $(document);
+        container.bind('gamification_dialog_finish', function (event) {
+            console.info('gamification_dialog_finish');
+        });
+    });
+</script>
