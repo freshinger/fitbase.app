@@ -1,19 +1,49 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'gamification', 'current_uri': app.request.requestUri }) }}
 
 <div class="row">
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_avatar.html.twig" with { 'avatar': avatar, 'points': points  } %}
-    </div>
-    <div class="col-md-4">{{ block_focus|raw }}</div>
-    <div class="col-md-4" style="min-height: 460px;">{{ block_activity|raw }}</div>
-
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_tree.html.twig" with { 'tree': tree, 'points': points } %}
+    <div class="col-md-4 dashboard-avatar">
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_avatar' }) }}
     </div>
     <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_statistic.html.twig" with { 'statistic': statistic, 'points': points } %}
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_focus' }) }}
     </div>
-    <div class="col-md-4">
-        {% include "FitbaseGamificationBundle:Block:dashboard_forest.html.twig" with { 'forest': forest, 'points': points } %}
+    <div class="col-md-4" style="min-height: 460px;">
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_activity' }) }}
+    </div>
+    <div class="col-md-4 dashboard-tree">
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_tree' }) }}
+    </div>
+    <div class="col-md-4 dashboard-statistic">
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_statistic' }) }}
+    </div>
+    <div class="col-md-4 dashboard-forest">
+        {{ sonata_block_render({ 'type': 'fitbase.block.dashboard_forest' }) }}
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        var container = $(document);
+        container.bind('gamification_dialog_finish', function (event) {
+
+            var containerTree = $('div.dashboard-tree');
+            if (containerTree.is('div')) {
+                containerTree.load('{{ path('ajax_gamification_dashboard_tree') }}');
+            }
+
+            var containerForest = $('div.dashboard-forest');
+            if (containerForest.is('div')) {
+                containerForest.load('{{ path('ajax_gamification_dashboard_forest') }}');
+            }
+
+            var containerAvatar = $('div.dashboard-avatar');
+            if (containerAvatar.is('div')) {
+                containerAvatar.load('{{ path('ajax_gamification_dashboard_avatar') }}');
+            }
+
+            var containerStatistic = $('div.dashboard-statistic');
+            if (containerStatistic.is('div')) {
+                containerStatistic.load('{{ path('ajax_gamification_dashboard_statistic') }}');
+            }
+        });
+    });
+</script>

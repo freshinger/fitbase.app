@@ -41,10 +41,6 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $points = null;
-        $statistic = array();
-        $gamification = null;
-
         if (!($user = $this->container->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
@@ -56,29 +52,7 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
             return $this->executeAvatarForm($blockContext, $response);
         }
 
-        $points = $this->container->get('statistic')->points($user);
-        $statistic = $this->container->get('statistic')->statistic($user);
-
-        $blockFocus = new DashboardFocusBlockService('DashboardFocus', $this->templating);
-        $blockFocus->setContainer($this->container);
-        $responseFocus = $blockFocus->execute($blockContext, $response);
-
-        $activityFocus = new DashboardActivityBlockService('DashboardActivity', $this->templating);
-        $activityFocus->setContainer($this->container);
-        $responseActivity = $activityFocus->execute($blockContext, $response);
-
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array(
-            'block_focus' => $responseFocus->getContent(),
-            'block_activity' => $responseActivity->getContent(),
-            'points' => $points,
-            'statistic' => $statistic,
-            'gamification' => $gamification,
-            'user' => $this->container->get('user')->current(),
-            'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
-            'tree' => $this->container->get('gamification')->getSvgTree($gamification),
-            'forest' => $this->container->get('gamification')->getSvgForest($gamification),
-        ));
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array());
     }
 
     /**

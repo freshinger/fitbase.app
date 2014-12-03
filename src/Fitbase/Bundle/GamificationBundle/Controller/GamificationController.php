@@ -174,11 +174,6 @@ class GamificationController extends Controller
         $userAnswer->setQuestion($question);
         $userAnswer->setDate($this->get('datetime')->getDateTime('now'));
 
-        if ($question->getType() == 'finish') {
-            $event = new GamificationUserDialogAnswerEvent($userAnswer);
-            $this->get('event_dispatcher')->dispatch('gamification_dialog_user_answer_done', $event);
-        }
-
         $form = $this->createFormGamification($question, $userAnswer);
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
@@ -193,11 +188,16 @@ class GamificationController extends Controller
                     $this->get('event_dispatcher')->dispatch('gamification_dialog_user_answer_hide_collection', $gamificationDialogUserAnswerEvent);
                 }
 
-
                 array_push($answers, $userAnswer);
 
                 if (($question = $this->getQuestion($answers))) {
                     $form = $this->createFormGamification($question, new GamificationUserDialogAnswer());
+
+                    if ($question->getType() == 'finish') {
+                        $event = new GamificationUserDialogAnswerEvent($userAnswer);
+                        $this->get('event_dispatcher')->dispatch('gamification_dialog_user_answer_done', $event);
+                    }
+
                     return $this->render('FitbaseGamificationBundle:Gamification:health_chat_next.html.twig', array(
                         'form' => $form->createView(),
                         'question' => $question,

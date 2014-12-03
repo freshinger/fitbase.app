@@ -59,6 +59,19 @@
 {% endblock gamification_dialog_user_answer_widget %}
 
 
+{% block gamification_dialog_user_answer_finish_widget %}
+    {% spaceless %}
+        {{- block('form_widget_compound') -}}
+        <script type="text/javascript">
+            $(function () {
+                var container = $(document);
+                container.trigger('gamification_dialog_finish');
+            });
+        </script>
+    {% endspaceless %}
+{% endblock gamification_dialog_user_answer_finish_widget %}
+
+
 {% block gamification_user_emotion_widget %}
     {% spaceless %}
         {{- block('form_widget_compound') -}}
