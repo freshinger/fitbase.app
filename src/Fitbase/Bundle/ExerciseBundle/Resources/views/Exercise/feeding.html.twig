@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-6">
+
+        <h3>Ernährungstagebuch</h3>
+
+        <br/>
+
+        {% form_theme form "FitbaseExerciseBundle:Exercise:form.html.twig" %}
+        {{ form(form) }}
+
+
+        <div style="height: 450px; overflow-y: scroll;">
+
+
+            <table class="table table-striped table-hover table-responsive">
+                <tbody>
+                {% if collection is defined and collection %}
+                    {% for feeding in collection %}
+                        <tr class="alternate">
+                            <td>{{ feeding.date|date('Y.m.d') }}</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        {% for item in feeding.items %}
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>{{ item.group }}</td>
+                                <td>{{ item.count }} Portion</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3">
+                            {{ "Keine Erinnerungen gefunden" | trans({}, 'FitbaseReminderBundle') }}
+                        </td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    <div class="col-md-6">
+
+        Ernauerung
+    </div>
+</div>

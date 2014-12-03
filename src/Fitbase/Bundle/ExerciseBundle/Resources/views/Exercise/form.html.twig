@@ -1,0 +1,33 @@
+{% use 'form_div_layout.html.twig' %}
+
+{% block form_rows -%}
+    <div class="row">
+        {% for child in form %}
+            <div class="col-md-12 form-group">
+                {{- form_row(child) -}}
+            </div>
+        {% endfor %}
+    </div>
+{%- endblock form_rows %}
+
+{% block form_row -%}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+{%- endblock form_row %}
+
+
+{% block feedinguseritem_widget -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+        <div class="row">
+            {% for child in form %}
+                <div class="col-md-6">
+                    {{- form_row(child) -}}
+                </div>
+            {% endfor %}
+        </div>        {{- form_rest(form) -}}
+    </div>
+{%- endblock feedinguseritem_widget %}
+

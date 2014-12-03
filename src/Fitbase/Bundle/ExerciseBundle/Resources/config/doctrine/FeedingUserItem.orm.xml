@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="Fitbase\Bundle\ExerciseBundle\Repository\FeedingUserItemRepository"
+            table="fitbase_feeding_user_item" name="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="count" type="integer" column="count" nullable="true"/>
+        <many-to-one field="group" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingGroup"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="feeding" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser"/>
+
+    </entity>
+</doctrine-mapping>
