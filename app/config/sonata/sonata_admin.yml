@@ -80,6 +80,7 @@ sonata_admin:
                     - fitbase.admin.questionnaire
                     - fitbase.admin.gamification_question
                     - fitbase.admin.exercise
+                    - fitbase.admin.feeding_group
 #            sonata.admin.group.ecommerce:
 #                label:           sonata_ecommerce
 #                label_catalogue: SonataAdminBundle

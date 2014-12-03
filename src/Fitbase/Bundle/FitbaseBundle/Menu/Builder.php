@@ -60,7 +60,7 @@ class Builder extends ContainerAware
                             'route' => 'stress',
                         ));
                         break;
-                    case 'ernaerung':
+                    case 'ernaehrung':
                         $menu->addChild('Aktivitäten', array(
                             'route' => 'feeding',
                         ));

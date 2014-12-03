@@ -3,8 +3,12 @@
 namespace Fitbase\Bundle\ExerciseBundle\Controller;
 
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
+use Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser;
+use Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\ExerciseBundle\Event\FeedingUserEvent;
+use Fitbase\Bundle\ExerciseBundle\Form\FeedingUserForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -51,7 +55,39 @@ class ExerciseController extends Controller
             }
         }
 
-        return $this->render('FitbaseExerciseBundle:Exercise:feeding.html.twig', array());
+        $entity = new FeedingUser();
+        $entity->setUser($user);
+        $entity->setDate($this->get('datetime')->getDateTime('now'));
+
+        $entityManager = $this->get('entity_manager');
+        $repositoryFeedingGroup = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\FeedingGroup');
+        $repositoryFeedingUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser');
+
+        if (($collection = $repositoryFeedingGroup->findAll())) {
+            foreach ($collection as $feedingGroup) {
+                $entity->addItem(
+                    (new FeedingUserItem())
+                        ->setCount(1)
+                        ->setUser($user)
+                        ->setGroup($feedingGroup)
+                );
+            }
+        }
+
+        $form = $this->createForm(new FeedingUserForm(), $entity);
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+
+                $event = new FeedingUserEvent($entity);
+                $this->get('event_dispatcher')->dispatch('feeding_user_create', $event);
+            }
+        }
+
+        return $this->render('FitbaseExerciseBundle:Exercise:feeding.html.twig', array(
+            'form' => $form->createView(),
+            'collection' => $repositoryFeedingUser->findByUser($user)
+        ));
     }
 
     /**

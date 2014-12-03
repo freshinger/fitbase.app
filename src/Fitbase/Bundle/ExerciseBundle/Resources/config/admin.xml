@@ -44,6 +44,13 @@
             <argument/>
         </service>
 
+        <service id="fitbase.admin.feeding_group" class="Fitbase\Bundle\ExerciseBundle\Admin\FeedingGroupAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Nahrung" label="Nahrungsgruppe"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ExerciseBundle\Entity\FeedingGroup</argument>
+            <argument/>
+        </service>
+
 
     </services>
 </container>
