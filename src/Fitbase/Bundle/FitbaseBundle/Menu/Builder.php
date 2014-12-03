@@ -34,6 +34,7 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
         ));
@@ -51,16 +52,28 @@ class Builder extends ContainerAware
             )
         ));
 
-        $menu->addChild('Aktivitäten', array(
-            'route' => 'focus',
-        ));
+        if (($user = $this->container->get('user')->current())) {
+            if (($focus = $user->getFocus())) {
+                switch ($focus->getSlug()) {
+                    case 'stress':
+                        $menu->addChild('Aktivitäten', array(
+                            'route' => 'stress',
+                        ));
+                        break;
+                    case 'ernaerung':
+                        $menu->addChild('Aktivitäten', array(
+                            'route' => 'feeding',
+                        ));
+                        break;
+                    default:
+                        $menu->addChild('Aktivitäten', array(
+                            'route' => 'focus',
+                        ));
+                }
+            }
+        }
 
-//        $menu->addChild('Übungen', array(
-//            'route' => 'page_slug',
-//            'routeParameters' => array(
-//                'path' => '/uebungen'
-//            )
-//        ));
+
         $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(

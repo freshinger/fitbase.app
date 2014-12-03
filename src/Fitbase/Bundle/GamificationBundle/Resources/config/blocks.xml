@@ -88,6 +88,16 @@
             </call>
         </service>
 
+        <service id="fitbase.block.dashboard_dialog"
+                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDialogBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_dialog</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
     </services>
 
