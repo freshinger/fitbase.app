@@ -18,6 +18,7 @@ class GamificationUserDialogAnswerTextForm extends GamificationUserDialogAnswerA
             ->add('description', 'textarea', array(
                 'label' => false,
                 'attr' => array(
+                    'style' => 'min-height: 100px',
                     'class' => 'form-control'
                 )
             ))

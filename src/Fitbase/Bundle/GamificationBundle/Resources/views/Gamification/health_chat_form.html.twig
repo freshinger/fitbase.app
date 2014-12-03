@@ -15,6 +15,10 @@
     {% endspaceless %}
 {% endblock form_errors %}
 
+{% block textarea_widget -%}
+    <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
+{%- endblock textarea_widget %}
+
 {% block boolean_buttons_widget %}
     {% spaceless %}
         <div {{ block('widget_container_attributes') }}>
