@@ -12,50 +12,47 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ExerciseController extends Controller
 {
-//    /**
-//     * Show categories and exercises
-//     * @param Request $request
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     * @throws AccessDeniedException
-//     */
-//    public function indexAction(Request $request)
-//    {
-//        if (!($user = $this->get('user')->current())) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
-//
-//        $serviceExercise = $this->get('exercise');
-//        $categories = $serviceExercise->categories($user);
-//        $exercises = $serviceExercise->exercises($user, $categories);
-//
-//        return $this->render('FitbaseExerciseBundle:Exercise:index.html.twig', array(
-//            'exercises' => $exercises,
-//            'categories' => $categories,
-//        ));
-//    }
 
-//    /**
-//     * Display category
-//     * @param Request $request
-//     * @param null $unique
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     * @throws AccessDeniedException
-//     */
-//    public function categoryAction(Request $request, $unique = null)
-//    {
-//        if (!($user = $this->get('user')->current())) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
-//
-//        $serviceExercise = $this->get('exercise');
-//        $categories = $serviceExercise->categories($user, $unique);
-//        $exercises = $serviceExercise->exercises($user, $unique);
-//
-//        return $this->render('FitbaseExerciseBundle:Exercise:category.html.twig', array(
-//            'exercises' => $exercises,
-//            'categories' => $categories,
-//        ));
-//    }
+    /**
+     * Display stress page
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stressAction(Request $request)
+    {
+        if (!($user = $this->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (($focus = $user->getFocus())) {
+            if (!in_array($focus->getSlug(), array('stress'))) {
+                throw new AccessDeniedException('This user does not have access to this section.');
+            }
+        }
+
+
+        return $this->render('FitbaseExerciseBundle:Exercise:stress.html.twig', array());
+    }
+
+    /**
+     * Display feeding page
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function feedingAction(Request $request)
+    {
+        if (!($user = $this->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (($focus = $user->getFocus())) {
+            if (!in_array($focus->getSlug(), array('ernaehrung'))) {
+                throw new AccessDeniedException('This user does not have access to this section.');
+            }
+        }
+
+        return $this->render('FitbaseExerciseBundle:Exercise:feeding.html.twig', array());
+    }
 
     /**
      * Redirect to user focus exercise
@@ -66,6 +63,12 @@ class ExerciseController extends Controller
     {
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (($focus = $user->getFocus())) {
+            if (in_array($focus->getSlug(), array('stress', 'ernaerung'))) {
+                throw new AccessDeniedException('This user does not have access to this section.');
+            }
         }
 
         $subcategory = null;
