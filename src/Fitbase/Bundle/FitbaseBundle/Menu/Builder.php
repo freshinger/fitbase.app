@@ -52,27 +52,9 @@ class Builder extends ContainerAware
             )
         ));
 
-        if (($user = $this->container->get('user')->current())) {
-            if (($focus = $user->getFocus())) {
-                switch ($focus->getSlug()) {
-                    case 'stress':
-                        $menu->addChild('Aktivitäten', array(
-                            'route' => 'stress',
-                        ));
-                        break;
-                    case 'ernaehrung':
-                        $menu->addChild('Aktivitäten', array(
-                            'route' => 'feeding',
-                        ));
-                        break;
-                    default:
-                        $menu->addChild('Aktivitäten', array(
-                            'route' => 'focus',
-                        ));
-                }
-            }
-        }
-
+        $menu->addChild('Aktivitäten', array(
+            'route' => 'focus',
+        ));
 
         $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',

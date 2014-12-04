@@ -60,7 +60,6 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
                             $date->modify('+1 week');
                         }
 
-
                         if ($datetime->getDateTime('now') >= $date) {
                             $userSingleSignOn->setProcessed(1);
                         }
