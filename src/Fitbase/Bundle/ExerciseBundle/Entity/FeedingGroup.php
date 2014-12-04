@@ -89,4 +89,33 @@ class FeedingGroup
     {
         return $this->getName();
     }
+
+    /**
+     * @var string
+     */
+    private $percent;
+
+
+    /**
+     * Set percent
+     *
+     * @param string $percent
+     * @return FeedingGroup
+     */
+    public function setPercent($percent)
+    {
+        $this->percent = $percent;
+
+        return $this;
+    }
+
+    /**
+     * Get percent
+     *
+     * @return string
+     */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
 }

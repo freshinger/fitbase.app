@@ -42,6 +42,7 @@ class FeedingGroupAdmin extends Admin implements ContainerAwareInterface
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('percent')
             ->end()
             ->with('Content', array('class' => 'col-md-12'))
             ->add('description')
@@ -55,6 +56,7 @@ class FeedingGroupAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('name')
+            ->add('percent')
             ->add('description')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -82,6 +84,7 @@ class FeedingGroupAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('percent')
             ->add('description')
             ->end();
     }
