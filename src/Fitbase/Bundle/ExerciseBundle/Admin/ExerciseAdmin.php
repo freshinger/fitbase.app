@@ -43,7 +43,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->add('name')
             ->add('priority')
             ->add('category')
-            ->add('collection')
             ->add('countPoint')
             ->end()
             ->with('Content', array('class' => 'col-md-6'))
@@ -65,7 +64,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
                 'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
             ))
             ->add('category')
-            ->add('collection')
             ->add('priority')
             ->add('countPoint')
             ->add('_action', 'actions', array(
@@ -103,7 +101,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->with('Media', array('class' => 'col-md-6'))
             ->add('priority')
             ->add('category', 'sonata_type_model_list', array('required' => false))
-            ->add('collection', 'sonata_type_model_list', array('required' => false))
             ->add('mp4', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('webm', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
