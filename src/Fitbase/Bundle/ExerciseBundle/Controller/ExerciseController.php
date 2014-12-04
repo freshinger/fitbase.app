@@ -111,8 +111,6 @@ class ExerciseController extends Controller
                         }
                     }
                 }
-
-
             }
         }
 

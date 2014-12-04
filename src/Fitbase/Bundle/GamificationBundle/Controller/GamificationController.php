@@ -191,7 +191,13 @@ class GamificationController extends Controller
                 array_push($answers, $userAnswer);
 
                 if (($question = $this->getQuestion($answers))) {
-                    $form = $this->createFormGamification($question, new GamificationUserDialogAnswer());
+
+                    $userAnswer = new GamificationUserDialogAnswer();
+                    $userAnswer->setUser($user);
+                    $userAnswer->setQuestion($question);
+                    $userAnswer->setDate($this->get('datetime')->getDateTime('now'));
+
+                    $form = $this->createFormGamification($question, $userAnswer);
 
                     if ($question->getType() == 'finish') {
                         $event = new GamificationUserDialogAnswerEvent($userAnswer);
