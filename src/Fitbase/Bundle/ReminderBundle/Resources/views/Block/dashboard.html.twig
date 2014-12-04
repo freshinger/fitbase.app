@@ -50,7 +50,7 @@
                     {% if itemsWeeklytask|length > 0 %}
                         {% for item in itemsWeeklytask %}
                             <tr class="{{ loop.index is even ? 'alternate' : '' }}">
-                                <td>{{ item.day|day }}</td>
+                                <td>{{ item.day|day | trans({}, 'FitbaseReminderBundle') }}</td>
                                 <td>{{ item.time|date('H:i') }}</td>
                                 <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
                             </tr>
@@ -107,7 +107,7 @@
                     {% if items|length > 0 %}
                         {% for item in items %}
                             <tr class="{{ loop.index is even ? 'alternate' : '' }}">
-                                <td>{{ item.day|day }}</td>
+                                <td>{{ item.day|day | trans({}, 'FitbaseReminderBundle') }}</td>
                                 <td>{{ item.time|date('H:i') }}</td>
                                 <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
                             </tr>
