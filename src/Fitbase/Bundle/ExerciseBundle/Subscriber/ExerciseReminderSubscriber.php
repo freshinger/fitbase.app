@@ -63,11 +63,19 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
         if (($reminderUserItem = $event->getEntity())) {
             if (($user = $reminderUserItem->getUser())) {
 
+
                 $hour = $reminderUserItem->getTime()->format('H');
                 $minute = $reminderUserItem->getTime()->format('i');
 
                 $datetime = $this->container->get('datetime')->getDateTime('now');
                 $datetime->setTime($hour, $minute);
+
+
+                $entity = new ExerciseUser();
+                $entity->setDone(0);
+                $entity->setProcessed(0);
+                $entity->setUser($user);
+                $entity->setDate($datetime);
 
                 $entityManager = $this->container->get('entity_manager');
                 $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
@@ -77,22 +85,16 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                     if (($exercise0 = $serviceExercise->exercise($user))) {
                         if (($exercise1 = $serviceExercise->exercise($user))) {
                             if (($exercise2 = $serviceExercise->exercise($user))) {
-
-                                $entity = new ExerciseUser();
-                                $entity->setDone(0);
-                                $entity->setProcessed(0);
-                                $entity->setUser($user);
-                                $entity->setDate($datetime);
                                 $entity->setExercise0($exercise0);
                                 $entity->setExercise1($exercise1);
                                 $entity->setExercise2($exercise2);
-
-                                $this->container->get('entity_manager')->persist($entity);
-                                $this->container->get('entity_manager')->flush($entity);
                             }
                         }
                     }
                 }
+
+                $this->container->get('entity_manager')->persist($entity);
+                $this->container->get('entity_manager')->flush($entity);
             }
         }
     }

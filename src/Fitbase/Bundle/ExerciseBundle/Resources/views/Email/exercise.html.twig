@@ -10,7 +10,7 @@
                 {% set focus = user.focus %}
                 {% if focus is defined and focus %}
                     Hiermit möchten wir Sie an Ihre {{ focus.name }}-Übung erinnern.
-                    Bitte klicken Sie auf das Button, um direkt zur Übung zu gelangen.
+                    Bitte klicken Sie auf den Button, um direkt zur Übung zu gelangen.
 
                     Viel Spaß und einen schönen Tag wünscht Ihnen die Fitbase!
 
@@ -22,7 +22,7 @@
                             <a class="true btn btn btn-success btn-ds"
                                href="{{ sign(user, url('exercise_user', { 'unique': exerciseUser.id, 'step': 0, '_sonata_page_skip': true })) }}"
                                style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
-                                Mein Focus
+                                Zur Fitbase
                             </a>
                         </p>
                     {% endif %}
