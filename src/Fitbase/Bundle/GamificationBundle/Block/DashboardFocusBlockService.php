@@ -66,6 +66,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
         $dayCurrent = 0;
 
         if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
+
             $dayNext = (int)$datetime->format('N');
             $dayCurrent = (int)$datetime->format('N');
 
@@ -73,26 +74,17 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
             $repositoryReminderUserItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
 
             if (($collection = $repositoryReminderUserItem->findAllByUserAndType($user, 'weeklytask'))) {
-
-                $keyLast = max(array_keys($collection));
+                $dayNext = min($collection)->getDay();
                 foreach ($collection as $key => $reminderUserItem) {
-                    if ($key == $keyLast) {
-                        if (isset($collection[0]) and ($reminderUserItem = $collection[0])) {
-                            $dayNext = (int)$collection[0]->getDay();
-                            break;
-                        }
-                    } else {
-                        if (($day = $reminderUserItem->getDay())) {
-                            if ($day > $dayCurrent) {
-                                $dayNext = (int)$day;
-                                break;
-                            }
-                        }
+                    if (($day = $reminderUserItem->getDay()) > $dayCurrent) {
+                        $dayNext = $day;
+                        break;
                     }
                 }
             }
         }
-        return $dayNext - $dayCurrent;
+
+        return abs($dayNext - $dayCurrent);
     }
 
     /**

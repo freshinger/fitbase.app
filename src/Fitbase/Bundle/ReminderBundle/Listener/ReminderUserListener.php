@@ -14,10 +14,9 @@ class ReminderUserListener extends ContainerAware
         $this->container->get('entity_manager')->persist($reminder);
         $this->container->get('entity_manager')->flush($reminder);
 
-        if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
-            $datetime->setTime(10, 0);
-
-            if (($user = $reminder->getUser())) {
+        if (($user = $reminder->getUser())) {
+            if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
+                $datetime->setTime(16, 0);
 
                 $entity1 = new ReminderUserItem();
                 $entity1->setReminder($reminder);
@@ -59,8 +58,10 @@ class ReminderUserListener extends ContainerAware
                 $entity5->setTime($datetime);
                 $entity5->setType('exercise');
                 $this->container->get('entity_manager')->persist($entity5);
+                $this->container->get('entity_manager')->flush();
+            }
 
-
+            if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
                 $datetime->setTime(4, 0);
 
                 $entity1 = new ReminderUserItem();
@@ -88,7 +89,6 @@ class ReminderUserListener extends ContainerAware
                 $entity5->setTime($datetime);
                 $entity5->setType('weeklytask');
                 $this->container->get('entity_manager')->persist($entity5);
-
                 $this->container->get('entity_manager')->flush();
 
             }

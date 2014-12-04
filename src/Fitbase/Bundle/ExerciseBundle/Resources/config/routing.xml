@@ -14,14 +14,6 @@
         <default key="slug"></default>
     </route>
 
-    <route id="feeding" path="/ernaehrung">
-        <default key="_controller">FitbaseExerciseBundle:Exercise:feeding</default>
-    </route>
-
-    <route id="stress" path="/stress">
-        <default key="_controller">FitbaseExerciseBundle:Exercise:stress</default>
-    </route>
-
     <route id="exercise_user" path="/user/{unique}/{step}">
         <default key="_controller">FitbaseExerciseBundle:Exercise:viewUser</default>
     </route>

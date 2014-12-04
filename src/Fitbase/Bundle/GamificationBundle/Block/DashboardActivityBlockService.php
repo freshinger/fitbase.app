@@ -53,7 +53,7 @@ class DashboardActivityBlockService extends BaseBlockService implements Containe
                         'user' => $user,
                     ));
                 case "ernaehrung":
-                    $template = 'FitbaseGamificationBundle:Block:dashboard_activity_info.html.twig';
+                    $template = 'FitbaseGamificationBundle:Block:dashboard_activity_feeding.html.twig';
                     return $this->renderPrivateResponse($template, array(
                         'user' => $user,
                     ));

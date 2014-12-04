@@ -55,6 +55,35 @@
         </service>
 
 
+        <service id="fitbase.feeding.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\FeedingBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>feeding</argument>
+            <argument>fitbase.feeding.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.stress.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\StressBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>stress</argument>
+            <argument>fitbase.stress.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
         <service id="fitbase.media.provider.video" class="Fitbase\Bundle\ExerciseBundle\Service\FileVideoProvider">
             <tag name="sonata.media.provider"/>
             <argument>sonata.media.provider.file</argument>
