@@ -124,24 +124,19 @@ class ExerciseController extends Controller
     }
 
     /**
-     * Redirect to user focus exercise
+     * Display
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param null $slug
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function focusAction(Request $request, $slug = null)
+    public function rueckenAction(Request $request, $slug = null)
     {
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        if (($focus = $user->getFocus())) {
-            if (in_array($focus->getSlug(), array('stress', 'ernaerung'))) {
-                throw new AccessDeniedException('This user does not have access to this section.');
-            }
-        }
-
         $subcategory = null;
-        if ($slug !== null) {
+        if (empty($slug)) {
             $entityManager = $this->container->get('entity_manager');
             $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
             $subcategory = $repositoryCategory->findOneBySlug($slug);
@@ -154,6 +149,33 @@ class ExerciseController extends Controller
             'exercises' => $exercises,
             'categories' => $categories,
         ));
+    }
+
+
+    /**
+     * Redirect to user focus exercise
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function focusAction(Request $request, $slug = null)
+    {
+        if (!($user = $this->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (($focus = $user->getFocus())) {
+            switch ($focus->getSlug()) {
+                case 'stress':
+                    return $this->stressAction($request);
+                case 'ernaehrung':
+                    return $this->feedingAction($request);
+                case 'ruecken':
+                default:
+                    return $this->rueckenAction($request, $slug);
+            }
+        }
+
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
@@ -266,6 +288,10 @@ class ExerciseController extends Controller
                 $event = new ExerciseUserEvent($exerciseUser);
                 $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
             }
+        }
+
+        if (empty($exercise)) {
+            return $this->focusAction($request);
         }
 
         return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(

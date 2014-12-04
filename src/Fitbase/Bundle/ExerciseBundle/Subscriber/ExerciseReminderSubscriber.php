@@ -71,15 +71,15 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                 $datetime->setTime($hour, $minute);
 
 
-                $entity = new ExerciseUser();
-                $entity->setDone(0);
-                $entity->setProcessed(0);
-                $entity->setUser($user);
-                $entity->setDate($datetime);
-
                 $entityManager = $this->container->get('entity_manager');
                 $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
                 if (!$repositoryExerciseUser->findOneByUserAndDateTime($user, $datetime)) {
+
+                    $entity = new ExerciseUser();
+                    $entity->setDone(0);
+                    $entity->setProcessed(0);
+                    $entity->setUser($user);
+                    $entity->setDate($datetime);
 
                     $serviceExercise = $this->container->get('exercise');
                     if (($exercise0 = $serviceExercise->exercise($user))) {
@@ -91,10 +91,10 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                             }
                         }
                     }
-                }
 
-                $this->container->get('entity_manager')->persist($entity);
-                $this->container->get('entity_manager')->flush($entity);
+                    $this->container->get('entity_manager')->persist($entity);
+                    $this->container->get('entity_manager')->flush($entity);
+                }
             }
         }
     }
