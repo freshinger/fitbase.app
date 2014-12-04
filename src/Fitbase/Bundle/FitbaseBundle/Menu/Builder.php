@@ -52,7 +52,7 @@ class Builder extends ContainerAware
             )
         ));
 
-        $namesActivity = array('stress' => 'Wohlfühlgespräch',
+        $namesActivity = array('ruecken' => 'Übungen', 'stress' => 'Ihre Entspannungsübung',
             'ernaehrung' => 'Ihr Ernährungstagebuch',);
 
         $nameActivity = 'Aktivitäten';

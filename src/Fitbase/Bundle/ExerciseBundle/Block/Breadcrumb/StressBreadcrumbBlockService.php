@@ -40,7 +40,7 @@ class StressBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService implem
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Wohlfühlgespräch', array(
+        $menu->addChild('Ihre Entspannungsübung', array(
             'route' => 'focus',
             'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
         ));
