@@ -291,6 +291,8 @@ class ExerciseController extends Controller
         }
 
         if (empty($exercise)) {
+            $event = new ExerciseUserEvent($exerciseUser);
+            $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
             return $this->focusAction($request);
         }
 
