@@ -49,10 +49,6 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
                 if (($userSingleSignOn = $repositoryExerciseUser->findOneByCodeAndNotProcessed($singlesignon))) {
                     if (($user = $userSingleSignOn->getUser())) {
 
-                        //TODO: do not process disabled and inactive users
-                        $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
-                        $this->container->get('security.context')->setToken($token);
-
                         $datetime = $this->container->get('datetime');
                         $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
 
@@ -66,6 +62,13 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
 
                         $this->container->get('entity_manager')->persist($userSingleSignOn);
                         $this->container->get('entity_manager')->flush($userSingleSignOn);
+
+                        //TODO: do not process disabled and inactive users
+                        if (!$userSingleSignOn->getIsProcessed()) {
+                            $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
+                            $this->container->get('security.context')->setToken($token);
+                        }
+
                     }
                 }
             }
