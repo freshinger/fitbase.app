@@ -192,18 +192,17 @@ class GamificationController extends Controller
 
                 if (($question = $this->getQuestion($answers))) {
 
-                    $userAnswer = new GamificationUserDialogAnswer();
-                    $userAnswer->setUser($user);
-                    $userAnswer->setQuestion($question);
-                    $userAnswer->setDate($this->get('datetime')->getDateTime('now'));
-
-                    $form = $this->createFormGamification($question, $userAnswer);
+                    $userAnswerNew = new GamificationUserDialogAnswer();
+                    $userAnswerNew->setUser($user);
+                    $userAnswerNew->setQuestion($question);
+                    $userAnswerNew->setDate($this->get('datetime')->getDateTime('now'));
 
                     if ($question->getType() == 'finish') {
-                        $event = new GamificationUserDialogAnswerEvent($userAnswer);
+                        $event = new GamificationUserDialogAnswerEvent($userAnswerNew);
                         $this->get('event_dispatcher')->dispatch('gamification_dialog_user_answer_done', $event);
                     }
 
+                    $form = $this->createFormGamification($question, $userAnswerNew);
                     return $this->render('FitbaseGamificationBundle:Gamification:health_chat_next.html.twig', array(
                         'form' => $form->createView(),
                         'question' => $question,

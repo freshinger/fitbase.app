@@ -45,18 +45,18 @@
 {% endblock boolean_buttons_widget %}
 
 
-{% block gamification_dialog_user_answer_widget %}
-    {% spaceless %}
-        {% if feedback is defined %}
-            {% if feedback is null %}
-                <p>Ein schöner Sommerurlaub</p>
-            {% else %}
-                <p>{{ feedback }}</p>
-            {% endif %}
+{% block form -%}
+    {% if feedback is defined and feedback %}
+        {% if feedback is null %}
+            <p>Ein schöner Sommerurlaub</p>
+        {% else %}
+            <p>{{ feedback }}</p>
         {% endif %}
-        {{- block('form_widget_compound') -}}
-    {% endspaceless %}
-{% endblock gamification_dialog_user_answer_widget %}
+    {% endif %}
+    {{ form_start(form) }}
+    {{- form_widget(form) -}}
+    {{ form_end(form) }}
+{%- endblock form %}
 
 
 {% block gamification_dialog_user_answer_finish_widget %}

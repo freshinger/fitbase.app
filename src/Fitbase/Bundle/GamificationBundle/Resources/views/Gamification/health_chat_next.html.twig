@@ -1,10 +1,9 @@
 {% if collection is defined and collection %}
     {% for answer in collection %}
-        {% set feedback = answer|feedback %}
-        {% if feedback is defined and feedback %}
+        {% if answer.description is defined and answer.description %}
             <div class="chat-message alert alert-info">
                 <div class="feedback">
-                    <span>{{ feedback }}</span>
+                    <span>{{ answer.description }}</span>
                 </div>
             </div>
         {% endif %}
