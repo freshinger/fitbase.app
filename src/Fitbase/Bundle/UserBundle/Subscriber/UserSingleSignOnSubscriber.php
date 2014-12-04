@@ -53,29 +53,20 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
                         $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
                         $this->container->get('security.context')->setToken($token);
 
+                        $datetime = $this->container->get('datetime');
+                        $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
 
-                        if (!$userSingleSignOn->getProcessed()) {
-
-                            $datetime = $this->container->get('datetime');
-                            if (!($processedDate = $userSingleSignOn->getProcessedDate())) {
-
-                                $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
-
-                                $this->container->get('entity_manager')->persist($userSingleSignOn);
-                                $this->container->get('entity_manager')->flush($userSingleSignOn);
-                                return;
-                            }
-
-                            $processedDate->modify('+1 week');
-
-                            if ($datetime->getDateTime('now') >= $processedDate) {
-
-                                $userSingleSignOn->setProcessed(1);
-                                $this->container->get('entity_manager')->persist($userSingleSignOn);
-                                $this->container->get('entity_manager')->flush($userSingleSignOn);
-                                return;
-                            }
+                        if (($date = $userSingleSignOn->getDate())) {
+                            $date->modify('+1 week');
                         }
+
+
+                        if ($datetime->getDateTime('now') >= $date) {
+                            $userSingleSignOn->setProcessed(1);
+                        }
+
+                        $this->container->get('entity_manager')->persist($userSingleSignOn);
+                        $this->container->get('entity_manager')->flush($userSingleSignOn);
                     }
                 }
             }
