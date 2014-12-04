@@ -17,7 +17,6 @@ class ServiceWeeklytask extends ContainerAware
         return $repositoryWeeklytaskUser->findAllNotProcessedByDateTime($datetime);
     }
 
-
     /**
      * Get nex weekly task with respect to category, priority
      * and already done tasks
@@ -25,50 +24,37 @@ class ServiceWeeklytask extends ContainerAware
      * @param $focus
      * @return mixed
      */
-    public function getNextByFocus($user, $focus, $datetime)
+    public function next($user = null, $datetime = null)
     {
         $entityManager = $this->container->get('entity_manager');
-        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
         $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
 
-            // TODO: refactoring to reduce sql queries
-            if (($collection = $repositoryWeeklytask->findAllByCategoryAndPriority($focus))) {
-                foreach ($collection as $weeklytask) {
-                    if (!$repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask)) {
-                        return $weeklytask;
+            // if user has no company
+            // show subcategories from focus
+            if (($company = $user->getCompany())) {
+                if (($focus = $user->getFocus())) {
+
+                    // Check is focus assigned to user company
+                    // TODO: user have to contact administrator here
+                    $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+                    if (($repositoryCompanyCategory->findOneByCompanyAndCategory($company, $focus))) {
+
+                        // TODO: refactoring to reduce sql queries
+                        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+                        if (($collection = $repositoryWeeklytask->findAllByCategoryAndPriority($focus))) {
+                            foreach ($collection as $weeklytask) {
+                                if (!$repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask)) {
+                                    return $weeklytask;
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         return null;
     }
-
-    /**
-     * Get nex weekly task with respect to priority
-     * and already done tasks
-     * @param $user
-     * @return mixed
-     */
-    public function getNextRandom($user, $datetime)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
-        $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-        if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
-
-            // TODO: refactoring to reduce sql queries
-            if (($collection = $repositoryWeeklytask->findAllByPriority())) {
-                foreach ($collection as $weeklytask) {
-                    if (!$repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask)) {
-                        return $weeklytask;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
 
     /**
      * Get first start date
