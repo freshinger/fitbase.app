@@ -9,6 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="name" type="string" column="name" length="255" nullable="true"/>
+        <field name="percent" type="string" column="percent" length="255" nullable="true"/>
         <field name="description" type="text" column="description" nullable="true"/>
     </entity>
 </doctrine-mapping>

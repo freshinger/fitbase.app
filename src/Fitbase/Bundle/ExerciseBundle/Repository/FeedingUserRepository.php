@@ -12,4 +12,69 @@ use Doctrine\ORM\EntityRepository;
  */
 class FeedingUserRepository extends EntityRepository
 {
+    /**
+     * Get expression by user id
+     * @param $queryBuilder
+     * @param $user
+     * @return mixed
+     */
+    protected function getExprUser($queryBuilder, $user = null)
+    {
+        if (!empty($user)) {
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('ExerciseUser.user', ':user');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTime($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->eq('ExerciseUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Find all by user
+     * @param $user
+     * @return array
+     */
+    public function findByUserOrderByDate($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user)
+        ));
+
+        $queryBuilder->addOrderBy('ExerciseUser.date', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Find all by user
+     * @param $user
+     * @return array
+     */
+    public function findByUserAndDate($user, $date)
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDateTime($queryBuilder, $date)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }

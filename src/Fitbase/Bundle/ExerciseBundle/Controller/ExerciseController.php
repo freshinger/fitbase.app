@@ -84,10 +84,45 @@ class ExerciseController extends Controller
             }
         }
 
+        $resultGroup = array();
+        if (($groups = $repositoryFeedingGroup->findAll())) {
+            foreach ($groups as $group) {
+                $resultGroup[$group->getName()] = $group->getPercent();
+            }
+        }
+
+        $resultUserItems = array();
+        if (($userFeedings = $repositoryFeedingUser->findByUserOrderByDate($user))) {
+            foreach ($userFeedings as $key => $userFeeding) {
+                if (($date = $userFeeding->getDate())) {
+                    $label = $date->format('Y.m.d');
+
+                    $resultUserItems[$label] = array();
+                    if (($userItems = $userFeeding->getItems())) {
+
+                        $total = 0;
+                        foreach ($userItems as $userItem) {
+                            $total += (int)$userItem->getCount();
+                            $resultUserItems[$label][$userItem->getGroup()->getName()] = (int)$userItem->getCount();
+                        }
+
+                        foreach ($resultUserItems[$label] as $name => $count) {
+                            $resultUserItems[$label][$name] = ($count * 100) / $total;
+                        }
+                    }
+                }
+
+
+            }
+        }
+
         return $this->render('FitbaseExerciseBundle:Exercise:feeding.html.twig', array(
             'form' => $form->createView(),
-            'collection' => $repositoryFeedingUser->findByUser($user)
+            'collection' => $repositoryFeedingUser->findByUserOrderByDate($user),
+            'groups' => $resultGroup,
+            'history' => $resultUserItems,
         ));
+
     }
 
     /**
