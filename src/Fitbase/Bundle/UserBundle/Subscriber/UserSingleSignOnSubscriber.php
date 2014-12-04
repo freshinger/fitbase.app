@@ -64,7 +64,7 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
                         $this->container->get('entity_manager')->flush($userSingleSignOn);
 
                         //TODO: do not process disabled and inactive users
-                        if (!$userSingleSignOn->getIsProcessed()) {
+                        if (!$userSingleSignOn->getProcessed()) {
                             $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
                             $this->container->get('security.context')->setToken($token);
                         }
