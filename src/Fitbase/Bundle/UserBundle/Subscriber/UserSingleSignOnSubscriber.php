@@ -49,14 +49,33 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
                 if (($userSingleSignOn = $repositoryExerciseUser->findOneByCodeAndNotProcessed($singlesignon))) {
                     if (($user = $userSingleSignOn->getUser())) {
 
+                        //TODO: do not process disabled and inactive users
                         $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
                         $this->container->get('security.context')->setToken($token);
 
-                        $userSingleSignOn->setProcessed(1);
-                        $userSingleSignOn->setProcessedDate($this->container->get('datetime')->getDateTime('now'));
 
-                        $this->container->get('entity_manager')->persist($userSingleSignOn);
-                        $this->container->get('entity_manager')->flush($userSingleSignOn);
+                        if (!$userSingleSignOn->getProcessed()) {
+
+                            $datetime = $this->container->get('datetime');
+                            if (!($processedDate = $userSingleSignOn->getProcessedDate())) {
+
+                                $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
+
+                                $this->container->get('entity_manager')->persist($userSingleSignOn);
+                                $this->container->get('entity_manager')->flush($userSingleSignOn);
+                                return;
+                            }
+
+                            $processedDate->modify('+1 week');
+
+                            if ($datetime->getDateTime('now') >= $processedDate) {
+
+                                $userSingleSignOn->setProcessed(1);
+                                $this->container->get('entity_manager')->persist($userSingleSignOn);
+                                $this->container->get('entity_manager')->flush($userSingleSignOn);
+                                return;
+                            }
+                        }
                     }
                 }
             }
