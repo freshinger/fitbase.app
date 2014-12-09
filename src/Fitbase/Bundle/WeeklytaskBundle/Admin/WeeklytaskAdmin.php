@@ -52,6 +52,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->with('General', array('class' => 'col-md-6'))
+            ->add('quiz')
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
             ))
@@ -70,7 +71,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ))
             ->add('tag')
             ->add('category')
-            ->add('collection')
+            ->add('quiz')
             ->add('priority')
             ->add('countPoint', null, array(
                 'label' => 'Punkte',
@@ -122,9 +123,6 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Punkte',
             ))
             ->add('category', 'sonata_type_model_list', array(
-                'required' => false
-            ))
-            ->add('collection', 'sonata_type_model_list', array(
                 'required' => false
             ))
             ->end()
