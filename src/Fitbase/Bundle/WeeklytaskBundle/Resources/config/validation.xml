@@ -42,7 +42,7 @@
                 <option name="message">Dieses Feld darf nich leer sein</option>
             </constraint>
             <constraint name="Type">
-                <option name="type">numeric</option>
+                <option name="type">boolean</option>
                 <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
             </constraint>
         </property>

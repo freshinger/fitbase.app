@@ -124,8 +124,9 @@ class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
                 'listener' => true,
                 'target_field' => 'content'
             ))
-            ->add('correct', null, array(
+            ->add('correct', 'checkbox', array(
                 'label' => 'Is richtig',
+                'required' => false,
             ))
             ->end();
     }
