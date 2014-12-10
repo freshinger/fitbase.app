@@ -46,7 +46,29 @@ class User extends BaseUser
     /**
      * @var \Application\Sonata\ClassificationBundle\Entity\Category
      */
-    private $focus;
+    protected $focus;
+
+
+    /**
+     * @var string
+     */
+    protected $format;
+
+    /**
+     * @return mixed
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param mixed $format
+     */
+    public function setFormat($format)
+    {
+        $this->format = $format;
+    }
 
     /**
      * Set category
