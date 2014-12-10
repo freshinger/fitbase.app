@@ -89,8 +89,6 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('firstname')
-            ->add('lastname')
             ->add('company')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
@@ -186,6 +184,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ->end()
             ->with('Biography', array('class' => 'col-md-6'))
             ->add('biography', 'sonata_formatter_type', array(
+                'required' => false,
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',
                 'source_field' => 'biography',
