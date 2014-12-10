@@ -173,7 +173,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ->end()
             ->tab('Profile')
             ->with('Profile', array('class' => 'col-md-6'))
-            ->add('dateOfBirth', 'sonata_type_date_picker')
+            ->add('dateOfBirth', 'sonata_type_date_picker', array('required' => false))
             ->add('website', 'url', array('required' => false))
             ->add('facebookUid', null, array('required' => false))
             ->add('facebookName', null, array('required' => false))
