@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory" table="fitbase_user_focus_category"
+            repository-class="Fitbase\Bundle\UserBundle\Repository\UserFocusCategoryRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="priority" type="integer" column="priority" nullable="true"/>
+
+        <many-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus"/>
+        <many-to-one field="parent" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory"/>
+        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category"/>
+
+
+    </entity>
+</doctrine-mapping>

@@ -12,6 +12,7 @@
 namespace Fitbase\Bundle\ExerciseBundle\Admin;
 
 use Fitbase\Bundle\ExerciseBundle\Event\CategoryEvent;
+use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\ClassificationBundle\Admin\CategoryAdmin as BaseCategoryAdmin;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -60,6 +61,20 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('name')
+            ->add('parent')
+            ->add('slug')
+            ->add('description')
+            ->add('position')
+            ->add('enabled', null, array('editable' => true));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -69,23 +84,21 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
             ->end()
             ->with('Options', array('class' => 'col-md-6'))
             ->add('enabled')
-            ->add('position', 'integer', array('required' => false, 'data' => 0))
+            ->add('position', 'integer', array('required' => false))
             ->add('parent', 'sonata_category_selector', array(
                 'category' => $this->getSubject() ?: null,
                 'model_manager' => $this->getModelManager(),
                 'class' => $this->getClass(),
                 'required' => false
             ))
-            ->end();
-
-        $formMapper
+            ->end()
             ->with('General')
             ->add('media', 'sonata_type_model_list',
                 array('required' => false),
                 array(
                     'link_parameters' => array(
                         'provider' => 'sonata.media.provider.image',
-                        'context' => 'sonata_category',
+                        'context' => 'exercise',
                     )
                 )
             )

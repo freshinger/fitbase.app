@@ -83,4 +83,15 @@ class Category extends BaseCategory
     {
         return $this->exercises;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        if (($parent = $this->getParent())) {
+            return "{$parent->getName()}: {$this->getName()}";
+        }
+        return $this->getName();
+    }
 }
