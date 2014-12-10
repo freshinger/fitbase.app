@@ -38,9 +38,6 @@
             </constraint>
         </property>
         <property name="correct">
-            <constraint name="NotBlank">
-                <option name="message">Dieses Feld darf nich leer sein</option>
-            </constraint>
             <constraint name="Type">
                 <option name="type">boolean</option>
                 <option name="message">Das Wert {{ value }} ist kein {{ type }}.</option>
