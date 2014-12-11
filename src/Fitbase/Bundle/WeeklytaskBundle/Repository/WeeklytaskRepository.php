@@ -209,6 +209,19 @@ class WeeklytaskRepository extends EntityRepository
     }
 
     /**
+     * @param $category
+     * @return array
+     */
+    public function findByCategory($category)
+    {
+        $queryBuilder = $this->createQueryBuilder("Weeklytask")
+            ->where(':category MEMBER OF Weeklytask.categories')
+            ->setParameters(array('category' => $category));
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
+    /**
      * Find all categories by priority
      * @param $user
      * @param $category

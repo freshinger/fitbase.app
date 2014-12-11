@@ -146,4 +146,50 @@ class UserFocusCategory
     {
         return $this->parent;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $children;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $children
+     * @return UserFocusCategory
+     */
+    public function addChild(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $children
+     */
+    public function removeChild(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
 }

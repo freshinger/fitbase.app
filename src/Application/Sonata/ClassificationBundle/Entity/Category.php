@@ -94,4 +94,44 @@ class Category extends BaseCategory
         }
         return $this->getName();
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    protected $weeklytasks;
+
+
+    /**
+     * Add weeklytasks
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $weeklytasks
+     * @return Category
+     */
+    public function addWeeklytask(\Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $weeklytasks)
+    {
+        $this->weeklytasks[] = $weeklytasks;
+
+        return $this;
+    }
+
+    /**
+     * Remove weeklytasks
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $weeklytasks
+     */
+    public function removeWeeklytask(\Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask $weeklytasks)
+    {
+        $this->weeklytasks->removeElement($weeklytasks);
+    }
+
+    /**
+     * Get weeklytasks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWeeklytasks()
+    {
+        return $this->weeklytasks;
+    }
+
 }

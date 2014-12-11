@@ -25,6 +25,9 @@
                 <cascade-all/>
             </cascade>
         </many-to-one>
+
+        <many-to-many field="categories" target-entity="Application\Sonata\ClassificationBundle\Entity\Category"/>
+
         <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
             <cascade>
                 <cascade-all/>

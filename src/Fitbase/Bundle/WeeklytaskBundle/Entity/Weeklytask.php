@@ -307,4 +307,43 @@ class Weeklytask
     {
         $this->userTask->removeElement($userTask);
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+
+    /**
+     * Add categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
+     * @return Weeklytask
+     */
+    public function addCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 }

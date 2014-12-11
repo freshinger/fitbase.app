@@ -96,6 +96,12 @@ class CompanyCategoryRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    /**
+     * @param Company $company
+     * @param null $category
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneByCompanyAndCategory(Company $company, $category = null)
     {
         $queryBuilder = $this->createQueryBuilder('CompanyCategory');

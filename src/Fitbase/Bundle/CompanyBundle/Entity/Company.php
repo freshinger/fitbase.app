@@ -290,4 +290,49 @@ class Company
         ));
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $categories
+     * @return Company
+     */
+    public function addCategory(\Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $categories
+     */
+    public function removeCategory(\Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 }

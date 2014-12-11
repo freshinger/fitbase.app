@@ -40,12 +40,9 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
-            ->add('tag', null, array(
-                'label' => 'Tags',
-            ))
+            ->add('name')
+            ->add('tag')
+            ->add('categories')
             ->add('content', null, array(
                 'label' => 'Text',
                 'safe' => true,
@@ -71,6 +68,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ))
             ->add('tag')
             ->add('category')
+            ->add('categories')
             ->add('quiz')
             ->add('priority')
             ->add('countPoint', null, array(
@@ -125,6 +123,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('category', 'sonata_type_model_list', array(
                 'required' => false
             ))
+            ->add('categories')
             ->end()
             ->with('Content', array('class' => 'col-md-12'))
             ->add('content', 'sonata_formatter_type', array(

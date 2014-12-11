@@ -88,19 +88,14 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
         if (($reminderUserItem = $event->getEntity())) {
             if (($user = $reminderUserItem->getUser())) {
 
-                $serviceWeeklytask = $this->container->get('weeklytask');
-                if (($focus = $user->getFocus())) {
+                $hour = $reminderUserItem->getTime()->format('H');
+                $minute = $reminderUserItem->getTime()->format('i');
 
-                    $hour = $reminderUserItem->getTime()->format('H');
-                    $minute = $reminderUserItem->getTime()->format('i');
+                $datetime = $this->container->get('datetime')->getDateTime('now');
+                $datetime->setTime($hour, $minute);
 
-                    $datetime = $this->container->get('datetime')->getDateTime('now');
-                    $datetime->setTime($hour, $minute);
-
-                    $codegenerator = $this->container->get('codegenerator');
-                    if (!($weeklytask = $serviceWeeklytask->next($user, $datetime))) {
-                        return;
-                    }
+                $codegenerator = $this->container->get('codegenerator');
+                if (($weeklytask = $this->container->get('chooser_weeklytask')->choose($user, $datetime))) {
 
                     // Create reminder for weeklytask
                     $weeklytaskUser = new WeeklytaskUser();
