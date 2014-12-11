@@ -217,6 +217,9 @@ class WeeklytaskRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder("Weeklytask")
             ->where(':category MEMBER OF Weeklytask.categories')
             ->setParameters(array('category' => $category));
+
+        $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
+
         return $queryBuilder->getQuery()->getResult();
     }
 
