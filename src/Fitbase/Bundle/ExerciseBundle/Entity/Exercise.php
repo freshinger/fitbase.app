@@ -415,4 +415,33 @@ class Exercise
     {
         return $this->categories;
     }
+
+    /**
+     * @var integer
+     */
+    private $type;
+
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Exercise
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 }

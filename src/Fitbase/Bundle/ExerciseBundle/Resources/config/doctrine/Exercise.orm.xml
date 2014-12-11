@@ -13,6 +13,8 @@
         <field name="format" type="string" column="format" length="255"/>
         <field name="countPoint" type="integer" column="countPoint" nullable="true"/>
         <field name="priority" type="integer" column="priority" nullable="true"/>
+        <field name="type" type="integer" column="type" nullable="true"/>
+
         <many-to-one field="gallery" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
             <cascade>
                 <cascade-all/>

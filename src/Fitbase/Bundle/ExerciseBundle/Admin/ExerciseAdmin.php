@@ -42,7 +42,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
             ->add('priority')
-            ->add('category')
             ->add('categories')
             ->add('countPoint')
             ->end()
@@ -64,7 +63,6 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Vorschaubild',
                 'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
             ))
-            ->add('category')
             ->add('categories')
             ->add('priority')
             ->add('countPoint')
@@ -85,7 +83,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
         $datagridMapper
             ->add('name')
             ->add('tag')
-            ->add('category')
+            ->add('categories')
             ->add('countPoint');
     }
 
@@ -98,12 +96,18 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
             ->add('tag')
+            ->add('type', 'choice', array(
+                'choices' => array(
+                    '1' => 'Mobilisation',
+                    '2' => 'Kräftigung',
+                    '3' => 'Dehnung',
+                )
+            ))
+            ->add('categories')
+            ->add('priority')
             ->add('countPoint')
             ->end()
             ->with('Media', array('class' => 'col-md-6'))
-            ->add('priority')
-            ->add('category')
-            ->add('categories')
             ->add('mp4', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('webm', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
