@@ -104,6 +104,43 @@ class ReminderUserItemRepository extends EntityRepository
     }
 
     /**
+     * Expression to get items for enabled user only
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprUserEnabled($queryBuilder)
+    {
+        $queryBuilder->setParameter(':enabled', 1);
+        return $queryBuilder->expr()->eq('User.enabled', ':enabled');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprUserNotExpired($queryBuilder)
+    {
+        $queryBuilder->setParameter(':expired', 0);
+        return $queryBuilder->expr()->orx(
+            $queryBuilder->expr()->isNull('User.expired'),
+            $queryBuilder->expr()->eq('User.expired', ':expired')
+        );
+    }
+
+    /**
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprUserNotLocked($queryBuilder)
+    {
+        $queryBuilder->setParameter(':locked', 0);
+        return $queryBuilder->expr()->orx(
+            $queryBuilder->expr()->isNull('User.locked'),
+            $queryBuilder->expr()->eq('User.locked', ':locked')
+        );
+    }
+
+    /**
      * Get reminder items by user
      * @param $user
      * @return array
@@ -225,12 +262,16 @@ class ReminderUserItemRepository extends EntityRepository
     public function findAllNotPausedByDayAndType($day = null, $type = null)
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
-        $queryBuilder->leftJoin('ReminderUserItem.reminder', 'ReminderUser');
+        $queryBuilder->join('ReminderUserItem.reminder', 'ReminderUser');
+        $queryBuilder->join('ReminderUserItem.user', 'User');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprDay($queryBuilder, $day),
             $this->getExprType($queryBuilder, $type),
-            $this->getExprNotPaused($queryBuilder)
+            $this->getExprNotPaused($queryBuilder),
+            $this->getExprUserEnabled($queryBuilder),
+            $this->getExprUserNotExpired($queryBuilder),
+            $this->getExprUserNotLocked($queryBuilder)
         ));
 
         return $queryBuilder->getQuery()->getResult();
