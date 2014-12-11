@@ -63,17 +63,12 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
+            ->add('name')
             ->add('tag')
-            ->add('category')
             ->add('categories')
             ->add('quiz')
             ->add('priority')
-            ->add('countPoint', null, array(
-                'label' => 'Punkte',
-            ))
+            ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -89,10 +84,8 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
-            ->add('category');
+            ->add('name')
+            ->add('categories');
     }
 
     /**
@@ -103,9 +96,7 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array(
                 'class' => 'col-md-6'))
-            ->add('name', null, array(
-                'label' => 'Name',
-            ))
+            ->add('name')
             ->add('tag', null, array(
                 'required' => false,
                 'label' => 'Tags',
@@ -119,9 +110,6 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('countPoint', 'integer', array(
                 'required' => false,
                 'label' => 'Punkte',
-            ))
-            ->add('category', 'sonata_type_model_list', array(
-                'required' => false
             ))
             ->add('categories')
             ->end()
