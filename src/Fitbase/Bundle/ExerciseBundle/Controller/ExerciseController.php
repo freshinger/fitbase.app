@@ -18,6 +18,37 @@ class ExerciseController extends Controller
 {
 
     /**
+     * Redirect to user focus exercise
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function focusAction(Request $request, $slug = null)
+    {
+        if (!($user = $this->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
+
+        if (($focus = $repositoryUserFocus->findOneByUser($user))) {
+            if (($focusCategory = $focus->getCategoryMain())) {
+                if (($category = $focusCategory->getCategory())) {
+
+                    if ($category->getSlug() == 'stress') {
+                        return $this->stressAction($request);
+                    }
+
+                    if ($category->getSlug() == 'ernaehrung') {
+                        return $this->feedingAction($request);
+                    }
+                }
+            }
+        }
+
+        return $this->rueckenAction($request, $slug);
+    }
+
+    /**
      * Display stress page
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -27,13 +58,6 @@ class ExerciseController extends Controller
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
-        if (($focus = $user->getFocus())) {
-            if (!in_array($focus->getSlug(), array('stress'))) {
-                throw new AccessDeniedException('This user does not have access to this section.');
-            }
-        }
-
 
         return $this->render('FitbaseExerciseBundle:Exercise:stress.html.twig', array());
     }
@@ -47,12 +71,6 @@ class ExerciseController extends Controller
     {
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        if (($focus = $user->getFocus())) {
-            if (!in_array($focus->getSlug(), array('ernaehrung'))) {
-                throw new AccessDeniedException('This user does not have access to this section.');
-            }
         }
 
         $entity = new FeedingUser();
@@ -136,7 +154,7 @@ class ExerciseController extends Controller
         }
 
         $subcategory = null;
-        if (empty($slug)) {
+        if (!empty($slug)) {
             $entityManager = $this->container->get('entity_manager');
             $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
             $subcategory = $repositoryCategory->findOneBySlug($slug);
@@ -149,33 +167,6 @@ class ExerciseController extends Controller
             'exercises' => $exercises,
             'categories' => $categories,
         ));
-    }
-
-
-    /**
-     * Redirect to user focus exercise
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function focusAction(Request $request, $slug = null)
-    {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        if (($focus = $user->getFocus())) {
-            switch ($focus->getSlug()) {
-                case 'stress':
-                    return $this->stressAction($request);
-                case 'ernaehrung':
-                    return $this->feedingAction($request);
-                case 'ruecken':
-                default:
-                    return $this->rueckenAction($request, $slug);
-            }
-        }
-
-        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**

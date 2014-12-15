@@ -156,6 +156,23 @@ class UserFocus
     }
 
     /**
+     * Get main focus category
+     * @return mixed|null
+     */
+    public function getCategoryMain()
+    {
+
+        if (($collection = $this->getCategories())) {
+            if (($collection = $collection->toArray())) {
+                if (($category = array_shift($collection))) {
+                    return $category;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
