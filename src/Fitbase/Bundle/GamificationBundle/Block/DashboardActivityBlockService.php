@@ -45,18 +45,25 @@ class DashboardActivityBlockService extends BaseBlockService implements Containe
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        if (($focus = $user->getFocus())) {
-            switch ($focus->getSlug()) {
-                case "stress":
-                    $template = 'FitbaseGamificationBundle:Block:dashboard_activity_stress.html.twig';
-                    return $this->renderPrivateResponse($template, array(
-                        'user' => $user,
-                    ));
-                case "ernaehrung":
-                    $template = 'FitbaseGamificationBundle:Block:dashboard_activity_feeding.html.twig';
-                    return $this->renderPrivateResponse($template, array(
-                        'user' => $user,
-                    ));
+        if (($focus = $this->container->get('focus')->focus($user))) {
+            if (($focusCategory = $focus->getFirstCategory())) {
+                if (($category = $focusCategory->getCategory())) {
+
+                    if ($category->getSlug() == 'stress') {
+                        $template = 'FitbaseGamificationBundle:Block:dashboard_activity_stress.html.twig';
+                        return $this->renderPrivateResponse($template, array(
+                            'user' => $user,
+                        ));
+                    }
+
+                    if ($category->getSlug() == 'ernaehrung') {
+                        $template = 'FitbaseGamificationBundle:Block:dashboard_activity_feeding.html.twig';
+                        return $this->renderPrivateResponse($template, array(
+                            'user' => $user,
+                        ));
+                    }
+
+                }
             }
         }
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_activity.html.twig', array(
