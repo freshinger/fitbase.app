@@ -47,9 +47,7 @@ class ServiceChooserExercise extends ContainerAware
 
         // Find user focus object
         // in user-focus table
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
-        if (($focus = $repositoryUserFocus->findOneByUser($user))) {
+        if (($focus = $this->container->get('focus')->focus($user))) {
             if (($result = $this->fromFocus($user, $focus))) {
                 return $result;
             }

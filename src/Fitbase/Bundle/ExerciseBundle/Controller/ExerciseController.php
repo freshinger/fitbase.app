@@ -28,11 +28,8 @@ class ExerciseController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
-
-        if (($focus = $repositoryUserFocus->findOneByUser($user))) {
-            if (($focusCategory = $focus->getCategoryMain())) {
+        if (($focus = $this->get('focus')->focus($user))) {
+            if (($focusCategory = $focus->getFirstCategory())) {
                 if (($category = $focusCategory->getCategory())) {
 
                     if ($category->getSlug() == 'stress') {

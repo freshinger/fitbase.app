@@ -13,16 +13,13 @@ class ServiceChooserWeeklytask extends ContainerAware
      */
     public function choose($user, \DateTime $datetime = null)
     {
-        $entityManager = $this->container->get('entity_manager');
-
         if (!$this->isAccessAllowed($user, $datetime)) {
             return null;
         }
 
         // Find user focus object
         // in user-focus table
-        $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
-        if (($focus = $repositoryUserFocus->findOneByUser($user))) {
+        if (($focus = $this->container->get('focus')->focus($user))) {
             if (($weeklytask = $this->fromFocus($user, $focus))) {
                 return $weeklytask;
             }

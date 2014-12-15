@@ -46,16 +46,13 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user, 3);
 
-
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
-
         $category = null;
-        if (($focus = $repositoryUserFocus->findOneByUser($user))) {
-            if (($focusCategory = $focus->getCategoryMain())) {
+        if (($focus = $this->container->get('focus')->focus($user))) {
+            if (($focusCategory = $focus->getFirstCategory())) {
                 $category = $focusCategory->getCategory();
             }
         }
+
 
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_focus.html.twig', array(
             'user' => $user,

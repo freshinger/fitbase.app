@@ -57,15 +57,10 @@ class Builder extends ContainerAware
 
         $nameActivity = 'Aktivitäten';
         if (($user = $this->container->get('user')->current())) {
-
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
-
-            if (($focus = $repositoryUserFocus->findOneByUser($user))) {
-                if (($focusCategory = $focus->getCategoryMain())) {
+            if (($focus = $this->container->get('focus')->focus($user))) {
+                if (($focusCategory = $focus->getFirstCategory())) {
                     if (($category = $focusCategory->getCategory())) {
                         $nameActivity = $namesActivity[$category->getSlug()];
-
                     }
                 }
             }

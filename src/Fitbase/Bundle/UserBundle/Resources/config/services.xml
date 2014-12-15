@@ -25,6 +25,12 @@
             </call>
         </service>
 
+        <service id="focus" class="Fitbase\Bundle\UserBundle\Service\ServiceFocus">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
         <service id="singlesignon" class="Fitbase\Bundle\UserBundle\Service\ServiceSingleSignOn">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
