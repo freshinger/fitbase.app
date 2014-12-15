@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\ExerciseBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Func;
 
 class ExerciseRepository extends EntityRepository
 {
@@ -20,6 +21,22 @@ class ExerciseRepository extends EntityRepository
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
+
+    /**
+     * Get records with given type
+     * @param $queryBuilder
+     * @param $type
+     * @return mixed
+     */
+    protected function getExprType($queryBuilder, $type)
+    {
+        if (!empty($type)) {
+            $queryBuilder->setParameter('type', $type);
+            return $queryBuilder->expr()->eq('Exercise.type', ':type');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
 
     /**
      * Find one exercise by company
@@ -46,6 +63,24 @@ class ExerciseRepository extends EntityRepository
         return null;
     }
 
+    /**
+     * @param $category
+     * @return array
+     */
+    public function findByCategoryAndType($category, $type = null)
+    {
+        $queryBuilder = $this->createQueryBuilder("Exercise")
+            ->where(':category MEMBER OF Exercise.categories')
+            ->setParameters(array('category' => $category));
+
+        $queryBuilder->andWhere($queryBuilder->expr()->andX(
+            $this->getExprType($queryBuilder, $type)
+        ));
+
+        $queryBuilder->addOrderBy('Exercise.priority', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 
     /**
      * Find all categories by company

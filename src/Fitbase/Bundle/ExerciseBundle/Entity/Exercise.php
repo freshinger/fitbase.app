@@ -9,6 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Exercise
 {
+    const MOBILISATION = 1;
+    const KRAEFTIGUNG = 2;
+    const DAEHNUNG = 3;
+
     public function __toString()
     {
         return $this->getName();

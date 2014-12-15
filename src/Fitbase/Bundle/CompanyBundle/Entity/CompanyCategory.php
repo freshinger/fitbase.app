@@ -11,7 +11,6 @@ namespace Fitbase\Bundle\CompanyBundle\Entity;
 
 class CompanyCategory
 {
-
     /**
      * @var integer
      */

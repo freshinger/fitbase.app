@@ -191,29 +191,26 @@ class ExerciseController extends Controller
 
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $serviceExercise = $this->get('exercise');
-        if (($exercise0 = $serviceExercise->exercise($user))) {
-            if (($exercise1 = $serviceExercise->exercise($user))) {
-                if (($exercise2 = $serviceExercise->exercise($user))) {
+        if (($exercises = $this->get('chooser_exercise')->choose($user, null))) {
+            list($exercise0, $exercise1, $exercise2) = $exercises;
 
-                    $entity = new ExerciseUser();
-                    $entity->setDone(0);
-                    $entity->setUser($user);
-                    $entity->setProcessed(1);
-                    $entity->setDate($this->get('datetime')->getDateTime('now'));
-                    $entity->setExercise0($exercise0);
-                    $entity->setExercise1($exercise1);
-                    $entity->setExercise2($exercise2);
+            $entity = new ExerciseUser();
+            $entity->setDone(0);
+            $entity->setUser($user);
+            $entity->setProcessed(1);
+            $entity->setDate($this->get('datetime')->getDateTime('now'));
+            $entity->setExercise0($exercise0);
+            $entity->setExercise1($exercise1);
+            $entity->setExercise2($exercise2);
 
-                    $event = new ExerciseUserEvent($entity);
-                    $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+            $event = new ExerciseUserEvent($entity);
+            $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-                    return $this->redirect($this->generateUrl('exercise_user', array(
-                        'unique' => $entity->getId(),
-                        'step' => 0,
-                    )));
-                }
-            }
+            return $this->redirect($this->generateUrl('exercise_user', array(
+                'unique' => $entity->getId(),
+                'step' => 0,
+            )));
+
         }
     }
 
@@ -233,30 +230,25 @@ class ExerciseController extends Controller
         // Get selected video as a first video
         // get noch 2 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $serviceExercise = $this->get('exercise');
-        if (($exercise0 = $serviceExercise->exercise($user, $unique))) {
-            if (($exercise1 = $serviceExercise->exercise($user))) {
-                if (($exercise2 = $serviceExercise->exercise($user))) {
+        if (($exercises = $this->get('chooser_exercise')->exercise($user, $unique))) {
+            list($exercise0, $exercise1, $exercise2) = $exercises;
 
+            $entity = new ExerciseUser();
+            $entity->setDone(0);
+            $entity->setUser($user);
+            $entity->setProcessed(1);
+            $entity->setDate($this->get('datetime')->getDateTime('now'));
+            $entity->setExercise0($exercise0);
+            $entity->setExercise1($exercise1);
+            $entity->setExercise2($exercise2);
 
-                    $entity = new ExerciseUser();
-                    $entity->setDone(0);
-                    $entity->setUser($user);
-                    $entity->setProcessed(1);
-                    $entity->setDate($this->get('datetime')->getDateTime('now'));
-                    $entity->setExercise0($exercise0);
-                    $entity->setExercise1($exercise1);
-                    $entity->setExercise2($exercise2);
+            $event = new ExerciseUserEvent($entity);
+            $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-                    $event = new ExerciseUserEvent($entity);
-                    $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
-
-                    return $this->redirect($this->generateUrl('exercise_user', array(
-                        'unique' => $entity->getId(),
-                        'step' => 0,
-                    )));
-                }
-            }
+            return $this->redirect($this->generateUrl('exercise_user', array(
+                'unique' => $entity->getId(),
+                'step' => 0,
+            )));
         }
     }
 

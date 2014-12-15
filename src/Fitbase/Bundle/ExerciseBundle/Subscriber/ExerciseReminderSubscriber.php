@@ -29,8 +29,43 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
     }
 
     /**
-     * Send weekly task to user
-     * @param WeeklytaskUserEvent $event
+     *
+     * @param ExerciseReminderEvent $event
+     */
+    public function onExerciseReminderCreateEvent(ExerciseReminderEvent $event)
+    {
+        if (($reminderUserItem = $event->getEntity())) {
+            if (($user = $reminderUserItem->getUser())) {
+
+                $hour = $reminderUserItem->getTime()->format('H');
+                $minute = $reminderUserItem->getTime()->format('i');
+
+                $datetime = $this->container->get('datetime')->getDateTime('now');
+                $datetime->setTime($hour, $minute);
+
+
+                if (($exercises = $this->container->get('chooser_exercise')->choose($user, $datetime))) {
+                    list($exercise0, $exercise1, $exercise2) = $exercises;
+
+                    $entity = new ExerciseUser();
+                    $entity->setDone(0);
+                    $entity->setProcessed(0);
+                    $entity->setUser($user);
+                    $entity->setDate($datetime);
+                    $entity->setExercise0($exercise0);
+                    $entity->setExercise1($exercise1);
+                    $entity->setExercise2($exercise2);
+
+                    $this->container->get('entity_manager')->persist($entity);
+                    $this->container->get('entity_manager')->flush($entity);
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param ExerciseUserEvent $event
      */
     public function onExerciseReminderSendEvent(ExerciseUserEvent $event)
     {
@@ -54,48 +89,4 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
     }
 
 
-    /**
-     *
-     * @param ExerciseReminderEvent $event
-     */
-    public function onExerciseReminderCreateEvent(ExerciseReminderEvent $event)
-    {
-        if (($reminderUserItem = $event->getEntity())) {
-            if (($user = $reminderUserItem->getUser())) {
-
-
-                $hour = $reminderUserItem->getTime()->format('H');
-                $minute = $reminderUserItem->getTime()->format('i');
-
-                $datetime = $this->container->get('datetime')->getDateTime('now');
-                $datetime->setTime($hour, $minute);
-
-
-                $entityManager = $this->container->get('entity_manager');
-                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-                if (!$repositoryExerciseUser->findOneByUserAndDateTime($user, $datetime)) {
-
-                    $entity = new ExerciseUser();
-                    $entity->setDone(0);
-                    $entity->setProcessed(0);
-                    $entity->setUser($user);
-                    $entity->setDate($datetime);
-
-                    $serviceExercise = $this->container->get('exercise');
-                    if (($exercise0 = $serviceExercise->exercise($user))) {
-                        if (($exercise1 = $serviceExercise->exercise($user))) {
-                            if (($exercise2 = $serviceExercise->exercise($user))) {
-                                $entity->setExercise0($exercise0);
-                                $entity->setExercise1($exercise1);
-                                $entity->setExercise2($exercise2);
-                            }
-                        }
-                    }
-
-                    $this->container->get('entity_manager')->persist($entity);
-                    $this->container->get('entity_manager')->flush($entity);
-                }
-            }
-        }
-    }
 }

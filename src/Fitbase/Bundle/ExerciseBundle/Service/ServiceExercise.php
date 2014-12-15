@@ -117,41 +117,4 @@ class ServiceExercise extends ContainerAware
 
         return array();
     }
-
-
-    /**
-     * Get exercise using user, company and category
-     * @param $user
-     * @param null $unique
-     * @return null
-     */
-    public function exercise($user, $unique = null)
-    {
-        if ($unique == null) {
-            if (($focus = $user->getFocus())) {
-
-                if (($exercises = $focus->getExercises())) {
-                    $index = rand(0, (count($exercises) - 1));
-
-                    if (isset($exercises[$index])) {
-                        if (($exercise = $exercises[$index])) {
-
-                            return $exercise;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-
-        if (($company = $user->getCompany())) {
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-            return $repositoryExercise->findOneByCompany($company, $unique);
-        }
-
-        return null;
-    }
 }

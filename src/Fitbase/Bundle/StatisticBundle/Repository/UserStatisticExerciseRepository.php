@@ -106,6 +106,7 @@ class UserStatisticExerciseRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 
+
     /**
      * Fetch results by company
      * @param $company
