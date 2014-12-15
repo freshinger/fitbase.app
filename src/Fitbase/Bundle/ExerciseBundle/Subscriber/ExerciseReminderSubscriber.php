@@ -96,9 +96,9 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                 $this->container->get('mail')->mail($user->getEmail(), $title, $content);
             }
 
-//            $exerciseUser->setProcessed(1);
-//            $this->container->get('entity_manager')->persist($exerciseUser);
-//            $this->container->get('entity_manager')->flush($exerciseUser);
+            $exerciseUser->setProcessed(1);
+            $this->container->get('entity_manager')->persist($exerciseUser);
+            $this->container->get('entity_manager')->flush($exerciseUser);
         }
     }
 }
