@@ -162,8 +162,15 @@ class UserFocus
     public function getFirstCategory()
     {
         if (($collection = $this->getCategories())) {
+            $collection = $collection->filter(function ($entity) {
+                if (!$entity->getParent()) {
+                    return true;
+                }
+                return false;
+            });
             if (($collection = $collection->toArray())) {
                 if (($category = array_shift($collection))) {
+
                     return $category;
                 }
             }

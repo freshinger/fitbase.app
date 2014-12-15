@@ -24,4 +24,24 @@ class ServiceFocus extends ContainerAware
         $repositoryUserFocus = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocus');
         return $repositoryUserFocus->findOneByUser($user);
     }
+
+    /**
+     * Check main category slug for user focus
+     * @param $user
+     * @param null $mixed
+     * @return bool
+     */
+    public function check($user, $mixed = null)
+    {
+        if (is_string($mixed)) {
+            if (($focus = $this->focus($user))) {
+                if (($focusCategory = $focus->getFirstCategory())) {
+                    if (($category = $focusCategory->getCategory())) {
+                        return $category->getSlug() == $mixed;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -28,19 +28,12 @@ class ExerciseController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        if (($focus = $this->get('focus')->focus($user))) {
-            if (($focusCategory = $focus->getFirstCategory())) {
-                if (($category = $focusCategory->getCategory())) {
+        if ($this->container->get('focus')->check($user, 'stress')) {
+            return $this->stressAction($request);
+        }
 
-                    if ($category->getSlug() == 'stress') {
-                        return $this->stressAction($request);
-                    }
-
-                    if ($category->getSlug() == 'ernaehrung') {
-                        return $this->feedingAction($request);
-                    }
-                }
-            }
+        if ($this->container->get('focus')->check($user, 'ernaehrung')) {
+            return $this->feedingAction($request);
         }
 
         return $this->rueckenAction($request, $slug);

@@ -57,11 +57,10 @@ class Builder extends ContainerAware
 
         $nameActivity = 'Aktivitäten';
         if (($user = $this->container->get('user')->current())) {
-            if (($focus = $this->container->get('focus')->focus($user))) {
-                if (($focusCategory = $focus->getFirstCategory())) {
-                    if (($category = $focusCategory->getCategory())) {
-                        $nameActivity = $namesActivity[$category->getSlug()];
-                    }
+            foreach ($namesActivity as $slug => $name) {
+                if ($this->container->get('focus')->check($user, $slug)) {
+                    $nameActivity = $namesActivity[$slug];
+                    break;
                 }
             }
         }
