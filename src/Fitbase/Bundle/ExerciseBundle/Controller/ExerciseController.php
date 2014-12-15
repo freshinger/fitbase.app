@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ExerciseController extends Controller
 {
-
     /**
      * Redirect to user focus exercise
      * @param Request $request
