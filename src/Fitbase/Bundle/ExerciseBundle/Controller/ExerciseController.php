@@ -39,6 +39,34 @@ class ExerciseController extends Controller
     }
 
     /**
+     * Display
+     * @param Request $request
+     * @param null $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function rueckenAction(Request $request, $slug = null)
+    {
+        if (!($user = $this->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $subcategory = null;
+        if (!empty($slug)) {
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+            $subcategory = $repositoryCategory->findOneBySlug($slug);
+        }
+
+        $exercises = $this->get('exercise')->getFocusExercises($user, $subcategory);
+        $categories = $this->get('exercise')->getFocusCategories($user, $subcategory);
+
+        return $this->render('FitbaseExerciseBundle:Exercise:focus.html.twig', array(
+            'exercises' => $exercises,
+            'categories' => $categories,
+        ));
+    }
+
+    /**
      * Display stress page
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -132,67 +160,55 @@ class ExerciseController extends Controller
     }
 
     /**
-     * Display
-     * @param Request $request
-     * @param null $slug
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function rueckenAction(Request $request, $slug = null)
-    {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        $subcategory = null;
-        if (!empty($slug)) {
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-            $subcategory = $repositoryCategory->findOneBySlug($slug);
-        }
-
-        $exercises = $this->get('exercise')->getFocusExercises($user, $subcategory);
-        $categories = $this->get('exercise')->getFocusCategories($user, $subcategory);
-
-        return $this->render('FitbaseExerciseBundle:Exercise:focus.html.twig', array(
-            'exercises' => $exercises,
-            'categories' => $categories,
-        ));
-    }
-
-    /**
      * Calculate current exercise from focus
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function focusExerciseAction(Request $request)
+    public function focusExerciseAction(Request $request, $slug = null)
     {
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        // Display exercise
+        // for stress
+        if ($slug == 'stress') {
+            return $this->stressAction($request);
+        }
+
+        // Display exercise
+        // for ernaehrung
+        if ($slug == 'ernaehrung') {
+            return $this->feedingAction($request);
+        }
+
+        $exercises = array();
+        if (!($exercises = $this->container->get('chooser_exercise')->category($user, $slug))) {
+            if (!($exercises = $this->get('chooser_exercise')->choose($user, null))) {
+                throw new AccessDeniedException('This user does not have access to this section.');
+            }
+        }
+
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        if (($exercises = $this->get('chooser_exercise')->choose($user, null))) {
-            list($exercise0, $exercise1, $exercise2) = $exercises;
+        list($exercise0, $exercise1, $exercise2) = $exercises;
 
-            $entity = new ExerciseUser();
-            $entity->setDone(0);
-            $entity->setUser($user);
-            $entity->setProcessed(1);
-            $entity->setDate($this->get('datetime')->getDateTime('now'));
-            $entity->setExercise0($exercise0);
-            $entity->setExercise1($exercise1);
-            $entity->setExercise2($exercise2);
+        $entity = new ExerciseUser();
+        $entity->setDone(0);
+        $entity->setUser($user);
+        $entity->setProcessed(1);
+        $entity->setDate($this->get('datetime')->getDateTime('now'));
+        $entity->setExercise0($exercise0);
+        $entity->setExercise1($exercise1);
+        $entity->setExercise2($exercise2);
 
-            $event = new ExerciseUserEvent($entity);
-            $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+        $event = new ExerciseUserEvent($entity);
+        $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-            return $this->redirect($this->generateUrl('exercise_user', array(
-                'unique' => $entity->getId(),
-                'step' => 0,
-            )));
-
-        }
+        return $this->redirect($this->generateUrl('exercise_user', array(
+            'unique' => $entity->getId(),
+            'step' => 0,
+        )));
     }
 
     /**

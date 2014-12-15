@@ -179,6 +179,23 @@ class UserFocus
     }
 
     /**
+     * Get collection with parent-only categories
+     * @return \Doctrine\Common\Collections\Collection|null
+     */
+    public function getParentCategories()
+    {
+        if (($collection = $this->getCategories())) {
+            return $collection->filter(function ($entity) {
+                if (!$entity->getParent()) {
+                    return true;
+                }
+                return false;
+            });
+        }
+        return null;
+    }
+
+    /**
      * @return string
      */
     public function __toString()

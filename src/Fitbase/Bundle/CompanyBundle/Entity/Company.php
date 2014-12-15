@@ -335,4 +335,37 @@ class Company
     {
         return $this->categories;
     }
+
+    /**
+     * Get collection with parent-only categories
+     * @return \Doctrine\Common\Collections\Collection|null
+     */
+    public function getParentCategories()
+    {
+        if (($collection = $this->getCategories())) {
+            return $collection->filter(function ($entity) {
+                if (!$entity->getCategory()->getParent()) {
+                    return true;
+                }
+                return false;
+            });
+        }
+        return null;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection|null
+     */
+    public function getChildCategories()
+    {
+        if (($collection = $this->getCategories())) {
+            return $collection->filter(function ($entity) {
+                if ($entity->getCategory()->getParent()) {
+                    return true;
+                }
+                return false;
+            });
+        }
+        return null;
+    }
 }

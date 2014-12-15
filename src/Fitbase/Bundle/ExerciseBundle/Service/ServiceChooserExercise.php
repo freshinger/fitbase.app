@@ -16,6 +16,52 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceChooserExercise extends ContainerAware
 {
     /**
+     * Find exercises from category
+     * @param $user
+     * @param null $slug
+     * @return array|null
+     */
+    public function category($user, $slug = null)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryExercise = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+        if (($category = $repositoryExercise->findOneBySlug($slug))) {
+            return $this->fromCategory($user, $category);
+        }
+        return null;
+    }
+
+    /**
+     * Method to find exercises from category
+     * @param $user
+     * @param $category
+     * @return array
+     */
+    public function fromCategory($user, $category)
+    {
+        if (($children = $category->getChildren())) {
+            foreach ($children as $child) {
+                if (($result = $this->fromCategory($user, $child))) {
+                    return $result;
+                }
+            }
+        }
+
+        $exercises = array();
+        if (($exercise0 = $this->fromUserAndCategoryAndType($user, $category, Exercise::MOBILISATION))) {
+            if (($exercise1 = $this->fromUserAndCategoryAndType($user, $category, Exercise::KRAEFTIGUNG))) {
+                if (($exercise2 = $this->fromUserAndCategoryAndType($user, $category, Exercise::DAEHNUNG))) {
+                    array_push($exercises, $exercise0);
+                    array_push($exercises, $exercise1);
+                    array_push($exercises, $exercise2);
+                }
+            }
+        }
+
+        return $exercises;
+    }
+
+    /**
      * @param $user
      * @param null $unique
      * @return null
@@ -63,7 +109,6 @@ class ServiceChooserExercise extends ContainerAware
         }
 
         return null;
-
     }
 
     /**

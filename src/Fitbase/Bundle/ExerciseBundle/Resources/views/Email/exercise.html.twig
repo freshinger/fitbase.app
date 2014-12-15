@@ -6,27 +6,47 @@
         <div class="col-md-6">
             {% if user is defined and user %}
                 <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+            {% endif %}
 
-                {% set focus = user.focus %}
-                {% if focus is defined and focus %}
-                    Hiermit möchten wir Sie an Ihre {{ focus.name }}-Übung erinnern.
+            {% if categoryFocus is defined and categoryFocus %}
+                {% if categoryFocus.category is defined and categoryFocus.category %}
+                    Hiermit möchten wir Sie an Ihre {{ categoryFocus.category.name }}-Übung erinnern.
                     Bitte klicken Sie auf den Button, um direkt zur Übung zu gelangen.
+                {% endif %}
+            {% endif %}
 
-                    Viel Spaß und einen schönen Tag wünscht Ihnen die Fitbase!
+            Viel Spaß und einen schönen Tag wünscht Ihnen die Fitbase!
 
-                    <br/>
-                    <br/>
+            <br/>
+            <br/>
 
-                    {% if exerciseUser is defined and exerciseUser %}
-                        <p>
-                            <a class="true btn btn btn-success btn-ds"
-                               href="{{ sign(user, url('exercise_user', { 'unique': exerciseUser.id, 'step': 0, '_sonata_page_skip': true })) }}"
-                               style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
-                                Zur Fitbase
-                            </a>
-                        </p>
+            {% if categories is defined and categories %}
+                <div class="row" style="width: 80%; display: block; margin-left: auto; margin-right: auto;">
+                    {% for key, category in categories %}
+                        {% if category.category is defined and category.category %}
+                            <div class="col-md-6">
+                                <a class="true btn btn btn-success btn-ds"
+                                   href="{{ sign(user, url('focus_exercise', { 'slug': category.category.slug })) }}"
+                                   style="display: block; margin-left: auto; margin-right: auto; width: 200px; margin-top: 5px;">
+                                    {{ category.category.name }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <br/>
+            <br/>
+
+            {% if exerciseUser is defined and exerciseUser %}
+                {% if categoryFocus is defined and categoryFocus %}
+                    {% if categoryFocus.category is defined and categoryFocus.category %}
+                        <a class="true btn btn btn-success btn-ds" href="{{ sign(user, url('focus')) }}"
+                           style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
+                            Zur {{ categoryFocus.category.name }}-Übung
+                        </a>
                     {% endif %}
-
                 {% endif %}
             {% endif %}
 
