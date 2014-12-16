@@ -200,6 +200,6 @@ class UserFocus
      */
     public function __toString()
     {
-        return "Fokus für: {$this->getUser()}";
+        return "{$this->getUser()}";
     }
 }

@@ -48,7 +48,6 @@ class User extends BaseUser
      */
     protected $focus;
 
-
     /**
      * @var string
      */
@@ -68,29 +67,6 @@ class User extends BaseUser
     public function setFormat($format)
     {
         $this->format = $format;
-    }
-
-    /**
-     * Set category
-     *
-     * @param \Application\Sonata\ClassificationBundle\Entity\Category $focus
-     * @return Exercise
-     */
-    public function setFocus(\Application\Sonata\ClassificationBundle\Entity\Category $focus = null)
-    {
-        $this->focus = $focus;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \Application\Sonata\ClassificationBundle\Entity\Category
-     */
-    public function getFocus()
-    {
-        return $this->focus;
     }
 
     /**
@@ -150,5 +126,29 @@ class User extends BaseUser
     {
         $this->site = $site;
     }
+
+    /**
+     * Set focus
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocus $focus
+     * @return User
+     */
+    public function setFocus(\Fitbase\Bundle\UserBundle\Entity\UserFocus $focus = null)
+    {
+        $this->focus = $focus;
+
+        return $this;
+    }
+
+    /**
+     * Get focus
+     *
+     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocus
+     */
+    public function getFocus()
+    {
+        return $this->focus;
+    }
+
 
 }

@@ -115,7 +115,7 @@ class UserFocusCategory
      */
     public function __toString()
     {
-        return "{$this->getFocus()}: {$this->getCategory()}";
+        return "{$this->getCategory()}";
     }
 
     /**

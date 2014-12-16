@@ -107,12 +107,11 @@ class UserFocusAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array('class' => 'col-md-4'))
-            ->add('user')
-            ->add('name')
-            ->add('description')
-            ->end()
-            ->with('Categories', array('class' => 'col-md-8'))
+//            ->with('General', array('class' => 'col-md-4'))
+//            ->add('name')
+//            ->add('description')
+//            ->end()
+            ->with('Categories', array('class' => 'col-md-12'))
             ->add('categories', 'sonata_type_collection', array(
                 'label' => false,
                 'type_options' => array(

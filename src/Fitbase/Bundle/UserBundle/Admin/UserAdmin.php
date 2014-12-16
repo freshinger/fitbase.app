@@ -12,6 +12,7 @@
 namespace Fitbase\Bundle\UserBundle\Admin;
 
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\UserBundle\Form\UserFocusForm;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -89,6 +90,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
         $listMapper
             ->addIdentifier('username')
             ->add('email')
+            ->add('focus')
             ->add('company')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
@@ -117,6 +119,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         $formMapper
             ->tab('General')
             ->with('General', array('class' => 'col-md-6'))
@@ -131,7 +134,6 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
                 'required' => false,
                 'read_only' => true,
             ))
-            ->add('focus', null, array('required' => true))
             ->end()
             ->with('Profile', array('class' => 'col-md-6'))
             ->add('enabled')
@@ -197,5 +199,19 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ))
             ->end()
             ->end();
+
+
+        if (($user = $this->getRoot()->getSubject())) {
+            if (($focus = $user->getFocus())) {
+                $formMapper->tab('Fokus')
+                    ->with('Fokus', array('class' => 'col-md-6'))
+                    ->add('focus', new UserFocusForm($this->getRoot()->getSubject()), array(
+                        'label' => false
+                    ))
+                    ->end()
+                    ->end();
+            }
+        }
+
     }
 }

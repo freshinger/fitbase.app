@@ -6,6 +6,7 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserSingleSignOnEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
@@ -34,8 +35,25 @@ class UserFocusSubscriber extends ContainerAware implements EventSubscriberInter
         );
     }
 
+    /**
+     * Create user focus for new user
+     * @param UserEvent $event
+     */
     public function onUserCreatedEvent(UserEvent $event)
     {
+        if (($user = $event->getEntity())) {
+
+            $userFocus = new UserFocus();
+            $userFocus->setUser($user);
+
+            $this->container->get('entity_manager')->persist($userFocus);
+            $this->container->get('entity_manager')->flush($userFocus);
+
+            $user->setFocus($userFocus);
+
+            $this->container->get('entity_manager')->persist($user);
+            $this->container->get('entity_manager')->flush($user);
+        }
 
     }
 

@@ -12,6 +12,7 @@
 namespace Fitbase\Bundle\ExerciseBundle\Admin;
 
 use Fitbase\Bundle\ExerciseBundle\Event\CategoryEvent;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\ClassificationBundle\Admin\CategoryAdmin as BaseCategoryAdmin;
@@ -71,6 +72,15 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
             ->add('position')
             ->add('enabled', null, array('editable' => true));
     }
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('name')
+            ->add('enabled')
+            ->add('parent');
+    }
+
 
     /**
      * {@inheritdoc}

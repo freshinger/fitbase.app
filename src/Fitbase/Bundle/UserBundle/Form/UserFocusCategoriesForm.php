@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class UserFocusCategoryForm extends AbstractType
+class UserFocusCategoriesForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

@@ -19,6 +19,10 @@
     <services>
 
 
+        <service id="model_manager" class="Sonata\DoctrineORMAdminBundle\Model\ModelManager">
+            <argument type="service" id="doctrine"/>
+        </service>
+
         <service id="codegenerator" class="Fitbase\Bundle\UserBundle\Service\ServiceCodegenerator">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

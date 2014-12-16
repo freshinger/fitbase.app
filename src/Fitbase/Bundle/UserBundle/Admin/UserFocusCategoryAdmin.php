@@ -41,9 +41,26 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function postUpdate($object)
     {
+        // Attach automatically parent
+        // focus category to current focus category
+        // if real category has a parent and
+        // this parent was attached to focus
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUserFocusCategory = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocusCategory');
 
+        if (($category = $object->getCategory())) {
+            $parentCategory = null;
+            if (($parentCategory = $category->getParent())) {
+                if (!($parentFocusCategory = $repositoryUserFocusCategory->findOneByCategory($parentCategory))) {
+                    // TODO: ...
+                }
+            }
+            $object->setParent($parentFocusCategory);
+            $entityManager->persist($object);
+        }
+
+        $entityManager->flush();
     }
-
 
     /**
      * {@inheritdoc}
@@ -66,6 +83,7 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('focus')
             ->add('category')
+            ->add('parent')
             ->add('priority')
             ->add('_action', 'actions', array(
                 'actions' => array(
