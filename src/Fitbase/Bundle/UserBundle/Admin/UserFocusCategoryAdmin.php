@@ -105,8 +105,9 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->with('General', array('class' => 'col-md-4'))
-            ->add('focus')
-            ->add('category')
+            ->add('category', null, array(
+                'disabled' => true
+            ))
             ->add('priority')
             ->end();
     }

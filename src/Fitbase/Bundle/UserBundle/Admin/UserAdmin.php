@@ -205,8 +205,21 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             if (($focus = $user->getFocus())) {
                 $formMapper->tab('Fokus')
                     ->with('Fokus', array('class' => 'col-md-6'))
-                    ->add('focus', new UserFocusForm($this->getRoot()->getSubject()), array(
-                        'label' => false
+                    ->add('focus', 'sonata_type_admin', array(
+                        'label' => false,
+                        'delete' => false,
+                        'btn_add' => false,
+
+//                        'type_options' => array(
+//                            'delete' => false,
+//                            'delete_options' => array(
+//                                'type' => 'checkbox',
+//                                'type_options' => array(
+//                                    'mapped' => false,
+//                                    'required' => false,
+//                                )
+//                            )
+//                        )
                     ))
                     ->end()
                     ->end();
