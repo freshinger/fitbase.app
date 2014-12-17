@@ -19,12 +19,13 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-many field="exercises" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise"
-                     mapped-by="category">
+
+        <many-to-many field="exercises" mapped-by="categories"
+                      target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
             <order-by>
                 <order-by-field name="priority" direction="ASC"/>
             </order-by>
-        </one-to-many>
+        </many-to-many>
 
 
     </entity>

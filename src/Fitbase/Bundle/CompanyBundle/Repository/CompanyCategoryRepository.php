@@ -53,6 +53,21 @@ class CompanyCategoryRepository extends EntityRepository
     }
 
     /**
+     * get records by id array
+     * @param $queryBuilder
+     * @param $ids
+     * @return mixed
+     */
+    protected function getExprIdArray($queryBuilder, $ids)
+    {
+        if (!empty($ids)) {
+            $queryBuilder->setParameter('ids', $ids);
+            return $queryBuilder->expr()->in('CompanyCategory.id', ':ids');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * Find all records by slug
      * @param $queryBuilder
      * @param $slug
@@ -150,6 +165,22 @@ class CompanyCategoryRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprCompany($queryBuilder, $company),
             $this->getExprNoParent($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get list of objects by id array
+     * @param $ids
+     * @return array
+     */
+    public function findAllByIdArray($ids)
+    {
+        $queryBuilder = $this->createQueryBuilder('CompanyCategory');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprIdArray($queryBuilder, $ids)
         ));
 
         return $queryBuilder->getQuery()->getResult();

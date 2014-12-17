@@ -63,6 +63,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Vorschaubild',
                 'template' => 'FitbaseExerciseBundle:Admin:list_image.html.twig'
             ))
+            ->add('type')
             ->add('categories')
             ->add('priority')
             ->add('countPoint')
@@ -98,6 +99,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->add('tag')
             ->add('type', 'choice', array(
                 'choices' => array(
+                    null => 'Kein Typ',
                     '1' => 'Mobilisation',
                     '2' => 'Kräftigung',
                     '3' => 'Dehnung',

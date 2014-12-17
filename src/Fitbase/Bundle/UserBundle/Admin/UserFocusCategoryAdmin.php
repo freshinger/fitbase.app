@@ -13,6 +13,7 @@ namespace Fitbase\Bundle\UserBundle\Admin;
 
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusCategoryForm;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -39,27 +40,19 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
+    public function postPersist($object)
+    {
+        $event = new UserFocusCategoryEvent($object);
+        $this->container->get('event_dispatcher')->dispatch('user_focus_category_created', $event);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function postUpdate($object)
     {
-        // Attach automatically parent
-        // focus category to current focus category
-        // if real category has a parent and
-        // this parent was attached to focus
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryUserFocusCategory = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocusCategory');
-
-        if (($category = $object->getCategory())) {
-            $parentCategory = null;
-            if (($parentCategory = $category->getParent())) {
-                if (!($parentFocusCategory = $repositoryUserFocusCategory->findOneByCategory($parentCategory))) {
-                    // TODO: ...
-                }
-            }
-            $object->setParent($parentFocusCategory);
-            $entityManager->persist($object);
-        }
-
-        $entityManager->flush();
+        $event = new UserFocusCategoryEvent($object);
+        $this->container->get('event_dispatcher')->dispatch('user_focus_category_updated', $event);
     }
 
     /**

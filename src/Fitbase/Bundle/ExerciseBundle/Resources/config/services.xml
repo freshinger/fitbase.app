@@ -21,11 +21,7 @@
             </call>
         </service>
 
-        <service id="chooser_exercise" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceChooserExercise">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
+        <service id="chooser_category" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceChooserCategory"/>
 
 
         <service id="fitbase_helper.media" class="Fitbase\Bundle\ExerciseBundle\Helper\MediaHelper">

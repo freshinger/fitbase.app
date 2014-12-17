@@ -43,9 +43,19 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                 $datetime = $this->container->get('datetime')->getDateTime('now');
                 $datetime->setTime($hour, $minute);
 
+                $entityManager = $this->container->get('entity_manager');
+                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
 
-                if (($exercises = $this->container->get('chooser_exercise')->choose($user, $datetime))) {
-                    list($exercise0, $exercise1, $exercise2) = $exercises;
+                if (!($exerciseUser = $repositoryExerciseUser->findOneByUserAndDateTime($user, $datetime))) {
+
+                    $exercise0 = null;
+                    $exercise1 = null;
+                    $exercise2 = null;
+                    // Get 3 videos random, but with respect to user focus
+                    // and create a exercise for user with 3 videos
+                    if (($collection = $this->container->get('exercise')->choose($user))) {
+                        list($exercise0, $exercise1, $exercise2) = $collection;
+                    }
 
                     $entity = new ExerciseUser();
                     $entity->setDone(0);

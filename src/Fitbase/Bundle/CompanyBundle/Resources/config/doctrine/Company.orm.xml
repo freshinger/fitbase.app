@@ -28,6 +28,12 @@
 
         <many-to-one field="site" target-entity="Application\Sonata\PageBundle\Entity\Site"/>
 
+        <one-to-many field="users" target-entity="Application\Sonata\UserBundle\Entity\User" mapped-by="company">
+            <order-by>
+                <order-by-field name="id" direction="ASC"/>
+            </order-by>
+        </one-to-many>
+
         <one-to-many field="categories" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory"
                      mapped-by="company">
             <order-by>

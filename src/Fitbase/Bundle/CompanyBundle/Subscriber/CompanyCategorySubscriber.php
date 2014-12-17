@@ -23,8 +23,9 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
             'category_update' => array('onCategoryUpdateEvent', -128),
             'category_remove' => array('onCategoryRemoveEvent', 128),
 
-            'company_category_update' => array('onCompanyCategoryUpdateEvent', -128),
-            'company_category_remove' => array('onCompanyCategoryRemoveEvent', -128),
+            'company_category_created' => array('onCompanyCategoryCreatedEvent', -128),
+            'company_category_updated' => array('onCompanyCategoryUpdatedEvent', -128),
+            'company_category_removed' => array('onCompanyCategoryRemovedEvent', -128),
         );
     }
 
@@ -50,7 +51,7 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
 
 
                         $eventChild = new CompanyCategoryEvent($entity);
-                        $this->container->get('event_dispatcher')->dispatch('company_category_remove', $eventChild);
+                        $this->container->get('event_dispatcher')->dispatch('company_category_removed', $eventChild);
                     }
                 }
             }
@@ -84,7 +85,7 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
                             $entity->setCompany($companyCategory->getCompany());
 
                             $eventChild = new CompanyCategoryEvent($entity);
-                            $this->container->get('event_dispatcher')->dispatch('company_category_update', $eventChild);
+                            $this->container->get('event_dispatcher')->dispatch('company_category_updated', $eventChild);
                         }
                     }
                 }
@@ -93,35 +94,44 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
     }
 
     /**
+     *
      * @param CompanyCategoryEvent $event
      */
-    public function onCompanyCategoryUpdateEvent(CompanyCategoryEvent $event)
+    public function onCompanyCategoryCreatedEvent(CompanyCategoryEvent $event)
     {
-        $entityManager = $this->container->get('entity_manager');
-        if (($companyCategory = $event->getEntity())) {
 
-            $entityManager->persist($companyCategory);
-            $entityManager->flush($companyCategory);
+    }
 
-            if (($category = $companyCategory->getCategory())) {
-                $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-
-                if (($children = $repositoryCategory->findByParent($category))) {
-                    $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-                    foreach ($children as $index => $categoryChild) {
-                        if (!($repositoryCompanyCategory->findOneByCategory($categoryChild))) {
-
-                            $entity = new CompanyCategory();
-                            $entity->setCompany($companyCategory->getCompany());
-                            $entity->setCategory($categoryChild);
-
-                            $eventChild = new CompanyCategoryEvent($entity);
-                            $this->container->get('event_dispatcher')->dispatch('company_category_update', $eventChild);
-                        }
-                    }
-                }
-            }
-        }
+    /**
+     * @param CompanyCategoryEvent $event
+     */
+    public function onCompanyCategoryUpdatedEvent(CompanyCategoryEvent $event)
+    {
+//        $entityManager = $this->container->get('entity_manager');
+//        if (($companyCategory = $event->getEntity())) {
+//
+//            $entityManager->persist($companyCategory);
+//            $entityManager->flush($companyCategory);
+//
+//            if (($category = $companyCategory->getCategory())) {
+//                $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+//
+//                if (($children = $repositoryCategory->findByParent($category))) {
+//                    $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+//                    foreach ($children as $index => $categoryChild) {
+//                        if (!($repositoryCompanyCategory->findOneByCategory($categoryChild))) {
+//
+//                            $entity = new CompanyCategory();
+//                            $entity->setCompany($companyCategory->getCompany());
+//                            $entity->setCategory($categoryChild);
+//
+//                            $eventChild = new CompanyCategoryEvent($entity);
+//                            $this->container->get('event_dispatcher')->dispatch('company_category_updated', $eventChild);
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
     }
 
@@ -129,33 +139,33 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
      * Check for remove event
      * @param CompanyCategoryEvent $event
      */
-    public function onCompanyCategoryRemoveEvent(CompanyCategoryEvent $event)
+    public function onCompanyCategoryRemovedEvent(CompanyCategoryEvent $event)
     {
-        if (($companyCategory = $event->getEntity())) {
-
-            $entityManager = $this->container->get('entity_manager');
-            if (($category = $companyCategory->getCategory())) {
-
-                $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-                if (($children = $repositoryCategory->findByParent($category))) {
-
-                    $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-                    foreach ($children as $index => $categoryChild) {
-                        if (($entity = $repositoryCompanyCategory->findOneByCategory($categoryChild))) {
-
-                            $eventChild = new CompanyCategoryEvent($entity);
-                            $this->container->get('event_dispatcher')->dispatch('company_category_remove', $eventChild);
-                        }
-                    }
-                }
-            }
-
-            $unitOfWork = $entityManager->getUnitOfWork();
-            if ($unitOfWork->getEntityState($companyCategory) == \Doctrine\ORM\UnitOfWork::STATE_MANAGED) {
-                $entityManager->remove($companyCategory);
-                $entityManager->flush($companyCategory);
-            }
-        }
+//        if (($companyCategory = $event->getEntity())) {
+//
+//            $entityManager = $this->container->get('entity_manager');
+//            if (($category = $companyCategory->getCategory())) {
+//
+//                $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+//                if (($children = $repositoryCategory->findByParent($category))) {
+//
+//                    $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+//                    foreach ($children as $index => $categoryChild) {
+//                        if (($entity = $repositoryCompanyCategory->findOneByCategory($categoryChild))) {
+//
+//                            $eventChild = new CompanyCategoryEvent($entity);
+//                            $this->container->get('event_dispatcher')->dispatch('company_category_removed', $eventChild);
+//                        }
+//                    }
+//                }
+//            }
+//
+//            $unitOfWork = $entityManager->getUnitOfWork();
+//            if ($unitOfWork->getEntityState($companyCategory) == \Doctrine\ORM\UnitOfWork::STATE_MANAGED) {
+//                $entityManager->remove($companyCategory);
+//                $entityManager->flush($companyCategory);
+//            }
+//        }
     }
 
 }

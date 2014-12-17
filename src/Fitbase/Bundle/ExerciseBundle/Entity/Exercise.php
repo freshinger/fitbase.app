@@ -190,6 +190,17 @@ class Exercise
     }
 
     /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Set video
      *
      * @param \Application\Sonata\MediaBundle\Entity\Media $webm

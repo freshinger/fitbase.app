@@ -100,4 +100,78 @@ class CompanyCategory
 
         return $string;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $children;
+
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory
+     */
+    private $parent;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add children
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $children
+     * @return CompanyCategory
+     */
+    public function addChild(\Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $children
+     */
+    public function removeChild(\Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $parent
+     * @return CompanyCategory
+     */
+    public function setParent(\Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
 }

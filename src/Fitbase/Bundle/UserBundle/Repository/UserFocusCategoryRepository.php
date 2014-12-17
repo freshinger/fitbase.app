@@ -13,4 +13,77 @@ use Doctrine\ORM\EntityRepository;
 class UserFocusCategoryRepository extends EntityRepository
 {
 
+    /**
+     * Get expression to find record by user id
+     * @param $queryBuilder
+     * @param $category
+     * @return mixed
+     */
+    public function getExprCategory($queryBuilder, $category)
+    {
+        if (is_object($category)) {
+
+            $queryBuilder->setParameter('category', $category->getId());
+            return $queryBuilder->expr()->eq('UserFocusCategory.category', ':category');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get expression to find record by user id
+     * @param $queryBuilder
+     * @param $focus
+     * @return mixed
+     */
+    public function getExprFocus($queryBuilder, $focus)
+    {
+        if (is_object($focus)) {
+
+            $queryBuilder->setParameter('focus', $focus->getId());
+            return $queryBuilder->expr()->eq('UserFocusCategory.focus', ':focus');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Find one record by focus and category
+     * @param $focus
+     * @param $category
+     * @return array
+     */
+    public function findAllByFocusAndCategory($focus, $category)
+    {
+        $queryBuilder = $this->createQueryBuilder('UserFocusCategory');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprFocus($queryBuilder, $focus),
+            $this->getExprCategory($queryBuilder, $category)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Find all records by company and category
+     * @param $focus
+     * @param $category
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByFocusAndCategory($focus, $category)
+    {
+        $queryBuilder = $this->createQueryBuilder('UserFocusCategory');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprFocus($queryBuilder, $focus),
+            $this->getExprCategory($queryBuilder, $category)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 }

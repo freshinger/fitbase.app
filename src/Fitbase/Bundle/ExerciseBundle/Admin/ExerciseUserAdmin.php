@@ -55,6 +55,9 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('user')
+            ->add('exercise0')
+            ->add('exercise1')
+            ->add('exercise2')
             ->add('date')
             ->add('done')
             ->add('doneDate')

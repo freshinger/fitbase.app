@@ -26,7 +26,7 @@
                         {% if category.category is defined and category.category %}
                             <div class="col-md-6">
                                 <a class="true btn btn btn-success btn-ds"
-                                   href="{{ sign(user, url('focus_exercise', { 'slug': category.category.slug })) }}"
+                                   href="{{ sign(user, url('exercise_focus', { 'slug': category.category.slug })) }}"
                                    style="display: block; margin-left: auto; margin-right: auto; width: 200px; margin-top: 5px;">
                                     {{ category.category.name }}
                                 </a>

@@ -2,6 +2,9 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Service;
 
+use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExercise;
+use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseFilter;
+use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\Provider\FileProvider;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -15,6 +18,57 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceExercise extends ContainerAware
 {
     /**
+     * Select 3 exercises
+     * @param $user
+     * @return array
+     */
+    public function choose($user, $category = null, \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise = null)
+    {
+        // Get category list from focus
+        // with respect to priority
+        if (($chooserCategory = $this->container->get('chooser_category'))) {
+            if (($categories = $chooserCategory->choose($user->getFocus()))) {
+
+                // Replace all selected categories
+                // with only one category
+                // needs to choose a exercise from
+                // this one
+                if (!empty($category)) {
+                    $categories = array($category);
+                }
+
+                $preselected = array();
+                if (!empty($exercise)) {
+                    array_push($preselected, $exercise);
+                    if (!($categories = $exercise->getCategories())) {
+                        // TODO: notify administration
+                    }
+                }
+
+                $entityManager = $this->container->get('entity_manager');
+                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+
+                // Extra filter to check is
+                // a exercise already done
+                $chooserNotProcessed = new ChooserExerciseFilter(function ($exercise0) use ($user, $exercise, $repositoryExerciseUser) {
+                    return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
+                });
+
+                if (!count(($exercises = $chooserNotProcessed->choose($categories, $preselected)))) {
+                    $chooserRandomized = new ChooserExerciseRandom();
+                    return $chooserRandomized->choose($categories, $preselected);
+                }
+
+
+                return $exercises;
+            }
+        }
+
+        return array();
+    }
+
+
+    /**
      * @param $datetime
      * @return mixed
      */
@@ -23,67 +77,6 @@ class ServiceExercise extends ContainerAware
         $entityManager = $this->container->get('entity_manager');
         $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
         return $repositoryWeeklytaskUser->findAllNotProcessedByDateTime($datetime);
-    }
-
-    /**
-     * Get categories from user focus and user company
-     * @param $user
-     * @return array
-     */
-    public function getFocusCategories($user, $subcategory = null)
-    {
-        $category = $user->getFocus();
-        if ($subcategory !== null) {
-            $category = $subcategory;
-        }
-
-        // if user has no company
-        // show subcategories from focus
-        if (($company = $user->getCompany())) {
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-            // Check is focus assigned to user company
-            // TODO: user have to contact administrator here
-            if (($companyCategory = $repositoryCompanyCategory->findOneByCompanyAndCategory($company, $category))) {
-                return $category->getChildren();
-            }
-        }
-
-        return array();
-    }
-
-    /**
-     * @param $user
-     * @return array
-     */
-    public function getFocusExercises($user, $subcategory = null)
-    {
-        $category = $user->getFocus();
-        if ($subcategory !== null) {
-            $category = $subcategory;
-        }
-
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-        $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-
-
-        if (($company = $user->getCompany())) {
-            // Check is focus assigned to user company
-            // TODO: user have to contact administrator here
-            if (($companyCategory = $repositoryCompanyCategory->findOneByCompanyAndCategory($company, $category))) {
-                $result = $repositoryExercise->findAllByCategory($category);
-
-                if (($categories = $category->getChildren())) {
-                    foreach ($categories as $categoryChild) {
-                        $result = array_merge($result, $repositoryExercise->findAllByCategory($categoryChild));
-                    }
-                }
-
-                return $result;
-            }
-        }
-        return array();
     }
 
     /**

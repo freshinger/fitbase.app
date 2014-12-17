@@ -11,9 +11,9 @@
 
 namespace Fitbase\Bundle\CompanyBundle\Admin;
 
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
 use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -41,7 +41,7 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     public function postPersist($object)
     {
         $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_update', $event);
+        $this->container->get('event_dispatcher')->dispatch('company_category_created', $event);
     }
 
     /**
@@ -50,17 +50,35 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     public function postUpdate($object)
     {
         $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_update', $event);
+        $this->container->get('event_dispatcher')->dispatch('company_category_updated', $event);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function postRemove($object)
+    public function preRemove($object)
     {
         $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_remove', $event);
+        $this->container->get('event_dispatcher')->dispatch('company_category_removed', $event);
     }
+
+    /**
+     * @param string $actionName
+     * @param ProxyQueryInterface $query
+     * @param array $idx
+     * @param bool $allElements
+     */
+    public function preBatchAction($actionName, ProxyQueryInterface $query, array & $idx, $allElements)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+        if (($collection = $repositoryCompanyCategory->findAllByIdArray($idx))) {
+            foreach ($collection as $companyCategory) {
+                $this->preRemove($companyCategory);
+            }
+        }
+    }
+
 
     /**
      * {@inheritdoc}
@@ -85,7 +103,6 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
-                    'edit' => array(),
                     'delete' => array(),
                 )
             ));

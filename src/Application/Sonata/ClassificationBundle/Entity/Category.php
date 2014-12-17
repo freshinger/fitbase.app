@@ -79,10 +79,23 @@ class Category extends BaseCategory
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExercises()
+    public function getExercises($type = null)
     {
+        if (!empty($type)) {
+            return $this->exercises->filter(function ($entity) use ($type) {
+                if ($entity->getType() != null) {
+                    if ($entity->getType() == $type) {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            });
+        }
+
         return $this->exercises;
     }
+
 
     /**
      * @return string
