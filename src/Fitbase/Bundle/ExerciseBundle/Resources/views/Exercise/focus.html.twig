@@ -9,7 +9,7 @@
                 </a>
                 {% if category.media is defined %}
                     <a href="{{ path('focus', {'slug': category.slug}) }}">
-                        {% thumbnail category.media, 'preview' with {'width': 100} %}
+                        {% thumbnail category.media, 'preview' with {'width': 150} %}
                     </a>
                 {% endif %}
             </div>
