@@ -108,6 +108,9 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
             ->add('category', null, array(
                 'disabled' => true
             ))
+            ->add('parent', null, array(
+                'disabled' => true
+            ))
             ->add('priority')
             ->end();
     }
