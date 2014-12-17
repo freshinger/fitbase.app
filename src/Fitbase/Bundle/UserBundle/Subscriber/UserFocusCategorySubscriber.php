@@ -6,6 +6,7 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
+use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -18,6 +19,9 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
     public static function getSubscribedEvents()
     {
         return array(
+
+            'user_focus_created' => array('onUserFocusCreatedEvent', -128),
+
             'user_focus_category_created' => array('onUserFocusCategoryCreatedEvent', -128),
             'user_focus_category_updated' => array('onUserFocusCategoryUpdatedEvent', -128),
 
@@ -25,6 +29,43 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
             'company_category_removed' => array('onCompanyCategoryRemovedEvent', -128),
         );
     }
+
+    /**
+     * Attach categories from company to new focus
+     * @param UserFocusEvent $event
+     */
+    public function onUserFocusCreatedEvent(UserFocusEvent $event)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        if (($userFocus = $event->getEntity())) {
+            if (($user = $userFocus->getUser())) {
+                if (($company = $user->getCompany())) {
+                    if (($companyCategories = $company->getCategories())) {
+
+                        foreach ($companyCategories as $companyCategory) {
+
+                            $focusCategory = new UserFocusCategory();
+                            $focusCategory->setFocus($userFocus);
+                            $focusCategory->setCategory($companyCategory->getCategory());
+                            $focusCategory->setPriority(count($userFocus->getCategories()));
+
+                            $entityManager->persist($focusCategory);
+                            $entityManager->flush($focusCategory);
+
+                            $userFocus->addCategory($focusCategory);
+
+                            $entityManager->persist($userFocus);
+                            $entityManager->flush($userFocus);
+
+                            $event = new UserFocusCategoryEvent($focusCategory);
+                            $this->container->get('event_dispatcher')->dispatch('user_focus_category_created', $event);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     /**
      * Process created UserFocusCategory
