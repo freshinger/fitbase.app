@@ -49,6 +49,7 @@ class ExerciseController extends Controller
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
         return $this->redirect($this->generateUrl('exercise_user', array(
+            '_sonata_page_skip' => true,
             'unique' => $entity->getId(),
             'step' => 0,
         )));
@@ -86,6 +87,7 @@ class ExerciseController extends Controller
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
         return $this->redirect($this->generateUrl('exercise_user', array(
+            '_sonata_page_skip' => true,
             'unique' => $entity->getId(),
             'step' => 0,
         )));
@@ -128,7 +130,9 @@ class ExerciseController extends Controller
             // we have to break down exercise and show a focus
             $event = new ExerciseUserEvent($exerciseUser);
             $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
-            return $this->redirect($this->generateUrl('focus'));
+            return $this->redirect($this->generateUrl('focus', array(
+                '_sonata_page_skip' => true,
+            )));
         }
 
         return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
