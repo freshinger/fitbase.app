@@ -55,9 +55,6 @@ class ServiceChooserCategory
     {
         if (($children = $category->getChildren())) {
 
-            var_dump($category->getCategory()->getName());
-            var_dump(count($children));
-
             if (count($children)) {
                 foreach ($children as $child) {
                     if ($this->category($child)) {
