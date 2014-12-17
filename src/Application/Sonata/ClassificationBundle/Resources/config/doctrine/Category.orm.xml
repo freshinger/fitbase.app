@@ -27,6 +27,13 @@
             </order-by>
         </many-to-many>
 
+        <many-to-many field="weeklytasks" mapped-by="categories"
+                      target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask">
+            <order-by>
+                <order-by-field name="priority" direction="ASC"/>
+            </order-by>
+        </many-to-many>
+
 
     </entity>
 </doctrine-mapping>

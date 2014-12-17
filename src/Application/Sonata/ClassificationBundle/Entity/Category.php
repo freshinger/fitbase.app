@@ -49,6 +49,8 @@ class Category extends BaseCategory
     public function __construct()
     {
         $this->exercises = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->weeklytasks = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -146,5 +148,4 @@ class Category extends BaseCategory
     {
         return $this->weeklytasks;
     }
-
 }

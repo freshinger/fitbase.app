@@ -34,6 +34,13 @@ class ServiceChooserCategory
         if (($categories = $focus->getParentCategories())) {
             if (count($categories)) {
                 foreach ($categories as $category) {
+
+                    if (($cache = $category->getCategory())) {
+                        if (!in_array($cache, $this->result)) {
+                            array_push($this->result, $cache);
+                        }
+                    }
+
                     if ($this->category($category)) {
                         continue;
                     }

@@ -3,16 +3,18 @@
 {% if categories is defined and categories %}
     <div class="row">
         {% for category in categories %}
-            <div class="col-md-4">
-                <a href="{{ path('focus', {'slug': category.slug}) }}">
-                    <h4>{{ category.name }}</h4>
-                </a>
-                {% if category.media is defined %}
+            {% if category.exercises|length > 0 %}
+                <div class="col-md-4">
                     <a href="{{ path('focus', {'slug': category.slug}) }}">
-                        {% thumbnail category.media, 'preview' with {'width': 200} %}
+                        <h4>{{ category.name }}</h4>
                     </a>
-                {% endif %}
-            </div>
+                    {% if category.media is defined %}
+                        <a href="{{ path('focus', {'slug': category.slug}) }}">
+                            {% thumbnail category.media, 'preview' with {'width': 200} %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endif %}
