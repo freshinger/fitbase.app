@@ -68,14 +68,11 @@ class FocusController extends Controller
             }
         }
 
-//        if (($category = $repositoryCategory->findOneBySlug($slug))) {
-//            if (!($categories = $category->getChildren())) {
-//
-//            }
-//            if (!($exercises = $category->getExercises())) {
-//                // TODO: notify admin if no exercises exists
-//            }
-//        }
+        if (($category = $repositoryCategory->findOneBySlug($slug))) {
+            if (!($exercises = $category->getExercises())) {
+                // TODO: notify admin if no exercises exists
+            }
+        }
 
 
         return $this->render('FitbaseExerciseBundle:Exercise:focus.html.twig', array(
