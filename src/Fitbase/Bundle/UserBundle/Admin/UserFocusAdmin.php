@@ -110,6 +110,7 @@ class UserFocusAdmin extends Admin implements ContainerAwareInterface
             ->add('categories', 'sonata_type_collection', array(
                 'label' => false,
                 'btn_add' => false,
+
                 'type_options' => array(
                     'delete' => false,
                 )
