@@ -47,21 +47,26 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
             // focus category to current focus category
             // if real category has a parent and
             // this parent was attached to focus
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryUserFocusCategory = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocusCategory');
 
             if (($category = $userFocusCategory->getCategory())) {
                 $parentCategory = null;
                 if (($parentCategory = $category->getParent())) {
-                    if (!($parentFocusCategory = $repositoryUserFocusCategory->findOneByCategory($parentCategory))) {
+
+                    $entityManager = $this->container->get('entity_manager');
+                    $repositoryUserFocusCategory = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocusCategory');
+                    if (!($parentFocusCategory = $repositoryUserFocusCategory->findOneByFocusAndCategory($userFocusCategory->getFocus(), $parentCategory))) {
                         // TODO: ...
                     }
-                }
-                $userFocusCategory->setParent($parentFocusCategory);
-                $entityManager->persist($userFocusCategory);
-            }
+                    $userFocusCategory->setParent($parentFocusCategory);
+                    $entityManager->persist($userFocusCategory);
+                    $entityManager->flush($userFocusCategory);
 
-            $entityManager->flush();
+                    $parentFocusCategory->addChild($userFocusCategory);
+
+                    $entityManager->persist($parentFocusCategory);
+                    $entityManager->flush($parentFocusCategory);
+                }
+            }
         }
     }
 
