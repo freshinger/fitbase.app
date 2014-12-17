@@ -60,18 +60,23 @@ class FocusController extends Controller
         $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
         $exercises = array();
-        if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (!($exercises = $category->getExercises())) {
-                // TODO: notify admin if no exercises exists
-            }
-        }
-
         $categories = array();
+
         if (($chooserCategory = $this->container->get('chooser_category'))) {
             if (!($categories = $chooserCategory->choose($user->getFocus()))) {
                 // TODO: notify admin if no categories exists
             }
         }
+
+        if (($category = $repositoryCategory->findOneBySlug($slug))) {
+            if (!($categories = $category->getChildren())) {
+
+            }
+            if (!($exercises = $category->getExercises())) {
+                // TODO: notify admin if no exercises exists
+            }
+        }
+
 
         return $this->render('FitbaseExerciseBundle:Exercise:focus.html.twig', array(
             'exercises' => $exercises,
