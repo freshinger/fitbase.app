@@ -79,12 +79,12 @@ class Category extends BaseCategory
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExercises($type = null)
+    public function getExercises($type = array())
     {
         if (!empty($type)) {
             return $this->exercises->filter(function ($entity) use ($type) {
                 if ($entity->getType() != null) {
-                    if ($entity->getType() == $type) {
+                    if (in_array($entity->getType(), $type)) {
                         return true;
                     }
                     return false;

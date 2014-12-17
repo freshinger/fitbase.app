@@ -24,9 +24,9 @@ class ChooserExerciseFilter
     public function choose($categories = array(), array $result = array())
     {
         $types = array(
-            Exercise::MOBILISATION,
-            Exercise::KRAEFTIGUNG,
-            Exercise::DAEHNUNG,
+            array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
+            array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
+            array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG),
         );
 
         foreach ($categories as $category) {
