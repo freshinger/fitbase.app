@@ -76,9 +76,6 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
                     $codegenerator = $this->container->get('codegenerator');
                     if (($weeklytask = $this->container->get('weeklytask')->choose($user))) {
 
-
-                        var_dump($weeklytask->getName());
-
                         // Create reminder for weeklytask
                         $weeklytaskUser = new WeeklytaskUser();
                         $weeklytaskUser->setDone(0);
