@@ -50,6 +50,16 @@ sonata_admin:
 
         groups:
 
+
+            fitbase.admin.group.common:
+                label:           "Fitbase Administration"
+                label_catalogue: FitbaseUserBundle
+                icon:            '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.user_actioncode
+                    - fitbase.admin.user_focus_category
+
+
             fitbase.admin.group.media:
                 label:           "Fitbase Medien"
                 label_catalogue: SonataDemoBundle

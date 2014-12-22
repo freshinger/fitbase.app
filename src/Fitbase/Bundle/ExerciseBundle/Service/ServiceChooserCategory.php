@@ -2,13 +2,12 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Service;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserCompanyCategory;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExercise;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserFocusCategory;
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
-use Sonata\MediaBundle\Model\MediaInterface;
-use Sonata\MediaBundle\Provider\FileProvider;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
+use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 
 /**
  * Created by PhpStorm.
@@ -19,66 +18,68 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceChooserCategory
 {
     /**
-     * Store result here
-     * @var array
-     */
-    protected $result = array();
-
-    /**
      * @param callable $filter
      * @return array|mixed
      */
     public function choose(\Fitbase\Bundle\UserBundle\Entity\UserFocus $focus, \Closure $filter = null)
     {
-        $this->result = array();
-        if (($categories = $focus->getParentCategories())) {
-            if (count($categories)) {
-                foreach ($categories as $category) {
-
-                    if (($cache = $category->getCategory())) {
-                        if (!in_array($cache, $this->result)) {
-                            array_push($this->result, $cache);
-                        }
-                    }
-
-                    if ($this->category($category)) {
-                        continue;
-                    }
+        $result = array();
+        if (count(($focusCategories = $focus->getParentCategories()))) {
+            foreach ($focusCategories as $focusCategory) {
+                if (($resultCache = $this->category($focus, $focusCategory))) {
+                    $result = array_merge($result, $resultCache);
+                    continue;
                 }
+
             }
         }
 
-        return array_unique($this->result);
+        return $result;
     }
 
     /**
      * Process subcategories recursive
      * add to list only categories without
      * a parent - category
-     * @param $category
      * @return bool
      */
-    protected function category($category)
+    protected function category(UserFocus $focus, UserFocusCategory $focusCategory)
     {
-        if (($children = $category->getChildren())) {
+        $result = array();
+        if (($category = $focusCategory->getCategory())) {
 
-            if (count($children)) {
+            if (!in_array($category, $result)) {
+                array_push($result, $category);
+            }
+
+            $resultChildren = array();
+            if (count(($children = $category->getChildren()))) {
                 foreach ($children as $child) {
-                    if ($this->category($child)) {
-                        continue;
+                    if (($focusCategory = $focus->getCategory($child))) {
+                        if (($resultCache = $this->category($focus, $focusCategory))) {
+                            $resultChildren = array_merge($resultChildren, $resultCache);
+                            continue;
+                        }
                     }
                 }
-                return true;
-            }
 
-        }
+                usort($resultChildren, array($this, 'sort'));
 
-        if (($category = $category->getCategory())) {
-            if (!in_array($category, $this->result)) {
-                array_push($this->result, $category);
+                $result = array_merge($result, $resultChildren);
             }
         }
 
-        return true;
+        return $result;
+    }
+
+    /**
+     * Sort array with children
+     * @param $entity1
+     * @param $entity2
+     * @return int
+     */
+    protected function sort($entity1, $entity2)
+    {
+        return $entity1->getPosition() >= $entity2->getPosition() ? -1 : 1;
     }
 }

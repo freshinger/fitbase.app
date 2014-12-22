@@ -42,8 +42,6 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function postPersist($object)
     {
-        $event = new UserFocusCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('user_focus_category_created', $event);
     }
 
     /**
@@ -51,8 +49,6 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function postUpdate($object)
     {
-        $event = new UserFocusCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('user_focus_category_updated', $event);
     }
 
     /**
@@ -76,7 +72,6 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('focus')
             ->add('category')
-            ->add('parent')
             ->add('priority')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -103,15 +98,18 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
-            ->with('General', array('class' => 'col-md-4'))
-            ->add('category', null, array(
-                'disabled' => true
-            ))
-            ->add('parent', null, array(
-                'disabled' => true
-            ))
-            ->add('priority')
+        $formMapper->with('General', array('class' => 'col-md-4'));
+        if (($actioncode = $this->getRoot()->getSubject())) {
+            if (!$actioncode->getId()) {
+                $formMapper->add('category');
+            } else {
+                $formMapper->add('category', null, array(
+                    'disabled' => true,
+                ));
+            }
+        }
+
+        $formMapper->add('priority')
             ->end();
     }
 }

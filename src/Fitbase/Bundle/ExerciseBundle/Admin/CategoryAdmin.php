@@ -38,7 +38,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     public function postPersist($object)
     {
         $event = new CategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('category_update', $event);
+        $this->container->get('event_dispatcher')->dispatch('category_created', $event);
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     public function postUpdate($object)
     {
         $event = new CategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('category_update', $event);
+        $this->container->get('event_dispatcher')->dispatch('category_updated', $event);
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     public function preRemove($object)
     {
         $event = new CategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('category_remove', $event);
+        $this->container->get('event_dispatcher')->dispatch('category_removed', $event);
     }
 
     /**

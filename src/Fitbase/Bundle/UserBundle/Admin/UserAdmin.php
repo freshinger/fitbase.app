@@ -11,6 +11,8 @@
 
 namespace Fitbase\Bundle\UserBundle\Admin;
 
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
+use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusForm;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -50,6 +52,37 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
      */
     public function postPersist($object)
     {
+        $userFocus = new UserFocus();
+        $userFocus->setUser($object);
+
+        $entityManager = $this->container->get('entity_manager');
+        $entityManager->persist($userFocus);
+        $entityManager->flush($userFocus);
+
+        $object->setFocus($userFocus);
+        $entityManager->persist($object);
+        $entityManager->flush($object);
+
+        if (($company = $object->getCompany())) {
+            if (($companyCategories = $company->getCategories())) {
+                foreach ($companyCategories as $companyCategory) {
+
+                    $focusCategory = new UserFocusCategory();
+                    $focusCategory->setFocus($userFocus);
+                    $focusCategory->setCategory($companyCategory->getCategory());
+                    $focusCategory->setPriority(count($userFocus->getCategories()));
+
+                    $entityManager->persist($focusCategory);
+                    $entityManager->flush($focusCategory);
+
+                    $userFocus->addCategory($focusCategory);
+
+                    $entityManager->persist($userFocus);
+                    $entityManager->flush($userFocus);
+                }
+            }
+        }
+
         $event = new UserEvent($object);
         $this->container->get('event_dispatcher')->dispatch('user_created', $event);
     }

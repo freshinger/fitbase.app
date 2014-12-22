@@ -1,0 +1,19 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+
+    <a class="sonata-link-identifier"
+       href="{{ admin.generateObjectUrl(route, object, field_description.options.route.parameters) }}">
+        {{ value }}
+    </a>
+
+    {% set category = object.category %}
+    {% if category.children is defined and category.children %}
+        <ol>
+            {% for child in category.children %}
+                {% if child is defined and child %}
+                    <li>{{ child }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endblock %}

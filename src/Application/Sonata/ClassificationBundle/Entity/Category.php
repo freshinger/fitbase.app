@@ -104,9 +104,6 @@ class Category extends BaseCategory
      */
     public function __toString()
     {
-        if (($parent = $this->getParent())) {
-            return "{$parent->getName()}: {$this->getName()}";
-        }
         return $this->getName();
     }
 

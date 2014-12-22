@@ -43,6 +43,17 @@
             <argument/>
         </service>
 
+        <service id="fitbase.admin.user_actioncode" class="Fitbase\Bundle\UserBundle\Admin\UserActioncodeAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Actioncode" label="Actioncode"/>
+            <argument/>
+            <argument>Fitbase\Bundle\UserBundle\Entity\UserActioncode</argument>
+            <argument/>
+        </service>
+
+
     </services>
 
 

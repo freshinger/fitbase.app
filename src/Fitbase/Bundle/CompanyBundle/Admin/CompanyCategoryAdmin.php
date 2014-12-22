@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\CompanyBundle\Admin;
 
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
 use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
@@ -40,17 +41,6 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function postPersist($object)
     {
-        $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_created', $event);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($object)
-    {
-        $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_updated', $event);
     }
 
     /**
@@ -58,8 +48,6 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function preRemove($object)
     {
-        $event = new CompanyCategoryEvent($object);
-        $this->container->get('event_dispatcher')->dispatch('company_category_removed', $event);
     }
 
     /**
@@ -70,13 +58,6 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function preBatchAction($actionName, ProxyQueryInterface $query, array & $idx, $allElements)
     {
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryCompanyCategory = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
-        if (($collection = $repositoryCompanyCategory->findAllByIdArray($idx))) {
-            foreach ($collection as $companyCategory) {
-                $this->preRemove($companyCategory);
-            }
-        }
     }
 
 
@@ -99,7 +80,9 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('company')
-            ->add('category')
+            ->add('category', null, array(
+                'template' => 'FitbaseCompanyBundle:Admin:question_list_categories.html.twig'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -126,7 +109,13 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('company')
-            ->add('category')
+            ->add('category', null, array(
+                'query_builder' => function ($repository) {
+                    $queryBuilder = $repository->createQueryBuilder('Category');
+                    $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));
+                    return $queryBuilder;
+                }
+            ))
             ->end();
     }
 }

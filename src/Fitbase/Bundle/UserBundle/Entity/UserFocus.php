@@ -100,6 +100,29 @@ class UserFocus
     }
 
     /**
+     * Set user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     * @return UserFocus
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
      * Add categories
      *
      * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $categories
@@ -133,44 +156,20 @@ class UserFocus
     }
 
     /**
-     * Set user
-     *
-     * @param \Application\Sonata\UserBundle\Entity\User $user
-     * @return UserFocus
-     */
-    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \Application\Sonata\UserBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
      * Get main focus category
      * @return mixed|null
      */
     public function getFirstCategory()
     {
         if (($collection = $this->getCategories())) {
-            $collection = $collection->filter(function ($entity) {
-                if (!$entity->getParent()) {
+            $collection = $collection->filter(function (\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $entity) {
+                if (!$entity->getCategory()->getParent()) {
                     return true;
                 }
                 return false;
             });
             if (($collection = $collection->toArray())) {
                 if (($category = array_shift($collection))) {
-
                     return $category;
                 }
             }
@@ -185,8 +184,8 @@ class UserFocus
     public function getParentCategories()
     {
         if (($collection = $this->getCategories())) {
-            return $collection->filter(function ($entity) {
-                if (!$entity->getParent()) {
+            return $collection->filter(function (\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $entity) {
+                if (!$entity->getCategory()->getParent()) {
                     return true;
                 }
                 return false;
@@ -194,6 +193,30 @@ class UserFocus
         }
         return null;
     }
+
+    /**
+     * Get user focus category by category
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     * @return \Application\Sonata\ClassificationBundle\Entity\Category|mixed|null
+     */
+    public function getCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category)
+    {
+        if (($collection = $this->getCategories())) {
+            $collection = $collection->filter(function (\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $entity) use ($category) {
+                if ($entity->getCategory()->getId() == $category->getId()) {
+                    return true;
+                }
+                return false;
+            });
+            if (($collection = $collection->toArray())) {
+                if (($category = array_shift($collection))) {
+                    return $category;
+                }
+            }
+        }
+        return null;
+    }
+
 
     /**
      * @return string

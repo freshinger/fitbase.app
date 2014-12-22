@@ -31,35 +31,6 @@ class UserFocusSubscriber extends ContainerAware implements EventSubscriberInter
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            'user_created' => array('onUserCreatedEvent', -128),
-        );
+        return array();
     }
-
-    /**
-     * Create user focus for new user
-     * @param UserEvent $event
-     */
-    public function onUserCreatedEvent(UserEvent $event)
-    {
-        if (($user = $event->getEntity())) {
-
-            $userFocus = new UserFocus();
-            $userFocus->setUser($user);
-
-            $this->container->get('entity_manager')->persist($userFocus);
-            $this->container->get('entity_manager')->flush($userFocus);
-
-            $user->setFocus($userFocus);
-
-            $this->container->get('entity_manager')->persist($user);
-            $this->container->get('entity_manager')->flush($user);
-
-
-            $event = new UserFocusEvent($userFocus);
-            $this->container->get('event_dispatcher')->dispatch('user_focus_created', $event);
-        }
-
-    }
-
 }

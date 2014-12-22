@@ -27,4 +27,19 @@ class ServiceCodegenerator extends ContainerAware
         }
         return $code;
     }
+
+    /**
+     * Generate code
+     * @param int $length
+     * @return string
+     */
+    public function code($length = 10)
+    {
+        $code = '';
+        $string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        for ($i = 0; $i < $length; $i++) {
+            $code .= $string{rand(0, strlen($string) - 1)};
+        }
+        return $code;
+    }
 }
