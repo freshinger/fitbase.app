@@ -66,25 +66,43 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
         if (($company = $object->getCompany())) {
             if (($companyCategories = $company->getCategories())) {
                 foreach ($companyCategories as $companyCategory) {
-
-                    $focusCategory = new UserFocusCategory();
-                    $focusCategory->setFocus($userFocus);
-                    $focusCategory->setCategory($companyCategory->getCategory());
-                    $focusCategory->setPriority(count($userFocus->getCategories()));
-
-                    $entityManager->persist($focusCategory);
-                    $entityManager->flush($focusCategory);
-
-                    $userFocus->addCategory($focusCategory);
-
-                    $entityManager->persist($userFocus);
-                    $entityManager->flush($userFocus);
+                    if (($category = $companyCategory->getCategory())) {
+                        $this->doCreateUserFocusCategory($userFocus, $category);
+                    }
                 }
             }
         }
 
         $event = new UserEvent($object);
         $this->container->get('event_dispatcher')->dispatch('user_created', $event);
+    }
+
+    /**
+     * Create user focus category
+     * @param $userFocus
+     * @param $category
+     */
+    protected function doCreateUserFocusCategory($userFocus, $category)
+    {
+        $focusCategory = new UserFocusCategory();
+        $focusCategory->setFocus($userFocus);
+        $focusCategory->setCategory($category);
+        $focusCategory->setPriority(count($userFocus->getCategories()));
+
+        $this->container->get('entity_manager')->persist($focusCategory);
+        $this->container->get('entity_manager')->flush($focusCategory);
+
+        $userFocus->addCategory($focusCategory);
+
+        $this->container->get('entity_manager')->persist($userFocus);
+        $this->container->get('entity_manager')->flush($userFocus);
+        $this->container->get('entity_manager')->refresh($userFocus);
+
+        if (count(($children = $category->getChildren()))) {
+            foreach ($children as $child) {
+                $this->doCreateUserFocusCategory($userFocus, $child);
+            }
+        }
     }
 
     /**

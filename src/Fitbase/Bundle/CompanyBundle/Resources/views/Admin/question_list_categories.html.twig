@@ -8,12 +8,14 @@
 
     {% set category = object.category %}
     {% if category.children is defined and category.children %}
-        <ol>
-            {% for child in category.children %}
-                {% if child is defined and child %}
-                    <li>{{ child }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+        {% if category.children|length > 0 %}
+            <sub>
+                {% for child in category.children %}
+                    {% if child is defined and child %}
+                        {{ child }},
+                    {% endif %}
+                {% endfor %}
+            </sub>
+        {% endif %}
     {% endif %}
 {% endblock %}

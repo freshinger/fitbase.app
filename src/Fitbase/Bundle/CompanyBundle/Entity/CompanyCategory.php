@@ -89,16 +89,7 @@ class CompanyCategory
      */
     public function __toString()
     {
-        $string = "";
-
-        if (($company = $this->getCompany())) {
-            $string .= (string)$company->getName();
-            if (($category = $this->getCategory())) {
-                $string .= ': ' . (string)$category->getName();
-            }
-        }
-
-        return $string;
+        return $this->getCategory()->getName();
     }
 
     /**

@@ -82,6 +82,11 @@ fos_comment:
     prefix: /comments
     defaults: { _format: html }
 
+
+fitbase_user:
+    resource: "@FitbaseUserBundle/Resources/config/routing.xml"
+    prefix:   /user
+
 fitbase_exercise:
     resource: "@FitbaseExerciseBundle/Resources/config/routing.xml"
     prefix:   /uebungen

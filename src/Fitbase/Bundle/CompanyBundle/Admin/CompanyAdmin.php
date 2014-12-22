@@ -67,8 +67,8 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('name')
+            ->add('categories')
             ->add('site')
-            ->add('date')
             ->add('questionnaire')
             ->add('gamification')
             ->add('_action', 'actions', array(
