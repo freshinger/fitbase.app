@@ -2,8 +2,6 @@
 
 namespace Fitbase\Bundle\WeeklytaskBundle\Component\Chooser;
 
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
-
 class ChooserWeeklytaskFilter
 {
     protected $filter;
@@ -23,31 +21,17 @@ class ChooserWeeklytaskFilter
      */
     public function choose($categories = array(), array $result = array())
     {
-        $types = array(
-            array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
-            array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
-            array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG),
-        );
-
         foreach ($categories as $category) {
-            for ($i = count($result); $i < count($types); $i++) {
-                if (($type = $types[$i])) {
-                    if (($exercises = $category->getExercises($type))) {
-                        if (($exercise = $this->exercise($exercises, $this->filter))) {
-                            if (!in_array($exercise, $result)) {
-                                array_push($result, $exercise);
-                            }
-                        }
+            if (($weeklytasks = $category->getWeeklytasks())) {
+                if (($weeklytask = $this->filter($weeklytasks, $this->filter))) {
+                    if (!in_array($weeklytask, $result)) {
+                        return $weeklytask;
                     }
                 }
             }
         }
 
-        if (count($result) == 3) {
-            return $result;
-        }
-
-        return array();
+        return null;
     }
 
     /**
@@ -56,7 +40,7 @@ class ChooserWeeklytaskFilter
      * @param $exercises
      * @return mixed
      */
-    protected function exercise($exercises, \Closure $filter = null)
+    protected function filter($exercises, \Closure $filter = null)
     {
         foreach ($exercises as $index => $exercise) {
             if (!($filter instanceof \Closure)) {

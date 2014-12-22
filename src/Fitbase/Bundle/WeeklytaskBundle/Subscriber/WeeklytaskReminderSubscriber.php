@@ -52,6 +52,117 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
         }
     }
 
+
+    /**
+     * Create weeklytask reminder
+     * @param WeeklytaskReminderEvent $event
+     */
+    public function onWeeklytaskReminderCreateEvent(WeeklytaskReminderEvent $event)
+    {
+        if (($reminderUserItem = $event->getEntity())) {
+            if (($user = $reminderUserItem->getUser())) {
+
+                $hour = $reminderUserItem->getTime()->format('H');
+                $minute = $reminderUserItem->getTime()->format('i');
+
+                $datetime = $this->container->get('datetime')->getDateTime('now');
+                $datetime->setTime($hour, $minute);
+
+
+                $entityManager = $this->container->get('entity_manager');
+                $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+                if (!$repositoryWeeklytaskUser->findOneByUserAndDateTime($user, $datetime)) {
+
+                    $codegenerator = $this->container->get('codegenerator');
+                    if (($weeklytask = $this->container->get('weeklytask')->choose($user))) {
+
+
+                        var_dump($weeklytask->getName());
+
+                        // Create reminder for weeklytask
+                        $weeklytaskUser = new WeeklytaskUser();
+                        $weeklytaskUser->setDone(0);
+                        $weeklytaskUser->setProcessed(0);
+                        $weeklytaskUser->setUser($user);
+                        $weeklytaskUser->setDate($datetime);
+                        $weeklytaskUser->setTask($weeklytask);
+                        $weeklytaskUser->setCode($codegenerator->password(10));
+                        $weeklytaskUser->setCountPoint(0);
+
+                        $entityManager->persist($weeklytaskUser);
+                        $entityManager->flush($weeklytaskUser);
+
+                        // if a quiz for weeklytask exists
+                        // create reminder for weeklyquiz
+                        if (($quiz = $weeklytask->getQuiz())) {
+
+                            $weeklyquizUser = new WeeklyquizUser();
+                            $weeklyquizUser->setDone(0);
+                            $weeklyquizUser->setProcessed(0);
+                            $weeklyquizUser->setQuiz($quiz);
+                            $weeklyquizUser->setUser($user);
+                            $weeklyquizUser->setCountPoint(0);
+                            $weeklyquizUser->setCode($codegenerator->password(10));
+                            $weeklyquizUser->setTask($weeklytask);
+                            $weeklyquizUser->setDate($datetime->modify('+1 day'));
+                            $weeklyquizUser->setUserTask($weeklytaskUser);
+
+                            $entityManager->persist($weeklyquizUser);
+                            $entityManager->flush($weeklyquizUser);
+
+                            $weeklytaskUser->setUserQuiz($weeklyquizUser);
+                            $entityManager->persist($weeklytaskUser);
+                            $entityManager->flush($weeklytaskUser);
+                        }
+                    }
+
+
+                }
+
+
+//                $codegenerator = $this->container->get('codegenerator');
+//                if (($weeklytask = $this->container->get('chooser_weeklytask')->choose($user, $datetime))) {
+//
+//                    // Create reminder for weeklytask
+//                    $weeklytaskUser = new WeeklytaskUser();
+//                    $weeklytaskUser->setDone(0);
+//                    $weeklytaskUser->setProcessed(0);
+//                    $weeklytaskUser->setUser($user);
+//                    $weeklytaskUser->setDate($datetime);
+//                    $weeklytaskUser->setTask($weeklytask);
+//                    $weeklytaskUser->setCode($codegenerator->password(10));
+//                    $weeklytaskUser->setCountPoint(0);
+//
+//                    $this->container->get('entity_manager')->persist($weeklytaskUser);
+//                    $this->container->get('entity_manager')->flush($weeklytaskUser);
+//
+//                    // if a quiz for weeklytask exists
+//                    // create reminder for weeklyquiz
+//                    if (($quiz = $weeklytask->getQuiz())) {
+//
+//                        $weeklyquizUser = new WeeklyquizUser();
+//                        $weeklyquizUser->setDone(0);
+//                        $weeklyquizUser->setProcessed(0);
+//                        $weeklyquizUser->setQuiz($quiz);
+//                        $weeklyquizUser->setUser($user);
+//                        $weeklyquizUser->setCountPoint(0);
+//                        $weeklyquizUser->setCode($codegenerator->password(10));
+//                        $weeklyquizUser->setTask($weeklytask);
+//                        $weeklyquizUser->setDate($datetime->modify('+1 day'));
+//                        $weeklyquizUser->setUserTask($weeklytaskUser);
+//
+//                        $this->container->get('entity_manager')->persist($weeklyquizUser);
+//                        $this->container->get('entity_manager')->flush($weeklyquizUser);
+//
+//                        $weeklytaskUser->setUserQuiz($weeklyquizUser);
+//                        $this->container->get('entity_manager')->persist($weeklytaskUser);
+//                        $this->container->get('entity_manager')->flush($weeklytaskUser);
+//                    }
+//                }
+            }
+        }
+    }
+
     /**
      * Send weekly task to user
      * @param WeeklytaskUserEvent $event
@@ -75,65 +186,6 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
             $weeklytaskUser->setProcessed(1);
             $this->container->get('entity_manager')->persist($weeklytaskUser);
             $this->container->get('entity_manager')->flush($weeklytaskUser);
-        }
-    }
-
-
-    /**
-     * Create weeklytask reminder
-     * @param WeeklytaskReminderEvent $event
-     */
-    public function onWeeklytaskReminderCreateEvent(WeeklytaskReminderEvent $event)
-    {
-        if (($reminderUserItem = $event->getEntity())) {
-            if (($user = $reminderUserItem->getUser())) {
-
-                $hour = $reminderUserItem->getTime()->format('H');
-                $minute = $reminderUserItem->getTime()->format('i');
-
-                $datetime = $this->container->get('datetime')->getDateTime('now');
-                $datetime->setTime($hour, $minute);
-
-                $codegenerator = $this->container->get('codegenerator');
-                if (($weeklytask = $this->container->get('chooser_weeklytask')->choose($user, $datetime))) {
-
-                    // Create reminder for weeklytask
-                    $weeklytaskUser = new WeeklytaskUser();
-                    $weeklytaskUser->setDone(0);
-                    $weeklytaskUser->setProcessed(0);
-                    $weeklytaskUser->setUser($user);
-                    $weeklytaskUser->setDate($datetime);
-                    $weeklytaskUser->setTask($weeklytask);
-                    $weeklytaskUser->setCode($codegenerator->password(10));
-                    $weeklytaskUser->setCountPoint(0);
-
-                    $this->container->get('entity_manager')->persist($weeklytaskUser);
-                    $this->container->get('entity_manager')->flush($weeklytaskUser);
-
-                    // if a quiz for weeklytask exists
-                    // create reminder for weeklyquiz
-                    if (($quiz = $weeklytask->getQuiz())) {
-
-                        $weeklyquizUser = new WeeklyquizUser();
-                        $weeklyquizUser->setDone(0);
-                        $weeklyquizUser->setProcessed(0);
-                        $weeklyquizUser->setQuiz($quiz);
-                        $weeklyquizUser->setUser($user);
-                        $weeklyquizUser->setCountPoint(0);
-                        $weeklyquizUser->setCode($codegenerator->password(10));
-                        $weeklyquizUser->setTask($weeklytask);
-                        $weeklyquizUser->setDate($datetime->modify('+1 day'));
-                        $weeklyquizUser->setUserTask($weeklytaskUser);
-
-                        $this->container->get('entity_manager')->persist($weeklyquizUser);
-                        $this->container->get('entity_manager')->flush($weeklyquizUser);
-
-                        $weeklytaskUser->setUserQuiz($weeklyquizUser);
-                        $this->container->get('entity_manager')->persist($weeklytaskUser);
-                        $this->container->get('entity_manager')->flush($weeklytaskUser);
-                    }
-                }
-            }
         }
     }
 }

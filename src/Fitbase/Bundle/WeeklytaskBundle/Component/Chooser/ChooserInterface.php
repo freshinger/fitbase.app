@@ -1,8 +1,7 @@
 <?php
 
-namespace Fitbase\Bundle\ExerciseBundle\Component\Chooser;
+namespace Fitbase\Bundle\WeeklytaskBundle\Component\Chooser;
 
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 
 interface ChooserInterface
 {

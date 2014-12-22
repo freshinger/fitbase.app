@@ -143,83 +143,70 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ))
             ->add('phone', null, array('required' => false))
             ->end()
-            ->end()
-            ->tab('Rechte')
-            ->with('Gruppen', array('class' => 'col-md-6'))
-            ->add('groups', 'sonata_type_model', array(
-                'required' => false,
-                'expanded' => true,
-                'multiple' => true
-            ))
-            ->end()
-            ->with('Management', array('class' => 'col-md-6'))
-            ->add('realRoles', 'sonata_security_roles', array(
-                'label' => 'form.label_roles',
-                'expanded' => true,
-                'multiple' => true,
-                'required' => false
-            ))
-            ->end()
-            ->end()
-            ->tab('Sicherheit')
-            ->with('Flags', array('class' => 'col-md-6'))
-            ->add('locked', null, array('required' => false))
-            ->add('expired', null, array('required' => false))
-            ->add('enabled', null, array('required' => false))
-            ->add('credentialsExpired', null, array('required' => false))
-            ->end()
-            ->with('Security', array('class' => 'col-md-6'))
-            ->add('token', null, array('required' => false))
-            ->add('twoStepVerificationCode', null, array('required' => false))
-            ->end()
-            ->end()
-            ->tab('Profile')
-            ->with('Profile', array('class' => 'col-md-6'))
-            ->add('dateOfBirth', 'sonata_type_date_picker', array('required' => false))
-            ->add('website', 'url', array('required' => false))
-            ->add('facebookUid', null, array('required' => false))
-            ->add('facebookName', null, array('required' => false))
-            ->add('twitterUid', null, array('required' => false))
-            ->add('twitterName', null, array('required' => false))
-            ->add('gplusUid', null, array('required' => false))
-            ->add('gplusName', null, array('required' => false))
-            ->end()
-            ->with('Biography', array('class' => 'col-md-6'))
-            ->add('biography', 'sonata_formatter_type', array(
-                'required' => false,
-                'event_dispatcher' => $this->container->get('event_dispatcher'),
-                'format_field' => 'format',
-                'source_field' => 'biography',
-                'source_field_options' => array(
-                    'attr' => array('class' => 'span10', 'rows' => 80)
-                ),
-                'listener' => true,
-                'target_field' => 'content',
-                'label' => 'Content'
-            ))
-            ->end()
             ->end();
-
 
         if (($user = $this->getRoot()->getSubject())) {
             if (($focus = $user->getFocus())) {
-                $formMapper->tab('Fokus')
+                $formMapper->tab('Rechte')
+                    ->with('Gruppen', array('class' => 'col-md-6'))
+                    ->add('groups', 'sonata_type_model', array(
+                        'required' => false,
+                        'expanded' => true,
+                        'multiple' => true
+                    ))
+                    ->end()
+                    ->with('Management', array('class' => 'col-md-6'))
+                    ->add('realRoles', 'sonata_security_roles', array(
+                        'label' => 'form.label_roles',
+                        'expanded' => true,
+                        'multiple' => true,
+                        'required' => false
+                    ))
+                    ->end()
+                    ->end()
+                    ->tab('Sicherheit')
+                    ->with('Flags', array('class' => 'col-md-6'))
+                    ->add('locked', null, array('required' => false))
+                    ->add('expired', null, array('required' => false))
+                    ->add('enabled', null, array('required' => false))
+                    ->add('credentialsExpired', null, array('required' => false))
+                    ->end()
+                    ->with('Security', array('class' => 'col-md-6'))
+                    ->add('token', null, array('required' => false))
+                    ->add('twoStepVerificationCode', null, array('required' => false))
+                    ->end()
+                    ->end()
+                    ->tab('Profile')
+                    ->with('Profile', array('class' => 'col-md-6'))
+                    ->add('dateOfBirth', 'sonata_type_date_picker', array('required' => false))
+                    ->add('website', 'url', array('required' => false))
+                    ->add('facebookUid', null, array('required' => false))
+                    ->add('facebookName', null, array('required' => false))
+                    ->add('twitterUid', null, array('required' => false))
+                    ->add('twitterName', null, array('required' => false))
+                    ->add('gplusUid', null, array('required' => false))
+                    ->add('gplusName', null, array('required' => false))
+                    ->end()
+                    ->with('Biography', array('class' => 'col-md-6'))
+                    ->add('biography', 'sonata_formatter_type', array(
+                        'required' => false,
+                        'event_dispatcher' => $this->container->get('event_dispatcher'),
+                        'format_field' => 'format',
+                        'source_field' => 'biography',
+                        'source_field_options' => array(
+                            'attr' => array('class' => 'span10', 'rows' => 80)
+                        ),
+                        'listener' => true,
+                        'target_field' => 'content',
+                        'label' => 'Content'
+                    ))
+                    ->end()
+                    ->end()->tab('Fokus')
                     ->with('Fokus', array('class' => 'col-md-6'))
                     ->add('focus', 'sonata_type_admin', array(
                         'label' => false,
                         'delete' => false,
                         'btn_add' => false,
-
-//                        'type_options' => array(
-//                            'delete' => false,
-//                            'delete_options' => array(
-//                                'type' => 'checkbox',
-//                                'type_options' => array(
-//                                    'mapped' => false,
-//                                    'required' => false,
-//                                )
-//                            )
-//                        )
                     ))
                     ->end()
                     ->end();

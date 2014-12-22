@@ -2,10 +2,32 @@
 
 namespace Fitbase\Bundle\WeeklytaskBundle\Services;
 
+use Fitbase\Bundle\WeeklytaskBundle\Component\Chooser\ChooserWeeklytaskFilter;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceWeeklytask extends ContainerAware
 {
+
+    public function choose($user)
+    {
+        $chooserCategory = $this->container->get('chooser_category');
+        if (($categories = $chooserCategory->choose($user->getFocus()))) {
+
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+
+            $chooserFilter = new ChooserWeeklytaskFilter(function (Weeklytask $entity) use ($repositoryWeeklytaskUser, $user) {
+                return !$repositoryWeeklytaskUser->findOneByUserAndTask($user, $entity);
+            });
+
+            return $chooserFilter->choose($categories);
+        }
+
+        return null;
+    }
+
+
     /**
      * @param $datetime
      * @return mixed
