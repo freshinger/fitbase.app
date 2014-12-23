@@ -145,7 +145,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ->add('company')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
-            ->add('createdAt');
+            ->add('createdAt', 'date');
 
         if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
             $listMapper
