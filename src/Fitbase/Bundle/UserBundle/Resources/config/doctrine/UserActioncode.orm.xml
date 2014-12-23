@@ -9,7 +9,7 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="code" type="string" column="code" length="255"/>
-        <field name="date" type="datetime" column="date"/>
+        <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="duration" type="integer" column="duration" nullable="true"/>
         <field name="processed" type="boolean" column="processed" nullable="true"/>
         <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>

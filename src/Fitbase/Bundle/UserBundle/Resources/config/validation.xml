@@ -11,9 +11,15 @@
                     Ihr Zugangscode existiert nicht oder Sie haben sich vertippt. Bitte versuchen Sie es noch einmal,
                     z.B. indem Sie den Code kopieren sofern er Ihnen digital vorliegt.
                 </option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
             </constraint>
             <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\ActioncodeUsed">
                 <option name="message">Ihr Zugangscode wurde bereits verwendet.</option>
+                <option name="groups">
+                    <value>registration</value>
+                </option>
             </constraint>
         </property>
     </class>
