@@ -6,15 +6,14 @@
     <div class="row">
 
         {% if weeklyquiz is defined and weeklyquiz %}
-            {% set quiz = weeklyquiz.quiz %}
-            <div class="col-md-12">
-                <h3 class="modal-title">
-                    {{ quiz.name }}
-                </h3>
+            <div class="col-md-6">
+                <img src="/image/weeklyquiz.jpg" alt="frau-stretching-300x285"/>
+            </div>
 
-                <p class="modal-description">
-                    {{ quiz.description|raw }}
-                </p>
+            <div class="col-md-6">
+                Herzlich Willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten, das Gelernte zu wiederholen und
+                Blätter für Ihren Gesundheitsbaum zu sammeln. Für jede korrekt beantwortete Frage erhalten Sie ein
+                Blatt. Bitte beachten Sie, dass mehrere Antworten je Frage richtig sein können. Viel Spaß!
             </div>
         {% endif %}
 

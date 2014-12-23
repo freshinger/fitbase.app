@@ -34,7 +34,7 @@ class WeeklytasksBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
         $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/wochenaufgaben'
+                'path' => '/infoeinheiten'
             ),
             'extras' => array('translation_domain' => 'FitbaseWeeklytaskBundle')
         ));

@@ -31,3 +31,6 @@
 [submodule "vendor/stephpy/timeline"]
 	path = vendor/stephpy/timeline
 	url = git://github.com/stephpy/timeline.git
+[submodule "vendor/cocur/slugify"]
+	path = vendor/cocur/slugify
+	url = git://github.com/cocur/slugify.git

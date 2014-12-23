@@ -53,21 +53,19 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
 
         $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-        $weeklyquizUserAnswerRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
 
         $countWeeklytaskDone += $weeklytaskUserRepository->findCountByUserAndDone($user);
         $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
         $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
-        $countWeeklytaskPointDone += $weeklyquizUserAnswerRepository->findSumPointByUser($user);
 
-        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user);
-        $collectionWeeklytaskArchive = $weeklytaskUserRepository->findAllByUserAndDone($user);
+        if (!($collection = $weeklytaskUserRepository->findAllByUser($user))) {
+            // TODO: statistic
+        }
 
         return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(
-            'countWeeklytaskDone' => $countWeeklytaskDone,
-            'countWeeklytaskPointDone' => $countWeeklytaskPointDone,
-            'collectionWeeklytaskActual' => $collectionWeeklytaskActual,
-            'collectionWeeklytaskArchive' => $collectionWeeklytaskArchive,
+            'countDone' => $countWeeklytaskDone,
+            'countDonePoints' => $countWeeklytaskPointDone,
+            'collection' => $collection,
         ));
     }
 

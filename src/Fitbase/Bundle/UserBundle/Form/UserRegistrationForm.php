@@ -15,27 +15,25 @@ class UserRegistrationForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('actioncode', 'hidden')
             ->add('first_name', null, array(
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('last_name', null, array(
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('email', null, array(
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('password', null, array(
-                'attr' => array(
-                    'class' => 'form-control'
-                )
-            ))
-            ->add('actioncode', 'hidden')
             ->add('save', 'submit', array(
                 'label' => 'Anmelden',
                 'attr' => array(

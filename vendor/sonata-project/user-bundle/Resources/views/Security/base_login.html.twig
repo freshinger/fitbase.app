@@ -17,10 +17,11 @@ file that was distributed with this source code.
             {#{% render controller("FOSUserBundle:Registration:register") %}#}
         </div>
         <div class="col-md-5">
-            <div class="panel-info">
-
-                <div class="panel-body">
+            <div class="panel">
+                <div class="panel-heading">
                     <h2 class="col-sm-offset-1">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+                </div>
+                <div class="panel-body">
 
                     <p>
                         Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie sich
@@ -80,7 +81,7 @@ file that was distributed with this source code.
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-sm-offset-8 col-md-12 col-sm-9">
+                            <div class="col-md-12">
                                 <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
                                        value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
                             </div>
@@ -91,22 +92,7 @@ file that was distributed with this source code.
 
         </div>
         <div class="col-md-5">
-            <div class="panel-info">
-
-                <div class="panel-body">
-                    <h2 class="col-sm-offset-1">{{ 'Zugangscode einlösen'|trans({}, 'FitbaseUserBundle') }}</h2>
-
-                    <p>
-                        Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie sich
-                        mit
-                        Ihren Zugangsdaten ein.
-                    </p>
-
-                    {% render controller("FitbaseUserBundle:Registration:code") %}
-
-                </div>
-            </div>
-
+            {% render controller("FitbaseUserBundle:Registration:code", { 'internal': true }) %}
         </div>
         <div class="col-md-1">
         </div>

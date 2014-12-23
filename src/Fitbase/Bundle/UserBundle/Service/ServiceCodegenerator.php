@@ -21,7 +21,7 @@ class ServiceCodegenerator extends ContainerAware
     public function password($length = 10)
     {
         $code = '';
-        $string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!?=_';
+        $string = 'abcdefghijkmnprstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!?=*';
         for ($i = 0; $i < $length; $i++) {
             $code .= $string{rand(0, strlen($string) - 1)};
         }

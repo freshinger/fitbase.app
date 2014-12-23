@@ -14,7 +14,6 @@
             <tag name="validator.constraint_validator" alias="fitbaseuser_password"/>
         </service>
 
-
         <service id="fitbase_validator.user_email_unique"
                  class="Fitbase\Bundle\UserBundle\Form\Constraints\UserEmailUniqueValidator">
             <call method="setContainer">
@@ -23,6 +22,21 @@
             <tag name="validator.constraint_validator" alias="user_email_unique"/>
         </service>
 
-    </services>
+        <service id="fitbase_validator.actioncode_exists"
+                 class="Fitbase\Bundle\UserBundle\Form\Constraints\ActioncodeExistsValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="actioncode_exists"/>
+        </service>
 
+        <service id="fitbase_validator.actioncode_used"
+                 class="Fitbase\Bundle\UserBundle\Form\Constraints\ActioncodeUsedValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="actioncode_used"/>
+        </service>
+
+    </services>
 </container>

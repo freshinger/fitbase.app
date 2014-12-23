@@ -20,23 +20,23 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
      * Store user quiz entity
      * @var WeeklyquizUser
      */
-    protected $weeklytaskUserQuiz;
+    protected $userQuiz;
     protected $collectionWeeklyTaskQuizQuestion;
 
     /**
      * Set user quiz entity
-     * @param WeeklyquizUser $weeklytaskUserQuiz
+     * @param WeeklyquizUser $userQuiz
      * @return $this
      */
-    public function setWeeklyquizUser(WeeklyquizUser $weeklytaskUserQuiz = null)
+    public function setWeeklyquizUser(WeeklyquizUser $userQuiz = null)
     {
-        $this->weeklytaskUserQuiz = $weeklytaskUserQuiz;
+        $this->userQuiz = $userQuiz;
 
         $repositoryWeeklyquizQuestion = $this->container->get('entity_manager')
             ->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
 
         $this->collectionWeeklyTaskQuizQuestion = $repositoryWeeklyquizQuestion
-            ->findAllByWeeklyquizUser($this->weeklytaskUserQuiz);
+            ->findAllByWeeklyquizUser($this->userQuiz);
 
         return $this;
     }
@@ -59,7 +59,7 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if (!is_object($this->weeklytaskUserQuiz)) {
+        if (!is_object($this->userQuiz)) {
             return;
         }
 
@@ -102,17 +102,22 @@ class WeeklyquizUserForm extends AbstractType implements ContainerAwareInterface
     {
         parent::buildView($view, $form, $options);
 
-        if (!is_object($this->weeklytaskUserQuiz)) {
+        if (!is_object($this->userQuiz)) {
             return;
         }
 
-        $countPointTotal = $this->weeklytaskUserQuiz->getCountPoint();
+        $countPointTotal = 0;
+        if (($quiz = $this->userQuiz->getQuiz())) {
+            $countPointTotal += $quiz->getCountPoint();
+        }
+
         if (!empty($this->collectionWeeklyTaskQuizQuestion)) {
             foreach ($this->collectionWeeklyTaskQuizQuestion as $weeklytaskQuestion) {
                 $countPointTotal += $weeklytaskQuestion->getCountPoint();
             }
         }
 
+        $view->vars['userQuiz'] = $this->userQuiz;
         $view->vars['points'] = $countPointTotal;
     }
 

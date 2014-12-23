@@ -1,0 +1,16 @@
+<div class="panel">
+    <div class="panel-heading">
+        <h2 class="col-sm-offset-1">{{ 'Registrieren'|trans({}, 'FitbaseUserBundle') }}</h2>
+    </div>
+    <div class="panel-body">
+        <p>
+            Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung abzuschließen
+        </p>
+
+        {% form_theme form 'FitbaseUserBundle:Registration:form.html.twig' %}
+        {{ form(form) }}
+
+    </div>
+</div>
+

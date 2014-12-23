@@ -33,7 +33,6 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         $this->container = $container;
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -87,6 +86,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('code')
+            ->add('user')
             ->add('company')
             ->add('duration')
             ->add('date')
@@ -101,9 +101,11 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('code')
             ->add('company')
+            ->add('user')
             ->add('categories')
             ->add('duration')
-            ->add('date')
+            ->add('processed')
+            ->add('processedDate', 'date')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -143,9 +145,14 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
 
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('company')
-            ->add('duration')
+            ->add('company', null, array(
+                'required' => true,
+            ))
+            ->add('duration', null, array(
+                'required' => true,
+            ))
             ->add('categories', null, array(
+                'required' => true,
                 'query_builder' => function ($repository) {
                     $queryBuilder = $repository->createQueryBuilder('Category');
                     $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));

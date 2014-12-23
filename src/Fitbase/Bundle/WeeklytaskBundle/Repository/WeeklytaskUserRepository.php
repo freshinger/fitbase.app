@@ -217,6 +217,8 @@ class WeeklytaskUserRepository extends EntityRepository
             $this->getExprUser($queryBuilder, $user)
         ));
 
+        $queryBuilder->addOrderBy('WeeklytaskUser.date', 'DESC');
+
         return $queryBuilder->getQuery()->getResult();
     }
 

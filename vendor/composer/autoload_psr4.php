@@ -54,4 +54,5 @@ return array(
     'Ivory\\CKEditorBundle\\' => array($vendorDir . '/egeloen/ckeditor-bundle'),
     'Google\\Authenticator\\Tests\\' => array($vendorDir . '/sonata-project/google-authenticator/tests'),
     'Google\\Authenticator\\' => array($vendorDir . '/sonata-project/google-authenticator/lib'),
+    'Cocur\\Slugify\\' => array($vendorDir . '/cocur/slugify/src'),
 );

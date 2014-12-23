@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 /**
  * @Annotation
  */
-class UserEmailUniqueValidator extends ConstraintValidator implements ContainerAwareInterface
+class ActioncodeExistsValidator extends ConstraintValidator implements ContainerAwareInterface
 {
 
     protected $container;
@@ -19,12 +19,12 @@ class UserEmailUniqueValidator extends ConstraintValidator implements ContainerA
         $this->container = $container;
     }
 
-    public function validate($entity, Constraint $constraint)
+    public function validate($value, Constraint $constraint)
     {
         $entityManager = $this->container->get('entity_manager');
-        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+        $repositoryUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserActioncode');
 
-        if (($user = $repositoryUser->findOneByEmail($entity->getEmail()))) {
+        if (!($actioncode = $repositoryUser->findOneByCode($value))) {
             $this->context->addViolation($constraint->message, array());
             return false;
         }

@@ -273,4 +273,90 @@ class UserActioncode
     {
         return $this->getCode();
     }
+
+    /**
+     * @var boolean
+     */
+    private $processed;
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return UserActioncode
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+
+        return $this;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $user
+     * @return UserActioncode
+     */
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @var \DateTime
+     */
+    private $processedDate;
+
+
+    /**
+     * Set processedDate
+     *
+     * @param \DateTime $processedDate
+     * @return UserActioncode
+     */
+    public function setProcessedDate($processedDate)
+    {
+        $this->processedDate = $processedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get processedDate
+     *
+     * @return \DateTime
+     */
+    public function getProcessedDate()
+    {
+        return $this->processedDate;
+    }
 }

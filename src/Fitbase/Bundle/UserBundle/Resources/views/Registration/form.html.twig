@@ -1,6 +1,19 @@
 {% use "form_div_layout.html.twig" %}
 
 
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="alert alert-danger">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
 {% block form_rows -%}
     {% for child in form %}
         {{- form_row(child) -}}
@@ -10,11 +23,11 @@
 {% block form_row -%}
     <div class="row form-group">
         <div class="col-md-12">
+            {{- form_errors(form) -}}
             {{- form_label(form) -}}
         </div>
         <div class="col-md-12">
             {{- form_widget(form) -}}
-            {{- form_errors(form) -}}
         </div>
     </div>
 {%- endblock form_row %}
@@ -22,7 +35,7 @@
 
 {% block button_row -%}
     <div class="row form-group">
-        <div class="col-md-12 col-sm-offset-6">
+        <div class="col-md-12">
             {{- form_widget(form) -}}
         </div>
     </div>

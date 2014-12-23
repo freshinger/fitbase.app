@@ -1332,7 +1332,6 @@ var requirejs, require, define;
                     }
                     return ret || (value.exports && getGlobal(value.exports));
                 }
-
                 return fn;
             },
 
@@ -5096,6 +5095,7 @@ define('jquery', function (require, exports, module) {
         var rnotwhite = (/\S+/g);
 
 
+
 // String to Object options format cache
         var optionsCache = {};
 
@@ -5586,6 +5586,7 @@ define('jquery', function (require, exports, module) {
 
 
         var strundefined = typeof undefined;
+
 
 
 // Support: IE<9
@@ -6143,6 +6144,7 @@ define('jquery', function (require, exports, module) {
             elem = el || elem;
             return jQuery.css(elem, "display") === "none" || !jQuery.contains(elem.ownerDocument, elem);
         };
+
 
 
 // Multifunctional method to get and set values of a collection
@@ -10460,6 +10462,8 @@ define('jquery', function (require, exports, module) {
                 return false;
             }
         });
+
+
 
 
 // Return jQuery for attributes-only inclusion

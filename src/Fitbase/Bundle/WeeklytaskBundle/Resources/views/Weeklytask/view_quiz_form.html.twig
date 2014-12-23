@@ -125,17 +125,24 @@
             </div>
         </div>
         <div class="modal-footer">
-            {% if points is defined and points %}
-                <span style="margin-right: 25%;">
-                    Sie erhalten maximal {{ points }} Punkte für dieses Quiz
-                </span>
+            {% if userQuiz is defined and userQuiz %}
+                {% if not userQuiz.done %}
+
+                    {% if points is defined and points %}
+                        <span style="margin-right: 25%;">
+                            Sie erhalten maximal {{ points }} Punkte für dieses Quiz
+                        </span>
+                    {% endif %}
+
+                    <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
+                        Quiz auswerten
+                    </button>
+                {% else %}
+                    <span style="margin-right: 25%;">
+                        Sie haben {{ userQuiz.countPoint }} Punkt(e) für dieses Quiz bekommen.
+                    </span>
+                {% endif %}
             {% endif %}
-            <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
-                Quiz auswerten
-            </button>
-            <a class="btn btn-primary" data-dismiss="modal" id="weeklytask_user_quiz_answer_close">
-                Später machen
-            </a>
         </div>
     {% endspaceless %}
 {% endblock form_widget_compound %}

@@ -10,8 +10,11 @@
         </id>
         <field name="code" type="string" column="code" length="255"/>
         <field name="date" type="datetime" column="date"/>
-        <field name="duration" type="integer" column="duration"/>
+        <field name="duration" type="integer" column="duration" nullable="true"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>
 
+        <one-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
 
         <many-to-many field="categories" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
