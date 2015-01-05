@@ -84,6 +84,8 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
 
                         foreach ($categoryPriority as $id => $row) {
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
+                            $this->container->get('logger')->info("Priority: {$id}: " . $categoryPriority[$id]);
+
                         }
 
                         if (arsort($categoryPriority)) {
@@ -94,7 +96,6 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                                         if (($category = $focusCategory->getCategory())) {
                                             if (($priority = array_search($category->getId(), $order)) !== null) {
 
-                                                $focusCategory->setPriority($priority);
                                                 $entityManager->persist($focusCategory);
                                                 $entityManager->flush($focusCategory);
                                             }

@@ -51,7 +51,6 @@ class ProfileFocusBlockService extends BaseBlockService implements ContainerAwar
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-
         if (!($user = $this->container->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
