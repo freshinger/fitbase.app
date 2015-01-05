@@ -10,13 +10,17 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="name" type="string" column="name"/>
-        <field name="description" type="text" column="description"/>
+        <field name="description" type="text" column="description" nullable="true"/>
 
-        <field name="countPointHealth" type="integer" column="count_point_health"/>
-        <field name="countPointStrain" type="integer" column="count_point_strain"/>
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
+
 
         <many-to-one field="question" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion">
             <join-column name="question_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+            <join-column name="questionnaire_id" referenced-column-name="id"/>
         </many-to-one>
 
 

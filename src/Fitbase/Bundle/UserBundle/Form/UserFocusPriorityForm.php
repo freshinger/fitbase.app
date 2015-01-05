@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class UserFocusForm extends AbstractType
+class UserFocusPriorityForm extends AbstractType
 {
     protected $user;
 
@@ -20,21 +20,14 @@ class UserFocusForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('categories', null, array(
-                'query_builder' => function (EntityRepository $repository) {
-
-                    $queryBuilder = $repository->createQueryBuilder('UserFocusCategory');
-                    $queryBuilder->join('UserFocusCategory.focus', 'UserFocus');
-
-                    $queryBuilder->where($queryBuilder->expr()->andX(
-                        $queryBuilder->expr()->eq('UserFocus.user', ':user')
-                    ));
-                    $queryBuilder->setParameter(':user', $this->user);
-
-                    return $queryBuilder;
-                }
-            ));
+        $builder->add('categories', new UserFocusCategoriesPriorityForm($this->user), array(
+            'label' => false
+        ))->add('save', 'submit', array(
+            'label' => 'Speichern und Coaching aktivieren',
+            'attr' => array(
+                'class' => 'btn btn-primary',
+            ),
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -51,6 +44,6 @@ class UserFocusForm extends AbstractType
 
     public function getName()
     {
-        return 'user_focus';
+        return 'user_focus_priority';
     }
 }

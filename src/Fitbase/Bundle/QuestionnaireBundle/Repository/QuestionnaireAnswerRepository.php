@@ -9,8 +9,11 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Repository;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
+use Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion;
+use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 
 class QuestionnaireAnswerRepository extends EntityRepository
 {

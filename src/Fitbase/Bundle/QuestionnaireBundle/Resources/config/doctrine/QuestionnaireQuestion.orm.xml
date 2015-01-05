@@ -12,16 +12,23 @@
         </id>
         <field name="name" type="string" column="name"/>
         <field name="format" type="string" column="format" nullable="true"/>
-        <field name="type" type="string" column="type"/>
-        <field name="description" type="text" column="description"/>
+        <field name="type" type="string" column="type" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
 
 
         <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
             <join-column name="questionnaire_id" referenced-column-name="id"/>
         </many-to-one>
 
+
+        <many-to-many field="categories" target-entity="Application\Sonata\ClassificationBundle\Entity\Category"/>
+
+
         <one-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer"
                      mapped-by="question">
+            <cascade>
+                <cascade-all/>
+            </cascade>
         </one-to-many>
 
     </entity>

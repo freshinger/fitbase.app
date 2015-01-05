@@ -2,6 +2,7 @@
 
 
 {% block content %}
+
     <div class="panel-info">
         <h2>{{ 'Der Bereichpriorität ändern'|trans({}, 'FitbaseUserBundle') }}</h2>
 
@@ -12,7 +13,8 @@
             genannte Bereich.
         </p>
 
-        {{ sonata_block_render({ 'type': 'fitbase.block.profile_focus' }) }}
+        {% include "FitbaseUserBundle:Block:focus.html.twig" %}
+
     </div>
 
 {% endblock content %}

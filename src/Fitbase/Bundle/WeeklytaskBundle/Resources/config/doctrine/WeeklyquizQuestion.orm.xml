@@ -8,7 +8,6 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <!--field name="quizId" type="integer" column="quiz_id"/-->
 
         <field name="name" type="string" column="name"/>
         <field name="format" type="string" column="format" nullable="true"/>

@@ -14,6 +14,7 @@ use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
+use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
@@ -27,7 +28,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProfileDashboardBlockService extends BaseBlockService implements ContainerAwareInterface
+class ProfileFocusBlockService extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -50,33 +51,36 @@ class ProfileDashboardBlockService extends BaseBlockService implements Container
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user = null;
 
         if (!($user = $this->container->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $form = $this->container->get('sonata.user.profile.form');
-        $formHandler = $this->container->get('sonata.user.profile.form.handler');
+        if (($focus = $user->getFocus())) {
 
-        if (($process = $formHandler->process($user))) {
-            $this->container->get('session')->getFlashBag()
-                ->set('sonata_user_success', 'profile.flash.updated');
+            $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
+            if ($this->container->get('request')->get($form->getName())) {
+                $form->handleRequest($this->container->get('request'));
+                if ($form->isValid()) {
+
+                    foreach ($focus->getCategories() as $category) {
+                        $this->container->get('entity_manager')->persist($category);
+                        $this->container->get('entity_manager')->flush($category);
+                    }
+
+                    $this->container->get('entity_manager')->refresh($user);
+
+                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $user->getFocus());
+                }
+            }
+
+            return $this->renderResponse('FitbaseUserBundle:Block:focus.html.twig', array(
+                'user' => $user,
+                'form' => $form->createView(),
+            ));
         }
 
-        $formPassword = $this->container->get('fos_user.change_password.form');
-        $formHandlerPassword = $this->container->get('fos_user.change_password.form.handler');
 
-        if (($process = $formHandlerPassword->process($user))) {
-            $this->container->get('session')->getFlashBag()
-                ->set('fos_user_success', 'change_password.flash.success');
-        }
-
-        return $this->renderResponse('FitbaseUserBundle:Block:dashboard.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-            'formPassword' => $formPassword->createView(),
-        ));
     }
 
     /**
@@ -84,6 +88,6 @@ class ProfileDashboardBlockService extends BaseBlockService implements Container
      */
     public function getName()
     {
-        return 'Dashboard (Profile)';
+        return 'Focus (Profile)';
     }
 } 

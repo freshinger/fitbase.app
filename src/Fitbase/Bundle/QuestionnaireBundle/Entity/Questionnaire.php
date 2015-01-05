@@ -108,4 +108,105 @@ class Questionnaire
     {
         return $this->getName();
     }
+
+    /**
+     * Add questions
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion $questions
+     * @return Questionnaire
+     */
+    public function addQuestion(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion $questions
+     */
+    public function removeQuestion(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $company;
+
+
+    /**
+     * Add company
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $company
+     * @return Questionnaire
+     */
+    public function addCompany(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $company)
+    {
+        $this->company[] = $company;
+
+        return $this;
+    }
+
+    /**
+     * Remove company
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $company
+     */
+    public function removeCompany(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $company)
+    {
+        $this->company->removeElement($company);
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $questionnaireUser;
+
+
+    /**
+     * Add questionnaireUser
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $questionnaireUser
+     * @return Questionnaire
+     */
+    public function addQuestionnaireUser(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $questionnaireUser)
+    {
+        $this->questionnaireUser[] = $questionnaireUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove questionnaireUser
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $questionnaireUser
+     */
+    public function removeQuestionnaireUser(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $questionnaireUser)
+    {
+        $this->questionnaireUser->removeElement($questionnaireUser);
+    }
+
+    /**
+     * Get questionnaireUser
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestionnaireUser()
+    {
+        return $this->questionnaireUser;
+    }
 }

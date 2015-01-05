@@ -2,26 +2,28 @@
 
 namespace Fitbase\Bundle\UserBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class UserFocusCategoriesForm extends AbstractType
+class UserFocusCategoriesPriorityForm extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('category')
-            ->add('parent')
-            ->add('priority');
 
+    protected $user;
+
+    public function __construct($user)
+    {
+        $this->user = $user;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitbase\Bundle\UserBundle\Entity\UserFocusCategory'
+            'allow_add' => false,
+            'allow_delete' => false,
+            'type' => new UserFocusCategoryPriorityForm(),
         ));
     }
 
@@ -33,6 +35,6 @@ class UserFocusCategoriesForm extends AbstractType
 
     public function getName()
     {
-        return 'user_focus_category';
+        return 'user_focus_priority_categories';
     }
 }

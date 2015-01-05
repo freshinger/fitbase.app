@@ -1,0 +1,87 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_row -%}
+    <div class="row">
+        <div class="col-md-12">
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+        </div>
+    </div>
+{%- endblock form_row %}
+
+{% block button_row -%}
+    <div class="row" style="padding-top: 15px;">
+        <div class="col-md-12">
+            {{- form_widget(form) -}}
+        </div>
+    </div>
+{%- endblock button_row %}
+
+
+{% block user_focus_priority_categories_widget %}
+    {% spaceless %}
+        <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var container = $(document);
+                container.find(".sortable_container").sortable({
+                    update: function (event, ui) {
+                        container.find('.sortable_item').each(function (index, element) {
+                            var container = $(element).children('div');
+                            container.trigger({
+                                type: 'position_update',
+                                index: index
+                            });
+                        });
+                    }
+                });
+            });
+        </script>
+        {{ form_errors(form) }}
+        <div {{ block('widget_container_attributes') }} class="sortable_container">
+            {%- for child in form %}
+                <div class="col-md-12 ui-state-default sortable_item" style="background: #f6f6f6 !important;">
+                    {{- form_widget(child) -}}
+                </div>
+            {% endfor -%}
+        </div>
+    {% endspaceless %}
+{% endblock user_focus_priority_categories_widget %}
+
+
+{% block user_focus_priority_category_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(function () {
+                var container = $("#{{ id }}");
+                container.bind('position_update', function (event) {
+                    container.find('input.priority').val(event.index);
+                });
+            });
+        </script>
+
+        {% if form.vars is defined %}
+            {% if form.vars.value is defined %}
+                {% set category = form.vars.value.category %}
+
+                <div class="row">
+                    {% if category.media is defined %}
+                        <div class="col-md-4" style="padding-top: 15px; padding-bottom: 15px; ">
+                            {% thumbnail category.media, 'preview' with {'width': 150} %}
+                        </div>
+                    {% endif %}
+
+                    <div class="col-md-8">
+                        <h3>{{ category.name }}</h3>
+
+                        <p>{{ category.description }}</p>
+                    </div>
+                </div>
+
+            {% endif %}
+        {% endif %}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    {% endspaceless %}
+{% endblock user_focus_priority_category_widget %}

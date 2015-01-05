@@ -39,7 +39,7 @@ class UserRegistrationForm extends AbstractType
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 ),
-            ));;
+            ));
     }
 
     /**

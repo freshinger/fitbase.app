@@ -14,7 +14,6 @@ namespace Fitbase\Bundle\UserBundle\Admin;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
-use Fitbase\Bundle\UserBundle\Form\UserFocusCategoryForm;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -108,6 +107,7 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
                 ));
             }
         }
+        $formMapper->add('focus');
 
         $formMapper->add('priority')
             ->end();

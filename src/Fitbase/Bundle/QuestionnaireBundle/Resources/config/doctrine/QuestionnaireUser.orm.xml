@@ -15,11 +15,20 @@
         <field name="done" type="boolean" column="done" nullable="true"/>
         <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
 
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
+
         <field name="countPointHealth" type="integer" column="count_point_health" nullable="true"/>
         <field name="countPointStrain" type="integer" column="count_point_strain" nullable="true"/>
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire"/>
+
+        <one-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer"
+                     mapped-by="questionnaireUser">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
 
 
     </entity>

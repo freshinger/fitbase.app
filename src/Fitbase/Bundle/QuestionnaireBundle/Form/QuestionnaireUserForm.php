@@ -14,8 +14,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormView;
 
 
-class QuestionnaireUserForm extends AbstractType implements ContainerAwareInterface
+class QuestionnaireUserForm extends AbstractType
 {
+
+    /**
+     * Service Container
+     * @var
+     */
     protected $container;
 
     /**
@@ -23,32 +28,36 @@ class QuestionnaireUserForm extends AbstractType implements ContainerAwareInterf
      * @var WeeklytaskUserQuiz
      */
     protected $questionnaireUser;
-    protected $collectionQuestionnaireQuestion;
 
-
-    public function setQuestionnaireUser(QuestionnaireUser $questionnaireUser)
+    /**
+     * Class cosntructor
+     * @param ContainerInterface $container
+     * @param QuestionnaireUser $questionnaireUser
+     */
+    public function __construct(ContainerInterface $container = null, QuestionnaireUser $questionnaireUser)
     {
+        $this->container = $container;
         $this->questionnaireUser = $questionnaireUser;
-
-        $repositoryWeeklytaskQuestion = $this->container->get('entity_manager')
-            ->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-
-        $this->collectionQuestionnaireQuestion = $repositoryWeeklytaskQuestion
-            ->findAllByQuestionnaireUser($questionnaireUser);
-
-        return $this;
     }
 
     /**
-     * Sets the Container.
-     *
-     * @param ContainerInterface|null $container A ContainerInterface instance or null
-     *
-     * @api
+     * Calculate question form type
+     * @param $question
+     * @return QuestionnaireQuestionCheckboxType|QuestionnaireQuestionRadiobuttonType|QuestionnaireQuestionSelectboxType|QuestionnaireQuestionSliderType|QuestionnaireQuestionTextType
      */
-    public function setContainer(ContainerInterface $container = null)
+    protected function getQuestionFormType($question)
     {
-        $this->container = $container;
+        switch ($question->getType()) {
+            case 'checkbox':
+                return new QuestionnaireQuestionCheckboxType($this->container, $question);
+            case 'selectbox':
+                return new QuestionnaireQuestionSelectboxType($this->container, $question);
+            case 'slider':
+                return new QuestionnaireQuestionSliderType($this->container, $question);
+            case 'text':
+                return new QuestionnaireQuestionTextType($this->container, $question);
+        }
+        return new QuestionnaireQuestionRadiobuttonType($this->container, $question);
     }
 
     /**
@@ -58,36 +67,19 @@ class QuestionnaireUserForm extends AbstractType implements ContainerAwareInterf
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         assert(is_object($this->questionnaireUser));
-        assert(($collection = $this->collectionQuestionnaireQuestion));
 
-        if (!empty($collection)) {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklytaskQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
+        if (($collection = $repositoryWeeklytaskQuestion->findAllByQuestionnaireUser($this->questionnaireUser))) {
             foreach ($collection as $question) {
-
-                switch ($question->getType()) {
-                    case 'checkbox':
-                        $weeklytaskQuestionType = new QuestionnaireQuestionCheckboxType($this->container, $question);
-                        break;
-                    case 'selectbox':
-                        $weeklytaskQuestionType = new QuestionnaireQuestionSelectboxType($this->container, $question);
-                        break;
-                    case 'slider':
-                        $weeklytaskQuestionType = new QuestionnaireQuestionSliderType($this->container, $question);
-                        break;
-                    case 'text':
-                        $weeklytaskQuestionType = new QuestionnaireQuestionTextType($this->container, $question);
-                        break;
-                    default:
-                        $weeklytaskQuestionType = new QuestionnaireQuestionRadiobuttonType($this->container, $question);
-                        break;
-                }
-
-                $builder->add($question->getId(), $weeklytaskQuestionType, array(
+                $builder->add($question->getId(), $this->getQuestionFormType($question), array(
                     'label' => $question->getName(),
                     'required' => false,
                 ));
             }
         }
     }
+
 
     /**
      * @return string

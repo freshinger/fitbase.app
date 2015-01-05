@@ -159,4 +159,56 @@ class QuestionnaireUserAnswer
     {
         return $this->question;
     }
+
+    /**
+     * Add answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers
+     * @return QuestionnaireUserAnswer
+     */
+    public function addAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers
+     */
+    public function removeAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * @var integer
+     */
+    private $countPoint;
+
+
+    /**
+     * Set countPoint
+     *
+     * @param integer $countPoint
+     * @return QuestionnaireUserAnswer
+     */
+    public function setCountPoint($countPoint)
+    {
+        $this->countPoint = $countPoint;
+
+        return $this;
+    }
+
+    /**
+     * Get countPoint
+     *
+     * @return integer
+     */
+    public function getCountPoint()
+    {
+        return $this->countPoint;
+    }
 }

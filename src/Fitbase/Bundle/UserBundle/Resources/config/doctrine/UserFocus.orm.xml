@@ -11,9 +11,6 @@
         <one-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <one-to-many field="categories" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory"
                      mapped-by="focus" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
             <order-by>
                 <order-by-field name="priority" direction="ASC"/>
             </order-by>

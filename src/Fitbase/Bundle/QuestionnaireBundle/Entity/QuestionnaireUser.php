@@ -164,4 +164,79 @@ class QuestionnaireUser
     {
         return $this->user;
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $answers;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer $answers
+     * @return QuestionnaireUser
+     */
+    public function addAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer $answers
+     */
+    public function removeAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
+    }
+
+    /**
+     * @var integer
+     */
+    private $countPoint;
+
+
+    /**
+     * Set countPoint
+     *
+     * @param integer $countPoint
+     * @return QuestionnaireUser
+     */
+    public function setCountPoint($countPoint)
+    {
+        $this->countPoint = $countPoint;
+
+        return $this;
+    }
+
+    /**
+     * Get countPoint
+     *
+     * @return integer
+     */
+    public function getCountPoint()
+    {
+        return $this->countPoint;
+    }
 }

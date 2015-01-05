@@ -5,11 +5,23 @@
             New anlegen
         </a>
     </h4>
-    <ol>
-        {% for answer in object.answers %}
-            <li>
-                <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">{{ answer.name }}</a>
-            </li>
-        {% endfor %}
-    </ol>
+    {% for answer in object.answers %}
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ loop.index }}.&nbsp;{{ answer.name }} ({{ answer.countPoint }})</h4>
+            </div>
+            <div class="col-md-6">
+                {% if answer.description is defined %}
+                    <p>{{ answer.description|raw }}</p>
+                {% endif %}
+            </div>
+            <div class="col-md-12">
+                <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
+                |
+                <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>
+                |
+                <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_delete', { id: answer.id}) }}">remove</a>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

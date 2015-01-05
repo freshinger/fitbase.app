@@ -143,4 +143,66 @@ class QuestionnaireQuestion
     {
         return $this->getName();
     }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+
+    /**
+     * Add answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers
+     * @return QuestionnaireQuestion
+     */
+    public function addAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers
+     */
+    public function removeAnswer(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
+     * @return QuestionnaireQuestion
+     */
+    public function addCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
+     */
+    public function removeCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 }

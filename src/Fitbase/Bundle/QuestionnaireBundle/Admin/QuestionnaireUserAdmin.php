@@ -87,6 +87,9 @@ class QuestionnaireUserAdmin extends Admin implements ContainerAwareInterface
             ->add('user')
             ->add('questionnaire')
             ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
+            ->add('pause', null, array(
+                'required' => false,
+            ))
             ->end();
     }
 }

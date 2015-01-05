@@ -13,6 +13,9 @@
 
         <field name="text" type="text" column="text" nullable="true"/>
 
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
+
+
         <field name="countPointHealth" type="integer" column="count_point_health" nullable="true"/>
         <field name="countPointStrain" type="integer" column="count_point_strain" nullable="true"/>
 

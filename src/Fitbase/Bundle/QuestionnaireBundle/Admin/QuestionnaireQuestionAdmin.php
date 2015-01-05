@@ -103,6 +103,7 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
                 ),
             ))
             ->add('description', 'sonata_formatter_type', array(
+                'required' => false,
                 'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',
@@ -116,6 +117,14 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
             ->end()
             ->with('Integration', array('class' => 'col-md-6'))
             ->add('questionnaire')
+            ->add('categories')
+            ->end();
+
+//        if (($user = $this->getRoot()->getSubject())) {
+//            if (($focus = $user->getFocus())) {
+
+        $formMapper
+            ->with('Answers', array('class' => 'col-md-6'))
             ->add('answers')
             ->end();
     }

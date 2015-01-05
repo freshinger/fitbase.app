@@ -45,8 +45,7 @@ class QuestionnaireAnswerAdmin extends Admin implements ContainerAwareInterface
             ->add('description')
             ->end()
             ->with('Punkte')
-            ->add('countPointHealth')
-            ->add('countPointStrain')
+            ->add('countPoint')
             ->end();
     }
 
@@ -59,8 +58,7 @@ class QuestionnaireAnswerAdmin extends Admin implements ContainerAwareInterface
             ->add('name')
             ->add('question')
             ->add('description')
-            ->add('countPointHealth')
-            ->add('countPointStrain')
+            ->add('countPoint')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -79,8 +77,7 @@ class QuestionnaireAnswerAdmin extends Admin implements ContainerAwareInterface
             ->add('name')
             ->add('question')
             ->add('description')
-            ->add('countPointHealth')
-            ->add('countPointStrain');
+            ->add('countPoint');
     }
 
     /**
@@ -89,14 +86,15 @@ class QuestionnaireAnswerAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General')
+            ->with('General', array('class' => 'col-md-6'))
             ->add('name')
             ->add('question')
-            ->add('description')
+            ->add('description', null, array(
+                'required' => false
+            ))
             ->end()
-            ->with('Punkte')
-            ->add('countPointHealth')
-            ->add('countPointStrain')
+            ->with('Punkte', array('class' => 'col-md-6'))
+            ->add('countPoint')
             ->end();
     }
 }
