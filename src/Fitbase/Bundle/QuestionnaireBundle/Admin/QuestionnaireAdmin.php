@@ -94,9 +94,6 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
                 'listener' => true,
                 'target_field' => 'content'
             ))
-            ->end()
-            ->with('Fragen', array('class' => 'col-md-6'))
-            ->add('questions')
             ->end();
     }
 }

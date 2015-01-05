@@ -122,10 +122,5 @@ class QuestionnaireQuestionAdmin extends Admin implements ContainerAwareInterfac
 
 //        if (($user = $this->getRoot()->getSubject())) {
 //            if (($focus = $user->getFocus())) {
-
-        $formMapper
-            ->with('Answers', array('class' => 'col-md-6'))
-            ->add('answers')
-            ->end();
     }
 }
