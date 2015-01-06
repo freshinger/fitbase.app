@@ -11,7 +11,7 @@
         </id>
         <field name="name" type="string" column="name"/>
         <field name="format" type="string" column="format" nullable="true"/>
-        <field name="description" type="text" column="description"/>
+        <field name="description" type="text" column="description" nullable="true"/>
 
         <one-to-many field="company" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany"
                      mapped-by="questionnaire"/>
