@@ -65,7 +65,6 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
 
     protected function getContentQuestionnaire(Request $request)
     {
-
         if (!($user = $this->container->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
@@ -83,13 +82,7 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
                     }
 
                     $this->container->get('entity_manager')->refresh($focus);
-
-                    if (($session = $this->container->get('request')->getSession())) {
-                        if (($questionnaireStep = $session->get('questionnaire_step'))) {
-                            $session->set('questionnaire_step', $questionnaireStep + 1);
-                            return null;
-                        }
-                    }
+                    return null;
                 }
             }
 

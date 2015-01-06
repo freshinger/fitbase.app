@@ -34,7 +34,7 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', 128),
+            KernelEvents::RESPONSE => array('onKernelResponse', -128),
         );
     }
 
@@ -217,14 +217,14 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                 }
             }
 
-            if (($session = $this->container->get('request')->getSession())) {
+            if (($session = $request->getSession())) {
                 if (($questionnaireStep = $session->get('questionnaire_step'))) {
 
                     $response = new Response();
 
                     $event = new FilterResponseEvent(
                         $this->container->get('kernel'),
-                        $this->container->get('request'),
+                        $request,
                         HttpKernelInterface::SUB_REQUEST,
                         $response);
 
@@ -235,6 +235,32 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                         if (strlen($response->getContent())) {
                             return $response;
                         }
+
+                        // If got response from listeners
+                        // and this was a post-request
+                        // but response is already empty
+                        // increase a step to give a chance
+                        // to other listeners draw a current step
+                        if (!$request->isMethodSafe()) {
+                            if (($session = $request->getSession())) {
+                                $questionnaireStep++;
+                                $session->set('questionnaire_step', $questionnaireStep);
+
+                                // increase a step to give a chance
+                                // to other listeners draw a current step
+                                $this->container->get('event_dispatcher')
+                                    ->dispatch("questionnaire_step_{$questionnaireStep}", $event);
+
+                                if (($response = $event->getResponse())) {
+                                    if (strlen($response->getContent())) {
+                                        return $response;
+                                    }
+                                }
+
+                                return new RedirectResponse($request->getUri());
+                            }
+                        }
+
                         $session->remove('questionnaire_step');
                     }
                 }

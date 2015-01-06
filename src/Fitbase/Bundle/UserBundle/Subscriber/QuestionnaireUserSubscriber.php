@@ -84,7 +84,6 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
 
                         foreach ($categoryPriority as $id => $row) {
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
-                            $this->container->get('logger')->info("Priority: {$id}: " . $categoryPriority[$id]);
 
                         }
 
