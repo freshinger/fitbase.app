@@ -11,6 +11,7 @@
             <div class="col-md-12">
                 <h4>{{ loop.index }}.&nbsp;{{ question.name }}
                     <sub>
+                        ({{ question.type }})
                         <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">
                             show
                         </a>|
