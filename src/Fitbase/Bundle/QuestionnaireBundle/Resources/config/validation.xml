@@ -24,11 +24,6 @@
                 <option name="message">Dieses Feld darf nich leer sein</option>
             </constraint>
         </property>
-        <property name="description">
-            <constraint name="NotNull">
-                <option name="message">Dieses Feld darf nich leer sein</option>
-            </constraint>
-        </property>
     </class>
 
     <class name="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion">
