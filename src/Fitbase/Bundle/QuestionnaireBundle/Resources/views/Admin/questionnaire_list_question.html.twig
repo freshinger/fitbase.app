@@ -9,24 +9,26 @@
     {% for question in object.questions %}
         <div class="row">
             <div class="col-md-12">
-                <h4>{{ loop.index }}.&nbsp;{{ question.name }}</h4>
+                <h4>{{ loop.index }}.&nbsp;{{ question.name }}
+                    <sub>
+                        <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">
+                            show
+                        </a>|
+                        <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: question.id}) }}">
+                            edit
+                        </a>|
+                        <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: question.id}) }}">
+                            remove
+                        </a>
+                    </sub>
+                </h4>
+
             </div>
             {% if question.description is defined %}
                 <div class="col-md-12">
                     <p>{{ question.description|raw }}</p>
                 </div>
             {% endif %}
-            <div class="col-md-3 col-sm-offset-9">
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">
-                    show
-                </a>|
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: question.id}) }}">
-                    edit
-                </a>|
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: question.id}) }}">
-                    remove
-                </a>
-            </div>
             <div class="col-md-12">
                 <div class="row col-sm-offset-1">
                     {% if question.categories is defined and question.categories|length > 0 %}
@@ -39,8 +41,6 @@
                                         {% if category.position %}
                                             ({{ category.position }})
                                         {% endif %}
-                                    </div>
-                                    <div class="col-md-12">
                                         <a href="{{ path('admin_sonata_classification_category_show', { id: category.id}) }}">show</a>
                                         |
                                         <a href="{{ path('admin_sonata_classification_category_edit', { id: category.id}) }}">edit</a>
@@ -60,8 +60,6 @@
                                         {% if answer.countPoint %}
                                             ({{ answer.countPoint }})
                                         {% endif %}
-                                    </div>
-                                    <div class="col-md-12">
                                         <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
                                         |
                                         <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>

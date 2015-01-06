@@ -3,33 +3,73 @@
     <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_create') }}">New anlegen</a>
     <ol>
         {% for question in object.questions %}
-            <li>
-                {{ question.name }}
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">show</a>
-                |
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: question.id}) }}">edit</a>
-                |
-                <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: question.id}) }}">remove</a>
-                {% if question.description|length > 0 %}
-                    <p>{{ question.description|raw }}</p>
-                {% endif %}
-                <ol>
-                    {% for answer in question.answers %}
-                        <li>
-                            {{ answer.name }}
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
-                            |
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>
-                            |
-                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_delete', { id: answer.id}) }}">remove</a>
-                            {% if answer.description|length > 0 %}
-                                <p>{{ answer.description|raw }}</p>
-                            {% endif %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ loop.index }}.&nbsp;{{ question.name }}
+                        <sub>
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_show', { id: question.id}) }}">
+                                show
+                            </a>|
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_edit', { id: question.id}) }}">
+                                edit
+                            </a>|
+                            <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_delete', { id: question.id}) }}">
+                                remove
+                            </a>
+                        </sub>
+                    </h4>
 
-                        </li>
-                    {% endfor %}
-                </ol>
-            </li>
+                </div>
+                {% if question.description is defined %}
+                    <div class="col-md-12">
+                        <p>{{ question.description|raw }}</p>
+                    </div>
+                {% endif %}
+                <div class="col-md-12">
+                    <div class="row col-sm-offset-1">
+                        {% if question.categories is defined and question.categories|length > 0 %}
+                            <div class="col-md-4">
+                                <h4>Bereiche</h4>
+                                {% for category in question.categories %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{ loop.index }}.&nbsp;{{ category.name }}
+                                            {% if category.position %}
+                                                ({{ category.position }})
+                                            {% endif %}
+                                            <a href="{{ path('admin_sonata_classification_category_show', { id: category.id}) }}">show</a>
+                                            |
+                                            <a href="{{ path('admin_sonata_classification_category_edit', { id: category.id}) }}">edit</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if question.answers is defined and question.answers|length > 0 %}
+                            <div class="col-md-8">
+                                <h4>Antworte</h4>
+                                {% for answer in question.answers %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            {{ loop.index }}.&nbsp;{{ answer.name }}
+                                            {% if answer.countPoint %}
+                                                ({{ answer.countPoint }})
+                                            {% endif %}
+                                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
+                                            |
+                                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>
+                                            |
+                                            <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_delete', { id: answer.id}) }}">remove</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
         {% endfor %}
     </ol>
 {% endblock %}
