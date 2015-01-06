@@ -20,7 +20,7 @@ class UserFocusPriorityForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('categories', new UserFocusCategoriesPriorityForm($this->user), array(
+        $builder->add('parentCategories', new UserFocusCategoriesPriorityForm($this->user), array(
             'label' => false
         ))->add('save', 'submit', array(
             'label' => 'Speichern und Coaching aktivieren',

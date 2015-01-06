@@ -2,6 +2,7 @@
 
 namespace Fitbase\Bundle\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -175,6 +176,53 @@ class UserFocus
             }
         }
         return null;
+    }
+
+    /**
+     *
+     * @param $categories
+     */
+    public function setParentCategories($categories)
+    {
+        if (is_array($categories)) {
+            $categories = new ArrayCollection($categories);
+        }
+
+        if (($parents = $this->getParentCategories())) {
+            foreach ($parents as $parent) {
+
+                // Check is current array include
+                // all parent categories
+                $exist = $categories->exists(function ($index, UserFocusCategory $entity) use ($parent) {
+                    if ($entity->getId() == $parent->getId()) {
+                        return true;
+                    }
+                });
+
+                // if not, remove
+                // parent category
+                if ($exist !== true) {
+                    $this->removeCategory($parent);
+                }
+            }
+
+            // check is parent categories have a
+            // given new parent categories
+            foreach ($categories as $candidate) {
+
+                $exist = $parents->exists(function ($index, UserFocusCategory $entity) use ($candidate) {
+                    if ($entity->getId() == $candidate->getId()) {
+                        return true;
+                    }
+                });
+
+                // if not, add a new
+                // category to list
+                if ($exist !== true) {
+                    $this->addCategory($candidate);
+                }
+            }
+        }
     }
 
     /**
