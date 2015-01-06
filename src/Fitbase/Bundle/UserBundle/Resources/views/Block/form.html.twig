@@ -42,7 +42,7 @@
         <div {{ block('widget_container_attributes') }} class="sortable_container">
             {%- for child in form %}
                 <div class="col-md-12 ui-state-default sortable_item" style="background: #f6f6f6 !important;">
-                    {{- form_widget(child) -}}
+                    {{- form_widget(child, { 'index': loop.index }) -}}
                 </div>
             {% endfor -%}
         </div>
@@ -65,9 +65,15 @@
             {% if form.vars.value is defined %}
                 {% set category = form.vars.value.category %}
 
-                <div class="row">
+                <div class="row" style="color: #333">
+                    {% if index is defined %}
+                        <div class="col-md-1">
+                            <h3>{{ index }}</h3>
+                        </div>
+                    {% endif %}
+
                     {% if category.media is defined %}
-                        <div class="col-md-4" style="padding-top: 15px; padding-bottom: 15px; ">
+                        <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px; ">
                             {% thumbnail category.media, 'preview' with {'width': 85} %}
                         </div>
                     {% endif %}

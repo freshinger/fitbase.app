@@ -40,7 +40,7 @@ class FocusBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService impleme
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Aktivitäten', array(
+        $menu->addChild('Übungen', array(
             'route' => 'focus',
             'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
         ));

@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="sonata_seo_homepage_breadcrumb">
                 <source>sonata_seo_homepage_breadcrumb</source>
-                <target>Mitgliederbereich</target>
+                <target>Startseite</target>
             </trans-unit>
         </body>
     </file>
