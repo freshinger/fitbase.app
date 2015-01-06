@@ -5,8 +5,8 @@
 
 {% if user is defined %}
     {% if user.focus is defined %}
-        {% if user.focus.categories is defined %}
-            {% set categories = user.focus.categories %}
+        {% if user.focus.parentCategories is defined %}
+            {% set categories = user.focus.parentCategories %}
             {% if categories|length > 1 %}
                 <div class="panel-info">
                     <h2>{{ 'Der Bereichpriorität ändern'|trans({}, 'FitbaseUserBundle') }}</h2>
