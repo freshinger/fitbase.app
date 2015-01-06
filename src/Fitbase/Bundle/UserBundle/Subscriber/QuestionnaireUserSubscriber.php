@@ -84,22 +84,29 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
 
                         foreach ($categoryPriority as $id => $row) {
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
-
                         }
 
                         if (arsort($categoryPriority)) {
                             if (($order = array_keys($categoryPriority))) {
                                 if (($focusCategories = $focus->getCategories())) {
                                     $entityManager = $this->container->get('entity_manager');
+
+                                    $priorityRest = (count($order) - 1);
                                     foreach ($focusCategories as $focusCategory) {
                                         if (($category = $focusCategory->getCategory())) {
-                                            if (($priority = array_search($category->getId(), $order)) !== null) {
 
-                                                $entityManager->persist($focusCategory);
-                                                $entityManager->flush($focusCategory);
+                                            if (($priority = array_search($category->getId(), $order)) !== false) {
+                                                $focusCategory->setPriority((int)$priority);
+                                            } else {
+                                                $focusCategory->setPriority((int)++$priorityRest);
                                             }
+
+                                            $entityManager->persist($focusCategory);
+                                            $entityManager->flush($focusCategory);
                                         }
                                     }
+
+                                    $entityManager->refresh($focus);
                                 }
                             }
                         }
