@@ -71,26 +71,6 @@ class ReminderUserListener extends ContainerAware
                 $entity1->setTime($datetime);
                 $entity1->setType('weeklytask');
                 $this->container->get('entity_manager')->persist($entity1);
-
-
-                $entity3 = new ReminderUserItem();
-                $entity3->setReminder($reminder);
-                $entity3->setUser($user);
-                $entity3->setDay(3);
-                $entity3->setTime($datetime);
-                $entity3->setType('weeklytask');
-                $this->container->get('entity_manager')->persist($entity3);
-
-
-                $entity5 = new ReminderUserItem();
-                $entity5->setReminder($reminder);
-                $entity5->setUser($user);
-                $entity5->setDay(5);
-                $entity5->setTime($datetime);
-                $entity5->setType('weeklytask');
-                $this->container->get('entity_manager')->persist($entity5);
-                $this->container->get('entity_manager')->flush();
-
             }
         }
     }
