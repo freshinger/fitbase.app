@@ -7,11 +7,11 @@ use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Entity\UserRegistration;
+use Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Form\UserActioncodeForm;
 use Fitbase\Bundle\UserBundle\Form\UserRegistrationForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -105,6 +105,11 @@ class RegistrationController extends Controller
 
                         $entityManager->persist($actioncode);
                         $entityManager->flush($actioncode);
+
+
+                        $eventActioncode = new UserActioncodeEvent($actioncode);
+                        $this->container->get('event_dispatcher')->dispatch('user_actioncode_processed', $eventActioncode);
+
 
                         $event = new UserEvent($user);
                         $this->container->get('event_dispatcher')->dispatch('user_created', $event);

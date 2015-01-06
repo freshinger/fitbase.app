@@ -14,6 +14,16 @@
             </call>
         </service>
 
+
+        <service id="fitbase.subscriber.UserActioncodeSubscriber"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Subscriber\UserActioncodeSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 </container>

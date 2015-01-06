@@ -16,6 +16,7 @@
 
         <one-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
         <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire"/>
 
         <many-to-many field="categories" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
             <order-by>

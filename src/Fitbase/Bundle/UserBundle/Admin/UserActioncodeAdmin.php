@@ -64,6 +64,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
                 $entity = new UserActioncode();
                 $entity->setPrefix($object->getPrefix());
                 $entity->setCompany($object->getCompany());
+                $entity->setQuestionnaire($object->getQuestionnaire());
                 $entity->setDuration($object->getDuration());
                 $entity->setDate($object->getDate());
                 $entity->setCategories($object->getCategories());
@@ -89,6 +90,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
             ->add('code')
             ->add('user')
             ->add('company')
+            ->add('questionnaire')
             ->add('duration')
             ->add('date')
             ->end();
@@ -102,6 +104,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('code')
             ->add('company')
+            ->add('questionnaire')
             ->add('user')
             ->add('categories')
             ->add('duration')
@@ -149,8 +152,8 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
             ->add('company', null, array(
                 'required' => true,
             ))
-            ->add('duration', null, array(
-                'required' => true,
+            ->add('questionnaire', null, array(
+                'required' => false,
             ))
             ->add('categories', null, array(
                 'required' => true,
@@ -159,6 +162,9 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
                     $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));
                     return $queryBuilder;
                 }
+            ))
+            ->add('duration', null, array(
+                'required' => true,
             ))
             ->end();
     }
