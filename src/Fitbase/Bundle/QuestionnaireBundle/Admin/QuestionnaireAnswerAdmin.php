@@ -94,7 +94,9 @@ class QuestionnaireAnswerAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->with('Punkte', array('class' => 'col-md-6'))
-            ->add('countPoint')
+            ->add('countPoint', null, array(
+                'label' => 'Prozentzahl'
+            ))
             ->end();
     }
 }
