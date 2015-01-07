@@ -193,8 +193,15 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                             $questionnaireUser->setCountPoint($pointTotal);
 
                             $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-                            if (!$repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) {
+                            if ($repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) {
 
+                                $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
+                                $form = $this->container->get('form.factory')->create($formBuilder, array());
+                                return $this->container->get('templating')->render('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
+                                    'form' => $form->createView(),
+                                    'questionnaire' => $questionnaire,
+                                ));
+                            } else {
                                 $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
                                 $this->container->get('event_dispatcher')->dispatch('questionnaire_user_done', $eventQuestionnaireUser);
 
