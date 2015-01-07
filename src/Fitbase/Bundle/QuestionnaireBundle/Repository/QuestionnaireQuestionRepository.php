@@ -25,14 +25,13 @@ class QuestionnaireQuestionRepository extends EntityRepository
      */
     public function getExprCategories($queryBuilder, $categories)
     {
-
         $categories = (new ArrayCollection($categories))->map(function ($entity) {
             return $entity->getId();
         });
 
-        $queryBuilder->setParameter('array', $categories->toArray());
+        $queryBuilder->setParameter('categories', $categories->toArray());
         return $queryBuilder->expr()->orx(
-            $queryBuilder->expr()->in('Category.id', ':array'),
+            $queryBuilder->expr()->in('Category.id', ':categories'),
             $queryBuilder->expr()->isNull('Category.id')
         );
     }
@@ -50,9 +49,10 @@ class QuestionnaireQuestionRepository extends EntityRepository
                 return $entity->getId();
             });
 
-            $queryBuilder->setParameter('array', $questions->toArray());
-            return $queryBuilder->expr()->notIn('QuestionnaireQuestion.id', ':array');
+            $queryBuilder->setParameter('notQuestions', $questions->toArray());
+            return $queryBuilder->expr()->notIn('QuestionnaireQuestion.id', ':notQuestions');
         }
+
         return $queryBuilder->expr()->eq('1', '1');
     }
 
@@ -129,7 +129,6 @@ class QuestionnaireQuestionRepository extends EntityRepository
                 }
             }
         }
-
 
         $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
         $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');

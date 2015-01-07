@@ -188,6 +188,10 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                     $managerEntity->flush($questionnaireUser);
 
                     $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
+
+                    var_dump($repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser));
+                    exit;
+
                     if ($repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) {
 
                         $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
@@ -198,16 +202,14 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                         ));
                     }
 
-                    $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
-                    $this->container->get('event_dispatcher')->dispatch('questionnaire_user_done', $eventQuestionnaireUser);
+//                    $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
+//                    $this->container->get('event_dispatcher')->dispatch('questionnaire_user_done', $eventQuestionnaireUser);
 
 
-                    if (!$request->isMethodSafe()) {
-                        if (($session = $request->getSession())) {
-                            $session->set('questionnaire_step', 1);
-                        }
+                    if (($session = $request->getSession())) {
+                        $session->set('questionnaire_step', 1);
                     }
-                    
+
                     return null;
                 }
             }
@@ -240,7 +242,6 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
         }
         return null;
     }
-
 
     /**
      * Get current content
