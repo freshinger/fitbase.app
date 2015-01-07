@@ -224,7 +224,7 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
 
                     $event = new FilterResponseEvent(
                         $this->container->get('kernel'),
-                        $request,
+                        $this->container->get('request'),
                         HttpKernelInterface::SUB_REQUEST,
                         $response);
 

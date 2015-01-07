@@ -33,7 +33,7 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
     public static function getSubscribedEvents()
     {
         return array(
-            'questionnaire_step_1' => array('onKernelResponse', 128),
+            'questionnaire_step_1' => array('onQuestionnaireStep1', 128),
         );
     }
 
@@ -41,23 +41,20 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
      * Process kernel response
      * @param FilterResponseEvent $event
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onQuestionnaireStep1(FilterResponseEvent $event)
     {
         $response = $event->getResponse();
         $request = $event->getRequest();
 
         // do not capture redirects or modify XML HTTP Requests
-        if ($request->isXmlHttpRequest()) {
-            return;
-        }
-
-        $request = $this->container->get('request');
-        if (($content = $this->getContentQuestionnaire($request))) {
-            if ($content instanceof Response) {
-                $event->setResponse($content);
-            } else {
-                $response->setContent($content);
-                $response->setStatusCode(200);
+        if (!$request->isXmlHttpRequest()) {
+            if (($content = $this->getContentQuestionnaire($request))) {
+                if ($content instanceof Response) {
+                    $event->setResponse($content);
+                } else {
+                    $response->setContent($content);
+                    $response->setStatusCode(200);
+                }
             }
         }
     }
