@@ -37,30 +37,7 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
         );
     }
 
-    /**
-     * Process kernel response
-     * @param FilterResponseEvent $event
-     */
     public function onQuestionnaireStep1(FilterResponseEvent $event)
-    {
-        $response = $event->getResponse();
-        $request = $event->getRequest();
-
-        // do not capture redirects or modify XML HTTP Requests
-        if (!$request->isXmlHttpRequest()) {
-            if (($content = $this->getContentQuestionnaire($request))) {
-                if ($content instanceof Response) {
-                    $event->setResponse($content);
-                } else {
-                    $response->setContent($content);
-                    $response->setStatusCode(200);
-                }
-            }
-        }
-    }
-
-
-    protected function getContentQuestionnaire(Request $request)
     {
         if (!($user = $this->container->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -69,8 +46,8 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
         if (($focus = $user->getFocus())) {
 
             $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-            if ($this->container->get('request')->get($form->getName())) {
-                $form->handleRequest($this->container->get('request'));
+            if ($event->getRequest()->get($form->getName())) {
+                $form->handleRequest($event->getRequest());
                 if ($form->isValid()) {
 
                     foreach ($focus->getCategories() as $category) {
@@ -83,10 +60,13 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
                 }
             }
 
-            return $this->container->get('templating')->render('FitbaseUserBundle:Subscriber:focus.html.twig', array(
-                'user' => $user,
-                'form' => $form->createView(),
-            ));
+            $event->setResponse(
+                $this->container->get('templating')->renderResponse('FitbaseUserBundle:Subscriber:focus.html.twig', array(
+                    'user' => $user,
+                    'form' => $form->createView(),
+                ))
+            );
+
         }
 
         return null;

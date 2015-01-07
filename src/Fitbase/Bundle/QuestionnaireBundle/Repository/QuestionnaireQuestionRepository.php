@@ -25,16 +25,16 @@ class QuestionnaireQuestionRepository extends EntityRepository
      */
     public function getExprCategories($queryBuilder, $categories)
     {
-        if (count($categories)) {
 
-            $categories = (new ArrayCollection($categories))->map(function ($entity) {
-                return $entity->getId();
-            });
+        $categories = (new ArrayCollection($categories))->map(function ($entity) {
+            return $entity->getId();
+        });
 
-            $queryBuilder->setParameter('array', $categories->toArray());
-            return $queryBuilder->expr()->in('Category.id', ':array');
-        }
-        return $queryBuilder->expr()->eq('0', '1');
+        $queryBuilder->setParameter('array', $categories->toArray());
+        return $queryBuilder->expr()->orx(
+            $queryBuilder->expr()->in('Category.id', ':array'),
+            $queryBuilder->expr()->isNull('Category.id')
+        );
     }
 
     /**
@@ -79,7 +79,7 @@ class QuestionnaireQuestionRepository extends EntityRepository
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findCountByQuestionnaireUser(QuestionnaireUser $questionnaireUser)
+    public function findCountByQuestionnaireUser(QuestionnaireUser $questionnaireUser = null)
     {
         $entityManager = $this->getEntityManager();
         $repositoryQuestionnaireAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
