@@ -23,15 +23,13 @@
             {% if categories is defined and categories %}
                 <div class="row" style="width: 80%; display: block; margin-left: auto; margin-right: auto;">
                     {% for key, category in categories %}
-                        {% if category.category is defined and category.category %}
-                            <div class="col-md-6">
-                                <a class="true btn btn btn-success btn-ds"
-                                   href="{{ sign(user, url('exercise_focus', { 'slug': category.category.slug })) }}"
-                                   style="display: block; margin-left: auto; margin-right: auto; width: 200px; margin-top: 5px;">
-                                    {{ category.category.name }}
-                                </a>
-                            </div>
-                        {% endif %}
+                        <div class="col-md-6">
+                            <a class="true btn btn btn-success btn-ds"
+                               href="{{ sign(user, url('category', { 'slug': category.slug })) }}"
+                               style="display: block; margin-left: auto; margin-right: auto; width: 200px; margin-top: 5px;">
+                                {{ category.name }}
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -41,10 +39,10 @@
 
             {% if exerciseUser is defined and exerciseUser %}
                 {% if categoryFocus is defined and categoryFocus %}
-                    {% if categoryFocus.category is defined and categoryFocus.category %}
+                    {% if categoryFocus is defined and categoryFocus %}
                         <a class="true btn btn btn-success btn-ds" href="{{ sign(user, url('focus')) }}"
                            style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
-                            Zur {{ categoryFocus.category.name }}-Übung
+                            Zur {{ categoryFocus.name }}-Übung
                         </a>
                     {% endif %}
                 {% endif %}

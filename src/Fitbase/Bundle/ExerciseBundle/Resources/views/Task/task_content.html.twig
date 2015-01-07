@@ -1,17 +1,4 @@
-{% extends 'FitbaseExerciseBundle::layout.html.twig' %}
-
-{% block sonata_page_javascripts %}
-    {% javascripts '@FitbaseExerciseBundle/Resources/public/js/*' output='js/jquery.exercise.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
-
-
-{% block content %}
-
-    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
-
-
+{% if exerciseUser is defined and exerciseUser %}
     <div class="row">
         <div class="col-md-7">
 
@@ -59,6 +46,69 @@
                 {% endif %}
             {% endblock %}
 
+            {% block content_navigation %}
+                <style>
+                    ul.pagination {
+                        width: 540px;
+                    }
+
+                    div.text-wrap {
+                        text-overflow: ellipsis;
+                        width: 132px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                </style>
+
+                <ul class="pagination">
+                    {% if step > 0 %}
+                        <li>
+                            <a href="{{ path('user_task', { 'unique': exerciseUser.id, 'step': (step - 1) }) }}">
+                                <
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if exerciseUser.exercise0 is defined and exerciseUser.exercise0 %}
+                        <li {% if step == 0 %}class="active"{% endif %}>
+                            <a href="{{ path('user_task', { 'unique': exerciseUser.id, 'step': 0 }) }}">
+                                <div class="text-wrap">
+                                    1. {{ exerciseUser.exercise0.name }}
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if exerciseUser.exercise1 is defined and exerciseUser.exercise1 %}
+                        <li {% if step == 1 %}class="active"{% endif %} >
+                            <a href="{{ path('user_task', { 'unique': exerciseUser.id, 'step': 1 }) }}">
+                                <div class="text-wrap">
+                                    2. {{ exerciseUser.exercise1.name }}
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if exerciseUser.exercise2 is defined and exerciseUser.exercise2 %}
+                        <li {% if step == 2 %}class="active"{% endif %}>
+                            <a href="{{ path('user_task', { 'unique': exerciseUser.id, 'step': 2 }) }}">
+                                <div class="text-wrap">
+                                    3. {{ exerciseUser.exercise2.name }}
+                                </div>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if step < 2 %}
+                        <li>
+                            <a href="{{ path('user_task', { 'unique': exerciseUser.id, 'step': (step + 1) }) }}">
+                                >
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endblock %}
+
             {% block content_image %}
                 {% if exercise is defined and exercise %}
                     {% if exercise.gallery.galleryHasMedias is defined %}
@@ -88,6 +138,5 @@
             {% endif %}
         </div>
     </div>
-
-{% endblock %}
+{% endif %}
 

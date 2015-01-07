@@ -82,18 +82,17 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
         if (($exerciseUser = $event->getEntity())) {
             if (($user = $exerciseUser->getUser())) {
 
-                $categories = array();
-                if (($company = $user->getCompany())) {
-                    if (($categories = $company->getParentCategories())) {
-                        $categories = $company->getChildCategories();
+                $category = null;
+                if (($focus = $user->getFocus())) {
+                    if (($categoryFocus = $focus->getCategories()->first())) {
+                        $categoryFocus = $categoryFocus->getCategory();
                     }
                 }
 
-                $categoryFocus = null;
-                if (($focus = $this->container->get('focus')->focus($user))) {
-                    $categoryFocus = $focus->getFirstCategory();
+                $categories = array();
+                if (($chooserCategory = $this->container->get('chooser_category'))) {
+                    $categories = $chooserCategory->choose($user->getFocus());
                 }
-
 
                 $title = $this->container->get('translator')->trans('Ihre Fitbase Erinnerung');
                 $content = $this->container->get('templating')->render('FitbaseExerciseBundle:Email:exercise.html.twig', array(

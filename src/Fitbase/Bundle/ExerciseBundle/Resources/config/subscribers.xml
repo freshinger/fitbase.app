@@ -30,6 +30,16 @@
             </call>
         </service>
 
+
+        <service id="fitbase.subscriber.UserMenuSubscriber"
+                 class="Fitbase\Bundle\ExerciseBundle\Subscriber\UserMenuSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 </container>

@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\FitbaseBUndle\Menu;
 
+use Fitbase\Bundle\FitbaseBundle\Event\UserMenuEvent;
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -52,23 +53,10 @@ class Builder extends ContainerAware
             )
         ));
 
-        $namesActivity = array('ruecken' => 'Übungen', 'stress' => 'Ihre Entspannungsübung',
-            'ernaehrung' => 'Ihr Ernährungstagebuch',);
 
-        $nameActivity = 'Aktivitäten';
-        if (($user = $this->container->get('user')->current())) {
-            foreach ($namesActivity as $slug => $name) {
-                if ($this->container->get('focus')->check($user, $slug)) {
-                    $nameActivity = $namesActivity[$slug];
-                    break;
-                }
-            }
-        }
+        $this->container->get('event_dispatcher')
+            ->dispatch('user_menu_main', new UserMenuEvent($menu));
 
-
-        $menu->addChild($nameActivity, array(
-            'route' => 'focus',
-        ));
 
         $menu->addChild('Infoeinheiten', array(
             'route' => 'page_slug',

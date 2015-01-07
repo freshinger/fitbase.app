@@ -98,6 +98,7 @@ class ExerciseAdmin extends Admin implements ContainerAwareInterface
             ->add('name')
             ->add('tag')
             ->add('type', 'choice', array(
+                'required' => false,
                 'choices' => array(
                     null => 'Kein Typ',
                     '1' => 'Mobilisation',

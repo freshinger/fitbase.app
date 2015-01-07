@@ -1,0 +1,18 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
+
+{% if exercises is defined and exercises %}
+    <h1>Übungen</h1>
+    <div class="row">
+        {% for exercise in exercises %}
+            <div class="col-md-4">
+                <h4>{{ exercise.name }}</h4>
+                <a href="{{ path('exercise', {'unique': exercise.id}) }}">
+                    {% if exercise.image is defined %}
+                        {% thumbnail exercise.image, 'preview' with {'width': 250} %}
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+

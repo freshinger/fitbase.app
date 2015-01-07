@@ -1,0 +1,82 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4 class="short hue">Bauchatmung</h4>
+
+        <ol>
+            <li>Stehen oder sitzen Sie aufrecht, mit gerader Wirbelsäule.</li>
+            <li>Legen Sie eine Hand auf Ihren Bauchnabel und atmen Sie langsam und tief ein. Atmen Sie zuerst in den
+                Bauch ein, so dass sich dieser nach außen wölbt, anschließend lassen Sie die Luft in Ihren Brustkorb
+                strömen.
+            </li>
+            <li>Atmen Sie langsam und gleichmäßig aus. Der Bauch sinkt wieder ein, und der Brustkorb entspannt sich.
+                Zählen Sie langsam bis 3 und beginnen Sie dann von vorn.
+            </li>
+            <li>Ein- und Ausatmung sind gleich lang. Bitte 5 Wiederholungen mehrmals täglich.</li>
+        </ol>
+
+        <div class="row" style="text-align: center">
+            <div class="col-md-6">
+                <img src="/image/einatmung.png" style="height: 350px;"/>
+
+            </div>
+            <div class="col-md-6">
+                <img src="/image/ausatmung.png" style="height: 350px;"/>
+            </div>
+            <div class="col-md-6">
+                <h4 class="short hue">Einatmung</h4>
+            </div>
+            <div class="col-md-6">
+                <h4 class="short hue">Ausatmung</h4>
+            </div>
+        </div>
+
+        <br/>
+        <br/>
+
+        <h4 class="short hue">Hintergrund</h4>
+
+        <ul>
+            <li>Eine tiefe Bauchatmung stimuliert direkt den Vagus Nerv (Parasympaticus), der für die Entspannung
+                zuständig ist
+            </li>
+            <li>Bauchatmung und Aufregung schließen sich aus: Beruhigt sich der Atem, dann beruhigen sich auch Körper
+                und Gehirn.
+            </li>
+            <li>Tiefes Atmen verbessert die Versorgung mit Sauerstoff, es entspannt und beruhigt.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="col-md-6">
+        {% if exercises is defined and exercises %}
+            <h1>Übungen</h1>
+            <div class="row">
+                {% for exercise in exercises %}
+                    <div class="col-md-6">
+                        <h4>{{ exercise.name }}</h4>
+                        <a href="{{ path('exercise', {'unique': exercise.id}) }}">
+                            {% if exercise.image is defined %}
+                                {% thumbnail exercise.image, 'preview' with {'width': 200} %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endfor %}
+                <div class="col-md-6">
+                    <h4>Wohlfühlgespräch</h4>
+                    <a href="{{ path('dialog') }}">
+                        <img src="/image/wohlfuehlgespraech.jpg" width="200px">
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+    {#<div class="col-md-6">#}
+    {#{{ sonata_block_render({ 'type': 'fitbase.block.dashboard_dialog' }) }}#}
+    {#</div>#}
+</div>
