@@ -65,56 +65,29 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                             ));
                         }
 
-                        $partitions = $categories->partition(function ($index, $entity) {
-                            if (in_array($entity->getCategory()->getSlug(), array('stress', 'achtsamkeit', 'resilienz', 'augen', 'ernaehrung'))) {
-                                return false;
-                            }
-                            return true;
-                        });
+                        $subMenu = $menu->addChild('Weitere Uebungen', array(
+                            'route' => 'category',
+                            'routeParameters' => array(
+                                'slug' => $categories->first()->getCategory()->getSlug()
+                            ),
+                            'attributes' => array('class' => 'dropdown'),
+                            'childrenAttributes' => array('class' => 'dropdown-menu'),
+                            'linkAttributes' => array(
+                                'class' => 'dropdown-toggle',
+                                'data-toggle' => 'dropdown',
+                            ),
 
-                        if (count($partitions)) {
-                            list($categories, $categoriesMental) = $partitions;
-
-                            if (count($categories)) {
-                                foreach ($categories as $category) {
-
-                                    // TODO: replace names for categories
-                                    $menu->addChild($this->getName($category->getCategory()), array(
-                                        'route' => 'category',
-                                        'routeParameters' => array(
-                                            'slug' => $category->getCategory()->getSlug()
-                                        )
-                                    ));
-                                }
-                            }
-
-                            if (count($categoriesMental)) {
-
-                                $subMenu = $menu->addChild('Mentale Uebungen', array(
-                                    'route' => 'category',
-                                    'routeParameters' => array(
-                                        'slug' => $categoriesMental->first()->getCategory()->getSlug()
-                                    ),
-                                    'attributes' => array('class' => 'dropdown'),
-                                    'childrenAttributes' => array('class' => 'dropdown-menu'),
-                                    'linkAttributes' => array(
-                                        'class' => 'dropdown-toggle',
-                                        'data-toggle' => 'dropdown',
-                                    ),
-
-                                ));
+                        ));
 
 
-                                foreach ($categoriesMental as $category) {
-                                    // TODO: replace names for categories
-                                    $subMenu->addChild($this->getName($category->getCategory()), array(
-                                        'route' => 'category',
-                                        'routeParameters' => array(
-                                            'slug' => $category->getCategory()->getSlug()
-                                        ),
-                                    ));
-                                }
-                            }
+                        foreach ($categories as $category) {
+                            // TODO: replace names for categories
+                            $subMenu->addChild($this->getName($category->getCategory()), array(
+                                'route' => 'category',
+                                'routeParameters' => array(
+                                    'slug' => $category->getCategory()->getSlug()
+                                ),
+                            ));
                         }
 
                     }
