@@ -257,7 +257,11 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                                     }
                                 }
 
-                                return new RedirectResponse($request->getUri());
+                                return new RedirectResponse(
+                                    $this->container->get('router')->generate('page_slug', array(
+                                        'path' => '/'
+                                    ))
+                                );
                             }
                         }
 
