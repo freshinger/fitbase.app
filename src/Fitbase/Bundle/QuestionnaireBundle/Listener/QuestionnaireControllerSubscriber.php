@@ -201,6 +201,13 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                     $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
                     $this->container->get('event_dispatcher')->dispatch('questionnaire_user_done', $eventQuestionnaireUser);
 
+
+                    if (!$request->isMethodSafe()) {
+                        if (($session = $request->getSession())) {
+                            $session->set('questionnaire_step', 1);
+                        }
+                    }
+                    
                     return null;
                 }
             }
@@ -247,12 +254,6 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                 return $response;
             } else {
 
-                if (!$request->isMethodSafe()) {
-                    if (($session = $request->getSession())) {
-                        $session->set('questionnaire_step', 1);
-                    }
-                }
-
                 if (($session = $request->getSession())) {
                     if (($step = $session->get('questionnaire_step'))) {
 
@@ -281,159 +282,6 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                 }
             }
         }
-
-
-//        $managerEntity = $this->container->get('entity_manager');
-//        if (($user = $this->container->get('user')->current())) {
-//
-//            $repositoryQuestionnaireUser = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
-//            if (($questionnaireUser = $repositoryQuestionnaireUser->findOneByUserAndNotDoneAndNotPause($user))) {
-//
-//                if (($request->get('pause'))) {
-//                    if ($this->doQuestionnairePause($questionnaireUser)) {
-//                        return new RedirectResponse($this->container->get('router')->generate($request->get('_route'), array(
-//                            'path' => $request->get('path')
-//                        )));
-//                    }
-//                }
-//
-//                if (($questionnaire = $questionnaireUser->getQuestionnaire())) {
-//
-//                    $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
-//                    $form = $this->container->get('form.factory')->create($formBuilder, array());
-//                    if ($request->get($form->getName())) {
-//                        $form->handleRequest($request);
-//
-//                        foreach ($form as $child) {
-//                            if (($errors = $this->doQuestionnaireAnswerValidate($child))) {
-//                                foreach ($errors as $error) {
-//                                    $child->addError(new FormError($error->getMessage()));
-//                                }
-//                            }
-//                        }
-//
-//                        if ($form->isValid()) {
-//                            // Set default point count
-//                            // for heals and strain parameters
-//                            $pointTotal = 0;
-//
-//                            foreach ($form->getData() as $questionId => $answerId) {
-//
-//                                $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-//                                if (!($questionnaireQuestion = $repositoryQuestionnaireQuestion->find($questionId))) {
-//                                    continue;
-//                                }
-//
-//                                $questionnaireUserAnswer = new QuestionnaireUserAnswer();
-//                                $questionnaireUserAnswer->setUser($questionnaireUser->getUser());
-//                                $questionnaireUserAnswer->setQuestion($questionnaireQuestion);
-//                                $questionnaireUserAnswer->setQuestionnaireUser($questionnaireUser);
-//
-//                                if ((list($points, $answers, $text) = $this->doQuestionnaireAnswersCalculate($answerId))) {
-//                                    // Increase total point count
-//                                    // for health and strain for User Questionnaire object
-//                                    $pointTotal += $points;
-//
-//                                    $questionnaireUserAnswer->setText($text);
-//                                    $questionnaireUserAnswer->setAnswers($answers);
-//                                    $questionnaireUserAnswer->setCountPoint($points);
-//                                }
-//
-//                                $eventQuestionnaireUserAnswer = new QuestionnaireUserAnswerEvent($questionnaireUserAnswer);
-//                                $this->container->get('event_dispatcher')->dispatch('questionnaire_user_answer_create', $eventQuestionnaireUserAnswer);
-//                            }
-//
-//                            $questionnaireUser->setCountPoint($pointTotal);
-//
-//                            $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-//
-//
-//                            if ($repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) {
-//
-//                                $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
-//                                $form = $this->container->get('form.factory')->create($formBuilder, array());
-//                                return $this->container->get('templating')->render('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
-//                                    'form' => $form->createView(),
-//                                    'questionnaire' => $questionnaire,
-//                                ));
-//                            } else {
-//                                $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
-//                                $this->container->get('event_dispatcher')->dispatch('questionnaire_user_done', $eventQuestionnaireUser);
-//
-//                                $this->container->get('request')->getSession()->set('questionnaire_step', '1');
-//                            }
-//
-//                        } else {
-//                            return $this->container->get('templating')->render('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
-//                                'form' => $form->createView(),
-//                                'questionnaire' => $questionnaire,
-//                            ));
-//                        }
-//
-//                    } else {
-//                        return $this->container->get('templating')->render('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
-//                            'form' => $form->createView(),
-//                            'questionnaire' => $questionnaire,
-//                        ));
-//                    }
-//                }
-//            }
-//
-//            if (($session = $request->getSession())) {
-//                if (($questionnaireStep = $session->get('questionnaire_step'))) {
-//
-//                    $response = new Response();
-//
-//                    $event = new FilterResponseEvent(
-//                        $this->container->get('kernel'),
-//                        $this->container->get('request'),
-//                        HttpKernelInterface::SUB_REQUEST,
-//                        $response);
-//
-//                    $this->container->get('event_dispatcher')
-//                        ->dispatch("questionnaire_step_{$questionnaireStep}", $event);
-//
-//                    if (($response = $event->getResponse())) {
-//                        if (strlen($response->getContent())) {
-//                            return $response;
-//                        }
-//
-//                        // If got response from listeners
-//                        // and this was a post-request
-//                        // but response is already empty
-//                        // increase a step to give a chance
-//                        // to other listeners draw a current step
-//                        if (!$request->isMethodSafe()) {
-//                            if (($session = $request->getSession())) {
-//                                $questionnaireStep++;
-//                                $session->set('questionnaire_step', $questionnaireStep);
-//
-//                                // increase a step to give a chance
-//                                // to other listeners draw a current step
-//                                $this->container->get('event_dispatcher')
-//                                    ->dispatch("questionnaire_step_{$questionnaireStep}", $event);
-//
-//                                if (($response = $event->getResponse())) {
-//                                    if (strlen($response->getContent())) {
-//                                        return $response;
-//                                    }
-//                                }
-//
-//                                return new RedirectResponse(
-//                                    $this->container->get('router')->generate('page_slug', array(
-//                                        'path' => '/'
-//                                    ))
-//                                );
-//                            }
-//                        }
-//
-//                        $session->remove('questionnaire_step');
-//                    }
-//                }
-//            }
-//
-//            $this->container->get('entity_manager')->refresh($user);
-//        }
 
         return null;
     }
