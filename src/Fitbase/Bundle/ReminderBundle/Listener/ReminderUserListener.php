@@ -71,6 +71,8 @@ class ReminderUserListener extends ContainerAware
                 $entity1->setTime($datetime);
                 $entity1->setType('weeklytask');
                 $this->container->get('entity_manager')->persist($entity1);
+                $this->container->get('entity_manager')->flush($entity1);
+
             }
         }
     }
