@@ -1,69 +1,41 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 
-{#<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>#}
-{#<script type="text/javascript">#}
-    {#$(function () {#}
-{#//        $(".nav").menu();#}
-    {#});#}
-{#</script>#}
-{#<style>#}
-    {#.ui-menu:after {#}
-        {#content: ".";#}
-        {#display: block;#}
-        {#clear: both;#}
-        {#visibility: hidden;#}
-        {#line-height: 0;#}
-        {#height: 0;#}
-        {#color: #333;#}
-    {#}#}
-
-    {#.ui-menu .ui-menu-item {#}
-        {#display: inline-block;#}
-        {#float: left;#}
-        {#margin: 0;#}
-        {#padding: 0;#}
-        {#width: auto;#}
-    {#}#}
-
-    {#.ui-widget-content {#}
-        {#background: #fff;#}
-        {#border: none;#}
-    {#}#}
-{#</style>#}
-
-
-{% if categories is defined and categories %}
-    <div class="row">
-        {% for category in categories %}
-            {% if category.exercises|length > 0 and category.parent is not null %}
-                <div class="col-md-4">
-                    <a href="{{ path('category', {'slug': category.slug}) }}">
-                        <h4>{{ category.name }}</h4>
-                    </a>
-                    {% if category.media is defined %}
+{% if categories is defined %}
+    {% if categories|length > 0 %}
+        <div class="row">
+            {% for category in categories %}
+                {% if category.exercises|length > 0 and category.parent is not null %}
+                    <div class="col-md-4">
                         <a href="{{ path('category', {'slug': category.slug}) }}">
-                            {% thumbnail category.media, 'preview' with {'width': 200} %}
+                            <h4>{{ category.name }}</h4>
                         </a>
-                    {% endif %}
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
+                        {% if category.media is defined %}
+                            <a href="{{ path('category', {'slug': category.slug}) }}">
+                                {% thumbnail category.media, 'preview' with {'width': 200} %}
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endif %}
 
-{% if exercises is defined and exercises %}
-    <h1>Übungen</h1>
-    <div class="row">
-        {% for exercise in exercises %}
-            <div class="col-md-4">
-                <h4>{{ exercise.name }}</h4>
-                <a href="{{ path('task', {'unique': exercise.id}) }}">
-                    {% if exercise.image is defined %}
-                        {% thumbnail exercise.image, 'preview' with {'width': 250} %}
-                    {% endif %}
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+{% if exercises is defined %}
+    {% if exercises|length > 0 %}
+        <h1>Übungen</h1>
+        <div class="row">
+            {% for exercise in exercises %}
+                <div class="col-md-4">
+                    <h4>{{ exercise.name }}</h4>
+                    <a href="{{ path('task', {'unique': exercise.id}) }}">
+                        {% if exercise.image is defined %}
+                            {% thumbnail exercise.image, 'preview' with {'width': 250} %}
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endif %}
 
