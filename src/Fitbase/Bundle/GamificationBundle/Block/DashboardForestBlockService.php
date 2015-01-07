@@ -49,8 +49,19 @@ class DashboardForestBlockService extends BaseBlockService implements ContainerA
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        $points = 0;
+        if (($company = $user->getCompany())) {
+            if (($users = $company->getUsers())) {
+                foreach ($users as $user) {
+                    if (($pointsUser = $this->container->get('statistic')->points($user))) {
+                        $points += $pointsUser;
+                    }
+                }
+            }
+        }
+
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_forest.html.twig', array(
-            'points' => $this->container->get('statistic')->points($user),
+            'points' => $points,
             'forest' => $this->container->get('gamification')->getSvgForest($gamification),
         ));
     }
