@@ -35,18 +35,16 @@
 </div>
 
 
-<div class="row">
-    <div class="panel-info">
-        <h2>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
+<div class="panel-info">
+    <h2>{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</h2>
 
-        <div class="panel-body">
-            {% form_theme formPassword "MopaBootstrapBundle:Form:fields.html.twig" %}
-            <form action="" method="POST" class="form-horizontal">
-                {{ form_widget(formPassword) }}
-                <button type="submit" class="btn btn-danger">
-                    <i class="icon-lock icon-white glyphicon glyphicon-lock"></i>&nbsp;{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
-                </button>
-            </form>
-        </div>
+    <div class="panel-body">
+        {% form_theme formPassword "MopaBootstrapBundle:Form:fields.html.twig" %}
+        <form action="" method="POST" class="form-horizontal">
+            {{ form_widget(formPassword) }}
+            <button type="submit" class="btn btn-danger">
+                <i class="icon-lock icon-white glyphicon glyphicon-lock"></i>&nbsp;{{ 'change_password.submit'|trans({}, 'FOSUserBundle') }}
+            </button>
+        </form>
     </div>
 </div>

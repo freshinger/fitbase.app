@@ -54,8 +54,10 @@
     {% spaceless %}
         <script type="text/javascript">
             $(function () {
+                var global = $(document);
                 var container = $("#{{ id }}");
                 container.bind('position_update', function (event) {
+                    global.find('h3.{{ id }}').html((event.index + 1));
                     container.find('input.priority').val(event.index);
                 });
             });
@@ -68,7 +70,7 @@
                 <div class="row" style="color: #333">
                     {% if index is defined %}
                         <div class="col-md-1" style="padding-top: 23px;">
-                            <h3>{{ index }}</h3>
+                            <h3 class="{{ id }}">{{ index }}</h3>
                         </div>
                     {% endif %}
 
