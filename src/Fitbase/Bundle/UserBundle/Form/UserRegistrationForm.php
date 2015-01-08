@@ -17,12 +17,14 @@ class UserRegistrationForm extends AbstractType
         $builder
             ->add('actioncode', 'hidden')
             ->add('first_name', null, array(
+                'label' => 'Vorname',
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('last_name', null, array(
+                'label' => 'Nachname',
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
