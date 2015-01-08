@@ -55,10 +55,6 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
                         $this->container->get('entity_manager')->flush($category);
                     }
 
-                    $event->getRequest()->getSession()->getFlashBag()->add('success',
-                        'Ihr Fokus wurde geschpeichert.'
-                    );
-
                     $this->container->get('entity_manager')->refresh($focus);
                     return null;
                 }

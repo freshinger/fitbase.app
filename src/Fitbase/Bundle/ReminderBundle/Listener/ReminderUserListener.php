@@ -16,7 +16,7 @@ class ReminderUserListener extends ContainerAware
 
         if (($user = $reminder->getUser())) {
             if (($datetime = $this->container->get('datetime')->getDateTime('now'))) {
-                $datetime->setTime(16, 0);
+                $datetime->setTime(10, 0);
 
                 $entity1 = new ReminderUserItem();
                 $entity1->setReminder($reminder);

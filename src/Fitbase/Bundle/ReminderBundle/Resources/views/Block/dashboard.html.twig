@@ -5,29 +5,6 @@
     {% spaceless %}
 
         <div class="panel-info">
-            <h2>{{ "Fitbase pausieren" | trans({}, 'FitbaseReminderBundle') }}</h2>
-
-            <div class="panel-body">
-
-                {% if reminder.pause is defined and reminder.pause %}
-                    <div class="row">
-                        <div class="col-md-10 alert alert-info">
-                            Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
-                            {{ reminder.pause }} Wochen pausiert.
-                            Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
-                        </div>
-                    </div>
-                {% endif %}
-
-                {% form_theme formReminderPause "FitbaseReminderBundle:Block:form_reminder_pause.html.twig" %}
-
-                {{ form(formReminderPause) }}
-
-            </div>
-        </div>
-
-
-        <div class="panel-info">
             <h2>{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</h2>
 
             <p>Hier können sie die Versendung der Emails mit der Wochenaufgaben und der Wochenquizzen ausschalten. </p>
@@ -133,6 +110,27 @@
             </div>
         </div>
 
+        <div class="panel-info">
+            <h2>{{ "Fitbase pausieren" | trans({}, 'FitbaseReminderBundle') }}</h2>
+
+            <div class="panel-body">
+
+                {% if reminder.pause is defined and reminder.pause %}
+                    <div class="row">
+                        <div class="col-md-10 alert alert-info">
+                            Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
+                            {{ reminder.pause }} Wochen pausiert.
+                            Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% form_theme formReminderPause "FitbaseReminderBundle:Block:form_reminder_pause.html.twig" %}
+
+                {{ form(formReminderPause) }}
+
+            </div>
+        </div>
 
 
     {% endspaceless %}

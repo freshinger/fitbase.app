@@ -8,14 +8,14 @@
 
 namespace Fitbase\Bundle\WeeklytaskBundle\Block\Breadcrumb;
 
+use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class WeeklytasksBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
+class WeeklytasksBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
 {
-
     /**
      * {@inheritdoc}
      */
