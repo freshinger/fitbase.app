@@ -44,6 +44,8 @@ imports:
     - { resource: sonata/sonata_delivery.yml }
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
+    - { resource: sonata/sonata_menu.yml }
+
 #    - { resource: @BCCCronManagerBundle/Resources/config/assetic.yml }
 framework:
     #esi:                   ~

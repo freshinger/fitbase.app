@@ -9,7 +9,7 @@
  */
 
 
-namespace Fitbase\Bundle\FitbaseBUndle\Menu;
+namespace Fitbase\Bundle\FitbaseBundle\Menu;
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserMenuEvent;
 use Knp\Menu\FactoryInterface;
@@ -37,6 +37,7 @@ class Builder extends ContainerAware
     {
 
         $menuOptions = array_merge($options, array(
+            'template' => '',
             'childrenAttributes' => array('class' => 'nav nav-pills'),
         ));
 

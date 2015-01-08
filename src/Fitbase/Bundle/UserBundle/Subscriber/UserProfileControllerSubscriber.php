@@ -33,7 +33,7 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
     public static function getSubscribedEvents()
     {
         return array(
-            'questionnaire_step_1' => array('onQuestionnaireStep1', 128),
+            'questionnaire_step_1' => array('onQuestionnaireStep1', -128),
         );
     }
 
@@ -54,6 +54,10 @@ class UserProfileControllerSubscriber extends ContainerAware implements EventSub
                         $this->container->get('entity_manager')->persist($category);
                         $this->container->get('entity_manager')->flush($category);
                     }
+
+                    $event->getRequest()->getSession()->getFlashBag()->add('success',
+                        'Ihr Fokus wurde geschpeichert.'
+                    );
 
                     $this->container->get('entity_manager')->refresh($focus);
                     return null;

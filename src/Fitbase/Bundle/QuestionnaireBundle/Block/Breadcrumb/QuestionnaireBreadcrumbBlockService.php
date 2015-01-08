@@ -6,19 +6,19 @@
  * Time: 16:11
  */
 
-namespace Fitbase\Bundle\GamificationBundle\Block\Breadcrumb;
+namespace Fitbase\Bundle\QuestionnaireBundle\Block\Breadcrumb;
 
 use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 
-class GamificationBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
+class QuestionnaireBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
 {
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'fitbase.gamification.block.breadcrumb';
+        return 'fitbase.questionnaire.block.breadcrumb';
     }
 
     /**
@@ -28,11 +28,11 @@ class GamificationBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Startseite', array(
-            'path' => '/',
-            'extras' => array(
-                'translation_domain' => 'FitbaseGamificationBundle'
-            ),
+        $menu->addChild('Fragebogen', array(
+            'path' => 'page_slug',
+//            'extras' => array(
+//                'translation_domain' => 'FitbaseGamificationBundle'
+//            ),
         ));
 
         return $menu;

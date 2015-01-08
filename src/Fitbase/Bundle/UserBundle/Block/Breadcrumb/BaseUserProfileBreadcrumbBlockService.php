@@ -11,6 +11,7 @@
 
 namespace Sonata\UserBundle\Block\Breadcrumb;
 
+use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 
@@ -19,7 +20,7 @@ use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
-abstract class BaseUserProfileBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
+abstract class BaseUserProfileBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
 {
     /**
      * {@inheritdoc}

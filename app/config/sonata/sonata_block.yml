@@ -6,7 +6,7 @@ sonata_block:
         listener: true
 
     menus:
-        "SonataDemoBundle:Builder:mainMenu": "Main Menu"
+        "FitbaseFitbase:Builder:mainMenu": "Main Menu"
 
     blocks:
         sonata.admin.block.admin_list:

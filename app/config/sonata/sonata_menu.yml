@@ -1,0 +1,3 @@
+#knp_menu:
+#    twig:
+#        template: 'FitbaseFitbaseBundle:Menu:main.html.twig'

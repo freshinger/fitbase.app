@@ -8,12 +8,13 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb;
 
+use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class FocusBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService implements ContainerAwareInterface
+class FocusBreadcrumbBlockService extends FitbaseBreadcrumbBlockService implements ContainerAwareInterface
 {
     protected $container;
 

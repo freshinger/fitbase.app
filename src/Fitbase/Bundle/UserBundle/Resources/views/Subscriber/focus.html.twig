@@ -1,7 +1,9 @@
-{% extends 'SonataPageBundle::layout.html.twig' %}
+{% extends 'FitbaseUserBundle:Subscriber:layout.html.twig' %}
 
 
 {% block content %}
+
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire', 'current_uri': app.request.requestUri }) }}
 
     <div class="panel-info">
         <h2>{{ 'Der Bereichpriorität ändern'|trans({}, 'FitbaseUserBundle') }}</h2>

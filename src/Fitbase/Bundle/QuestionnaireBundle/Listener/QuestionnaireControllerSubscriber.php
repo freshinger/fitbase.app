@@ -189,8 +189,12 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                     $managerEntity->persist($questionnaireUser);
                     $managerEntity->flush($questionnaireUser);
 
-                    $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 
+                    $request->getSession()->getFlashBag()->add('success',
+                        'Ihre Antworten wurden geschpeichert.'
+                    );
+
+                    $repositoryQuestionnaireQuestion = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
                     if ($repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) {
 
                         $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
