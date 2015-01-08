@@ -23,6 +23,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
     public static function getSubscribedEvents()
     {
         return array(
+            'exercise_done' => array('onExerciseDone', -128),
             'exercise_user_done' => array('onExerciseUserDone', -128),
             'weeklytask_user_done' => array('onWeeklytaskUserDone', -128),
             'weeklyquiz_user_done' => array('onWeeklyquizUserDone', -128),
@@ -49,6 +50,26 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
     }
 
     /**
+     * Store exercise statistic
+     * @param Event $event
+     */
+    public function onExerciseDone(Event $event)
+    {
+        if (($user = $this->container->get('user')->current())) {
+
+            $activity = new UserActivity();
+            $activity->setUser($user);
+            $activity->setCountPoint(1);
+            $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+            $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
+            $activity->setText('Eine Übung wurde bearbeitet');
+
+            $this->container->get('entity_manager')->persist($activity);
+            $this->container->get('entity_manager')->flush($activity);
+        }
+    }
+
+    /**
      * Store activity on video done
      * @param Event $event
      */
@@ -64,7 +85,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
             $activity->setCountPoint(1);
             $activity->setDate($this->container->get('datetime')->getDateTime('now'));
             $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-            $activity->setText('Eine Video wurde angeschaut');
+            $activity->setText('Eine Aufgabe wurde bearbeitei');
 
             $this->container->get('entity_manager')->persist($activity);
             $this->container->get('entity_manager')->flush($activity);

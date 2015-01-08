@@ -8,21 +8,20 @@
             <h4 class="short hue">Wählen Sie bitte einen Avatar</h4>
         {% endif %}
         <p>
-            Ich bin Ihr Charakter und begleite Sie durch das Online-Coaching. Helfen Sie mir Ihren Gesundheitsbaum zu
-            begrünen, damit ich einen Platz zum Wohnen habe. Für jede durchgeführte Übung, jede Infoeinheit und jedes
-            Quiz sammeln Sie Punkte in Form von Blättern.
+            Ich bin Ihr Charakter und begleite Sie durch das Online-Coaching. Für jede durchgeführte Übung, jede
+            Infoeinheit und jedes Quiz sammeln Sie Punkte in Form von Blättern und begrünen so Ihren Gesundheitsbaum.
         </p>
 
         {% if avatar is defined %}
             {{ image(avatar)|raw }}
         {% endif %}
     </div>
-    <div class="panel-footer">
-        <p>
-            Sie begrünen den Baum indem Sie Übungen,
-            Infoeinheiten oder ein Wohlfühlgespräch durchführen.
-        </p>
-    </div>
+    {#<div class="panel-footer">#}
+    {#<p>#}
+    {#Sie begrünen den Baum indem Sie Übungen,#}
+    {#Infoeinheiten oder ein Wohlfühlgespräch durchführen.#}
+    {#</p>#}
+    {#</div>#}
 </div>
 <script type="text/javascript">
     $(function () {
