@@ -60,7 +60,9 @@
                                 {{ task.task.tag }}
                             </td>
                             <td class="shade center">
-                                {{ task.doneDate|date('d.m.Y') }}
+                                {% if task.doneDate is defined and task.doneDate %}
+                                    {{ task.doneDate|date('d.m.Y') }}
+                                {% endif %}
                             </td>
                             <td class="shade center">
 
