@@ -129,9 +129,11 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
 
             if (($request->get('pause'))) {
                 if ($this->doQuestionnairePause($questionnaireUser)) {
-                    return new RedirectResponse($this->container->get('router')->generate($request->get('_route'), array(
-                        'path' => $request->get('path')
-                    )));
+                    return new RedirectResponse(
+                        $this->container->get('router')->generate('page_slug', array(
+                            'path' => '/'
+                        ))
+                    );
                 }
             }
 
