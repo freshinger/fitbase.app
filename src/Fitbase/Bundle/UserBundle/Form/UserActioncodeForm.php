@@ -33,6 +33,7 @@ class UserActioncodeForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'csrf_protection' => false,
             'data_class' => 'Fitbase\Bundle\UserBundle\Entity\UserActioncode',
             'validation_groups' => array('registration'),
         ));
