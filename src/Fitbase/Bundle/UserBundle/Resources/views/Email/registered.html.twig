@@ -4,19 +4,28 @@
     <div class="row" style="min-height: 300px;">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <div class="text-div">Hallo {{ user.firstname }} {{ user.lastname }}!<br/>
-                <br/>
-                Willkommen bei der Fitbase. In dieser Email erhalten Sie Ihre
-                Zugangsdaten, die Sie bei Ihrem nächsten Besuch auf fitbase.de nutzen können.<br><br/>
-                Bei Fragen besuchen Sie bitte unsere FAQs oder
-                kontaktieren uns unter <a href="mailto:info@fitbase.de">info@fitbase.de</a>.<br><br/>
+            <div class="text-div">
 
-                <strong>Ihre Zugangsdaten</strong><br/>
+                {% if user is defined and user %}
+                    <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
+                {% endif %}
+                <br/>
+
+                willkommen bei fitbase! In dieser Email erhalten Sie Ihre Zugangsdaten, die Sie bei Ihrem nächsten
+                Besuch auf fitbase.de nutzen können. Bei Fragen besuchen Sie bitte unsere FAQs oder kontaktieren uns
+                unter <a href="mailto:info@fitbase.de">info@fitbase.de</a>.
+
+                <br/>
+                <br/>
+
+                <strong>Ihre Zugangsdaten</strong>
+                <br/>
+
                 Mit den folgenden Zugangsdaten können Sie sich auf Fitbase
                 <a href="{{ url('sonata_user_security_login') }}">
                     einloggen
-                </a>
-                .
+                </a>.
+
                 <br/>
                 <br/>
                 <table>

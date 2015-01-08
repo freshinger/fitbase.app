@@ -8,23 +8,17 @@
                 {% if user is defined and user %}
                     <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
                 {% endif %}
-                <p>
-                    wir wollen Sie an Ihr Quiz erinnern,
-                    mit dem Sie Ihr Wissen über die letzte Infoeinheit
-                    {% if task is defined and task %}
-                        zum Thema: {{ task.category }}
-                    {% endif %}
-                    überprüfen können.
-                </p>
+                wir haben ein kleines Quiz für Sie vorbereitet mit dem Sie Ihr Wissen zur letzten Info-Einheit
+                überprüfen und damit Blätter für Ihren Gesundheitsbaum sammeln können. Viel Spaß und einen schönen
+                Tag wünscht Ihnen fitbase!
 
-                <p>Wir wünschen Ihnen viel Spaß!</p>
-
-                <p>Ihr Fitbase Team</p>
+                <br/>
+                <br/>
 
                 <a class="true btn btn btn-success btn-ds"
                    href="{{ sign(user, url('weeklyquiz_user_view', {'unique': userQuiz.id})) }}"
                    style="display: block; margin-left: auto; margin-right: auto; width: 200px;">
-                    Das Quiz starten
+                    Quiz starten
                 </a>
 
             </div>

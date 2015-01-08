@@ -7,10 +7,10 @@
 
         <div class="row">
             {% if category is defined and category %}
-                <div class="col-md-4">
+                <div class="col-md-4" align="center" style="margin-top: 15px; margin-bottom: 15px">
                     <a href="{{ path('focus', {'slug': category.slug}) }}">
                         {% if category.media is defined %}
-                            {% thumbnail category.media, 'preview' with {'width': 90} %}
+                            {% thumbnail category.media, 'preview' with {'width': 75} %}
                         {% endif %}
                     </a>
                 </div>
