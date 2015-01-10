@@ -30,7 +30,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
             'weeklyquiz_user_answer_done' => array('onWeeklyquizUserAnswerDone', -128),
             'gamification_user_emotion_done' => array('onGamificationUserEmotionDone', -128),
             'gamification_dialog_user_answer_done' => array('onGamificationUserAnswerDone', -128),
-            'questionnaire_user_done' => array('onQuestionnaireUserDoneEvent', -128),
+//            'questionnaire_user_done' => array('onQuestionnaireUserDoneEvent', -128),
         );
     }
 
