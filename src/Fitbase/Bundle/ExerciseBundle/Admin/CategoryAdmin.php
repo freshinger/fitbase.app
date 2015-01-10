@@ -65,7 +65,9 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
+            ->addIdentifier('name', null, array(
+                'template' => 'FitbaseExerciseBundle:Admin:category_image.html.twig'
+            ))
             ->add('parent')
             ->add('slug')
             ->add('description')
