@@ -34,8 +34,6 @@ class RegistrationController extends Controller
 
         if (!$request->isMethodSafe()) {
 
-            var_dump($request->get($formActioncode->getName()));
-
             if ($request->get($formActioncode->getName())) {
 
                 $formActioncode->handleRequest($request);
