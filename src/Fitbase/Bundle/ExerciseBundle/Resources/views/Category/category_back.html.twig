@@ -30,7 +30,7 @@
                     <h4>{{ exercise.name }}</h4>
                     <a href="{{ path('task', {'unique': exercise.id}) }}">
                         {% if exercise.image is defined %}
-                            {% thumbnail exercise.image, 'preview' with {'height': 250, 'width': null} %}
+                            {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
                         {% endif %}
                     </a>
                 </div>
