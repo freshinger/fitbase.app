@@ -15,7 +15,7 @@
     <div class="row">
 
         {% if exercise is defined and exercise %}
-            {% if exercise.webm is defined and exercise.webm or exercise.gallery.galleryHasMedias is defined and exercise.gallery.galleryHasMedias %}
+            {% if (exercise.webm is defined and exercise.webm) or (exercise.gallery.galleryHasMedias is defined and exercise.gallery.galleryHasMedias) %}
                 <div class="col-md-7">
 
                     {% block content_video %}
