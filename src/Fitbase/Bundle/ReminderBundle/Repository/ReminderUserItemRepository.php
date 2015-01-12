@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\ReminderBundle\Repository;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
 class ReminderUserItemRepository extends EntityRepository
@@ -173,7 +174,9 @@ class ReminderUserItemRepository extends EntityRepository
             $this->getExprType($queryBuilder, $type)
         ));
 
-        return $queryBuilder->getQuery()->getResult();
+        $queryBuilder->orderBy('ReminderUserItem.day', 'ASC');
+
+        return new ArrayCollection($queryBuilder->getQuery()->getResult());
     }
 
 
