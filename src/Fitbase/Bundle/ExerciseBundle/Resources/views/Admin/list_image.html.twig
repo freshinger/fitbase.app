@@ -40,17 +40,25 @@ file that was distributed with this source code.
 
         <br/>
 
+        {% if object.authorname is not empty %}
+            {{ object.authorname }}
+        {% endif %}
+
+        {% if object.copyright is not empty and object.authorname is not empty %}
+            ~
+        {% endif %}
+
+        {% if object.copyright is not empty %}
+            &copy; {{ object.copyright }}
+        {% endif %}
+    {% else %}
+        {% if admin.isGranted('EDIT', parent) and admin.hasRoute('edit') %}
+            <a href="{{ admin.generateUrl('edit', {'id' : parent|sonata_urlsafeid }) }}"><strong>{{ parent.name }}</strong></a>
+        {% else %}
+            <strong>{{ parent.name }}</strong>
+        {% endif %}
+
     {% endif %}
 
-    {% if object.authorname is not empty %}
-        {{ object.authorname }}
-    {% endif %}
 
-    {% if object.copyright is not empty and object.authorname is not empty %}
-        ~
-    {% endif %}
-
-    {% if object.copyright is not empty %}
-        &copy; {{ object.copyright }}
-    {% endif %}
 {% endblock %}
