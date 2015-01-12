@@ -65,30 +65,33 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                             ));
                         }
 
-                        $subMenu = $menu->addChild('Weitere Uebungen', array(
-                            'route' => 'category',
-                            'routeParameters' => array(
-                                'slug' => $categories->first()->getCategory()->getSlug()
-                            ),
-                            'attributes' => array('class' => 'dropdown'),
-                            'childrenAttributes' => array('class' => 'dropdown-menu'),
-                            'linkAttributes' => array(
-                                'class' => 'dropdown-toggle',
-                                'data-toggle' => 'dropdown',
-                            ),
+                        if (($category = $categories->first())) {
 
-                        ));
-
-
-                        foreach ($categories as $category) {
-                            // TODO: replace names for categories
-                            $subMenu->addChild($this->getName($category->getCategory()), array(
+                            $subMenu = $menu->addChild('Weitere Uebungen', array(
                                 'route' => 'category',
                                 'routeParameters' => array(
                                     'slug' => $category->getCategory()->getSlug()
                                 ),
+                                'attributes' => array('class' => 'dropdown'),
+                                'childrenAttributes' => array('class' => 'dropdown-menu'),
+                                'linkAttributes' => array(
+                                    'class' => 'dropdown-toggle',
+                                    'data-toggle' => 'dropdown',
+                                ),
+
                             ));
+
+                            foreach ($categories as $category) {
+                                // TODO: replace names for categories
+                                $subMenu->addChild($this->getName($category->getCategory()), array(
+                                    'route' => 'category',
+                                    'routeParameters' => array(
+                                        'slug' => $category->getCategory()->getSlug()
+                                    ),
+                                ));
+                            }
                         }
+
 
                     }
                 }

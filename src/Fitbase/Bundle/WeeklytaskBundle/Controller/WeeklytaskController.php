@@ -59,7 +59,7 @@ class WeeklytaskController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $weeklyquiz = null;
+        $weeklyquizUser = null;
 
         $entityManager = $this->get('entity_manager');
         $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
@@ -69,11 +69,12 @@ class WeeklytaskController extends Controller
             if ($weeklyquizUser->getDone()) {
                 return $this->showUserQuizViewFormDoneAction($request, $user, $weeklyquizUser);
             }
+
             return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
         }
 
         return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
-            'weeklyquiz' => $weeklyquiz,
+            'weeklyquiz' => $weeklyquizUser,
         ));
     }
 

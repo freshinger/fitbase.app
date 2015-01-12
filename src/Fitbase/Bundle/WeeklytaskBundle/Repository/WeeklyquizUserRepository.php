@@ -9,7 +9,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
 class WeeklyquizUserRepository extends EntityRepository
 {
-    protected function getExprUnique($queryBuilder, $unique)
+    protected function getExprUnique($queryBuilder, $unique = null)
     {
         if (!empty($unique)) {
             $queryBuilder->setParameter('unique', $unique);
@@ -52,7 +52,7 @@ class WeeklyquizUserRepository extends EntityRepository
      * @param $user
      * @return mixed
      */
-    public function getExprUser($queryBuilder, $user)
+    public function getExprUser($queryBuilder, $user = null)
     {
         if (!empty($user)) {
 
@@ -339,6 +339,12 @@ class WeeklyquizUserRepository extends EntityRepository
     }
 
 
+    /**
+     * @param $user
+     * @param $unique
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function findOneByUserAndUnique($user, $unique)
     {
         $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
