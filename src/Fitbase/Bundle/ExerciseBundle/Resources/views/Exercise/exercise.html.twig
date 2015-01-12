@@ -13,6 +13,9 @@
 
 
     <div class="row">
+
+        {% if exercise is defined and exercise %}
+        {% if exercise.webm is defined or exercise.gallery.galleryHasMedias is defined %}
         <div class="col-md-7">
 
             {% block content_video %}
@@ -54,10 +57,11 @@
                                     {% endif %}
                                 {% endif %}
                             </video>
-                        {% endif %}
+                                {% endif %}
                     {% endif %}
-                {% endif %}
+                        {% endif %}
             {% endblock %}
+
 
             {% block content_image %}
                 {% if exercise is defined and exercise %}
@@ -74,16 +78,21 @@
                                         </a>
                                     </div>
                                 {% endfor %}
-                            </div>
+                                    </div>
                         {% endif %}
                     {% endif %}
-                {% endif %}
+                        {% endif %}
             {% endblock %}
-
 
         </div>
         <div class="col-md-5">
-            {% if exercise is defined and exercise %}
+            {% else %}
+            <div class="col-md-12">
+                {% endif %}
+                {% endif %}
+
+
+                {% if exercise is defined and exercise %}
                 {{ exercise.description|raw }}
             {% endif %}
         </div>

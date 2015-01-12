@@ -1,5 +1,10 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 <style>
+    .col-md-4 {
+        padding: 15px;
+        margin: 0px;
+    }
+
     a.thumb-info span.thumb-info-title {
         color: #ffffff;
         font-size: 12px;
@@ -10,7 +15,7 @@
     }
 
     .thumb-info .thumb-info-title {
-        background: none repeat scroll 0 0 rgba(36, 27, 28, 0.9);
+        background: none repeat scroll 0 0 rgba(66, 139, 202, 0.9);
         bottom: 10%;
         color: #fff;
         font-size: 18px;
@@ -60,7 +65,7 @@
         <h1>Übungen</h1>
         <div class="row">
             {% for exercise in exercises %}
-                <div class="col-md-4">
+                <div class="col-md-4 panel panel-default">
                     <a class="thumb-info" href="{{ path('task', {'unique': exercise.id}) }}">
                         {% if exercise.image is defined %}
                             {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}

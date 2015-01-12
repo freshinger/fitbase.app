@@ -67,7 +67,7 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
 
                         if (($category = $categories->first())) {
 
-                            $subMenu = $menu->addChild('Weitere Uebungen', array(
+                            $subMenu = $menu->addChild('Weitere Übungen', array(
                                 'route' => 'category',
                                 'routeParameters' => array(
                                     'slug' => $category->getCategory()->getSlug()
