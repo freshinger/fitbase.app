@@ -59,6 +59,20 @@
                 <br>
                 {{ form_rest(form) }}
                 {{ form_row(form.save) }}
+
+
+                {% if form.vars.submitted is defined and form.vars.submitted %}
+                    <script type="text/javascript">
+                        $(function () {
+                            var container = $(document);
+                            container.trigger({
+                                type: 'form',
+                                selector: 'form[name={{ id }}]'
+                            });
+                        });
+                    </script>
+                {% endif %}
+                
             </div>
         </div>
     {% endspaceless %}
@@ -88,6 +102,19 @@
                 <br>
                 {{ form_rest(form) }}
                 {{ form_row(form.save) }}
+
+                {% if form.vars.submitted is defined and form.vars.submitted %}
+                    <script type="text/javascript">
+                        $(function () {
+                            var container = $(document);
+                            container.trigger({
+                                type: 'form',
+                                selector: 'form[name={{ id }}]'
+                            });
+                        });
+                    </script>
+                {% endif %}
+
             </div>
         </div>
     {% endspaceless %}

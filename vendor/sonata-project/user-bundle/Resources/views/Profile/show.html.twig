@@ -14,7 +14,46 @@ file that was distributed with this source code.
 {% block sonata_profile_content %}
     {#{% sonata_template_box 'This is the user profile template. Feel free to override it.' %}#}
 
-    <div class="row row-fluid">
+    <style>
+        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+            border: none !important;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            color: black !important;
+        }
+
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+            background: none !important;
+        }
+
+        .ui-widget-content {
+            border: none !important;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var container = $(document);
+            var accordion = container.find(".profile-tabs").accordion({
+                active: 0,
+                heightStyle: "content"
+            });
+
+            container.bind('form', function (event) {
+                var elements = container.find(".panel-info");
+                elements.each(function (index, element) {
+                    var element = $(element);
+                    if (element.find(event.selector).length) {
+                        container.find(".profile-tabs")
+                                .accordion("option", "active", index);
+                    }
+                });
+            })
+
+        });
+    </script>
+
+    <div class="row row-fluid profile-tabs">
     {% set has_center = false %}
     {% for block in blocks %}
         {% if block.position == 'center' %}
@@ -38,13 +77,12 @@ file that was distributed with this source code.
 
 
     {% if has_center and not has_left and not  has_right %}
-        <div class="span12 col-lg-10">
-            {% for block in blocks %}
-                {% if block.position == 'center' %}
-                    {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
-                {% endif %}
-            {% endfor %}
-        </div>
+        {% for block in blocks %}
+            {% if block.position == 'center' %}
+                {{ sonata_block_render({ 'type': block.type, 'settings': block.settings}) }}
+            {% endif %}
+        {% endfor %}
+
     {% else %}
 
 
@@ -76,5 +114,6 @@ file that was distributed with this source code.
         </div>
 
     {% endif %}
+
 
 {% endblock %}
