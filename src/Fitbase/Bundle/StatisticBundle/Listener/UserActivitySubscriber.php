@@ -25,6 +25,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         return array(
             'exercise_done' => array('onExerciseDone', -128),
             'exercise_user_done' => array('onExerciseUserDone', -128),
+            'feeding_user_create' => array('onFeedingUserCreate', -128),
             'weeklytask_user_done' => array('onWeeklytaskUserDone', -128),
             'weeklyquiz_user_done' => array('onWeeklyquizUserDone', -128),
             'weeklyquiz_user_answer_done' => array('onWeeklyquizUserAnswerDone', -128),
@@ -48,6 +49,26 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         }
         return 0;
     }
+
+    /**
+     * @param Event $event
+     */
+    public function onFeedingUserCreate(Event $event)
+    {
+        if (($user = $this->container->get('user')->current())) {
+
+            $activity = new UserActivity();
+            $activity->setUser($user);
+            $activity->setCountPoint(1);
+            $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+            $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
+            $activity->setText('Eine Ernährungseinheit wurde gespeichert');
+
+            $this->container->get('entity_manager')->persist($activity);
+            $this->container->get('entity_manager')->flush($activity);
+        }
+    }
+
 
     /**
      * Store exercise statistic

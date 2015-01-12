@@ -23,6 +23,12 @@
         <default key="_controller">FitbaseExerciseBundle:Exercise:exercise</default>
     </route>
 
+    <route id="done" path="/ajax/exercise/done/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:done</default>
+        <default key="unique"></default>
+    </route>
+
+
     <route id="dialog" path="/dialog">
         <default key="_controller">FitbaseExerciseBundle:Exercise:dialog</default>
     </route>

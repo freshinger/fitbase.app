@@ -15,7 +15,7 @@ class ExerciseEvent extends Event
 {
     protected $entity;
 
-    public function __constructor($entity)
+    public function __constructor($entity = null)
     {
         $this->entity = $entity;
     }
@@ -35,5 +35,4 @@ class ExerciseEvent extends Event
     {
         $this->entity = $entity;
     }
-
-} 
+}

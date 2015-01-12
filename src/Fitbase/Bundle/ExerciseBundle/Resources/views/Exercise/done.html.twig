@@ -1,0 +1,17 @@
+<script type="text/javascript">
+    $(function () {
+        var container = $(document);
+        var timeout = setTimeout(function () {
+
+            {% if exercise is defined and exercise %}
+            $.get('{{ path('done', {'unique': exercise.id }) }}');
+            {% else %}
+            $.get('{{ path('done', {'unique': null }) }}');
+            {% endif %}
+
+            clearTimeout(timeout);
+
+        }, 10000);
+    });
+</script>
+

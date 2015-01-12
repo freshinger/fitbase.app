@@ -50,9 +50,6 @@ class TaskController extends Controller
         $event = new ExerciseUserEvent($exerciseUser);
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-        $event = new ExerciseEvent($exercise0);
-        $this->get('event_dispatcher')->dispatch('exercise_done', $event);
-
         return $this->render('FitbaseExerciseBundle:Task:focus.html.twig', array(
             'step' => 1,
             'user' => $user,
@@ -99,9 +96,6 @@ class TaskController extends Controller
         $event = new ExerciseUserEvent($exerciseUser);
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-        $event = new ExerciseEvent($exercise0);
-        $this->get('event_dispatcher')->dispatch('exercise_done', $event);
-
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
             'step' => 1,
             'user' => $user,
@@ -138,9 +132,6 @@ class TaskController extends Controller
                 $event = new ExerciseUserEvent($exerciseUser);
                 $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
             }
-
-            $event = new ExerciseEvent($exercise);
-            $this->get('event_dispatcher')->dispatch('exercise_done', $event);
         }
 
         return $this->render('FitbaseExerciseBundle:Task:user_task.html.twig', array(

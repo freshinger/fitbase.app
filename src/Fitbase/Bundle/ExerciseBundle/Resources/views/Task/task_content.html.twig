@@ -135,6 +135,9 @@
         <div class="col-md-5">
             {% if exercise is defined and exercise %}
                 {{ exercise.description|raw }}
+
+                {% include 'FitbaseExerciseBundle:Exercise:done.html.twig' with { 'exercise': exercise } %}
+
             {% endif %}
         </div>
     </div>
