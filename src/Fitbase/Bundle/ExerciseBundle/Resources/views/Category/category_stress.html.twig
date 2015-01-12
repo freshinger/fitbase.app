@@ -1,9 +1,41 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 
+<style>
+    a.thumb-info span.thumb-info-title {
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0;
+        padding: 7px 11px 9px;
+        text-transform: uppercase;
+    }
+
+    .thumb-info .thumb-info-title {
+        background: none repeat scroll 0 0 rgba(66, 139, 202, 0.9);
+        bottom: 10%;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        left: 20px;
+        letter-spacing: -1px;
+        padding: 9px 11px;
+        position: absolute;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+        z-index: 1;
+    }
+
+    .thumb-info-inner {
+        width: 100%;
+    }
+
+</style>
+
 <div class="row">
     <div class="col-md-6">
 
-        <h4 class="short hue">Bauchatmung</h4>
+        <h2>Bauchatmung</h2>
 
         <ol>
             <li>Stehen oder sitzen Sie aufrecht, mit gerader Wirbelsäule.</li>
@@ -18,17 +50,16 @@
         </ol>
 
         <div class="row" style="text-align: center">
-            <div class="col-md-6">
-                <img src="/image/einatmung.png" style="height: 350px;"/>
+            <div class="col-md-2">
+            </div>
+
+            <div class="col-md-4">
+                <img src="/image/einatmung.png" style="height: 300px;"/>
+                <h4 class="short hue">Einatmung</h4>
 
             </div>
-            <div class="col-md-6">
-                <img src="/image/ausatmung.png" style="height: 350px;"/>
-            </div>
-            <div class="col-md-6">
-                <h4 class="short hue">Einatmung</h4>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <img src="/image/ausatmung.png" style="height: 300px;"/>
                 <h4 class="short hue">Ausatmung</h4>
             </div>
         </div>
@@ -39,7 +70,7 @@
         <br/>
         <br/>
 
-        <h4 class="short hue">Hintergrund</h4>
+        <h2>Hintergrund</h2>
 
         <ul>
             <li>Eine tiefe Bauchatmung stimuliert direkt den Vagus Nerv (Parasympaticus), der für die Entspannung
@@ -54,24 +85,34 @@
     </div>
 
 
-    <div class="col-md-6">
+    <div class="col-md-5 col-sm-offset-1">
         {% if exercises is defined and exercises %}
-            <h1>Übungen</h1>
+            <h2>Übungen</h2>
             <div class="row">
                 {% for exercise in exercises %}
-                    <div class="col-md-6">
-                        <h4>{{ exercise.name }}</h4>
-                        <a href="{{ path('exercise', {'unique': exercise.id}) }}">
+                    <div class="col-md-5 panel panel-default">
+                        <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                             {% if exercise.image is defined %}
                                 {% thumbnail exercise.image, 'preview' with {'width': 200} %}
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">
+                                        {{ exercise.name }}
+                                    </span>
+                                </span>
                             {% endif %}
                         </a>
                     </div>
+                    <div class="col-md-1">
+                    </div>
                 {% endfor %}
-                <div class="col-md-6">
-                    <h4>Wohlfühlgespräch</h4>
-                    <a href="{{ path('dialog') }}">
+                <div class="col-md-5 panel panel-default">
+                    <a class="thumb-info" href="{{ path('dialog') }}">
                         <img src="/image/wohlfuehlgespraech.jpg" width="200px">
+                        <span class="thumb-info-title">
+                            <span class="thumb-info-inner">
+                                Wohlfühlgespräch
+                            </span>
+                        </span>
                     </a>
                 </div>
             </div>
