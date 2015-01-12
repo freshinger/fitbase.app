@@ -31,9 +31,13 @@ class RegistrationController extends Controller
             'action' => $this->generateUrl('actioncode')
         ));
 
+
         if (!$request->isMethodSafe()) {
 
+            var_dump($request->get($formActioncode->getName()));
+
             if ($request->get($formActioncode->getName())) {
+
                 $formActioncode->handleRequest($request);
                 if ($formActioncode->isValid()) {
 
