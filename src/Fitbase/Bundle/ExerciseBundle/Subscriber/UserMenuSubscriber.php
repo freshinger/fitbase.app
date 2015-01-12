@@ -30,7 +30,7 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
     protected function getName($category)
     {
         $names = array(
-            'ruecken' => 'Rücken Übungen',
+            'ruecken' => 'Rückenübungen',
             'stress' => 'Ihre Entspannungsübung',
             'ernaehrung' => 'Ihr Ernährungstagebuch',
         );
