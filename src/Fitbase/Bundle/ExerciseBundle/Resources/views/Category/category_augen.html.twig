@@ -43,7 +43,7 @@
             <h2>Übungen</h2>
             <div class="row">
                 {% for exercise in exercises %}
-                    <div class="col-md-5 panel ">
+                    <div class="col-md-5">
                         <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                             {% if exercise.image is defined %}
                                 {% thumbnail exercise.image, 'preview' with {'height': 112, 'width': null} %}
@@ -58,7 +58,7 @@
                     <div class="col-md-1">
                     </div>
                 {% endfor %}
-                <div class="col-md-5 panel">
+                <div class="col-md-5">
                     <a class="thumb-info" href="{{ path('dialog') }}">
                         <img src="/image/wohlfuehlgespraech.jpg" width="200px">
                         <span class="thumb-info-title">
