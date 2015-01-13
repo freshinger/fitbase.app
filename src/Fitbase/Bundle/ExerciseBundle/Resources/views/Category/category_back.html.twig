@@ -65,7 +65,7 @@
         <h2>Übungen</h2>
         <div class="row">
             {% for exercise in exercises %}
-                <div class="col-md-4 panel panel-default">
+                <div class="col-md-4">
                     <a class="thumb-info" href="{{ path('task', {'unique': exercise.id}) }}">
                         {% if exercise.image is defined %}
                             {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
