@@ -113,7 +113,7 @@ class QuestionnaireQuestionRepository extends EntityRepository
      * @param QuestionnaireUser $questionnaireUser
      * @return array
      */
-    public function findAllByQuestionnaireUser(QuestionnaireUser $questionnaireUser)
+    public function findAllByQuestionnaireUser(QuestionnaireUser $questionnaireUser, $limit = 10)
     {
         $entityManager = $this->getEntityManager();
         $repositoryQuestionnaireAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
@@ -141,8 +141,8 @@ class QuestionnaireQuestionRepository extends EntityRepository
 
         $queryBuilder->addOrderBy('Category.position', 'ASC');
 
-        if (($questionCount = $this->findCountByQuestionnaireUser($questionnaireUser)) > 10) {
-            $queryBuilder->setMaxResults(round(($questionCount / ($questionCount / 10))));
+        if (($questionCount = $this->findCountByQuestionnaireUser($questionnaireUser)) > $limit) {
+            $queryBuilder->setMaxResults(floor(($questionCount / ($questionCount / $limit))));
         }
 
         return $queryBuilder->getQuery()->getResult();

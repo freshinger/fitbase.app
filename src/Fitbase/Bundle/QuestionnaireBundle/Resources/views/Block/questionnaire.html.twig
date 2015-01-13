@@ -8,6 +8,13 @@
             <div class="col-md-12">
                 <h3 class="modal-title">
                     {{ questionnaire.name }}
+                    {% if site is defined and site %}
+                        (Seite {{ site }}
+                        {% if siteTotal is defined and siteTotal %}
+                            von {{ siteTotal }})
+                        {% endif %}
+                    {% endif %}
+
                 </h3>
 
                 <p class="modal-description">
@@ -17,7 +24,7 @@
         </div>
     {% endif %}
 
-    {% form_theme form "FitbaseQuestionnaireBundle::form.html.twig" %}
+    {% form_theme form "FitbaseQuestionnaireBundle:Block:form.html.twig" %}
 
     {{ form(form) }}
 

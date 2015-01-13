@@ -29,14 +29,23 @@ class QuestionnaireUserForm extends AbstractType
      */
     protected $questionnaireUser;
 
+
+    /**
+     * @var
+     */
+    protected $questions;
+
+    protected $questionsCount;
+
     /**
      * Class cosntructor
      * @param ContainerInterface $container
      * @param QuestionnaireUser $questionnaireUser
      */
-    public function __construct(ContainerInterface $container = null, QuestionnaireUser $questionnaireUser)
+    public function __construct(ContainerInterface $container = null, QuestionnaireUser $questionnaireUser, $limit = 10)
     {
         $this->container = $container;
+        $this->questionsCount = $limit;
         $this->questionnaireUser = $questionnaireUser;
     }
 
@@ -60,6 +69,7 @@ class QuestionnaireUserForm extends AbstractType
         return new QuestionnaireQuestionRadiobuttonType($this->container, $question);
     }
 
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -70,8 +80,8 @@ class QuestionnaireUserForm extends AbstractType
 
         $entityManager = $this->container->get('entity_manager');
         $repositoryWeeklytaskQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-        if (($collection = $repositoryWeeklytaskQuestion->findAllByQuestionnaireUser($this->questionnaireUser))) {
-            foreach ($collection as $question) {
+        if (($this->questions = $repositoryWeeklytaskQuestion->findAllByQuestionnaireUser($this->questionnaireUser, $this->questionsCount))) {
+            foreach ($this->questions as $question) {
                 $builder->add($question->getId(), $this->getQuestionFormType($question), array(
                     'label' => $question->getName(),
                     'required' => false,
@@ -80,6 +90,25 @@ class QuestionnaireUserForm extends AbstractType
         }
     }
 
+
+    /**
+     * @param FormView $view
+     * @param FormInterface $form
+     * @param array $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        parent::buildView($view, $form, $options);
+
+        $view->vars['questions_count'] = null;
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
+
+        if (($questions_count = $repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($this->questionnaireUser))) {
+            $view->vars['questions_count'] = $questions_count - count($this->questions);
+        }
+    }
 
     /**
      * @return string

@@ -121,6 +121,12 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
     }
 
 
+    /**
+     * Display questionnaire
+     * @param $request
+     * @param $user
+     * @return null
+     */
     protected function doDisplayQuestionnaire($request, $user)
     {
         $managerEntity = $this->container->get('entity_manager');
@@ -141,8 +147,11 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                 return null;
             }
 
-            $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
+
+            $questionsCount = 10;
+            $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser, $questionsCount);
             $form = $this->container->get('form.factory')->create($formBuilder, array());
+
             if ($request->get($form->getName())) {
                 $form->handleRequest($request);
 
@@ -201,6 +210,8 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
                         $form = $this->container->get('form.factory')->create($formBuilder, array());
                         return $this->container->get('templating')->renderResponse('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
                             'form' => $form->createView(),
+//                            'site' => $questionsPage,
+//                            'siteTotal' => $questionsPageTotal,
                             'questionnaire' => $questionnaire,
                         ));
                     }
@@ -218,6 +229,8 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
 
             return $this->container->get('templating')->renderResponse('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
                 'form' => $form->createView(),
+//                'site' => $questionsPage,
+//                'siteTotal' => $questionsPageTotal,
                 'questionnaire' => $questionnaire,
             ));
         }
