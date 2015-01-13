@@ -4,6 +4,9 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem">
+        <constraint name="Fitbase\Bundle\ReminderBundle\Form\Constraints\ReminderUserItemCount">
+            <option name="message">Es ist nur 3 Reminders pro Woche möglich.</option>
+        </constraint>
         <property name="day">
             <constraint name="NotNull">
                 <option name="message">Geben Sie bitte den Tag ein</option>

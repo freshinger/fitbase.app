@@ -10,6 +10,7 @@
         <import resource="blocks.xml"/>
         <import resource="listeners.xml"/>
         <import resource="subscribers.xml"/>
+        <import resource="validators.xml"/>
     </imports>
 
 

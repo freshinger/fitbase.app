@@ -138,9 +138,9 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
     {
         $formReminderItem = $this->container->get('form.factory')->create(new ReminderUserItemWeeklytaskForm(), $reminderItem);
         if ($this->container->get('request')->get($formReminderItem->getName())) {
+            $reminderItem->setType('weeklytask');
             $formReminderItem->handleRequest($this->container->get('request'));
             if ($formReminderItem->isValid()) {
-                $reminderItem->setType('weeklytask');
                 $event = new ReminderUserItemEvent($reminderItem);
                 $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
 
@@ -163,9 +163,9 @@ class ReminderDashboardBlockService extends BaseBlockService implements Containe
     {
         $formReminderItem = $this->container->get('form.factory')->create(new ReminderUserItemForm(), $reminderItem);
         if ($this->container->get('request')->get($formReminderItem->getName())) {
+            $reminderItem->setType('exercise');
             $formReminderItem->handleRequest($this->container->get('request'));
             if ($formReminderItem->isValid()) {
-                $reminderItem->setType('exercise');
                 $event = new ReminderUserItemEvent($reminderItem);
                 $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
 
