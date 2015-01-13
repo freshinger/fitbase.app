@@ -38,10 +38,10 @@
 {% if categories is defined %}
     {% if categories|length > 0 %}
         <div class="row">
-            {% for category in categories %}
+            {% for category in categories|reverse %}
                 {% if category.exercises|length > 0 and category.parent is not null %}
-                    <div class="col-md-3">
-                        {% if category.media is defined and category.media %}
+                    {% if category.media is defined and category.media %}
+                        <div class="col-md-3">
                             <a class="thumb-info" href="{{ path('category', {'slug': category.slug}) }}">
                                 {% thumbnail category.media, 'preview' with {'height': 200, 'width': null} %}
                                 <span class="thumb-info-title">
@@ -50,8 +50,8 @@
                                     </span>
                                 </span>
                             </a>
-                        {% endif %}
-                    </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </div>
