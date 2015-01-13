@@ -119,6 +119,7 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Quiz',
             ))
             ->add('description', 'sonata_formatter_type', array(
+                'required' => false,
                 'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
                 'format_field' => 'format',

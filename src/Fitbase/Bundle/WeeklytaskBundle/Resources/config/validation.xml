@@ -32,11 +32,6 @@
                 <option name="message">Dieses Feld darf nich leer sein</option>
             </constraint>
         </property>
-        <property name="description">
-            <constraint name="NotBlank">
-                <option name="message">Dieses Feld darf nich leer sein</option>
-            </constraint>
-        </property>
         <property name="correct">
             <constraint name="Type">
                 <option name="type">boolean</option>
@@ -47,11 +42,6 @@
 
     <class name="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion">
         <property name="name">
-            <constraint name="NotBlank">
-                <option name="message">Dieses Feld darf nich leer sein</option>
-            </constraint>
-        </property>
-        <property name="description">
             <constraint name="NotBlank">
                 <option name="message">Dieses Feld darf nich leer sein</option>
             </constraint>
