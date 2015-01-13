@@ -100,6 +100,7 @@ sonata_block:
         fitbase.block.dashboard_statistic:
         fitbase.block.dashboard_dialog:
         fitbase.block.profile_focus:
+        fitbase.block.exercise:
 
 
         # Formatter

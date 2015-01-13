@@ -55,6 +55,10 @@ class CategoryController extends Controller
                                 return $this->categoryBackAction($request, $slug);
                             }
 
+                            if (in_array($parent->getSlug(), array('augen'))) {
+                                return $this->categoryAugenAction($request, $slug);
+                            }
+
                             // Stress und all
                             // mental exercises
                             if (in_array($parent->getSlug(), array('stress', 'achtsamkeit', 'resilienz',))) {
@@ -212,6 +216,28 @@ class CategoryController extends Controller
         return $this->render('FitbaseExerciseBundle:Category:category_back.html.twig', array(
             'exercises' => $exercises,
             'categories' => $categories,
+        ));
+    }
+
+    /**
+     * Defaul page to display exercises
+     * @param Request $request
+     * @param null $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function categoryAugenAction(Request $request, $slug = null)
+    {
+        $user = $this->get('user')->current();
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+
+        $exercises = array();
+        if (($category = $repositoryCategory->findOneBySlug($slug))) {
+            $exercises = $category->getExercises();
+        }
+
+        return $this->render('FitbaseExerciseBundle:Category:category_augen.html.twig', array(
+            'exercises' => $exercises,
         ));
     }
 

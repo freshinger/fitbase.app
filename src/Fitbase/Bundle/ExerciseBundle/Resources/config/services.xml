@@ -138,6 +138,15 @@
             </call>
         </service>
 
+        <service id="fitbase.block.exercise" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseBlockService"
+                 public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.exercise</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
     </services>
 </container>
