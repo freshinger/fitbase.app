@@ -133,8 +133,8 @@ class WeeklytaskController extends Controller
                             ));
                         }
                     }
-
                 }
+
 
                 $weeklytaskUserQuizEvent = new WeeklyquizUserEvent($weeklyquizUser);
                 $this->get('event_dispatcher')->dispatch('weeklyquiz_user_done', $weeklytaskUserQuizEvent);

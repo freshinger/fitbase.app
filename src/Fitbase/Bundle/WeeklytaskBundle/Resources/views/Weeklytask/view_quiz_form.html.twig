@@ -128,19 +128,19 @@
             {% if userQuiz is defined and userQuiz %}
                 {% if not userQuiz.done %}
 
-                    {% if points is defined and points %}
-                        <span style="margin-right: 25%;">
-                            Sie erhalten maximal {{ points }} Punkte für dieses Quiz
-                        </span>
-                    {% endif %}
+                    {#{% if points is defined and points %}#}
+                    {#<span style="margin-right: 25%;">#}
+                    {#Sie erhalten maximal {{ points }} Punkte für dieses Quiz#}
+                    {#</span>#}
+                    {#{% endif %}#}
 
                     <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
                         Quiz auswerten
                     </button>
-                {% else %}
-                    <span style="margin-right: 25%;">
-                        Sie haben {{ userQuiz.countPoint }} Punkt(e) für dieses Quiz bekommen.
-                    </span>
+                    {#{% else %}#}
+                    {#<span style="margin-right: 25%;">#}
+                    {#Sie haben {{ userQuiz.countPoint }} Punkt(e) für dieses Quiz bekommen.#}
+                    {#</span>#}
                 {% endif %}
             {% endif %}
         </div>

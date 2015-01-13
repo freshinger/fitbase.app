@@ -64,12 +64,18 @@
 
     {% block user_focus_priority_category_widget %}
         {% spaceless %}
+            <style>
+                h4.category-focus {
+                    margin-top: 8px !important;
+                }
+            </style>
+
             <script type="text/javascript">
                 $(function () {
                     var global = $(document);
                     var container = $("#{{ id }}");
                     container.bind('position_update', function (event) {
-                        global.find('h3.{{ id }}').html((event.index + 1));
+                        global.find('h4.{{ id }}').html((event.index + 1));
                         container.find('input.priority').val(event.index);
                     });
                 });
@@ -81,21 +87,21 @@
 
                     <div class="row" style="color: #333">
                         {% if index is defined %}
-                            <div class="col-md-1" style="padding-top: 23px;">
-                                <h3 class="{{ id }}">{{ index }}</h3>
+                            <div class="col-md-1" style="padding-top: 15px;">
+                                <h4 class="category-focus {{ id }}">{{ index }}</h4>
                             </div>
                         {% endif %}
 
                         {% if category.media is defined %}
-                            <div class="col-md-3" style="padding-top: 15px; padding-bottom: 15px; ">
-                                {% thumbnail category.media, 'preview' with {'width': 75} %}
+                            <div class="col-md-2" style="padding-top: 2px; padding-bottom: 2px; ">
+                                {% thumbnail category.media, 'preview' with { 'height': 56, 'width': null } %}
                             </div>
                         {% endif %}
 
-                        <div class="col-md-8">
-                            <h3>{{ category.name }}</h3>
-
-                            <p>{{ category.description }}</p>
+                        <div class="col-md-9">
+                            <h4 class="category-focus">{{ category.name }}
+                                <p><sub>{{ category.description }}</sub></p>
+                            </h4>
                         </div>
                     </div>
 
