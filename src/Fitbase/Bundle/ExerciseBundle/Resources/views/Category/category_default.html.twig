@@ -39,7 +39,7 @@
             <div class="col-md-4">
                 <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                     {% if exercise.image is defined %}
-                        {% thumbnail exercise.image, 'preview' with {'width': 250} %}
+                        {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
                         <span class="thumb-info-title">
                             <span class="thumb-info-inner">
                                 {{ exercise.name }}
