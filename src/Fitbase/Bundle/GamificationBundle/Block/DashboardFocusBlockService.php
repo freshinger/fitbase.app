@@ -93,11 +93,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
                     }
                 }
 
-                if (($diff = ($next - $current)) > 0) {
-                    return $diff;
-                }
-
-                return 7 + $diff;
+                return (($diff = ($next - $current)) > 0) ? $diff : 7 + $diff;
             }
 
         }
