@@ -68,6 +68,11 @@
                 h4.category-focus {
                     margin-top: 8px !important;
                 }
+
+                .center {
+                    margin: 0 auto;
+                    width: 100px;
+                }
             </style>
 
             <script type="text/javascript">
@@ -93,7 +98,7 @@
                         {% endif %}
 
                         {% if category.media is defined %}
-                            <div class="col-md-2" style="padding-top: 2px; padding-bottom: 2px; ">
+                            <div class="col-md-2 center">
                                 {% thumbnail category.media, 'preview' with { 'height': 56, 'width': null } %}
                             </div>
                         {% endif %}
