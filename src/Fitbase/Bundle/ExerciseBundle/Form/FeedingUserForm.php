@@ -37,7 +37,8 @@ class FeedingUserForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser'
+            'data_class' => 'Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser',
+            'cascade_validation' => true,
         ));
     }
 

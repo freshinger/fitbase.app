@@ -15,7 +15,8 @@ class FeedingUserItemForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('count', null, array(
+            ->add('count', 'integer', array(
+                'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 ),
@@ -35,7 +36,8 @@ class FeedingUserItemForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem'
+            'data_class' => 'Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem',
+            'cascade_validation' => true,
         ));
     }
 

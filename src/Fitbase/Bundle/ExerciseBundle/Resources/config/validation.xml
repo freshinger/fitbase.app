@@ -3,6 +3,7 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
+
     <class name="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser">
         <constraint name="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserUnique">
             <option name="message">Geben Sie bitte das Datum ein</option>
@@ -13,6 +14,22 @@
             </constraint>
             <constraint name="DateTime">
                 <option name="message">Geben Sie bitte das Datum ein</option>
+            </constraint>
+        </property>
+    </class>
+
+
+    <class name="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem">
+        <property name="count">
+            <constraint name="NotBlank">
+                <option name="message">Geben Sie bitte das Datum ein</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">integer</option>
+                <option name="message">Dieser Wert sollte eine Zahl sein.</option>
+            </constraint>
+            <constraint name="GreaterThan">
+                <option name="value">0</option>
             </constraint>
         </property>
     </class>
