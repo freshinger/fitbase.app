@@ -1,7 +1,9 @@
 <div class="col-md-3">
     {% if company is defined and company %}
-        {% if company.image is defined %}
+        {% if company.image is defined and company.image %}
             {% thumbnail company.image, 'icon' with { } %}
+        {% else %}
+            <img src="/image/logo_footer.png" alt="fitbase.de"/>
         {% endif %}
     {% else %}
         <img src="/image/logo_footer.png" alt="fitbase.de"/>
