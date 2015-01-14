@@ -41,10 +41,25 @@ class FocusBreadcrumbBlockService extends FitbaseBreadcrumbBlockService implemen
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Übungen', array(
-            'route' => 'focus',
-            'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
-        ));
+        if (($user = $this->container->get('user')->current())) {
+            if (($focus = $user->getFocus())) {
+                if (($categories = $focus->getParentCategories())) {
+
+                    if (($categoryFocus = $categories->first())) {
+                        $categories->remove(0);
+
+                        if (($category = $categoryFocus->getCategory())) {
+                            $menu->addChild('Übungen', array(
+                                'route' => 'category',
+                                'routeParameters' => array(
+                                    'slug' => $categoryFocus->getCategory()->getSlug()
+                                )
+                            ));
+                        }
+                    }
+                }
+            }
+        }
 
         return $menu;
     }
