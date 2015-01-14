@@ -26,6 +26,13 @@
         <field name="gamification" type="boolean" column="gamification" nullable="true"/>
 
 
+        <many-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </many-to-one>
+
+
         <many-to-one field="site" target-entity="Application\Sonata\PageBundle\Entity\Site"/>
 
         <one-to-many field="users" target-entity="Application\Sonata\UserBundle\Entity\User" mapped-by="company">

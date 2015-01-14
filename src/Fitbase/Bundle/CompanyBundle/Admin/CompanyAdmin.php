@@ -106,7 +106,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->add('gamification')
             ->end()
             ->with('Style', array('class' => 'col-md-4'))
-            ->add('logo', null, array('required' => false))
+            ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
             ->add('logoWidth', null, array('required' => false))
             ->add('logoHeight', null, array('required' => false))
             ->add('colorHeader', 'genemu_jquerycolor', array('required' => false))

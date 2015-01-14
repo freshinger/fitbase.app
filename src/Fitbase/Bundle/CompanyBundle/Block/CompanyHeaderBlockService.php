@@ -37,7 +37,14 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array());
+        $company = null;
+        if (($user = $this->container->get('user')->current())) {
+            $company = $user->getCompany();
+        }
+
+        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array(
+            'company' => $company,
+        ));
     }
 
     /**

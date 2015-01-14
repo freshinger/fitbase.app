@@ -36,5 +36,11 @@
     }
 </style>
 <div class="col-md-12" style="margin-bottom: 20px; width: 50%;">
-    <img src="/image/logo.png"/>
+    {% if company is defined and company %}
+        {% if company.image is defined %}
+            {% thumbnail company.image, 'icon' with { } %}
+        {% endif %}
+    {% else %}
+        <img src="/image/logo.png"/>
+    {% endif %}
 </div>

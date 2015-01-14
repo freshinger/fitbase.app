@@ -407,4 +407,33 @@ class Company
     {
         return $this->users;
     }
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $image
+     * @return Company
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }
