@@ -90,10 +90,12 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')
+            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
+            ->end()
+            ->with('Exercises', array('class' => 'col-md-6'))
             ->add('exercise0')
             ->add('exercise1')
             ->add('exercise2')
-            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
             ->end();
     }
 }
