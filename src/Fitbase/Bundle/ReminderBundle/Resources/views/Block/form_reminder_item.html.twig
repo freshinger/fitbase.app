@@ -35,6 +35,21 @@
 {%- endblock form_label %}
 
 
+{% block time_widget -%}
+    {% set vars =  { 'attr': { 'class': 'form-control', 'style': 'width: 30%; display: inline;' }} %}
+    <div {{ block('widget_container_attributes') }}>
+    {{ form_widget(form.hour, vars) }}
+    {% if with_minutes %}
+
+    :&nbsp;&nbsp;{{ form_widget(form.minute, vars) }}
+    {% endif %}
+    {% if with_seconds %}
+        :&nbsp;&nbsp;{{ form_widget(form.second, vars) }}
+    {% endif %}
+    </div>
+{%- endblock time_widget %}
+
+
 {% block reminder_item_widget %}
     {% spaceless %}
         <div class="row">
@@ -72,7 +87,7 @@
                         });
                     </script>
                 {% endif %}
-                
+
             </div>
         </div>
     {% endspaceless %}

@@ -14,7 +14,7 @@ class ReminderUserPauseForm extends AbstractType
         $builder
             ->add('pause', 'choice', array(
                 'required' => false,
-                'label' => 'Wie lange möchten Sie die Fitbase pausieren?',
+                'label' => 'Wie lange möchten Sie fitbase pausieren?',
                 'choices' => array(
                     '1' => '1 Woche',
                     '2' => '2 Wochen',

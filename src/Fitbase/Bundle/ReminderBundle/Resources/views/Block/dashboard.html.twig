@@ -33,7 +33,8 @@
                             </tr>
                         {% endfor %}
                         <tr style="background: #f2f0f0;">
-                            <td><b>Total: {{ itemsWeeklytask|length }}</b></td>
+                            <td><b>{{ "Insgesamt" | trans({}, 'FitbaseReminderBundle') }}
+                                    : {{ itemsWeeklytask|length }}</b></td>
                             <td colspan="2"></td>
                         </tr>
                     {% else %}
@@ -89,7 +90,7 @@
                             </tr>
                         {% endfor %}
                         <tr style="background: #f2f0f0;">
-                            <td><b>Total: {{ items|length }}</b></td>
+                            <td><b>{{ "Insgesamt" | trans({}, 'FitbaseReminderBundle') }}: {{ items|length }}</b></td>
                             <td colspan="2"></td>
                         </tr>
                     {% else %}

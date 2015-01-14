@@ -29,6 +29,9 @@ class ReminderUserItemForm extends AbstractType
                     '4' => 'Donnerstag',
                     '5' => 'Freitag',
                 ),
+                'attr' => array(
+                    'class' => ' form-control'
+                )
             ))
             ->add('time', 'time', array(
                 'empty_value' => array('hour' => 'hh', 'minute' => 'mm'),
