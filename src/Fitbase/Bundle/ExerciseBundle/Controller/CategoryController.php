@@ -51,7 +51,7 @@ class CategoryController extends Controller
                             // Exercises only for back
                             // this part have a tasks,
                             // A task have a 3 exercises
-                            if (in_array($parent->getSlug(), array('ruecken', 'rckengesundheit', 'rueckengesundheit'))) {
+                            if (in_array($parent->getSlug(), array('ruecken', 'rueckengesundheit'))) {
                                 return $this->categoryBackAction($request, $slug);
                             }
 

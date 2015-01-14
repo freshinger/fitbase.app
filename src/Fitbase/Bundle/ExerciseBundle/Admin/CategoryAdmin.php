@@ -92,7 +92,6 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
-            ->add('slug')
             ->add('label', null, array('required' => false))
             ->add('description', 'textarea', array('required' => false))
             ->end()
@@ -107,6 +106,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
             ))
             ->end()
             ->with('General')
+            ->add('slug')
             ->add('media', 'sonata_type_model_list',
                 array('required' => false),
                 array(
