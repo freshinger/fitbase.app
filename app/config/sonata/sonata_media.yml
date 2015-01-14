@@ -79,7 +79,7 @@ sonata_media:
         file:
             # the resizer must be set to false, otherwhise this can delete icon files from the fs
             resizer:    false
-            allowed_extensions: ['webm']
+            allowed_extensions: ['pdf']
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
            allowed_extensions: ['jpeg', 'jpg', 'png', 'bmp', 'gif']
