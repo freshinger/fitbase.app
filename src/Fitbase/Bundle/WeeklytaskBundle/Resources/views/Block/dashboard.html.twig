@@ -57,7 +57,17 @@
                                 </a>
                             </td>
                             <td class="shade center">
-                                {{ task.task.tag }}
+                                {% if task.task is defined and task.task %}
+                                    {% set weeklytask = task.task %}
+                                    {% if weeklytask.categories is defined and weeklytask.categories %}
+                                        {% for category in weeklytask.categories %}
+                                            {% if loop.index > 1 %}
+                                                ,
+                                            {% endif %}
+                                            {{ category }}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endif %}
                             </td>
                             <td class="shade center">
                                 {% if task.doneDate is defined and task.doneDate %}
@@ -96,7 +106,7 @@
                                         </div>
                                     {% endif %}
                                     <div class="col-md-6">
-                                        <b>Total:</b>
+                                        <b>Gesamt:</b>
                                     </div>
                                     <div class="col-md-1">
                                         <b>
@@ -110,7 +120,7 @@
                     {% endif %}
                 {% endfor %}
                 <tr style="background: #f2f0f0;">
-                    <td nowrap><b>Total: {{ collection|length }}</b></td>
+                    <td nowrap><b>Gesamt: {{ collection|length }}</b></td>
                     <td colspan="6"></td>
                 </tr>
             {% else %}
