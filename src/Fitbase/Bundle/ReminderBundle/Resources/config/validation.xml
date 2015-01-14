@@ -5,7 +5,7 @@
 
     <class name="Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem">
         <constraint name="Fitbase\Bundle\ReminderBundle\Form\Constraints\ReminderUserItemCount">
-            <option name="message">Es ist nur 3 Reminders pro Woche möglich.</option>
+            <option name="message">Es sind maximal 3 Infoeinheiten pro Woche möglich.</option>
         </constraint>
         <property name="day">
             <constraint name="NotNull">

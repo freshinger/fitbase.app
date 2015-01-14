@@ -145,4 +145,36 @@ class Category extends BaseCategory
     {
         return $this->weeklytasks;
     }
+
+    /**
+     * @var string
+     */
+    private $label;
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     * @return Category
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        if (!strlen(($label = $this->label))) {
+            return $this->getName();
+        }
+
+        return $this->label;
+    }
 }

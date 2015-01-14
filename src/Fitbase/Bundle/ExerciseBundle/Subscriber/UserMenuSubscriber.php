@@ -27,20 +27,28 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
         );
     }
 
-    protected function getName($category)
-    {
-        $names = array(
-            'ruecken' => 'Rückenübungen',
-            'stress' => 'Ihre Entspannungsübung',
-            'ernaehrung' => 'Ihr Ernährungstagebuch',
-        );
+//    protected function getName($category)
+//    {
+//        $names = array(
+//            'ruecken' => 'Rückenübungen',
+//            'stress' => 'Entspannungsübungen',
+//            'ernaehrung' => 'Ernährungstagebuch',
+//        );
 
-        if (in_array($category->getSlug(), array_keys($names))) {
-            return $names[$category->getSlug()];
-        }
-
-        return $category->getName();
-    }
+//        1. Entspannungsübungen
+//2. Ernährungstagebuch
+//3. Resilienzübungen
+//4. Augenübungen
+//5. Rückenübungen
+//6. Achtsamkeitsübungen
+//
+//
+//        if (in_array($category->getSlug(), array_keys($names))) {
+//            return $names[$category->getSlug()];
+//        }
+//
+//        return $category->getName();
+//    }
 
     /**
      * Process menu event, to fill custom menu from this bundle
@@ -57,41 +65,44 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                         // as a first menu
                         if (($categoryFocus = $categories->first())) {
                             $categories->remove(0);
-                            $menu->addChild($this->getName($categoryFocus->getCategory()), array(
-                                'route' => 'category',
-                                'routeParameters' => array(
-                                    'slug' => $categoryFocus->getCategory()->getSlug()
-                                )
-                            ));
-                        }
 
-                        if (($category = $categories->first())) {
-
-                            $subMenu = $menu->addChild('Weitere Übungen', array(
-                                'route' => 'category',
-                                'routeParameters' => array(
-                                    'slug' => $category->getCategory()->getSlug()
-                                ),
-                                'attributes' => array('class' => 'dropdown'),
-                                'childrenAttributes' => array('class' => 'dropdown-menu'),
-                                'linkAttributes' => array(
-                                    'class' => 'dropdown-toggle',
-                                    'data-toggle' => 'dropdown',
-                                ),
-
-                            ));
-
-                            foreach ($categories as $category) {
-                                // TODO: replace names for categories
-                                $subMenu->addChild($this->getName($category->getCategory()), array(
+                            if (($category = $categoryFocus->getCategory())) {
+                                $menu->addChild($category->getLabel(), array(
                                     'route' => 'category',
                                     'routeParameters' => array(
-                                        'slug' => $category->getCategory()->getSlug()
-                                    ),
+                                        'slug' => $categoryFocus->getCategory()->getSlug()
+                                    )
                                 ));
                             }
                         }
 
+                        if (($categoryFocus = $categories->first())) {
+                            if (($category = $categoryFocus->getCategory())) {
+                                $subMenu = $menu->addChild('Weitere Übungen', array(
+                                    'route' => 'category',
+                                    'routeParameters' => array(
+                                        'slug' => $category->getSlug()
+                                    ),
+                                    'attributes' => array('class' => 'dropdown'),
+                                    'childrenAttributes' => array('class' => 'dropdown-menu'),
+                                    'linkAttributes' => array(
+                                        'class' => 'dropdown-toggle',
+                                        'data-toggle' => 'dropdown',
+                                    ),
+                                ));
+                            }
+
+                            foreach ($categories as $categoryFocus) {
+                                if (($category = $categoryFocus->getCategory())) {
+                                    $subMenu->addChild($category->getLabel(), array(
+                                        'route' => 'category',
+                                        'routeParameters' => array(
+                                            'slug' => $category->getSlug()
+                                        ),
+                                    ));
+                                }
+                            }
+                        }
 
                     }
                 }

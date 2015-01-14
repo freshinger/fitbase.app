@@ -92,6 +92,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('label', null, array('required' => false))
             ->add('description', 'textarea', array('required' => false))
             ->end()
             ->with('Options', array('class' => 'col-md-6'))
