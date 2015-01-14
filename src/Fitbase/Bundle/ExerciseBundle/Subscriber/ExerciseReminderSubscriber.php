@@ -94,7 +94,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                     $categories = $chooserCategory->choose($user->getFocus());
                 }
 
-                $title = $this->container->get('translator')->trans('Ihre Fitbase Erinnerung');
+                $title = $this->container->get('translator')->trans('Ihre fitbase Erinnerung');
                 $content = $this->container->get('templating')->render('FitbaseExerciseBundle:Email:exercise.html.twig', array(
                     'user' => $exerciseUser->getUser(),
                     'categoryFocus' => $categoryFocus,
