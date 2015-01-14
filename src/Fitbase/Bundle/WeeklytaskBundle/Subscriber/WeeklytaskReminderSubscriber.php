@@ -35,7 +35,7 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
         if (($weeklyquizUser = $event->getEntity())) {
             if (($user = $weeklyquizUser->getUser())) {
 
-                $title = $this->container->get('translator')->trans('Ihr Fitbase Quiz');
+                $title = $this->container->get('translator')->trans('Ihr fitbase Quiz');
                 $content = $this->container->get('templating')->render('FitbaseWeeklytaskBundle:Email:weeklyquiz.html.twig', array(
                     'user' => $weeklyquizUser->getUser(),
                     'task' => $weeklyquizUser->getTask(),
@@ -169,7 +169,7 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
         if (($weeklytaskUser = $event->getEntity())) {
             if (($user = $weeklytaskUser->getUser())) {
 
-                $title = $this->container->get('translator')->trans('Ihre Fitbase Infoeinheit');
+                $title = $this->container->get('translator')->trans('Ihre fitbase Infoeinheit');
                 $content = $this->container->get('templating')->render('FitbaseWeeklytaskBundle:Email:weeklytask.html.twig', array(
                     'user' => $weeklytaskUser->getUser(),
                     'task' => $weeklytaskUser->getTask(),
