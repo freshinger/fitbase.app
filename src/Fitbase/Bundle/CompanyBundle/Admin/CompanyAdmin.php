@@ -116,7 +116,9 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
 //            ->add('footer', 'genemu_jquerycolor', array('required' => false))
             ->end()
             ->with('Background', array('class' => 'col-md-4'))
-            ->add('background2', 'genemu_jquerycolor', array('required' => false, 'label' => 'Global background'))
+            ->add('background2', 'genemu_jquerycolor', array(
+                'required' => false, 'label' => 'Global background'
+            ))
             ->add('background1', 'genemu_jquerycolor', array('required' => false, 'label' => 'Content background'))
 //            ->add('background3', 'genemu_jquerycolor', array('required' => false))
             ->end()
