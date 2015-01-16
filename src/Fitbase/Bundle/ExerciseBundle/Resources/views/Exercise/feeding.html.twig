@@ -13,7 +13,7 @@
         <h3>Ihr persönliches Verhältnis</h3>
 
 
-        <div style="height: 433px; overflow-y: scroll;">
+        <div style="height: 430px; overflow-y: scroll;">
             {% if history is defined and history %}
                 {% for key, row in history %}
                     {{ pie(key, row)|raw }}
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6" style="height: 430px; overflow-y: scroll;">
 
         <h3>Ein optimales Verhältnis</h3>
 
