@@ -18,9 +18,13 @@
         <field name="logoWidth" type="integer" column="logo_width" nullable="true"/>
         <field name="logoHeight" type="integer" column="logo_height" nullable="true"/>
 
-        <field name="colorHeader" type="string" length="255" column="color_header" nullable="true"/>
-        <field name="colorFooter" type="string" length="255" column="color_footer" nullable="true"/>
-        <field name="colorBackground" type="string" length="255" column="color_background" nullable="true"/>
+        <field name="header" type="string" length="255" column="header" nullable="true"/>
+        <field name="footer" type="string" length="255" column="footer" nullable="true"/>
+
+        <field name="background1" type="string" length="255" column="background_1" nullable="true"/>
+        <field name="background2" type="string" length="255" column="background_2" nullable="true"/>
+        <field name="background3" type="string" length="255" column="background_3" nullable="true"/>
+
 
         <field name="questionnaire" type="boolean" column="questionnaire" nullable="true"/>
         <field name="gamification" type="boolean" column="gamification" nullable="true"/>

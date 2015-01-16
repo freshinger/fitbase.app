@@ -31,18 +31,53 @@
         font-size: smaller;
     }
 
+    .page-content > div {
+        margin: 10px;
+    }
+
+    .page-header > ul {
+        margin: 10px;
+    }
+
     html, body {
         height: 90%;
     }
+
+
 </style>
 <div class="col-md-12" style="margin-bottom: 20px; width: 50%;">
+
+    {% set logo = '/image/logo.png' %}
+
     {% if company is defined and company %}
-        {% if company.image is defined and company.image %}
-            {% thumbnail company.image, 'icon' with { 'width': '60' } %}
-        {% else %}
-            <img src="/image/logo.png"/>
+        {% if company.background1 is defined and company.background1 %}
+            <style class="company">
+                .page-header {
+                    background-color: {{ company.background1 }};
+                }
+
+                .page-content {
+                    background-color: {{ company.background1 }};
+                }
+            </style>
         {% endif %}
-    {% else %}
-        <img src="/image/logo.png"/>
+
+        {% if company.background2 is defined and company.background2 %}
+            <style class="company">
+                .sonata-bc {
+                    background-color: {{ company.background2 }};
+                }
+            </style>
+        {% endif %}
+
+        {% if company.image is defined and company.image %}
+            {% set logo = null %}
+            {% thumbnail company.image, 'icon' with { 'width': '60' } %}
+        {% endif %}
     {% endif %}
+
+    {% if logo is defined and logo %}
+        <img src="{{ logo }}"/>
+    {% endif %}
+
 </div>

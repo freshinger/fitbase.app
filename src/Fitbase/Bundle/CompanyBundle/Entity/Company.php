@@ -436,4 +436,145 @@ class Company
     {
         return $this->image;
     }
+
+    /**
+     * @var string
+     */
+    private $header;
+
+    /**
+     * @var string
+     */
+    private $footer;
+
+    /**
+     * @var string
+     */
+    private $background1;
+
+    /**
+     * @var string
+     */
+    private $background2;
+
+    /**
+     * @var string
+     */
+    private $background3;
+
+
+    /**
+     * Set header
+     *
+     * @param string $header
+     * @return Company
+     */
+    public function setHeader($header)
+    {
+        $this->header = $header;
+
+        return $this;
+    }
+
+    /**
+     * Get header
+     *
+     * @return string
+     */
+    public function getHeader()
+    {
+        return $this->header;
+    }
+
+    /**
+     * Set footer
+     *
+     * @param string $footer
+     * @return Company
+     */
+    public function setFooter($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Get footer
+     *
+     * @return string
+     */
+    public function getFooter()
+    {
+        return $this->footer;
+    }
+
+    /**
+     * Set background1
+     *
+     * @param string $background1
+     * @return Company
+     */
+    public function setBackground1($background1)
+    {
+        $this->background1 = $background1;
+
+        return $this;
+    }
+
+    /**
+     * Get background1
+     *
+     * @return string
+     */
+    public function getBackground1()
+    {
+        return $this->background1;
+    }
+
+    /**
+     * Set background2
+     *
+     * @param string $background2
+     * @return Company
+     */
+    public function setBackground2($background2)
+    {
+        $this->background2 = $background2;
+
+        return $this;
+    }
+
+    /**
+     * Get background2
+     *
+     * @return string
+     */
+    public function getBackground2()
+    {
+        return $this->background2;
+    }
+
+    /**
+     * Set background3
+     *
+     * @param string $background3
+     * @return Company
+     */
+    public function setBackground3($background3)
+    {
+        $this->background3 = $background3;
+
+        return $this;
+    }
+
+    /**
+     * Get background3
+     *
+     * @return string
+     */
+    public function getBackground3()
+    {
+        return $this->background3;
+    }
 }

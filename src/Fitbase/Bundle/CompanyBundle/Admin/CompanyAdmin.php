@@ -96,6 +96,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->tab('General')
             ->with('General', array('class' => 'col-md-4'))
             ->add('name', null, array('required' => true))
             ->add('site', null, array('required' => true))
@@ -105,13 +106,20 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->add('questionnaire')
             ->add('gamification')
             ->end()
-            ->with('Style', array('class' => 'col-md-4'))
+            ->end()
+            ->tab('Style')
+            ->with('Logo', array('class' => 'col-md-4'))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'exercise')))
-            ->add('logoWidth', null, array('required' => false))
-            ->add('logoHeight', null, array('required' => false))
-            ->add('colorHeader', 'genemu_jquerycolor', array('required' => false))
-            ->add('colorFooter', 'genemu_jquerycolor', array('required' => false))
-            ->add('colorBackground', 'genemu_jquerycolor', array('required' => false))
+            ->end()
+//            ->with('Header/Footer', array('class' => 'col-md-4'))
+//            ->add('header', 'genemu_jquerycolor', array('required' => false))
+//            ->add('footer', 'genemu_jquerycolor', array('required' => false))
+//            ->end()
+            ->with('Background', array('class' => 'col-md-4'))
+            ->add('background2', 'genemu_jquerycolor', array('required' => false, 'label' => 'Global background'))
+            ->add('background1', 'genemu_jquerycolor', array('required' => false, 'label' => 'Content background'))
+//            ->add('background3', 'genemu_jquerycolor', array('required' => false))
+            ->end()
             ->end();
     }
 }
