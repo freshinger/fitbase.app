@@ -77,7 +77,7 @@
 
         {% if company.image is defined and company.image %}
             {% set logo = null %}
-            {% thumbnail company.image, 'icon' with { 'width': '60' } %}
+            {% thumbnail company.image, 'thumbnail' %}
         {% endif %}
     {% endif %}
 
