@@ -45,35 +45,34 @@
 
 
 </style>
-<div class="col-md-12" style="margin-bottom: 20px; width: 50%;">
+<div class="col-md-12" style="margin-top: 8px; margin-bottom: 20px; width: 50%;">
 
     {% set logo = '/image/logo.png' %}
 
     {% if company is defined and company %}
 
-        {% if company.header is defined and company.header %}
-            <style class="company">
+        <style class="company">
+
+            {% if company.header is defined and company.header %}
                 .page-header {
-                    background-color: #{{ company.header }};
+                    background-color: # {{ company.header }};
                 }
-            </style>
-        {% endif %}
+            {% endif %}
 
-        {% if company.background1 is defined and company.background1 %}
-            <style class="company">
+            {% if company.background1 is defined and company.background1 %}
                 .page-content {
-                    background-color: #{{ company.background1 }};
+                    background-color: # {{ company.background1 }};
                 }
-            </style>
-        {% endif %}
+            {% endif %}
 
-        {% if company.background2 is defined and company.background2 %}
-            <style class="company">
+            {% if company.background2 is defined and company.background2 %}
                 body.sonata-bc {
-                    background-color: #{{ company.background2 }};
+                    background-color: # {{ company.background2 }};
                 }
-            </style>
-        {% endif %}
+            {% endif %}
+
+        </style>
+
 
         {% if company.image is defined and company.image %}
             {% set logo = null %}
