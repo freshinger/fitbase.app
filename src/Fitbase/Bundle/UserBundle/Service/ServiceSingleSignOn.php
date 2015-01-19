@@ -23,17 +23,21 @@ class ServiceSingleSignOn extends ContainerAware
     {
         if (($code = $this->container->get('codegenerator')->password(32))) {
 
-            $entity = new UserSingleSignOn();
-            $entity->setUser($user);
-            $entity->setProcessed(0);
-            $entity->setCode($code);
-            $entity->setDate($this->container->get('datetime')->getDateTime('now'));
+            $entityManager = $this->container->get('entity_manager');
+            if(\Doctrine\ORM\UnitOfWork::STATE_MANAGED === $entityManager->getUnitOfWork()->getEntityState($user)) {
+
+                $entity = new UserSingleSignOn();
+                $entity->setUser($user);
+                $entity->setProcessed(0);
+                $entity->setCode($code);
+                $entity->setDate($this->container->get('datetime')->getDateTime('now'));
 
 
-            $event = new UserSingleSignOnEvent($entity);
-            $this->container->get('event_dispatcher')->dispatch('user_singlesignon_create', $event);
+                $event = new UserSingleSignOnEvent($entity);
+                $this->container->get('event_dispatcher')->dispatch('user_singlesignon_create', $event);
 
-            return $entity->getCode();
+                return $entity->getCode();
+            }
         }
 
         return null;

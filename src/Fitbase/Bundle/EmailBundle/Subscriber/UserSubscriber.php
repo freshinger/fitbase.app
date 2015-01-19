@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitbase\Bundle\UserBundle\Subscriber;
+namespace Fitbase\Bundle\EmailBundle\Subscriber;
 
 
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
@@ -15,7 +15,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UserEmailSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
     /**
      * Get subscribers
@@ -24,7 +24,7 @@ class UserEmailSubscriber extends ContainerAware implements EventSubscriberInter
     public static function getSubscribedEvents()
     {
         return array(
-//            'user_create' => array('onUserCreateEvent', -128),
+            'user_create' => array('onUserCreateEvent', -128),
         );
     }
 
@@ -36,8 +36,8 @@ class UserEmailSubscriber extends ContainerAware implements EventSubscriberInter
     {
         if (($user = $event->getEntity())) {
 
-            $title = $this->container->get('translator')->trans('Willkommen bei Fitbase.de');
-            $content = $this->container->get('templating')->render('FitbaseUserBundle:Email:registered.html.twig', array(
+            $title = $this->container->get('translator')->trans('Willkommen bei fitbase');
+            $content = $this->container->get('templating')->render('FitbaseEmailBundle:Subscriber:user.html.twig', array(
                 'user' => $user,
             ));
 

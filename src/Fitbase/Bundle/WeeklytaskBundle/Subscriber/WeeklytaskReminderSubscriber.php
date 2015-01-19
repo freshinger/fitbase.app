@@ -20,8 +20,8 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
     public static function getSubscribedEvents()
     {
         return array(
-            'weeklyquiz_reminder_send' => array('onWeeklyquizReminderSendEvent'),
-            'weeklytask_reminder_send' => array('onWeeklytaskReminderSendEvent'),
+//            'weeklyquiz_reminder_send' => array('onWeeklyquizReminderSendEvent'),
+//            'weeklytask_reminder_send' => array('onWeeklytaskReminderSendEvent'),
             'weeklytask_reminder_create' => array('onWeeklytaskReminderCreateEvent'),
         );
     }

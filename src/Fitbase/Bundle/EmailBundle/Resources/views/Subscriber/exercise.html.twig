@@ -1,0 +1,186 @@
+{% extends 'FitbaseEmailBundle::layout.html.twig' %}
+
+
+{% block content %}
+
+    <table class="row"
+           style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;">
+        <tbody>
+        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+            <td class="wrapper last"
+                style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;"
+                align="left" valign="top">
+
+                <table class="twelve columns"
+                       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;">
+                    <tbody>
+                    <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                        <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
+                            align="left" valign="top">
+                            <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
+                               align="left">
+                                hiermit möchten wir Sie an Ihre Übung aus dem Bereich {{ categoryFocus.label }}
+                                erinnern.
+                                Bitte klicken Sie auf den Link, um direkt zur heutigen Übung zu gelangen.
+                            </p>
+
+                        </td>
+                        <td class="expander"
+                            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
+                            align="left" valign="top"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+    <table class="row"
+           style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;">
+        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+            <td class="wrapper last"
+                style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;"
+                align="left" valign="top">
+
+                <table class="twelve columns"
+                       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;">
+                    <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                        <td class="center"
+                            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
+                            align="center" valign="top">
+                            <center style="width: 100%; min-width: 580px;">
+
+
+                                <table class="medium-button success"
+                                       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 50%; overflow: hidden; padding: 0;">
+                                    <tbody>
+                                    <tr style="vertical-align: top; text-align: left; padding: 0;"
+                                        align="left">
+                                        <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; display: block; width: auto !important; background: #a2d049; margin: 0; padding: 12px 0 10px; border: 1px solid #a2d049;"
+                                            align="center" bgcolor="#a2d049" valign="top">
+                                            <a href="{{ sign(user, url('focus')) }}"
+                                               style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 20px;">
+                                                Meine heutige Übung
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                        </td>
+                        <td class="expander"
+                            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
+                            align="left" valign="top"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+
+    {% if categories is defined and categories %}
+        <table class="row"
+               style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;">
+            <tbody>
+
+            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+
+                {% for key, category in categories %}
+
+
+                {% if key is odd %}
+                <td class="wrapper last"
+                    style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;"
+                    align="left" valign="top">
+            {% else %}
+                <td class="wrapper"
+                    style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 20px 0px 0px;"
+                    align="left" valign="top">
+                    {% endif %}
+
+                    <table class="six columns"
+                           style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 280px; margin: 0 auto; padding: 0;">
+                        <tbody>
+                        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                            <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
+                                align="left" valign="top">
+
+
+                                <table class="button"
+                                       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; overflow: hidden; padding: 0;">
+                                    <tbody>
+                                    <tr style="vertical-align: top; text-align: left; padding: 0;"
+                                        align="left">
+                                        <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #ffffff; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; display: block; width: auto !important; background: #397bc9; margin: 0; padding: 8px 0; border: 1px solid #397bc9;"
+                                            align="center" bgcolor="#397bc9" valign="top">
+                                            <a href="{{ sign(user, url('category', { 'slug': category.slug })) }}"
+                                               style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 16px;">
+                                                {{ category.label }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                            <td class="expander"
+                                style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
+                                align="left" valign="top"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+
+                {% if key is odd %}
+            </tr>
+            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                {% endif %}
+
+                {% endfor %}
+            </tr>
+
+            </tbody>
+        </table>
+
+
+        <table class="row"
+               style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;">
+            <tbody>
+            <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                <td class="wrapper last"
+                    style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;"
+                    align="left" valign="top">
+
+                    <table class="twelve columns"
+                           style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;">
+                        <tbody>
+                        <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
+                            <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
+                                align="left" valign="top">
+                                <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
+                                   align="left">
+                                    Viel Spaß und einen schönen Tag wünscht Ihnen Ihr fitbase Team!
+                                </p>
+
+                            </td>
+                            <td class="expander"
+                                style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
+                                align="left" valign="top"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    {% endif %}
+
+
+
+{% endblock content %}

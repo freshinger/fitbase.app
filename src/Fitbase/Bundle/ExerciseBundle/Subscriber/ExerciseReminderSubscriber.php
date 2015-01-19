@@ -23,7 +23,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-            'exercise_reminder_send' => array('onExerciseReminderSendEvent'),
+//            'exercise_reminder_send' => array('onExerciseReminderSendEvent'),
             'exercise_reminder_create' => array('onExerciseReminderCreateEvent'),
         );
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.subscriber.email.ExerciseUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.email.WeeklytaskUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklytaskUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.email.WeeklyquizUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.email.UserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+    </services>
+</container>

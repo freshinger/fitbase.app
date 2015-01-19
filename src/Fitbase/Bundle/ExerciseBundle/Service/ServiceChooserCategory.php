@@ -30,7 +30,6 @@ class ServiceChooserCategory
                     $result = array_merge($result, $resultCache);
                     continue;
                 }
-
             }
         }
 
