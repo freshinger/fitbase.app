@@ -66,22 +66,12 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $request = $this->container->get('request');
-
-        $slug = null;
-
-        if (!($slug = $request->get('company', null))) {
-            $slug = $request->getSession()->get('company', null);
-        }
-
         if (($user = $this->container->get('user')->current())) {
             $company = $this->getCompanyByUser();
         } else {
-            $company = $this->getCompanyBySlug($slug);
-        }
-
-        if (!empty($company)) {
-            $request->getSession()->set('company', $company->getSlug());
+            $company = $this->getCompanyBySlug(
+                $this->container->get('request')->getSession()->get('company')
+            );
         }
 
         return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array(
