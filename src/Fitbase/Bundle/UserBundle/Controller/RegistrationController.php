@@ -24,11 +24,11 @@ class RegistrationController extends Controller
     public function codeAction(Request $request, $internal = null)
     {
         $formActioncode = $this->createForm(new UserActioncodeForm(), new UserActioncode(), array(
-            'action' => $this->generateUrl('actioncode')
+            'action' => $this->generateUrl('actioncode', array('company' => $request->get('company')))
         ));
 
         $formRegistration = $this->createForm(new UserRegistrationForm(), new UserRegistration(), array(
-            'action' => $this->generateUrl('actioncode')
+            'action' => $this->generateUrl('actioncode', array('company' => $request->get('company')))
         ));
 
 
