@@ -67,7 +67,7 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($user = $this->container->get('user')->current())) {
-            $company = $this->getCompanyByUser();
+            $company = $this->getCompanyByUser($user);
         } else {
             $company = $this->getCompanyBySlug(
                 $this->container->get('request')->getSession()->get('company')
