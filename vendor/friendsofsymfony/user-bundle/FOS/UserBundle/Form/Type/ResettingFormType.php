@@ -31,6 +31,7 @@ class ResettingFormType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'label' => false,
             'data_class' => 'FOS\UserBundle\Form\Model\ChangePassword',
             'intention'  => 'resetting',
         ));

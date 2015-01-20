@@ -1,0 +1,6 @@
+{% block subject %}Passwort zurücksetzen{% endblock %}
+
+
+{% block body_html %}
+    {% include 'FitbaseEmailBundle:Subscriber:reset_content.html.twig' with { 'user': user, 'confirmationUrl': confirmationUrl } %}
+{% endblock %}
