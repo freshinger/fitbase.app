@@ -69,9 +69,12 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
         $request = $this->container->get('request');
 
         $slug = null;
+
         if (!($slug = $request->get('company', null))) {
-            if (!($slug = $request->cookies->get('company'))) {
-                // TODO:
+            if (!($slug = $request->getSession()->get('company'))) {
+                if (!($slug = $request->cookies->get('company'))) {
+                    // TODO:
+                }
             }
         }
 
@@ -82,6 +85,12 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
                 }
             }
         }
+
+
+        if (!empty($company)) {
+            $request->getSession()->set('company', $company->getSlug());
+        }
+
 
         return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array(
             'company' => $company,

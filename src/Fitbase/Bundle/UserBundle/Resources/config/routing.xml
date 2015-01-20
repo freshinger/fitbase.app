@@ -6,7 +6,7 @@
 
     <route id="actioncode" pattern="/code/{company}">
         <default key="_controller">FitbaseUserBundle:Registration:code</default>
-        <default key="company">null</default>
+        <default key="company"></default>
     </route>
 
 </routes>
