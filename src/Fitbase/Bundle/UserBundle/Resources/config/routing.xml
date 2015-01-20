@@ -4,70 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="actioncode" pattern="/code">
+    <route id="actioncode" pattern="/code/{company}">
         <default key="_controller">FitbaseUserBundle:Registration:code</default>
+        <default key="company">null</default>
     </route>
-
-
-    <!--<route id="dashboard_option" pattern="/mitgliederbereich/dashboard/option">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:option</default>-->
-    <!--</route>-->
-
-    <!--<route id="dashboard_exercise" pattern="/mitgliederbereich/dashboard/exercise">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:exercise</default>-->
-    <!--</route>-->
-
-    <!--<route id="dashboard_statistic" pattern="/mitgliederbereich/dashboard/statistic">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:statisticCompany</default>-->
-    <!--</route>-->
-
-    <!--<route id="dashboard_statistic_point" pattern="/mitgliederbereich/dashboard/statistic/point">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:statisticPoint</default>-->
-    <!--</route>-->
-
-    <!--<route id="dashboard_statistic_video" pattern="/mitgliederbereich/dashboard/statistic/video">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:statisticVideo</default>-->
-    <!--</route>-->
-
-    <!--<route id="dashboard_statistic_questionnaire" pattern="/mitgliederbereich/dashboard/statistic/questionnaire">-->
-    <!--<default key="_controller">FitbaseUserBundle:UserDashboard:statisticQuestionnaire</default>-->
-    <!--</route>-->
-
-
-    <!--<route id="profile_pause" pattern="/mitgliederbereich/profile/pause">-->
-    <!--<default key="_controller">FitbaseUserBundle:User:pause</default>-->
-    <!--</route>-->
-
-
-    <!--<route id="profile_profile" pattern="/mitgliederbereich/profile/info">-->
-    <!--<default key="_controller">FitbaseUserBundle:User:profile</default>-->
-    <!--</route>-->
-
-    <!--<route id="profile_profile_update" pattern="/mitgliederbereich/profile/info/update">-->
-    <!--<default key="_controller">FitbaseUserBundle:User:profileUpdate</default>-->
-    <!--</route>-->
-
-    <!--<route id="profile_password" pattern="/mitgliederbereich/profile/password">-->
-    <!--<default key="_controller">FitbaseUserBundle:User:password</default>-->
-    <!--</route>-->
-
-    <!--<route id="profile_password_update" pattern="/mitgliederbereich/profile/password/update">-->
-    <!--<default key="_controller">FitbaseUserBundle:User:passwordUpdate</default>-->
-    <!--</route>-->
-
-
-    <!--<route id="administration_user_export" pattern="/administration/user/export">-->
-    <!--<default key="_controller">FitbaseUserBundle:Administration:administrationExport</default>-->
-    <!--</route>-->
-
-    <!--<route id="administration_user_import" pattern="/administration/user/import">-->
-    <!--<default key="_controller">FitbaseUserBundle:Administration:administrationImport</default>-->
-    <!--</route>-->
-
-
-    <!--<route id="therapeut" pattern="/mitgliederbereich/medimouse-eingabemaske/">-->
-    <!--<default key="_controller">FitbaseUserBundle:Therapeut:eingabe</default>-->
-    <!--</route>-->
-
 
 </routes>

@@ -41,6 +41,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('slug')
             ->add('site')
             ->add('description')
             ->end()
@@ -99,6 +100,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->tab('General')
             ->with('General', array('class' => 'col-md-4'))
             ->add('name', null, array('required' => true))
+            ->Add('slug')
             ->add('site', null, array('required' => true))
             ->add('description', null, array('required' => false))
             ->end()
