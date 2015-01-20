@@ -89,6 +89,9 @@ class GamificationDialogQuestionAdmin extends Admin implements ContainerAwareInt
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('text')
+            ->add('description', null, array(
+                'required' => false,
+            ))
             ->add('type')
             ->add('start')
             ->add('positive')

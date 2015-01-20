@@ -2,7 +2,10 @@
     {% if object.questionTrue is defined and object.questionTrue %}
         <ol>
             <li>
-                {{ object.questionTrue }}
+
+                <h4>{{ object.questionTrue }}</h4>
+                <p>{{ object.questionTrue.description }}</p>
+
                 <p>
                     <a href="{{ path('admin_fitbase_gamification_gamificationdialogquestion_show', { id: object.questionTrue.id}) }}">show</a>
                     |
