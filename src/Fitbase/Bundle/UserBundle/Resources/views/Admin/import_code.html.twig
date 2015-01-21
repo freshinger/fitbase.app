@@ -11,42 +11,29 @@
 
 
 
-{% block navbar_title %}
-    {{ "Import Actioncodes"|trans({}, 'SonataAdminBundle') }}
-{% endblock %}
-
-{% block flush %}
-    {% if app is defined and app.session is defined %}
-        {% for success in app.session.flashbag.get('success') %}
-            <div class="alert alert-success">
-                {{ success }}
-            </div>
-        {% endfor %}
-        {% for notice in app.session.flashbag.get('notice') %}
-            <div class="alert alert-success">
-                {{ notice }}
-            </div>
-        {% endfor %}
-        {% for error in app.session.flashbag.get('error') %}
-            <div class="alert alert-success">
-                {{ error }}
-            </div>
-        {% endfor %}
-    {% endif %}
-{% endblock flush %}
 
 
-{% block content %}
-    <div class="sonata-ba-form-error">
-        {{ block('flush') }}
-    </div>
+{% block sonata_page_content_header %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <span class="navbar-brand">
+                {{ "Import Actioncodes"|trans({}, 'SonataAdminBundle') }}
+            </span>
+        </div>
+    </nav>
+{% endblock sonata_page_content_header %}
+
+
+{% block sonata_admin_content %}
+
+    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
 
     <div class="row">
         <div class="col-md-8">
             <div class="box box-success">
                 <div class="box-header">
                     <h4 class="box-title">
-                        {{ "Import Actioncodes"|trans({}, 'SonataAdminBundle') }}
+                        {{ "General"|trans({}, 'SonataAdminBundle') }}
                     </h4>
                 </div>
                 <div class="box-body">
@@ -58,9 +45,4 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-{% endblock content %}
+{% endblock sonata_admin_content %}

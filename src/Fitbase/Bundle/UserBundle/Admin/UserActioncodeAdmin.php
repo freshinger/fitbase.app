@@ -13,13 +13,14 @@ namespace Fitbase\Bundle\UserBundle\Admin;
 
 use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Knp\Menu\ItemInterface as MenuItemInterface;
 
 class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
 {
@@ -32,6 +33,11 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        $menu->addChild('Import Actioncodes', array('uri' => $this->container->get('router')->generate('sonata_admin_import_code')));
     }
 
     /**
