@@ -10,9 +10,6 @@
 {% endblock %}
 
 
-
-
-
 {% block sonata_page_content_header %}
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -26,7 +23,26 @@
 
 {% block sonata_admin_content %}
 
-    {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    {% if app is defined and app.session is defined %}
+        {% for success in app.session.flashbag.get('success') %}
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ success }}
+            </div>
+        {% endfor %}
+        {% for notice in app.session.flashbag.get('notice') %}
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ notice }}
+        </div>
+    {% endfor %}
+        {% for notice in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ notice }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="row">
         <div class="col-md-8">
