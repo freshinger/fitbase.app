@@ -93,8 +93,14 @@ class GamificationDialogQuestionAdmin extends Admin implements ContainerAwareInt
                 'required' => false,
             ))
             ->add('type')
-            ->add('start')
-            ->add('positive')
+            ->add('start', 'checkbox', array(
+                'required' => false,
+
+            ))
+            ->add('positive', 'checkbox', array(
+                'required' => false,
+
+            ))
             ->end()
             ->with('Folgende Fragen', array('class' => 'col-md-6'))
             ->add('questionTrue')

@@ -40,7 +40,7 @@ class GamificationUserDialogFeedbackSubscriber extends ContainerAware implements
         if (($question = $answer->getQuestion()) and ($answerText = $answer->getDescription())) {
 
             // store user feedback only for text-questions
-            if ($question->getType() == 'text') {
+            if ($question->getType() == 'text' and $question->getPositive()) {
 
                 $feedback = new GamificationUserDialogFeedback();
                 $feedback->setQuestion($question);

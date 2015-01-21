@@ -33,7 +33,7 @@ class GamificationDialogQuestion
      */
     public function getPositive()
     {
-        return $this->positive;
+        return (boolean)$this->positive;
     }
 
     /**
@@ -49,7 +49,7 @@ class GamificationDialogQuestion
      */
     public function getStart()
     {
-        return $this->start;
+        return (boolean)$this->start;
     }
 
     /**
