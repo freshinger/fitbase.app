@@ -8,6 +8,7 @@
     <imports>
         <import resource="blocks.xml" />
         <import resource="subscribers.xml" />
+        <import resource="mailers.xml" />
     </imports>
     
     <!--

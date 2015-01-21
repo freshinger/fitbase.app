@@ -42,11 +42,6 @@
             </call>
         </service>
 
-        <service id="mail" class="Fitbase\Bundle\ReminderBundle\Service\ServiceMailer">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
 
     </services>
 
