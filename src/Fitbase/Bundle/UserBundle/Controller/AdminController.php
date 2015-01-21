@@ -70,10 +70,12 @@ class AdminController extends CoreController
                                     $this->get('entity_manager')->persist($actioncode);
 
                                     $count++;
+                                    continue;
                                 }
+                                $this->get('session')->getFlashBag()->add('error', "Code: '{$code}' bereites existiert.");
                             }
                         }
-                        $this->get('session')->getFlashBag()->add('notice', "{$count} Actioncodes wurde importiert");
+                        $this->get('session')->getFlashBag()->add(($count > 0 ? 'success' : 'notice'), "{$count} Actioncode(s) wurde importiert");
                         $this->get('entity_manager')->flush();
                     }
                 }
