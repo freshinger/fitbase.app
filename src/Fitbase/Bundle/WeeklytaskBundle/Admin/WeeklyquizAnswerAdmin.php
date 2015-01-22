@@ -33,6 +33,15 @@ class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    public function generateUrl($name, array $parameters = array(), $absolute = false)
+    {
+        if (($name == 'list')) {
+            return $this->container->get('router')->generate('admin_fitbase_weeklytask_weeklyquiz_list');
+        }
+
+        return parent::generateUrl($name, $parameters, $absolute);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -105,14 +114,36 @@ class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+
+        $optionsQuestion = array(
+            'read_only' => true,
+        );
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion');
+
+        if (($questionId = $this->container->get('request')->get('question', null))) {
+            if (($question = $repositoryWeeklyquiz->findOneById($questionId))) {
+                $optionsQuestion['data'] = $question;
+            }
+        }
+
         $formMapper
-            ->with('General')
+            ->tab('General')
+            ->with('General', array('class' => 'col-md-6'))
             ->add('name', null, array(
                 'label' => 'Name',
             ))
-            ->add('question', null, array(
-                'label' => 'Question',
+            ->end()
+            ->with('Richtig', array('class' => 'col-md-6'))
+            ->add('correct', 'checkbox', array(
+                'label' => 'Is richtig',
+                'required' => false,
             ))
+            ->end()
+
+            ->with('Optionen', array('class' => 'col-md-12'))
             ->add('description', 'sonata_formatter_type', array(
                 'required' => false,
                 'label' => 'Beschreibung',
@@ -125,10 +156,12 @@ class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
                 'listener' => true,
                 'target_field' => 'content'
             ))
-            ->add('correct', 'checkbox', array(
-                'label' => 'Is richtig',
-                'required' => false,
-            ))
+            ->end()
+            ->end()
+            ->tab('Integration')
+            ->with('Integration', array('class' => 'col-md-6'))
+            ->add('question', null, $optionsQuestion)
+            ->end()
             ->end();
     }
 }

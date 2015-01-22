@@ -39,17 +39,10 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->with('General', array('class' => 'col-md-6'))
-            ->add('name')
-            ->add('task')
-            ->add('countPoint')
-            ->add('description', null, array(
-                'safe' => true,
-            ))
-            ->end()
-            ->with('Aufbau', array('class' => 'col-md-6'))
-            ->add('questions', null, array('template' => 'FitbaseWeeklytaskBundle:Admin:weeklyquiz_show_name.html.twig'))
-            ->end()
+            ->with('Quizaufbau', array('class' => 'col-md-6'))
+            ->add('questions', 'sonata_type_admin',
+                array('template' => 'FitbaseWeeklytaskBundle:Admin:weeklyquiz_show_name.html.twig')
+            )
             ->end();
     }
 
@@ -59,7 +52,7 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array('template' => 'FitbaseWeeklytaskBundle:Admin:weeklyquiz_list_name.html.twig'))
+            ->add('name', null)
             ->add('task')
             ->add('countPoint')
             ->add('_action', 'actions', array(
@@ -96,6 +89,7 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->add('countPoint', 'integer', array('label' => 'Punkte'))
             ->add('description', 'sonata_formatter_type', array(
                 'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
@@ -107,10 +101,6 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
                 'listener' => true,
                 'target_field' => 'content'
             ))
-            ->end()
-            ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
-            ->add('questions')
             ->end();
     }
 }

@@ -1,35 +1,157 @@
-{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
-{% block field %}
-    <a href="{{ path('admin_fitbase_questionnaire_questionnairequestion_create') }}">Neue Frage anlegen</a>
+<td class="box box-success" colspan="2">
+    {% block field %}
+        <style>
+            .navbar-quiz {
+                left: auto !important;
+                top: auto !important;
+                right: auto !important;
+                position: inherit !important;
+            }
 
-    <ol>
-        {% for question in object.questions %}
-            <li>
-                {{ question.name }}
-                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_show', { id: question.id}) }}">show</a>
-                |
-                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_edit', { id: question.id}) }}">edit</a>
-                |
-                <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_delete', { id: question.id}) }}">remove</a>
-                {% if question.description|length > 0 %}
-                    <p>{{ question.description|raw }}</p>
-                {% endif %}
-                <ol>
-                    {% for answer in question.answers %}
-                        <li>
-                            {{ answer.name }}
-                            <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_show', { id: answer.id}) }}">show</a>
-                            |
-                            <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_edit', { id: answer.id}) }}">edit</a>
-                            |
-                            <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_delete', { id: answer.id}) }}">remove</a>
-                            {% if answer.description|length > 0 %}
-                                <p>{{ answer.description|raw }}</p>
-                            {% endif %}
+            .skin-black .nav a {
+                color: #333;
+            }
+        </style>
+
+        <div class="box-header">
+            <nav role="navigation" class="navbar navbar-quiz">
+                <div class="navbar-left">
+                    <ol class="nav navbar-top-links breadcrumb">
+                        <li class="active">
+                            <h4 style="margin-left: 20px;">
+                                {{ object.name }}, <small>{{ object.countPoint }} Punkt(e)</small>
+                            </h4>
                         </li>
-                    {% endfor %}
-                </ol>
-            </li>
-        {% endfor %}
-    </ol>
-{% endblock %}
+                    </ol>
+                </div>
+
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_create', { 'quiz': object.id }) }}"
+                                       class="sonata-action-element">
+                                        Eine neue Frage anlegen
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ object.description|raw }}
+                </div>
+            </div>
+            {% for question in object.questions %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav navbar-nav" style="float: none">
+                            <li class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                    <h4>
+                                        <b>{{ loop.index }}. Frage: </b>
+                                        {{ question.name }}, <small>{{ question.countPoint }} Punkt(e)</small>
+                                        <i class="fa fa-plus-square fa-fw"></i>
+                                        <i class="fa fa-caret-down"></i>
+                                    </h4>
+
+                                </a>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_create', { 'question': question.id}) }}"
+                                           class="sonata-action-element">
+                                            Antwort anlegen
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_show', { id: question.id}) }}"
+                                           class="sonata-action-element">
+                                            Frage anschauen
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_edit', { id: question.id}) }}"
+                                           class="sonata-action-element">
+                                            Frage bearbeiten
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('admin_fitbase_weeklytask_weeklyquizquestion_delete', { id: question.id}) }}"
+                                           class="sonata-action-element">
+                                            Frage löschen
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        {% if question.description|length > 0 %}
+                            <small style="margin-left: 40px;">
+                                {{ question.description|raw }}
+                            </small>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-md-11 col-sm-offset-1">
+                        {% for answer in question.answers %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="nav navbar-nav" style="float: none">
+                                        <li class="dropdown">
+                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                                                <h5>
+                                                    <span class="label label-{% if answer.correct %}success{% else %}danger{% endif %}"
+                                                          style="font-size: 100%; white-space: inherit;">
+                                                        <b>{{ loop.index }}. Antwort:</b>
+                                                    </span>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    {{ answer.name }}
+                                                    <i class="fa fa-caret-down"></i>
+                                                </h5>
+                                            </a>
+                                            <ul role="menu" class="dropdown-menu">
+                                                <li>
+                                                    <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_show', { id: answer.id}) }}"
+                                                       class="sonata-action-element">
+                                                        Antwort anschauen
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_edit', { id: answer.id}) }}"
+                                                       class="sonata-action-element">
+                                                        Antwort bearbeiten
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('admin_fitbase_weeklytask_weeklyquizanswer_delete', { id: answer.id}) }}"
+                                                       class="sonata-action-element">
+                                                        Antwort löschen
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    {% if answer.description|length > 0 %}
+                                        <small style="margin-left: 40px;">{{ answer.description|raw }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+    {% endblock %}
+</td>

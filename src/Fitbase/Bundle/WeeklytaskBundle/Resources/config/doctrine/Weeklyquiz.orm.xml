@@ -14,8 +14,12 @@
         <field name="description" type="text" column="description"/>
         <field name="countPoint" type="integer" column="count_point"/>
 
-        <one-to-many field="questions" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion"
-                     mapped-by="quiz"/>
+        <one-to-many field="questions" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion" mapped-by="quiz">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
         <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask" inversed-by="quiz"/>
 
 

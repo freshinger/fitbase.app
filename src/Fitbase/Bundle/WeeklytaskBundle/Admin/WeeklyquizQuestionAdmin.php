@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\WeeklytaskBundle\Admin;
 
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -32,6 +33,16 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
     {
         $this->container = $container;
     }
+
+    public function generateUrl($name, array $parameters = array(), $absolute = false)
+    {
+        if (($name == 'list')) {
+            return $this->container->get('router')->generate('admin_fitbase_weeklytask_weeklyquiz_list');
+        }
+
+        return parent::generateUrl($name, $parameters, $absolute);
+    }
+
 
     /**
      * {@inheritdoc}
@@ -110,14 +121,38 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+        $optionsQuiz = array(
+            'read_only' => true,
+        );
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
+
+        if (($quizId = $this->container->get('request')->get('quiz', null))) {
+            if (($quiz = $repositoryWeeklyquiz->findOneById($quizId))) {
+                $optionsQuiz['data'] = $quiz;
+            }
+        }
+
         $formMapper
-            ->with('General')
-            ->add('name', null, array(
-                'label' => 'Name',
+            ->tab('General')
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('name')
+            ->add('type', 'choice', array(
+                'required' => false,
+                'label' => 'Type',
+                'empty_value' => 'Wählen Sie eine Variante',
+                'choices' => array(
+                    'checkbox' => 'Mehrwahl',
+                    'radiobutton' => 'Einzelwahl',
+                ),
             ))
-            ->add('quiz', null, array(
-                'label' => 'Quiz',
-            ))
+            ->end()
+            ->with('Options', array('class' => 'col-md-6'))
+            ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->end()
+            ->with('Beschreibung', array('class' => 'col-md-12'))
             ->add('description', 'sonata_formatter_type', array(
                 'required' => false,
                 'label' => 'Beschreibung',
@@ -131,8 +166,10 @@ class WeeklyquizQuestionAdmin extends Admin implements ContainerAwareInterface
                 'target_field' => 'content'
             ))
             ->end()
+            ->end()
+            ->tab('Integration')
             ->with('Optionen', array('class' => 'col-md-6'))
-            ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->add('quiz', null, $optionsQuiz)
             ->end();
     }
 }

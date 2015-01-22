@@ -78,8 +78,8 @@ sonata_admin:
                     - fitbase.admin.category
                     - fitbase.admin.weeklytask
                     - fitbase.admin.weeklyquiz
-                    - fitbase.admin.weeklyquiz_question
-                    - fitbase.admin.weeklyquiz_answer
+#                    - fitbase.admin.weeklyquiz_question
+#                    - fitbase.admin.weeklyquiz_answer
 #                    - fitbase.admin.collection
 
             fitbase.admin.group.activity:
