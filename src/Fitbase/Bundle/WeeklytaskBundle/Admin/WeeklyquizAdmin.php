@@ -58,7 +58,7 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
+                    'show' => array('template' => 'FitbaseWeeklytaskBundle:Admin:list_action_structure.html.twig'),
                     'edit' => array(),
                     'delete' => array(),
                 )
