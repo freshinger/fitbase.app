@@ -53,8 +53,9 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('name', null)
-            ->add('task')
-            ->add('countPoint')
+            ->add('countPoint', 'integer', array(
+                'label' => 'Punkt(e)'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -89,7 +90,11 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('name')
+            ->end()
+            ->with('Options', array('class' => 'col-md-6'))
             ->add('countPoint', 'integer', array('label' => 'Punkte'))
+            ->end()
+            ->with('Beschreibung', array('class' => 'col-md-12'))
             ->add('description', 'sonata_formatter_type', array(
                 'label' => 'Beschreibung',
                 'event_dispatcher' => $this->container->get('event_dispatcher'),
