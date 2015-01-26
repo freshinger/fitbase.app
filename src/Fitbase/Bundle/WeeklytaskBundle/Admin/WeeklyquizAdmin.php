@@ -104,7 +104,8 @@ class WeeklyquizAdmin extends Admin implements ContainerAwareInterface
                     'attr' => array('class' => 'span10', 'rows' => 20)
                 ),
                 'listener' => true,
-                'target_field' => 'content'
+                'target_field' => 'content',
+                'required' => false
             ))
             ->end();
     }

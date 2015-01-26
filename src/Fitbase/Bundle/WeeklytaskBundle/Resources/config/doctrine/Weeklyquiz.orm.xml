@@ -9,10 +9,10 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="name" type="string" column="name"/>
-        <field name="format" type="string" column="format"/>
-        <field name="description" type="text" column="description"/>
-        <field name="countPoint" type="integer" column="count_point"/>
+        <field name="name" type="string" column="name" nullable="true"/>
+        <field name="format" type="string" column="format"  nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 
         <one-to-many field="questions" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion" mapped-by="quiz">
             <cascade>
