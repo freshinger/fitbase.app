@@ -35,7 +35,7 @@ class TaskController extends Controller
 
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $categories = $this->container->get('exercise')->choose($user, $category);
+        $categories = $this->container->get('exercise.task')->choose($user, $category);
         list($exercise0, $exercise1, $exercise2) = $categories;
 
         $exerciseUser = new ExerciseUser();
@@ -81,7 +81,8 @@ class TaskController extends Controller
 
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $exercises = $this->container->get('exercise')->choose($user, null, $exercise);
+        $exercises = $this->container->get('exercise.task')->choose($user, $exercise);
+
         list($exercise0, $exercise1, $exercise2) = $exercises;
 
         $exerciseUser = new ExerciseUser();

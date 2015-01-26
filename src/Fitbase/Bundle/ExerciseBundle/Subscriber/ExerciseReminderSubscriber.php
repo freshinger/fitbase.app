@@ -23,7 +23,6 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-//            'exercise_reminder_send' => array('onExerciseReminderSendEvent'),
             'exercise_reminder_create' => array('onExerciseReminderCreateEvent'),
         );
     }
@@ -53,7 +52,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                     $exercise2 = null;
                     // Get 3 videos random, but with respect to user focus
                     // and create a exercise for user with 3 videos
-                    if (($collection = $this->container->get('exercise')->choose($user))) {
+                    if (($collection = $this->container->get('exercise.task')->choose($user))) {
                         list($exercise0, $exercise1, $exercise2) = $collection;
                     }
 
@@ -70,44 +69,6 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                     $this->container->get('entity_manager')->flush($entity);
                 }
             }
-        }
-    }
-
-    /**
-     *
-     * @param ExerciseUserEvent $event
-     */
-    public function onExerciseReminderSendEvent(ExerciseUserEvent $event)
-    {
-        if (($exerciseUser = $event->getEntity())) {
-            if (($user = $exerciseUser->getUser())) {
-
-                $category = null;
-                if (($focus = $user->getFocus())) {
-                    if (($categoryFocus = $focus->getCategories()->first())) {
-                        $categoryFocus = $categoryFocus->getCategory();
-                    }
-                }
-
-                $categories = array();
-                if (($chooserCategory = $this->container->get('chooser_category'))) {
-                    $categories = $chooserCategory->choose($user->getFocus());
-                }
-
-                $title = $this->container->get('translator')->trans('Ihre fitbase Erinnerung');
-                $content = $this->container->get('templating')->render('FitbaseExerciseBundle:Email:exercise.html.twig', array(
-                    'user' => $exerciseUser->getUser(),
-                    'categoryFocus' => $categoryFocus,
-                    'categories' => $categories,
-                    'exerciseUser' => $exerciseUser,
-                ));
-
-                $this->container->get('mail')->mail($user->getEmail(), $title, $content);
-            }
-
-            $exerciseUser->setProcessed(1);
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
         }
     }
 }

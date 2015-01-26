@@ -21,6 +21,15 @@
             </call>
         </service>
 
+        <service id="exercise.task" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceExerciseTask">
+            <argument type="service" id="exercise"/>
+            <argument type="service" id="entity_manager"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
         <service id="chooser_category" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceChooserCategory"/>
 
 
