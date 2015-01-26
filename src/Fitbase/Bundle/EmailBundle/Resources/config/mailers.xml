@@ -7,7 +7,10 @@
 
     <services>
 
-        <service id="mail" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMail"/>
+        <service id="mail" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMail">
+            <argument type="service" id="kernel"/>
+            <argument type="service" id="mailer"/>
+        </service>
 
 
         <service id="mail.fos" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMailFos" public="false">
