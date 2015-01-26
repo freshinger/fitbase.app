@@ -84,7 +84,7 @@ class WeeklyquizAnswerAdmin extends Admin implements ContainerAwareInterface
                 'label' => 'Question',
             ))
             ->add('correct', null, array(
-                'label' => 'Is richtig',
+                'label' => 'Ist richtig',
             ))
             ->add('_action', 'actions', array(
                 'actions' => array(
