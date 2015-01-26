@@ -14,15 +14,12 @@ class ChooserExerciseRandom implements ChooserInterface
      */
     public function choose($categories = array(), array $result = array())
     {
-        if (count($result) == 3) {
-            return $result;
-        }
-
         $types = array(
             array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
             array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
-            array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG),
+            array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG, Exercise::MOBILISATION),
         );
+
 
         foreach ($categories as $category) {
             for ($i = count($result); $i < count($types); $i++) {
