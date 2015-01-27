@@ -2,54 +2,10 @@
 
 namespace Fitbase\Bundle\ReminderBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
 
-class ReminderUserRepository extends EntityRepository
+class ReminderUserRepository extends ReminderUserRepositoryAbstract
 {
-    /**
-     * Get all user-tasks
-     * @param $queryBuilder
-     * @param $user
-     * @return mixed
-     */
-    protected function getExprUser($queryBuilder, $user = null)
-    {
-        if (!empty($user)) {
-            $queryBuilder->setParameter(':user', $user->getId());
-            return $queryBuilder->expr()->eq('ReminderUser.user', ':user');
-        }
-        return $queryBuilder->expr()->eq('1', '0');
-    }
-
-    /**
-     * Get expr by pause not null or empty
-     * @param $queryBuilder
-     * @return mixed
-     */
-    protected function getExprPaused($queryBuilder)
-    {
-        $queryBuilder->setParameter(':pause', 0);
-        return $queryBuilder->expr()->andx(
-            $queryBuilder->expr()->isNotNull('ReminderUser.pause'),
-            $queryBuilder->expr()->gt('ReminderUser.pause', ':pause')
-        );
-    }
-
-    /**
-     * Get expr for all not paused reminders
-     * @param $queryBuilder
-     * @return mixed
-     */
-    protected function getExprNotPaused($queryBuilder)
-    {
-        $queryBuilder->setParameter(':pause', 0);
-        return $queryBuilder->expr()->orx(
-            $queryBuilder->expr()->isNull('ReminderUser.pause'),
-            $queryBuilder->expr()->eq('ReminderUser.pause', ':pause')
-        );
-    }
-
     /**
      * Get expression to find records by enable weekly quiz sending
      * @param $queryBuilder
@@ -79,6 +35,8 @@ class ReminderUserRepository extends EntityRepository
     public function findAllByNotPause()
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprNotPaused($queryBuilder)
         ));
@@ -93,6 +51,8 @@ class ReminderUserRepository extends EntityRepository
     public function findAllByNotPauseAndSendWeeklyquiz()
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprNotPaused($queryBuilder),
             $this->getExprSendWeeklyquiz($queryBuilder)
@@ -108,6 +68,8 @@ class ReminderUserRepository extends EntityRepository
     public function findAllByNotPauseAndSendWeeklytask()
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprNotPaused($queryBuilder),
             $this->getExprSendWeeklytask($queryBuilder)
@@ -124,6 +86,8 @@ class ReminderUserRepository extends EntityRepository
     public function findAllByPause()
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprPaused($queryBuilder)
         ));
@@ -140,6 +104,7 @@ class ReminderUserRepository extends EntityRepository
     public function findOneByUser($user = null)
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
