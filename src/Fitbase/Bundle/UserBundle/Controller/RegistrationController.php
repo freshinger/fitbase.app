@@ -32,7 +32,7 @@ class RegistrationController extends Controller
         ));
 
 
-        $client = $this->container->get('besimple.soap.client.user');
+//        $client = $this->container->get('besimple.soap.client.user');
 //
 //        $helloResult = $client->hello('sensey');
 //

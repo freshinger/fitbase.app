@@ -5,7 +5,7 @@ be_simple_soap:
         limit:    5
     clients:
         user:
-          wsdl: http://localhost:8000/api/wsdl/user?wsdl
+          wsdl: http://app.fitbase.de/api/wsdl/user?wsdl
     services:
         user:
             namespace:     http://localhost:8000/api/wsdl/user
