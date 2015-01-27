@@ -41,6 +41,8 @@ class ImportActioncodeForm extends AbstractType implements ContainerAwareInterfa
             ))
             ->add('questionnaire', 'entity', array(
                 'class' => 'FitbaseQuestionnaireBundle:Questionnaire',
+                'empty_value' => 'None',
+                'required' => false,
             ))
             ->add('categories', 'entity', array(
                 'multiple' => true,
@@ -50,6 +52,10 @@ class ImportActioncodeForm extends AbstractType implements ContainerAwareInterfa
                     return $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'))
                         ->orderBy('Category.position', 'ASC');
                 },
+            ))
+            ->add('expire', 'checkbox', array(
+                'required' => false,
+                'label' => 'Zugang blockieren, wenn alle Infoeinheiten fertig sind'
             ))
             ->add('duration', 'integer', array(
                 'attr' => array('class' => 'form-control')

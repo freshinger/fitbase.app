@@ -47,7 +47,7 @@ class AdminController extends CoreController
                     $repositoryUserActioncode = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserActioncode');
 
                     $collection = array();
-                    foreach (array(" ", "\n") as $delimeter) {
+                    foreach (array(" ", "\n\r", "\n",) as $delimeter) {
                         if (count(($collection = explode($delimeter, $codes)))) {
                             break;
                         }
@@ -62,6 +62,7 @@ class AdminController extends CoreController
                                     $actioncode->setCode($code);
                                     $actioncode->setCompany($entity->getCompany());
                                     $actioncode->setQuestionnaire($entity->getQuestionnaire());
+                                    $actioncode->setExpire($entity->getExpire());
                                     $actioncode->setDuration($entity->getDuration());
                                     $actioncode->setDate($this->get('datetime')->getDateTime('now'));
                                     $actioncode->setCategories($entity->getCategories());

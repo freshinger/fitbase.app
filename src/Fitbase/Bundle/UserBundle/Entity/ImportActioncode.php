@@ -17,6 +17,23 @@ class ImportActioncode
     protected $questionnaire;
     protected $categories;
     protected $duration;
+    protected $expire;
+
+    /**
+     * @return mixed
+     */
+    public function getExpire()
+    {
+        return $this->expire;
+    }
+
+    /**
+     * @param mixed $expire
+     */
+    public function setExpire($expire)
+    {
+        $this->expire = $expire;
+    }
 
     /**
      * @return mixed
