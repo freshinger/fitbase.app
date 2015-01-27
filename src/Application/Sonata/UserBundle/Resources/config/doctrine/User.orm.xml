@@ -21,6 +21,7 @@
         </one-to-one>
 
         <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
+        <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode" inversed-by="user" />
 
 
     </entity>

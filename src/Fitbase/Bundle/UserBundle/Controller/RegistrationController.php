@@ -92,6 +92,7 @@ class RegistrationController extends Controller
                         $entityManager->flush($userFocus);
 
                         $user->setFocus($userFocus);
+                        $user->setActioncode($actioncode);
                         $entityManager->persist($user);
                         $entityManager->flush($user);
 

@@ -151,4 +151,33 @@ class User extends BaseUser
     }
 
 
+    /**
+     * @var \Fitbase\Bundle\UserBundle\Entity\UserActioncode
+     */
+    private $actioncode;
+
+    /**
+     * Set actioncode
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncode
+     * @return User
+     */
+    public function setActioncode(\Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncode = null)
+    {
+        $this->actioncode = $actioncode;
+
+        return $this;
+    }
+
+    /**
+     * Get actioncode
+     *
+     * @return \Fitbase\Bundle\UserBundle\Entity\UserActioncode
+     */
+    public function getActioncode()
+    {
+        return $this->actioncode;
+    }
+
+
 }

@@ -75,6 +75,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
                 $entity->setDate($object->getDate());
                 $entity->setCategories($object->getCategories());
                 $entity->setCount(0);
+                $entity->setExpire($object->getExpire());
 
                 $this->prePersist($entity);
 
@@ -169,8 +170,14 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
                     return $queryBuilder;
                 }
             ))
+            ->end()
+            ->with('Lock', array('class' => 'col-md-6'))
+            ->add('expire', 'checkbox', array(
+                'required' => false,
+                'label' => 'Zugang blockieren, wenn alle Infoeinheiten fertig sind'
+            ))
             ->add('duration', null, array(
-                'required' => true,
+                'required' => false,
             ))
             ->end();
     }

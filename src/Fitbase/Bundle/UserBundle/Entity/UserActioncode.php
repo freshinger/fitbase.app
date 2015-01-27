@@ -388,4 +388,32 @@ class UserActioncode
     {
         return $this->questionnaire;
     }
+    /**
+     * @var boolean
+     */
+    private $expire;
+
+
+    /**
+     * Set expire
+     *
+     * @param boolean $expire
+     * @return UserActioncode
+     */
+    public function setExpire($expire)
+    {
+        $this->expire = $expire;
+
+        return $this;
+    }
+
+    /**
+     * Get expire
+     *
+     * @return boolean 
+     */
+    public function getExpire()
+    {
+        return $this->expire;
+    }
 }

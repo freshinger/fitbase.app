@@ -186,6 +186,20 @@ class WeeklytaskUserRepository extends EntityRepository
         return $queryBuilder->expr()->eq('0', '1');
     }
 
+    /**
+     * Find by categories array
+     * @param $queryBuilder
+     * @param $categories
+     * @return mixed
+     */
+    protected function getExprCategories($queryBuilder, $categories)
+    {
+        if (!empty($categories)) {
+            $queryBuilder->setParameter(':categories', $categories);
+            return $queryBuilder->expr()->in('Category.id', ':categories');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
 
     /**
      * Find one by weeklytask User object
@@ -412,5 +426,51 @@ class WeeklytaskUserRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     * Find records count by user focus
+     * @param $focus
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findAllByUserFocus($focus)
+    {
+        $categories = $focus->getCategories()->map(function ($entity) {
+            return $entity->getCategory()->getId();
+        });
+
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+        $queryBuilder->leftJoin('WeeklytaskUser.task', 'Weeklytask');
+        $queryBuilder->leftJoin('Weeklytask.categories', 'Category');
+
+
+        $queryBuilder->andWhere($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $focus->getUser()),
+            $this->getExprCategories($queryBuilder, $categories->toArray())
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Find last weeklytask user object
+     * @param $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneLast($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+        $queryBuilder->andWhere($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user)
+        ));
+
+        $queryBuilder->orderBy('WeeklytaskUser.date', 'DESC');
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 
 }

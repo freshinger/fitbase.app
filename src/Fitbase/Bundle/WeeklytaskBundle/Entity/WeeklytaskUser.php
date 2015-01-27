@@ -35,6 +35,7 @@ class WeeklytaskUser
     public function setDate($date)
     {
         $this->date = $date;
+        return $this;
     }
 
     /**
@@ -59,6 +60,7 @@ class WeeklytaskUser
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
     /**

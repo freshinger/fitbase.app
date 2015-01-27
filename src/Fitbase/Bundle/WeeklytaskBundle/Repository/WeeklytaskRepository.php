@@ -55,6 +55,21 @@ class WeeklytaskRepository extends EntityRepository
     }
 
     /**
+     * Find by categories array
+     * @param $queryBuilder
+     * @param $categories
+     * @return mixed
+     */
+    protected function getExprCategories($queryBuilder, $categories)
+    {
+        if (!empty($categories)) {
+            $queryBuilder->setParameter(':categories', $categories);
+            return $queryBuilder->expr()->in('Category.id', ':categories');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * Get expression to find record by week id
      * @param $queryBuilder
      * @param $weekId
@@ -260,6 +275,28 @@ class WeeklytaskRepository extends EntityRepository
         ));
 
         $queryBuilder->addOrderBy('Weeklytask.priority', 'ASC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Find records count by user focus
+     * @param $focus
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findAllByUserFocus($focus)
+    {
+        $categories = $focus->getCategories()->map(function ($entity) {
+            return $entity->getCategory()->getId();
+        });
+
+        $queryBuilder = $this->createQueryBuilder('Weeklytask');
+        $queryBuilder->leftJoin('Weeklytask.categories', 'Category');
+
+        $queryBuilder->where($queryBuilder->expr()->orX(
+            $this->getExprCategories($queryBuilder, $categories->toArray())
+        ));
 
         return $queryBuilder->getQuery()->getResult();
     }
