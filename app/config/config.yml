@@ -3,6 +3,9 @@ imports:
     - { resource: security.yml }
     - { resource: assetic.yml }
 
+    # WSDL settings
+    - { resource: wsdl/soap.yml }
+
     # Mopa Bootstrap
     - { resource: mopa/mopa_bootstrap.yml }
 

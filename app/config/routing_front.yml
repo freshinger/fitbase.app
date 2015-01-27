@@ -83,6 +83,10 @@ fos_comment:
     defaults: { _format: html }
 
 
+_besimple_soap:
+    resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
+    prefix:   /api/wsdl
+
 fitbase_user:
     resource: "@FitbaseUserBundle/Resources/config/routing.xml"
     prefix:   /user
@@ -99,7 +103,6 @@ fitbase_weeklytask:
 fitbase_weeklytask_old:
     resource: "@FitbaseWeeklytaskBundle/Resources/config/routing_old.xml"
     prefix:   /wochenaufgaben
-
 
 
 fitbase_questionnaire:

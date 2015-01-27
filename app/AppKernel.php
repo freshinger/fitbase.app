@@ -128,6 +128,9 @@ class AppKernel extends Kernel
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
+            new BeSimple\SoapBundle\BeSimpleSoapBundle(),
+
+
             new Fitbase\Bundle\WeeklytaskBundle\FitbaseWeeklytaskBundle(),
             new Fitbase\Bundle\FitbaseBundle\FitbaseFitbaseBundle(),
             new Fitbase\Bundle\CompanyBundle\FitbaseCompanyBundle(),

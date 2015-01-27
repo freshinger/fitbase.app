@@ -7,6 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'dflydev\\markdown' => array($vendorDir . '/dflydev/markdown/src'),
+    'ass\\XmlSecurity' => array($vendorDir . '/ass/xmlsecurity/src'),
+    'Zend\\Stdlib\\' => array($vendorDir . '/zendframework/zend-stdlib'),
+    'Zend\\Mime\\' => array($vendorDir . '/zendframework/zend-mime'),
     'Webonaute\\DoctrineFixturesGeneratorBundle' => array($vendorDir . '/webonaute/doctrine-fixtures-generator-bundle'),
     'WebDriver' => array($vendorDir . '/instaclick/php-webdriver/lib'),
     'Twig_Extensions_' => array($vendorDir . '/twig/extensions/lib'),
@@ -81,6 +84,7 @@ return array(
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
     'Behat\\CommonContexts' => array($vendorDir . '/behat/common-contexts'),
     'Behat\\Behat' => array($vendorDir . '/behat/behat/src'),
+    'BeSimple\\' => array($vendorDir . '/besimple/soap/src'),
     'Bazinga\\Bundle\\FakerBundle' => array($vendorDir . '/willdurand/faker-bundle'),
     'BCC\\CronManagerBundle' => array($vendorDir . '/bcc/cron-manager-bundle'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),

@@ -50,12 +50,13 @@ security:
             anonymous:    true
 
         api:
+            security: false
             pattern:   /api/(.*)
-            http_basic:
-                realm:         "Fitbase Demo Area"
-                provider:       in_memory
+#            http_basic:
+#                realm:         "Fitbase Demo Area"
+#                provider:       in_memory
 
-            stateless: true
+#            stateless: true
 
         # This firewall is used to handle the public login area
         # This part is handled by the FOS User Bundle
