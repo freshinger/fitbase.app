@@ -10,9 +10,9 @@ be_simple_soap:
         fitbase:
           wsdl: https://www.fitbase.de/api/api.wsdl
 
-    services:
-        user:
-            namespace: "http://localhost:8000/api/wsdl/user/1.0/"
-            binding: "rpc-literal"
-            resource: "@FitbaseUserBundle/Controller/WsdlController.php"
-            resource_type: "annotation"
+#    services:
+#        user:
+#            namespace: "http://localhost:8000/api/wsdl/user/1.0/"
+#            binding: "rpc-literal"
+#            resource: "@FitbaseUserBundle/Controller/WsdlController.php"
+#            resource_type: "annotation"
