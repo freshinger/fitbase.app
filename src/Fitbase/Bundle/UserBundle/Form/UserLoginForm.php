@@ -16,18 +16,19 @@ class UserLoginForm extends AbstractType
     {
         $builder
             ->add('login', null, array(
+                'label' => 'Benutzername oder E-Mail ',
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-            ->add('password', null, array(
+            ->add('password', 'password', array(
+                'label' => ' Passwort',
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
-
             ->add('save', 'submit', array(
                 'label' => 'Anmelden',
                 'attr' => array(

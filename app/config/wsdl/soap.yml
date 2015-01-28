@@ -1,4 +1,7 @@
 be_simple_soap:
+    wsdl_dumper:
+        stylesheet: "/api.xsl"
+
     cache:
         type:     disk
         lifetime: 86400
@@ -9,7 +12,7 @@ be_simple_soap:
 
     services:
         user:
-            namespace:     http://localhost:8000/api/wsdl/user/1.0/
-            binding:       rpc-literal
-            resource:      "@FitbaseUserBundle/Controller/WsdlController.php"
-            resource_type: annotation
+            namespace: "http://localhost:8000/api/wsdl/user/1.0/"
+            binding: "rpc-literal"
+            resource: "@FitbaseUserBundle/Controller/WsdlController.php"
+            resource_type: "annotation"
