@@ -31,15 +31,6 @@ class RegistrationController extends Controller
             'action' => $this->generateUrl('actioncode', array('company' => $request->get('company')))
         ));
 
-
-//        $client = $this->container->get('besimple.soap.client.user');
-//
-//        $helloResult = $client->hello('sensey');
-//
-//        var_dump($helloResult);
-
-
-
         if (!$request->isMethodSafe()) {
 
             if ($request->get($formActioncode->getName())) {

@@ -10,9 +10,44 @@ namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ServiceUser extends ContainerAware
 {
+
+    /**
+     *
+     * @param $login
+     * @param $password
+     * @return bool
+     */
+    public function login($login, $password)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+        if (!($user = $repositoryUser->findOneByEmail($login))) {
+            $user = $repositoryUser->findOneByUsername($login);
+        }
+
+        if (is_object($user)) {
+            // Get the encoder for the users password
+            $encoder_service = $this->container->get('security.encoder_factory');
+            $encoder = $encoder_service->getEncoder($user);
+
+            if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
+                return $this->container->get('fitbase_helper.user')->getSign($user,
+                    $this->container->get('router')->generate('page_slug', array(
+                        'path' => '/'
+                    ), true)
+                );
+            }
+        }
+
+        return false;
+    }
+
+
     /**
      * Get current user
      * @return mixed

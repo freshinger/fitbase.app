@@ -1,0 +1,43 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "SonataUserBundle:Security:base_login.html.twig" %}
+
+{% block fos_user_content %}
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="col-sm-offset-1">{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h2>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie sich
+                        mit
+                        Ihren Zugangsdaten ein.
+                    </p>
+
+                    {% form_theme form 'ApplicationSonataUserBundle:Login:form.html.twig' %}
+
+                    {{ form(form) }}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-5">
+            {% render controller("FitbaseUserBundle:Registration:code", { 'internal': true }) %}
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+{% endblock fos_user_content %}
