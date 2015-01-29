@@ -19,3 +19,7 @@ fos_user:
                 address:        info@fitbase.de
                 sender_name:    fitbase
             template: FitbaseEmailBundle:Subscriber:reset.html.twig
+
+    change_password:
+        form:
+            handler: fitbase.change_password.form.handler

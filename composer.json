@@ -80,7 +80,6 @@
         "genemu/form-bundle": "v2.2.2",
         "jpgraph/jpgraph": "dev-master",
         "bariew/phpquery": "1.0.2",
-        "bcc/cron-manager-bundle": "v2.4.1",
         "cocur/slugify": "1.0.x-dev",
         "besimple/soap": "0.2.x-dev"
     },

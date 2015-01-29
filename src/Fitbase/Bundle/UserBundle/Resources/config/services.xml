@@ -67,6 +67,21 @@
             <tag name="twig.extension"/>
         </service>
 
+
+        <service id="fitbase.user.profile.form.handler" class="Fitbase\Bundle\UserBundle\Form\Handler\ProfileFormHandler" scope="request" public="false">
+            <argument type="service" id="sonata.user.profile.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
+        <service id="fitbase.change_password.form.handler" class="Fitbase\Bundle\UserBundle\Form\Handler\ChangePasswordFormHandler" scope="request">
+            <argument type="service" id="fos_user.change_password.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
+
+
     </services>
 
 </container>

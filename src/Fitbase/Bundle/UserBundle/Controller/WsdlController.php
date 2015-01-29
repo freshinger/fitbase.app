@@ -18,14 +18,4 @@ class WsdlController extends Controller
     {
         return $this->container->get('besimple.soap.response')->setReturnValue(sprintf('Hello %s!', $login));
     }
-
-//    /**
-//     * @Soap\Method("goodbye")
-//     * @Soap\Param("name", phpType = "string")
-//     * @Soap\Result(phpType = "string")
-//     */
-//    public function goodbyeAction($name)
-//    {
-//        return $this->container->get('besimple.soap.response')->setReturnValue(sprintf('Goodbye %s!', $name));
-//    }
 }

@@ -121,10 +121,15 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     public function getNewInstance()
     {
         if (($object = parent::getNewInstance())) {
+
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
             do {
                 $code = $this->container->get('codegenerator')->password(5);
                 $object->setUsername("benutzer_" . strtolower($code));
-            } while ($this->container->get('user')->username($object->getUsername()));
+            } while ($repositoryUser->findOneByUsername($object->getUsername()));
+
             $object->setEnabled(true);
             $object->setPlainPassword($this->container->get('codegenerator')->password(8));
 

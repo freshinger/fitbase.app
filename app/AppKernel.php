@@ -72,7 +72,7 @@ class AppKernel extends Kernel
             // API
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new BCC\CronManagerBundle\BCCCronManagerBundle(),
+//            new BCC\CronManagerBundle\BCCCronManagerBundle(),
 
             // E-COMMERCE
             new Sonata\BasketBundle\SonataBasketBundle(),

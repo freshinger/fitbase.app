@@ -44,7 +44,7 @@ sonata_user:
 #            - { route: 'sonata_order_index', label: 'order_list', domain: 'SonataOrderBundle'}
         form:
             type:                 fitbase_user_profile
-            handler:              sonata.user.profile.form.handler.default
+            handler:              fitbase.user.profile.form.handler
             name:                 fitbase_user_profile
             validation_groups:
                 # Defaults:
