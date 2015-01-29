@@ -38,7 +38,7 @@ class SecurityFOSUser1Controller extends SecurityController
             if ($form->isValid()) {
 
                 $fitbase = $this->container->get('besimple.soap.client.fitbase');
-                $linkFitbaseAlt = $fitbase->login($this->container->getParameter('fitbase.soap.code'),
+                $linkFitbaseAlt = $fitbase->login($this->container->getParameter('fitbase.soap_code'),
                     $form->getData()->getLogin(),
                     $form->getData()->getPassword()
                 );
