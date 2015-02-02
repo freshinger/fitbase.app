@@ -8,9 +8,12 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <one-to-many field="items" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem"
-                     mapped-by="feeding">
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <one-to-many field="items" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUserItem" mapped-by="feeding">
             <cascade>
                 <cascade-all/>
             </cascade>

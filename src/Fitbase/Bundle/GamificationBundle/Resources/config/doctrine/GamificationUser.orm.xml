@@ -12,7 +12,9 @@
         <field name="avatar" type="text" column="avatar" nullable="true"/>
         <field name="tree" type="text" column="tree" nullable="true"/>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

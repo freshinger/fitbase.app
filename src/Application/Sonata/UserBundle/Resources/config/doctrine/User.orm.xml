@@ -13,16 +13,15 @@
         <field name="titel" type="string" column="titel" nullable="true"/>
         <field name="format" type="string" column="format" nullable="true"/>
 
-
-        <one-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus">
-            <cascade>
-                <cascade-all/>
-            </cascade>
+        <one-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus" inversed-by="user">
+            <join-column name="focus_id" referenced-column-name="id" on-delete="CASCADE"/>
         </one-to-one>
 
-        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
-        <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode" inversed-by="user" />
 
+
+        <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode"
+                    inversed-by="user"/>
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company" inversed-by="user"/>
 
     </entity>
 

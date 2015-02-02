@@ -20,7 +20,9 @@
             </cascade>
         </one-to-many>
 
-        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask" inversed-by="quiz"/>
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask" inversed-by="quiz">
+            <join-column name="task_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
 
 
     </entity>

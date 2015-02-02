@@ -9,8 +9,13 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask">
+            <join-column name="task_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
         <field name="weekId" type="integer" column="week_id" nullable="true"/>
 

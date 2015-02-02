@@ -15,9 +15,17 @@
         <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>
         <field name="expire" type="boolean" column="expire" nullable="true"/>
 
-        <one-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User" inversed-by="actioncode"/>
-        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
-        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire"/>
+        <one-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User" inversed-by="actioncode">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </one-to-one>
+
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+            <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
         <many-to-many field="categories" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
             <order-by>

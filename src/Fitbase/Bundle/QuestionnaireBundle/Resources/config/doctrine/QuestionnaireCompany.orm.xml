@@ -12,10 +12,12 @@
 
         <field name="intervalWeek" type="integer" column="interval_week"/>
 
-        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
         <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
-            <join-column name="questionnaire_id" referenced-column-name="id"/>
+            <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
     </entity>

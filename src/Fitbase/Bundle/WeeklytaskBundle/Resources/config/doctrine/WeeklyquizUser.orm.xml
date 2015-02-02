@@ -9,11 +9,21 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz"/>
-        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask"/>
-        <one-to-one field="userTask" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser"
-                    inversed-by="userQuiz"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <one-to-one field="userTask" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser" inversed-by="userQuiz">
+            <join-column name="userTask_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </one-to-one>
+
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz">
+            <join-column name="quiz_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="task" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask">
+            <join-column name="task_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
 
         <field name="date" type="datetime" column="date" nullable="true"/>

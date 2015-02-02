@@ -19,10 +19,17 @@
         <field name="countPointHealth" type="integer" column="count_point_health" nullable="true"/>
         <field name="countPointStrain" type="integer" column="count_point_strain" nullable="true"/>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="question" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion"/>
-        <many-to-one field="questionnaireUser"
-                     target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="question" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion">
+            <join-column name="question_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="questionnaireUser" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser">
+            <join-column name="questionnaireUser_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
         <many-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer">
             <join-table name="fitbase_questionnaire_user_answer_choice">

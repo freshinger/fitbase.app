@@ -16,7 +16,9 @@
         <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 
 
-        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz"/>
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz">
+            <join-column name="quiz_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
 
         <one-to-many field="answers" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer" mapped-by="question"/>

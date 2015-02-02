@@ -9,9 +9,13 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="reminder" target-entity="Fitbase\Bundle\ReminderBundle\Entity\ReminderUser"
-                     inversed-by="items"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="reminder" target-entity="Fitbase\Bundle\ReminderBundle\Entity\ReminderUser" inversed-by="items">
+            <join-column name="reminder_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
         <field name="type" type="string" column="type" length="255"/>
         <field name="day" type="integer" length="1" column="day"/>

@@ -13,10 +13,13 @@
         <field name="date" type="date" column="date"/>
         <field name="text" type="text" column="text" nullable="true"/>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
-        <many-to-one field="question"
-                     target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion"/>
+        <many-to-one field="question" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationDialogQuestion">
+            <join-column name="question_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

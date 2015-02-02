@@ -8,9 +8,18 @@
             <generator strategy="AUTO"/>
         </id>
         <field name="count" type="integer" column="count" nullable="true"/>
-        <many-to-one field="group" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingGroup"/>
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User"/>
-        <many-to-one field="feeding" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser"/>
+
+        <many-to-one field="group" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingGroup">
+            <join-column name="group_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="feeding" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\FeedingUser">
+            <join-column name="feeding_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

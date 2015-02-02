@@ -14,8 +14,13 @@
         <field name="description" type="text" column="description" nullable="true"/>
         <field name="correct" type="boolean" column="correct" nullable="true"/>
 
-        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz" inversed-by="answers"/>
-        <many-to-one field="question" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion" inversed-by="answers"/>
+        <many-to-one field="quiz" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz" inversed-by="answers">
+            <join-column name="quiz_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
+
+        <many-to-one field="question" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizQuestion" inversed-by="answers">
+            <join-column name="question_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>
