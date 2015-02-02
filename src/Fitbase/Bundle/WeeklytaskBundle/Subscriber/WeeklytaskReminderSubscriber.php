@@ -10,6 +10,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscriberInterface

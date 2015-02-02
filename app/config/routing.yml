@@ -1,3 +1,7 @@
+wellbeing_api:
+    resource: "@WellbeingApiBundle/Resources/config/routing.xml"
+    prefix:   /
+
 fitbase_email:
     resource: "@FitbaseEmailBundle/Resources/config/routing.xml"
     prefix:   /
