@@ -19,8 +19,8 @@
 
 
 
-        <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode"
-                    inversed-by="user"/>
+        <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode" inversed-by="user"/>
+
         <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company" inversed-by="user"/>
 
     </entity>
