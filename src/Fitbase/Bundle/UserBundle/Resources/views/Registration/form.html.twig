@@ -22,15 +22,30 @@
 
 {% block form_row -%}
     <div class="row form-group">
-        <div class="col-md-12">
-            {{- form_errors(form) -}}
-            {{- form_label(form) -}}
-        </div>
+        {% if form.vars.label is defined and form.vars.label|length > 0 %}
+            <div class="col-md-12">
+                {{- form_errors(form) -}}
+                {{- form_label(form) -}}
+            </div>
+        {% endif %}
         <div class="col-md-12">
             {{- form_widget(form) -}}
         </div>
     </div>
 {%- endblock form_row %}
+
+
+{% block checkbox_widget -%}
+    <div class="row">
+        <div class="col-md-1">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        </div>
+        <div class="col-md-11" style="padding-top: 10px;">
+            Ich stimme den <a href="https://www.fitbase.de/datenschutz/">Datenschutz- und Teilnahmebedingungen</a> zu.
+        </div>
+    </div>
+{%- endblock checkbox_widget %}
+
 
 
 {% block button_row -%}

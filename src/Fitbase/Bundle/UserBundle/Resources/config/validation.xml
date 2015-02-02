@@ -46,6 +46,11 @@
                 <option name="message">Dieses Feld darf nich leer sein</option>
             </constraint>
         </property>
+        <property name="terms">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
         <property name="actioncode">
             <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\ActioncodeExists">
                 <option name="message">

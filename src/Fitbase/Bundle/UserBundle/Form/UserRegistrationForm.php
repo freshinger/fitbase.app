@@ -31,6 +31,14 @@ class UserRegistrationForm extends AbstractType
                 )
             ))
             ->add('email', null, array(
+                'label' => 'Email',
+                'required' => true,
+                'attr' => array(
+                    'class' => 'form-control'
+                )
+            ))
+            ->add('terms', 'checkbox', array(
+                'label' => false,
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'

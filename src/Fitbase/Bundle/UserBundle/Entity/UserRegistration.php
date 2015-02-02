@@ -9,6 +9,23 @@ class UserRegistration
     protected $first_name;
     protected $last_name;
     protected $actioncode;
+    protected $terms;
+
+    /**
+     * @return mixed
+     */
+    public function getTerms()
+    {
+        return $this->terms;
+    }
+
+    /**
+     * @param mixed $terms
+     */
+    public function setTerms($terms)
+    {
+        $this->terms = $terms;
+    }
 
     /**
      * @return mixed
