@@ -14,5 +14,5 @@ be_simple_soap:
         user:
             namespace: "http://app.fitbase.de/api/wsdl/user/1.0/"
             binding: "rpc-literal"
-            resource: "@WellbeingApiBundle/Controller/WSDLController.php"
+            resource: "@WellbeingApiBundle/Controller/WsdlApiController.php"
             resource_type: "annotation"
