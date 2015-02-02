@@ -25,11 +25,14 @@ class ChooserExerciseRandom implements ChooserInterface
             for ($i = count($result); $i < count($types); $i++) {
                 if (($type = $types[$i])) {
                     if (($exercises = $category->getExercises($type))) {
-                        if (($exercise = $this->exercise($exercises))) {
-                            if (!in_array($exercise, $result)) {
-                                array_push($result, $exercise);
-                            }
-                        }
+
+                        do {
+
+                            $exercise = $this->exercise($exercises);
+
+                        } while (in_array($exercise, $result));
+
+                        array_push($result, $exercise);
                     }
                 }
             }

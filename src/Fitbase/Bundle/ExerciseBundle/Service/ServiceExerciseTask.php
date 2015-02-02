@@ -62,7 +62,7 @@ class ServiceExerciseTask extends ContainerAware
                 return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
             });
 
-            if (count(($exercises = $chooserExercise->choose($categories, $preselected)))) {
+            if (count(($exercises = $chooserExercise->choose($categories, $preselected))) >= 3) {
                 return $exercises;
             }
 
