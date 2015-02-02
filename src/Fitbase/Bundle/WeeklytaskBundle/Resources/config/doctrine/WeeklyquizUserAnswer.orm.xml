@@ -27,7 +27,7 @@
         <many-to-many field="answerUser" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">
             <join-table name="fitbase_weeklytask_user_answer_user">
                 <join-columns>
-                    <join-column name="user_answer_id" referenced-column-name="id"/>
+                    <join-column name="user_answer_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="answer_id" referenced-column-name="id"/>
@@ -38,7 +38,7 @@
         <many-to-many field="answerRight" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizAnswer">
             <join-table name="fitbase_weeklytask_user_answer_right">
                 <join-columns>
-                    <join-column name="user_answer_id" referenced-column-name="id"/>
+                    <join-column name="user_answer_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="answer_id" referenced-column-name="id"/>
