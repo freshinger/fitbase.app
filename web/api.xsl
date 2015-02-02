@@ -2254,12 +2254,12 @@
         <xsl:value-of select="$css" disable-output-escaping="yes"/>
       </style>
 
-      <script src="wsdl-viewer.js" type="text/javascript" language="javascript">
-        <xsl:comment>
-               <xsl:text>
-	// </xsl:text>
-        </xsl:comment>
-      </script>
+      <!--<script src="wsdl-viewer.js" type="text/javascript" language="javascript">-->
+        <!--<xsl:comment>-->
+               <!--<xsl:text>-->
+	<!--// </xsl:text>-->
+        <!--</xsl:comment>-->
+      <!--</script>-->
     </head>
   </xsl:template>
 
