@@ -8,7 +8,7 @@ be_simple_soap:
         limit:    5
     clients:
         fitbase:
-          wsdl: https://www.fitbase.de/wsdl/api.xml
+          wsdl: "https://www.fitbase.de/wsdl/api.wsdl"
 
     services:
         user:
