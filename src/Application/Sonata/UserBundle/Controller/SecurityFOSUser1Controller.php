@@ -37,11 +37,20 @@ class SecurityFOSUser1Controller extends SecurityController
             $form->handleRequest($this->container->get('request'));
             if ($form->isValid()) {
 
-                $fitbase = $this->container->get('besimple.soap.client.fitbase');
-                $linkFitbaseAlt = $fitbase->login($this->container->getParameter('fitbase.soap_code'),
-                    $form->getData()->getLogin(),
-                    $form->getData()->getPassword()
-                );
+                $linkFitbaseAlt = null;
+                $linkFitbaseNeu = null;
+
+                try {
+
+                    $fitbase = $this->container->get('besimple.soap.client.fitbase');
+                    $linkFitbaseAlt = $fitbase->login($this->container->getParameter('fitbase.soap_code'),
+                        $form->getData()->getLogin(),
+                        $form->getData()->getPassword()
+                    );
+
+                } catch (\Exception $ex) {
+                    $this->container->get('logger')->crit($ex->getMessage());
+                }
 
                 $application = $this->container->get('user');
                 $linkFitbaseNeu = $application->login(
