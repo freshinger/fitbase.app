@@ -32,6 +32,46 @@ class SecurityFOSUser1Controller extends SecurityController
      */
     public function loginAction()
     {
+
+        $fitbase = $this->container->get('besimple.soap.client.wellbeing');
+
+        $response = $fitbase->addState('FITSEPPoTZzJdBk', "asdfasdfas", array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ), array(
+            0,0,0
+        ));
+        print_r($response);
+        exit;
+
+
         $form = $this->container->get('form.factory')->create(new UserLoginForm(), new UserLogin());
         if ($this->container->get('request')->get($form->getName())) {
             $form->handleRequest($this->container->get('request'));
