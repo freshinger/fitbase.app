@@ -74,6 +74,9 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     $this->container->get('entity_manager')->persist($entity);
                     $this->container->get('entity_manager')->flush($entity);
+
+                    $this->container->get('logger')->info("[exercise][planner] Done for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
+
                     return;
                 }
             }
