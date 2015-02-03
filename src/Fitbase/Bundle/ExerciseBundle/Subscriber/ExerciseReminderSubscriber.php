@@ -47,7 +47,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                 if (!($exerciseUser = $repositoryExerciseUser->findOneByUserAndDateTime($user, $datetime))) {
 
-                    $this->get('logger')->info("[exercise][planner] Create for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
+                    $this->container->get('logger')->info("[exercise][planner] Create for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
 
 
                     $exercise0 = null;
