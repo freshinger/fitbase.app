@@ -18,15 +18,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class ServiceExerciseTask extends ContainerAware
 {
-    protected $entityManager;
-    protected $serviceExercise;
-
-    public function __construct(ServiceExercise $serviceExercise, $entityManager)
-    {
-        $this->entityManager = $entityManager;
-        $this->serviceExercise = $serviceExercise;
-    }
-
     /**
      * Select exercises random
      * @param $user
@@ -37,10 +28,16 @@ class ServiceExerciseTask extends ContainerAware
     public function random($user, $category = null, $exercise = null)
     {
         $categories = array();
+        // For given category user children
+        // or a this category if no children exists
         if ($category instanceof Category) {
+            // by default use a given category
+            // to get a exercises from
             array_push($categories, $category);
+            // If category have a children
+            // use a exercises from a children category
             if (count(($children = $category->getChildren()))) {
-                $categories = $children->toArray();
+                $categories = is_object($children) ? $children->toArray() : $children;
             }
         }
 
@@ -51,52 +48,5 @@ class ServiceExerciseTask extends ContainerAware
 
         $chooserExercise = new ChooserExerciseRandom();
         return $chooserExercise->choose($categories, $result);
-    }
-
-    /**
-     * Select 3 exercises
-     * @param $user
-     * @return array
-     */
-    public function choose($user, \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise = null)
-    {
-        $categories = array();
-        $preselected = array();
-
-        if (!empty($exercise)) {
-            array_push($preselected, $exercise);
-            $categories = $exercise->getCategories();
-        }
-
-        if (empty($categories)) {
-            $repositoryCategory = $this->entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-            if (($category = $repositoryCategory->findOneBySlug('ruecken'))) {
-                $categories = array($category);
-                if (($children = $category->getChildren())) {
-                    $categories = array_merge($categories, $children->toArray());
-                }
-            }
-        }
-
-        if (!empty($categories) and count($categories)) {
-
-//            $entityManager = $this->container->get('entity_manager');
-//            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-
-            // Extra filter to check is
-            // a exercise already done
-//            $chooserExercise = new ChooserExerciseFilter(function ($exercise0) use ($user, $exercise, $repositoryExerciseUser) {
-//                return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
-//            });
-//
-//            if (count(($exercises = $chooserExercise->choose($categories, $preselected))) >= 3) {
-//                return $exercises;
-//            }
-
-            $chooserExercise = new ChooserExerciseRandom();
-            return $chooserExercise->choose($categories, $preselected);
-        }
-
-        return array();
     }
 }

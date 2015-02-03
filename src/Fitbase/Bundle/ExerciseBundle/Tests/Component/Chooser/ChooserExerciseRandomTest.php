@@ -15,12 +15,6 @@ use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 
 class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
 {
-
-    protected function setUp()
-    {
-        parent::setUp();
-    }
-
     /**
      * Test that chooser return 3 exercises
      * with different types

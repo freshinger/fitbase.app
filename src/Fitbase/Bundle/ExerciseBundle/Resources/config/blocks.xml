@@ -1,0 +1,122 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.focus.block.breadcrumb" class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\FocusBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>focus</argument>
+            <argument>fitbase.focus.block.breadcrumbb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+        <service id="fitbase.exercise.block.breadcrumb" class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\ExerciseBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>exercise</argument>
+            <argument>fitbase.exercise.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.task.block.breadcrumb" class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\TaskBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>task</argument>
+            <argument>fitbase.task.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.category.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\CategoryBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>category</argument>
+            <argument>fitbase.category.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase.feeding.block.breadcrumb"
+                 class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\FeedingBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>feeding</argument>
+            <argument>fitbase.feeding.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.stress.block.breadcrumb" class="Fitbase\Bundle\ExerciseBundle\Block\Breadcrumb\StressBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>stress</argument>
+            <argument>fitbase.stress.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase.media.provider.video" class="Fitbase\Bundle\ExerciseBundle\Service\FileVideoProvider">
+            <tag name="sonata.media.provider"/>
+            <argument>sonata.media.provider.file</argument>
+            <argument type="service" id="sonata.media.filesystem.local"/>
+            <argument type="service" id="sonata.media.cdn.server"/>
+            <argument type="service" id="sonata.media.generator.default"/>
+            <argument type="service" id="sonata.media.thumbnail.format"/>
+            <argument type="collection">
+                <argument>webm</argument>
+            </argument>
+            <argument type="collection">
+                <argument>video/webm</argument>
+            </argument>
+            <argument type="service" id="sonata.media.metadata.proxy"/>
+
+            <call method="setTemplates">
+                <argument type="collection">
+                    <argument key='helper_thumbnail'>FitbaseExerciseBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>FitbaseExerciseBundle:Provider:video.html.twig</argument>
+                </argument>
+            </call>
+        </service>
+
+        <service id="fitbase.block.exercise" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.exercise</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+    </services>
+</container>
