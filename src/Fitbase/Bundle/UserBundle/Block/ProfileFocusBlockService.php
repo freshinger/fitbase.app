@@ -67,9 +67,9 @@ class ProfileFocusBlockService extends BaseBlockService implements ContainerAwar
                         $this->container->get('entity_manager')->flush($category);
                     }
 
-                    $this->container->get('entity_manager')->refresh($user);
+                    $this->container->get('entity_manager')->refresh($focus);
 
-                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $user->getFocus());
+                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
                 }
             }
 
