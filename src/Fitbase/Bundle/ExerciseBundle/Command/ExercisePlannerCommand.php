@@ -36,6 +36,8 @@ class ExercisePlannerCommand extends ContainerAwareCommand
         if (($collection = $this->get('reminder')->getItemsExercise($day))) {
             foreach ($collection as $reminderUserItem) {
 
+                $this->get('logger')->info('[exercise][planner] User: ' . $reminderUserItem->getUser()->getId());
+
                 $event = new ExerciseReminderEvent($reminderUserItem);
                 $this->get('event_dispatcher')->dispatch('exercise_reminder_create', $event);
             }
