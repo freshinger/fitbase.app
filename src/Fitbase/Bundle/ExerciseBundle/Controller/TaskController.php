@@ -77,25 +77,37 @@ class TaskController extends Controller
         if (!($exercise = $repositoryExercise->findOneById($unique))) {
             // TODO: notify admin about exercise, that not exists
             $exercise = null;
+
         }
+
+        $exercise0 = null;
+        $exercise1 = null;
+        $exercise2 = null;
+        $exerciseUser = null;
 
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $exercises = $this->container->get('exercise.task')->choose($user, $exercise);
+        if (($focus = $user->getFocus())) {
+            if (($focusCategory = $focus->getFirstCategory())) {
 
-        list($exercise0, $exercise1, $exercise2) = $exercises;
+                $exercises = $this->container->get('exercise.task')->random($user, $focusCategory->getCategory(), $exercise);
+                list($exercise0, $exercise1, $exercise2) = $exercises;
 
-        $exerciseUser = new ExerciseUser();
-        $exerciseUser->setDone(0);
-        $exerciseUser->setUser($user);
-        $exerciseUser->setProcessed(1);
-        $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
-        $exerciseUser->setExercise0($exercise0);
-        $exerciseUser->setExercise1($exercise1);
-        $exerciseUser->setExercise2($exercise2);
 
-        $event = new ExerciseUserEvent($exerciseUser);
-        $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+                $exerciseUser = new ExerciseUser();
+                $exerciseUser->setDone(0);
+                $exerciseUser->setUser($user);
+                $exerciseUser->setProcessed(1);
+                $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
+                $exerciseUser->setExercise0($exercise0);
+                $exerciseUser->setExercise1($exercise1);
+                $exerciseUser->setExercise2($exercise2);
+
+                $event = new ExerciseUserEvent($exerciseUser);
+                $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+            }
+        }
+
 
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
             'step' => 0,

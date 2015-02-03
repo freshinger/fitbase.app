@@ -52,10 +52,15 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
                     $exercise0 = null;
                     $exercise1 = null;
                     $exercise2 = null;
+
                     // Get 3 videos random, but with respect to user focus
                     // and create a exercise for user with 3 videos
-                    if (($collection = $this->container->get('exercise.task')->choose($user))) {
-                        list($exercise0, $exercise1, $exercise2) = $collection;
+                    if (($focus = $user->getFocus())) {
+                        if (($focusCategory = $focus->getFirstCategory())) {
+                            if (($collection = $this->container->get('exercise.task')->random($user, $focusCategory->getCategory()))) {
+                                list($exercise0, $exercise1, $exercise2) = $collection;
+                            }
+                        }
                     }
 
                     $entity = new ExerciseUser();
@@ -69,7 +74,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     $this->container->get('entity_manager')->persist($entity);
                     $this->container->get('entity_manager')->flush($entity);
-                    return ;
+                    return;
                 }
             }
         }
