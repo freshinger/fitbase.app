@@ -33,7 +33,6 @@ class GamificationController extends Controller
             case 'text':
                 $type = new GamificationUserDialogAnswerTextForm();
                 $answer->setValue(1);
-
                 break;
             case 'boolean':
                 $type = new GamificationUserDialogAnswerBooleanForm();

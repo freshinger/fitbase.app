@@ -81,18 +81,37 @@ class Category extends BaseCategory
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExercises($type = array())
+    public function getExercises($types = array())
     {
-        if (!empty($type)) {
-            return $this->exercises->filter(function ($entity) use ($type) {
-                if ($entity->getType() != null) {
-                    if (in_array($entity->getType(), $type)) {
+        if (is_array($types) and count($types)) {
+            // List all types to get needed
+            // exercises types with array order
+            foreach ($types as $type) {
+
+                $collection = $this->exercises->filter(function ($entity) use ($type) {
+                    // Skip all exercises
+                    // without types
+                    if ($entity->getType() == null) {
+                        return false;
+                    }
+
+                    // Filter only exercises with
+                    // required tipe with respect
+                    // to type order in given array
+                    if ($entity->getType() == $type) {
                         return true;
                     }
+
+                    // Ignore all other exercises
                     return false;
+                });
+
+                // Return only non empty collection
+                // ignore all exercises with low-priority
+                if ($collection->count()) {
+                    return $collection;
                 }
-                return true;
-            });
+            }
         }
 
         return $this->exercises;

@@ -6,22 +6,34 @@ use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 
 class ChooserExerciseRandom implements ChooserInterface
 {
-
+    /**
+     * Define accepted types for each step
+     * with respect to type position in array
+     * @var array
+     */
     protected $stepsTypes = array(
-        array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
-        array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
-        array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG, Exercise::MOBILISATION),
+        0 => array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
+        1 => array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
+        2 => array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
     );
 
-
     /**
-     * Get list of types for each step
-     * @param $step
-     * @return null
+     * Process user focus and get a categories list
+     * @param array $categories
+     * @param array $result
+     * @return array
      */
-    protected function getExerciseStepType($step)
+    public function choose($categories = array(), array $result = array())
     {
-        return isset($this->stepsTypes[$step]) ? $this->stepsTypes[$step] : null;
+        foreach ($categories as $category) {
+            for ($i = count($result); $i < count($this->stepsTypes); $i++) {
+                if (($exercise = $this->getExerciseStep($i, $category, $result))) {
+                    array_push($result, $exercise);
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -51,38 +63,13 @@ class ChooserExerciseRandom implements ChooserInterface
         return null;
     }
 
-
     /**
-     * Process user focus and get a categories list
-     * @param array $categories
-     * @param array $result
-     * @return array
+     * Get list of types for each step
+     * @param $step
+     * @return null
      */
-    public function choose($categories = array(), array $result = array())
+    protected function getExerciseStepType($step)
     {
-        foreach ($categories as $category) {
-            for ($i = count($result); $i < count($this->stepsTypes); $i++) {
-                if (($exercise = $this->getExerciseStep($i, $category, $result))) {
-                    array_push($result, $exercise);
-                }
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get a exercise
-     * @param $exercises
-     * @return mixed
-     */
-    protected function exercise($exercises)
-    {
-        if (($collection = $exercises->toArray())) {
-            if (shuffle($collection)) {
-                return array_shift($collection);
-            }
-        }
-        return null;
+        return isset($this->stepsTypes[$step]) ? $this->stepsTypes[$step] : null;
     }
 }
