@@ -206,7 +206,8 @@ class ReminderUserItemRepository extends ReminderUserRepositoryAbstract
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprDay($queryBuilder, $day),
             $this->getExprType($queryBuilder, $type),
-            $this->getExprNotPaused($queryBuilder)
+            $this->getExprNotPaused($queryBuilder),
+            $this->getExprUserNotEmpty($queryBuilder)
         ));
 
         return $queryBuilder->getQuery()->getResult();

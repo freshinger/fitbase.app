@@ -103,4 +103,10 @@ class ReminderUserRepositoryAbstract extends EntityRepository
 
         return $queryBuilder->expr()->eq('1', '0');
     }
+
+
+    protected function getExprUserNotEmpty($queryBuilder)
+    {
+        return $queryBuilder->expr()->isNotNull('User.id');
+    }
 }
