@@ -33,13 +33,12 @@
 
 
         <many-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media">
-            <cascade>
-                <cascade-all/>
-            </cascade>
+            <join-column name="image_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
-
-        <many-to-one field="site" target-entity="Application\Sonata\PageBundle\Entity\Site"/>
+        <many-to-one field="site" target-entity="Application\Sonata\PageBundle\Entity\Site">
+            <join-column name="site_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
 
         <one-to-many field="users" target-entity="Application\Sonata\UserBundle\Entity\User" mapped-by="company">
             <order-by>
@@ -47,8 +46,7 @@
             </order-by>
         </one-to-many>
 
-        <one-to-many field="categories" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory"
-                     mapped-by="company">
+        <one-to-many field="categories" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory" mapped-by="company">
             <order-by>
                 <order-by-field name="id" direction="ASC"/>
             </order-by>

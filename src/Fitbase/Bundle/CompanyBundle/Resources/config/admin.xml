@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <services>
 
         <service id="fitbase.admin.Company" class="Fitbase\Bundle\CompanyBundle\Admin\CompanyAdmin">
@@ -20,7 +18,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Unternehmen" label="Fragenbögen"/>
+            <tag name="sonata.admin" manager_type="orm" group="Unternehmen" label="Fragebogen"/>
             <argument/>
             <argument>Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire</argument>
             <argument/>

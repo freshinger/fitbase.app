@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.header_company</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyFooterBlockService" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.footer_company</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+    </services>
+</container>

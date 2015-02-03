@@ -107,7 +107,7 @@ class UserFocusCategoryAdmin extends Admin implements ContainerAwareInterface
                 ));
             }
         }
-        $formMapper->add('focus');
+//        $formMapper->add('focus');
 
         $formMapper->add('priority')
             ->end();

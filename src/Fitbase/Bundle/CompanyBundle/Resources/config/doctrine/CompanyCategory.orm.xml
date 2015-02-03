@@ -7,8 +7,14 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company"/>
-        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category"/>
+
+        <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company">
+            <join-column name="company_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
+            <join-column name="category_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

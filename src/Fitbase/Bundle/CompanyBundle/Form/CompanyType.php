@@ -6,6 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
+/**
+ * TODO: remove this class
+ * Class CompanyType
+ * @package Fitbase\Bundle\CompanyBundle\Form
+ */
 class CompanyType extends AbstractType
 {
     public function setDefaultOptions(OptionsResolverInterface $resolver)
