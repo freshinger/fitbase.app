@@ -29,13 +29,16 @@ class TaskController extends Controller
         $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
         if (!($category = $repositoryCategory->findOneBySlug($slug))) {
-            // TODO: notify admin about category, that not exists
-            $category = null;
+            if (($focus = $user->getFocus())) {
+                if (($focusCategory = $focus->getFirstCategory())) {
+                    $category = $focusCategory->getCategory();
+                }
+            }
         }
 
         // Get 3 videos random, but with respect to user focus
         // and create a exercise for user with 3 videos
-        $categories = $this->container->get('exercise.task')->choose($user, $category);
+        $categories = $this->container->get('exercise.task')->random($user, $category);
         list($exercise0, $exercise1, $exercise2) = $categories;
 
         $exerciseUser = new ExerciseUser();
@@ -77,7 +80,6 @@ class TaskController extends Controller
         if (!($exercise = $repositoryExercise->findOneById($unique))) {
             // TODO: notify admin about exercise, that not exists
             $exercise = null;
-
         }
 
         $exercise0 = null;

@@ -31,10 +31,10 @@ class ServiceExerciseTask extends ContainerAware
      * Select exercises random
      * @param $user
      * @param null $category
-     * @param null $preselected
+     * @param null $exercise
      * @return array
      */
-    public function random($user, $category = null, $preselected = null)
+    public function random($user, $category = null, $exercise = null)
     {
         $categories = array();
         if ($category instanceof Category) {
@@ -45,14 +45,13 @@ class ServiceExerciseTask extends ContainerAware
         }
 
         $result = array();
-        if ($preselected instanceof \Fitbase\Bundle\ExerciseBundle\Entity\Exercise) {
-            array_push($result, $preselected);
+        if ($exercise instanceof \Fitbase\Bundle\ExerciseBundle\Entity\Exercise) {
+            array_push($result, $exercise);
         }
 
         $chooserExercise = new ChooserExerciseRandom();
         return $chooserExercise->choose($categories, $result);
     }
-
 
     /**
      * Select 3 exercises

@@ -14,6 +14,11 @@ class ChooserExerciseRandom implements ChooserInterface
     );
 
 
+    /**
+     * Get list of types for each step
+     * @param $step
+     * @return null
+     */
     protected function getExerciseStepType($step)
     {
         return isset($this->stepsTypes[$step]) ? $this->stepsTypes[$step] : null;
