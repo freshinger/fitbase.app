@@ -3,10 +3,6 @@
 namespace Fitbase\Bundle\ExerciseBundle\Service;
 
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExercise;
-use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseFilter;
-use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
-use Sonata\MediaBundle\Model\MediaInterface;
-use Sonata\MediaBundle\Provider\FileProvider;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
@@ -17,57 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  */
 class ServiceExercise extends ContainerAware
 {
-    /**
-     * Select 3 exercises
-     * @param $user
-     * @return array
-     */
-    public function choose($user, $category = null, \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise = null)
-    {
-        // Get category list from focus
-        // with respect to priority
-        if (($chooserCategory = $this->container->get('chooser_category'))) {
-            if (($categories = $chooserCategory->choose($user->getFocus()))) {
-
-                // Replace all selected categories
-                // with only one category
-                // needs to choose a exercise from
-                // this one
-                if (!empty($category)) {
-                    $categories = array($category);
-                }
-
-                $preselected = array();
-                if (!empty($exercise)) {
-                    array_push($preselected, $exercise);
-                    if (!($categories = $exercise->getCategories())) {
-                        // TODO: notify administration
-                    }
-                }
-
-                $entityManager = $this->container->get('entity_manager');
-                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-
-                // Extra filter to check is
-                // a exercise already done
-                $chooserNotProcessed = new ChooserExerciseFilter(function ($exercise0) use ($user, $exercise, $repositoryExerciseUser) {
-                    return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
-                });
-
-                if (!count(($exercises = $chooserNotProcessed->choose($categories, $preselected)))) {
-                    $chooserRandomized = new ChooserExerciseRandom();
-                    return $chooserRandomized->choose($categories, $preselected);
-                }
-
-
-                return $exercises;
-            }
-        }
-
-        return array();
-    }
-
-
     /**
      * @param $datetime
      * @return mixed

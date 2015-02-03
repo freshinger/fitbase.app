@@ -4,10 +4,7 @@ namespace Fitbase\Bundle\ExerciseBundle\Service;
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExercise;
-use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseFilter;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
-use Sonata\MediaBundle\Model\MediaInterface;
-use Sonata\MediaBundle\Provider\FileProvider;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
