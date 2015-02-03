@@ -49,7 +49,6 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     $this->container->get('logger')->info("[exercise][planner] Create for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
 
-
                     $exercise0 = null;
                     $exercise1 = null;
                     $exercise2 = null;
@@ -70,6 +69,7 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     $this->container->get('entity_manager')->persist($entity);
                     $this->container->get('entity_manager')->flush($entity);
+                    return ;
                 }
             }
         }

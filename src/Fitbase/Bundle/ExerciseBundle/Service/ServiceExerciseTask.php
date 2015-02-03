@@ -53,18 +53,18 @@ class ServiceExerciseTask extends ContainerAware
 
         if (!empty($categories) and count($categories)) {
 
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+//            $entityManager = $this->container->get('entity_manager');
+//            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
 
             // Extra filter to check is
             // a exercise already done
-            $chooserExercise = new ChooserExerciseFilter(function ($exercise0) use ($user, $exercise, $repositoryExerciseUser) {
-                return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
-            });
-
-            if (count(($exercises = $chooserExercise->choose($categories, $preselected))) >= 3) {
-                return $exercises;
-            }
+//            $chooserExercise = new ChooserExerciseFilter(function ($exercise0) use ($user, $exercise, $repositoryExerciseUser) {
+//                return !$repositoryExerciseUser->findOneByUserAndExercise($user, $exercise0);
+//            });
+//
+//            if (count(($exercises = $chooserExercise->choose($categories, $preselected))) >= 3) {
+//                return $exercises;
+//            }
 
             $chooserExercise = new ChooserExerciseRandom();
             return $chooserExercise->choose($categories, $preselected);
