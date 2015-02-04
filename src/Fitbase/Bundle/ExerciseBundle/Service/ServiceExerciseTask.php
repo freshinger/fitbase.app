@@ -32,13 +32,8 @@ class ServiceExerciseTask extends ContainerAware
             $categories = $this->getCategoriesFromCategory($categories);
         }
 
-        $preselected = array();
-        if ($exercise instanceof \Fitbase\Bundle\ExerciseBundle\Entity\Exercise) {
-            array_push($preselected, $exercise);
-        }
-
         $chooserExercise = new ChooserExerciseRandom();
-        return $chooserExercise->choose($categories, $preselected);
+        return $chooserExercise->choose($categories, $exercise);
     }
 
     /**

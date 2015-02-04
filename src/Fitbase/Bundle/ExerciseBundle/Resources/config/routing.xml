@@ -5,9 +5,8 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
 
-    <route id="focus" path="/focus/{slug}">
+    <route id="focus" path="/focus">
         <default key="_controller">FitbaseExerciseBundle:Focus:focus</default>
-        <default key="slug"></default>
     </route>
 
     <route id="category" path="/category/{slug}">

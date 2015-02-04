@@ -41,7 +41,7 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         );
 
         $chooser = new ChooserExerciseRandom();
-        $result = $chooser->choose(array($category1), array());
+        $result = $chooser->choose(array($category1));
 
         $this->assertEquals(count($result), 3);
     }
@@ -72,7 +72,7 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         );
 
         $chooser = new ChooserExerciseRandom();
-        $result = $chooser->choose(array($category1), array());
+        $result = $chooser->choose(array($category1));
 
         $this->assertNotEquals(count($result), 3);
     }
@@ -109,7 +109,7 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         );
 
         $chooser = new ChooserExerciseRandom();
-        $result = $chooser->choose(array($category1), array());
+        $result = $chooser->choose(array($category1));
 
         $this->assertFalse(in_array($result[0]->getId(), array(1, 3)));
         $this->assertFalse(in_array($result[1]->getId(), array(1, 3)));
@@ -145,9 +145,99 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         $category2 = new Category();
 
         $chooser = new ChooserExerciseRandom();
-        $result = $chooser->choose(array($category2, $category2, $category1), array());
+        $result = $chooser->choose(array($category2, $category2, $category1));
 
         $this->assertEquals(count($result), 3);
+    }
+
+    /**
+     * Check that exercise positions
+     * are right
+     */
+    public function testChooserShouldChooseExercisesWithRightPositions()
+    {
+        $category1 = new Category();
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(3)
+                ->setType(Exercise::DAEHNUNG)
+
+        );
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(4)
+                ->setType(Exercise::MOBILISATION)
+        );
+
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(2)
+                ->setType(Exercise::KRAEFTIGUNG)
+        );
+
+
+        $category2 = new Category();
+
+        $chooser = new ChooserExerciseRandom();
+        $result = $chooser->choose(array($category2, $category2, $category1));
+
+//        $exercise0 = $result[0];
+//        $exercise1 = $result[1];
+//        $exercise2 = $result[2];
+//
+//        $this->assertEquals($exercise0->getType(), Exercise::MOBILISATION);
+//        $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
+//        $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
+    }
+
+
+    public function testChooserShouldChooseExercisesWithRightPositionsWithPreselected()
+    {
+        $category1 = new Category();
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(3)
+                ->setType(Exercise::KRAEFTIGUNG)
+
+        );
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(4)
+                ->setType(Exercise::MOBILISATION)
+        );
+
+
+        $category1->addExercise(
+            (new Exercise())
+                ->setId(2)
+                ->setType(Exercise::KRAEFTIGUNG)
+        );
+
+
+        $category2 = new Category();
+
+        $chooser = new ChooserExerciseRandom();
+        $result = $chooser->choose(array($category2, $category2, $category1),
+            (new Exercise())
+                ->setId(6)
+                ->setType(Exercise::DAEHNUNG)
+        );
+
+        $exercise0 = $result[0];
+        $exercise1 = $result[1];
+        $exercise2 = $result[2];
+
+
+        $this->assertEquals($exercise0->getType(), Exercise::MOBILISATION);
+        $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
+        $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
+
+
     }
 
 }

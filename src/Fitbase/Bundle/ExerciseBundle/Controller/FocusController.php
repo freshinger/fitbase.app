@@ -43,7 +43,7 @@ class FocusController extends Controller
                         if (in_array($parent->getSlug(), array('ruecken'))) {
                             $controller = new TaskController();
                             $controller->setContainer($this->container);
-                            return $controller->focusAction($request, null);
+                            return $controller->focusAction($request, $parent->getSlug());
                         }
 
                         $controller = new CategoryController();

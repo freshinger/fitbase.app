@@ -2,6 +2,7 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Controller;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryCompanyChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryFocusChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ExerciseChooser;
@@ -21,25 +22,57 @@ class TaskController extends Controller
      */
     public function focusAction(Request $request, $slug = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        if (($user = $this->get('user')->current())) {
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+            $entityManager = $this->get('entity_manager');
+            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-        if (!($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (($focus = $user->getFocus())) {
-                if (($focusCategory = $focus->getFirstCategory())) {
-                    $category = $focusCategory->getCategory();
-                }
+            if (($category = $repositoryCategory->findOneBySlug($slug))) {
+                return $this->showTask($user, $category);
             }
         }
+    }
 
-        // Get 3 videos random, but with respect to user focus
-        // and create a exercise for user with 3 videos
-        $categories = $this->container->get('exercise.task')->random($user, $category);
-        list($exercise0, $exercise1, $exercise2) = $categories;
+
+    /**
+     * @param Request $request
+     * @param null $slug
+     * @param null $unique
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function taskAction(Request $request, $slug = null, $unique = null)
+    {
+        if (($user = $this->get('user')->current())) {
+
+            $entityManager = $this->get('entity_manager');
+            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+
+            return $this->showTask($user, $repositoryCategory->findOneBySlug($slug),
+                $repositoryExercise->findOneById($unique));
+        }
+    }
+
+
+    /**
+     * Display user task
+     *
+     * @param $user
+     * @param $category
+     * @param $exercise
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function showTask(User $user, $category = null, $exercise = null)
+    {
+        $exercise0 = null;
+        $exercise1 = null;
+        $exercise2 = null;
+
+        if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
+            $exercise0 = isset($exercises[0]) ? $exercises[0] : null;
+            $exercise1 = isset($exercises[1]) ? $exercises[1] : null;
+            $exercise2 = isset($exercises[2]) ? $exercises[2] : null;
+        }
 
         $exerciseUser = new ExerciseUser();
         $exerciseUser->setDone(0);
@@ -53,71 +86,14 @@ class TaskController extends Controller
         $event = new ExerciseUserEvent($exerciseUser);
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
-        return $this->render('FitbaseExerciseBundle:Task:focus.html.twig', array(
-            'step' => 0,
-            'user' => $user,
-            'exercise' => $exercise0,
-            'exerciseUser' => $exerciseUser,
-        ));
-    }
-
-    /**
-     * Show user Exercise
-     * @param Request $request
-     * @param null $unique
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws AccessDeniedException
-     */
-    public function taskAction(Request $request, $slug = null, $unique = null)
-    {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        $exercise = null;
-        $exercise0 = null;
-        $exercise1 = null;
-        $exercise2 = null;
-        $exerciseUser = null;
-
-        $entityManager = $this->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-
-        if (($exercise = $repositoryExercise->findOneById($unique))) {
-            // Set to category array with categories
-            // service will understand this
-            if (!($category = $repositoryCategory->findOneBySlug($slug))) {
-                $category = $exercise->getCategories();
-            }
-
-            if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
-
-                list($exercise0, $exercise1, $exercise2) = $exercises;
-
-
-                $exerciseUser = new ExerciseUser();
-                $exerciseUser->setDone(0);
-                $exerciseUser->setUser($user);
-                $exerciseUser->setProcessed(1);
-                $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
-                $exerciseUser->setExercise0($exercise0);
-                $exerciseUser->setExercise1($exercise1);
-                $exerciseUser->setExercise2($exercise2);
-
-                $event = new ExerciseUserEvent($exerciseUser);
-                $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
-            }
-        }
-
-
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
-            'step' => 0,
+            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : 0,
             'user' => $user,
             'exercise' => $exercise0,
             'exerciseUser' => $exerciseUser,
         ));
     }
+
 
     /**
      * View user exercise

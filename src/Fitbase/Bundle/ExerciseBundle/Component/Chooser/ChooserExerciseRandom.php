@@ -11,27 +11,52 @@ class ChooserExerciseRandom implements ChooserInterface
      * with respect to type position in array
      * @var array
      */
-    protected $stepsTypes = array(
-        0 => array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG),
-        1 => array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
-        2 => array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, Exercise::MOBILISATION),
+    protected $steps = array(
+        0 => array(Exercise::MOBILISATION, null),
+        1 => array(Exercise::KRAEFTIGUNG, null),
+        2 => array(Exercise::DAEHNUNG, null),
     );
 
     /**
-     * Process user focus and get a categories list
+     * Choose a set of exercises
+     *
      * @param array $categories
-     * @param array $result
+     * @param Exercise $preselected
      * @return array
      */
-    public function choose($categories = array(), array $result = array())
+    public function choose(array $categories = array(), Exercise $preselected = null)
     {
-        foreach ($categories as $category) {
-            for ($i = count($result); $i < count($this->stepsTypes); $i++) {
-                if (($exercise = $this->getExerciseStep($i, $category, $result))) {
-                    array_push($result, $exercise);
+        $result = array();
+
+        for ($step = 0; $step < count($this->steps); $step++) {
+
+            foreach ($categories as $category) {
+                if (($types = $this->getExerciseStepType($step))) {
+
+                    if (!empty($preselected)) {
+                        if (in_array($preselected->getType(), $types)) {
+                            if (!in_array($preselected, $result)) {
+                                array_push($result, $preselected);
+                                continue;
+                            }
+                        }
+                    }
+
+                    if (($exercise = $this->getExerciseStep($step, $types, $category, $result))) {
+                        array_push($result, $exercise);
+                        continue;
+                    }
+                }
+
+                if (count($result) == count($this->steps)) {
+                    break;
                 }
             }
         }
+
+        usort($result, function ($entity1, $entity2) {
+            return $entity1->getType() < $entity2->getType() ? -1 : 1;
+        });
 
         return $result;
     }
@@ -42,9 +67,9 @@ class ChooserExerciseRandom implements ChooserInterface
      * @param array $result
      * @return mixed|null
      */
-    protected function getExerciseStep($step, $category, $result = array())
+    protected function getExerciseStep($step, $types, $category, $result = array())
     {
-        if (($exercises = $category->getExercises($this->getExerciseStepType($step)))) {
+        if (($exercises = $category->getExercises($types))) {
             $exercises = $exercises->filter(function ($entity) use ($result) {
                 foreach ($result as $exercise) {
                     if ($exercise->getId() == $entity->getId()) {
@@ -54,6 +79,8 @@ class ChooserExerciseRandom implements ChooserInterface
                 return true;
             });
 
+            // Choose a new exercise random
+            // from not existed exercises
             if (($collection = $exercises->toArray())) {
                 if (shuffle($collection)) {
                     return array_shift($collection);
@@ -70,6 +97,6 @@ class ChooserExerciseRandom implements ChooserInterface
      */
     protected function getExerciseStepType($step)
     {
-        return isset($this->stepsTypes[$step]) ? $this->stepsTypes[$step] : null;
+        return isset($this->steps[$step]) ? $this->steps[$step] : null;
     }
 }
