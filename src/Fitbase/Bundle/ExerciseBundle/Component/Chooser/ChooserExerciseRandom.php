@@ -12,9 +12,9 @@ class ChooserExerciseRandom implements ChooserInterface
      * @var array
      */
     protected $steps = array(
-        0 => array(Exercise::MOBILISATION, null),
-        1 => array(Exercise::KRAEFTIGUNG, null),
-        2 => array(Exercise::DAEHNUNG, null),
+        0 => array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG, null),
+        1 => array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null),
+        2 => array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null),
     );
 
     /**
@@ -28,23 +28,22 @@ class ChooserExerciseRandom implements ChooserInterface
     {
         $result = array();
 
-        for ($step = 0; $step < count($this->steps); $step++) {
+        $steps = array_keys($this->steps);
+        if (!empty($preselected)) {
+            if (($step = (int)($preselected->getType() - 1)) !== null) {
+                if (($key = array_search($step, $steps)) !== null) {
+                    $result[$key] = $preselected;
+                    unset($steps[$key]);
+                }
+            }
+        }
 
+        foreach ($steps as $step) {
             foreach ($categories as $category) {
                 if (($types = $this->getExerciseStepType($step))) {
 
-                    if (!empty($preselected)) {
-                        if (in_array($preselected->getType(), $types)) {
-                            if (!in_array($preselected, $result)) {
-                                array_push($result, $preselected);
-                                continue;
-                            }
-                        }
-                    }
-
                     if (($exercise = $this->getExerciseStep($step, $types, $category, $result))) {
-                        array_push($result, $exercise);
-                        continue;
+                        $result[$step] = $exercise;
                     }
                 }
 
@@ -70,6 +69,7 @@ class ChooserExerciseRandom implements ChooserInterface
     protected function getExerciseStep($step, $types, $category, $result = array())
     {
         if (($exercises = $category->getExercises($types))) {
+
             $exercises = $exercises->filter(function ($entity) use ($result) {
                 foreach ($result as $exercise) {
                     if ($exercise->getId() == $entity->getId()) {
@@ -78,7 +78,6 @@ class ChooserExerciseRandom implements ChooserInterface
                 }
                 return true;
             });
-
             // Choose a new exercise random
             // from not existed exercises
             if (($collection = $exercises->toArray())) {
