@@ -50,6 +50,7 @@ class TaskBreadcrumbBlockService extends FocusBreadcrumbBlockService
                     'route' => 'task',
                     'routeParameters' => array(
                         'step' => $step,
+                        'slug' => 'ruecken',
                         'unique' => $exerciseUser->getId(),
 
                     ),
