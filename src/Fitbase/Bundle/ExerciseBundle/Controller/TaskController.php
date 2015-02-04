@@ -68,14 +68,11 @@ class TaskController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws AccessDeniedException
      */
-    public function taskAction(Request $request, $unique = null)
+    public function taskAction(Request $request, $slug = null, $unique = null)
     {
         if (!($user = $this->get('user')->current())) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
-
-        $entityManager = $this->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
 
         $exercise = null;
         $exercise0 = null;
@@ -83,25 +80,32 @@ class TaskController extends Controller
         $exercise2 = null;
         $exerciseUser = null;
 
-        if (($exercise = $repositoryExercise->findOneById($unique))) {
-            if (($categories = $exercise->getCategories())) {
+        $entityManager = $this->get('entity_manager');
+        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-                if (($exercises = $this->container->get('exercise.task')->random($user, $categories, $exercise))) {
-                    list($exercise0, $exercise1, $exercise2) = $exercises;
-
-                    $exerciseUser = new ExerciseUser();
-                    $exerciseUser->setDone(0);
-                    $exerciseUser->setUser($user);
-                    $exerciseUser->setProcessed(1);
-                    $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
-                    $exerciseUser->setExercise0($exercise0);
-                    $exerciseUser->setExercise1($exercise1);
-                    $exerciseUser->setExercise2($exercise2);
-
-                    $event = new ExerciseUserEvent($exerciseUser);
-                    $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
-                }
+        if (!($category = $repositoryCategory->findOneBySlug($slug))) {
+            if (($exercise = $repositoryExercise->findOneById($unique))) {
+                // Set to category array with categories
+                // service will understand this
+                $category = $exercise->getCategories();
             }
+        }
+
+        if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
+            list($exercise0, $exercise1, $exercise2) = $exercises;
+
+            $exerciseUser = new ExerciseUser();
+            $exerciseUser->setDone(0);
+            $exerciseUser->setUser($user);
+            $exerciseUser->setProcessed(1);
+            $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
+            $exerciseUser->setExercise0($exercise0);
+            $exerciseUser->setExercise1($exercise1);
+            $exerciseUser->setExercise2($exercise2);
+
+            $event = new ExerciseUserEvent($exerciseUser);
+            $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
         }
 
 

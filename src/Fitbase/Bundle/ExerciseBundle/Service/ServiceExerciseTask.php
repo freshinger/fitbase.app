@@ -27,28 +27,35 @@ class ServiceExerciseTask extends ContainerAware
         // For given category user children
         // or a this category if no children exists
         if ($categories instanceof Category) {
-            // Define temporary variable
-            // to store categories as array
-            $categoriesCache = array();
-            // by default use a given category
-            // to get a exercises from
-            array_push($categoriesCache, $categories);
             // If category have a children
             // use a exercises from a children category
-            if (count(($children = $categories->getChildren()))) {
-                $categoriesCache = is_object($children) ? $children->toArray() : $children;
-            }
-            // Improve categories from object
-            // to array
-            $categories = $categoriesCache;
+            $categories = $this->getCategoriesFromCategory($categories);
         }
 
-        $result = array();
+        $preselected = array();
         if ($exercise instanceof \Fitbase\Bundle\ExerciseBundle\Entity\Exercise) {
-            array_push($result, $exercise);
+            array_push($preselected, $exercise);
         }
 
         $chooserExercise = new ChooserExerciseRandom();
-        return $chooserExercise->choose($categories, $result);
+        return $chooserExercise->choose($categories, $preselected);
+    }
+
+    /**
+     * Get categories array from category
+     *
+     * @param $category
+     * @return array
+     */
+    protected function getCategoriesFromCategory($category)
+    {
+        // If category have a children
+        // use a exercises from a children category
+        if (count(($children = $category->getChildren()))) {
+            return is_object($children) ? $children->toArray() : $children;
+        }
+        // Improve categories
+        // from object to array
+        return array($category);
     }
 }

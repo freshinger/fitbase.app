@@ -15,7 +15,7 @@
         <default key="slug"></default>
     </route>
 
-    <route id="task" path="/task/{unique}">
+    <route id="task" path="/task/{slug}/{unique}">
         <default key="_controller">FitbaseExerciseBundle:Task:task</default>
     </route>
 

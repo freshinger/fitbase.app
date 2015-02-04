@@ -214,6 +214,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_back.html.twig', array(
+            'category' => $category,
             'exercises' => $exercises,
             'categories' => $categories,
         ));
