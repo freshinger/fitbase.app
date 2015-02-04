@@ -18,24 +18,29 @@ class ServiceExerciseTask extends ContainerAware
     /**
      * Select exercises random
      * @param $user
-     * @param null $category
+     * @param array $categories
      * @param null $exercise
      * @return array
      */
-    public function random($user, $category = null, $exercise = null)
+    public function random($user, $categories = array(), $exercise = null)
     {
-        $categories = array();
         // For given category user children
         // or a this category if no children exists
-        if ($category instanceof Category) {
+        if ($categories instanceof Category) {
+            // Define temporary variable
+            // to store categories as array
+            $categoriesCache = array();
             // by default use a given category
             // to get a exercises from
-            array_push($categories, $category);
+            array_push($categoriesCache, $categories);
             // If category have a children
             // use a exercises from a children category
-            if (count(($children = $category->getChildren()))) {
-                $categories = is_object($children) ? $children->toArray() : $children;
+            if (count(($children = $categories->getChildren()))) {
+                $categoriesCache = is_object($children) ? $children->toArray() : $children;
             }
+            // Improve categories from object
+            // to array
+            $categories = $categoriesCache;
         }
 
         $result = array();
