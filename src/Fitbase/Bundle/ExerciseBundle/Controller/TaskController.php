@@ -84,28 +84,30 @@ class TaskController extends Controller
         $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
         $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-        if (!($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (($exercise = $repositoryExercise->findOneById($unique))) {
-                // Set to category array with categories
-                // service will understand this
+        if (($exercise = $repositoryExercise->findOneById($unique))) {
+            // Set to category array with categories
+            // service will understand this
+            if (!($category = $repositoryCategory->findOneBySlug($slug))) {
                 $category = $exercise->getCategories();
             }
-        }
 
-        if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
-            list($exercise0, $exercise1, $exercise2) = $exercises;
+            if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
 
-            $exerciseUser = new ExerciseUser();
-            $exerciseUser->setDone(0);
-            $exerciseUser->setUser($user);
-            $exerciseUser->setProcessed(1);
-            $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
-            $exerciseUser->setExercise0($exercise0);
-            $exerciseUser->setExercise1($exercise1);
-            $exerciseUser->setExercise2($exercise2);
+                list($exercise0, $exercise1, $exercise2) = $exercises;
 
-            $event = new ExerciseUserEvent($exerciseUser);
-            $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+
+                $exerciseUser = new ExerciseUser();
+                $exerciseUser->setDone(0);
+                $exerciseUser->setUser($user);
+                $exerciseUser->setProcessed(1);
+                $exerciseUser->setDate($this->get('datetime')->getDateTime('now'));
+                $exerciseUser->setExercise0($exercise0);
+                $exerciseUser->setExercise1($exercise1);
+                $exerciseUser->setExercise2($exercise2);
+
+                $event = new ExerciseUserEvent($exerciseUser);
+                $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+            }
         }
 
 
