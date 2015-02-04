@@ -104,32 +104,30 @@ class TaskController extends Controller
      */
     public function userTaskAction(Request $request, $unique = null, $step = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        if (($user = $this->get('user')->current())) {
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-        if (!($exerciseUser = $repositoryExerciseUser->findOneByUserAndId($user, $unique))) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+            $entityManager = $this->get('entity_manager');
+            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+            if (($exerciseUser = $repositoryExerciseUser->findOneByUserAndId($user, $unique))) {
 
-        $exercise = $exerciseUser->getExercise0();
-        $methodNames = array('getExercise0', 'getExercise1', 'getExercise2');
-        if (isset($methodNames[$step]) and ($method = $methodNames[$step])) {
-            $exercise = call_user_func_array(array($exerciseUser, $method), array());
+                $exercise = $exerciseUser->getExercise0();
+                $methodNames = array('getExercise0', 'getExercise1', 'getExercise2');
+                if (isset($methodNames[$step]) and ($method = $methodNames[$step])) {
+                    $exercise = call_user_func_array(array($exerciseUser, $method), array());
 
-            if ($exercise == $exerciseUser->getExercise2()) {
-                $event = new ExerciseUserEvent($exerciseUser);
-                $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
+                    if ($exercise == $exerciseUser->getExercise2()) {
+                        $event = new ExerciseUserEvent($exerciseUser);
+                        $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
+                    }
+                }
+
+                return $this->render('FitbaseExerciseBundle:Task:user_task.html.twig', array(
+                    'step' => $step,
+                    'user' => $user,
+                    'exercise' => $exercise,
+                    'exerciseUser' => $exerciseUser,
+                ));
             }
         }
-
-        return $this->render('FitbaseExerciseBundle:Task:user_task.html.twig', array(
-            'step' => $step,
-            'user' => $user,
-            'exercise' => $exercise,
-            'exerciseUser' => $exerciseUser,
-        ));
     }
 }

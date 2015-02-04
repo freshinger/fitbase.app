@@ -28,9 +28,15 @@ class ChooserExerciseRandom implements ChooserInterface
     {
         $result = array();
 
+        $typeToStep = array(
+            Exercise::MOBILISATION,
+            Exercise::KRAEFTIGUNG,
+            Exercise::DAEHNUNG,
+        );
+
         $steps = array_keys($this->steps);
         if (!empty($preselected)) {
-            if (($step = (int)($preselected->getType() - 1)) !== null) {
+            if (($step = array_search($preselected->getType(), $typeToStep)) !== null) {
                 if (($key = array_search($step, $steps)) !== null) {
                     $result[$key] = $preselected;
                     unset($steps[$key]);
