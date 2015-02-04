@@ -178,19 +178,18 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
                 ->setType(Exercise::KRAEFTIGUNG)
         );
 
-
         $category2 = new Category();
 
         $chooser = new ChooserExerciseRandom();
         $result = $chooser->choose(array($category2, $category2, $category1));
 
-//        $exercise0 = $result[0];
-//        $exercise1 = $result[1];
-//        $exercise2 = $result[2];
-//
-//        $this->assertEquals($exercise0->getType(), Exercise::MOBILISATION);
-//        $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
-//        $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
+        $exercise0 = $result[0];
+        $exercise1 = $result[1];
+        $exercise2 = $result[2];
+
+        $this->assertEquals($exercise0->getType(), Exercise::MOBILISATION);
+        $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
+        $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
     }
 
 
@@ -232,12 +231,9 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         $exercise1 = $result[1];
         $exercise2 = $result[2];
 
-
         $this->assertEquals($exercise0->getType(), Exercise::MOBILISATION);
         $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
         $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
-
-
     }
 
 }
