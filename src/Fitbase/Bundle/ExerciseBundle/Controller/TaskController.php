@@ -87,9 +87,9 @@ class TaskController extends Controller
         $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
 
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
-            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : 0,
             'user' => $user,
-            'exercise' => $exercise0,
+            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : (($exercise0->getType() != null) ? ($exercise0->getType() - 1) : 0),
+            'exercise' => !empty($exercise) ? $exercise : $exercise0,
             'exerciseUser' => $exerciseUser,
         ));
     }
