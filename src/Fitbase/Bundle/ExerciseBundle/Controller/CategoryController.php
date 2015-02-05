@@ -26,52 +26,51 @@ class CategoryController extends Controller
     public function categoryAction(Request $request, $slug = null)
     {
         $entityManager = $this->get('entity_manager');
-        if (($user = $this->get('user')->current())) {
-            if (($focus = $user->getFocus())) {
-                $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+        if (($user = $this->get('user')->current()) and ($focus = $user->getFocus())) {
 
-                if (($category = $repositoryCategory->findOneBySlug($slug))) {
-                    if (($categories = $focus->getCategories())) {
+            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-                        // Find a parent category
-                        // for a given category
-                        if (!($parent = $category->getParent())) {
-                            $parent = $category;
+            if (($category = $repositoryCategory->findOneBySlug($slug))) {
+                if (($categories = $focus->getCategories())) {
+
+                    // Find a parent category
+                    // for a given category
+                    if (!($parent = $category->getParent())) {
+                        $parent = $category;
+                    }
+
+                    // Check is category exists in user focus
+                    $exists = $categories->exists(function ($index, $entity) use ($parent) {
+                        if ($entity->getCategory()->getSlug() == $parent->getSlug()) {
+                            return true;
+                        }
+                    });
+
+                    if ($exists) {
+
+                        // Exercises only for back
+                        // this part have a tasks,
+                        // A task have a 3 exercises
+                        if (in_array($parent->getSlug(), array('ruecken', 'rueckengesundheit'))) {
+                            return $this->categoryBackAction($request, $slug);
                         }
 
-                        // Check is category exists in user focus
-                        $exists = $categories->exists(function ($index, $entity) use ($parent) {
-                            if ($entity->getCategory()->getSlug() == $parent->getSlug()) {
-                                return true;
-                            }
-                        });
-
-                        if ($exists) {
-
-                            // Exercises only for back
-                            // this part have a tasks,
-                            // A task have a 3 exercises
-                            if (in_array($parent->getSlug(), array('ruecken', 'rueckengesundheit'))) {
-                                return $this->categoryBackAction($request, $slug);
-                            }
-
-                            if (in_array($parent->getSlug(), array('augen'))) {
-                                return $this->categoryAugenAction($request, $slug);
-                            }
-
-                            // Stress und all
-                            // mental exercises
-                            if (in_array($parent->getSlug(), array('stress', 'achtsamkeit', 'resilienz',))) {
-                                return $this->categoryStressAction($request, $slug);
-                            }
-                            // Display feeding-diary and
-                            // some exercises like text o image
-                            if (in_array($parent->getSlug(), array('ernaehrung'))) {
-                                return $this->categoryFeedingAction($request);
-                            }
-
-                            return $this->categoryDefaultAction($request, $slug);
+                        if (in_array($parent->getSlug(), array('augen'))) {
+                            return $this->categoryAugenAction($request, $slug);
                         }
+
+                        // Stress und all
+                        // mental exercises
+                        if (in_array($parent->getSlug(), array('stress', 'achtsamkeit', 'resilienz',))) {
+                            return $this->categoryStressAction($request, $slug);
+                        }
+                        // Display feeding-diary and
+                        // some exercises like text o image
+                        if (in_array($parent->getSlug(), array('ernaehrung'))) {
+                            return $this->categoryFeedingAction($request);
+                        }
+
+                        return $this->categoryDefaultAction($request, $slug);
                     }
                 }
             }

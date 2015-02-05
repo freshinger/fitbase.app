@@ -25,19 +25,13 @@ class ExerciseController extends Controller
     public function exerciseAction(Request $request, $unique = null)
     {
         if (($user = $this->get('user')->current())) {
+            if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
 
-            $entityManager = $this->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-            if (!($exercise = $repositoryExercise->findOneById($unique))) {
-                // TODO: notify admin about exercise, that not exists
-                $exercise = null;
+                return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
+                    'user' => $user,
+                    'exercise' => $exercise,
+                ));
             }
-
-            return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
-                'user' => $user,
-                'exercise' => $exercise,
-            ));
         }
 
         throw new AccessDeniedException('This user does not have access to this section.');
@@ -53,14 +47,13 @@ class ExerciseController extends Controller
     public function doneAction(Request $request, $unique = null)
     {
         if (($user = $this->get('user')->current())) {
+            if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
 
-            $entityManager = $this->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+                $event = new ExerciseEvent($exercise);
+                $this->get('event_dispatcher')->dispatch('exercise_done', $event);
 
-            $event = new ExerciseEvent($repositoryExercise->findOneById($unique));
-            $this->get('event_dispatcher')->dispatch('exercise_done', $event);
-
-            return new Response(null, 200);
+                return new Response(null, 200);
+            }
         }
 
         throw new AccessDeniedException('This user does not have access to this section.');

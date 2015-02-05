@@ -55,11 +55,11 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     // Get 3 videos random, but with respect to user focus
                     // and create a exercise for user with 3 videos
-                    if (($focus = $user->getFocus())) {
-                        if (($focusCategory = $focus->getFirstCategory())) {
-                            if (($collection = $this->container->get('exercise.task')->random($user, $focusCategory->getCategory()))) {
-                                list($exercise0, $exercise1, $exercise2) = $collection;
-                            }
+                    if (($focus = $user->getFocus()) and ($focusCategory = $focus->getFirstCategory()) and ($category = $focusCategory->getCategory())) {
+                        if (($exercises = $this->container->get('fitbase.orm.exercise_manager')->findThreeRandom($user, $category))) {
+                            $exercise0 = isset($exercises[0]) ? $exercises[0] : null;
+                            $exercise1 = isset($exercises[1]) ? $exercises[1] : null;
+                            $exercise2 = isset($exercises[2]) ? $exercises[2] : null;
                         }
                     }
 

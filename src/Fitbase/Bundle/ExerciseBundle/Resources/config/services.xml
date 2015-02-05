@@ -9,6 +9,7 @@
         <import resource="subscribers.xml"/>
         <import resource="validators.xml"/>
         <import resource="blocks.xml"/>
+        <import resource="orm.xml"/>
     </imports>
     <services>
 
@@ -17,13 +18,6 @@
                 <argument type="service" id="service_container"/>
             </call>
         </service>
-
-        <service id="exercise.task" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceExerciseTask">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
 
         <service id="chooser_category" class="Fitbase\Bundle\ExerciseBundle\Service\ServiceChooserCategory">
             <!--Define some parameters here-->

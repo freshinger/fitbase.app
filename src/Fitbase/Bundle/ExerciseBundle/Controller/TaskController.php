@@ -33,7 +33,6 @@ class TaskController extends Controller
         }
     }
 
-
     /**
      * @param Request $request
      * @param null $slug
@@ -45,14 +44,13 @@ class TaskController extends Controller
         if (($user = $this->get('user')->current())) {
 
             $entityManager = $this->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
             $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-            return $this->showTask($user, $repositoryCategory->findOneBySlug($slug),
-                $repositoryExercise->findOneById($unique));
+            if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
+                return $this->showTask($user, $repositoryCategory->findOneBySlug($slug), $exercise);
+            }
         }
     }
-
 
     /**
      * Display user task
@@ -68,7 +66,7 @@ class TaskController extends Controller
         $exercise1 = null;
         $exercise2 = null;
 
-        if (($exercises = $this->container->get('exercise.task')->random($user, $category, $exercise))) {
+        if (($exercises = $this->get('fitbase.orm.exercise_manager')->findThreeRandom($user, $category, $exercise))) {
             $exercise0 = isset($exercises[0]) ? $exercises[0] : null;
             $exercise1 = isset($exercises[1]) ? $exercises[1] : null;
             $exercise2 = isset($exercises[2]) ? $exercises[2] : null;

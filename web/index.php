@@ -25,7 +25,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 $request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
 
-$kernel = new AppKernel('dev', true);
+$kernel = new AppKernel('prod', false);
 
 $response = $kernel->handle($request);
 $response->send();
