@@ -7,10 +7,16 @@
     <services>
 
         <service id="fitbase.subscriber.email.ExerciseUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
+            <argument type="service" id="mail"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="chooser_category"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+
             <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+            <!--<call method="setContainer">-->
+                <!--<argument type="service" id="service_container"/>-->
+            <!--</call>-->
         </service>
 
         <service id="fitbase.subscriber.email.WeeklytaskUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklytaskUserSubscriber">

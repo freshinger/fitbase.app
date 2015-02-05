@@ -17,6 +17,22 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    protected $mailer;
+    protected $translator;
+    protected $templating;
+    protected $chooserCategory;
+    protected $objectManager;
+
+
+    public function __construct($mailer, $objectManager, $chooserCategory, $templating, $translator)
+    {
+        $this->mailer = $mailer;
+        $this->translator = $translator;
+        $this->templating = $templating;
+        $this->chooserCategory = $chooserCategory;
+        $this->objectManager = $objectManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -34,42 +50,33 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
      */
     public function onExerciseUserSendEvent(ExerciseUserEvent $event)
     {
-        if (($exerciseUser = $event->getEntity())) {
-            if (($user = $exerciseUser->getUser())) {
+        if (($exerciseUser = $event->getEntity()) and ($user = $exerciseUser->getUser())) {
 
-                $category = null;
-                if (($focus = $user->getFocus())) {
-                    if (($categoryFocus = $focus->getCategories()->first())) {
-                        $categoryFocus = $categoryFocus->getCategory();
-                    }
+            $category = null;
+            if (($focus = $user->getFocus())) {
+                if (($categoryFocus = $focus->getFirstCategory())) {
+                    $categoryFocus = $categoryFocus->getCategory();
                 }
-
-                $categories = array();
-                if (($chooserCategory = $this->container->get('chooser_category'))) {
-                    $categories = new ArrayCollection(
-                        $chooserCategory->choose($user->getFocus())
-                    );
-
-
-                    $categories = $categories->filter(function ($element) {
-                        return !$element->getParent() ? true : false;
-                    });
-                }
-
-                $title = $this->container->get('translator')->trans('Ihre fitbase Erinnerung');
-                $content = $this->container->get('templating')->render('FitbaseEmailBundle:Subscriber:exercise.html.twig', array(
-                    'user' => $exerciseUser->getUser(),
-                    'categoryFocus' => $categoryFocus,
-                    'categories' => $categories,
-                    'exerciseUser' => $exerciseUser,
-                ));
-
-                $this->container->get('mail')->mail($user->getEmail(), $title, $content);
             }
 
-            $exerciseUser->setProcessed(1);
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
+            $categories = (new ArrayCollection($this->chooserCategory->choose($user->getFocus())))
+                ->filter(function ($element) {
+                    return !$element->getParent() ? true : false;
+                });
+
+            $title = $this->translator->trans('Ihre fitbase Erinnerung');
+            $content = $this->templating->render('FitbaseEmailBundle:Subscriber:exercise.html.twig', array(
+                'user' => $exerciseUser->getUser(),
+                'categoryFocus' => $categoryFocus,
+                'categories' => $categories,
+                'exerciseUser' => $exerciseUser,
+            ));
+
+            $this->mailer->mail($user->getEmail(), $title, $content);
         }
+
+        $exerciseUser->setProcessed(1);
+        $this->objectManager->persist($exerciseUser);
+        $this->objectManager->flush($exerciseUser);
     }
 }
