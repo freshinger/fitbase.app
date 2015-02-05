@@ -18,7 +18,7 @@
         </one-to-one>
 
         <one-to-one field="actioncode" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode" inversed-by="user">
-            <join-column name="actioncode_id" referenced-column-name="id" on-delete="CASCADE"/>
+            <join-column name="actioncode_id" referenced-column-name="id" on-delete="SET NULL"/>
         </one-to-one>
 
         <many-to-one field="company" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company" inversed-by="user">

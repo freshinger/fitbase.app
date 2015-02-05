@@ -201,7 +201,6 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
             (new Exercise())
                 ->setId(3)
                 ->setType(Exercise::KRAEFTIGUNG)
-
         );
 
         $category1->addExercise(
@@ -216,7 +215,6 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
                 ->setId(2)
                 ->setType(Exercise::KRAEFTIGUNG)
         );
-
 
         $category2 = new Category();
 
@@ -235,5 +233,4 @@ class ChooserExerciseRandomTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($exercise1->getType(), Exercise::KRAEFTIGUNG);
         $this->assertEquals($exercise2->getType(), Exercise::DAEHNUNG);
     }
-
 }

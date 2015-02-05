@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\WeeklytaskBundle\Services;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Fitbase\Bundle\WeeklytaskBundle\Component\Chooser\ChooserWeeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Component\Chooser\ChooserWeeklytaskFilter;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
@@ -140,11 +141,15 @@ class ServiceWeeklytask extends ContainerAware
             $entityManager = $this->container->get('entity_manager');
             $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
 
-            $chooserFilter = new ChooserWeeklytaskFilter(function (Weeklytask $entity) use ($repositoryWeeklytaskUser, $user) {
-                return !$repositoryWeeklytaskUser->findOneByUserAndTask($user, $entity);
-            });
+            $existed = array();
+            if (($collection = $repositoryWeeklytaskUser->findAllByUser($user))) {
+                $collection = new ArrayCollection($collection);
+                $existed = $collection->map(function ($entity) {
+                    return $entity->getTask()->getId();
+                })->toArray();
+            }
 
-            return $chooserFilter->choose($categories);
+            return (new ChooserWeeklytask())->choose($categories, $existed);
         }
 
         return null;

@@ -9,6 +9,6 @@ interface ChooserInterface
      * Process user focus and get a categories list
      * @return array
      */
-    public function choose($categories = array(), array $result = array());
+    public function choose(array $categories = array(), array $existed = array());
 
 } 

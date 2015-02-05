@@ -106,6 +106,7 @@ class Weeklytask
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
