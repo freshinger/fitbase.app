@@ -41,18 +41,19 @@ class GamificationDashboardBlockService extends BaseBlockService implements Cont
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+        if (($user = $this->container->get('user')->current())) {
+
+            $managerEntity = $this->container->get('entity_manager');
+            $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+
+            if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
+                return $this->executeAvatarForm($blockContext, $response);
+            }
+
+            return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array());
         }
 
-        $managerEntity = $this->container->get('entity_manager');
-        $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
-
-        if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-            return $this->executeAvatarForm($blockContext, $response);
-        }
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array());
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**

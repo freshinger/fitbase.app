@@ -22,29 +22,29 @@ class WeeklytaskController extends Controller
      */
     public function userViewAction(Request $request, $unique = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        if (($user = $this->get('user')->current())) {
 
-        $weeklytask = null;
+            $weeklytask = null;
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+            $entityManager = $this->get('entity_manager');
+            $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
 
-        if (($weeklytaskUser = $repositoryWeeklytask->find($unique))) {
+            if (($weeklytaskUser = $repositoryWeeklytask->find($unique))) {
 
-            $event = new WeeklytaskUserEvent($weeklytaskUser);
-            $this->get('event_dispatcher')->dispatch('weeklytask_user_done', $event);
+                $event = new WeeklytaskUserEvent($weeklytaskUser);
+                $this->get('event_dispatcher')->dispatch('weeklytask_user_done', $event);
 
-            if (($weeklytask = $weeklytaskUser->getTask())) {
-                // TODO:
+                if (($weeklytask = $weeklytaskUser->getTask())) {
+
+                    return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
+                        'weeklytask' => $weeklytask,
+                    ));
+                }
             }
 
         }
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
-            'weeklytask' => $weeklytask,
-        ));
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
@@ -55,27 +55,28 @@ class WeeklytaskController extends Controller
      */
     public function userQuizViewAction(Request $request, $unique = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        if (($user = $this->get('user')->current())) {
 
-        $weeklyquizUser = null;
+            $weeklyquizUser = null;
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+            $entityManager = $this->get('entity_manager');
+            $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
 
-        if (($weeklyquizUser = $repositoryWeeklyquiz->findOneByUserAndUnique($user, $unique))) {
+            if (($weeklyquizUser = $repositoryWeeklyquiz->findOneByUserAndUnique($user, $unique))) {
 
-            if ($weeklyquizUser->getDone()) {
-                return $this->showUserQuizViewFormDoneAction($request, $user, $weeklyquizUser);
+                if ($weeklyquizUser->getDone()) {
+                    return $this->showUserQuizViewFormDoneAction($request, $user, $weeklyquizUser);
+                }
+
+                return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
             }
 
-            return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
+            return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
+                'weeklyquiz' => $weeklyquizUser,
+            ));
         }
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
-            'weeklyquiz' => $weeklyquizUser,
-        ));
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
