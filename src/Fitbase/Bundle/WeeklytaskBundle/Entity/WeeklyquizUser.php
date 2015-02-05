@@ -44,6 +44,7 @@ class WeeklyquizUser
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
     /**

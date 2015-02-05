@@ -11,8 +11,21 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class WeeklyquizUserSubscriber extends ContainerAware implements EventSubscriberInterface
+class WeeklyquizUserSubscriber implements EventSubscriberInterface
 {
+    protected $mailer;
+    protected $translator;
+    protected $templating;
+    protected $objectManager;
+
+    public function __construct($mailer, $templating, $translator, $objectManager)
+    {
+        $this->mailer = $mailer;
+        $this->translator = $translator;
+        $this->templating = $templating;
+        $this->objectManager = $objectManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -31,22 +44,24 @@ class WeeklyquizUserSubscriber extends ContainerAware implements EventSubscriber
     public function onWeeklyquizUserSendEvent(WeeklyquizUserEvent $event)
     {
         if (($weeklyquizUser = $event->getEntity())) {
+
             if (($user = $weeklyquizUser->getUser())) {
 
-                $title = $this->container->get('translator')->trans('Ihr fitbase Quiz');
-                $content = $this->container->get('templating')->render('FitbaseEmailBundle:Subscriber:weeklyquiz.html.twig', array(
+                $title = $this->translator->trans('Ihr fitbase Quiz');
+                $content = $this->templating->render('FitbaseEmailBundle:Subscriber:weeklyquiz.html.twig', array(
                     'user' => $weeklyquizUser->getUser(),
                     'task' => $weeklyquizUser->getTask(),
                     'quiz' => $weeklyquizUser->getQuiz(),
                     'userQuiz' => $weeklyquizUser,
                 ));
 
-                $this->container->get('mail')->mail($user->getEmail(), $title, $content);
+                $this->mailer->mail($user->getEmail(), $title, $content);
             }
 
             $weeklyquizUser->setProcessed(1);
-            $this->container->get('entity_manager')->persist($weeklyquizUser);
-            $this->container->get('entity_manager')->flush($weeklyquizUser);
+
+            $this->objectManager->persist($weeklyquizUser);
+            $this->objectManager->flush($weeklyquizUser);
         }
     }
 }

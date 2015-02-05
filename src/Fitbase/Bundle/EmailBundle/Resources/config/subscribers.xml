@@ -1,45 +1,40 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <services>
 
-        <service id="fitbase.subscriber.email.ExerciseUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
+        <service id="fitbase.subscriber.email.user" class="Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber">
             <argument type="service" id="mail"/>
-            <argument type="service" id="entity_manager"/>
-            <argument type="service" id="chooser_category"/>
             <argument type="service" id="templating"/>
             <argument type="service" id="translator"/>
-
             <tag name="kernel.event_subscriber"/>
-            <!--<call method="setContainer">-->
-                <!--<argument type="service" id="service_container"/>-->
-            <!--</call>-->
         </service>
 
-        <service id="fitbase.subscriber.email.WeeklytaskUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklytaskUserSubscriber">
+        <service id="fitbase.subscriber.email.exercise_user" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
+            <argument type="service" id="mail"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="chooser_category"/>
             <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
         </service>
 
-        <service id="fitbase.subscriber.email.WeeklyquizUserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber">
+        <service id="fitbase.subscriber.email.weeklytask_user" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklytaskUserSubscriber">
+            <argument type="service" id="mail"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="entity_manager"/>
             <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
         </service>
 
-        <service id="fitbase.subscriber.email.UserSubscriber" class="Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber">
+        <service id="fitbase.subscriber.email.weeklyquiz_user" class="Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber">
+            <argument type="service" id="mail"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+            <argument type="service" id="entity_manager"/>
             <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
         </service>
-
 
     </services>
 </container>

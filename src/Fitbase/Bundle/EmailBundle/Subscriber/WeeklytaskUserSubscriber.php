@@ -11,8 +11,21 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriberInterface
+class WeeklytaskUserSubscriber implements EventSubscriberInterface
 {
+    protected $mailer;
+    protected $translator;
+    protected $templating;
+    protected $objectManager;
+
+    public function __construct($mailer, $templating, $translator, $objectManager)
+    {
+        $this->mailer = $mailer;
+        $this->translator = $translator;
+        $this->templating = $templating;
+        $this->objectManager = $objectManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -31,22 +44,24 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
     public function onWeeklytaskUserSendEvent(WeeklytaskUserEvent $event)
     {
         if (($weeklytaskUser = $event->getEntity())) {
+
             if (($user = $weeklytaskUser->getUser())) {
 
-                $title = $this->container->get('translator')->trans('Ihre fitbase Infoeinheit');
-                $content = $this->container->get('templating')->render('FitbaseEmailBundle:Subscriber:weeklytask.html.twig', array(
+                $title = $this->translator->trans('Ihre fitbase Infoeinheit');
+                $content = $this->templating->render('FitbaseEmailBundle:Subscriber:weeklytask.html.twig', array(
                     'user' => $weeklytaskUser->getUser(),
                     'task' => $weeklytaskUser->getTask(),
                     'userTask' => $weeklytaskUser,
 
                 ));
 
-                $this->container->get('mail')->mail($user->getEmail(), $title, $content);
+                $this->mailer->mail($user->getEmail(), $title, $content);
             }
 
             $weeklytaskUser->setProcessed(1);
-            $this->container->get('entity_manager')->persist($weeklytaskUser);
-            $this->container->get('entity_manager')->flush($weeklytaskUser);
+
+            $this->objectManager->persist($weeklytaskUser);
+            $this->objectManager->flush($weeklytaskUser);
         }
     }
 }

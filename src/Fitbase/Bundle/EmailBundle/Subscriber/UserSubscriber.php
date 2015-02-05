@@ -3,20 +3,23 @@
 namespace Fitbase\Bundle\EmailBundle\Subscriber;
 
 
-use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
-use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
-use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UserSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserSubscriber implements EventSubscriberInterface
 {
+    protected $mailer;
+    protected $translator;
+    protected $templating;
+
+
+    public function __construct($mailer, $templating, $translator)
+    {
+        $this->mailer = $mailer;
+        $this->translator = $translator;
+        $this->templating = $templating;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -36,12 +39,12 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
     {
         if (($user = $event->getEntity())) {
 
-            $title = $this->container->get('translator')->trans('Willkommen bei fitbase');
-            $content = $this->container->get('templating')->render('FitbaseEmailBundle:Subscriber:user.html.twig', array(
+            $title = $this->translator->trans('Willkommen bei fitbase');
+            $content = $this->templating->render('FitbaseEmailBundle:Subscriber:user.html.twig', array(
                 'user' => $user,
             ));
 
-            $this->container->get('mail')->mail($user->getEmail(), $title, $content);
+            $this->mailer->mail($user->getEmail(), $title, $content);
         }
     }
 }

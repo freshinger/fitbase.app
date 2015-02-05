@@ -3,33 +3,29 @@
  * Created by PhpStorm.
  * User: sensey
  * Date: 05/02/15
- * Time: 15:08
+ * Time: 15:45
  */
 
 namespace Fitbase\Bundle\EmailBundle\Tests\Subscriber;
 
 
-use Application\Sonata\ClassificationBundle\Document\Category;
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber;
-use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
-use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
-use Fitbase\Bundle\UserBundle\Entity\UserFocus;
+use Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber;
+use Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber;
+use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
+use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 
-class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
+class WeeklyquizUserSubscriberTest extends \PHPUnit_Framework_TestCase
 {
     protected $mailer;
-    protected $objectManager;
-    protected $chooserCategory;
     protected $templating;
     protected $translator;
-
+    protected $objectManager;
 
     public function setUp()
     {
-        // Create a stub for the SomeClass class.
         $this->mailer = $this->getMock('Mail', array('mail'));
-        // Configure the stub.
         $this->mailer->expects($this->any())
             ->method('mail')
             ->will($this->returnValue(true));
@@ -41,15 +37,6 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->objectManager->expects($this->any())
             ->method('flush')
             ->will($this->returnValue('true'));
-
-
-        $this->chooserCategory = $this->getMock('Chooser', array('choose'));
-        $this->chooserCategory->expects($this->any())
-            ->method('choose')
-            ->will($this->returnValue(array(
-                new Category(), new Category()
-            )));
-
 
         $this->templating = $this->getMock('Templating', array('render'));
         $this->templating->expects($this->any())
@@ -63,11 +50,10 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('translation'));
     }
 
-
     /**
-     *
+     * Check that method send email to user
      */
-    public function testMethodOnExerciseUserSendEventShouldSendEmail()
+    public function testMethod_onWeeklyquizUserSendEvent_ShouldSendEmail()
     {
         $email = null;
         $title = null;
@@ -82,20 +68,15 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
                 $content = $c;
             }));
 
-        $subscriber = new ExerciseUserSubscriber($this->mailer, $this->templating,
-            $this->translator, $this->objectManager, $this->chooserCategory);
 
-
-        $event = new ExerciseUserEvent(
-            (new ExerciseUser())
-                ->setUser(
-                    (new User())
-                        ->setEmail('test@test.com')
-                        ->setFocus((new UserFocus()))
-                )
-        );
-
-        $subscriber->onExerciseUserSendEvent($event);
+        (new WeeklyquizUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
+            ->onWeeklyquizUserSendEvent(new WeeklyquizUserEvent(
+                (new WeeklyquizUser())
+                    ->setUser(
+                        (new User())
+                            ->setEmail('test@test.com')
+                    )
+            ));
 
         $this->assertEquals($email, 'test@test.com');
         $this->assertEquals($title, $this->translator->trans());
@@ -103,27 +84,23 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test that method should
-     * change processed status for ExerciseUser
+     * Check that weeklyquiz status
+     * was changed after email-sending
      *
      */
-    public function testMethodOnExerciseUserSendEventShouldMarkExerciseAsProcessed()
+    public function testMethod_onWeeklyquizUserSendEvent_ShouldChangeProcessed()
     {
-        $subscriber = new ExerciseUserSubscriber($this->mailer, $this->templating,
-            $this->translator, $this->objectManager, $this->chooserCategory);
-
-        $event = new ExerciseUserEvent(
-            (new ExerciseUser())
+        $event = new WeeklyquizUserEvent(
+            (new WeeklyquizUser())
                 ->setUser(
                     (new User())
                         ->setEmail('test@test.com')
-                        ->setFocus((new UserFocus()))
                 )
         );
 
-        $subscriber->onExerciseUserSendEvent($event);
+        (new WeeklyquizUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
+            ->onWeeklyquizUserSendEvent($event);
 
         $this->assertEquals($event->getEntity()->getProcessed(), 1);
     }
-
-} 
+}

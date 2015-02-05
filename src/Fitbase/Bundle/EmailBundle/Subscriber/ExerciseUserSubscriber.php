@@ -15,7 +15,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberInterface
+class ExerciseUserSubscriber implements EventSubscriberInterface
 {
     protected $mailer;
     protected $translator;
@@ -24,7 +24,7 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
     protected $objectManager;
 
 
-    public function __construct($mailer, $objectManager, $chooserCategory, $templating, $translator)
+    public function __construct($mailer, $templating, $translator, $objectManager, $chooserCategory)
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
