@@ -24,39 +24,46 @@ class ExerciseController extends Controller
      */
     public function exerciseAction(Request $request, $unique = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+        if (($user = $this->get('user')->current())) {
+
+            $entityManager = $this->get('entity_manager');
+            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+
+            if (!($exercise = $repositoryExercise->findOneById($unique))) {
+                // TODO: notify admin about exercise, that not exists
+                $exercise = null;
+            }
+
+            return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
+                'user' => $user,
+                'exercise' => $exercise,
+            ));
         }
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-        if (!($exercise = $repositoryExercise->findOneById($unique))) {
-            // TODO: notify admin about exercise, that not exists
-            $exercise = null;
-        }
-
-
-        return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
-            'user' => $user,
-            'exercise' => $exercise,
-        ));
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
-
+    /**
+     * Mark exercise as done
+     *
+     * @param Request $request
+     * @param null $unique
+     * @return Response
+     */
     public function doneAction(Request $request, $unique = null)
     {
-        if (!($user = $this->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+        if (($user = $this->get('user')->current())) {
+
+            $entityManager = $this->get('entity_manager');
+            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+
+            $event = new ExerciseEvent($repositoryExercise->findOneById($unique));
+            $this->get('event_dispatcher')->dispatch('exercise_done', $event);
+
+            return new Response(null, 200);
         }
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-        $event = new ExerciseEvent($repositoryExercise->findOneById($unique));
-        $this->get('event_dispatcher')->dispatch('exercise_done', $event);
-
-        return new Response(null, 200);
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
