@@ -66,12 +66,7 @@ class UserActivityAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper
-            ->add('user')
-            ->add('date')
-            ->add('text')
-            ->add('countPoint')
-            ->add('countPointTotal');
+        $datagridMapper->add('user');
     }
 
     /**
