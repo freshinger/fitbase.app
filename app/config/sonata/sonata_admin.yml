@@ -148,6 +148,7 @@ sonata_admin:
                     - fitbase.admin.questionnaire_user
                     - fitbase.admin.weeklytask_user
                     - fitbase.admin.weeklyquiz_user
+                    - fitbase.admin.user_activity
 
             fitbase.admin.group.company:
                 label: Fitbase Unternehmer

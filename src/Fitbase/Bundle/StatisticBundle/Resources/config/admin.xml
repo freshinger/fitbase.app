@@ -5,6 +5,18 @@
 
     <services>
 
+
+        <service id="fitbase.admin.user_activity" class="Fitbase\Bundle\StatisticBundle\Admin\UserActivityAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Statistics" label="User activity"/>
+            <argument/>
+            <argument>Fitbase\Bundle\StatisticBundle\Entity\UserActivity</argument>
+            <argument/>
+        </service>
+
+
         <service id="fitbase.admin.statistic" class="Fitbase\Bundle\StatisticBundle\Admin\StatisticAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

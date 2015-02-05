@@ -55,6 +55,8 @@ class WeeklytaskReminderSubscriber extends ContainerAware implements EventSubscr
                 // a last weeklytask was sent
                 if ($this->container->get('weeklytask')->isLast($user, $datetime)) {
                     if (($weeklytaskUser = $this->container->get('weeklytask')->getLast($user))) {
+
+                        // Not
                         $event = new WeeklytaskUserEvent($weeklytaskUser);
                         $this->container->get('event_dispatcher')->dispatch('weeklytask_user_done_last', $event);
                     }

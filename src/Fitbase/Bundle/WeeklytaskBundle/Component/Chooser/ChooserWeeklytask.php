@@ -10,7 +10,6 @@ class ChooserWeeklytask implements ChooserInterface
      */
     public function choose(array $categories = array(), array $existed = array())
     {
-        $result = array();
         foreach ($categories as $category) {
             if (($weeklytasks = $category->getWeeklytasks())) {
                 foreach ($weeklytasks as $weeklytask) {

@@ -106,7 +106,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
             $activity->setCountPoint(1);
             $activity->setDate($this->container->get('datetime')->getDateTime('now'));
             $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-            $activity->setText('Eine Aufgabe wurde bearbeitei');
+            $activity->setText('Eine Aufgabe (3 Videos) wurde bearbeitei');
 
             $this->container->get('entity_manager')->persist($activity);
             $this->container->get('entity_manager')->flush($activity);
@@ -126,7 +126,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         $activity->setDate($this->container->get('datetime')->getDateTime('now'));
         $activity->setCountPoint($weeklytaskUser->getTask()->getCountPoint());
         $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($weeklytaskUser->getUser()));
-        $activity->setText('Die Wochenaufgabe wurde bearbeitet');
+        $activity->setText('Eine Infoeinheit wurde bearbeitet');
 
         $this->container->get('entity_manager')->persist($activity);
         $this->container->get('entity_manager')->flush($activity);
