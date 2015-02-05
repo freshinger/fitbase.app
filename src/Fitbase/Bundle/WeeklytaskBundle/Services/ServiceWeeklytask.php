@@ -145,7 +145,10 @@ class ServiceWeeklytask extends ContainerAware
             if (($collection = $repositoryWeeklytaskUser->findAllByUser($user))) {
                 $collection = new ArrayCollection($collection);
                 $existed = $collection->map(function ($entity) {
-                    return $entity->getTask()->getId();
+                    if (($task = $entity->getTask())) {
+                        return $task->getId();
+                    }
+                    return null;
                 })->toArray();
             }
 
