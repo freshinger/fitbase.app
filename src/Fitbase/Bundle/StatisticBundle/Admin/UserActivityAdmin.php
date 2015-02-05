@@ -57,8 +57,8 @@ class UserActivityAdmin extends Admin implements ContainerAwareInterface
             ->add('user')
             ->add('date')
             ->add('text')
-            ->add('countPoint')
-            ->add('countPointTotal');
+            ->add('countPoint', null, array( 'label' => 'Punkte'))
+            ->add('countPointTotal', null, array( 'label' => 'Punkte (Total)'));
     }
 
     /**
