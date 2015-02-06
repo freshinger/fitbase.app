@@ -25,10 +25,8 @@ class ActioncodeExistsValidator extends ConstraintValidator implements Container
         $repositoryUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserActioncode');
 
         if (!($actioncode = $repositoryUser->findOneByCode($value))) {
-            $this->context->addViolation($constraint->message, array());
-            return false;
+            $this->context->buildViolation($constraint->message)
+                ->addViolation();
         }
-
-        return true;
     }
 }

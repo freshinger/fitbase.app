@@ -15,6 +15,7 @@ class UserActioncodeForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('code', null, array(
+            'label' => false,
             'attr' => array(
                 'class' => 'form-control'
             )
