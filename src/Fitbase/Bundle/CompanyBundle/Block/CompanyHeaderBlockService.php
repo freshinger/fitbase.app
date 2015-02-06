@@ -8,56 +8,38 @@
 namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyManager;
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyManagerInterface;
+use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwareInterface
+
+class CompanyHeaderBlockService extends BaseBlockService
 {
-    /**
-     * Store container here
-     * @var
-     */
-    protected $container;
+    protected $user;
+    protected $session;
+    protected $companyManager;
 
     /**
-     * Set container
-     * @param ContainerInterface $container
+     * @param string $name
+     * @param EngineInterface $templating
+     * @param CompanyManagerInterface $companyManager
+     * @param ServiceUser $user
+     * @param SessionInterface $session
      */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct($name, EngineInterface $templating, CompanyManagerInterface $companyManager, ServiceUser $user, SessionInterface $session)
     {
-        $this->container = $container;
-    }
+        parent::__construct($name, $templating);
 
-
-    /**
-     * Get company by slug
-     *
-     * @param null $slug
-     * @return mixed
-     */
-    protected function getCompanyBySlug($slug = null)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryCompany = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
-        return $repositoryCompany->findOneBySlug($slug);
-    }
-
-    /**
-     * Get company from user
-     *
-     * @param null $user
-     * @return null
-     */
-    protected function getCompanyByUser($user = null)
-    {
-        if (is_object($user)) {
-            return $user->getCompany();
-        }
-        return null;
+        $this->user = $user;
+        $this->session = $session;
+        $this->companyManager = $companyManager;
     }
 
     /**
@@ -66,12 +48,17 @@ class CompanyHeaderBlockService extends BaseBlockService implements ContainerAwa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (($user = $this->container->get('user')->current())) {
-            $company = $this->getCompanyByUser($user);
+        $company = null;
+        if (($user = $this->user->current())) {
+            if (!($company = $this->companyManager->findOneByUser($user))) {
+                if (strlen(($slug = $this->session->get('company')))) {
+                    $company = $this->companyManager->findOneBySlug($slug);
+                }
+            }
         } else {
-            $company = $this->getCompanyBySlug(
-                $this->container->get('request')->getSession()->get('company')
-            );
+            if (strlen(($slug = $this->session->get('company')))) {
+                $company = $this->companyManager->findOneBySlug($slug);
+            }
         }
 
         return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array(

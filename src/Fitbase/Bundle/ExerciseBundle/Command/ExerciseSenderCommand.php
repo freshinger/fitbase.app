@@ -34,7 +34,7 @@ class ExerciseSenderCommand extends ContainerAwareCommand
         // TODO: change to global config
         $context = $this->getContainer()->get('router')->getContext();
         $context->setHost('app.fitbase.de');
-        $context->setScheme('http');
+        $context->setScheme('https');
         $context->setBaseUrl('/default');
 
         $datetime = $this->get('datetime')->getDateTime('now');

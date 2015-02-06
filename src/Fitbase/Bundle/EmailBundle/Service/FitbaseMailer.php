@@ -11,7 +11,7 @@ namespace Fitbase\Bundle\EmailBundle\Service;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-class FitbaseMailer extends ContainerAware
+abstract class FitbaseMailer extends ContainerAware
 {
     /**
      * Store mailer service here

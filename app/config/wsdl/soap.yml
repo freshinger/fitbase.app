@@ -8,13 +8,13 @@ be_simple_soap:
         limit:    5
     clients:
         fitbase:
-          wsdl: "https://www.fitbase.de/wsdl/api.wsdl"
+          wsdl: "https://coaches.fitbase.de/wsdl/api.wsdl"
         wellbeing:
-          wsdl: "http://wellbeing.fitbase.de/api/wsdl/user"
+          wsdl: "https://wellbeing.fitbase.de/api/wsdl/user"
 
     services:
         user:
-            namespace: "http://wellbeing.fitbase.de/api/wsdl/user/1.0/"
+            namespace: "https://wellbeing.fitbase.de/api/wsdl/user/1.0/"
             binding: "rpc-literal"
             resource: "@WellbeingApiBundle/Controller/WsdlApiController.php"
             resource_type: "annotation"
