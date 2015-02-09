@@ -165,6 +165,7 @@ class WeeklyquizUser
     public function setQuiz($quiz)
     {
         $this->quiz = $quiz;
+        return $this;
     }
 
     /**

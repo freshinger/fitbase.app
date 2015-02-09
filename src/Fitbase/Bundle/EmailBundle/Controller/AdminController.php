@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends CoreController
 {
-
     /**
      * Import actioncodes
      *
