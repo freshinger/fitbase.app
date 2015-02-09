@@ -81,7 +81,8 @@
         "jpgraph/jpgraph": "dev-master",
         "bariew/phpquery": "1.0.2",
         "cocur/slugify": "1.0.x-dev",
-        "besimple/soap": "0.2.x-dev"
+        "besimple/soap": "0.2.x-dev",
+        "jmose/command-scheduler-bundle": "~1.0"
     },
 
     "require-dev": {
