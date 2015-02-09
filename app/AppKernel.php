@@ -72,7 +72,6 @@ class AppKernel extends Kernel
             // API
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-//            new BCC\CronManagerBundle\BCCCronManagerBundle(),
 
             // E-COMMERCE
             new Sonata\BasketBundle\SonataBasketBundle(),
@@ -129,7 +128,7 @@ class AppKernel extends Kernel
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
-
+            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
 
             new Fitbase\Bundle\WeeklytaskBundle\FitbaseWeeklytaskBundle(),
             new Fitbase\Bundle\FitbaseBundle\FitbaseFitbaseBundle(),
