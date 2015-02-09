@@ -43,9 +43,6 @@
     <!--</route>-->
 
 
-    <!--<route id="weeklytask_user_done" pattern="/mitgliederbereich/wochenaufgaben/done">-->
-    <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listDone</default>-->
-    <!--</route>-->
 
     <!--<route id="weeklytask_user_list" pattern="/mitgliederbereich/wochenaufgaben/list">-->
     <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklytaskUser:listToDone</default>-->

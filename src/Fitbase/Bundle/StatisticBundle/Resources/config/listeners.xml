@@ -12,15 +12,10 @@
             <tag name="kernel.event_listener" event="statistic_login" method="onStatisticLoginEvent" priority="-128"/>
             <tag name="kernel.event_listener" event="statistic_video" method="onStatisticUserVideoEvent"
                  priority="-128"/>
-            <tag name="kernel.event_listener" event="wochenaufgabe_sent" method="onStatisticWeeklyTaskEvent"
-                 priority="-128"/>
-            <tag name="kernel.event_listener" event="wochenaufgabe_done" method="onStatisticWeeklyTaskProcessedEvent"
-                 priority="-128"/>
             <tag name="kernel.event_listener" event="wochenaufgabe_statistic"
                  method="onStatisticWeeklyTaskStatisticEvent"/>
             <tag name="kernel.event_listener" event="fitbaseuser_export_statistic" method="onUserStatisticExportEvent"/>
 
-            <tag name="kernel.event_listener" event="fitbaseuser_created" method="onUserCreatedEvent"/>
         </service>
 
 

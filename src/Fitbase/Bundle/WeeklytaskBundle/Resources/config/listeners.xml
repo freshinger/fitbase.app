@@ -1,124 +1,24 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <services>
 
-
-    <service id="fitbase_listener.weekly_task_deprecated" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyTasksListener">
+        <service id="fitbase_listener.WeeklyquizUserListener" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizUserListener">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="wochenaufgabe_sent" method="onWochenaufgabeSent"/>
-            <tag name="kernel.event_listener" event="wochenaufgabe_done" method="onWochenaufgabeDone"/>
-            <tag name="kernel.event_listener" event="wochenaufgabe_planning" method="onWeeklyTaskPlanning"/>
-            <tag name="kernel.event_listener" event="fitbaseuser_created" method="onWeeklyTaskPlanning"/>
-
-        </service>
-
-
-        <service id="fitbase_listener.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklytaskListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_create" method="onWeeklytaskCreateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_remove" method="onWeeklytaskRemoveEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_update" method="onWeeklytaskUpdateEvent"/>
-        </service>
-
-        <service id="fitbase_listener.weeklytask_quiz" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_update" method="onWeeklytaskUpdateEvent"/>
-
-            <tag name="kernel.event_listener" event="weeklytask_quiz_create" method="onWeeklyquizCreateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_remove" method="onWeeklyquizRemoveEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_update" method="onWeeklyquizUpdateEvent"/>
-        </service>
-
-        <service id="fitbase_listener.weeklytask_question" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizQuestionListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_question_create" method="onWeeklyquizQuestionCreateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_question_remove" method="onWeeklyquizQuestionRemoveEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_question_update" method="onWeeklyquizQuestionUpdateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_remove" method="onWeeklyquizRemoveEvent" priority="128"/>
-
-        </service>
-
-
-        <service id="fitbase_listener.weeklytask_answer" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizAnswerListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_answer_create" method="onWeeklyquizAnswerCreateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_answer_remove" method="onWeeklyquizAnswerRemoveEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_answer_update" method="onWeeklyquizAnswerUpdateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_remove" method="onWeeklyquizRemoveEvent" priority="128"/>
-            <tag name="kernel.event_listener" event="weeklytask_question_remove" method="onWeeklyquizQuestionRemoveEvent" priority="128"/>
-        </service>
-
-        <service id="fitbase_listener.weeklytask_plan" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklytaskPlanListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_user_created" method="onWeeklytaskUserCreatedEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_plan_sent" method="onWeeklytaskPlanSentEvent"/>
-        </service>
-
-        <service id="fitbase_listener.weeklytask_quiz_plan" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizPlanListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_remove" method="onWeeklyquizRemoveEvent" priority="128"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_created" method="onWeeklyquizUserCreatedEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_plan_sent" method="onWeeklyquizPlanSentEvent"/>
-        </service>
-
-        <service id="fitbase_listener.weeklytask_user" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklytaskUserListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-
-            <tag name="kernel.event_listener" event="weeklytask_user_plan" method="onWeeklytaskUserPlanEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_done" method="onWeeklytaskUserDoneEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_send" method="onWeeklytaskUserSendEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_create" method="onWeeklytaskUserCreateEvent"/>
-        </service>
-
-
-        <service id="fitbase_listener.weeklytask_user_quiz" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizUserListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_update" method="onWeeklyquizUpdateEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_plan" method="onWeeklyquizUserPlanEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_send" method="onWeeklyquizUserSendEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_user_quiz_create" method="onWeeklyquizUserCreateEvent"/>
             <tag name="kernel.event_listener" event="weeklyquiz_user_done" method="onWeeklyquizUserDoneEvent"/>
         </service>
+
 
         <service id="fitbase_listener.weeklytask_user_answer" class="Fitbase\Bundle\WeeklytaskBundle\Listener\WeeklyquizUserAnswerListener">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklyquiz_user_answer_done"
-                 method="onWeeklyquizUserAnswerCreateEvent"/>
+            <tag name="kernel.event_listener" event="weeklyquiz_user_answer_done" method="onWeeklyquizUserAnswerCreateEvent"/>
         </service>
 
-
-        <service id="fitbase_listener.weekly_email" class="Fitbase\Bundle\WeeklytaskBundle\Listener\EmailListener">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="kernel.event_listener" event="weeklytask_plan_send" method="onWeeklytaskPlanSendEvent"/>
-            <tag name="kernel.event_listener" event="weeklytask_quiz_plan_send" method="onWeeklyquizPlanSendEvent"/>
-        </service>
 
     </services>
-
 </container>

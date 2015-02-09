@@ -3,24 +3,20 @@
 namespace Fitbase\Bundle\WeeklytaskBundle\Subscriber;
 
 
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class WeeklytaskUserSubscriber implements EventSubscriberInterface
 {
+    protected $objectManager;
     protected $datetime;
     protected $eventDispatcher;
     protected $weeklytask;
 
-    public function __construct($eventDispatcher, $datetime, $weeklytask)
+    public function __construct($objectManager, $eventDispatcher, $datetime, $weeklytask)
     {
+        $this->objectManager = $objectManager;
         $this->datetime = $datetime;
         $this->eventDispatcher = $eventDispatcher;
         $this->weeklytask = $weeklytask;
@@ -33,8 +29,29 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
+            'weeklytask_user_done' => array('onWeeklytaskUserDoneEvent'),
             'weeklytask_reminder_create' => array('onWeeklytaskReminderCreateEvent'),
         );
+    }
+
+    /**
+     * Mark weekly task as completed
+     * @param WeeklytaskUserEvent $event
+     */
+    public function onWeeklytaskUserDoneEvent(WeeklytaskUserEvent $event)
+    {
+        assert(($weeklytaskUser = $event->getEntity()));
+
+        $weeklytaskUser->setDone(true);
+        $weeklytaskUser->setDoneDate($this->datetime->getDateTime('now'));
+        $weeklytaskUser->setCountPoint(0);
+
+        if (($weeklytask = $weeklytaskUser->getTask())) {
+            $weeklytaskUser->setCountPoint($weeklytask->getCountPoint());
+        }
+
+        $this->objectManager->persist($weeklytaskUser);
+        $this->objectManager->flush($weeklytaskUser);
     }
 
     /**
@@ -45,7 +62,6 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     {
         if (($reminderUserItem = $event->getEntity())) {
             if (($user = $reminderUserItem->getUser())) {
-
 
                 $hour = $reminderUserItem->getTime()->format('H');
                 $minute = $reminderUserItem->getTime()->format('i');

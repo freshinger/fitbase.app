@@ -18,6 +18,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Subscriber\WeeklytaskUserSubscriber;
 
 class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
 {
+    protected $objectManager;
     protected $datetime;
     protected $eventDispatcher;
     protected $weeklytask;
@@ -31,6 +32,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
             ->method('getDateTime')
             ->will($this->returnValue(new \DateTime('now')));
 
+        $this->objectManager = $this->getMock('ObjectManager', array('persist', 'flush'));
         $this->eventDispatcher = $this->getMock('EventDispatcher', array('dispatch'));
 
         $this->weeklytask = $this->getMock('Weeklytask', array('isExists', 'create', 'isLast', 'getLast'));
@@ -76,7 +78,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
                 ->setTime(new \DateTime('now'))
         );
 
-        (new WeeklytaskUserSubscriber($this->eventDispatcher, $this->datetime, $this->weeklytask))
+        (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
             ->onWeeklytaskReminderCreateEvent($event);
 
         $this->assertTrue($processedUser instanceof User);
@@ -117,7 +119,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
                 ->setTime(new \DateTime('now'))
         );
 
-        (new WeeklytaskUserSubscriber($this->eventDispatcher, $this->datetime, $this->weeklytask))
+        (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
             ->onWeeklytaskReminderCreateEvent($event);
 
 
@@ -155,7 +157,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
                 ->setTime(new \DateTime('now'))
         );
 
-        (new WeeklytaskUserSubscriber($this->eventDispatcher, $this->datetime, $this->weeklytask))
+        (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
             ->onWeeklytaskReminderCreateEvent($event);
 
 

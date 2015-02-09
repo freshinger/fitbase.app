@@ -7,6 +7,7 @@
     <services>
 
         <service id="fitbase.subscriber.infoeinheit.weeklytask_user" class="Fitbase\Bundle\WeeklytaskBundle\Subscriber\WeeklytaskUserSubscriber">
+            <argument type="service" id="entity_manager"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="datetime"/>
             <argument type="service" id="weeklytask"/>
