@@ -89,6 +89,7 @@ class ReminderUserItem
     public function setTime($time)
     {
         $this->time = $time;
+        return $this;
     }
 
     /**
@@ -113,6 +114,7 @@ class ReminderUserItem
     public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
     public function __toString()
