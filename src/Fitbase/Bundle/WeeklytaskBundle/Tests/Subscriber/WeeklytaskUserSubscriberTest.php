@@ -79,7 +79,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
         );
 
         (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
-            ->onWeeklytaskReminderCreateEvent($event);
+            ->onWeeklytaskUserCreateEvent($event);
 
         $this->assertTrue($processedUser instanceof User);
         $this->assertTrue($processedDatetime instanceof \DateTime);
@@ -120,7 +120,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
         );
 
         (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
-            ->onWeeklytaskReminderCreateEvent($event);
+            ->onWeeklytaskUserCreateEvent($event);
 
 
         $this->assertEquals($processedCode, null);
@@ -158,7 +158,7 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
         );
 
         (new WeeklytaskUserSubscriber($this->objectManager, $this->eventDispatcher, $this->datetime, $this->weeklytask))
-            ->onWeeklytaskReminderCreateEvent($event);
+            ->onWeeklytaskUserCreateEvent($event);
 
 
         $this->assertEquals($processedCode, 'weeklytask_user_done_last');

@@ -30,7 +30,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     {
         return array(
             'weeklytask_user_done' => array('onWeeklytaskUserDoneEvent'),
-            'weeklytask_reminder_create' => array('onWeeklytaskReminderCreateEvent'),
+            'weeklytask_user_create' => array('onWeeklytaskUserCreateEvent'),
         );
     }
 
@@ -58,7 +58,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
      * Create weeklytask reminder
      * @param WeeklytaskReminderEvent $event
      */
-    public function onWeeklytaskReminderCreateEvent(WeeklytaskReminderEvent $event)
+    public function onWeeklytaskUserCreateEvent(WeeklytaskReminderEvent $event)
     {
         if (($reminderUserItem = $event->getEntity())) {
             if (($user = $reminderUserItem->getUser())) {

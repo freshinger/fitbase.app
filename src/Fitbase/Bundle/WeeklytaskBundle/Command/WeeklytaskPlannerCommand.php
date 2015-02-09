@@ -36,7 +36,7 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
                 if (($user = $reminderUserItem->getUser())) {
 
                     $event = new WeeklytaskReminderEvent($reminderUserItem);
-                    $this->get('event_dispatcher')->dispatch('weeklytask_reminder_create', $event);
+                    $this->get('event_dispatcher')->dispatch('weeklytask_user_create', $event);
                 }
             }
         }
