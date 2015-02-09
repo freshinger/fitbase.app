@@ -61,8 +61,13 @@ abstract class FitbaseMailer extends ContainerAware
         $cids = array();
         if (($images = $this->sources($content))) {
             foreach ($images as $pathRaw => $pathFull) {
-                if (($embed = $message->embed(\Swift_Image::fromPath($pathFull)))) {
-                    array_push($cids, $embed);
+                try {
+                    if (($embed = $message->embed(\Swift_Image::fromPath($pathFull)))) {
+                        array_push($cids, $embed);
+                    }
+                } catch (\Exception $ex) {
+                    $this->container->get('logger')->crit($ex->getMessage());
+                    continue;
                 }
             }
             $message->setBody(str_replace(array_keys($images), $cids, $content));
