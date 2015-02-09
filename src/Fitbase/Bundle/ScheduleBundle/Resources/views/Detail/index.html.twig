@@ -1,0 +1,44 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{{ url('sonata_admin_dashboard') }}">
+            {% trans %}Dashboard{% endtrans %}
+        </a>
+    </li>
+    <li class="active">
+        {{ "Fitbase background task schedule"|trans({}, 'SonataAdminBundle') }}
+    </li>
+{% endblock %}
+
+
+{#{% block sonata_page_content_header %}#}
+    {#<nav class="navbar navbar-default" role="navigation">#}
+        {#<div class="navbar-header">#}
+            {#<span class="navbar-brand">#}
+                {#{{ "Fitbase background task schedule"|trans({}, 'SonataAdminBundle') }}#}
+            {#</span>#}
+        {#</div>#}
+    {#</nav>#}
+{#{% endblock sonata_page_content_header %}#}
+
+
+{% block sonata_admin_content %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="box box-success">
+                <div class="box-header">
+                    <h4 class="box-title">
+                        {{ "Create new schedule task"|trans({}, 'SonataAdminBundle') }}
+                    </h4>
+                </div>
+                <div class="box-body">
+                    <div class="sonata-ba-collapsed-fields">
+                        {% form_theme scheduledCommandForm 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
+                        {{ form( scheduledCommandForm, {'action': path('jmose_command_scheduler_detail_save')} ) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock sonata_admin_content %}

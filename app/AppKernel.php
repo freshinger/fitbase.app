@@ -140,6 +140,7 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\ExerciseBundle\FitbaseExerciseBundle(),
             new Fitbase\Bundle\UserBundle\FitbaseUserBundle(),
             new Fitbase\Bundle\EmailBundle\FitbaseEmailBundle(),
+            new Fitbase\Bundle\ScheduleBundle\FitbaseScheduleBundle(),
             new Wellbeing\Bundle\ApiBundle\WellbeingApiBundle(),
         );
 
