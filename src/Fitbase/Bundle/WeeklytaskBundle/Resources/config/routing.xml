@@ -12,7 +12,6 @@
         <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userView</default>
     </route>
 
-
     <!--<route id="weeklytask" pattern="/administration/weeklytask/list">-->
     <!--<default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:weeklytask</default>-->
     <!--</route>-->
@@ -41,7 +40,6 @@
     <!--<route id="weeklyquiz_user_ajax" pattern="/mitgliederbereich/wochenaufgaben/ajax/quiz">-->
     <!--<default key="_controller">FitbaseWeeklytaskBundle:WeeklyquizUser:weeklyquizUserAjax</default>-->
     <!--</route>-->
-
 
 
     <!--<route id="weeklytask_user_list" pattern="/mitgliederbereich/wochenaufgaben/list">-->

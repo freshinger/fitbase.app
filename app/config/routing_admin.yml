@@ -16,3 +16,11 @@ sonata_user_admin:
 sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix:   /media
+
+fitbase_email:
+    resource: "@FitbaseEmailBundle/Resources/config/routing_sonata.xml"
+    prefix:   /email
+
+fitbase_weeklytask:
+    resource: "@FitbaseWeeklytaskBundle/Resources/config/routing_sonata.xml"
+    prefix:   /infoeinheit

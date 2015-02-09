@@ -72,6 +72,12 @@ class WeeklytaskAdmin extends Admin implements ContainerAwareInterface
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
+                    'show_email' => array(
+                        'template' => 'FitbaseWeeklytaskBundle:Admin:button_show_email.html.twig'
+                    ),
+                    'show_quiz' => array(
+                        'template' => 'FitbaseWeeklytaskBundle:Admin:button_show_quiz.html.twig'
+                    ),
                     'edit' => array(),
                     'delete' => array(),
                 )

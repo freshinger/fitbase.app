@@ -1,7 +1,9 @@
 sonata_block:
     exception:
         default:
+            renderer: throw
             filter: keep_all
+
     context_manager: sonata.page.block.context_manager
     default_contexts: [sonata_page_bundle]
 

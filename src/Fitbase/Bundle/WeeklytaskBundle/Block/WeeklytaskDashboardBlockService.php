@@ -44,29 +44,30 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->serviceUser->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+        if (($user = $this->serviceUser->current())) {
+
+            $countWeeklytaskDone = 0;
+            $countWeeklytaskPointDone = 0;
+
+            $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+            $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+
+            $countWeeklytaskDone += $weeklytaskUserRepository->findCountByUserAndDone($user);
+            $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
+            $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
+
+            if (!($collection = $weeklytaskUserRepository->findAllByUser($user))) {
+                // TODO: statistic
+            }
+
+            return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(
+                'countDone' => $countWeeklytaskDone,
+                'countDonePoints' => $countWeeklytaskPointDone,
+                'collection' => $collection,
+            ));
         }
 
-        $countWeeklytaskDone = 0;
-        $countWeeklytaskPointDone = 0;
-
-        $weeklytaskUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-        $weeklyquizUserRepository = $this->serviceEntityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-
-        $countWeeklytaskDone += $weeklytaskUserRepository->findCountByUserAndDone($user);
-        $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
-        $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
-
-        if (!($collection = $weeklytaskUserRepository->findAllByUser($user))) {
-            // TODO: statistic
-        }
-
-        return $this->renderPrivateResponse('FitbaseWeeklytaskBundle:Block:dashboard.html.twig', array(
-            'countDone' => $countWeeklytaskDone,
-            'countDonePoints' => $countWeeklytaskPointDone,
-            'collection' => $collection,
-        ));
+        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
