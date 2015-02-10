@@ -23,8 +23,6 @@
             {% endif %}
         {% endif %}
 
-
-
         {% if exercise is defined and exercise %}
             {% if (exercise.webm is defined and exercise.webm) or (exercise.gallery.galleryHasMedias is defined and exercise.gallery.galleryHasMedias) %}
                 <div class="col-md-7">
@@ -103,7 +101,7 @@
                     {% endif %}
                 </div>
             {% else %}
-                <div class="col-md-12">
+                <div class="col-md-9">
                     {% if exercise is defined and exercise %}
                         {{ exercise.description|raw }}
                     {% endif %}
