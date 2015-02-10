@@ -11,8 +11,19 @@
 
     {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
 
-
     <div class="row">
+
+        {% if not exercise.webm %}
+            {% if not exercise.mp4 %}
+                <div class="col-md-3">
+                    {{ sonata_block_render({ 'type': 'fitbase.block.exercise_collection' }, {
+                    'categories': exercise.categories
+                    }) }}
+                </div>
+            {% endif %}
+        {% endif %}
+
+
 
         {% if exercise is defined and exercise %}
             {% if (exercise.webm is defined and exercise.webm) or (exercise.gallery.galleryHasMedias is defined and exercise.gallery.galleryHasMedias) %}

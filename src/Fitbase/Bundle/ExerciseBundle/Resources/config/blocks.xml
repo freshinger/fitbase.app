@@ -123,6 +123,11 @@
             <argument>fitbase.block.exercise</argument>
             <argument type="service" id="templating"/>
         </service>
+        <service id="fitbase.block.exercise_collection" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseCollectionBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.exercise</argument>
+            <argument type="service" id="templating"/>
+        </service>
 
     </services>
 </container>

@@ -107,6 +107,7 @@ sonata_block:
         fitbase.block.profile_focus:
         fitbase.block.exercise:
         fitbase.block.exercise_random:
+        fitbase.block.exercise_collection:
 
         fitbase.email_block.user:
         fitbase.email_block.header:
