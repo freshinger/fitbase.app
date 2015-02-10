@@ -139,6 +139,7 @@
         "incenteev-parameters": [{
             "file": "app/config/parameters.yml",
             "env-map": {
+                "fitbase.soap_code": "FITBASE_SOAP_CODE",
                 "database_driver":   "DATABASE_DRIVER",
                 "database_host":     "DATABASE_HOST",
                 "database_name":     "DATABASE_NAME",

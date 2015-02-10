@@ -42,7 +42,7 @@ class CollectionAdmin extends Admin
                 array(
                     'link_parameters' => array(
                         'provider' => 'sonata.media.provider.image',
-                        'context' => 'sonata_collection'
+                        'context' => 'category'
                     )
                 )
             );

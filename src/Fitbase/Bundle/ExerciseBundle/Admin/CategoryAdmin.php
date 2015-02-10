@@ -112,7 +112,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
                 array(
                     'link_parameters' => array(
                         'provider' => 'sonata.media.provider.image',
-                        'context' => 'exercise',
+                        'context' => 'category',
                     )
                 )
             )

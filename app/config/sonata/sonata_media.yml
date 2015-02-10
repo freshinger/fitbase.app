@@ -18,7 +18,24 @@ sonata_media:
                 thumbnail: { width: 150, quality: 100}
                 preview: { width: 300, quality: 100}
                 original: { width: 800, quality: 100}
-
+        category:
+            providers:
+                - sonata.media.provider.file
+                - sonata.media.provider.image
+            formats:
+                icon: { width: 100, quality: 100}
+                thumbnail: { width: 150, quality: 100}
+                preview: { width: 300, quality: 100}
+                original: { width: 800, quality: 100}
+        company:
+            providers:
+                - sonata.media.provider.file
+                - sonata.media.provider.image
+            formats:
+                icon: { width: 100, quality: 100}
+                thumbnail: { width: 150, quality: 100}
+                preview: { width: 300, quality: 100}
+                original: { width: 800, quality: 100}
         exercise:
             providers:
                 - sonata.media.provider.file
