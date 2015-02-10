@@ -12,7 +12,7 @@
                 {% if company is defined and company %}
                     {% if company.image is defined and company.image %}
                         {% set logo = null %}
-                        {% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;'} %}
+                        {% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;'} %}
                     {% endif %}
                 {% endif %}
 
