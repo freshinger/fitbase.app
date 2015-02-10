@@ -103,6 +103,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_stress.html.twig', array(
+            'category' => $category,
             'exercises' => $exercises,
         ));
     }
@@ -237,6 +238,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_augen.html.twig', array(
+            'category' => $category,
             'exercises' => $exercises,
         ));
     }
@@ -259,6 +261,7 @@ class CategoryController extends Controller
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_default.html.twig', array(
+            'category' => $category,
             'exercises' => $exercises,
         ));
     }

@@ -118,5 +118,11 @@
             </call>
         </service>
 
+        <service id="fitbase.block.exercise_random" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseRandomBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.exercise</argument>
+            <argument type="service" id="templating"/>
+        </service>
+
     </services>
 </container>
