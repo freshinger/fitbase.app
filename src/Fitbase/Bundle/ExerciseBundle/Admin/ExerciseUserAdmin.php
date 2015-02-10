@@ -65,6 +65,9 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
+                    'show_email' => array(
+                        'template' => 'FitbaseExerciseBundle:Admin:button_show_email.html.twig'
+                    ),
                     'edit' => array(),
                     'delete' => array(),
                 )

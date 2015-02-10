@@ -1,58 +1,30 @@
-<table class="container"
-       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;">
-    <tbody>
+<!--Company logo email block start-->
+<table class="six columns"
+       style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 280px; margin: 0 auto; padding: 0;">
     <tr style="vertical-align: top; text-align: left; padding: 0;" align="left">
-        <td class="wrapper last"
-            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px 0px 0px;"
-            align="left" valign="top">
+        <td class="center"
+            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
+            align="center" valign="top">
+            <center style="width: 100%; min-width: 280px;">
 
+                {% set logo = '/image/logo.png' %}
 
-            <!--Company logo email block start-->
-            <table class="twelve columns"
-                   style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;">
-                <tbody>
-                <tr style="vertical-align: top; text-align: left; padding: 0;"
-                    align="left">
-                    <td class="six sub-columns"
-                        style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; min-width: 0px; min-width: 10%; max-width: 50%; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 10px 10px 0px;"
-                        align="left" valign="bottom">
+                {% if company is defined and company %}
+                    {% if company.image is defined and company.image %}
+                        {% set logo = null %}
+                        {% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;'} %}
+                    {% endif %}
+                {% endif %}
 
-
-                        {% set logo = '/image/logo.png' %}
-
-                        {% if company is defined and company %}
-                            {% if company.image is defined and company.image %}
-                                {% set logo = null %}
-                                {% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both; display: block;'} %}
-                            {% endif %}
-                        {% endif %}
-
-                        {% if logo is defined and logo %}
-                            <img src="{{ logo }}"
-                                 style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both;"
-                                 align="left"/>
-                        {% endif %}
-                    </td>
-                    <td class="six sub-columns last"
-                        style="text-align: left; vertical-align: bottom; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; min-width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
-                        align="right" valign="middle">
-                            <span class="template-label"
-                                  style="color: #999999; font-weight: bold; font-size: 11px;">
-                                {% if company.description is defined and company.description %}
-                                    {{ company.description }}
-                                {% else %}
-                                    Online Gesundheit mit fitbase.
-                                {% endif %}
-                            </span>
-                    </td>
-                    <td class="expander"
-                        style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
-                        align="left" valign="top"></td>
-
-                </tr>
-                </tbody>
-            </table>
+                {% if logo is defined and logo %}
+                    <img src="{{ logo }}"
+                         style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: left; clear: both;"
+                         align="left"/>
+                {% endif %}
+            </center>
         </td>
+        <td class="expander"
+            style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; visibility: hidden; width: 0px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0;"
+            align="left" valign="top"></td>
     </tr>
-    </tbody>
 </table>
