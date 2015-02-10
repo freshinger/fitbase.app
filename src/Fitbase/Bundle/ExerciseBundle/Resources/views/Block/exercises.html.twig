@@ -45,9 +45,9 @@
 </style>
 
 {% if exercises is defined %}
-    <div class="row" style="padding-right: 10px;">
+    <div class="row" style="padding-right: 30px; max-width: 235px;">
         {% for exercise in exercises %}
-            <div class="col-md-12 panel">
+            <div class="col-md-12 panel" style="padding: 0px !important;">
                 <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                     {% if exercise.image is defined %}
                         {% thumbnail exercise.image, 'preview' with {'height': 112, 'width': null} %}

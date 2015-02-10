@@ -50,7 +50,7 @@
     <div class="col-md-6">
         {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" style="min-width: 480px;">
         {% if exercises is defined and exercises %}
             <h2>Übungen</h2>
             <div class="row">
