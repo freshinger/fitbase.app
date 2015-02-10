@@ -6,20 +6,22 @@
     }
 
     a.thumb-info span.thumb-info-title {
-        color: #ffffff;
+        color: #909090;
         font-size: 12px;
-        font-weight: 600;
         letter-spacing: 0;
         padding: 7px 11px 9px;
         text-transform: uppercase;
+        left: 0px;
+        width: 100%;
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
     }
 
     .thumb-info .thumb-info-title {
-        background: none repeat scroll 0 0 rgba(66, 139, 202, 0.9);
+        background: none repeat scroll 0 0 #f5f5f5;
         bottom: 10%;
-        color: #fff;
         font-size: 18px;
-        font-weight: 700;
         left: 20px;
         letter-spacing: -1px;
         padding: 9px 11px;
@@ -29,6 +31,11 @@
         transition: all 0.3s ease 0s;
         z-index: 1;
     }
+    .thumb-info img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
 
     .thumb-info-inner {
         width: 100%;
@@ -37,13 +44,13 @@
 </style>
 {% if categories is defined %}
     {% if categories|length > 0 %}
-        <div class="row">
+        <div class="row" style="padding: 0px;">
             {% for category in categories|reverse %}
                 {% if category.exercises|length > 0 and category.parent is not null %}
                     {% if category.media is defined and category.media %}
-                        <div class="col-md-3">
+                        <div class="col-md-4" style="padding: 0px;">
                             <a class="thumb-info" href="{{ path('category', {'slug': category.slug}) }}">
-                                {% thumbnail category.media, 'preview' with {'height': 200, 'width': null} %}
+                                {% thumbnail category.media, 'preview' with {'height': 180, 'width': null} %}
                                 <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ category.name }}
@@ -62,12 +69,12 @@
 
 {% if exercises is defined %}
     {% if exercises|length > 0 %}
-        <div class="row">
+        <div class="row" style="padding: 0px;">
             <div class="col-md-12">
                 <h2>Übungen</h2>
             </div>
             {% for exercise in exercises %}
-                <div class="col-md-4 panel">
+                <div class="col-md-4 panel" style="padding:0px; margin-bottom: 20px; max-width: 280px; margin-right: 25px;" >
                     <a class="thumb-info" href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
                         {% if exercise.image is defined %}
                             {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
