@@ -14,7 +14,7 @@ class WsdlApiController extends Controller
      * @Soap\Param("password", phpType = "string")
      * @Soap\Result(phpType = "boolean")
      */
-    public function getAuthkey($login, $password)
+    public function getAuthkeyAction($login, $password)
     {
         return $this->get('codegenerator')->code(20);
     }
