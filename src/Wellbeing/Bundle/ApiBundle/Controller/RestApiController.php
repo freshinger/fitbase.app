@@ -31,9 +31,9 @@ class RestApiController extends WsdlApiController
      * @return string
      *
      */
-    public function getAuthAction(ParamFetcherInterface $paramFetcher)
+    public function postAuthAction(ParamFetcherInterface $paramFetcher)
     {
-        return "{$paramFetcher->get("login")}" . $this->get('codegenerator')->code(20);
+        return "{$paramFetcher->get("login")}/{$paramFetcher->get("password")}/" . $this->get('codegenerator')->code(20);
     }
 
 
