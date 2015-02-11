@@ -32,7 +32,8 @@ class RestApiController extends WsdlApiController
      */
     public function postAuthAction(Request $request)
     {
-        return $this->get('codegenerator')->code(20);
+
+        return ["user_auth" => ["authkey" => $this->get('codegenerator')->code(20)]];
     }
 
 //
