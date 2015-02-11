@@ -1,75 +1,35 @@
-{{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
+{% extends 'FitbaseExerciseBundle:Category:category_default.html.twig' %}
 
-<style>
 
-    .panel {
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        box-shadow: none;
-    }
+{% block content %}
 
-    a.thumb-info span.thumb-info-title {
-        color: #909090;
-        font-size: 12px;
-        letter-spacing: 0;
-        padding: 7px 11px 9px;
-        text-transform: uppercase;
-        left: 0px;
-        width: 100%;
-        overflow:hidden;
-        white-space:nowrap;
-        text-overflow:ellipsis;
-    }
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 
-    .thumb-info .thumb-info-title {
-        background: none repeat scroll 0 0 #f5f5f5;
-        bottom: -1px;
-        font-size: 18px;
-        left: 20px;
-        letter-spacing: -1px;
-        padding: 9px 11px;
-        position: absolute;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        text-transform: uppercase;
-        transition: all 0.3s ease 0s;
-        z-index: 1;
-    }
+    <div class="row">
+        <div class="col-md-6">
+            {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
+        </div>
 
-    .thumb-info img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto
-    }
-
-    .thumb-info-inner {
-        width: 100%;
-    }
-
-</style>
-
-<div class="row">
-    <div class="col-md-6">
-        {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
-    </div>
-
-    <div class="col-md-6" style="min-width: 480px;">
-        {% if exercises is defined and exercises %}
-            <h2>Übungen</h2>
-            <div class="row">
-                {% for exercise in exercises %}
-                    <div class="col-md-5 panel" style="padding-left: 0px !important; margin-left: 15px;">
-                        <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
-                            {% if exercise.image is defined %}
-                                {% thumbnail exercise.image, 'preview' with {'height': 112, 'width': null} %}
-                                <span class="thumb-info-title">
+        <div class="col-md-6">
+            {% if exercises is defined and exercises %}
+                <h2>Übungen</h2>
+                <div class="row">
+                    {% for exercise in exercises %}
+                        <div class="col-md-5 panel">
+                            <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
+                                {% if exercise.image is defined %}
+                                    {% thumbnail exercise.image, 'preview' with {'height': 112, 'width': null} %}
+                                    <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ exercise.name }}
                                     </span>
                                 </span>
-                            {% endif %}
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+                                {% endif %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </div>
-</div>
+{% endblock %}
