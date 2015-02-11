@@ -25,15 +25,15 @@ class RestApiController extends WsdlApiController
      * @QueryParam(name="login", requirements="\w+", description="Page for tag list pagination")
      * @QueryParam(name="password", requirements="\w+", description="Page for tag list pagination")
      *
-     * @param Request $request A Symfony request
+     * @param ParamFetcherInterface $paramFetcher
+     * @internal param Request $request A Symfony request
      *
      * @return string
      *
-     * @throws NotFoundHttpException
      */
-    public function getAuthAction(Request $request)
+    public function getAuthAction(ParamFetcherInterface $paramFetcher)
     {
-        return $this->get('codegenerator')->code(20);
+        return "{$paramFetcher->get("login")}" . $this->get('codegenerator')->code(20);
     }
 
 
