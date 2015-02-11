@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Wellbeing\Bundle\ApiBundle\Entity\UserLogin;
+use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 
 
 class RestApiController extends WsdlApiController
@@ -30,9 +31,8 @@ class RestApiController extends WsdlApiController
      *
      * @throws NotFoundHttpException
      */
-    public function postAuthAction(Request $request)
+    public function getAuthAction(Request $request)
     {
-
         return ["user_auth" => ["authkey" => $this->get('codegenerator')->code(20)]];
     }
 

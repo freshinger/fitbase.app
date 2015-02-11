@@ -17,7 +17,7 @@ _admin:
 
 _api:
     resource: routing_api.yml
-    prefix:   /api
+    prefix:   /api/rest
 
 
 
