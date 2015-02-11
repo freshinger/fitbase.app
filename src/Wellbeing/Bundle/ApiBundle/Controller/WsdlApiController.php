@@ -9,6 +9,18 @@ use Wellbeing\Bundle\ApiBundle\Entity\UserState;
 class WsdlApiController extends Controller
 {
     /**
+     * @Soap\Method("getAuthkey")
+     * @Soap\Param("login", phpType = "string")
+     * @Soap\Param("password", phpType = "string")
+     * @Soap\Result(phpType = "boolean")
+     */
+    public function getAuthkey($login, $password)
+    {
+        return $this->get('codegenerator')->code(20);
+    }
+
+
+    /**
      * @Soap\Method("addState")
      * @Soap\Param("authkey", phpType = "string")
      * @Soap\Param("timestamp", phpType = "int")
