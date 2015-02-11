@@ -9,7 +9,7 @@
 
 {% block content %}
 
-    {{ sonata_block_render_event('breadcrumb', { 'context': 'task', 'current_uri': app.request.requestUri }) }}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
     {% include 'FitbaseExerciseBundle:Task:task_content.html.twig' %}
 
 {% endblock %}
