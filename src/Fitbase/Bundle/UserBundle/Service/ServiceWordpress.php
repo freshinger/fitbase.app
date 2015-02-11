@@ -46,9 +46,9 @@ class ServiceWordpress extends ContainerAware
      */
     public function getCurrentPost()
     {
-        global $post;
-        return $this->container
-            ->get('ekino.wordpress.manager.post')
-            ->find($post->ID);
+//        global $post;
+//        return $this->container
+//            ->get('ekino.wordpress.manager.post')
+//            ->find($post->ID);
     }
 }

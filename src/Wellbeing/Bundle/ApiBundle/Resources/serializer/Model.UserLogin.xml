@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Wellbeing\Bundle\ApiBundle\Model\UserLogin" exclusion-policy="all" xml-root-name="user_login">
+
+        <property name="login"      type="string"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+        <property name="password"   type="string"   expose="true" since-version="1.0" groups="sonata_api_read,sonata_api_write,sonata_search" />
+
+    </class>
+</serializer>

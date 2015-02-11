@@ -34,9 +34,9 @@ class PostHelper extends \Twig_Extension implements ContainerAwareInterface
 
     public function getTitleById($postId)
     {
-        if (($post = $this->container->get('ekino.wordpress.manager.post')->find($postId))) {
-            return $post->getTitle();
-        }
+//        if (($post = $this->container->get('ekino.wordpress.manager.post')->find($postId))) {
+//            return $post->getTitle();
+//        }
         return null;
     }
 
