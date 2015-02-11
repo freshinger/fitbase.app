@@ -16,48 +16,47 @@ class RestApiController extends WsdlApiController
      * Adds a category
      *
      * @ApiDoc(
+     *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
+     *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while category creation",
      *      404="Returned when unable to find category"
      *  }
      * )
-     * @QueryParam(name="login", requirements="\w+", description="Page for tag list pagination")
-     * @QueryParam(name="password", requirements="\w+", description="Page for tag list pagination")
-     *
-     * @param ParamFetcherInterface $paramFetcher
-     * @internal param Request $request A Symfony request
+     * @param Request $request A Symfony request
      *
      * @return string
      *
-     */
-    public function postAuthAction(ParamFetcherInterface $paramFetcher)
-    {
-        return "{$paramFetcher->get("login")}/{$paramFetcher->get("password")}/" . $this->get('codegenerator')->code(20);
-    }
-
-
-    /**
-     * Adds a category
-     *
-     * @ApiDoc(
-     *  input={"class"="sonata_classification_api_form_category", "name"="", "groups"={"sonata_api_write"}},
-     *  output={"class"="Sonata\ClassificationBundle\Model\Category", "groups"={"sonata_api_read"}},
-     *  statusCodes={
-     *      200="Returned when successful",
-     *      400="Returned when an error has occurred while category creation",
-     *      404="Returned when unable to find category"
-     *  }
-     * )
-     *
-     * @param Request $request A Symfony request
-     *
-     * @return Category
-     *
      * @throws NotFoundHttpException
      */
-    public function postStateAction(Request $request)
+    public function postAuthAction(Request $request)
     {
-//        return $this->handleWriteCategory($request);
+        return $this->get('codegenerator')->code(20);
     }
+
+//
+//    /**
+//     * Adds a category
+//     *
+//     * @ApiDoc(
+//     *  input={"class"="sonata_classification_api_form_category", "name"="", "groups"={"sonata_api_write"}},
+//     *  output={"class"="Sonata\ClassificationBundle\Model\Category", "groups"={"sonata_api_read"}},
+//     *  statusCodes={
+//     *      200="Returned when successful",
+//     *      400="Returned when an error has occurred while category creation",
+//     *      404="Returned when unable to find category"
+//     *  }
+//     * )
+//     *
+//     * @param Request $request A Symfony request
+//     *
+//     * @return Category
+//     *
+//     * @throws NotFoundHttpException
+//     */
+//    public function postStateAction(Request $request)
+//    {
+////        return $this->handleWriteCategory($request);
+//    }
 }
