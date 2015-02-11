@@ -1,8 +1,13 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask_user', 'current_uri': app.request.requestUri }) }}
 
-{% if weeklytask %}
+{% if weeklytask is defined and weeklytask %}
     <div class="row">
-        <div class="col-md-9 top10 col-sm-offset-3">
+        <div class="col-md-3">
+            {{ sonata_block_render({ 'type': 'fitbase.block.weeklytask_collection' }, {
+                'categories': weeklytask.categories
+            }) }}
+        </div>
+        <div class="col-md-9 top10">
             <h2>{{ weeklytask.name }}</h2>
             <br/>
 

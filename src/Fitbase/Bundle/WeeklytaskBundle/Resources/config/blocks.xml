@@ -15,6 +15,15 @@
             <argument type="service" id="entity_manager"/>
         </service>
 
+
+        <service id="fitbase.block.weeklytask_collection" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskCollectionBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_weeklytask</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="fitbase.orm.weeklytask_manager"/>
+            <argument type="service" id="user"/>
+        </service>
+
     </services>
 
 

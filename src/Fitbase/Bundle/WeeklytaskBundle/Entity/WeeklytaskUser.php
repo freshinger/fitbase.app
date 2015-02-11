@@ -52,6 +52,7 @@ class WeeklytaskUser
     public function setTask($task)
     {
         $this->task = $task;
+        return $this;
     }
 
     /**

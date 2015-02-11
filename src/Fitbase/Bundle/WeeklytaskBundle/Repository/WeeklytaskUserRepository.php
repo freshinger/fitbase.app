@@ -218,6 +218,31 @@ class WeeklytaskUserRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
+
+    /**
+     * Find all weeklytasks
+     * by user and category
+     *
+     * @param $user
+     * @param $category
+     * @return array
+     */
+    public function findAllByUserAndCategory($user, $category)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+        $queryBuilder->leftJoin('WeeklytaskUser.task', 'Weeklytask');
+        $queryBuilder->leftJoin('Weeklytask.categories', 'Category');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprCategories($queryBuilder, array($category))
+        ));
+
+        $queryBuilder->addOrderBy('WeeklytaskUser.date', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     /**
      * Find all records by user
      * @param $user

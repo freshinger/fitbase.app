@@ -1,6 +1,7 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Helper;
 
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -22,11 +23,38 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    /**
+     * Get functions from a helper
+     * @return array
+     */
     public function getFunctions()
     {
         return array(
+            new \Twig_SimpleFunction('icon', array($this, 'getWeeklytaskIcon')),
             new \Twig_SimpleFunction('get_weeklyquiz_user_answer_points', array($this, 'getWeeklyquizUserAnswerPoints')),
         );
+    }
+
+    /**
+     * Calculate weeklytask image preview
+     * try to find first image, use as icon
+     * todo: resize and crop
+     *
+     * @param Weeklytask $weeklytask
+     * @return null|string
+     */
+    public function getWeeklytaskIcon(Weeklytask $weeklytask)
+    {
+        if (($content = $weeklytask->getContent())) {
+            \phpQuery::newDocumentHTML($content);
+            if (($images = pq('img'))) {
+                if (($image = (isset($images[0])) ? $images[0] : null)) {
+                    return "<img src='{$image->attr('src')}' height='112px;'>";
+                }
+            }
+        }
+        // TODO: return default empty image
+        return null;
     }
 
     public function getWeeklyquizUserAnswerPoints($weeklyquiz = null)
