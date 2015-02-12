@@ -14,7 +14,7 @@ use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 class RestApiController extends WsdlApiController
 {
     /**
-     * Adds a category
+     * Get authentication code
      *
      * @ApiDoc(
      *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
@@ -31,33 +31,31 @@ class RestApiController extends WsdlApiController
      *
      * @throws NotFoundHttpException
      */
-    public function getAuthAction(Request $request)
+    public function postAuthAction(Request $request)
     {
         return ["user_auth" => ["authkey" => $this->get('codegenerator')->code(20)]];
     }
 
-//
-//    /**
-//     * Adds a category
-//     *
-//     * @ApiDoc(
-//     *  input={"class"="sonata_classification_api_form_category", "name"="", "groups"={"sonata_api_write"}},
-//     *  output={"class"="Sonata\ClassificationBundle\Model\Category", "groups"={"sonata_api_read"}},
-//     *  statusCodes={
-//     *      200="Returned when successful",
-//     *      400="Returned when an error has occurred while category creation",
-//     *      404="Returned when unable to find category"
-//     *  }
-//     * )
-//     *
-//     * @param Request $request A Symfony request
-//     *
-//     * @return Category
-//     *
-//     * @throws NotFoundHttpException
-//     */
-//    public function postStateAction(Request $request)
-//    {
-////        return $this->handleWriteCategory($request);
-//    }
+    /**
+     * Store user position
+     *
+     * @ApiDoc(
+     *  input="Wellbeing\Bundle\ApiBundle\Form\UserState",
+     *  output="Wellbeing\Bundle\ApiBundle\Form\UserPosition",
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while category creation",
+     *      404="Returned when unable to find category"
+     *  }
+     * )
+     * @param Request $request A Symfony request
+     *
+     * @return string
+     *
+     * @throws NotFoundHttpException
+     */
+    public function putStateAction(Request $request)
+    {
+        return ["user_position" => ["correct" => true]];
+    }
 }
