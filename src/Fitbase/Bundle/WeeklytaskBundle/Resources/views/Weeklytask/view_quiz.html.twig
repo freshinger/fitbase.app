@@ -4,19 +4,14 @@
     {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklyquiz_user', 'current_uri': app.request.requestUri }) }}
 
     <div class="row">
-
-        {% if weeklyquiz is defined and weeklyquiz %}
-            <div class="col-md-5">
-                <img src="/image/weeklyquiz.jpg" alt="frau-stretching-300x285"/>
-            </div>
-
-            <div class="col-md-6" style="padding-left: 40px;">
-                Herzlich willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten, das Gelernte zu wiederholen und
-                Blätter für Ihren Gesundheitsbaum zu sammeln. Bitte beachten Sie, dass mehrere Antworten je Frage
-                richtig sein können. Viel Spaß!
-            </div>
-        {% endif %}
-
+        <div class="col-md-5">
+            <img src="/image/weeklyquiz.jpg" alt="frau-stretching-300x285"/>
+        </div>
+        <div class="col-md-6" style="padding-left: 40px;">
+            Herzlich willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten, das Gelernte zu wiederholen und
+            Blätter für Ihren Gesundheitsbaum zu sammeln. Bitte beachten Sie, dass mehrere Antworten je Frage
+            richtig sein können. Viel Spaß!
+        </div>
     </div>
 
     {% if form is defined and form %}
@@ -28,12 +23,12 @@
         $(function () {
             var container = $(document);
             {% if notices is defined and notices %}
-                {% for notice in notices %}
-                    var event = $.extend({
-                        type: 'weeklyquiz_user_notice'
-                    }, {{ notice|raw|json_encode()|raw }});
-                    container.trigger(event);
-                {% endfor %}
+            {% for notice in notices %}
+            var event = $.extend({
+                type: 'weeklyquiz_user_notice'
+            }, {{ notice|raw|json_encode()|raw }});
+            container.trigger(event);
+            {% endfor %}
             {% endif %}
         });
     </script>

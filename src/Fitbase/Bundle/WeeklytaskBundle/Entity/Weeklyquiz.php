@@ -106,6 +106,7 @@ class Weeklyquiz
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -138,6 +139,7 @@ class Weeklyquiz
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**

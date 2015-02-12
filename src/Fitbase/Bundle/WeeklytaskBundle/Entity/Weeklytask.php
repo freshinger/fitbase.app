@@ -82,6 +82,7 @@ class Weeklytask
     public function setContent($content)
     {
         $this->content = $content;
+        return $this;
     }
 
     /**
@@ -123,6 +124,7 @@ class Weeklytask
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**

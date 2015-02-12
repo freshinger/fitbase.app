@@ -28,6 +28,19 @@ class WeeklytaskManager implements WeeklytaskManagerInterface
     }
 
     /**
+     *
+     * @param $user
+     * @param $unique
+     * @return mixed
+     */
+    public function findOneByUserAndUnique($user, $unique)
+    {
+        $repositoryWeeklytaskUser = $this->objectManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        return $repositoryWeeklytaskUser->findOneByUserAndUnique($user, $unique);
+    }
+
+
+    /**
      * Find all weeklytask user objects by user and category
      * @param $user
      * @param $category

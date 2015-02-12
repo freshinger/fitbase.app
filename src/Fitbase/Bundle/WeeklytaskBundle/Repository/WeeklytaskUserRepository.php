@@ -108,6 +108,21 @@ class WeeklytaskUserRepository extends EntityRepository
     }
 
     /**
+     * Find weeklytask user by id
+     * @param $queryBuilder
+     * @param $unique
+     * @return mixed
+     */
+    protected function getExprUnique($queryBuilder, $unique)
+    {
+        if (!empty($unique)) {
+            $queryBuilder->setParameter('unique', $unique);
+            return $queryBuilder->expr()->eq('WeeklytaskUser.id', ':unique');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * @param $queryBuilder
      * @param $datetime
      * @return mixed
@@ -451,6 +466,28 @@ class WeeklytaskUserRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
+
+    /**
+     *
+     * @param $user
+     * @param $unique
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUserAndUnique($user, $unique)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprUnique($queryBuilder, $unique)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 
     /**
      * Find records count by user focus

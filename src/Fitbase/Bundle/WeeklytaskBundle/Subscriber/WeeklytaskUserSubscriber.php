@@ -30,7 +30,6 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     {
         return array(
             'weeklytask_user_done' => array('onWeeklytaskUserDoneEvent'),
-            'weeklytask_user_create' => array('onWeeklytaskUserCreateEvent'),
         );
     }
 
@@ -53,46 +52,4 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
         $this->objectManager->persist($weeklytaskUser);
         $this->objectManager->flush($weeklytaskUser);
     }
-
-    /**
-     * Create weeklytask reminder
-     * @param WeeklytaskReminderEvent $event
-     */
-    public function onWeeklytaskUserCreateEvent(WeeklytaskReminderEvent $event)
-    {
-        if (($reminderUserItem = $event->getEntity())) {
-            if (($user = $reminderUserItem->getUser())) {
-
-                $hour = $reminderUserItem->getTime()->format('H');
-                $minute = $reminderUserItem->getTime()->format('i');
-
-
-                $datetime = $this->datetime->getDateTime('now');
-                $datetime->setTime($hour, $minute);
-
-                // Check is weeklytask for this date
-                // already exists break up a scenario
-                if (!$this->weeklytask->isExists($user, $datetime)) {
-                    // Try to create a new weeklytask for this user
-                    // and this date, if task has been created,
-                    // break up a scenario
-                    $this->weeklytask->create($user, $datetime);
-                }
-
-                // Check is a last weeklytask was already sent
-                // for current user, than create a event that
-                // a last weeklytask was sent
-                if ($this->weeklytask->isLast($user, $datetime)) {
-                    if (($weeklytaskUser = $this->weeklytask->getLast($user))) {
-
-                        $event = new WeeklytaskUserEvent($weeklytaskUser);
-                        $this->eventDispatcher->dispatch('weeklytask_user_done_last', $event);
-                    }
-                }
-
-            }
-        }
-    }
-
-
 }

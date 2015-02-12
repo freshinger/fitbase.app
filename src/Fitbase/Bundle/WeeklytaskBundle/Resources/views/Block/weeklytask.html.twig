@@ -1,0 +1,8 @@
+{% if weeklytaskUser is defined %}
+    {% set weeklytask = weeklytaskUser.task %}
+    {% if weeklytask is defined %}
+        <h2>{{ weeklytask.name }}</h2>
+        <br/>
+        <p>{{ weeklytask.content|raw }}</p>
+    {% endif %}
+{% endif %}

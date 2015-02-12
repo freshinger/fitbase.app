@@ -16,13 +16,25 @@
         </service>
 
 
+        <service id="fitbase.block.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.weeklytask</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="fitbase.orm.weeklytask_manager"/>
+            <argument type="service" id="user"/>
+        </service>
+
+
         <service id="fitbase.block.weeklytask_collection" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskCollectionBlockService">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_weeklytask</argument>
+            <argument>fitbase.block.weeklytask_collection</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="fitbase.orm.weeklytask_manager"/>
             <argument type="service" id="user"/>
         </service>
+
+
 
     </services>
 

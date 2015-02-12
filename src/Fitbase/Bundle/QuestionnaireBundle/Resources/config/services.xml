@@ -8,6 +8,7 @@
         <import resource="admin.xml"/>
         <import resource="listeners.xml"/>
         <import resource="subscribers.xml"/>
+        <import resource="consumers.xml" />
     </imports>
     <!--
     <parameters>

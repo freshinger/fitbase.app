@@ -47,15 +47,16 @@ class WeeklytaskCollectionBlockServiceTest extends WebTestCase
 
 
         $this->objectManager = $this->getMock('\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskManagerInterface', array(
+            'findOneByUserAndUnique',
             'findAllByUserAndCategory'
         ));
         $this->objectManager->expects($this->any())
             ->method('findAllByUserAndCategory')
             ->will($this->returnValue(array(
-                (new WeeklytaskUser())->setTask((new Weeklytask())),
-                (new WeeklytaskUser())->setTask((new Weeklytask())),
-                (new WeeklytaskUser())->setTask((new Weeklytask())),
-                (new WeeklytaskUser())->setTask((new Weeklytask())),
+                (new WeeklytaskUser())->setTask((new Weeklytask())->addCategory((new Category()))),
+                (new WeeklytaskUser())->setTask((new Weeklytask())->addCategory((new Category()))),
+                (new WeeklytaskUser())->setTask((new Weeklytask())->addCategory((new Category()))),
+                (new WeeklytaskUser())->setTask((new Weeklytask())->addCategory((new Category()))),
             )));
 
 

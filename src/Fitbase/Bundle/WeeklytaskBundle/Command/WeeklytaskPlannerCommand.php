@@ -10,8 +10,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 
-
-
 class WeeklytaskPlannerCommand extends ContainerAwareCommand
 {
     /**
@@ -35,11 +33,14 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
 
         $day = $datetime->format('N');
         if (($collection = $this->get('reminder')->getItemsWeeklytask($day))) {
+            $backend = $this->get('sonata.notification.backend');
             foreach ($collection as $reminderUserItem) {
                 if (($user = $reminderUserItem->getUser())) {
-
-                    $event = new WeeklytaskReminderEvent($reminderUserItem);
-                    $this->get('event_dispatcher')->dispatch('weeklytask_user_create', $event);
+                    $output->writeln("Infoeinheit reminder for user: {$user->getId()} found");
+                    $backend->createAndPublish('weeklytask_planner', array(
+                        'user' => $user,
+                        'item' => $reminderUserItem,
+                    ));
                 }
             }
         }

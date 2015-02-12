@@ -56,15 +56,6 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.WeeklytaskUserSubscriber"
-                 class="Fitbase\Bundle\UserBundle\Subscriber\WeeklytaskUserSubscriber">
-            <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-
     </services>
 
 </container>

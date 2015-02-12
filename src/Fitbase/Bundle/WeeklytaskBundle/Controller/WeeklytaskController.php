@@ -23,25 +23,11 @@ class WeeklytaskController extends Controller
     public function userViewAction(Request $request, $unique = null)
     {
         if (($user = $this->get('user')->current())) {
-
-            $weeklytask = null;
-
-            $entityManager = $this->get('entity_manager');
-            $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-
-            if (($weeklytaskUser = $repositoryWeeklytask->find($unique))) {
-
-                $event = new WeeklytaskUserEvent($weeklytaskUser);
-                $this->get('event_dispatcher')->dispatch('weeklytask_user_done', $event);
-
-                if (($weeklytask = $weeklytaskUser->getTask())) {
-
-                    return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
-                        'weeklytask' => $weeklytask,
-                    ));
-                }
+            if (($weeklytaskUser = $this->get('fitbase.orm.weeklytask_manager')->findOneByUserAndUnique($user, $unique))) {
+                return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
+                    'weeklytaskUser' => $weeklytaskUser,
+                ));
             }
-
         }
 
         throw new AccessDeniedException('This user does not have access to this section.');

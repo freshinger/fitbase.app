@@ -108,6 +108,7 @@ sonata_block:
         fitbase.block.exercise:
         fitbase.block.exercise_random:
         fitbase.block.exercise_collection:
+        fitbase.block.weeklytask:
         fitbase.block.weeklytask_collection:
 
         fitbase.email_block.user:
