@@ -8,14 +8,14 @@
 namespace Fitbase\Bundle\UserBundle\Test\Consumer;
 
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\UserBundle\Consumer\WeeklytaskLastConsumer;
+use Fitbase\Bundle\UserBundle\Consumer\WeeklytaskExpireConsumer;
 use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
 use Sonata\NotificationBundle\Model\Message;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class WeeklytaskLastConsumerTest extends WebTestCase
+class WeeklytaskExpireConsumerTest extends WebTestCase
 {
     protected $datetime;
     protected $objectManager;
@@ -64,7 +64,7 @@ class WeeklytaskLastConsumerTest extends WebTestCase
             ));
 
 
-        $consumer = new WeeklytaskLastConsumer($this->objectManager,
+        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -102,7 +102,7 @@ class WeeklytaskLastConsumerTest extends WebTestCase
             ));
 
 
-        $consumer = new WeeklytaskLastConsumer($this->objectManager,
+        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -141,7 +141,7 @@ class WeeklytaskLastConsumerTest extends WebTestCase
                     ->setDate(new \DateTime('-1 days'))
             ));
 
-        $consumer = new WeeklytaskLastConsumer($this->objectManager,
+        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -179,7 +179,7 @@ class WeeklytaskLastConsumerTest extends WebTestCase
                     ->setDate(new \DateTime('-8 days'))
             ));
 
-        $consumer = new WeeklytaskLastConsumer($this->objectManager,
+        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();

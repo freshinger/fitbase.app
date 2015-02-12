@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.consumer.weeklytask_last" class="Fitbase\Bundle\UserBundle\Consumer\WeeklytaskLastConsumer">
+        <service id="fitbase.consumer.weeklytask_last" class="Fitbase\Bundle\UserBundle\Consumer\WeeklytaskExpireConsumer">
             <tag name="sonata.notification.consumer" type="weeklytask_last"/>
             <argument type="service" id="entity_manager"/>
             <argument type="service" id="datetime"/>

@@ -12,7 +12,7 @@ use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class WeeklytaskLastConsumer implements ConsumerInterface
+class WeeklytaskExpireConsumer implements ConsumerInterface
 {
     protected $datetime;
     protected $objectManager;
