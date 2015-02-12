@@ -66,7 +66,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      * @param null $statistic
      * @return string
      */
-    public function graph($statistic = null)
+    public function graph($statistics = null)
     {
         if (empty($statistic)) {
             $statistic = array(
@@ -77,28 +77,41 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
             );
         }
 
-        $dataMonthCacheArray = array();
-        foreach ($statistic as $element) {
+        $cache = array();
+        foreach ($statistics as $statistic) {
+            if (($data = isset($statistic['date']) ? $statistic['date'] : null)) {
 
-            if (isset($element['date'])) {
-                if (($data = $element['date'])) {
-                    $dateString = $this->container->get('translator')
-                        ->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
-                    if (!isset($dataMonthCache[$dateString])) {
-                        $dataMonthCacheArray[$dateString] = array();
-                    }
+                $index = (int)"{$data->format('Y')}{$data->format('m')}";
 
-                    array_push($dataMonthCacheArray[$dateString], (int)$element['count_point_total']);
+                if (!isset($cache[$index])) {
+                    $cache[$index] = array(
+                        "date" => $data->setTime(0, 0, 0),
+                        "points" => 0,
+                    );
+                }
+
+                $cache[$index]['points'] += $statistic['count_point_total'];
+
+            }
+        }
+        ksort($cache);
+
+        $summ = 0;
+        $labels = array();
+        $values = array();
+
+        $translator = $this->container->get('translator');
+        foreach ($cache as $cacheEntity) {
+            if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null)) {
+                if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null)) {
+                    array_push($values, $summ);
+
+                    $label = $translator->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
+                    array_push($labels, $label);
                 }
             }
         }
 
-        $values = array();
-        if (!empty($dataMonthCacheArray)) {
-            foreach ($dataMonthCacheArray as $cache) {
-                array_push($values, max($cache));
-            }
-        }
 
         JpGraph::load();
         JpGraph::module('line');
@@ -116,7 +129,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
 
         $graph->ygrid->Show(false);
         $graph->ygrid->SetFill(false);
-        $graph->xaxis->SetTickLabels(array_keys($dataMonthCacheArray));
+        $graph->xaxis->SetTickLabels($labels);
 
         $graph->yaxis->HideLine(false);
         $graph->yaxis->HideTicks(false, false);
