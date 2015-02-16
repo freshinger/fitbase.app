@@ -64,9 +64,10 @@
                 <div class="col-md-12 panel" style="padding: 0px !important;">
                     <a class="thumb-info" href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
 
+                        <!-- icon(weeklytask) -->
                         {% set icon = icon(weeklytask) %}
-                        {% if icon|length > 0 %}
-                            {{ icon|raw }}
+                        {% if icon is defined and icon %}
+                            {{ weeklytask|raw }}
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
