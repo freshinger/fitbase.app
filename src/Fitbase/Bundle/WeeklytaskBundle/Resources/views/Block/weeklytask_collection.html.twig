@@ -70,15 +70,20 @@
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
-                                {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
+                                {% if category.media is not defined %}
+                                    {% set category = weeklytask.categories[1] %}
+                                {% endif %}
+                                {% if category is defined %}
+                                    {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
+                                {% endif %}
                             {% endif %}
                         {% endif %}
 
                         <span class="thumb-info-title">
-                        <span class="thumb-info-inner">
-                            {{ weeklytask.name }}
+                            <span class="thumb-info-inner">
+                                {{ weeklytask.name }}
+                            </span>
                         </span>
-                    </span>
                     </a>
                 </div>
             {% endif %}
