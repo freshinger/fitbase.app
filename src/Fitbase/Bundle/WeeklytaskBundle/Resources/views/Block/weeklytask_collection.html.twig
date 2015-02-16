@@ -71,6 +71,7 @@
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
+                                <!-- {{ category.name }} -->
                                 {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
                             {% endif %}
                         {% endif %}
