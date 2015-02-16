@@ -67,7 +67,7 @@
                         <!-- icon(weeklytask) -->
                         {% set icon = icon(weeklytask) %}
                         {% if icon is defined and icon %}
-                            {{ weeklytask|raw }}
+                            {{ icon|raw }}
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
