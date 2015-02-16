@@ -44,6 +44,13 @@
         width: 100%;
     }
 
+    a.thumb-info img {
+        height: auto;
+        width: auto;
+        max-width: 205px;
+        max-height: 113px;
+    }
+
 </style>
 
 {% if weeklytasks is defined %}
@@ -63,7 +70,7 @@
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
-                                {% thumbnail category, 'icon' with {'height': 113, 'width': null} %}
+                                {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
                             {% endif %}
                         {% endif %}
 

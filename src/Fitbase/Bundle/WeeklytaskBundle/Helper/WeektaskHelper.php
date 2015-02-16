@@ -49,7 +49,7 @@ class WeektaskHelper extends \Twig_Extension implements ContainerAwareInterface
             \phpQuery::newDocumentHTML($content);
             if (($images = pq('img'))) {
                 if (($image = (isset($images[0])) ? $images[0] : null)) {
-                    return "<img src='{$image->attr('src')}' height='112px;'>";
+                    return "<img src='{$image->attr('src')}'>";
                 }
             }
         }
