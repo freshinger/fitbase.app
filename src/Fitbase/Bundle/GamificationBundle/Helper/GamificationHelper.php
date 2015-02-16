@@ -68,8 +68,8 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
      */
     public function graph($statistics = null)
     {
-        if (empty($statistic)) {
-            $statistic = array(
+        if (empty($statistics)) {
+            $statistics = array(
                 array(
                     'date' => $this->container->get('datetime')->getDateTime('now'),
                     'count_point_total' => 0,
@@ -94,6 +94,8 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
 
             }
         }
+
+
         ksort($cache);
 
         $summ = 0;
@@ -103,7 +105,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $translator = $this->container->get('translator');
         foreach ($cache as $cacheEntity) {
             if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null)) {
-                if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null)) {
+                if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null) !== null) {
                     array_push($values, $summ);
 
                     $label = $translator->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
@@ -111,7 +113,6 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
                 }
             }
         }
-
 
         JpGraph::load();
         JpGraph::module('line');
