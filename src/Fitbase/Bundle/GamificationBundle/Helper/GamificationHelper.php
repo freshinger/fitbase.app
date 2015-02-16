@@ -104,7 +104,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
 
         $translator = $this->container->get('translator');
         foreach ($cache as $cacheEntity) {
-            if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null)) {
+            if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null) !== null) {
                 if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null) !== null) {
                     array_push($values, $summ);
 
