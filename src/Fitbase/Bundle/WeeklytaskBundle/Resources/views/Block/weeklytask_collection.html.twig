@@ -65,17 +65,12 @@
                     <a class="thumb-info" href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
 
                         {% set icon = icon(weeklytask) %}
-                        {% if icon is defined and  icon %}
+                        {% if icon is defined and icon|length > 0 %}
                             {{ icon(weeklytask)|raw }}
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
-                                {% if category.media is not defined %}
-                                    {% set category = weeklytask.categories[1] %}
-                                {% endif %}
-                                {% if category is defined %}
-                                    {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
-                                {% endif %}
+                                {% thumbnail category, 'thumbnail' with {'height': null, 'width': null} %}
                             {% endif %}
                         {% endif %}
 
