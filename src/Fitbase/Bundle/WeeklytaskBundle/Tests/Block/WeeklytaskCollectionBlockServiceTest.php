@@ -47,6 +47,8 @@ class WeeklytaskCollectionBlockServiceTest extends WebTestCase
 
 
         $this->objectManager = $this->getMock('\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskManagerInterface', array(
+            'persist',
+            'exists',
             'findOneByUserAndUnique',
             'findAllByUserAndCategory'
         ));

@@ -12,6 +12,19 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Entity;
 interface WeeklytaskManagerInterface
 {
     /**
+     * @param $object
+     * @return mixed
+     */
+    public function persist($object);
+
+    /**
+     * @param $user
+     * @param null $weeklytask
+     * @return mixed
+     */
+    public function exists($user, $weeklytask = null);
+
+    /**
      *
      * @param $user
      * @param $unique

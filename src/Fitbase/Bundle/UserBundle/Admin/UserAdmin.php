@@ -154,7 +154,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
 
         if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
             $listMapper
-                ->add('impersonating', 'string', array('template' => 'SonataUserBundle:Admin:Field/impersonating.html.twig'));
+                ->add('impersonating', 'string', array('template' => 'FitbaseUserBundle:Admin:Field/impersonating.html.twig'));
         }
     }
 

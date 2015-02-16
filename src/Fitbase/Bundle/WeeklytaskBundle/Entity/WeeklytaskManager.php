@@ -28,6 +28,30 @@ class WeeklytaskManager implements WeeklytaskManagerInterface
     }
 
     /**
+     * @param $object
+     * @return mixed|void
+     */
+    public function persist($object)
+    {
+        $this->objectManager->persist($object);
+        $this->objectManager->flush($object);
+    }
+
+    /**
+     * Check ist element already exists
+     *  for this user and this datetime
+     *
+     * @param $user
+     * @param $date
+     * @return mixed
+     */
+    public function exists($user, $weeklytask = null)
+    {
+        $repositoryWeeklytaskUser = $this->objectManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        return $repositoryWeeklytaskUser->findOneByUserAndTask($user, $weeklytask);
+    }
+
+    /**
      *
      * @param $user
      * @param $unique

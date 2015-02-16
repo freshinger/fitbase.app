@@ -13,6 +13,13 @@
             <argument type="service" id="sonata.notification.backend"/>
         </service>
 
+        <service id="fitbase.consumer.weeklytask_creator" class="Fitbase\Bundle\WeeklytaskBundle\Consumer\WeeklytaskCreatorConsumer">
+            <tag name="sonata.notification.consumer" type="weeklytask_creator"/>
+            <argument type="service" id="fitbase.orm.weeklytask_manager"/>
+            <argument type="service" id="datetime"/>
+            <argument type="service" id="codegenerator"/>
+        </service>
+
 
     </services>
 </container>

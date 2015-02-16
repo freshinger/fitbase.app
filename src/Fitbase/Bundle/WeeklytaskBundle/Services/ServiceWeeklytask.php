@@ -21,14 +21,14 @@ class ServiceWeeklytask extends ContainerAware
      * @param $datetime
      * @return bool
      */
-    public function create($user, $datetime)
+    public function create($user, $datetime, $processed = 0)
     {
         $codegenerator = $this->container->get('codegenerator');
         if (($weeklytask = $this->container->get('weeklytask')->choose($user))) {
 
             $weeklytaskUser = new WeeklytaskUser();
             $weeklytaskUser->setDone(0);
-            $weeklytaskUser->setProcessed(0);
+            $weeklytaskUser->setProcessed($processed);
             $weeklytaskUser->setUser($user);
             $weeklytaskUser->setDate($datetime);
             $weeklytaskUser->setTask($weeklytask);
@@ -44,7 +44,7 @@ class ServiceWeeklytask extends ContainerAware
 
                 $weeklyquizUser = new WeeklyquizUser();
                 $weeklyquizUser->setDone(0);
-                $weeklyquizUser->setProcessed(0);
+                $weeklyquizUser->setProcessed($processed);
                 $weeklyquizUser->setQuiz($quiz);
                 $weeklyquizUser->setUser($user);
                 $weeklyquizUser->setCountPoint(0);
