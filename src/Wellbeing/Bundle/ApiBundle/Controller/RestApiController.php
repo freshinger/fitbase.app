@@ -73,7 +73,7 @@ class RestApiController extends WsdlApiController
      */
     public function getAuthAction(Request $request)
     {
-        $login = null;
+        $login = "test";
         $password = null;
         $form = $this->createForm(new UserLogin(), array());
         if ($request->get($form->getName())) {
