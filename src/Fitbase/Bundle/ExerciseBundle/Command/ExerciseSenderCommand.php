@@ -31,11 +31,10 @@ class ExerciseSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // TODO: change to global config
         $context = $this->getContainer()->get('router')->getContext();
-        $context->setHost('app.fitbase.de');
-        $context->setScheme('https');
-        $context->setBaseUrl('/default');
+        $context->setHost($this->getContainer()->getParameter('fitbase.project.host'));
+        $context->setScheme($this->getContainer()->getParameter('fitbase.project.scheme'));
+        $context->setBaseUrl($this->getContainer()->getParameter('fitbase.project.url'));
 
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('exercise')->send($datetime))) {
