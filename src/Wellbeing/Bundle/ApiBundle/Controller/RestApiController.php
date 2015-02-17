@@ -41,13 +41,15 @@ class RestApiController extends WsdlApiController
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
             if ($form->isValid()) {
+
                 return new JsonResponse([
                     "user_auth" => [
                         "authkey" => $this->get('codegenerator')->code(20)]
                 ]);
+
             }
         }
-        return new JsonResponse("Benutzername oder Passwort ungültig", 404);
+        return new JsonResponse("The username or password you entered is incorrect. Please try again.", 404);
     }
 
     /**
@@ -70,7 +72,17 @@ class RestApiController extends WsdlApiController
      */
     public function deleteAuthAction(Request $request)
     {
-        return ["user_auth" => ["authkey" => $this->get('codegenerator')->code(20)]];
+        $login = null;
+        $password = null;
+        $form = $this->createForm(new UserAuth(), array());
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+
+                return new JsonResponse('');
+            }
+        }
+        return new JsonResponse("Authentication code not found", 404);
     }
 
 
