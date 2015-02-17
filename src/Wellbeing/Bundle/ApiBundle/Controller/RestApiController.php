@@ -7,6 +7,7 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 
@@ -21,8 +22,8 @@ class RestApiController extends WsdlApiController
      *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
      *  statusCodes={
      *      200="Returned when successful",
-     *      400="Returned when an error has occurred while category creation",
-     *      404="Returned when unable to find category"
+     *      400="Returned when an error has occurred while authentication",
+     *      404="Returned when unable to find username or password"
      *  }
      * )
      * @param Request $request A Symfony request
@@ -39,17 +40,13 @@ class RestApiController extends WsdlApiController
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $login = $form->getData()['login'];
-                $password = $form->getData()['password'];
+                return [
+                    "user_auth" => [
+                        "authkey" => $this->get('codegenerator')->code(20)]
+                ];
             }
         }
-
-        return [
-            "user_auth" => [
-                "login" => $login,
-                "password" => $password,
-                "authkey" => $this->get('codegenerator')->code(20)]
-        ];
+        return new Response("Benutzername oder Passwort ungültig", 404);
     }
 
     /**
