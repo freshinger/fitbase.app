@@ -14,7 +14,7 @@ use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 class RestApiController extends WsdlApiController
 {
     /**
-     * Get authentication code, deprecated, use GET auth
+     * Get authentication code
      *
      * @ApiDoc(
      *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
@@ -34,46 +34,6 @@ class RestApiController extends WsdlApiController
     public function postAuthAction(Request $request)
     {
         $login = null;
-        $password = null;
-        $form = $this->createForm(new UserLogin(), array());
-        if ($request->get($form->getName())) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-                $login = $form->getData()['login'];
-                $password = $form->getData()['password'];
-            }
-        }
-
-        return [
-            "user_auth" => [
-                "login" => $login,
-                "password" => $password,
-                "authkey" => $this->get('codegenerator')->code(20)]
-        ];
-    }
-
-
-    /**
-     * Get authentication code
-     *
-     * @ApiDoc(
-     *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
-     *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
-     *  statusCodes={
-     *      200="Returned when successful",
-     *      400="Returned when an error has occurred while category creation",
-     *      404="Returned when unable to find category"
-     *  }
-     * )
-     * @param Request $request A Symfony request
-     *
-     * @return string
-     *
-     * @throws NotFoundHttpException
-     */
-    public function getAuthAction(Request $request)
-    {
-        $login = "test";
         $password = null;
         $form = $this->createForm(new UserLogin(), array());
         if ($request->get($form->getName())) {
