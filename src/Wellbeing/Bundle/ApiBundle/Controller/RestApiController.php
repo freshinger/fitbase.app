@@ -6,6 +6,7 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
@@ -40,13 +41,13 @@ class RestApiController extends WsdlApiController
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                return [
+                return new JsonResponse([
                     "user_auth" => [
                         "authkey" => $this->get('codegenerator')->code(20)]
-                ];
+                ]);
             }
         }
-        return new Response("Benutzername oder Passwort ungültig", 404);
+        return new JsonResponse("Benutzername oder Passwort ungültig", 404);
     }
 
     /**
