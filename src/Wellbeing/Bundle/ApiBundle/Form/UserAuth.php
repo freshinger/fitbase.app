@@ -18,14 +18,6 @@ class UserAuth extends AbstractType
             ->add('authkey', null, array(
                 'label' => 'Authentication key',
                 'required' => true,
-            ))
-            ->add('login', null, array(
-                'label' => 'Login',
-                'required' => true,
-            ))
-            ->add('password', null, array(
-                'label' => 'Password',
-                'required' => true,
             ));
     }
 
