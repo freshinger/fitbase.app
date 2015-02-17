@@ -23,12 +23,12 @@
         $(function () {
             var container = $(document);
             {% if notices is defined and notices %}
-            {% for notice in notices %}
-            var event = $.extend({
-                type: 'weeklyquiz_user_notice'
-            }, {{ notice|raw|json_encode()|raw }});
-            container.trigger(event);
-            {% endfor %}
+                {% for notice in notices %}
+                    var event = $.extend({
+                        type: 'weeklyquiz_user_notice'
+                    }, {{ notice|raw|json_encode()|raw }});
+                    container.trigger(event);
+                {% endfor %}
             {% endif %}
         });
     </script>
