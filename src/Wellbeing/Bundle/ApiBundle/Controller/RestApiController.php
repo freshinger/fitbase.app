@@ -7,8 +7,8 @@ use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Wellbeing\Bundle\ApiBundle\Entity\UserLogin;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
+use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 
 
 class RestApiController extends WsdlApiController
