@@ -52,6 +52,44 @@ class RestApiController extends WsdlApiController
         return new JsonResponse("The username or password you entered is incorrect. Please try again.", 404);
     }
 
+
+    /**
+     * Get authentication code
+     *
+     * @ApiDoc(
+     *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
+     *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
+     *  statusCodes={
+     *      200="Returned when successful",
+     *      400="Returned when an error has occurred while authentication",
+     *      404="Returned when unable to find username or password"
+     *  }
+     * )
+     * @param Request $request A Symfony request
+     *
+     * @return string
+     *
+     * @throws NotFoundHttpException
+     */
+    public function postLogonAction(Request $request)
+    {
+        $login = null;
+        $password = null;
+        $form = $this->createForm(new UserLogin(), array());
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+
+                return new JsonResponse([
+                    "user_auth" => [
+                        "authkey" => $this->get('codegenerator')->code(20)]
+                ]);
+
+            }
+        }
+        return new JsonResponse("The username or password you entered is incorrect. Please try again.", 404);
+    }
+
     /**
      * Log On function, return authentication code
      * to identify application with user
@@ -70,7 +108,7 @@ class RestApiController extends WsdlApiController
      *
      * @throws NotFoundHttpException
      */
-    public function deleteAuthAction(Request $request)
+    public function postLogoutAction(Request $request)
     {
         $login = null;
         $password = null;
