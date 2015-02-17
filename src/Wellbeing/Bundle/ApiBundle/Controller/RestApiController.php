@@ -96,6 +96,7 @@ class RestApiController extends WsdlApiController
      *
      * @ApiDoc(
      *  input="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
+     *  output="Wellbeing\Bundle\ApiBundle\Form\Status",
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while category creation",
@@ -117,7 +118,10 @@ class RestApiController extends WsdlApiController
             $form->handleRequest($request);
             if ($form->isValid()) {
 
-                return new JsonResponse(null, 200);
+                return new JsonResponse(["status" => [
+                    "message" => "OK",
+                ]], 200);
+
             }
         }
         return new JsonResponse("Authentication code not found", 404);
