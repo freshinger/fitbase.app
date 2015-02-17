@@ -79,7 +79,7 @@ class RestApiController extends WsdlApiController
             $form->handleRequest($request);
             if ($form->isValid()) {
 
-                return new JsonResponse('');
+                return new JsonResponse(null, 200);
             }
         }
         return new JsonResponse("Authentication code not found", 404);
