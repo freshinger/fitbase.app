@@ -47,7 +47,7 @@ class RestApiController extends WsdlApiController
         return [
             "user_auth" => [
                 "login" => $login,
-                "login" => $password,
+                "password" => $password,
                 "authkey" => $this->get('codegenerator')->code(20)]
         ];
     }
@@ -87,7 +87,7 @@ class RestApiController extends WsdlApiController
         return [
             "user_auth" => [
                 "login" => $login,
-                "login" => $password,
+                "password" => $password,
                 "authkey" => $this->get('codegenerator')->code(20)]
         ];
     }
