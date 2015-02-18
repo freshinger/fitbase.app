@@ -116,8 +116,7 @@ class RestApiController extends WsdlApiController
             , array('csrf_protection' => false));
 
         if ($request->request->get($form->getName())) {
-            $form->handleRequest($request);
-//            $form->submit($request->request->get($form->getName()));
+            $form->submit($request->request->get($form->getName()));
             if ($form->isValid()) {
 
                 // TODO: replace to correct user from auth key
