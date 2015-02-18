@@ -7,12 +7,111 @@
     <class name="Wellbeing\Bundle\ApiBundle\Entity\UserState">
         <property name="authKey">
             <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
         </property>
         <property name="date">
             <constraint name="NotBlank"/>
+            <constraint name="DateTime"/>
         </property>
         <property name="head">
             <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="shoulderCenter">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="shoulderLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="shoulderRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+                <option name="message">Geben Sie bitte das Datum ein</option>
+
+            </constraint>
+        </property>
+        <property name="elbowLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="elbowRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="handLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="handRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="com">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="spine">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="hipLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="hipRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="kneeLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="kneeRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="footLeft">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
+        </property>
+        <property name="footRight">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\Coordinate</option>
+            </constraint>
         </property>
     </class>
 

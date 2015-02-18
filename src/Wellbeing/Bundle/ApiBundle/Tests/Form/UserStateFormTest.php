@@ -222,7 +222,7 @@ class UserStateFormTest extends WebTestCase
         $this->assertEquals($form->createView()->children['footRight']->vars['value'], $model->getFootRight());
     }
 
-    public function testFormShouldAppySubmittedData()
+    public function testFormShouldApplySubmittedData()
     {
         $form = $this->container()->get('form.factory')
             ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
@@ -234,6 +234,254 @@ class UserStateFormTest extends WebTestCase
     }
 
 
+    public function testFormShouldPassValidation()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"1.1;1.2;1.3","shoulderCenter":"2.1;2.2;2.3","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3","elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3","spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3","kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertTrue($form->isValid());
+    }
+
+
+    public function testFormShouldNotPassValidationByAuthKey()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"","timestamp":"1234123412","head":"1.1;1.2;1.3","shoulderCenter":"2.1;2.2;2.3","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3","elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3","spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3","kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid(), $form->getErrors()->__toString());
+    }
+
+    public function testFormShouldNotPassValidationByHead()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"","shoulderCenter":"2.1;2.2;2.3","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3","elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3","spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3","kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+
+        $this->assertFalse($form->isValid(), $form->getErrors()->__toString());
+    }
+
+    public function testFormShouldNotPassValidationByShoulderCenter()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+
+        $this->assertFalse($form->isValid(), $form->getErrors()->__toString());
+    }
+
+
+    public function testFormShouldNotPassValidationByShoulderLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+
+        $this->assertFalse($form->isValid(), $form->getErrors()->__toString());
+    }
+
+    public function testFormShouldNotPassValidationByShoulderRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+
+    public function testFormShouldNotPassValidationByElbowLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByElbowRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+
+    public function testFormShouldNotPassValidationByHandLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+
+    public function testFormShouldNotPassValidationByHandRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByCom()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationBySpine()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByHipLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByHipRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+
+    public function testFormShouldNotPassValidationByKneeLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByKneeRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByFootLeft()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"","footRight":"5.1;5.2;5.3"}'));
+
+        $this->assertFalse($form->isValid());
+    }
+
+    public function testFormShouldNotPassValidationByFootRight()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
+
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
+        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
+        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
+        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
+        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":""}'));
+
+        $this->assertFalse($form->isValid());
+    }
 //    public function testFormShouldStoreInDatabase()
 //    {
 //        $form = $this->container()->get('form.factory')
