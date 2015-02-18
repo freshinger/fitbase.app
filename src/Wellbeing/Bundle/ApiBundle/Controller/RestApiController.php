@@ -112,7 +112,9 @@ class RestApiController extends WsdlApiController
     {
         $entity = new \Wellbeing\Bundle\ApiBundle\Entity\UserState();
         $entity->setDate($this->get('datetime')->getDateTime('now'));
-        $form = $this->createForm(new UserState(), $entity);
+        $form = $this->createForm(new UserState(), $entity, array(
+            'csrf_protection' => false
+        ));
         $form->submit($request);
         if ($form->isValid()) {
 

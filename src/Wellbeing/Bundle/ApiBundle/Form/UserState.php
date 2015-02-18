@@ -20,7 +20,7 @@ class UserState extends AbstractType
         $builder->addModelTransformer(new UserStateDataTransformer());
 
         $builder
-            ->add('authkey', 'text', array(
+            ->add('authKey', 'text', array(
                 'label' => 'Authentication key',
             ))
             ->add('timestamp', 'text', array(

@@ -145,7 +145,7 @@ class UserStateFormTest extends WebTestCase
             ->create(new UserState(), $this->getUserState());
 
 
-        $this->assertTrue(array_key_exists('authkey', $form->createView()->children));
+        $this->assertTrue(array_key_exists('authKey', $form->createView()->children));
         $this->assertEquals($form->createView()->children['authkey']->vars['value'], null);
 
         $this->assertTrue(array_key_exists('timestamp', $form->createView()->children));
@@ -199,6 +199,19 @@ class UserStateFormTest extends WebTestCase
         $this->assertTrue(array_key_exists('footRight', $form->createView()->children));
         $this->assertEquals($form->createView()->children['footRight']->vars['value'], $model->getFootRight());
     }
+
+    public function testFormShouldAppySubmittedData()
+    {
+        $form = $this->container()->get('form.factory')
+            ->create(new UserState(), $this->getUserState());
+
+        $form->submit(array(
+            "authKey" => "test"
+        ));
+
+        $this->assertEquals($form->getData()->getAuthKey(), "test");
+    }
+
 
 //    public function testFormShouldStoreInDatabase()
 //    {

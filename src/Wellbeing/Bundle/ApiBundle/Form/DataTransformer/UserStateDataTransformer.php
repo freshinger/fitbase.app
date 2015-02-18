@@ -25,6 +25,7 @@ class UserStateDataTransformer implements DataTransformerInterface
         $model = new UserState();
         if ($value instanceof \Wellbeing\Bundle\ApiBundle\Entity\UserState) {
             $model->setId($value->getId());
+            $model->setAuthKey($value->getAuthKey());
             $model->setTimestamp($value->getDate()->getTimestamp());
 
             if ($value->getHead() instanceof Coordinate) {
@@ -104,6 +105,7 @@ class UserStateDataTransformer implements DataTransformerInterface
     {
         $entity = new \Wellbeing\Bundle\ApiBundle\Entity\UserState();
         if ($value instanceof UserState) {
+            $entity->setAuthKey($value->getAuthKey());
             $entity->setDate((new \DateTime())->setTimestamp($value->getTimestamp()));
             if (($coordinates = explode(';', $value->getHead())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
