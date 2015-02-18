@@ -110,7 +110,7 @@ class RestApiController extends WsdlApiController
      */
     public function putStateAction(Request $request)
     {
-        $entity = new \Wellbeing\Bundle\ApiBundle\Model\UserState();
+        $entity = new \Wellbeing\Bundle\ApiBundle\Entity\UserState();
         $form = $this->createForm(new UserState(), $entity);
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
