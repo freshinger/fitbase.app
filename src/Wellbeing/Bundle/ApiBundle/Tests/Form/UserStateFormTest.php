@@ -227,9 +227,9 @@ class UserStateFormTest extends WebTestCase
         $form = $this->container()->get('form.factory')
             ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
 
-        $form->submit($this->getUserStateModel()->toArray());
+        $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"1.1;1.2;1.3","shoulderCenter":"2.1;2.2;2.3","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3","elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3","spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3","kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
 
-        $this->assertEquals($form->getData()->getAuthKey(), $this->getUserStateModel()->getAuthKey());
+        $this->assertEquals($form->getData()->getAuthKey(), 'jqerXHGyHGaSTJSBRZmZ');
 
     }
 
