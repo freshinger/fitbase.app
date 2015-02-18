@@ -14,7 +14,7 @@
         <property name="timestamp">
             <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">integer</option>
+                <option name="type">string</option>
             </constraint>
         </property>
         <property name="head">
