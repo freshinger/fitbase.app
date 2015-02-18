@@ -116,7 +116,7 @@ class RestApiController extends WsdlApiController
             'csrf_protection' => false
         ));
 
-        $this->get('logger')->info('[api][rest]', $_POST);
+        $this->get('logger')->crit('[api][rest]', $_POST);
 
         $form->submit($request);
         if ($form->isValid()) {
