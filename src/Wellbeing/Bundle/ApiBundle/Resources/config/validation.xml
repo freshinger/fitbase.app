@@ -5,7 +5,7 @@
 
 
     <class name="Wellbeing\Bundle\ApiBundle\Entity\UserState">
-        <property name="authkey">
+        <property name="authKey">
             <constraint name="NotBlank"/>
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
