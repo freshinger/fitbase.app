@@ -116,9 +116,9 @@ class RestApiController extends WsdlApiController
             'csrf_protection' => false
         ));
 
-        $this->get('logger')->crit('[api][rest]', $request->request->get($form->getName()));
+//        $this->get('logger')->crit('[api][rest]', $request->request->get($form->getName()));
 
-        $form->submit($request->request);
+        $form->submit($request->request->get($form->getName()));
         if ($form->isValid()) {
 
             $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
