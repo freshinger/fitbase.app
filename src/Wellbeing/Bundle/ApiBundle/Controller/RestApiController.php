@@ -119,7 +119,7 @@ class RestApiController extends WsdlApiController
         $this->get('logger')->crit('[api][rest]', $request->request->get($form->getName()));
 
         if ($request->request->get($form->getName())) {
-            $form->handleRequest($request);
+            $form->submit($request->request->get($form->getName()));
             if ($form->isValid()) {
 
                 $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
