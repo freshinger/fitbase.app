@@ -114,7 +114,7 @@ class RestApiController extends WsdlApiController
         $form = $this->createForm(new UserState(), $entity);
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
-            if ($form->isValid()) {
+//            if ($form->isValid()) {
 
                 $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
 
@@ -125,7 +125,7 @@ class RestApiController extends WsdlApiController
 
                 return ["user_position" => ["correct" => true]];
 
-            }
+//            }
             return new JsonResponse($form->getErrors()->__toString(), 400);
         }
 
