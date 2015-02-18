@@ -5,113 +5,113 @@
 
 
     <class name="Wellbeing\Bundle\ApiBundle\Entity\UserState">
-        <!--<property name="authkey">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--<constraint name="Type">-->
-                <!--<option name="type">string</option>-->
-            <!--</constraint>-->
-        <!--</property>-->
-        <!--<property name="timestamp">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--<constraint name="Type">-->
-                <!--<option name="type">string</option>-->
-            <!--</constraint>-->
-        <!--</property>-->
-        <!--<property name="head">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--<constraint name="Type">-->
-                <!--<option name="type">string</option>-->
-            <!--</constraint>-->
-        <!--</property>-->
+        <property name="authkey">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
+        <property name="timestamp">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
+        <property name="head">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
         <!--<property name="shoulderCenter">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="shoulderLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="shoulderRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="elbowLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="elbowRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="handLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="handRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="com">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="spine">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="hipLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="hipRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="kneeLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
             <!--<constraint name="Type">-->
                 <!--<option name="type">string</option>-->
             <!--</constraint>-->
         <!--</property>-->
         <!--<property name="kneeRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<constraint name="Type">&ndash;&gt;-->
-                <!--&lt;!&ndash;<option name="type">string</option>&ndash;&gt;-->
-            <!--&lt;!&ndash;</constraint>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
+            <!--<!--<constraint name="Type">-->-->
+                <!--<!--<option name="type">string</option>-->-->
+            <!--<!--</constraint>-->-->
         <!--</property>-->
         <!--<property name="footLeft">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<constraint name="Type">&ndash;&gt;-->
-                <!--&lt;!&ndash;<option name="type">string</option>&ndash;&gt;-->
-            <!--&lt;!&ndash;</constraint>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
+            <!--<!--<constraint name="Type">-->-->
+                <!--<!--<option name="type">string</option>-->-->
+            <!--<!--</constraint>-->-->
         <!--</property>-->
         <!--<property name="footRight">-->
-            <!--&lt;!&ndash;<constraint name="NotBlank"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<constraint name="Type">&ndash;&gt;-->
-                <!--&lt;!&ndash;<option name="type">string</option>&ndash;&gt;-->
-            <!--&lt;!&ndash;</constraint>&ndash;&gt;-->
+            <!--<!--<constraint name="NotBlank"/>-->-->
+            <!--<!--<constraint name="Type">-->-->
+                <!--<!--<option name="type">string</option>-->-->
+            <!--<!--</constraint>-->-->
         <!--</property>-->
     </class>
 
