@@ -124,9 +124,9 @@ class RestApiController extends WsdlApiController
 
                 $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
 
-                $entity->setUser($repositoryUser->find(1));
-                $this->get('entity_manager')->persist($entity);
-                $this->get('entity_manager')->flush($entity);
+                $form->getData()->setUser($repositoryUser->find(1));
+                $this->get('entity_manager')->persist($form->getData());
+                $this->get('entity_manager')->flush($form->getData());
 
 
                 return ["user_position" => ["correct" => true]];
