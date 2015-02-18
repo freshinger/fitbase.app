@@ -111,19 +111,20 @@ class RestApiController extends WsdlApiController
     public function putStateAction(Request $request)
     {
         $entity = new \Wellbeing\Bundle\ApiBundle\Entity\UserState();
+        $entity->setDate($this->get('datetime')->getDateTime('now'));
         $form = $this->createForm(new UserState(), $entity);
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
 //            if ($form->isValid()) {
 
-                $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
+            $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
 
-                $entity->setUser($repositoryUser->find(1));
-                $this->get('entity_manager')->persist($entity);
-                $this->get('entity_manager')->flush($entity);
+            $entity->setUser($repositoryUser->find(1));
+            $this->get('entity_manager')->persist($entity);
+            $this->get('entity_manager')->flush($entity);
 
 
-                return ["user_position" => ["correct" => true]];
+            return ["user_position" => ["correct" => true]];
 
 //            }
             return new JsonResponse($form->getErrors()->__toString(), 400);
