@@ -11,48 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
+use Wellbeing\Bundle\ApiBundle\Form\UserState;
 
 
 class RestApiController extends WsdlApiController
 {
-    /**
-     * Get authentication code
-     *
-     * @ApiDoc(
-     *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
-     *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
-     *  statusCodes={
-     *      200="Returned when successful",
-     *      400="Returned when an error has occurred while authentication",
-     *      404="Returned when unable to find username or password"
-     *  }
-     * )
-     * @param Request $request A Symfony request
-     *
-     * @return string
-     *
-     * @throws NotFoundHttpException
-     */
-    public function postAuthAction(Request $request)
-    {
-        $login = null;
-        $password = null;
-        $form = $this->createForm(new UserLogin(), array());
-        if ($request->get($form->getName())) {
-            $form->handleRequest($request);
-            if ($form->isValid()) {
-
-                return new JsonResponse([
-                    "user_auth" => [
-                        "authkey" => $this->get('codegenerator')->code(20)]
-                ]);
-
-            }
-        }
-        return new JsonResponse("The username or password you entered is incorrect. Please try again.", 404);
-    }
-
-
     /**
      * Get authentication code
      *
@@ -127,7 +90,6 @@ class RestApiController extends WsdlApiController
         return new JsonResponse("Authentication code not found", 404);
     }
 
-
     /**
      * Store user position
      *
@@ -148,6 +110,25 @@ class RestApiController extends WsdlApiController
      */
     public function putStateAction(Request $request)
     {
-        return ["user_position" => ["correct" => true]];
+        $entity = new \Wellbeing\Bundle\ApiBundle\Model\UserState();
+        $form = $this->createForm(new UserState(), $entity);
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+
+                $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+                $entity->setUser($repositoryUser->find(1));
+                $this->get('entity_manager')->persist($entity);
+                $this->get('entity_manager')->flush($entity);
+
+
+                return ["user_position" => ["correct" => true]];
+
+            }
+            return new JsonResponse("User state can not be stored", 400);
+        }
+
+        return new JsonResponse("Authentication code not found", 404);
     }
 }

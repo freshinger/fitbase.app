@@ -48,31 +48,31 @@ class WsdlApiController extends Controller
                                    $kneeLeft = array(), $kneeRight = array(), $footLeft = array(), $footRight = array())
     {
 
-        $entity = new UserState();
-        $entity->setAuthkey($authkey);
-        $entity->setTimestamp($timestamp);
-        $entity->setHead($head);
-        $entity->setShoulderCenter($shoulderCenter);
-        $entity->setShoulderLeft($shoulderLeft);
-        $entity->setShoulderRight($shoulderRight);
-        $entity->setElbowLeft($elbowLeft);
-        $entity->setElbowRight($elbowRight);
-        $entity->setHandLeft($handLeft);
-        $entity->setHandRight($handRight);
-        $entity->setCom($com);
-        $entity->setSpine($spine);
-        $entity->setHipLeft($hipLeft);
-        $entity->setHipRight($hipRight);
-        $entity->setKneeLeft($kneeLeft);
-        $entity->setKneeRight($kneeRight);
-        $entity->setFootLeft($footLeft);
-        $entity->setFootRight($footRight);
-
-        $validator = $this->get('validator');
-        if (count(($errors = $validator->validate($entity)))) {
-            throw new \SoapFault('validation error', $errors->__toString());
-        }
-
-        return $this->container->get('besimple.soap.response')->setReturnValue(true);
+//        $entity = new UserState();
+//        $entity->setAuthkey($authkey);
+//        $entity->setTimestamp($timestamp);
+//        $entity->setHead($head);
+//        $entity->setShoulderCenter($shoulderCenter);
+//        $entity->setShoulderLeft($shoulderLeft);
+//        $entity->setShoulderRight($shoulderRight);
+//        $entity->setElbowLeft($elbowLeft);
+//        $entity->setElbowRight($elbowRight);
+//        $entity->setHandLeft($handLeft);
+//        $entity->setHandRight($handRight);
+//        $entity->setCom($com);
+//        $entity->setSpine($spine);
+//        $entity->setHipLeft($hipLeft);
+//        $entity->setHipRight($hipRight);
+//        $entity->setKneeLeft($kneeLeft);
+//        $entity->setKneeRight($kneeRight);
+//        $entity->setFootLeft($footLeft);
+//        $entity->setFootRight($footRight);
+//
+//        $validator = $this->get('validator');
+//        if (count(($errors = $validator->validate($entity)))) {
+//            throw new \SoapFault('validation error', $errors->__toString());
+//        }
+//
+//        return $this->container->get('besimple.soap.response')->setReturnValue(true);
     }
 }

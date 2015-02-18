@@ -5,20 +5,25 @@ namespace Wellbeing\Bundle\ApiBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Wellbeing\Bundle\ApiBundle\Form\DataTransformer\UserStateDataTransformer;
 
 class UserState extends AbstractType
 {
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->addModelTransformer(new UserStateDataTransformer());
+
         $builder
             ->add('authkey', 'text', array(
                 'label' => 'Authentication key',
             ))
-            ->add('timestamp', 'datetime', array(
+            ->add('timestamp', 'text', array(
                 'label' => 'Date of position as a Unix Timestamp',
             ))
             ->add('head', 'text', array(
@@ -38,7 +43,6 @@ class UserState extends AbstractType
             ))
             ->add('elbowRight', 'text', array(
                 'label' => 'Elbow coordinate X;Y;Z (right)',
-
             ))
             ->add('handLeft', 'text', array(
                 'label' => 'Hand coordinate X;Y;Z (left)',
@@ -79,6 +83,7 @@ class UserState extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
+            'data_class' => 'Wellbeing\Bundle\ApiBundle\Model\UserState'
         ));
     }
 
