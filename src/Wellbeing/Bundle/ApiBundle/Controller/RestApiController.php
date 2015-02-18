@@ -127,12 +127,12 @@ class RestApiController extends WsdlApiController
                 $this->get('entity_manager')->flush($form->getData());
 
 
-                return ["user_position" => ["correct" => true]];
+                return new JsonResponse(["user_position" => ["correct" => true]]);
 
             }
-            return new JsonResponse($form->getErrors()->__toString(), 400);
+            return new JsonResponse('Validation failure. Check format of your fields.', 400);
         }
 
-        return new JsonResponse("Authentication code not found", 404);
+        return new JsonResponse('Authentication code not found', 404);
     }
 }

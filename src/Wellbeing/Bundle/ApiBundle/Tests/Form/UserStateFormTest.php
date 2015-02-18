@@ -482,6 +482,7 @@ class UserStateFormTest extends WebTestCase
 
         $this->assertFalse($form->isValid());
     }
+
 //    public function testFormShouldStoreInDatabase()
 //    {
 //        $form = $this->container()->get('form.factory')
