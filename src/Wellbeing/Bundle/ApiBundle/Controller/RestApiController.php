@@ -127,7 +127,7 @@ class RestApiController extends WsdlApiController
                 return ["user_position" => ["correct" => true]];
 
             }
-            return new JsonResponse($form->getErrors()->__toString(), 400);
+            return new JsonResponse($request, 400);
         }
 
         return new JsonResponse("Authentication code not found", 404);
