@@ -126,8 +126,9 @@ class RestApiController extends WsdlApiController
                 $this->get('entity_manager')->persist($form->getData());
                 $this->get('entity_manager')->flush($form->getData());
 
-
-                return new JsonResponse(["user_position" => ["correct" => true]]);
+                return new JsonResponse(["user_position" => [
+                    "correct" => true
+                ]]);
 
             }
             return new JsonResponse('Validation failure. Check format of your fields.', 400);

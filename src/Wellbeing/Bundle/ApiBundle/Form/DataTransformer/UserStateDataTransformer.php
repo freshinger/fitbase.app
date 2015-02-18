@@ -113,54 +113,54 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHead(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
             if (($coordinates = explode(';', $value->getShoulderLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
             if (($coordinates = explode(';', $value->getShoulderCenter())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderCenter(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
             if (($coordinates = explode(';', $value->getShoulderRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
             if (($coordinates = explode(';', $value->getElbowLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setElbowLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
             if (($coordinates = explode(';', $value->getElbowRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setElbowRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -168,9 +168,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHandLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -178,9 +178,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHandRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -188,9 +188,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setCom(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -198,9 +198,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setSpine(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -208,9 +208,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHipLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -218,9 +218,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHipRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -228,9 +228,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setKneeLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -238,9 +238,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setKneeRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -248,9 +248,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setFootLeft(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
 
@@ -258,9 +258,9 @@ class UserStateDataTransformer implements DataTransformerInterface
                 list ($x, $y, $z) = $coordinates;
                 $entity->setFootRight(
                     (new Coordinate())
-                        ->setX($x)
-                        ->setY($y)
-                        ->setZ($z)
+                        ->setX((float)$x)
+                        ->setY((float)$y)
+                        ->setZ((float)$z)
                 );
             }
         }
