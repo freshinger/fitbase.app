@@ -8,7 +8,7 @@
         <property name="authKey">
             <constraint name="NotBlank"/>
         </property>
-        <property name="timestamp">
+        <property name="date">
             <constraint name="NotBlank"/>
         </property>
         <property name="head">
