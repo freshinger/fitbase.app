@@ -63,7 +63,7 @@ class RestApiController extends WsdlApiController
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while logout process",
-     *      404="Returned when unable to find category"
+     *      404="Returned when unable to find authentication key""
      *  }
      * )
      * @param Request $request A Symfony request
