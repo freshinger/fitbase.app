@@ -7,21 +7,21 @@
     <class name="Wellbeing\Bundle\ApiBundle\Entity\UserState">
         <property name="authkey">
             <constraint name="NotBlank"/>
-            <constraint name="Type">
-                <option name="type">string</option>
-            </constraint>
+            <!--<constraint name="Type">-->
+                <!--<option name="type">string</option>-->
+            <!--</constraint>-->
         </property>
         <property name="timestamp">
             <constraint name="NotBlank"/>
-            <constraint name="Type">
-                <option name="type">string</option>
-            </constraint>
+            <!--<constraint name="Type">-->
+                <!--<option name="type">string</option>-->
+            <!--</constraint>-->
         </property>
         <property name="head">
             <constraint name="NotBlank"/>
-            <constraint name="Type">
-                <option name="type">string</option>
-            </constraint>
+            <!--<constraint name="Type">-->
+                <!--<option name="type">string</option>-->
+            <!--</constraint>-->
         </property>
         <!--<property name="shoulderCenter">-->
             <!--<!--<constraint name="NotBlank"/>-->-->
