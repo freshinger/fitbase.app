@@ -126,7 +126,7 @@ class RestApiController extends WsdlApiController
                 return ["user_position" => ["correct" => true]];
 
             }
-            return new JsonResponse("User state can not be stored", 400);
+            return new JsonResponse($form->getErrors()->__toString(), 400);
         }
 
         return new JsonResponse("Authentication code not found", 404);
