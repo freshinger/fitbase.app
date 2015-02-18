@@ -62,7 +62,7 @@ class RestApiController extends WsdlApiController
      *  output="Wellbeing\Bundle\ApiBundle\Form\Status",
      *  statusCodes={
      *      200="Returned when successful",
-     *      400="Returned when an error has occurred while category creation",
+     *      400="Returned when an error has occurred while logout process",
      *      404="Returned when unable to find category"
      *  }
      * )
@@ -98,7 +98,7 @@ class RestApiController extends WsdlApiController
      *  output="Wellbeing\Bundle\ApiBundle\Form\UserPosition",
      *  statusCodes={
      *      200="Returned when successful",
-     *      400="Returned when an error has occurred while category creation",
+     *      400="Returned when an error has occurred while user-state creation",
      *      404="Returned when unable to find category"
      *  }
      * )
