@@ -21,34 +21,34 @@ class UserState extends AbstractType
 
         $builder
             ->add('authKey', 'text', array(
-                'label' => 'Authentication key',
+                'label' => 'Authentication key. Can not be empty. It ist just a random string for now',
             ))
             ->add('timestamp', 'text', array(
-                'label' => 'Date of position as a Unix Timestamp',
+                'label' => 'Date of position as a unix timestamp',
             ))
             ->add('head', 'text', array(
                 'label' => 'Head coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('shoulderCenter', 'text', array(
-                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (center)',
+                'label' => 'Shoulder (center) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('shoulderLeft', 'text', array(
-                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (left)',
+                'label' => 'Shoulder (left) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('shoulderRight', 'text', array(
-                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Shoulder (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('elbowLeft', 'text', array(
-                'label' => 'Elbow coordinate x.xxx;y.yyy;z.zzz (left)',
+                'label' => 'Elbow (left) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('elbowRight', 'text', array(
-                'label' => 'Elbow coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Elbow (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('handLeft', 'text', array(
-                'label' => 'Hand coordinate x.xxx;y.yyy;z.zzz (left)',
+                'label' => 'Hand (left) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('handRight', 'text', array(
-                'label' => 'Hand coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Hand (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('com', 'text', array(
                 'label' => 'COM coordinate x.xxx;y.yyy;z.zzz',
@@ -57,22 +57,22 @@ class UserState extends AbstractType
                 'label' => 'Spine coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('hipLeft', 'text', array(
-                'label' => 'Hip coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Hip (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('hipRight', 'text', array(
-                'label' => 'Hip coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Hip (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('kneeLeft', 'text', array(
-                'label' => 'Knee coordinate x.xxx;y.yyy;z.zzz (left)',
+                'label' => 'Knee (left) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('kneeRight', 'text', array(
-                'label' => 'Knee coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Knee (right) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('footLeft', 'text', array(
-                'label' => 'Foot coordinate x.xxx;y.yyy;z.zzz (left)',
+                'label' => 'Foot (left) coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('footRight', 'text', array(
-                'label' => 'Foot coordinate x.xxx;y.yyy;z.zzz (right)',
+                'label' => 'Foot (right) coordinate x.xxx;y.yyy;z.zzz',
             ));
     }
 
