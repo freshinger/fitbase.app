@@ -27,52 +27,52 @@ class UserState extends AbstractType
                 'label' => 'Date of position as a Unix Timestamp',
             ))
             ->add('head', 'text', array(
-                'label' => 'Head coordinate X;Y;Z',
+                'label' => 'Head coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('shoulderCenter', 'text', array(
-                'label' => 'Shoulder coordinate X;Y;Z (center)',
+                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (center)',
             ))
             ->add('shoulderLeft', 'text', array(
-                'label' => 'Shoulder coordinate X;Y;Z (left)',
+                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (left)',
             ))
             ->add('shoulderRight', 'text', array(
-                'label' => 'Shoulder coordinate X;Y;Z (right)',
+                'label' => 'Shoulder coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('elbowLeft', 'text', array(
-                'label' => 'Elbow coordinate X;Y;Z (left)',
+                'label' => 'Elbow coordinate x.xxx;y.yyy;z.zzz (left)',
             ))
             ->add('elbowRight', 'text', array(
-                'label' => 'Elbow coordinate X;Y;Z (right)',
+                'label' => 'Elbow coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('handLeft', 'text', array(
-                'label' => 'Hand coordinate X;Y;Z (left)',
+                'label' => 'Hand coordinate x.xxx;y.yyy;z.zzz (left)',
             ))
             ->add('handRight', 'text', array(
-                'label' => 'Hand coordinate X;Y;Z (right)',
+                'label' => 'Hand coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('com', 'text', array(
-                'label' => 'COM coordinate X;Y;Z',
+                'label' => 'COM coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('spine', 'text', array(
-                'label' => 'Spine coordinate X;Y;Z',
+                'label' => 'Spine coordinate x.xxx;y.yyy;z.zzz',
             ))
             ->add('hipLeft', 'text', array(
-                'label' => 'Hip coordinate X;Y;Z (right)',
+                'label' => 'Hip coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('hipRight', 'text', array(
-                'label' => 'Hip coordinate X;Y;Z (right)',
+                'label' => 'Hip coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('kneeLeft', 'text', array(
-                'label' => 'Knee coordinate X;Y;Z (left)',
+                'label' => 'Knee coordinate x.xxx;y.yyy;z.zzz (left)',
             ))
             ->add('kneeRight', 'text', array(
-                'label' => 'Knee coordinate X;Y;Z (right)',
+                'label' => 'Knee coordinate x.xxx;y.yyy;z.zzz (right)',
             ))
             ->add('footLeft', 'text', array(
-                'label' => 'Foot coordinate X;Y;Z (left)',
+                'label' => 'Foot coordinate x.xxx;y.yyy;z.zzz (left)',
             ))
             ->add('footRight', 'text', array(
-                'label' => 'Foot coordinate X;Y;Z (right)',
+                'label' => 'Foot coordinate x.xxx;y.yyy;z.zzz (right)',
             ));
     }
 
