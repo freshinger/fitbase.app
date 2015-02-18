@@ -26,22 +26,70 @@ class UserStateDataTransformer implements DataTransformerInterface
         if ($value instanceof \Wellbeing\Bundle\ApiBundle\Entity\UserState) {
             $model->setId($value->getId());
             $model->setTimestamp($value->getDate()->getTimestamp());
-            $model->setHead("{$value->getHead()->getX()};{$value->getHead()->getY()};{$value->getHead()->getZ()}");
-            $model->setShoulderLeft("{$value->getShoulderLeft()->getX()};{$value->getShoulderLeft()->getY()};{$value->getShoulderLeft()->getZ()}");
-            $model->setShoulderCenter("{$value->getShoulderCenter()->getX()};{$value->getShoulderCenter()->getY()};{$value->getShoulderCenter()->getZ()}");
-            $model->setShoulderRight("{$value->getShoulderRight()->getX()};{$value->getShoulderRight()->getY()};{$value->getShoulderRight()->getZ()}");
-            $model->setElbowLeft("{$value->getElbowLeft()->getX()};{$value->getElbowLeft()->getY()};{$value->getElbowLeft()->getZ()}");
-            $model->setElbowRight("{$value->getElbowRight()->getX()};{$value->getElbowRight()->getY()};{$value->getElbowRight()->getZ()}");
-            $model->setHandLeft("{$value->getHandLeft()->getX()};{$value->getHandLeft()->getY()};{$value->getHandLeft()->getZ()}");
-            $model->setHandRight("{$value->getHandRight()->getX()};{$value->getHandRight()->getY()};{$value->getHandRight()->getZ()}");
-            $model->setCom("{$value->getCom()->getX()};{$value->getCom()->getY()};{$value->getCom()->getZ()}");
-            $model->setSpine("{$value->getSpine()->getX()};{$value->getSpine()->getY()};{$value->getSpine()->getZ()}");
-            $model->setHipLeft("{$value->getHipLeft()->getX()};{$value->getHipLeft()->getY()};{$value->getHipLeft()->getZ()}");
-            $model->setHipRight("{$value->getHipRight()->getX()};{$value->getHipRight()->getY()};{$value->getHipRight()->getZ()}");
-            $model->setKneeLeft("{$value->getKneeLeft()->getX()};{$value->getKneeLeft()->getY()};{$value->getKneeLeft()->getZ()}");
-            $model->setKneeRight("{$value->getKneeRight()->getX()};{$value->getKneeRight()->getY()};{$value->getKneeRight()->getZ()}");
-            $model->setFootLeft("{$value->getFootLeft()->getX()};{$value->getFootLeft()->getY()};{$value->getFootLeft()->getZ()}");
-            $model->setFootRight("{$value->getFootRight()->getX()};{$value->getFootRight()->getY()};{$value->getFootRight()->getZ()}");
+
+            if ($value->getHead() instanceof Coordinate) {
+                $model->setHead("{$value->getHead()->getX()};{$value->getHead()->getY()};{$value->getHead()->getZ()}");
+            }
+
+            if ($value->getShoulderLeft() instanceof Coordinate) {
+                $model->setShoulderLeft("{$value->getShoulderLeft()->getX()};{$value->getShoulderLeft()->getY()};{$value->getShoulderLeft()->getZ()}");
+            }
+
+            if ($value->getShoulderCenter() instanceof Coordinate) {
+                $model->setShoulderCenter("{$value->getShoulderCenter()->getX()};{$value->getShoulderCenter()->getY()};{$value->getShoulderCenter()->getZ()}");
+            }
+
+            if ($value->getShoulderRight() instanceof Coordinate) {
+                $model->setShoulderRight("{$value->getShoulderRight()->getX()};{$value->getShoulderRight()->getY()};{$value->getShoulderRight()->getZ()}");
+            }
+
+            if ($value->getElbowLeft() instanceof Coordinate) {
+                $model->setElbowLeft("{$value->getElbowLeft()->getX()};{$value->getElbowLeft()->getY()};{$value->getElbowLeft()->getZ()}");
+            }
+
+            if ($value->getElbowRight() instanceof Coordinate) {
+                $model->setElbowRight("{$value->getElbowRight()->getX()};{$value->getElbowRight()->getY()};{$value->getElbowRight()->getZ()}");
+            }
+
+            if ($value->getHandLeft() instanceof Coordinate) {
+                $model->setHandLeft("{$value->getHandLeft()->getX()};{$value->getHandLeft()->getY()};{$value->getHandLeft()->getZ()}");
+            }
+
+            if ($value->getHandRight() instanceof Coordinate) {
+                $model->setHandRight("{$value->getHandRight()->getX()};{$value->getHandRight()->getY()};{$value->getHandRight()->getZ()}");
+            }
+
+            if ($value->getCom() instanceof Coordinate) {
+                $model->setCom("{$value->getCom()->getX()};{$value->getCom()->getY()};{$value->getCom()->getZ()}");
+            }
+
+            if ($value->getSpine() instanceof Coordinate) {
+                $model->setSpine("{$value->getSpine()->getX()};{$value->getSpine()->getY()};{$value->getSpine()->getZ()}");
+            }
+
+            if ($value->getHipLeft() instanceof Coordinate) {
+                $model->setHipLeft("{$value->getHipLeft()->getX()};{$value->getHipLeft()->getY()};{$value->getHipLeft()->getZ()}");
+            }
+
+            if ($value->getHipRight() instanceof Coordinate) {
+                $model->setHipRight("{$value->getHipRight()->getX()};{$value->getHipRight()->getY()};{$value->getHipRight()->getZ()}");
+            }
+
+            if ($value->getKneeLeft() instanceof Coordinate) {
+                $model->setKneeLeft("{$value->getKneeLeft()->getX()};{$value->getKneeLeft()->getY()};{$value->getKneeLeft()->getZ()}");
+            }
+
+            if ($value->getKneeRight() instanceof Coordinate) {
+                $model->setKneeRight("{$value->getKneeRight()->getX()};{$value->getKneeRight()->getY()};{$value->getKneeRight()->getZ()}");
+            }
+
+            if ($value->getFootLeft() instanceof Coordinate) {
+                $model->setFootLeft("{$value->getFootLeft()->getX()};{$value->getFootLeft()->getY()};{$value->getFootLeft()->getZ()}");
+            }
+
+            if ($value->getFootRight() instanceof Coordinate) {
+                $model->setFootRight("{$value->getFootRight()->getX()};{$value->getFootRight()->getY()};{$value->getFootRight()->getZ()}");
+            }
         }
 
         return $model;
