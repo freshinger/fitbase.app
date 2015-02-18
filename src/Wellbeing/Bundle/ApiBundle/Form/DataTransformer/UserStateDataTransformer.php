@@ -26,7 +26,9 @@ class UserStateDataTransformer implements DataTransformerInterface
         if ($value instanceof \Wellbeing\Bundle\ApiBundle\Entity\UserState) {
             $model->setId($value->getId());
             $model->setAuthKey($value->getAuthKey());
-            $model->setTimestamp($value->getDate()->getTimestamp());
+            if ($value->getDate() instanceof \DateTime) {
+                $model->setTimestamp($value->getDate()->getTimestamp());
+            }
 
             if ($value->getHead() instanceof Coordinate) {
                 $model->setHead("{$value->getHead()->getX()};{$value->getHead()->getY()};{$value->getHead()->getZ()}");

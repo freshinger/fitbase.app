@@ -16,6 +16,28 @@ use Wellbeing\Bundle\ApiBundle\Form\UserState;
 
 class UserStateFormTest extends WebTestCase
 {
+    protected function getUserStateModel()
+    {
+        return (new \Wellbeing\Bundle\ApiBundle\Model\UserState())
+            ->setAuthKey("afdgsdfgklmaljga")
+            ->setTimestamp((new \DateTime('now'))->getTimestamp())
+            ->setHead("1.1;1.2;1.3")
+            ->setShoulderLeft("2.1;2.2;2.3")
+            ->setShoulderCenter("3.1;3.2;3.3")
+            ->setShoulderRight("4.1;4.2;4.3")
+            ->setElbowLeft("5.1;5.2;5.3")
+            ->setElbowRight("6.1;6.2;6.3")
+            ->setHandLeft("7.1;7.2;7.3")
+            ->setHandRight("8.1;8.2;8.3")
+            ->setCom("9.1;9.2;9.3")
+            ->setSpine("10.1;10.2;10.3")
+            ->setHipLeft("11.1;11.2;11.3")
+            ->setHipRight("12.1;12.2;12.3")
+            ->setKneeLeft("13.1;13.2;13.3")
+            ->setKneeRight("14.1;14.2;14.3")
+            ->setFootLeft("15.1;15.2;15.3")
+            ->setFootRight("16.1;16.2;16.3");
+    }
 
     protected function getUserState()
     {
@@ -203,13 +225,12 @@ class UserStateFormTest extends WebTestCase
     public function testFormShouldAppySubmittedData()
     {
         $form = $this->container()->get('form.factory')
-            ->create(new UserState(), $this->getUserState());
+            ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
 
-        $form->submit(array(
-            "authKey" => "test"
-        ));
+        $form->submit($this->getUserStateModel()->toArray());
 
-        $this->assertEquals($form->getData()->getAuthKey(), "test");
+        $this->assertEquals($form->getData()->getAuthKey(), $this->getUserStateModel()->getAuthKey());
+
     }
 
 
