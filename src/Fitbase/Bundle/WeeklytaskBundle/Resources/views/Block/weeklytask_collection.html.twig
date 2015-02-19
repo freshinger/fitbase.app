@@ -59,10 +59,8 @@
 </style>
 
 {% if weeklytasks is defined %}
+    <h4 style="margin-left: 20px;">Ihre vorherigen Einheiten</h4>
     <div class="row scroll content">
-        <div class="col-xs-12">
-            <h4>Ihre vorherigen Einheiten</h4>
-        </div>
         {% for weeklytaskUser in weeklytasks %}
             {% set weeklytask = weeklytaskUser.task %}
             {% if weeklytask is defined and weeklytask %}
