@@ -34,6 +34,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
 
     /**
      * Draw a block
+     * TODO: create a test
      * {@inheritdoc}
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
@@ -44,7 +45,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
 
         $entityManager = $this->container->get('entity_manager');
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUserAndNotDone($user, 3);
+        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 3);
 
         $category = null;
         if (($focus = $this->container->get('focus')->focus($user))) {
@@ -52,7 +53,6 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
                 $category = $focusCategory->getCategory();
             }
         }
-
 
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_focus.html.twig', array(
             'user' => $user,

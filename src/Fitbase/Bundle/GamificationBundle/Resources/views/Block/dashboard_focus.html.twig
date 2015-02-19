@@ -40,6 +40,20 @@
                                 <tr>
                                     <td class="shade">
                                         {{ task.task }}
+
+                                        {% if task.task.categories is defined %}
+                                            {% for category in task.task.categories %}
+                                                {% if category is defined and category %}
+                                                    <sub>
+                                                        {% if loop.index > 1 %}
+                                                            ,
+                                                        {% endif %}
+                                                        {{ category }}
+                                                    </sub>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+
                                     </td>
                                     <td class="shade">
                                         <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
