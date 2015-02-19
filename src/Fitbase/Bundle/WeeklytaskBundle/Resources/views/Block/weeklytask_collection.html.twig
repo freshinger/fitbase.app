@@ -55,13 +55,13 @@
 
 {% if weeklytasks is defined %}
     <div class="row" style="padding-right: 30px; max-width: 237px;">
-        <div class="col-md-12" style="padding: 0px !important;">
+        <div class="col-xs-12" style="padding: 0px !important;">
             <h4>Ihre vorherigen Einheiten</h4>
         </div>
         {% for weeklytaskUser in weeklytasks|slice(0, 6) %}
             {% set weeklytask = weeklytaskUser.task %}
             {% if weeklytask is defined and weeklytask %}
-                <div class="col-md-12 panel" style="padding: 0px !important;">
+                <div class="col-xs-12 panel" style="padding: 0px !important;">
                     <a class="thumb-info" href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
 
                         {% set icon = icon(weeklytask) %}

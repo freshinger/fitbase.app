@@ -1,7 +1,7 @@
 {% block stylesheet %}
     <style>
 
-        .col-md-3 {
+        .col-xs-3 {
             width: 22%;
         }
 
@@ -16,10 +16,23 @@
             margin-right: 25px;
         }
 
+        .col-xs-3 .thumb-info img {
+            max-width: 215px;
+        }
+
+        .col-xs-4 .thumb-info img {
+            max-width: 278px;
+        }
+
+        .col-xs-5 .thumb-info img {
+            max-width: 200px;
+            max-height: 112px;
+        }
+
         .thumb-info img {
             display: block;
             margin-left: auto;
-            margin-right: auto
+            margin-right: auto;
         }
 
         a.thumb-info span.thumb-info-title {
@@ -67,10 +80,10 @@
         <h2>Übungen</h2>
         <div class="row">
             {% for exercise in exercises %}
-                <div class="col-md-4 panel">
+                <div class="col-xs-4 panel">
                     <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                         {% if exercise.image is defined %}
-                            {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
+                            {% thumbnail exercise.image, 'preview' %}
                             <span class="thumb-info-title">
                             <span class="thumb-info-inner">
                                 {{ exercise.name }}

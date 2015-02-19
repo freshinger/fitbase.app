@@ -11,9 +11,9 @@
                 {% for category in categories|reverse %}
                     {% if category.exercises|length > 0 and category.parent is not null %}
                         {% if category.media is defined and category.media %}
-                            <div class="col-md-3 " style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;" >
+                            <div class="col-xs-3" style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;" >
                                 <a class="thumb-info" href="{{ path('category', {'slug': category.slug}) }}">
-                                    {% thumbnail category.media, 'preview' with {'height': 150, 'width': null} %}
+                                    {% thumbnail category.media, 'preview' %}
                                     <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ category.name }}
@@ -33,14 +33,14 @@
     {% if exercises is defined %}
         {% if exercises|length > 0 %}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <h2>Übungen</h2>
                 </div>
                 {% for exercise in exercises %}
-                    <div class="col-md-4 panel">
+                    <div class="col-xs-4 panel">
                         <a class="thumb-info" href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
                             {% if exercise.image is defined %}
-                                {% thumbnail exercise.image, 'preview' with {'height': 150, 'width': null} %}
+                                {% thumbnail exercise.image, 'preview' %}
                                 <span class="thumb-info-title">
                                 <span class="thumb-info-inner">
                                     {{ exercise.name }}

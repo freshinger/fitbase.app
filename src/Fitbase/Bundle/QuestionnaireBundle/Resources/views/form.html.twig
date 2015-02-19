@@ -47,11 +47,11 @@
 
 {% block text_labeled_widget %}
     {% spaceless %}
-        <div class="col-md-4">
+        <div class="col-xs-4">
             {% set type = type|default('text') %}
             {{ block('form_widget_simple') }}
         </div>
-        <label style="padding-left: 0px; padding-top: 7px;" class="col-md-8 control-label">{{ text }}</label>
+        <label style="padding-left: 0px; padding-top: 7px;" class="col-xs-8 control-label">{{ text }}</label>
     {% endspaceless %}
 {% endblock text_labeled_widget %}
 
@@ -92,14 +92,14 @@
     {% spaceless %}
         <div class="modal-body" {{ block('widget_container_attributes') }}>
             <div class="row">
-                <div class="col-md-12 errors">
+                <div class="col-xs-12 errors">
                     {% if form.parent is empty %}
                         {{ form_errors(form) }}
                     {% endif %}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     {{ block('form_rows') }}
                     {{ form_rest(form) }}
                 </div>
@@ -123,12 +123,12 @@
 {% block questionnaire_slider_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-md-8">
+            <td class="col-xs-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-md-4">
+            <td class="col-xs-4">
                 <div id="{{ id }}"></div>
                 {% set type = type|default('hidden') %}
                 {{ block('form_widget_simple') }}
@@ -153,12 +153,12 @@
 {% block questionnaire_checkbox_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-md-8">
+            <td class="col-xs-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-md-4">
+            <td class="col-xs-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
@@ -170,12 +170,12 @@
 {% block questionnaire_radiobutton_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-md-8">
+            <td class="col-xs-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-md-4">
+            <td class="col-xs-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
@@ -187,12 +187,12 @@
 {% block questionnaire_selectbox_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-md-8">
+            <td class="col-xs-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-md-4">
+            <td class="col-xs-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
@@ -205,13 +205,13 @@
 {% block questionnaire_text_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-md-4">
+            <td class="col-xs-4">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
 
                 {{ description }}
             </td>
-            <td class="col-md-8">
+            <td class="col-xs-8">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>

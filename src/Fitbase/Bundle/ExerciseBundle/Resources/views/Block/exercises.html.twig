@@ -49,7 +49,7 @@
 {% if exercises is defined %}
     <div class="row" style="padding-right: 30px; max-width: 235px;">
         {% for exercise in exercises|slice(0, 7) %}
-            <div class="col-md-12 panel" style="padding: 0px !important;">
+            <div class="col-xs-12 panel" style="padding: 0px !important;">
                 <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                     {% if exercise.image is defined %}
                         {% thumbnail exercise.image, 'preview' with {'height': 112, 'width': null} %}

@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row" style="min-height: 300px;">
-        <div class="col-md-12">
+        <div class="col-xs-12">
             {% if user is defined and user %}
                 <p>Hallo {{ user.firstname }} {{ user.lastname }}.</p>
             {% endif %}
@@ -14,7 +14,7 @@
             {% endif %}
         </div>
         {% if  task is defined %}
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <h2>{{ task.name|raw }}</h2>
 
                 <p>{{ task.content|raw }}</p>

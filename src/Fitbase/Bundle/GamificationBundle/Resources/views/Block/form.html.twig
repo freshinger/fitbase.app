@@ -24,7 +24,7 @@
         {% if errors|length > 0 %}
             {% for error in errors %}
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group alert alert-warning">
                             {{ error.message }}
                         </div>
@@ -52,7 +52,7 @@
         </style>
 
         <div class="row featured-boxes">
-            <div class="col-sm-6 col-md-3 column_first" style="width: 19.667%">
+            <div class="col-sm-6 col-xs-3 column_first" style="width: 19.667%">
                 <div class="featured-box featured-box-primary">
                     <div class="box-content">
                         <a href="#" class="avatar" id="monkey">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3" style="width: 19.667%">
+            <div class="col-sm-6 col-xs-3" style="width: 19.667%">
                 <div class="featured-box featured-box-secundary">
                     <div class="box-content">
                         <a href="#" class="avatar" id="bear">
@@ -76,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3" style="width: 19.667%">
+            <div class="col-sm-6 col-xs-3" style="width: 19.667%">
                 <div class="featured-box featured-box-tertiary">
                     <div class="box-content">
                         <a href="#" class="avatar" id="deer">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3" style="width: 19.667%">
+            <div class="col-sm-6 col-xs-3" style="width: 19.667%">
                 <div class="featured-box featured-box-tertiary">
                     <div class="box-content">
                         <a href="#" class="avatar" id="crane">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3" style="width: 19.667%">
+            <div class="col-sm-6 col-xs-3" style="width: 19.667%">
                 <div class="featured-box featured-box-quaternary">
                     <div class="box-content">
                         <a href="#" class="avatar" id="tiger">
@@ -134,7 +134,7 @@
     {% spaceless %}
         <div class="modal-body" {{ block('widget_container_attributes') }}>
             <div class="row">
-                <div class="col-md-12 errors">
+                <div class="col-xs-12 errors">
                     <p class="modal-description">
                         Die Charaktere werden Sie durch die Fitbase begleiten und sind aus dem Qi Gong
                         abgeleitet. Wählen Sie nun einen Charakter Ihrer Wahl. Mit jeder durchgeführten Aktivität auf
@@ -147,7 +147,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     {{ block('form_rows') }}
                     {{ form_rest(form) }}
                 </div>

@@ -7,15 +7,15 @@
     </h4>
     {% for answer in object.answers %}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <h4>{{ loop.index }}.&nbsp;{{ answer.name }} ({{ answer.countPoint }})</h4>
             </div>
-            <div class="col-md-6">
+            <div class="col-xs-6">
                 {% if answer.description is defined %}
                     <p>{{ answer.description|raw }}</p>
                 {% endif %}
             </div>
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_show', { id: answer.id}) }}">show</a>
                 |
                 <a href="{{ path('admin_fitbase_questionnaire_questionnaireanswer_edit', { id: answer.id}) }}">edit</a>

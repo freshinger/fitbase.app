@@ -36,7 +36,7 @@
     {% spaceless %}
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 {% if form.parent is empty %}
                     {{ form_errors(form) }}
                 {% endif %}
@@ -44,17 +44,17 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 {{- form_widget(form.sendWeeklytask) -}}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 {{- form_widget(form.sendWeeklyquiz) -}}
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <br>
                 {{ form_rest(form) }}
                 {{ form_row(form.save) }}

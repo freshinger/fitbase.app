@@ -6,10 +6,10 @@
     {% if object.questionFalse is defined or object.questionTrue is defined %}
         {% if object.questionFalse or object.questionTrue %}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {% include 'FitbaseGamificationBundle:Admin:question_true.html.twig' with { 'object' : object } %}
                 </div>
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {% include 'FitbaseGamificationBundle:Admin:question_false.html.twig' with { 'object' : object } %}
                 </div>
             </div>

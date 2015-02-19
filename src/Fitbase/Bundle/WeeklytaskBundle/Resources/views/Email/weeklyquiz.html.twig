@@ -3,8 +3,8 @@
 {% block content %}
     <div class="row" style="min-height: 300px;">
         {% if  task is defined %}
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6">
                 {% if user is defined and user %}
                     <p>Guten Tag {{ user.firstname }} {{ user.lastname }},</p>
                 {% endif %}
@@ -22,7 +22,7 @@
                 </a>
 
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-xs-3"></div>
         {% endif %}
     </div>
 {% endblock content %}

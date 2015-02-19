@@ -37,39 +37,39 @@
         <div {{ block('widget_container_attributes') }}>
             {% if form.parent is empty %}
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         {{ form_errors(form) }}
                     </div>
                 </div>
             {% endif %}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <h4>Persönliche Information</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {{ form_row(form.anrede) }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {{ form_row(form.titel) }}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {{ form_row(form.vorname) }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-xs-6">
                     {{ form_row(form.nachname) }}
                 </div>
             </div>
             {#<div class="row">#}
-            {#<div class="col-md-12">#}
+            {#<div class="col-xs-12">#}
             {#{{ form_row(form.geburtsdatum) }}#}
             {#</div>#}
             {#</div>#}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <label>
                         {{ form_widget(form.showInStatistic) }}
                         {{ form_label(form.showInStatistic) }}
@@ -78,43 +78,43 @@
                 </div>
             </div>
             {#<div class="row">#}
-            {#<div class="col-md-12">#}
+            {#<div class="col-xs-12">#}
             {#<h4>Adresse Information</h4>#}
             {#</div>#}
             {#</div>#}
             {#<div class="row">#}
-            {#<div class="col-md-6">#}
+            {#<div class="col-xs-6">#}
             {#{{ form_row(form.strasse) }}#}
             {#</div>#}
-            {#<div class="col-md-6">#}
+            {#<div class="col-xs-6">#}
             {#{{ form_row(form.hausnummer) }}#}
             {#</div>#}
             {#</div>#}
             {#<div class="row">#}
-            {#<div class="col-md-6">#}
+            {#<div class="col-xs-6">#}
             {#{{ form_row(form.postzahl) }}#}
             {#</div>#}
-            {#<div class="col-md-6">#}
+            {#<div class="col-xs-6">#}
             {#{{ form_row(form.ort) }}#}
             {#</div>#}
             {#</div>#}
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <h4>Kontakt Information</h4>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     {{ form_row(form.email) }}
                 </div>
             </div>
             {#<div class="row">#}
-            {#<div class="col-md-12">#}
+            {#<div class="col-xs-12">#}
             {#{{ form_row(form.phone) }}#}
             {#</div>#}
             {#</div>#}
             {#<div class="row">#}
-            {#<div class="col-md-12">#}
+            {#<div class="col-xs-12">#}
             {#{{ form_row(form.handy) }}#}
             {#</div>#}
             {#</div>#}
@@ -126,12 +126,12 @@
 {% block button_row %}
     {% spaceless %}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 &nbsp;
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 {{ form_widget(form) }}
             </div>
         </div>

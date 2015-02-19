@@ -2,7 +2,7 @@
 
 {% block field %}
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-4">
             {% if object.webm is defined %}
                 {% if object.webm %}
 
@@ -52,7 +52,7 @@
                 {% endif %}
             {% endif %}
         </div>
-        <div class="col-md-8">
+        <div class="col-xs-8">
             {{ object.description|raw }}
         </div>
     </div>
