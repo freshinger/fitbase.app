@@ -11,9 +11,9 @@
                 {% for category in categories|reverse %}
                     {% if category.exercises|length > 0 and category.parent is not null %}
                         {% if category.media is defined and category.media %}
-                            <div class="col-xs-3" style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;" >
+                            <div class="col-xs-3 " style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;" >
                                 <a class="thumb-info" href="{{ path('category', {'slug': category.slug}) }}">
-                                    {% thumbnail category.media, 'preview' %}
+                                    {% thumbnail category.media, 'preview' with {'height': 150, 'width': null} %}
                                     <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ category.name }}
