@@ -18,7 +18,7 @@
                         <div class="col-xs-5 panel">
                             <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
                                 {% if exercise.image is defined %}
-                                    {% thumbnail exercise.image, 'preview' %}
+                                    {% thumbnail exercise.image, 'thumbnail' %}
                                     <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ exercise.name }}
