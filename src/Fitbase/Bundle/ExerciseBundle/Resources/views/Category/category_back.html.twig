@@ -13,7 +13,7 @@
                         {% if category.media is defined and category.media %}
                             <div class="col-xs-3 " style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;" >
                                 <a class="thumb-info" href="{{ path('category', {'slug': category.slug}) }}">
-                                    {% thumbnail category.media, 'preview' with {'height': 150, 'width': null} %}
+                                    {% thumbnail category.media, 'preview' %}
                                     <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ category.name }}
