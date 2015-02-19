@@ -274,6 +274,7 @@ class WeeklytaskUserRepository extends EntityRepository
         ));
 
         $queryBuilder->addOrderBy('Category.id', 'ASC');
+        $queryBuilder->addOrderBy('WeeklytaskUser.date', 'DESC');
         $queryBuilder->addOrderBy('Weeklytask.priority', 'DESC');
 
         return $queryBuilder->getQuery()->getResult();

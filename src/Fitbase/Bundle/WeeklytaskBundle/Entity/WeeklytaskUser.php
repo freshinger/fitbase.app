@@ -85,7 +85,7 @@ class WeeklytaskUser
      */
     public function getCountPoint()
     {
-        return $this->countPoint;
+        return (int)$this->countPoint;
     }
 
     /**
