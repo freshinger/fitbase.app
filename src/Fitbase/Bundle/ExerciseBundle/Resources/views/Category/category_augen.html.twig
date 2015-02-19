@@ -6,11 +6,11 @@
     {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-7">
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
         </div>
 
-        <div class="col-xs-6">
+        <div class="col-xs-5">
             {% if exercises is defined and exercises %}
                 <h2>Übungen</h2>
                 <div class="row">
