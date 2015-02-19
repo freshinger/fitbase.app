@@ -47,18 +47,23 @@
     a.thumb-info img {
         height: auto;
         width: auto;
-        max-width: 205px;
-        max-height: 113px;
+        max-width: 225px;
+    }
+
+    .scroll {
+        overflow-y: scroll;
+        max-height:650px;
+        padding-right: 30px;
     }
 
 </style>
 
 {% if weeklytasks is defined %}
-    <div class="row" style="padding-right: 30px; max-width: 237px;">
-        <div class="col-xs-12" style="padding: 0px !important;">
+    <div class="row scroll content">
+        <div class="col-xs-12">
             <h4>Ihre vorherigen Einheiten</h4>
         </div>
-        {% for weeklytaskUser in weeklytasks|slice(0, 6) %}
+        {% for weeklytaskUser in weeklytasks %}
             {% set weeklytask = weeklytaskUser.task %}
             {% if weeklytask is defined and weeklytask %}
                 <div class="col-xs-12 panel" style="padding: 0px !important;">
@@ -70,7 +75,7 @@
                         {% else %}
                             {% set category = weeklytask.categories[0] %}
                             {% if category is defined and  category %}
-                                {% thumbnail category, 'thumbnail' with { 'height': null, 'width': null } %}
+                                {% thumbnail category, 'preview' %}
                             {% endif %}
                         {% endif %}
 
