@@ -8,6 +8,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Component\Chooser\ChooserWeeklytaskFilter;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
+use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceWeeklytask extends ContainerAware
@@ -60,6 +61,9 @@ class ServiceWeeklytask extends ContainerAware
                 $this->container->get('entity_manager')->persist($weeklytaskUser);
                 $this->container->get('entity_manager')->flush($weeklytaskUser);
             }
+
+            $this->container->get('event_dispatcher')->dispatch('weeklytask_user_done',
+                new WeeklytaskUserEvent($weeklytaskUser));
 
             return true;
         }

@@ -49,6 +49,7 @@ class WeeklytaskBlockService extends BaseBlockService
 
     /**
      * Render Weeklytask
+     * TODO: create test
      * @param BlockContextInterface $blockContext
      * @param Response $response
      * @return Response
@@ -58,8 +59,10 @@ class WeeklytaskBlockService extends BaseBlockService
         $weeklytaskUser = null;
 
         if (($weeklytaskUser = $blockContext->getSetting('weeklytaskUser'))) {
-            $event = new WeeklytaskUserEvent($weeklytaskUser);
-            $this->eventDispatcher->dispatch('weeklytask_user_done', $event);
+            if (!$weeklytaskUser->getDone()) {
+                $event = new WeeklytaskUserEvent($weeklytaskUser);
+                $this->eventDispatcher->dispatch('weeklytask_user_done', $event);
+            }
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(

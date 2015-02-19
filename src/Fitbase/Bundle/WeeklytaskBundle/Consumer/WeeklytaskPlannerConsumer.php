@@ -55,6 +55,7 @@ class WeeklytaskPlannerConsumer implements ConsumerInterface
                     }
 
                     if ($this->serviceWeeklytask->isLast($user, $datetime)) {
+                        // TODO: change to event, run consumer in listener or subscriber
                         // Check is a last weeklytask was already sent
                         // for current user, than create a event that
                         // a last weeklytask was sent
