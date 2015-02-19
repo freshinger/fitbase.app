@@ -6,10 +6,10 @@
     {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-7">
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-5">
             {% if exercises is defined and exercises %}
                 <h2>Übungen</h2>
                 <div class="row">
@@ -29,7 +29,7 @@
                     {% endfor %}
                     <div class="col-xs-5 panel">
                         <a class="thumb-info" href="{{ path('dialog') }}">
-                            <img src="/image/wohlfuehlgespraech.jpg">
+                            <img src="/image/wohlfuehlgespraech.jpg" width="150">
                         <span class="thumb-info-title">
                             <span class="thumb-info-inner">
                                 Wohlfühlgespräch
