@@ -40,7 +40,7 @@ class ReminderUserItemAdmin extends Admin implements ContainerAwareInterface
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('reminder')
+            ->add('user')
             ->add('day')
             ->add('time')
             ->end();
@@ -52,7 +52,7 @@ class ReminderUserItemAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('reminder')
+            ->add('user')
             ->add('day')
             ->add('time')
             ->add('_action', 'actions', array(
@@ -70,7 +70,7 @@ class ReminderUserItemAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('reminder')
+            ->add('user')
             ->add('day')
             ->add('time');
     }
@@ -82,7 +82,7 @@ class ReminderUserItemAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('reminder')
+//            ->add('reminder')
             ->add('day')
             ->add('time')
             ->end();
