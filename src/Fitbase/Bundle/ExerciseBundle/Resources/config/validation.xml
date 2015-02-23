@@ -8,6 +8,9 @@
         <constraint name="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserUnique">
             <option name="message">Geben Sie bitte das Datum ein</option>
         </constraint>
+        <constraint name="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserItems">
+            <option name="message">Anzahl der Portionen sollte größer als total sein</option>
+        </constraint>
         <property name="date">
             <constraint name="NotBlank">
                 <option name="message">Geben Sie bitte das Datum ein</option>
@@ -29,7 +32,7 @@
                 <option name="message">Dieser Wert sollte eine Zahl sein.</option>
             </constraint>
             <constraint name="GreaterThan">
-                <option name="value">0</option>
+                <option name="value">-1</option>
             </constraint>
         </property>
     </class>

@@ -1,17 +1,23 @@
 <?xml version="1.0" ?>
 
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
 
-        <service id="fitbase_validator.FeedingUserUniqueValidator"
-                 class="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserUniqueValidator">
+        <service id="fitbase_validator.FeedingUserUniqueValidator" class="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserUniqueValidator">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
             <tag name="validator.constraint_validator" alias="FeedingUserUniqueValidator"/>
+        </service>
+
+
+        <service id="fitbase_validator.FeedingUserItemsValidator" class="Fitbase\Bundle\ExerciseBundle\Form\Constraints\FeedingUserItemsValidator">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="validator.constraint_validator" alias="FeedingUserItemsValidator"/>
         </service>
 
     </services>

@@ -171,7 +171,7 @@ class CategoryController extends Controller
                         }
 
                         foreach ($resultUserItems[$label] as $name => $count) {
-                            $resultUserItems[$label][$name] = ($count * 100) / $total;
+                            $resultUserItems[$label][$name] = ($count * 100) / ($total == 0 ? 1 : $total);
                         }
                     }
                 }
