@@ -59,13 +59,13 @@ class ExerciseController extends Controller
         throw new AccessDeniedException('This user does not have access to this section.');
     }
 
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function dialogAction(Request $request)
-    {
-        return $this->render('FitbaseExerciseBundle:Exercise:dialog.html.twig', array());
-    }
+//    /**
+//     * @param Request $request
+//     * @return \Symfony\Component\HttpFoundation\Response
+//     */
+//    public function dialogAction(Request $request)
+//    {
+//        return $this->render('FitbaseExerciseBundle:Exercise:dialog.html.twig', array());
+//    }
 
 }

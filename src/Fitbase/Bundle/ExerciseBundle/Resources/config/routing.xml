@@ -28,11 +28,6 @@
     </route>
 
 
-    <route id="dialog" path="/dialog">
-        <default key="_controller">FitbaseExerciseBundle:Exercise:dialog</default>
-    </route>
-
-
     <route id="user_task" path="/user/task/{unique}/{step}">
         <default key="_controller">FitbaseExerciseBundle:Task:userTask</default>
     </route>

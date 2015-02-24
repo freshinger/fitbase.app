@@ -37,4 +37,32 @@ class Site extends BaseSite
     {
         return $this->id;
     }
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\Group
+     */
+    private $group;
+
+
+    /**
+     * Set group
+     *
+     * @param \Application\Sonata\UserBundle\Entity\Group $group
+     * @return Site
+     */
+    public function setGroup(\Application\Sonata\UserBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \Application\Sonata\UserBundle\Entity\Group 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
 }

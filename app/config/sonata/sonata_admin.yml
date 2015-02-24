@@ -137,7 +137,7 @@ sonata_admin:
                 label_catalogue: SonataDemoBundle
                 icon:            '<i class="fa fa-cogs"></i>'
                 items:
-                    - sonata.page.admin.site
+                    - fitbase.admin.site
                     - sonata.page.admin.page
 
 
