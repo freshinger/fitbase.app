@@ -24,11 +24,12 @@ class TaskController extends Controller
     {
         if (($user = $this->get('user')->current())) {
 
-            $entityManager = $this->get('entity_manager');
-            $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
-
-            if (($category = $repositoryCategory->findOneBySlug($slug))) {
-                return $this->showTask($user, $category);
+            if (($focus = $user->getFocus())) {
+                if (($collection = $focus->getCategories())) {
+                    return $this->showTask($user, $collection->map(function ($entity) {
+                        return $entity->getCategory();
+                    })->toArray());
+                }
             }
         }
     }
@@ -65,6 +66,7 @@ class TaskController extends Controller
         $exercise0 = null;
         $exercise1 = null;
         $exercise2 = null;
+
 
         if (($exercises = $this->get('fitbase.orm.exercise_manager')->findThreeRandom($user, $category, $exercise))) {
             $exercise0 = isset($exercises[0]) ? $exercises[0] : null;
