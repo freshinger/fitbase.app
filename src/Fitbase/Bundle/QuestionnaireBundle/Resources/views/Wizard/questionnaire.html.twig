@@ -1,0 +1,24 @@
+{% extends 'FitbaseQuestionnaireBundle::layout.html.twig' %}
+
+{% block content %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire', 'current_uri': app.request.requestUri }) }}
+
+    {% if questionnaire is defined and questionnaire %}
+        <div class="row">
+            <div class="col-xs-12">
+                <h3 class="modal-title">
+                    {{ questionnaire.name }}
+                </h3>
+
+                <p class="modal-description">
+                    {{ questionnaire.description|raw }}
+                </p>
+            </div>
+        </div>
+    {% endif %}
+
+    {% form_theme form "FitbaseQuestionnaireBundle:Wizard:questionnaire/form.html.twig" %}
+
+    {{ form(form) }}
+
+{% endblock %}

@@ -6,13 +6,13 @@
 
     <services>
 
-        <service id="fitbase.subscriber.questionnaire"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireControllerSubscriber">
-            <tag name="kernel.event_subscriber"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
+        <!--<service id="fitbase.subscriber.questionnaire"-->
+        <!--class="Fitbase\Bundle\QuestionnaireBundle\Listener\QuestionnaireControllerSubscriber">-->
+        <!--<tag name="kernel.event_subscriber"/>-->
+        <!--<call method="setContainer">-->
+        <!--<argument type="service" id="service_container"/>-->
+        <!--</call>-->
+        <!--</service>-->
 
 
         <service id="fitbase.subscriber.UserActioncodeSubscriber"
@@ -23,7 +23,21 @@
             </call>
         </service>
 
+        <service id="fitbase.subscriber.questionnaire.user_wizard"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Subscriber\UserWizardSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="fitbase.subscriber.questionnaire.user"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Subscriber\UserSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
 
     </services>
-
 </container>

@@ -104,7 +104,6 @@ fitbase_weeklytask_old:
     resource: "@FitbaseWeeklytaskBundle/Resources/config/routing_old.xml"
     prefix:   /wochenaufgaben
 
-
 fitbase_questionnaire:
     resource: "@FitbaseQuestionnaireBundle/Resources/config/routing.xml"
     prefix:   /questionnaire

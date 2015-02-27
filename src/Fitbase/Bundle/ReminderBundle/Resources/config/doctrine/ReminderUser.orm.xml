@@ -12,11 +12,12 @@
 
         <field name="pause" type="integer" column="pause" nullable="true"/>
         <field name="pauseStart" type="datetime" column="pause_start" nullable="true"/>
+        <field name="update" type="boolean" column="refresh" nullable="true"/>
+
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
             <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
-
 
     </entity>
 </doctrine-mapping>

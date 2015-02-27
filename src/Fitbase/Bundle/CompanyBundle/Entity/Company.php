@@ -22,7 +22,6 @@ class Company
     protected $colorFooter;
     protected $colorBackground;
 
-    protected $questionnaire;
     protected $gamification;
 
     protected $textEmail;
@@ -73,22 +72,6 @@ class Company
     public function getTextEmail()
     {
         return $this->textEmail;
-    }
-
-    /**
-     * @param mixed $questionnaire
-     */
-    public function setQuestionnaire($questionnaire)
-    {
-        $this->questionnaire = $questionnaire;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuestionnaire()
-    {
-        return $this->questionnaire;
     }
 
     /**
@@ -604,5 +587,71 @@ class Company
     public function getSlug()
     {
         return $this->slug;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $actioncodes;
+
+
+    /**
+     * Add actioncodes
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncodes
+     * @return Company
+     */
+    public function addActioncode(\Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncodes)
+    {
+        $this->actioncodes[] = $actioncodes;
+
+        return $this;
+    }
+
+    /**
+     * Remove actioncodes
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncodes
+     */
+    public function removeActioncode(\Fitbase\Bundle\UserBundle\Entity\UserActioncode $actioncodes)
+    {
+        $this->actioncodes->removeElement($actioncodes);
+    }
+
+    /**
+     * Get actioncodes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getActioncodes()
+    {
+        return $this->actioncodes;
+    }
+    /**
+     * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire
+     */
+    private $questionnaire;
+
+
+    /**
+     * Set questionnaire
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire
+     * @return Company
+     */
+    public function setQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire = null)
+    {
+        $this->questionnaire = $questionnaire;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaire
+     *
+     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire 
+     */
+    public function getQuestionnaire()
+    {
+        return $this->questionnaire;
     }
 }

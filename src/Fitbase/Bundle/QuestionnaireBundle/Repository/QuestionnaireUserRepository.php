@@ -14,6 +14,16 @@ use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion;
 
 class QuestionnaireUserRepository extends EntityRepository
 {
+    protected function getExprIdArray($queryBuilder, $collection)
+    {
+        if (!empty($collection)) {
+            $queryBuilder->setParameter('id_array', $collection);
+            return $queryBuilder->expr()->in('QuestionnaireUser.id', ':id_array');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
     /**
      * Find not pause records
      * @param $queryBuilder
@@ -59,7 +69,25 @@ class QuestionnaireUserRepository extends EntityRepository
     }
 
     /**
+     * Get expression to find records by company
+     * @param $queryBuilder
+     * @param $company
+     * @return mixed
+     */
+    public function getExprCompany($queryBuilder, $company)
+    {
+        if (!empty($company)) {
+            $queryBuilder->setParameter('companyId', $company->getId());
+            return $queryBuilder->expr()->eq('User.company', ':companyId');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
      * Get expression to find records by questionnaire id
+     * TODO: check usage
      * @param $queryBuilder
      * @param $questionnaireCompany
      * @return mixed
@@ -74,9 +102,8 @@ class QuestionnaireUserRepository extends EntityRepository
         return $queryBuilder->expr()->eq('0', '1');
     }
 
-
     /**
-     *
+     * TODO: check usage
      * @param $queryBuilder
      * @param $string
      * @return mixed
@@ -98,22 +125,13 @@ class QuestionnaireUserRepository extends EntityRepository
         return $queryBuilder->expr()->eq('1', '1');
     }
 
+
     /**
-     * Get expression to find records by company
-     * @param $queryBuilder
-     * @param $company
+     * TODO: check usage
+     * @param $user
      * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getExprCompany($queryBuilder, $company)
-    {
-        if (!empty($company)) {
-            $queryBuilder->setParameter('companyId', $company->getId());
-            return $queryBuilder->expr()->eq('QuestionnaireCompany.company', ':companyId');
-        }
-
-        return $queryBuilder->expr()->eq('0', '1');
-    }
-
     public function findOneByUserAndNotDoneAndNotPause($user)
     {
         $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
@@ -124,6 +142,8 @@ class QuestionnaireUserRepository extends EntityRepository
             $this->getExprNotPause($queryBuilder)
         ));
 
+        $queryBuilder->addOrderBy('QuestionnaireUser.id', 'ASC');
+
         $queryBuilder->setMaxResults(1);
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
@@ -131,6 +151,7 @@ class QuestionnaireUserRepository extends EntityRepository
 
     /**
      * Find one record by user
+     * TODO: check usage
      * @param $user
      * @return mixed
      */
@@ -143,12 +164,15 @@ class QuestionnaireUserRepository extends EntityRepository
             $this->getExprNotDone($queryBuilder)
         ));
 
+        $queryBuilder->addOrderBy('QuestionnaireUser.id', 'ASC');
+
         $queryBuilder->setMaxResults(1);
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
     /**
      * Find one by user and questionnaire user
+     * TODO: check usage
      * @param $user
      * @param $questionnaireCompany
      * @return array
@@ -169,20 +193,83 @@ class QuestionnaireUserRepository extends EntityRepository
 
     /**
      * Find all records by company
+     *
      * @param $company
      * @return array
      */
-    public function findAllByCompany($company)
+    public function findAllFirstByCompany($company)
     {
-        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+        $tableQuestionnaireUser = $this->getEntityManager()->getClassMetadata(
+            $this->getClassName()
+        )->getTableName();
 
-        $queryBuilder->join('QuestionnaireUser.questionnaireCompany', 'QuestionnaireCompany');
 
-        $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprCompany($queryBuilder, $company)
+        $tableUser = $this->getEntityManager()->getClassMetadata(
+            "Application\Sonata\UserBundle\Entity\User"
+        )->getTableName();
+
+        $sql = "SELECT $tableQuestionnaireUser.*, company_id FROM (
+	        SELECT * FROM $tableQuestionnaireUser ORDER BY user_id ASC, id ASC
+          ) $tableQuestionnaireUser
+          JOIN $tableUser ON $tableQuestionnaireUser.user_id=$tableUser.id
+          WHERE company_id = :company_id
+          GROUP BY user_id";
+
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute(array('company_id' => $company->getId()));
+
+        return $stmt->fetchAll();
+    }
+
+
+    public function findAllFirstByCompanyAndQuestionnaire($company, $questionnaire)
+    {
+        if (($collection = $this->findAllIdFirstByCompanyAndQuestionnaire($company, $questionnaire))) {
+            $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+
+            $queryBuilder->where($queryBuilder->expr()->andX(
+                $this->getExprIdArray($queryBuilder, $collection)
+            ));
+
+            return $queryBuilder->getQuery()->getResult();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param $company
+     * @param $questionnaire
+     * @return array
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function findAllIdFirstByCompanyAndQuestionnaire($company, $questionnaire)
+    {
+        $tableQuestionnaireUser = $this->getEntityManager()->getClassMetadata(
+            $this->getClassName()
+        )->getTableName();
+
+        $tableUser = $this->getEntityManager()->getClassMetadata(
+            "Application\Sonata\UserBundle\Entity\User"
+        )->getTableName();
+
+        $sql = "SELECT $tableQuestionnaireUser.id  FROM (
+	        SELECT * FROM $tableQuestionnaireUser ORDER BY user_id ASC, id ASC
+          ) $tableQuestionnaireUser
+          JOIN $tableUser ON $tableQuestionnaireUser.user_id=$tableUser.id
+          WHERE company_id = :company_id
+          AND questionnaire_id = :questionnaire_id
+          GROUP BY user_id";
+
+
+        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
+        $stmt->execute(array(
+            'company_id' => $company->getId(),
+            'questionnaire_id' => $questionnaire->getId()
         ));
 
-        return $queryBuilder->getQuery()->getResult();
+        return $stmt->fetchAll(\PDO::FETCH_COLUMN);
     }
 
     /**

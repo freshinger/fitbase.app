@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class Builder extends ContainerAware
+class Builder extends ContainerAware implements BuilderMenuInterface
 {
     /**
      * Creates the header menu
@@ -35,41 +35,23 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $securityContext = $this->container->get('security.context');
 
-        $menuOptions = array_merge($options, array(
-            'template' => '',
-            'childrenAttributes' => array('class' => 'nav nav-pills'),
-        ));
+        $builder = null;
+        if ($securityContext->isGranted('ROLE_COMPANY')) {
+            $builder = new BuilderMenuCompany();
+            $builder->setContainer($this->container);
+            return $builder->mainMenu($factory, $options);
 
-        $menu = $factory->createItem('main', $menuOptions);
-        if (!($this->container->get('user')->current())) {
-            return $menu;
+        }
+        if ($securityContext->isGranted('ROLE_USER')) {
+            $builder = new BuilderMenuUser();
+            $builder->setContainer($this->container);
+            return $builder->mainMenu($factory, $options);
         }
 
-
-        $menu->addChild('Startseite', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/'
-            )
-        ));
-
-
-        $this->container->get('event_dispatcher')
-            ->dispatch('user_menu_main', new UserMenuEvent($menu));
-
-
-        $menu->addChild('Infoeinheiten', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/infoeinheiten'
-            )));
-
-
-        $menu->addChild('Profil', array(
-            'route' => 'sonata_user_profile_show',
-        ));
-
-        return $menu;
+        return $factory->createItem('main', array_merge($options, array(
+            'childrenAttributes' => array('class' => 'nav nav-pills'),
+        )));
     }
 }

@@ -9,21 +9,15 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class GamificationUserForm extends GamificationDialogQuestionAbstractForm implements ContainerAwareInterface
+class GamificationUserForm extends GamificationDialogQuestionAbstractForm
 {
-    /**
-     * Store container here
-     * @var
-     */
-    protected $container;
+    protected $templating;
+    protected $gamification;
 
-    /**
-     * Set container
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct($templating, $gamification)
     {
-        $this->container = $container;
+        $this->templating = $templating;
+        $this->gamification = $gamification;
     }
 
     /**
@@ -32,8 +26,7 @@ class GamificationUserForm extends GamificationDialogQuestionAbstractForm implem
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $type = new AvatarType();
-        $type->setContainer($this->container);
+        $type = new AvatarType($this->templating, $this->gamification);
 
         $builder->add('avatar', $type, array(
             'required' => true,

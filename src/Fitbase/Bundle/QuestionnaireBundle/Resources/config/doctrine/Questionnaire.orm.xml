@@ -13,10 +13,8 @@
         <field name="format" type="string" column="format" nullable="true"/>
         <field name="description" type="text" column="description" nullable="true"/>
 
-        <one-to-many field="company" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany"
-                     mapped-by="questionnaire"/>
-        <one-to-many field="questions" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion"
-                     mapped-by="questionnaire">
+        <one-to-many field="company" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany" mapped-by="questionnaire"/>
+        <one-to-many field="questions" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion" mapped-by="questionnaire">
             <cascade>
                 <cascade-all/>
             </cascade>

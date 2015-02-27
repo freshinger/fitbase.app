@@ -222,10 +222,10 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
 
         // Add media gallery block
         $content->addChildren($gallery = $blockManager->create());
-        $gallery->setType('fitbase.block.dashboard_gamification');
+        $gallery->setType('fitbase.block.dashboard');
 //        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
         $gallery->setSetting('context', 'default');
-        $gallery->setSetting('format', 'big');
+//        $gallery->setSetting('format', 'big');
         $gallery->setPosition(1);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);

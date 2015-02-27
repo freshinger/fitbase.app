@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="fitbase_helper.user" class="Fitbase\Bundle\UserBundle\Helper\UserHelper">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="fitbase_helper.post" class="Fitbase\Bundle\UserBundle\Helper\PostHelper">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="fitbase_helper.diagram.user" class="Fitbase\Bundle\UserBundle\Helper\DiagramHelper">
+            <argument type="service" id="graph"/>
+            <tag name="twig.extension"/>
+        </service>
+
+    </services>
+</container>

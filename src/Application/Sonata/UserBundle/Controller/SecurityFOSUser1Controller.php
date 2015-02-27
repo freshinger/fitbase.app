@@ -37,49 +37,86 @@ class SecurityFOSUser1Controller extends SecurityController
             $form->handleRequest($this->container->get('request'));
             if ($form->isValid()) {
 
-                $linkFitbaseAlt = null;
-                $linkFitbaseNeu = null;
-
-                try {
-
-                    $fitbase = $this->container->get('besimple.soap.client.fitbase');
-                    $linkFitbaseAlt = $fitbase->login($this->container->getParameter('fitbase.soap_code'),
-                        $form->getData()->getLogin(),
-                        $form->getData()->getPassword()
-                    );
-
-                } catch (\Exception $ex) {
-                    $this->container->get('logger')->crit($ex->getMessage());
-                }
-
-                $application = $this->container->get('user');
-                $linkFitbaseNeu = $application->login(
+                $collection = $this->getRedirectUrl(
                     $form->getData()->getLogin(),
                     $form->getData()->getPassword()
                 );
 
-                if (strlen($linkFitbaseNeu)) {
-
-                    if (strlen($linkFitbaseAlt)) {
-                        return $this->container->get('templating')->renderResponse('ApplicationSonataUserBundle:Login:login_choice.html.twig', array(
-                            'linkFitbaseNeu' => $linkFitbaseNeu,
-                            'linkFitbaseAlt' => $linkFitbaseAlt,
-                        ));
+                if (count($collection) > 0) {
+                    if (count($collection) == 2) {
+                        return $this->container->get('templating')
+                            ->renderResponse('ApplicationSonataUserBundle:Login:login_choice.html.twig', array(
+                                'linkFitbaseNeu' => $collection[0],
+                                'linkFitbaseAlt' => $collection[1],
+                            ));
                     }
 
-                    return new RedirectResponse($linkFitbaseNeu);
+                    return new RedirectResponse(array_shift($collection));
                 }
-
-                if (strlen($linkFitbaseAlt)) {
-                    return new RedirectResponse($linkFitbaseAlt);
-                }
-
-                $form->addError(new FormError('Benutzername oder Passwort ungültig'));
             }
+
+            $form->addError(new FormError('Benutzername oder Passwort ungültig'));
         }
 
-        return $this->container->get('templating')->renderResponse('ApplicationSonataUserBundle:Login:login.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->container->get('templating')
+            ->renderResponse('ApplicationSonataUserBundle:Login:login.html.twig', array(
+                'form' => $form->createView()
+            ));
     }
+
+
+    /**
+     * Get urls to redirect
+     * @param $login
+     * @param $password
+     * @return array
+     */
+    protected function getRedirectUrl($login, $password)
+    {
+        $result = array();
+        if (($urlApp = $this->getRedirectUrlApp($login, $password))) {
+            array_push($result, $urlApp);
+        }
+        if (($urlCoaches = $this->getRedirectUrlCoaches($login, $password))) {
+            array_push($result, $urlCoaches);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get url to use single sign-on function local
+     * @param $login
+     * @param $password
+     * @return mixed
+     */
+    protected function getRedirectUrlApp($login, $password)
+    {
+        return $this->container->get('user')->login($login, $password);
+    }
+
+    /**
+     * Get single sign-on url for remote fitbase project
+     * @param $login
+     * @param $password
+     * @return null
+     */
+    protected function getRedirectUrlCoaches($login, $password)
+    {
+        try {
+
+            if (($code = $this->container->getParameter('fitbase.soap_code'))) {
+                return $this->container->get('besimple.soap.client.fitbase')
+                    ->login($code, $login, $password);
+            }
+
+            $this->container->get('logger')->crit("[login] Soap code is empty");
+
+        } catch (\Exception $ex) {
+            $this->container->get('logger')->crit("[login] {$ex->getMessage()}");
+        }
+
+        return null;
+    }
+
 }

@@ -21,29 +21,29 @@ class UserActioncodeSubscriber extends ContainerAware implements EventSubscriber
     public static function getSubscribedEvents()
     {
         return array(
-            'user_actioncode_processed' => array('onUserActioncodeProcessed', -128),
+//            'user_actioncode_processed' => array('onUserActioncodeProcessed', -128),
         );
     }
 
-    /**
-     * @param \Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent $event
-     */
-    public function onUserActioncodeProcessed(\Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent $event)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        if (($actioncode = $event->getEntity())) {
-            if (($user = $actioncode->getUser())) {
-                if (($questionnaire = $actioncode->getQuestionnaire())) {
-                    
-                    $questionnaireUser = new QuestionnaireUser();
-                    $questionnaireUser->setUser($user);
-                    $questionnaireUser->setQuestionnaire($questionnaire);
-                    $questionnaireUser->setDate($this->container->get('datetime')->getDateTime('now'));
-
-                    $entityManager->persist($questionnaireUser);
-                    $entityManager->flush($questionnaireUser);
-                }
-            }
-        }
-    }
+//    /**
+//     * @param \Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent $event
+//     */
+//    public function onUserActioncodeProcessed(\Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent $event)
+//    {
+//        $entityManager = $this->container->get('entity_manager');
+//        if (($actioncode = $event->getEntity())) {
+//            if (($user = $actioncode->getUser())) {
+//                if (($questionnaire = $actioncode->getQuestionnaire())) {
+//
+//                    $questionnaireUser = new QuestionnaireUser();
+//                    $questionnaireUser->setUser($user);
+//                    $questionnaireUser->setQuestionnaire($questionnaire);
+//                    $questionnaireUser->setDate($this->container->get('datetime')->getDateTime('now'));
+//
+//                    $entityManager->persist($questionnaireUser);
+//                    $entityManager->flush($questionnaireUser);
+//                }
+//            }
+//        }
+//    }
 }

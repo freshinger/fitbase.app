@@ -25,30 +25,40 @@ class QuestionnaireHelper extends \Twig_Extension implements ContainerAwareInter
     /**
      * @return array
      */
-    public function getFilters()
+    public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFilter('health', array($this, 'getPercentHealth')),
-            new \Twig_SimpleFilter('strain', array($this, 'getPercentStrain')),
+//            new \Twig_SimpleFunction('companyQuestionnairePie', array($this, 'getCompanyQuestionnairePie')),
         );
     }
 
-    /**
-     * @param $points
-     * @return int
-     */
-    public function getPercentHealth($points)
-    {
-        return $this->container->get('questionnaire')->getHealthPercent($points);
-    }
+//    /**
+//     * Get
+//     * @param null $name
+//     * @param null $data
+//     * @return null|string
+//     */
+//    public function getCompanyQuestionnairePie($name = null, $data = null)
+//    {
+//        $serviceGraph = $this->container->get('graph');
+//        if (($graph = $serviceGraph->pie($name, $data))) {
+//            ob_start();
+//            $graph->img->Stream();
+//            $image = ob_get_contents();
+//            ob_end_clean();
+//            return '<img style="width: 100%;" src="data:image/png;base64,' . base64_encode($image) . '"  />';
+//        }
+//
+//        return null;
+//    }
+
 
     /**
-     * @param int $points
-     * @return int
+     * @return array
      */
-    public function getPercentStrain($points = 0)
+    public function getFilters()
     {
-        return $this->container->get('questionnaire')->getStrainPercent($points);
+        return array();
     }
 
     /**

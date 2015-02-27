@@ -91,6 +91,7 @@ sonata_block:
 
         sonata.demo.block.newsletter:
 
+        fitbase.block.dashboard:
         fitbase.block.dashboard_profile:
         fitbase.block.dashboard_reminder:
         fitbase.block.dashboard_weeklytask:
@@ -115,6 +116,10 @@ sonata_block:
         fitbase.email_block.header:
         fitbase.email_block.footer:
 
+        fitbase.block.dashboard.user_statistic:
+        fitbase.block.dashboard.focus_statistic:
+        fitbase.block.dashboard.questionnaire_statistic:
+        fitbase.block.dashboard.questionnaire_statistic_question:
 
         # Formatter
         sonata.formatter.block.formatter:

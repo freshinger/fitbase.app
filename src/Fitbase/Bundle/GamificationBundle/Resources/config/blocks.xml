@@ -17,14 +17,21 @@
             <argument type="service" id="knp_menu.factory"/>
         </service>
 
-        <service id="fitbase.block.dashboard_gamification"
-                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDashboardBlockService" public="true">
+        <service id="fitbase.block.dashboard_gamification" scope="request"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\DashboardGamificationBlockService">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_gamification</argument>
+            <argument>fitbase.block.dashboard_user</argument>
+            <argument type="collection">
+                <argument>ROLE_USER</argument>
+            </argument>
             <argument type="service" id="templating"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="request"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="gamification"/>
         </service>
 
 

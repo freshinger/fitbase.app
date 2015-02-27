@@ -73,33 +73,17 @@ class RegistrationController extends Controller
                         $user->setUsername($username);
                         $user->setEmail($formRegistration->getData()->getEmail());
                         $user->setPlainPassword($this->get('codegenerator')->password(10));
-                        $user->setCompany($actioncode->getCompany());
-                        $user->setEnabled(true);
-                        $user->setExpired(false);
-
-                        $event = new UserEvent($user);
-                        $this->container->get('event_dispatcher')->dispatch('user_create', $event);
-
-                        $entityManager->persist($user);
-                        $entityManager->flush($user);
-
-                        $userFocus = new UserFocus();
-                        $userFocus->setUser($user);
-
-                        $entityManager = $this->container->get('entity_manager');
-                        $entityManager->persist($userFocus);
-                        $entityManager->flush($userFocus);
-
-                        $user->setFocus($userFocus);
                         $user->setActioncode($actioncode);
+                        $user->setCompany($actioncode->getCompany());
+                        $user->setExpired(false);
+                        $user->setEnabled(true);
+
+
+                        $this->container->get('event_dispatcher')
+                            ->dispatch('user_create', new UserEvent($user));
+
                         $entityManager->persist($user);
                         $entityManager->flush($user);
-
-                        if (($categories = $actioncode->getCategories())) {
-                            foreach ($categories as $category) {
-                                $this->doCreateUserFocusCategory($userFocus, $category);
-                            }
-                        }
 
                         $actioncode->setUser($user);
                         $actioncode->setProcessed(true);
@@ -108,23 +92,15 @@ class RegistrationController extends Controller
                         $entityManager->persist($actioncode);
                         $entityManager->flush($actioncode);
 
+                        $this->get('event_dispatcher')->dispatch('user_registered', new UserEvent($user));
 
-                        $eventActioncode = new UserActioncodeEvent($actioncode);
-                        $this->container->get('event_dispatcher')->dispatch('user_actioncode_processed', $eventActioncode);
-
-
-                        $event = new UserEvent($user);
-                        $this->container->get('event_dispatcher')->dispatch('user_created', $event);
-
-
-                        $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
-                        $this->container->get('security.context')->setToken($token);
-
-                        $this->get('security.context')->setToken(
-                            new UsernamePasswordToken($user, null, 'main', $user->getRoles())
+                        return $this->redirect(
+                            $this->get('fitbase_helper.user')->getSign($user,
+                                $this->generateUrl('page_slug', array(
+                                    'path' => '/',
+                                ), true)
+                            )
                         );
-
-                        return $this->redirect($this->generateUrl('page_slug', array('path' => '/')));
                     }
                 }
             }

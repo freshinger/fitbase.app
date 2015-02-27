@@ -65,6 +65,7 @@ class UserFocusCategoryRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+
     /**
      * Find all records by company and category
      * @param $focus

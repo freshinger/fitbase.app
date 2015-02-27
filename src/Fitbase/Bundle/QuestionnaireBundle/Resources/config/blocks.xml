@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="fitbase.block.dashboard.questionnaire_statistic" scope="request"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\StatisticBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.questionnaire_statistic</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="fitbase.orm.questionnaire_user_manager"/>
+        </service>
+
+        <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="fitbase.orm.questionnaire_user_manager"/>
+        </service>
+
+
+    </services>
+</container>

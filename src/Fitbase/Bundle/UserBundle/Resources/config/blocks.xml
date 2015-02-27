@@ -15,7 +15,6 @@
             </call>
         </service>
 
-
         <service id="fitbase.block.profile_focus" class="Fitbase\Bundle\UserBundle\Block\ProfileFocusBlockService"
                  public="true">
             <tag name="sonata.block"/>
@@ -26,7 +25,29 @@
             </call>
         </service>
 
+        <service id="fitbase.block.dashboard.focus_statistic" scope="request"
+                 class="Fitbase\Bundle\UserBundle\Block\Dashboard\UserFocusStatisticBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.focus_statistic</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+        </service>
+
+        <service id="fitbase.block.dashboard.user_statistic" scope="request"
+                 class="Fitbase\Bundle\UserBundle\Block\Dashboard\UserActivityBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.user_statistic</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+        </service>
+
     </services>
-
-
 </container>

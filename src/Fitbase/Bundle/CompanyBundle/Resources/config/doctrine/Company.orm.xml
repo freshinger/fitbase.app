@@ -28,7 +28,6 @@
         <field name="background3" type="string" length="255" column="background_3" nullable="true"/>
 
 
-        <field name="questionnaire" type="boolean" column="questionnaire" nullable="true"/>
         <field name="gamification" type="boolean" column="gamification" nullable="true"/>
 
 
@@ -40,7 +39,17 @@
             <join-column name="site_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+            <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
         <one-to-many field="users" target-entity="Application\Sonata\UserBundle\Entity\User" mapped-by="company">
+            <order-by>
+                <order-by-field name="id" direction="ASC"/>
+            </order-by>
+        </one-to-many>
+
+        <one-to-many field="actioncodes" target-entity="Fitbase\Bundle\UserBundle\Entity\UserActioncode" mapped-by="company">
             <order-by>
                 <order-by-field name="id" direction="ASC"/>
             </order-by>

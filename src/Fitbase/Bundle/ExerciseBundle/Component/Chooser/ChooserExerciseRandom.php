@@ -44,7 +44,6 @@ class ChooserExerciseRandom implements ChooserInterface
             }
         }
 
-
         foreach ($categories as $category) {
             // Try to fill all steps with an exercises from
             // a current category, or go to next category

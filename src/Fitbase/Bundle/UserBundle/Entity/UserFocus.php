@@ -273,4 +273,32 @@ class UserFocus
     {
         return "{$this->getUser()}";
     }
+    /**
+     * @var boolean
+     */
+    private $update;
+
+
+    /**
+     * Set update
+     *
+     * @param boolean $update
+     * @return UserFocus
+     */
+    public function setUpdate($update)
+    {
+        $this->update = $update;
+
+        return $this;
+    }
+
+    /**
+     * Get update
+     *
+     * @return boolean 
+     */
+    public function getUpdate()
+    {
+        return $this->update;
+    }
 }

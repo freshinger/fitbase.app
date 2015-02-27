@@ -1,0 +1,222 @@
+{% extends "form_div_layout.html.twig" %}
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        {% if not compound -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif %}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif %}
+        {% if label is empty -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|raw }}</label>
+    {%- endif %}
+{%- endblock form_label %}
+
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="form-group alert alert-warning">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <table {{ block('widget_container_attributes') }}>
+            {% for child in form %}
+                <tr class="{% if multiple %}checkbox{% else %}radio{% endif %}">
+                    <td>
+                        {{ form_widget(child) }}
+                    </td>
+                </tr>
+                {{ form_errors(child) }}
+            {% endfor %}
+        </table>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+
+{% block text_labeled_widget %}
+    {% spaceless %}
+        <div class="col-xs-4">
+            {% set type = type|default('text') %}
+            {{ block('form_widget_simple') }}
+        </div>
+        <label style="padding-left: 0px; padding-top: 7px;" class="col-xs-8 control-label">{{ text }}</label>
+    {% endspaceless %}
+{% endblock text_labeled_widget %}
+
+{% block radio_widget -%}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ label|striptags }}
+    </label>
+{%- endblock radio_widget %}
+
+
+{% block checkbox_widget -%}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ label|striptags }}
+    </label>
+{%- endblock checkbox_widget %}
+
+{% block form_row %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_rows %}
+    {% spaceless %}
+        <table class="table table-hover">
+            <tbody>
+            {% for child in form %}
+                {{ form_row(child) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        <div class="modal-body" {{ block('widget_container_attributes') }}>
+            <div class="row">
+                <div class="col-xs-12 errors">
+                    {% if form.parent is empty %}
+                        {{ form_errors(form) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ block('form_rows') }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" name="save" type="submit">
+                {% if questions_count > 0 %}
+                    Weiter
+                {% else %}
+                    Auswerten
+                {% endif %}
+            </button>
+            <a class="btn btn-primary" href="?pause=true">
+                Später machen
+            </a>
+        </div>
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+
+{% block questionnaire_slider_widget %}
+    {% spaceless %}
+        <tr>
+            <td class="col-xs-8">
+                <h4>{{ label|raw }}</h4>
+                {{ form_errors(form) }}
+                {{ description }}
+            </td>
+            <td class="col-xs-4">
+                <div id="{{ id }}"></div>
+                {% set type = type|default('hidden') %}
+                {{ block('form_widget_simple') }}
+                <script type="text/javascript">
+                    $(function () {
+                        $('div[id={{ id }}]').slider({
+                            min: parseInt('{{ min }}'),
+                            max: parseInt('{{ max }}'),
+                            value: parseInt('{{ value }}'),
+                            slide: function (event, ui) {
+                                $('input[id={{ id }}]').val(ui.value)
+                            }
+                        });
+                    });
+                </script>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock questionnaire_slider_widget %}
+
+
+{% block questionnaire_checkbox_widget %}
+    {% spaceless %}
+        <tr>
+            <td class="col-xs-8">
+                <h4>{{ label|raw }}</h4>
+                {{ form_errors(form) }}
+                {{ description }}
+            </td>
+            <td class="col-xs-4">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock questionnaire_checkbox_widget %}
+
+{% block questionnaire_radiobutton_widget %}
+    {% spaceless %}
+        <tr>
+            <td class="col-xs-8">
+                <h4>{{ label|raw }}</h4>
+                {{ form_errors(form) }}
+                {{ description }}
+            </td>
+            <td class="col-xs-4">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock questionnaire_radiobutton_widget %}
+
+{% block questionnaire_selectbox_widget %}
+    {% spaceless %}
+        <tr>
+            <td class="col-xs-8">
+                <h4>{{ label|raw }}</h4>
+                {{ form_errors(form) }}
+                {{ description }}
+            </td>
+            <td class="col-xs-4">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock questionnaire_selectbox_widget %}
+
+
+{% block questionnaire_text_widget %}
+    {% spaceless %}
+        <tr>
+            <td class="col-xs-4">
+                <h4>{{ label|raw }}</h4>
+                {{ form_errors(form) }}
+
+                {{ description }}
+            </td>
+            <td class="col-xs-8">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+            </td>
+        </tr>
+    {% endspaceless %}
+{% endblock questionnaire_text_widget %}

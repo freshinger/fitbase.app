@@ -15,6 +15,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class AvatarDataTransformer implements DataTransformerInterface, ContainerAwareInterface
 {
+    protected $templating;
+
+    public function __construct($templating)
+    {
+        $this->templating = $templating;
+    }
+
     protected $association = array(
         'bear' => 'FitbaseGamificationBundle:SVG:avatar_bear.svg.twig',
         'crane' => 'FitbaseGamificationBundle:SVG:avatar_crane.svg.twig',
@@ -56,7 +63,7 @@ class AvatarDataTransformer implements DataTransformerInterface, ContainerAwareI
     public function reverseTransform($value)
     {
         if (isset($this->association[$value])) {
-            $render = $this->container->get('templating')->render(
+            $render = $this->templating->render(
                 $this->association[$value]
             );
             return trim($render);

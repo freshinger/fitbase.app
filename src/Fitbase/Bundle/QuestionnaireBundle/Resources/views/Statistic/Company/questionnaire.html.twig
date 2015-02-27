@@ -1,0 +1,12 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'default', 'current_uri': app.request.requestUri }) }}
+
+
+{% if questions is defined and questions %}
+    <div class="row">
+        {% for question in questions %}
+            <div class="col-xs-4">
+                {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, { 'question': question }) }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

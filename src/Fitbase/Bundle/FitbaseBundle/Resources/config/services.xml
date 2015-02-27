@@ -8,6 +8,9 @@
     <imports>
         <import resource="http_kernel.xml"/>
         <import resource="admin.xml" />
+        <import resource="blocks.xml" />
+        <import resource="subscribers.xml" />
+
     </imports>
 
     <services>
@@ -24,8 +27,8 @@
             </call>
         </service>
 
-
         <service id="entity_manager" class="%doctrine.orm.entity_manager.class%" factory-service="doctrine" factory-method="getManager"/>
+
 
 
     </services>

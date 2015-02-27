@@ -15,6 +15,7 @@
         <!--<import resource="shortcodes.xml"/>-->
         <import resource="subscribers.xml"/>
         <import resource="consumers.xml" />
+        <import resource="helpers.xml" />
     </imports>
 
     <services>

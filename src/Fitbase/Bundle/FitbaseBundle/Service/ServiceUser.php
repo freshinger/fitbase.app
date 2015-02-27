@@ -53,7 +53,7 @@ class ServiceUser extends ContainerAware
         if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
             return $this->container->get('fitbase_helper.user')->getSign($user,
                 $this->container->get('router')->generate('page_slug', array(
-                    'path' => '/'
+                    'path' => '/',
                 ), true)
             );
         }

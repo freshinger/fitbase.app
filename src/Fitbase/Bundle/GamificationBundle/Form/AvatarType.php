@@ -19,21 +19,16 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AvatarType extends AbstractType implements ContainerAwareInterface
+class AvatarType extends AbstractType
 {
-    /**
-     * Store container
-     * @var
-     */
-    protected $container;
 
-    /**
-     * Set container
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
+    protected $templating;
+    protected $gamification;
+
+    public function __construct($templating, $gamification)
     {
-        $this->container = $container;
+        $this->templating = $templating;
+        $this->gamification = $gamification;
     }
 
     /**
@@ -42,19 +37,18 @@ class AvatarType extends AbstractType implements ContainerAwareInterface
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new AvatarDataTransformer();
-        $transformer->setContainer($this->container);
+        $transformer = new AvatarDataTransformer($this->templating);
         $builder->addModelTransformer($transformer);
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         parent::buildView($view, $form, $options);
-        $view->vars['monkey'] = $this->container->get('gamification')->getSvgMonkey();
-        $view->vars['bear'] = $this->container->get('gamification')->getSvgBear();
-        $view->vars['deer'] = $this->container->get('gamification')->getSvgDeer();
-        $view->vars['crane'] = $this->container->get('gamification')->getSvgCrane();
-        $view->vars['tiger'] = $this->container->get('gamification')->getSvgTiger();
+        $view->vars['monkey'] = $this->gamification->getSvgMonkey();
+        $view->vars['bear'] = $this->gamification->getSvgBear();
+        $view->vars['deer'] = $this->gamification->getSvgDeer();
+        $view->vars['crane'] = $this->gamification->getSvgCrane();
+        $view->vars['tiger'] = $this->gamification->getSvgTiger();
     }
 
     /**

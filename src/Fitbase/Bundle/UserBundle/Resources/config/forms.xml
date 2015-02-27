@@ -16,8 +16,6 @@
             <tag name="form.type" alias="fitbase_user_profile"/>
         </service>
 
-        <!--fitbase_user_profile-->
-
     </services>
 
 </container>

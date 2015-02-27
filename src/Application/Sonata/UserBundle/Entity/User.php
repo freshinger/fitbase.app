@@ -180,4 +180,78 @@ class User extends BaseUser
     }
 
 
+    /**
+     * @var boolean
+     */
+    private $wizard;
+
+    /**
+     * Set wizard
+     *
+     * @param boolean $wizard
+     * @return User
+     */
+    public function setWizard($wizard)
+    {
+        $this->wizard = $wizard;
+
+        return $this;
+    }
+
+    /**
+     * Get wizard
+     *
+     * @return boolean 
+     */
+    public function getWizard()
+    {
+        return $this->wizard;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reminders;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->reminders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add reminders
+     *
+     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderUser $reminders
+     * @return User
+     */
+    public function addReminder(\Fitbase\Bundle\ReminderBundle\Entity\ReminderUser $reminders)
+    {
+        $this->reminders[] = $reminders;
+
+        return $this;
+    }
+
+    /**
+     * Remove reminders
+     *
+     * @param \Fitbase\Bundle\ReminderBundle\Entity\ReminderUser $reminders
+     */
+    public function removeReminder(\Fitbase\Bundle\ReminderBundle\Entity\ReminderUser $reminders)
+    {
+        $this->reminders->removeElement($reminders);
+    }
+
+    /**
+     * Get reminders
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReminders()
+    {
+        return $this->reminders;
+    }
 }

@@ -208,10 +208,9 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
 
                         $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
                         $form = $this->container->get('form.factory')->create($formBuilder, array());
+
                         return $this->container->get('templating')->renderResponse('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
                             'form' => $form->createView(),
-//                            'site' => $questionsPage,
-//                            'siteTotal' => $questionsPageTotal,
                             'questionnaire' => $questionnaire,
                         ));
                     }
@@ -229,8 +228,6 @@ class QuestionnaireControllerSubscriber extends ContainerAware implements EventS
 
             return $this->container->get('templating')->renderResponse('FitbaseQuestionnaireBundle:Block:questionnaire.html.twig', array(
                 'form' => $form->createView(),
-//                'site' => $questionsPage,
-//                'siteTotal' => $questionsPageTotal,
                 'questionnaire' => $questionnaire,
             ));
         }

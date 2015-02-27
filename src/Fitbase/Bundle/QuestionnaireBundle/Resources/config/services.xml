@@ -9,13 +9,11 @@
         <import resource="listeners.xml"/>
         <import resource="subscribers.xml"/>
         <import resource="consumers.xml" />
+        <import resource="blocks.xml" />
+        <import resource="orm.xml" />
+        <import resource="helpers.xml" />
     </imports>
-    <!--
-    <parameters>
-        <parameter key="fitbase_questionnaire.example.class">Fitbase\Bundle\QuestionnaireBundle\Example</parameter>
-    </parameters>
 
-    -->
     <services>
 
         <service id="questionnaire" class="Fitbase\Bundle\QuestionnaireBundle\Service\ServiceQuestionnaire">
@@ -50,13 +48,6 @@
             <tag name="validator.constraint_validator" alias="questionnaire_question"/>
         </service>
 
-        <service id="fitbase_helper.questionnaire"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Helper\QuestionnaireHelper">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-            <tag name="twig.extension"/>
-        </service>
 
         <service id="fitbase.questionnaire.block.breadcrumb"
                  class="Fitbase\Bundle\QuestionnaireBundle\Block\Breadcrumb\QuestionnaireBreadcrumbBlockService">

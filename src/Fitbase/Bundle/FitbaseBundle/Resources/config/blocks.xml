@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="fitbase.block.dashboard" scope="request" class="Fitbase\Bundle\FitbaseBundle\Block\DashboardBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard</argument>
+            <argument type="service" id="templating"/>
+            <argument type="collection">
+                <argument key="ROLE_COMPANY" type="service" id="fitbase.block.dashboard_company"/>
+                <argument key="ROLE_USER" type="service" id="fitbase.block.dashboard_gamification"/>
+            </argument>
+            <argument type="service" id="security.context"/>
+        </service>
+
+        <service id="fitbase.block.dashboard_company" scope="request"
+                 class="Fitbase\Bundle\FitbaseBundle\Block\Dashboard\DashboardCompanyBlockService">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_company</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+        </service>
+
+    </services>
+
+
+</container>
