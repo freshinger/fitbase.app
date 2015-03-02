@@ -1,12 +1,27 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'default', 'current_uri': app.request.requestUri }) }}
 
+{#<div class="modal-dialog modal-lg">#}
+    {#<div class="modal-content">#}
 
-{% if questions is defined and questions %}
-    <div class="row">
-        {% for question in questions %}
-            <div class="col-xs-4">
-                {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, { 'question': question }) }}
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3 class="modal-title">
+                        {{ questionnaire }}
+                    </h3>
+
+                    <p class="modal-description">
+                        {{ questionnaire.description|raw }}
+                    </p>
+                </div>
             </div>
-        {% endfor %}
-    </div>
-{% endif %}
+        </div>
+
+        {% form_theme form "FitbaseQuestionnaireBundle:Statistic:Company/form.html.twig" %}
+
+        {{ form(form) }}
+
+    {#</div>#}
+{#</div>#}
+
+

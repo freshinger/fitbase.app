@@ -154,22 +154,37 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
             }
         }
 
+
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('company', null, array(
                 'required' => true,
-            ))
-            ->add('questionnaire', null, array(
-                'required' => false,
-            ))
-            ->add('categories', null, array(
-                'required' => true,
-                'query_builder' => function ($repository) {
-                    $queryBuilder = $repository->createQueryBuilder('Category');
-                    $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));
-                    return $queryBuilder;
-                }
-            ))
+            ));
+
+
+        if (($actioncode = $this->getRoot()->getSubject())) {
+            if (($company = $actioncode->getCompany())) {
+                $formMapper->add('questionnaire', null, array(
+                    'query_builder' => function ($repository) use ($company) {
+                        $queryBuilder = $repository->createQueryBuilder('UserActioncode');
+                        $queryBuilder->where($queryBuilder->expr()->eq('UserActioncode.company', ':company'));
+                        $queryBuilder->setParameter(':company', $company->getId());
+
+                        return $queryBuilder;
+                    }
+                ));
+            }
+        }
+
+
+        $formMapper->add('categories', null, array(
+            'required' => true,
+            'query_builder' => function ($repository) {
+                $queryBuilder = $repository->createQueryBuilder('Category');
+                $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));
+                return $queryBuilder;
+            }
+        ))
             ->end()
             ->with('Lock', array('class' => 'col-md-6'))
             ->add('expire', 'checkbox', array(

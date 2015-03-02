@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class QuestionBlockService extends SecureBlockService
+class StatisticQuestionBlock extends SecureBlockService
 {
     protected $serviceUser;
     protected $objectManager;
@@ -38,7 +38,7 @@ class QuestionBlockService extends SecureBlockService
     {
         $resolver->setDefaults(array(
             'question' => null,
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/statistic/question.html.twig',
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/question.html.twig',
         ));
     }
 

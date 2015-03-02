@@ -118,6 +118,7 @@ sonata_block:
 
         fitbase.block.dashboard.user_statistic:
         fitbase.block.dashboard.focus_statistic:
+        fitbase.block.dashboard.company_questionnaire:
         fitbase.block.dashboard.questionnaire_statistic:
         fitbase.block.dashboard.questionnaire_statistic_question:
 

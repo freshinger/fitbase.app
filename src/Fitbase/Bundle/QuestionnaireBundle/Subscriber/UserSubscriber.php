@@ -31,11 +31,11 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         if (($user = $event->getEntity())) {
 
             if (($company = $user->getCompany())) {
-                if (($questionnaire = $company->getQuestionnaire())) {
+                if (($companyQuestionnaire = $company->getQuestionnaire())) {
 
                     $questionnaireUser = new QuestionnaireUser();
                     $questionnaireUser->setUser($user);
-                    $questionnaireUser->setQuestionnaire($questionnaire);
+                    $questionnaireUser->setQuestionnaire($companyQuestionnaire);
                     $questionnaireUser->setDone(false);
                     $questionnaireUser->setPause(false);
                     $questionnaireUser->setCountPoint(0);
@@ -46,11 +46,11 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
             }
 
             if (($actioncode = $user->getActioncode())) {
-                if (($questionnaire = $actioncode->getQuestionnaire())) {
+                if (($companyQuestionnaire = $actioncode->getQuestionnaire())) {
 
                     $questionnaireUser = new QuestionnaireUser();
                     $questionnaireUser->setUser($user);
-                    $questionnaireUser->setQuestionnaire($questionnaire);
+                    $questionnaireUser->setQuestionnaire($companyQuestionnaire);
                     $questionnaireUser->setDone(false);
                     $questionnaireUser->setPause(false);
                     $questionnaireUser->setCountPoint(0);

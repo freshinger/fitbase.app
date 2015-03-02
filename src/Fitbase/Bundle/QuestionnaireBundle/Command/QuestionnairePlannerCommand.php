@@ -24,35 +24,21 @@ class QuestionnairePlannerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-//        $logger = $this->getContainer()->get('logger');
-//        $logger->info('Questionnaire, start planner');
-//
-//        $managerEntity = $this->getContainer()->get('entity_manager');
-//
-//        $repositoryCompany = $managerEntity->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
-//        $repositoryUserMeta = $managerEntity->getRepository('Ekino\WordpressBundle\Entity\UserMeta');
-//
-//        // Check is company found and
-//        // questionnaire enabled for this company
-//        if (($collectionCompanies = $repositoryCompany->findBy(array('questionnaire' => true)))) {
-//            foreach ($collectionCompanies as $company) {
-//                // Try to find users, associated
-//                // with selected company
-//                if (($collectionUserMeta = $repositoryUserMeta->findBy(array('key' => 'user_company_id', 'value' => $company->getId())))) {
-//                    foreach ($collectionUserMeta as $userMeta) {
-//
-//                        // Run planning process for user and company
-//                        $eventUserCompanyQuestionnaire = new Event();
-//                        $eventUserCompanyQuestionnaire->user = $userMeta->getUser();
-//                        $eventUserCompanyQuestionnaire->company = $company;
-//
-//                        $this->getContainer()->get('event_dispatcher')->dispatch('questionnaire_company_plan', $eventUserCompanyQuestionnaire);
-//                    }
-//                }
-//            }
-//        }
-//
-//        $logger->info('Questionnaire, end planner');
-    }
+        $managerEntity = $this->getContainer()->get('entity_manager');
+        $repositoryQuestionnaireCompany = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
 
+        if (($datetime = $this->getContainer()->get('datetime')->getDateTime('now'))) {
+            if (($questionnairesCompanies = $repositoryQuestionnaireCompany->findAllNotProcessedByDate($datetime))) {
+                foreach ($questionnairesCompanies as $questionnaireCompany) {
+
+                    $this->getContainer()->get('sonata.notification.backend')
+                        ->createAndPublish('fitbase.questionnaire_company', array(
+                            'questionnaireCompany' => $questionnaireCompany,
+                        ));
+
+                    $output->writeln($questionnaireCompany->getCompany()->getName());
+                }
+            }
+        }
+    }
 }

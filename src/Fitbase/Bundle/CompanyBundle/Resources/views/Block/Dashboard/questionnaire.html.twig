@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h4 class="short hue">
+            {{ 'Weitere Fragebögen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </h4>
+
+        {% if questionnaires is defined and questionnaires %}
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive">
+                    <tbody>
+                    {% for questionnaireCompany in questionnaires %}
+                        {% set companyQuestionnaire = questionnaireCompany.questionnaire %}
+                        {% if companyQuestionnaire is defined and companyQuestionnaire %}
+                            <tr>
+                                <td class="shade">
+                                    {{ companyQuestionnaire }}
+                                </td>
+                                <td class="shade">
+                                    {% if questionnaireCompany.processed %}
+                                        versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                    {% else %}
+                                        geplannt am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                    {% endif %}
+                                </td>
+                                <td class="shade">
+                                    <a href="{{ path("questionnaire_statistic_company", { 'unique': questionnaireCompany.id }) }}">
+                                        {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+
+    </div>
+    <div class="panel-footer">
+
+        <h4 class="">
+            {{ 'Neue Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </h4>
+
+        <p>
+            Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.
+        </p>
+
+        {% form_theme form 'FitbaseCompanyBundle:Block:dashboard/form.html.twig' %}
+
+        {{ form(form) }}
+
+    </div>
+</div>

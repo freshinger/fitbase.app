@@ -9,17 +9,52 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Subscriber;
 
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
+use Fitbase\Bundle\QuestionnaireBundle\Event\QuestionnaireUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscriberInterface
+class QuestionnaireUserSubscriber implements EventSubscriberInterface
 {
+    protected $objectManager;
+    protected $securityContext;
+
+    public function __construct($objectManager, $securityContext)
+    {
+        $this->objectManager = $objectManager;
+        $this->securityContext = $securityContext;
+    }
+
     /**
      * Get subscribers
      * @return array
      */
     public static function getSubscribedEvents()
     {
-        return array();
+        return array(
+            'fitbase.questionnaire_user_create' => array('onQuestionnaireUserCreateEvent'),
+        );
+    }
+
+    /**
+     * @param QuestionnaireUserEvent $event
+     */
+    public function onQuestionnaireUserCreateEvent(QuestionnaireUserEvent $event)
+    {
+        if (($questionnaireUser = $event->getEntity())) {
+            if (($user = $questionnaireUser->getUser())) {
+
+                $this->securityContext->setToken(
+                    new UsernamePasswordToken($user, null, 'main', $user->getRoles())
+                );
+
+                if ($this->securityContext->isGranted('ROLE_USER', $user)) {
+
+                    $this->objectManager->persist($questionnaireUser);
+                    $this->objectManager->flush($questionnaireUser);
+                }
+            }
+
+        }
     }
 }

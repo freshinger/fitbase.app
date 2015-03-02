@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Entity;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
 
 
 class QuestionnaireUserManager implements QuestionnaireUserManagerInterface
@@ -45,9 +46,19 @@ class QuestionnaireUserManager implements QuestionnaireUserManagerInterface
      * @param Questionnaire $questionnaire
      * @return mixed
      */
-    public function findAllFirstByCompanyAndQuestionnaire(\Fitbase\Bundle\CompanyBundle\Entity\Company $company, Questionnaire $questionnaire)
+    public function findAllFirstByCompanyQuestionnaire(CompanyQuestionnaire $questionnaire)
     {
-        return $this->repository->findAllFirstByCompanyAndQuestionnaire($company, $questionnaire);
+//        return $this->repository->findAllFirstByCompanyQuestionnaire($questionnaire);
+    }
+
+    /**
+     *
+     * @param $user
+     * @return mixed
+     */
+    public function findFirstAssessmentByUser($user)
+    {
+        return $this->repository->findFirstAssessmentByUser($user);
     }
 
 

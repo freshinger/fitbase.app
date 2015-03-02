@@ -360,34 +360,7 @@ class UserActioncode
         return $this->processedDate;
     }
 
-    /**
-     * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire
-     */
-    private $questionnaire;
 
-
-    /**
-     * Set questionnaire
-     *
-     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire
-     * @return UserActioncode
-     */
-    public function setQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire = null)
-    {
-        $this->questionnaire = $questionnaire;
-
-        return $this;
-    }
-
-    /**
-     * Get questionnaire
-     *
-     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire
-     */
-    public function getQuestionnaire()
-    {
-        return $this->questionnaire;
-    }
     /**
      * @var boolean
      */
@@ -415,5 +388,33 @@ class UserActioncode
     public function getExpire()
     {
         return $this->expire;
+    }
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
+     */
+    private $questionnaire;
+
+
+    /**
+     * Set questionnaire
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire
+     * @return UserActioncode
+     */
+    public function setQuestionnaire(\Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire = null)
+    {
+        $this->questionnaire = $questionnaire;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaire
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
+     */
+    public function getQuestionnaire()
+    {
+        return $this->questionnaire;
     }
 }

@@ -96,11 +96,18 @@ class QuestionnaireQuestionRepository extends EntityRepository
             }
         }
 
+
+        $questionnaire = null;
+        if (($companyQuestionnaire = $questionnaireUser->getQuestionnaire())) {
+            $questionnaire = $companyQuestionnaire->getQuestionnaire();
+        }
+
+
         $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
         $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');
         $queryBuilder->select('COUNT(QuestionnaireQuestion)');
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprQuestionnaire($queryBuilder, $questionnaireUser->getQuestionnaire()),
+            $this->getExprQuestionnaire($queryBuilder, $questionnaire),
             $this->getExprCategories($queryBuilder, $excludeCategories),
             $this->getExprNotQuestions($queryBuilder, $excludeQuestions)
         ));
@@ -133,8 +140,15 @@ class QuestionnaireQuestionRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
         $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');
 
+
+        $questionnaire = null;
+        if (($companyQuestionnaire = $questionnaireUser->getQuestionnaire())) {
+            $questionnaire = $companyQuestionnaire->getQuestionnaire();
+        }
+
+
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprQuestionnaire($queryBuilder, $questionnaireUser->getQuestionnaire()),
+            $this->getExprQuestionnaire($queryBuilder, $questionnaire),
             $this->getExprCategories($queryBuilder, $excludeCategories),
             $this->getExprNotQuestions($queryBuilder, $excludeQuestions)
         ));

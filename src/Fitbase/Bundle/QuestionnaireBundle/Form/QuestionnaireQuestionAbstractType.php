@@ -90,6 +90,7 @@ abstract class QuestionnaireQuestionAbstractType extends AbstractType implements
     {
         parent::buildView($view, $form, $options);
 
+        $view->vars['question'] = $this->questionnaireQuestion;
         $view->vars['description'] = $this->questionnaireQuestion->getDescription();
     }
 }

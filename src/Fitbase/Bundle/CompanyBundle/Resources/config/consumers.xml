@@ -4,11 +4,12 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.consumer.user_expire" class="Fitbase\Bundle\UserBundle\Consumer\UserExpireConsumer">
-            <tag name="sonata.notification.consumer" type="user_expire"/>
+
+        <service id="fitbase.consumer.company.questionnaire" class="Fitbase\Bundle\CompanyBundle\Consumer\CompanyQuestionnaireConsumer">
             <argument type="service" id="entity_manager"/>
+            <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="datetime"/>
-            <argument type="service" id="weeklytask"/>
+            <tag name="sonata.notification.consumer" type="fitbase.questionnaire_company"/>
         </service>
 
 

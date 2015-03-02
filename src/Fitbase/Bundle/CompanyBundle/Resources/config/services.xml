@@ -9,6 +9,7 @@
         <import resource="subscribers.xml" />
         <import resource="blocks.xml" />
         <import resource="orm.xml" />
+        <import resource="consumers.xml" />
     </imports>
 
 

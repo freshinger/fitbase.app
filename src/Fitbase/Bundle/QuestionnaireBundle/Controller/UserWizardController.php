@@ -36,7 +36,7 @@ class UserWizardController extends Controller
 
 
                     $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser, 10);
-                    $form = $this->container->get('form.factory')->create($formBuilder, array());
+                    $form = $this->createForm($formBuilder, array());
 
                     if ($request->get($form->getName())) {
                         $form->handleRequest($request);

@@ -626,8 +626,9 @@ class Company
     {
         return $this->actioncodes;
     }
+
     /**
-     * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
      */
     private $questionnaire;
 
@@ -635,10 +636,10 @@ class Company
     /**
      * Set questionnaire
      *
-     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire
      * @return Company
      */
-    public function setQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire = null)
+    public function setQuestionnaire(\Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire = null)
     {
         $this->questionnaire = $questionnaire;
 
@@ -648,7 +649,7 @@ class Company
     /**
      * Get questionnaire
      *
-     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire 
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
      */
     public function getQuestionnaire()
     {

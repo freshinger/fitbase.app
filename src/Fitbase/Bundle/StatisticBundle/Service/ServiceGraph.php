@@ -24,7 +24,7 @@ class ServiceGraph extends ContainerAware
         JpGraph::load();
         JpGraph::module('pie');
 
-        $graph = new PieGraph(350, 350);
+        $graph = new PieGraph(350, 380);
         $graph->SetShadow();
         $graph->title->Set($name);
 

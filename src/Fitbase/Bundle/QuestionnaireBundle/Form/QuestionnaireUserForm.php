@@ -80,6 +80,7 @@ class QuestionnaireUserForm extends AbstractType
 
         $entityManager = $this->container->get('entity_manager');
         $repositoryWeeklytaskQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
+
         if (($this->questions = $repositoryWeeklytaskQuestion->findAllByQuestionnaireUser($this->questionnaireUser, $this->questionsCount))) {
             foreach ($this->questions as $question) {
                 $builder->add($question->getId(), $this->getQuestionFormType($question), array(

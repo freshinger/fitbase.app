@@ -110,6 +110,13 @@ class CompanyQuestionnaire
         return $this->questionnaire;
     }
 
+    public function getDescription()
+    {
+        if (($questionnaire = $this->getQuestionnaire())) {
+            return $questionnaire->getDescription();
+        }
+        return null;
+    }
 
     /**
      * Get object name
@@ -120,12 +127,96 @@ class CompanyQuestionnaire
         $string = "";
 
         if (($company = $this->getCompany())) {
-            $string .= (string)$company->getName();
             if (($questionnaire = $this->getQuestionnaire())) {
-                $string .= ': ' . (string)$questionnaire->getName();
+                $string .= (string)$questionnaire->getName();
             }
         }
 
         return $string;
+    }
+
+    /**
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
+     * @var boolean
+     */
+    private $processed;
+
+    /**
+     * @var \DateTime
+     */
+    private $processedDate;
+
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return CompanyQuestionnaire
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set processed
+     *
+     * @param boolean $processed
+     * @return CompanyQuestionnaire
+     */
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
+
+        return $this;
+    }
+
+    /**
+     * Get processed
+     *
+     * @return boolean
+     */
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * Set processedDate
+     *
+     * @param \DateTime $processedDate
+     * @return CompanyQuestionnaire
+     */
+    public function setProcessedDate($processedDate)
+    {
+        $this->processedDate = $processedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get processedDate
+     *
+     * @return \DateTime
+     */
+    public function getProcessedDate()
+    {
+        return $this->processedDate;
     }
 }

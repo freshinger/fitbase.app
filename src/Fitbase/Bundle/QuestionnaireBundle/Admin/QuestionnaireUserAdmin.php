@@ -56,8 +56,6 @@ class QuestionnaireUserAdmin extends Admin implements ContainerAwareInterface
             ->add('date')
             ->add('done', 'boolean')
             ->add('doneDate')
-            ->add('countPointHealth')
-            ->add('countPointStrain')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -82,6 +80,24 @@ class QuestionnaireUserAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+//
+//        if (($questionnaireUser = $this->getRoot()->getSubject())) {
+//            if (($user = $questionnaireUser->getUser())) {
+//                if (($company = $user->getCompany())) {
+//                    $formMapper->add('questionnaire', null, array(
+//                        'query_builder' => function ($repository) use ($company) {
+//                            $queryBuilder = $repository->createQueryBuilder('UserActioncode');
+//                            $queryBuilder->where($queryBuilder->expr()->eq('UserActioncode.company', ':company'));
+//                            $queryBuilder->setParameter(':company', $company->getId());
+//
+//                            return $queryBuilder;
+//                        }
+//                    ));
+//                }
+//            }
+//        }
+//
+
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')

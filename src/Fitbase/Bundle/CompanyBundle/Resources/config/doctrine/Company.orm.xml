@@ -39,7 +39,7 @@
             <join-column name="site_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
-        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire">
+        <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire">
             <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 

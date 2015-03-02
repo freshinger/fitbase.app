@@ -31,6 +31,51 @@ class QuestionnaireCompanyRepository extends EntityRepository
     }
 
     /**
+     * Find not pause records
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprNotProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('QuestionnaireCompany.processed', ':processed'),
+            $queryBuilder->expr()->isNull('QuestionnaireCompany.processed')
+        );
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeLt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->lt('QuestionnaireCompany.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Find all questionnaire company objects by datetime
+     *
+     * @param \DateTime $datetime
+     * @return array
+     */
+    public function findAllNotProcessedByDate(\DateTime $datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireCompany');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprNotProcessed($queryBuilder),
+            $this->getExprDateTimeLt($queryBuilder, $datetime)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+    /**
      *
      * @param $company
      * @return array

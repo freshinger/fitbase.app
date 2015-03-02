@@ -14,7 +14,6 @@ class QuestionnaireUser
     protected $id;
     protected $date;
     protected $user;
-    protected $questionnaire;
     protected $pause;
     protected $done;
     protected $doneDate;
@@ -133,21 +132,6 @@ class QuestionnaireUser
         return $this->id;
     }
 
-    /**
-     * @param mixed $questionnaire
-     */
-    public function setQuestionnaire($questionnaire)
-    {
-        $this->questionnaire = $questionnaire;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuestionnaire()
-    {
-        return $this->questionnaire;
-    }
 
     /**
      * @param mixed $user
@@ -238,5 +222,61 @@ class QuestionnaireUser
     public function getCountPoint()
     {
         return $this->countPoint;
+    }
+    /**
+     * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany
+     */
+    private $slice;
+
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
+     */
+    private $questionnaire;
+
+
+    /**
+     * Set slice
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $slice
+     * @return QuestionnaireUser
+     */
+    public function setSlice(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany $slice = null)
+    {
+        $this->slice = $slice;
+
+        return $this;
+    }
+
+    /**
+     * Get slice
+     *
+     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany 
+     */
+    public function getSlice()
+    {
+        return $this->slice;
+    }
+
+    /**
+     * Set questionnaire
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire
+     * @return QuestionnaireUser
+     */
+    public function setQuestionnaire(\Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire = null)
+    {
+        $this->questionnaire = $questionnaire;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaire
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
+     */
+    public function getQuestionnaire()
+    {
+        return $this->questionnaire;
     }
 }

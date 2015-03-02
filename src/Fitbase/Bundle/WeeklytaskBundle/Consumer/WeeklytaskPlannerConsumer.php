@@ -59,7 +59,7 @@ class WeeklytaskPlannerConsumer implements ConsumerInterface
                         // Check is a last weeklytask was already sent
                         // for current user, than create a event that
                         // a last weeklytask was sent
-                        $this->backend->createAndPublish('weeklytask_last', array(
+                        $this->backend->createAndPublish('user_expire', array(
                             'user' => $user,
                         ));
                     }

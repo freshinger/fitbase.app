@@ -96,6 +96,8 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
+
         $formMapper
             ->tab('General')
             ->with('General', array('class' => 'col-md-4'))
@@ -103,11 +105,24 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->Add('slug')
             ->add('site', null, array('required' => true))
             ->add('description', null, array('required' => false))
-            ->end()
-            ->with('Bedarfsermittlung', array('class' => 'col-md-4'))
-            ->add('questionnaire')
-            ->end()
-            ->with('Extra', array('class' => 'col-md-4'))
+            ->end();
+
+        if (($company = $this->getRoot()->getSubject())) {
+            $formMapper->with('Bedarfsermittlung', array('class' => 'col-md-4'))
+                ->add('questionnaire', null, array(
+                    'query_builder' => function ($repository) use ($company) {
+                        $queryBuilder = $repository->createQueryBuilder('CompanyQuestionnaire');
+                        $queryBuilder->where($queryBuilder->expr()->eq('CompanyQuestionnaire.company', ':company'));
+                        $queryBuilder->setParameter(':company', $company->getId());
+
+                        return $queryBuilder;
+                    }
+                ))
+                ->end();
+        }
+
+
+        $formMapper->with('Extra', array('class' => 'col-md-4'))
             ->add('gamification')
             ->end()
             ->end()

@@ -8,7 +8,7 @@
 namespace Fitbase\Bundle\UserBundle\Test\Consumer;
 
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\UserBundle\Consumer\WeeklytaskExpireConsumer;
+use Fitbase\Bundle\UserBundle\Consumer\UserExpireConsumer;
 use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Sonata\NotificationBundle\Consumer\ConsumerEvent;
@@ -64,7 +64,7 @@ class WeeklytaskExpireConsumerTest extends WebTestCase
             ));
 
 
-        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
+        $consumer = new UserExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -102,7 +102,7 @@ class WeeklytaskExpireConsumerTest extends WebTestCase
             ));
 
 
-        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
+        $consumer = new UserExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -141,7 +141,7 @@ class WeeklytaskExpireConsumerTest extends WebTestCase
                     ->setDate(new \DateTime('-1 days'))
             ));
 
-        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
+        $consumer = new UserExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();
@@ -179,7 +179,7 @@ class WeeklytaskExpireConsumerTest extends WebTestCase
                     ->setDate(new \DateTime('-8 days'))
             ));
 
-        $consumer = new WeeklytaskExpireConsumer($this->objectManager,
+        $consumer = new UserExpireConsumer($this->objectManager,
             $this->datetime, $this->serviceWeeklytask);
 
         $message = new Message();

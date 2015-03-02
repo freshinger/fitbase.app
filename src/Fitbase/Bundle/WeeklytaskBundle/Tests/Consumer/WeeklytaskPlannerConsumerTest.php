@@ -126,7 +126,7 @@ class WeeklytaskPlannerConsumerTest extends WebTestCase
 
         $consumer->process(new ConsumerEvent($message));
 
-        $this->assertEquals($processedCode, 'weeklytask_last');
+        $this->assertEquals($processedCode, 'user_expire');
         $this->assertTrue(array_key_exists('user', $processedMessage));
     }
 

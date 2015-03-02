@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class StatisticBlockService extends SecureBlockService
+class StatisticQuestionnaireBlock extends SecureBlockService
 {
     protected $serviceUser;
     protected $objectManager;
@@ -41,14 +41,15 @@ class StatisticBlockService extends SecureBlockService
 
         $questionnaire = null;
         if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
-            if (($questionnaire = $company->getQuestionnaire())) {
-                if (($collection = $this->objectManager->findAllFirstByCompanyAndQuestionnaire($company, $questionnaire))) {
-                    $statistic = $this->toPieData($collection, $company->getActioncodes());
-                }
+            if (($companyQuestionnaire = $company->getQuestionnaire())) {
+
+//                if (($collection = $this->objectManager->findAllFirstByCompanyQuestionnaire($company, $companyQuestionnaire))) {
+//                    $statistic = $this->toPieData($collection, $company->getActioncodes());
+//                }
             }
         }
 
-        return $this->renderPrivateResponse('FitbaseQuestionnaireBundle:Block:dashboard/statistic.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseQuestionnaireBundle:Block:dashboard/questionnaire.html.twig', array(
             'statistic' => $statistic,
             'questionnaire' => $questionnaire
         ));
@@ -94,6 +95,6 @@ class StatisticBlockService extends SecureBlockService
      */
     public function getName()
     {
-        return 'Dashboard (Questionnaire)';
+        return 'Dashboard (Questionnaire Company)';
     }
 } 

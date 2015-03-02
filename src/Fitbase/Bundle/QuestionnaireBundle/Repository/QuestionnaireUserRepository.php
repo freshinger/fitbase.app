@@ -25,6 +25,17 @@ class QuestionnaireUserRepository extends EntityRepository
     }
 
     /**
+     * Get not empty assessment
+     *
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprAssessmentNotEmpty($queryBuilder)
+    {
+        return $queryBuilder->expr()->isNotNull('QuestionnaireUser.assessment');
+    }
+
+    /**
      * Find not pause records
      * @param $queryBuilder
      * @return mixed
@@ -244,7 +255,7 @@ class QuestionnaireUserRepository extends EntityRepository
      * @return array
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findAllIdFirstByCompanyAndQuestionnaire($company, $questionnaire)
+    public function findAllFirstByCompanyQuestionnaire($questionnaire)
     {
         $tableQuestionnaireUser = $this->getEntityManager()->getClassMetadata(
             $this->getClassName()
@@ -265,7 +276,6 @@ class QuestionnaireUserRepository extends EntityRepository
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute(array(
-            'company_id' => $company->getId(),
             'questionnaire_id' => $questionnaire->getId()
         ));
 
@@ -337,4 +347,30 @@ class QuestionnaireUserRepository extends EntityRepository
 
         return $queryBuilder;
     }
+
+
+    /**
+     * Find first assessment
+     *
+     * @param $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findFirstAssessmentByUser($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprAssessmentNotEmpty($queryBuilder),
+            $this->getExprNotDone($queryBuilder),
+            $this->getExprNotPause($queryBuilder)
+        ));
+
+        $queryBuilder->addOrderBy('QuestionnaireUser.id', 'ASC');
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 }
