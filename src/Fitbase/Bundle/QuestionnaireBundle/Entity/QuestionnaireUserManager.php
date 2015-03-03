@@ -28,39 +28,20 @@ class QuestionnaireUserManager implements QuestionnaireUserManagerInterface
     }
 
 
-    /**
-     * Find all Questionnaire object by company
-     *
-     * @param \Fitbase\Bundle\CompanyBundle\Entity\Company $company
-     * @return mixed
-     */
-    public function findAllFirstByCompany(\Fitbase\Bundle\CompanyBundle\Entity\Company $company)
+    public function getLastQuestionnaireUserAnswers($questionnaire, $question)
     {
-        return $this->repository->findAllFirstByCompany($company);
+
     }
 
     /**
-     * Find all records by company and questionnaire
-     *
-     * @param \Fitbase\Bundle\CompanyBundle\Entity\Company $company
-     * @param Questionnaire $questionnaire
-     * @return mixed
-     */
-    public function findAllFirstByCompanyQuestionnaire(CompanyQuestionnaire $questionnaire)
-    {
-//        return $this->repository->findAllFirstByCompanyQuestionnaire($questionnaire);
-    }
-
-    /**
-     *
      * @param $user
+     * @param CompanyQuestionnaire $questionnaire
      * @return mixed
      */
-    public function findFirstAssessmentByUser($user)
+    public function findOneByUserAndQuestionnaire($user, CompanyQuestionnaire $questionnaire)
     {
-        return $this->repository->findFirstAssessmentByUser($user);
+        return $this->repository->findOneByUserAndQuestionnaire($user, $questionnaire);
     }
-
 
     /**
      * Find all user answers by company and question
@@ -73,6 +54,18 @@ class QuestionnaireUserManager implements QuestionnaireUserManagerInterface
     {
         $repositoryQuestionnaireUserAnswer = $this->objectManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
         return $repositoryQuestionnaireUserAnswer->findAllByCompanyAndQuestion($company, $question);
+    }
+
+    /**
+     * Find all last answers auf die questions
+     * @param $company
+     * @param $question
+     * @return mixed
+     */
+    public function findAllLastByCompanyAndQuestion(\Fitbase\Bundle\CompanyBundle\Entity\Company $company, QuestionnaireQuestion $question)
+    {
+        $repositoryQuestionnaireUserAnswer = $this->objectManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
+        return $repositoryQuestionnaireUserAnswer->findAllLastByCompanyAndQuestion($company, $question);
     }
 
     /**

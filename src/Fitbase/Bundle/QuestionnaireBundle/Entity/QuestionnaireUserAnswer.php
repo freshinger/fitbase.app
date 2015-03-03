@@ -150,6 +150,7 @@ class QuestionnaireUserAnswer
     public function setQuestion($question)
     {
         $this->question = $question;
+        return $this;
     }
 
     /**

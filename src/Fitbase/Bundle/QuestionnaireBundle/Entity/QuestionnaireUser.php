@@ -9,6 +9,8 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class QuestionnaireUser
 {
     protected $id;
@@ -122,6 +124,7 @@ class QuestionnaireUser
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -190,10 +193,21 @@ class QuestionnaireUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAnswers()
+    public function getAnswers(QuestionnaireQuestion $question = null)
     {
+        $result = array();
+        if (!empty($question) and count($this->answers)) {
+            foreach ($this->answers as $answer) {
+                if ($question->getId() == $answer->getQuestion()->getId()) {
+                    array_push($result, $answer);
+                }
+            }
+            return new ArrayCollection($result);
+        }
+
         return $this->answers;
     }
+
 
     /**
      * @var integer
@@ -223,6 +237,7 @@ class QuestionnaireUser
     {
         return $this->countPoint;
     }
+
     /**
      * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany
      */
@@ -250,7 +265,7 @@ class QuestionnaireUser
     /**
      * Get slice
      *
-     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany 
+     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany
      */
     public function getSlice()
     {
@@ -273,7 +288,7 @@ class QuestionnaireUser
     /**
      * Get questionnaire
      *
-     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
      */
     public function getQuestionnaire()
     {

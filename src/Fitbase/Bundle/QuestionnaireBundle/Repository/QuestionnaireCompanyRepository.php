@@ -14,6 +14,24 @@ use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion;
 
 class QuestionnaireCompanyRepository extends EntityRepository
 {
+
+    /**
+     * Find record by id
+     *
+     * @param $queryBuilder
+     * @param $unique
+     * @return mixed
+     */
+    protected function getExprUnique($queryBuilder, $unique)
+    {
+        if (!empty($unique)) {
+            $queryBuilder->setParameter('unique', $unique);
+            return $queryBuilder->expr()->eq('QuestionnaireCompany.id', ':unique');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
     /**
      * Get expression to find records by company
      * @param $queryBuilder
@@ -59,6 +77,25 @@ class QuestionnaireCompanyRepository extends EntityRepository
     }
 
     /**
+     *  Find records by unique identifier and company
+     *
+     * @param $unique
+     * @param $company
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUniqueAndCompany($unique, $company)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireCompany');
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprCompany($queryBuilder, $company),
+            $this->getExprUnique($queryBuilder, $unique)
+        ));
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
      * Find all questionnaire company objects by datetime
      *
      * @param \DateTime $datetime
@@ -75,6 +112,7 @@ class QuestionnaireCompanyRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
     /**
      *
      * @param $company

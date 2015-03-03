@@ -26,9 +26,9 @@ class QuestionnaireQuestionSliderType extends QuestionnaireQuestionAbstractType
      * @param ContainerInterface $container
      * @param QuestionnaireQuestion $questionnaireQuestion
      */
-    public function __construct(ContainerInterface $container, QuestionnaireQuestion $questionnaireQuestion)
+    public function __construct(ContainerInterface $container, $questionnaire, QuestionnaireQuestion $questionnaireQuestion)
     {
-        parent::__construct($container, $questionnaireQuestion);
+        parent::__construct($container, $questionnaire, $questionnaireQuestion);
 
         $this->transformer = new QuestionnaireQuestionDataTransformerSlider($this->getCollectionAnswer());
     }

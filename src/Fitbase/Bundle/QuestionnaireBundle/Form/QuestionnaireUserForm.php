@@ -42,7 +42,7 @@ class QuestionnaireUserForm extends AbstractType
      * @param ContainerInterface $container
      * @param QuestionnaireUser $questionnaireUser
      */
-    public function __construct(ContainerInterface $container = null, QuestionnaireUser $questionnaireUser, $limit = 10)
+    public function __construct(ContainerInterface $container = null, QuestionnaireUser $questionnaireUser, $limit = null)
     {
         $this->container = $container;
         $this->questionsCount = $limit;
@@ -58,15 +58,15 @@ class QuestionnaireUserForm extends AbstractType
     {
         switch ($question->getType()) {
             case 'checkbox':
-                return new QuestionnaireQuestionCheckboxType($this->container, $question);
+                return new QuestionnaireQuestionCheckboxType($this->container, $this->questionnaireUser, $question);
             case 'selectbox':
-                return new QuestionnaireQuestionSelectboxType($this->container, $question);
+                return new QuestionnaireQuestionSelectboxType($this->container, $this->questionnaireUser, $question);
             case 'slider':
-                return new QuestionnaireQuestionSliderType($this->container, $question);
+                return new QuestionnaireQuestionSliderType($this->container, $this->questionnaireUser, $question);
             case 'text':
-                return new QuestionnaireQuestionTextType($this->container, $question);
+                return new QuestionnaireQuestionTextType($this->container, $this->questionnaireUser, $question);
         }
-        return new QuestionnaireQuestionRadiobuttonType($this->container, $question);
+        return new QuestionnaireQuestionRadiobuttonType($this->container, $this->questionnaireUser, $question);
     }
 
 
@@ -107,6 +107,7 @@ class QuestionnaireUserForm extends AbstractType
         $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
 
         if (($questions_count = $repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($this->questionnaireUser))) {
+
             $view->vars['questions_count'] = $questions_count - count($this->questions);
         }
     }

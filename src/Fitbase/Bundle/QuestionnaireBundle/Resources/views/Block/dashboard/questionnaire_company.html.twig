@@ -1,0 +1,53 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h4 class="short hue">
+            {{ 'Weitere Fragebögen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </h4>
+
+        {% if questionnaires is defined and questionnaires %}
+            <div class="row">
+                <table class="table table-striped table-hover table-responsive">
+                    <tbody>
+                    {% for questionnaireCompany in questionnaires %}
+                        <tr>
+                            <td class="shade">
+                                {{ questionnaireCompany }}
+                            </td>
+                            <td class="shade">
+                                {% if questionnaireCompany.processed %}
+                                    versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                {% else %}
+                                    geplannt am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                {% endif %}
+                            </td>
+                            <td class="shade">
+                                <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
+                                    {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+
+    </div>
+    <div class="panel-footer">
+
+        <h4 class="">
+            {{ 'Neue Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </h4>
+
+        <p>
+            Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.
+        </p>
+
+        {% form_theme form 'FitbaseQuestionnaireBundle:Block:dashboard/form.html.twig' %}
+
+        {{ form(form) }}
+
+    </div>
+</div>

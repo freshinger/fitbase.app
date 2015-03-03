@@ -50,6 +50,17 @@ class QuestionnaireUserRepository extends EntityRepository
     }
 
     /**
+     * Get only done object
+     * @param $queryBuilder
+     * @return mixed
+     */
+    public function getExprDone($queryBuilder)
+    {
+        $queryBuilder->setParameter(':done', 1);
+        return $queryBuilder->expr()->eq('QuestionnaireUser.done', ':done');
+    }
+
+    /**
      * Get all not done tasks
      * @param $queryBuilder
      * @return mixed
@@ -98,7 +109,6 @@ class QuestionnaireUserRepository extends EntityRepository
 
     /**
      * Get expression to find records by questionnaire id
-     * TODO: check usage
      * @param $queryBuilder
      * @param $questionnaireCompany
      * @return mixed
@@ -106,8 +116,34 @@ class QuestionnaireUserRepository extends EntityRepository
     protected function getExprQuestionnaireCompany($queryBuilder, $questionnaireCompany)
     {
         if (!empty($questionnaireCompany)) {
-            $queryBuilder->setParameter('questionnaireCompanyId', $questionnaireCompany->getId());
-            return $queryBuilder->expr()->eq('QuestionnaireUser.questionnaireCompany', ':questionnaireCompanyId');
+            $queryBuilder->setParameter('slice_id', $questionnaireCompany->getId());
+            return $queryBuilder->expr()->eq('QuestionnaireUser.slice', ':slice_id');
+        }
+
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get empty slice record
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprSliceNull($queryBuilder)
+    {
+        return $queryBuilder->expr()->isNull('QuestionnaireUser.slice');
+    }
+
+    /**
+     * Find all by questionnaire
+     * @param $queryBuilder
+     * @param $questionnaire
+     * @return mixed
+     */
+    protected function getExprQuestionnaire($queryBuilder, $questionnaire)
+    {
+        if (!empty($questionnaire)) {
+            $queryBuilder->setParameter('questionnaire_id', $questionnaire->getId());
+            return $queryBuilder->expr()->eq('QuestionnaireUser.questionnaire', ':questionnaire_id');
         }
 
         return $queryBuilder->expr()->eq('0', '1');
@@ -182,8 +218,32 @@ class QuestionnaireUserRepository extends EntityRepository
     }
 
     /**
+     * Find one record by questionnaire
+     * @param $user
+     * @param $questionnaire
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUserAndQuestionnaire($user, $questionnaire)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprQuestionnaire($queryBuilder, $questionnaire),
+            $this->getExprSliceNull($queryBuilder)
+        ));
+
+        $queryBuilder->orderBy('QuestionnaireUser.id', 'DESC');
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+
+    /**
      * Find one by user and questionnaire user
-     * TODO: check usage
      * @param $user
      * @param $questionnaireCompany
      * @return array
@@ -197,90 +257,13 @@ class QuestionnaireUserRepository extends EntityRepository
             $this->getExprQuestionnaireCompany($queryBuilder, $questionnaireCompany)
         ));
 
+        $queryBuilder->orderBy('QuestionnaireUser.id', 'DESC');
+
         $queryBuilder->setMaxResults(1);
+
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-
-    /**
-     * Find all records by company
-     *
-     * @param $company
-     * @return array
-     */
-    public function findAllFirstByCompany($company)
-    {
-        $tableQuestionnaireUser = $this->getEntityManager()->getClassMetadata(
-            $this->getClassName()
-        )->getTableName();
-
-
-        $tableUser = $this->getEntityManager()->getClassMetadata(
-            "Application\Sonata\UserBundle\Entity\User"
-        )->getTableName();
-
-        $sql = "SELECT $tableQuestionnaireUser.*, company_id FROM (
-	        SELECT * FROM $tableQuestionnaireUser ORDER BY user_id ASC, id ASC
-          ) $tableQuestionnaireUser
-          JOIN $tableUser ON $tableQuestionnaireUser.user_id=$tableUser.id
-          WHERE company_id = :company_id
-          GROUP BY user_id";
-
-
-        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
-        $stmt->execute(array('company_id' => $company->getId()));
-
-        return $stmt->fetchAll();
-    }
-
-
-    public function findAllFirstByCompanyAndQuestionnaire($company, $questionnaire)
-    {
-        if (($collection = $this->findAllIdFirstByCompanyAndQuestionnaire($company, $questionnaire))) {
-            $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
-
-            $queryBuilder->where($queryBuilder->expr()->andX(
-                $this->getExprIdArray($queryBuilder, $collection)
-            ));
-
-            return $queryBuilder->getQuery()->getResult();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param $company
-     * @param $questionnaire
-     * @return array
-     * @throws \Doctrine\DBAL\DBALException
-     */
-    public function findAllFirstByCompanyQuestionnaire($questionnaire)
-    {
-        $tableQuestionnaireUser = $this->getEntityManager()->getClassMetadata(
-            $this->getClassName()
-        )->getTableName();
-
-        $tableUser = $this->getEntityManager()->getClassMetadata(
-            "Application\Sonata\UserBundle\Entity\User"
-        )->getTableName();
-
-        $sql = "SELECT $tableQuestionnaireUser.id  FROM (
-	        SELECT * FROM $tableQuestionnaireUser ORDER BY user_id ASC, id ASC
-          ) $tableQuestionnaireUser
-          JOIN $tableUser ON $tableQuestionnaireUser.user_id=$tableUser.id
-          WHERE company_id = :company_id
-          AND questionnaire_id = :questionnaire_id
-          GROUP BY user_id";
-
-
-        $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
-        $stmt->execute(array(
-            'questionnaire_id' => $questionnaire->getId()
-        ));
-
-        return $stmt->fetchAll(\PDO::FETCH_COLUMN);
-    }
 
     /**
      * Find count of weeklytasks by company
@@ -349,28 +332,42 @@ class QuestionnaireUserRepository extends EntityRepository
     }
 
 
-    /**
-     * Find first assessment
-     *
-     * @param $user
-     * @return mixed
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function findFirstAssessmentByUser($user)
-    {
-        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+//    /**
+//     * Find first assessment
+//     *
+//     * @param $user
+//     * @return mixed
+//     * @throws \Doctrine\ORM\NonUniqueResultException
+//     */
+//    public function findFirstAssessmentByUser($user)
+//    {
+//        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+//
+//        $queryBuilder->where($queryBuilder->expr()->andX(
+//            $this->getExprUser($queryBuilder, $user),
+//            $this->getExprAssessmentNotEmpty($queryBuilder),
+//            $this->getExprNotDone($queryBuilder),
+//            $this->getExprNotPause($queryBuilder)
+//        ));
+//
+//        $queryBuilder->addOrderBy('QuestionnaireUser.id', 'ASC');
+//        $queryBuilder->setMaxResults(1);
+//
+//        return $queryBuilder->getQuery()->getOneOrNullResult();
+//    }
 
-        $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprUser($queryBuilder, $user),
-            $this->getExprAssessmentNotEmpty($queryBuilder),
-            $this->getExprNotDone($queryBuilder),
-            $this->getExprNotPause($queryBuilder)
-        ));
-
-        $queryBuilder->addOrderBy('QuestionnaireUser.id', 'ASC');
-        $queryBuilder->setMaxResults(1);
-
-        return $queryBuilder->getQuery()->getOneOrNullResult();
-    }
+//
+//    public function findAllByQuestionnaireAndNoSlice($questionnaire)
+//    {
+//        $queryBuilder = $this->createQueryBuilder('QuestionnaireUser');
+//
+//        $queryBuilder->where($queryBuilder->expr()->andX(
+//            $this->getExprQuestionnaire($queryBuilder, $questionnaire),
+//            $this->getExprDone($queryBuilder),
+//            $this->getExprNotPause($queryBuilder)
+//        ));
+//
+//        return $queryBuilder->getQuery()->getResult();
+//    }
 
 }

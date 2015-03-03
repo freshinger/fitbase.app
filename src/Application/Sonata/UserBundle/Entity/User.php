@@ -10,6 +10,8 @@
 
 namespace Application\Sonata\UserBundle\Entity;
 
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
+use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 /**
@@ -201,12 +203,13 @@ class User extends BaseUser
     /**
      * Get wizard
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getWizard()
     {
         return $this->wizard;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -220,6 +223,8 @@ class User extends BaseUser
         parent::__construct();
 
         $this->reminders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questionnaires = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -248,10 +253,94 @@ class User extends BaseUser
     /**
      * Get reminders
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReminders()
     {
         return $this->reminders;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $questionnaires;
+
+    /**
+     * Add questionnaires
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires
+     * @return User
+     */
+    public function addQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires)
+    {
+        $this->questionnaires[] = $questionnaires;
+
+        return $this;
+    }
+
+    /**
+     * Remove questionnaires
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires
+     */
+    public function removeQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires)
+    {
+        $this->questionnaires->removeElement($questionnaires);
+    }
+
+    /**
+     * Get questionnaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestionnaires()
+    {
+        return $this->questionnaires;
+    }
+
+    /**
+     * Get last slice
+     * @param QuestionnaireCompany $questionnaireCompany
+     * @return mixed|null
+     */
+    public function getQuestionnaireSlice(QuestionnaireCompany $questionnaireCompany)
+    {
+        // all questionnaires ordered by id desc
+        // just try to found a first questionnaire in list
+        // with required conditions
+        if (($collection = $this->getQuestionnaires())) {
+            foreach ($collection as $questionnaireUser) {
+                if (($slice = $questionnaireUser->getSlice())) {
+                    if ($questionnaireCompany->getId() == $slice->getId()) {
+                        return $questionnaireUser;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Get questionnaire assessment
+     * @return mixed|null
+     */
+    public function getAssessment(CompanyQuestionnaire $questionnaire)
+    {
+        // all questionnaires ordered by id desc
+        // just try to found a first questionnaire in list
+        // with required conditions
+        if (($collection = $this->getQuestionnaires())) {
+            foreach ($collection as $questionnaireUser) {
+                // required conditions here ist a
+                // no slice object, slice means QuestionnaireCompany
+                if (!$questionnaireUser->getSlice()) {
+                    if ($questionnaire->getId() == $questionnaireUser->getQuestionnaire()->getId()) {
+                        return $questionnaireUser;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

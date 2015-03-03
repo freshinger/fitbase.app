@@ -21,10 +21,28 @@ abstract class QuestionnaireQuestionAbstractType extends AbstractType implements
     protected $container;
 
     /**
+     * @var
+     */
+    protected $questionnaireUser;
+
+    /**
      * WeeklytaskQuestion entity
      * @var
      */
     protected $questionnaireQuestion;
+
+
+    /**
+     * Set questionnaire question and container
+     * @param ContainerInterface $container
+     * @param QuestionnaireQuestion $questionnaireQuestion
+     */
+    public function __construct(ContainerInterface $container, $questionnaireUser, QuestionnaireQuestion $questionnaireQuestion)
+    {
+        $this->container = $container;
+        $this->questionnaireUser = $questionnaireUser;
+        $this->questionnaireQuestion = $questionnaireQuestion;
+    }
 
     /**
      * Sets the Container.
@@ -37,18 +55,6 @@ abstract class QuestionnaireQuestionAbstractType extends AbstractType implements
     {
         $this->container = $container;
     }
-
-    /**
-     * Set questionnaire question and container
-     * @param ContainerInterface $container
-     * @param QuestionnaireQuestion $questionnaireQuestion
-     */
-    public function __construct(ContainerInterface $container, QuestionnaireQuestion $questionnaireQuestion)
-    {
-        $this->container = $container;
-        $this->questionnaireQuestion = $questionnaireQuestion;
-    }
-
 
     /**
      * Get collection with answer
@@ -91,6 +97,7 @@ abstract class QuestionnaireQuestionAbstractType extends AbstractType implements
         parent::buildView($view, $form, $options);
 
         $view->vars['question'] = $this->questionnaireQuestion;
+        $view->vars['questionnaireUser'] = $this->questionnaireUser;
         $view->vars['description'] = $this->questionnaireQuestion->getDescription();
     }
 }

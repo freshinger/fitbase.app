@@ -5,7 +5,7 @@
     <services>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic" scope="request"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\StatisticQuestionnaireBlock">
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic</argument>
             <argument type="collection">
@@ -14,11 +14,10 @@
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
             <argument type="service" id="user"/>
-            <argument type="service" id="fitbase.orm.questionnaire_user_manager"/>
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\StatisticQuestionBlock">
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireQuestionBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
             <argument type="collection">
@@ -27,9 +26,33 @@
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
             <argument type="service" id="user"/>
-            <argument type="service" id="fitbase.orm.questionnaire_user_manager"/>
         </service>
 
+        <service id="fitbase.block.dashboard.questionnaire_question_last" scope="request"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireQuestionLastBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.questionnaire_question_last</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+        </service>
 
+        <service id="fitbase.block.dashboard.company_questionnaire" scope="request"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireCompanyBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.company_questionnaire</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="request"/>
+        </service>
     </services>
 </container>

@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
+namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
 
 
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class CompanyQuestionnaireBlock extends SecureBlockService
+class QuestionnaireCompanyBlock extends SecureBlockService
 {
     protected $formFactory;
     protected $serviceUser;
@@ -56,7 +56,7 @@ class CompanyQuestionnaireBlock extends SecureBlockService
             }
 
             $repositoryQuestionnaireCompany = $this->objectManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
-            return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:dashboard/questionnaire.html.twig', array(
+            return $this->renderPrivateResponse('FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_company.html.twig', array(
                 'form' => $form->createView(),
                 'questionnaires' => $repositoryQuestionnaireCompany->findBy(array(
                     'company' => $company,

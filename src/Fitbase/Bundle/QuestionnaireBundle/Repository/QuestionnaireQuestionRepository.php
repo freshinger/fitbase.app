@@ -63,13 +63,48 @@ class QuestionnaireQuestionRepository extends EntityRepository
      * @param $questionnaire
      * @return mixed
      */
-    public function getExprQuestionnaire($queryBuilder, Questionnaire $questionnaire)
+    protected function getExprQuestionnaire($queryBuilder, Questionnaire $questionnaire)
     {
         if (!empty($questionnaire)) {
             $queryBuilder->setParameter('questionnaireId', $questionnaire->getId());
             return $queryBuilder->expr()->eq('QuestionnaireQuestion.questionnaire', ':questionnaireId');
         }
         return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
+     * Get questions with answers for this questionnaire user object
+     * @param $questionnaireUser
+     * @return mixed
+     */
+    protected function getExcludedQuestions($questionnaireUser)
+    {
+        $entityManager = $this->getEntityManager();
+        $repositoryQuestionnaireAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
+        return $repositoryQuestionnaireAnswer->findAllQuestionsByQuestionnaireUser($questionnaireUser);
+    }
+
+    /**
+     * Get excluded categoryes,
+     * @param $questionnaireUser
+     * @return array
+     */
+    protected function getIncludedCategories($questionnaireUser)
+    {
+        $excludeCategories = array();
+
+        if (($user = $questionnaireUser->getUser())) {
+            if (($focus = $user->getFocus())) {
+                if (($focusCategories = $focus->getCategories())) {
+                    $excludeCategories = $focusCategories->map(function ($entity) {
+                        return $entity->getCategory();
+                    })->toArray();
+                }
+            }
+        }
+
+        return $excludeCategories;
     }
 
 
@@ -81,82 +116,52 @@ class QuestionnaireQuestionRepository extends EntityRepository
      */
     public function findCountByQuestionnaireUser(QuestionnaireUser $questionnaireUser = null)
     {
-        $entityManager = $this->getEntityManager();
-        $repositoryQuestionnaireAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
-        $excludeQuestions = $repositoryQuestionnaireAnswer->findAllQuestionsByQuestionnaireUser($questionnaireUser);
-
-        $excludeCategories = array();
-        if (($user = $questionnaireUser->getUser())) {
-            if (($focus = $user->getFocus())) {
-                if (($focusCategories = $focus->getCategories())) {
-                    $excludeCategories = $focusCategories->map(function ($entity) {
-                        return $entity->getCategory();
-                    })->toArray();
-                }
-            }
-        }
-
-
         $questionnaire = null;
         if (($companyQuestionnaire = $questionnaireUser->getQuestionnaire())) {
             $questionnaire = $companyQuestionnaire->getQuestionnaire();
         }
-
 
         $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
         $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');
         $queryBuilder->select('COUNT(QuestionnaireQuestion)');
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprQuestionnaire($queryBuilder, $questionnaire),
-            $this->getExprCategories($queryBuilder, $excludeCategories),
-            $this->getExprNotQuestions($queryBuilder, $excludeQuestions)
+            $this->getExprCategories($queryBuilder, $this->getIncludedCategories($questionnaireUser)),
+            $this->getExprNotQuestions($queryBuilder, $this->getExcludedQuestions($questionnaireUser))
         ));
 
         return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
+
 
     /**
      * Find all records by questionnaire user
      * @param QuestionnaireUser $questionnaireUser
      * @return array
      */
-    public function findAllByQuestionnaireUser(QuestionnaireUser $questionnaireUser, $limit = 10)
+    public function findAllByQuestionnaireUser(QuestionnaireUser $questionnaireUser, $limit = null)
     {
-        $entityManager = $this->getEntityManager();
-        $repositoryQuestionnaireAnswer = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer');
-        $excludeQuestions = $repositoryQuestionnaireAnswer->findAllQuestionsByQuestionnaireUser($questionnaireUser);
-
-        $excludeCategories = array();
-        if (($user = $questionnaireUser->getUser())) {
-            if (($focus = $user->getFocus())) {
-                if (($focusCategories = $focus->getCategories())) {
-                    $excludeCategories = $focusCategories->map(function ($entity) {
-                        return $entity->getCategory();
-                    })->toArray();
-                }
-            }
-        }
-
-        $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
-        $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');
-
-
         $questionnaire = null;
         if (($companyQuestionnaire = $questionnaireUser->getQuestionnaire())) {
             $questionnaire = $companyQuestionnaire->getQuestionnaire();
         }
 
 
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireQuestion');
+        $queryBuilder->leftJoin('QuestionnaireQuestion.categories', 'Category');
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprQuestionnaire($queryBuilder, $questionnaire),
-            $this->getExprCategories($queryBuilder, $excludeCategories),
-            $this->getExprNotQuestions($queryBuilder, $excludeQuestions)
+            $this->getExprCategories($queryBuilder, $this->getIncludedCategories($questionnaireUser)),
+            $this->getExprNotQuestions($queryBuilder, $this->getExcludedQuestions($questionnaireUser))
         ));
 
         $queryBuilder->addOrderBy('Category.position', 'ASC');
 
-        if (($questionCount = $this->findCountByQuestionnaireUser($questionnaireUser)) > $limit) {
-            $queryBuilder->setMaxResults(floor(($questionCount / ($questionCount / $limit))));
+        if (!is_null($limit)) {
+            if (($questionCount = $this->findCountByQuestionnaireUser($questionnaireUser)) > $limit) {
+                $queryBuilder->setMaxResults(floor(($questionCount / ($questionCount / $limit))));
+            }
         }
 
         return $queryBuilder->getQuery()->getResult();

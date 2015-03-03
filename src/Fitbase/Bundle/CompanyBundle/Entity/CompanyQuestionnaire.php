@@ -19,6 +19,18 @@ class CompanyQuestionnaire
      */
     private $pause;
 
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return CompanyQuestionnaire
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get id

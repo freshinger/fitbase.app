@@ -19,6 +19,8 @@
             <directory>../src/Fitbase/*/Bundle/*Bundle/Tests</directory>
             <directory>../src/Wellbeing/*/*Bundle/Tests</directory>
             <directory>../src/Wellbeing/*/Bundle/*Bundle/Tests</directory>
+            <directory>../src/Application/*/*Bundle/Tests</directory>
+            <directory>../src/Application/*/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 

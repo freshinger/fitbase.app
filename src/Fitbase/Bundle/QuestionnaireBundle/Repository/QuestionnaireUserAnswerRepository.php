@@ -17,13 +17,19 @@ use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 
 class QuestionnaireUserAnswerRepository extends EntityRepository
 {
+    /**
+     * Find
+     * @param $queryBuilder
+     * @param $collection
+     * @return mixed
+     */
     protected function getExprIdArray($queryBuilder, $collection)
     {
         if (!empty($collection)) {
             $queryBuilder->setParameter('id_array', $collection);
             return $queryBuilder->expr()->in('QuestionnaireUserAnswer.id', ':id_array');
         }
-        return $queryBuilder->expr()->eq('0', '1');
+        return $queryBuilder->expr()->eq('1', '1');
     }
 
     /**
@@ -128,23 +134,49 @@ class QuestionnaireUserAnswerRepository extends EntityRepository
      * @param $question
      * @return array
      */
-    public function findAllByCompanyAndQuestion($company, $question)
+    public function findAllByCompanyAndQuestion($company, $question, $questions = null)
     {
-        if (($collection = $this->findAllIdByCompanyAndQuestion($company, $question))) {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireUserAnswer');
+        $queryBuilder->join('QuestionnaireUserAnswer.user', 'User');
+        $queryBuilder->join('User.company', 'Company');
 
-            $queryBuilder = $this->createQueryBuilder('QuestionnaireUserAnswer');
-            $queryBuilder->join('QuestionnaireUserAnswer.user', 'User');
-            $queryBuilder->join('User.company', 'Company');
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprCompany($queryBuilder, $company),
+            $this->getExprQuestion($queryBuilder, $question),
+            $this->getExprIdArray($queryBuilder, $questions)
+        ));
+        return $queryBuilder->getQuery()->getResult();
+    }
 
-            $queryBuilder->where($queryBuilder->expr()->andX(
-                $this->getExprIdArray($queryBuilder, $collection),
-                $this->getExprCompany($queryBuilder, $company),
-                $this->getExprQuestion($queryBuilder, $question)
-            ));
-            return $queryBuilder->getQuery()->getResult();
+    /**
+     * Find all last answers by company and questions
+     * @param $company
+     * @param $question
+     * @return array|null
+     */
+    public function findAllLastByCompanyAndQuestion($company, $question)
+    {
+        if (($collection = $this->findAllLastIdByCompanyAndQuestion($company, $question))) {
+            return $this->findAllByCompanyAndQuestion($company, $question);
         }
-
         return null;
+    }
+
+    /**
+     * Find all questionnaire user answer object by questionnaire user and question
+     * @param $questionnaireUser
+     * @param $question
+     * @return array
+     */
+    public function findByQuestionnaireUserAndQuestion($questionnaireUser, $question)
+    {
+        $queryBuilder = $this->createQueryBuilder('QuestionnaireUserAnswer');
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprQuestionnaireUser($queryBuilder, $questionnaireUser),
+            $this->getExprQuestion($queryBuilder, $question)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
     }
 
     /**
@@ -153,23 +185,20 @@ class QuestionnaireUserAnswerRepository extends EntityRepository
      * @return array
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findAllIdByCompanyAndQuestion($company, $question)
+    protected function findAllLastIdByCompanyAndQuestion($company, $question)
     {
-        $tableUser = $this->getEntityManager()->getClassMetadata(
-            "Application\Sonata\UserBundle\Entity\User"
-        )->getTableName();
+        $tableUser = $this->getEntityManager()
+            ->getClassMetadata('Application\Sonata\UserBundle\Entity\User')
+            ->getTableName();
 
-        $tableUserAnswer = $this->getEntityManager()->getClassMetadata(
-            "Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer"
-        )->getTableName();
+        $tableUserAnswer = $this->getEntityManager()
+            ->getClassMetadata('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer')
+            ->getTableName();
 
-        $sql = "SELECT $tableUserAnswer.id FROM (
-          SELECT * FROM {$tableUserAnswer} ORDER BY user_id ASC, question_id ASC, id ASC
-        ) {$tableUserAnswer}
-        JOIN $tableUser ON $tableUserAnswer.user_id=$tableUser.id
-        WHERE $tableUser.company_id = :company_id
-        AND question_id = :question_id
-        GROUP BY user_id, question_id";
+        $sql = "SELECT $tableUserAnswer.id FROM (SELECT * FROM {$tableUserAnswer} ORDER BY user_id ASC, question_id ASC, id ASC) {$tableUserAnswer}
+                JOIN $tableUser ON $tableUserAnswer.user_id=$tableUser.id
+                WHERE $tableUser.company_id = :company_id AND question_id = :question_id
+                GROUP BY user_id, question_id";
 
         $stmt = $this->getEntityManager()->getConnection()->prepare($sql);
         $stmt->execute(array(
