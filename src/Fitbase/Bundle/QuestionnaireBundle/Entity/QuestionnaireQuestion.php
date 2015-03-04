@@ -197,6 +197,60 @@ class QuestionnaireQuestion
     }
 
     /**
+     * @param $category
+     * @return bool
+     */
+    public function hasCategory($category)
+    {
+        if (($collection = $this->getCategories())) {
+            foreach ($collection as $categoryUser) {
+                if ($categoryUser->getId() == $category->getId()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $companyCategory
+     * @return bool
+     */
+    public function hasCompanyCategory($companyCategory)
+    {
+        if (($collection = $this->getCategories())) {
+            foreach ($collection as $category) {
+                if ($category->getId() == $companyCategory->getCategory()->getId()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $points
+     * @return bool
+     */
+    public function hasProblem($points)
+    {
+        $pointsTotal = 0;
+        if (($answers = $this->getAnswers())) {
+            foreach ($answers as $answer) {
+                $pointsTotal += $answer->getCountPoint();
+            }
+        }
+
+        if ($pointsTotal > 0) {
+            if ($points > ((55 * $pointsTotal) / 100)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Get categories
      *
      * @return \Doctrine\Common\Collections\Collection

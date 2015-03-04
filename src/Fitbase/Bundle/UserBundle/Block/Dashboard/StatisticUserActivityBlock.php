@@ -10,15 +10,13 @@ namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
 
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
 use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class UserFocusStatisticBlockService extends SecureBlockService
+class StatisticUserActivityBlock extends SecureBlockService
 {
     protected $serviceUser;
 
@@ -28,7 +26,6 @@ class UserFocusStatisticBlockService extends SecureBlockService
         $this->serviceUser = $serviceUser;
     }
 
-
     /**
      * Draw a block
      * {@inheritdoc}
@@ -36,46 +33,30 @@ class UserFocusStatisticBlockService extends SecureBlockService
     public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
     {
         $statistics = array(
-            'Empty' => 1,
+            'No users' => 1
         );
 
-        if (($user = $this->serviceUser->current())) {
-            if (($company = $user->getCompany())) {
-                if (($collection = $company->getUsers())) {
-                    $statistics = $this->toDiagramData($collection);
-                }
-            }
+        if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
+            $statistics = $this->toDiagramData($company->getUsers(), $company->getActioncodes());
         }
 
-
-        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/focus_statistic.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/user_activity.html.twig', array(
             'statistics' => $statistics
         ));
     }
 
-
     /**
      * Convert data from data-layer to diagram-acceptable data
-     * @param $collection
+     * @param $users
+     * @param $codes
      * @return array
      */
-    protected function toDiagramData($collection)
+    protected function toDiagramData($users, $codes)
     {
-        $result = array();
-
-        foreach ($collection as $user) {
-            if (($focus = $user->getFocus())) {
-                if (($focusCategory = $focus->getFirstCategory())) {
-                    if (!isset($result[$focusCategory->__toString()])) {
-                        $result[$focusCategory->__toString()] = 0;
-                    }
-
-                    $result[$focusCategory->__toString()]++;
-                }
-            }
-        }
-
-        return $result;
+        return array(
+            'Aktivierte Benutzer' => count($users),
+            'Noch nicht aktivierte Benutzer' => count($codes),
+        );
     }
 
     /**
@@ -83,6 +64,6 @@ class UserFocusStatisticBlockService extends SecureBlockService
      */
     public function getName()
     {
-        return 'Dashboard (User focus statistic)';
+        return 'Dashboard (User statistic)';
     }
 } 

@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
+namespace Fitbase\Bundle\QuestionnaireBundle\Block;
 
 
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;

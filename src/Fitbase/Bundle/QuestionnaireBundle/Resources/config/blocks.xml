@@ -4,8 +4,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.block.dashboard.questionnaire_statistic" scope="request"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireBlock">
+        <service id="fitbase.block.dashboard.statistic_assessment" scope="request"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\StatisticAssessmentBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic</argument>
             <argument type="collection">
@@ -17,7 +17,7 @@
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireQuestionBlock">
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\QuestionnaireQuestionBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
             <argument type="collection">
@@ -29,7 +29,7 @@
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_question_last" scope="request"
-                 class="Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireQuestionLastBlock">
+                 class="Fitbase\Bundle\QuestionnaireBundle\Block\QuestionnaireQuestionLastBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_question_last</argument>
             <argument type="collection">

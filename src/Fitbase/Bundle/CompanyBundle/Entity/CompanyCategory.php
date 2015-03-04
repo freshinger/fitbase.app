@@ -168,4 +168,24 @@ class CompanyCategory
     {
         return $this->parent;
     }
+
+
+    public function getCountUser()
+    {
+        $count = 0;
+        if (($company = $this->getCompany())) {
+            if (($users = $company->getUsers())) {
+                foreach ($users as $user) {
+                    if (($focus = $user->getFocus())) {
+                        if (($focusCategory = $focus->getFirstCategory())) {
+                            if ($this->getCategory()->getId() == $focusCategory->getCategory()->getId()) {
+                                $count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return $count;
+    }
 }

@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class QuestionnaireBlock extends SecureBlockService
+class StatisticAssessmentBlock extends SecureBlockService
 {
     protected $serviceUser;
 
@@ -34,7 +34,8 @@ class QuestionnaireBlock extends SecureBlockService
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire.html.twig',
+            'company' => null,
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/assessment.html.twig',
         ));
     }
 
@@ -55,8 +56,12 @@ class QuestionnaireBlock extends SecureBlockService
             }
         }
 
+
+        $done = isset($statistic['done']) ? $statistic['done'] : 0;
+        $total = (isset($statistic['pause']) ? $statistic['pause'] : 0) + $done;
+
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'statistic' => $statistic,
+            'percent' => (float)$done / $total,
             'questionnaire' => $questionnaire
         ));
     }

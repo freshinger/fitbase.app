@@ -10,13 +10,15 @@ namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
 
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
 use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class UserActivityBlockService extends SecureBlockService
+class StatisticUserRegistrationBlock extends SecureBlockService
 {
     protected $serviceUser;
 
@@ -26,44 +28,23 @@ class UserActivityBlockService extends SecureBlockService
         $this->serviceUser = $serviceUser;
     }
 
+
     /**
      * Draw a block
      * {@inheritdoc}
      */
     public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
     {
-        $statistics = array(
-            'No users' => 1
-        );
 
-        if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
-            $statistics = $this->toDiagramData($company->getUsers(), $company->getActioncodes());
-        }
-
-        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/user_statistic.html.twig', array(
-            'statistics' => $statistics
-        ));
+        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/user_registration.html.twig', array());
     }
 
-    /**
-     * Convert data from data-layer to diagram-acceptable data
-     * @param $users
-     * @param $codes
-     * @return array
-     */
-    protected function toDiagramData($users, $codes)
-    {
-        return array(
-            'Aktivierte Benutzer' => count($users),
-            'Noch nicht aktivierte Benutzer' => count($codes),
-        );
-    }
 
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'Dashboard (User statistic)';
+        return 'Dashboard (User focus statistic)';
     }
 } 

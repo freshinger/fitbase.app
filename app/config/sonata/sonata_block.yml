@@ -116,8 +116,16 @@ sonata_block:
         fitbase.email_block.header:
         fitbase.email_block.footer:
 
-        fitbase.block.dashboard.user_statistic:
-        fitbase.block.dashboard.focus_statistic:
+
+        fitbase.block.dashboard.statistic_user_activity:
+        fitbase.block.dashboard.statistic_user_registration:
+        fitbase.block.dashboard.statistic_user_focus:
+        fitbase.block.dashboard.statistic_user_stress:
+        fitbase.block.dashboard.statistic_user_back:
+        fitbase.block.dashboard.statistic_assessment:
+
+
+
         fitbase.block.dashboard.company_questionnaire:
         fitbase.block.dashboard.questionnaire_statistic:
         fitbase.block.dashboard.questionnaire_statistic_question:

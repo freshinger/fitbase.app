@@ -3,6 +3,11 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <imports>
+        <import resource="blocks/dashboard.xml"/>
+    </imports>
+    
+    
     <services>
 
         <service id="fitbase.block.dashboard_profile"
@@ -25,29 +30,6 @@
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard.focus_statistic" scope="request"
-                 class="Fitbase\Bundle\UserBundle\Block\Dashboard\UserFocusStatisticBlockService">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard.focus_statistic</argument>
-            <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
-            </argument>
-            <argument type="service" id="templating"/>
-            <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
-        </service>
-
-        <service id="fitbase.block.dashboard.user_statistic" scope="request"
-                 class="Fitbase\Bundle\UserBundle\Block\Dashboard\UserActivityBlockService">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard.user_statistic</argument>
-            <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
-            </argument>
-            <argument type="service" id="templating"/>
-            <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
-        </service>
 
     </services>
 </container>

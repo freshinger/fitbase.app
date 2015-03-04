@@ -15,6 +15,7 @@ use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
@@ -32,6 +33,19 @@ class QuestionnaireCompanyBlock extends SecureBlockService
         $this->objectManager = $objectManager;
         $this->request = $request;
     }
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'company' => null,
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_company.html.twig',
+        ));
+    }
+
 
     /**
      * Draw a block
@@ -56,7 +70,7 @@ class QuestionnaireCompanyBlock extends SecureBlockService
             }
 
             $repositoryQuestionnaireCompany = $this->objectManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
-            return $this->renderPrivateResponse('FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_company.html.twig', array(
+            return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
                 'form' => $form->createView(),
                 'questionnaires' => $repositoryQuestionnaireCompany->findBy(array(
                     'company' => $company,
