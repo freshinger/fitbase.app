@@ -37,7 +37,7 @@ class StatisticUserActivityBlock extends SecureBlockService
         );
 
         if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
-            $statistics = $this->toDiagramData($company->getUsers(), $company->getActioncodes());
+            $statistics = $this->getStatistics($company->getUsers(), $company->getActioncodes());
         }
 
         return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/user_activity.html.twig', array(
@@ -46,17 +46,47 @@ class StatisticUserActivityBlock extends SecureBlockService
     }
 
     /**
-     * Convert data from data-layer to diagram-acceptable data
-     * @param $users
-     * @param $codes
+     * Get statistical data
+     *
+     * @param null $questionnaire
+     * @param null $users
+     * @param null $actioncodes
      * @return array
      */
-    protected function toDiagramData($users, $codes)
+    protected function getStatistics($users = null, $actioncodes = null)
     {
-        return array(
-            'Aktivierte Benutzer' => count($users),
-            'Noch nicht aktivierte Benutzer' => count($codes),
+        $statistic = array(
+            'done' => 0,
+            'pause' => 0,
         );
+
+        if (count($users)) {
+            foreach ($users as $user) {
+                // Get assessment questionnaire for user from company
+                $statistic['done']++;
+                continue;
+            }
+        }
+
+        // Potential users
+        // mark not registered users as a
+        // not processed questionnaire
+        if (count($actioncodes)) {
+            foreach ($actioncodes as $actioncode) {
+                if (!$actioncode->getProcessed()) {
+                    $statistic['pause']++;
+                }
+            }
+        }
+
+        if (array_sum($statistic) <= 0) {
+            $statistic = array(
+                'done' => 0,
+                'pause' => 1,
+            );
+        }
+
+        return $statistic;
     }
 
     /**

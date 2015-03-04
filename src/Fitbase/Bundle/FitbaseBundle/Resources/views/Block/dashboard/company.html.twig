@@ -196,9 +196,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-4">
-            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_assessment' }, { 'company': company }) }}
-        </div>
+
         <div class="col-xs-4">
             {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_stress' }, { 'company': company, 'slug': 'augen' }) }}
         </div>
@@ -206,8 +204,15 @@
             {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_stress' }, { 'company': company, 'slug': 'ruecken' }) }}
         </div>
         <div class="col-xs-4">
-            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_focus' }, { 'company': company }) }}        </div>
-        <div class="col-xs-8">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_focus' }, { 'company': company }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_registration' }, { 'company': company }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_assessment' }, { 'company': company }) }}
+        </div>
+        <div class="col-xs-4">
             {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.company_questionnaire' }, { 'company': company }) }}
         </div>
     </div>
