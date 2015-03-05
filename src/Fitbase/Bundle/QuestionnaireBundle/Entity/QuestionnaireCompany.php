@@ -198,4 +198,49 @@ class QuestionnaireCompany
             }
         }
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $questionnaires;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questionnaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add questionnaires
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires
+     * @return QuestionnaireCompany
+     */
+    public function addQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires)
+    {
+        $this->questionnaires[] = $questionnaires;
+
+        return $this;
+    }
+
+    /**
+     * Remove questionnaires
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires
+     */
+    public function removeQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser $questionnaires)
+    {
+        $this->questionnaires->removeElement($questionnaires);
+    }
+
+    /**
+     * Get questionnaires
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestionnaires()
+    {
+        return $this->questionnaires;
+    }
 }

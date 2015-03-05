@@ -25,5 +25,11 @@
             <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
+        <one-to-many field="questionnaires" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser" mapped-by="user">
+            <order-by>
+                <order-by-field name="id" direction="DESC"/>
+            </order-by>
+        </one-to-many>
+
     </entity>
 </doctrine-mapping>

@@ -14,6 +14,13 @@
                             <td class="shade">
                                 {{ questionnaireCompany }}
                             </td>
+
+                            <td class="shade">
+                                {% set collection = questionnaireCompany.questionnaires %}
+                                {% if collection is defined and collection %}
+                                    {{ questionnaireCompany.questionnaires|length }}({{ questionnaireCompany.company.users|length }})
+                                {% endif %}
+                            </td>
                             <td class="shade">
                                 {% if questionnaireCompany.processed %}
                                     versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
