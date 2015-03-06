@@ -336,8 +336,10 @@ class User extends BaseUser
                     // required conditions here ist a
                     // no slice object, slice means QuestionnaireCompany
                     if (!$questionnaireUser->getSlice()) {
-                        if ($questionnaire->getId() == $questionnaireUser->getQuestionnaire()->getId()) {
-                            return $questionnaireUser;
+                        if (($questionnaireParent = $questionnaireUser->getQuestionnaire())) {
+                            if ($questionnaire->getId() == $questionnaireParent->getId()) {
+                                return $questionnaireUser;
+                            }
                         }
                     }
                 }
