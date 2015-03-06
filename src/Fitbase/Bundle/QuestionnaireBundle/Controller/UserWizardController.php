@@ -67,14 +67,7 @@ class UserWizardController extends Controller
 
                                 $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
                                 if (($count = $repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser))) {
-
-                                    $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser);
-                                    $form = $this->container->get('form.factory')->create($formBuilder, array());
-
-                                    return $this->render('FitbaseQuestionnaireBundle:Wizard:questionnaire.html.twig', array(
-                                        'form' => $form->createView(),
-                                        'questionnaire' => $questionnaire,
-                                    ));
+                                    return $this->questionnaireNextAction($request);
                                 }
 
                                 $eventQuestionnaireUser = new QuestionnaireUserEvent($questionnaireUser);
