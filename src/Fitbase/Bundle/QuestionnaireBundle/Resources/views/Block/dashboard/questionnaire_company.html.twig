@@ -11,29 +11,33 @@
                     <tbody>
                     {% for questionnaireCompany in questionnaires %}
                         <tr>
-                            <td class="shade">
-                                {{ questionnaireCompany }}
-                            </td>
-
-                            <td class="shade">
-                                {% set collection = questionnaireCompany.questionnaires %}
-                                {% if collection is defined and collection %}
-                                    {{ questionnaireCompany.questionnaires|length }}({{ questionnaireCompany.company.users|length }})
-                                {% endif %}
-                            </td>
-                            <td class="shade">
-                                {% if questionnaireCompany.processed %}
-                                    versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
-                                {% else %}
-                                    geplannt am {{ questionnaireCompany.date|date('Y/m/d') }}
-                                {% endif %}
-                            </td>
-                            <td class="shade">
-                                <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
-                                    {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
-                                </a>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        {{ questionnaireCompany }}
+                                    </div>
+                                    <div class="col-xs-2">
+                                        {% set collection = questionnaireCompany.questionnaires %}
+                                        {% if collection is defined and collection %}
+                                            {{ questionnaireCompany.questionnaires|length }}({{ questionnaireCompany.company.users|length }})
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
+                                            {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        {% if questionnaireCompany.processed %}
+                                            versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                        {% else %}
+                                            geplannt am {{ questionnaireCompany.date|date('Y/m/d') }}
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </td>
                         </tr>
+
                     {% endfor %}
                     </tbody>
                 </table>
