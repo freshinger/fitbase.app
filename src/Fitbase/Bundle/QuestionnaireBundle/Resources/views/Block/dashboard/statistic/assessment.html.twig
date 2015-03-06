@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <div class="panel-footer">
-        {% if questionnaire is defined and questionnaire %}
+    {% if questionnaire is defined and questionnaire %}
+        <div class="panel-footer">
             <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}">
                 Detalierter Ansicht
             </a>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 </div>
 
 <script type="text/javascript">

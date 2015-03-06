@@ -325,22 +325,25 @@ class User extends BaseUser
      * Get questionnaire assessment
      * @return mixed|null
      */
-    public function getAssessment(CompanyQuestionnaire $questionnaire)
+    public function getAssessment(CompanyQuestionnaire $questionnaire = null)
     {
         // all questionnaires ordered by id desc
         // just try to found a first questionnaire in list
         // with required conditions
-        if (($collection = $this->getQuestionnaires())) {
-            foreach ($collection as $questionnaireUser) {
-                // required conditions here ist a
-                // no slice object, slice means QuestionnaireCompany
-                if (!$questionnaireUser->getSlice()) {
-                    if ($questionnaire->getId() == $questionnaireUser->getQuestionnaire()->getId()) {
-                        return $questionnaireUser;
+        if (!empty($questionnaire)) {
+            if (($collection = $this->getQuestionnaires())) {
+                foreach ($collection as $questionnaireUser) {
+                    // required conditions here ist a
+                    // no slice object, slice means QuestionnaireCompany
+                    if (!$questionnaireUser->getSlice()) {
+                        if ($questionnaire->getId() == $questionnaireUser->getQuestionnaire()->getId()) {
+                            return $questionnaireUser;
+                        }
                     }
                 }
             }
         }
+
         return null;
     }
 }
