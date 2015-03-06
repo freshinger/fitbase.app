@@ -133,8 +133,6 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
-
                 - %kernel.root_dir%/../web/assetic/sonata_jqueryui_js.js
 
             filters:
