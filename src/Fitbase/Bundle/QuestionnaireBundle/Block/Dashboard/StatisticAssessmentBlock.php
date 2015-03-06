@@ -8,25 +8,13 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserManagerInterface;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
-
-class StatisticAssessmentBlock extends SecureBlockService
+class StatisticAssessmentBlock extends SecureBlockServiceAbstract
 {
-    protected $serviceUser;
-
-    public function __construct($name, array $roles = array(), EngineInterface $templating, SecurityContextInterface $securityContext, $serviceUser)
-    {
-        parent::__construct($name, $roles, $templating, $securityContext);
-        $this->serviceUser = $serviceUser;
-    }
-
     /**
      * Set defaults
      * @param OptionsResolverInterface $resolver
@@ -35,7 +23,7 @@ class StatisticAssessmentBlock extends SecureBlockService
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/assessment.html.twig',
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/statistic/assessment.html.twig',
         ));
     }
 
@@ -48,7 +36,7 @@ class StatisticAssessmentBlock extends SecureBlockService
         $statistic = array('done' => 0, 'pause' => 1);
 
         $questionnaire = null;
-        if (($user = $this->serviceUser->current()) and (($company = $user->getCompany()))) {
+        if (($company = $blockContext->getSetting('company'))) {
             if (($questionnaire = $company->getQuestionnaire())) {
                 if (($users = $company->getUsers()) and ($codes = $company->getActioncodes())) {
                     $statistic = $this->getStatistics($questionnaire, $company->getUsers(), $company->getActioncodes());

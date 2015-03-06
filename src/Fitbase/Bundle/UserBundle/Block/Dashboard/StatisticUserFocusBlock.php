@@ -8,18 +8,13 @@
 namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
-use Sonata\BlockBundle\Block\BaseBlockService;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class StatisticUserFocusBlock extends SecureBlockService
+class StatisticUserFocusBlock extends SecureBlockServiceAbstract
 {
     /**
      * Set defaults
@@ -29,7 +24,7 @@ class StatisticUserFocusBlock extends SecureBlockService
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseUserBundle:Block:dashboard/user_focus.html.twig',
+            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_focus.html.twig',
         ));
     }
 
@@ -58,4 +53,4 @@ class StatisticUserFocusBlock extends SecureBlockService
     {
         return 'Dashboard (User focus statistic)';
     }
-} 
+}

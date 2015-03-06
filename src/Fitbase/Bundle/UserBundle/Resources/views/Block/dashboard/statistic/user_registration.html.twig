@@ -99,33 +99,8 @@
                         drawDetailedInformation(d.data, this);
                     });
 
-//            drawChartCenter();
-
             drawDetailedInformation(data, pie);
 
-//            function drawChartCenter() {
-//                var centerContainer = pie.append('g')
-//                        .attr('class', 'pieChart--center');
-//
-//                centerContainer.append('circle')
-//                        .attr('class', 'pieChart--center--outerCircle')
-//                        .attr('r', 0)
-//                        .attr('filter', 'url(#pieChartDropShadow)')
-//                        .transition()
-//                        .duration(DURATION)
-//                        .delay(DELAY)
-//                        .attr('r', radius - 40);
-//
-//                centerContainer.append('circle')
-//                        .attr('id', 'pieChart-clippy')
-//                        .attr('class', 'pieChart--center--innerCircle')
-//                        .attr('r', 0)
-//                        .transition()
-//                        .delay(DELAY)
-//                        .duration(DURATION)
-//                        .attr('r', radius - 45)
-//                        .attr('fill', '#fff');
-//            }
 
             function drawDetailedInformation(data, element) {
                 if (typeof(element.getBBox) == "undefined") {
@@ -191,18 +166,14 @@
             }
         }
 
-        function ಠ_ಠ() {
-            drawPieChart('statistic_user_registration', [
-                {
-                    color: '#397bc9',
-                    description: 'der Mitglieder haben sich angemeldet',
-                    title: 'flowers',
-                    value: parseFloat("{{ percent }}")
-                }
-            ]);
-        }
-
-        ಠ_ಠ();
+        drawPieChart('statistic_user_registration', [
+            {
+                color: '#397bc9',
+                description: 'der Mitglieder haben sich angemeldet',
+                title: 'flowers',
+                value: parseFloat("{{ percent }}")
+            }
+        ]);
 
     })();
 </script>

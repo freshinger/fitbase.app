@@ -8,22 +8,24 @@
 namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class StatisticUserActivityBlock extends SecureBlockService
+class StatisticUserActivityBlock extends SecureBlockServiceAbstract
 {
-    protected $serviceUser;
-
-    public function __construct($name, array $roles = array(), EngineInterface $templating, SecurityContextInterface $securityContext, ServiceUser $serviceUser)
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
-        parent::__construct($name, $roles, $templating, $securityContext);
-        $this->serviceUser = $serviceUser;
+        $resolver->setDefaults(array(
+            'company' => null,
+            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_activity.html.twig',
+        ));
     }
 
     /**
@@ -36,11 +38,11 @@ class StatisticUserActivityBlock extends SecureBlockService
             'No users' => 1
         );
 
-        if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
+        if (($company = $blockContext->getSetting('company'))) {
             $statistics = $this->getStatistics($company->getUsers(), $company->getActioncodes());
         }
 
-        return $this->renderPrivateResponse('FitbaseUserBundle:Block:dashboard/user_activity.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'statistics' => $statistics
         ));
     }

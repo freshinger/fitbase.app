@@ -13,7 +13,6 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
@@ -25,7 +24,6 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_question_last" scope="request"

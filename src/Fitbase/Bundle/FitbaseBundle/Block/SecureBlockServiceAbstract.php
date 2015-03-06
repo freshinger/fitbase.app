@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-abstract class SecureBlockService extends BaseBlockService
+abstract class SecureBlockServiceAbstract extends BaseBlockService
 {
     protected $roles;
     protected $securityContext;

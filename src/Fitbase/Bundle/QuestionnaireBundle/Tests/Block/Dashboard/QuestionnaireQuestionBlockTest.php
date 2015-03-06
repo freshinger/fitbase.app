@@ -9,33 +9,23 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Tests\Block\Dashboard;
 
 
-use Application\Sonata\ClassificationBundle\Entity\Category;
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\ExerciseBundle\Block\ExerciseRandomBlockService;
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireBlock;
-use Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireQuestionBlock;
+use Fitbase\Bundle\QuestionnaireBundle\Block\QuestionnaireQuestionBlock;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireAnswer;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Model\Block;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
 
-class QuestionnaireQuestionBlockTest extends WebTestCase
+class QuestionnaireQuestionBlockTest extends FitbaseTestAbstract
 {
-    protected function container(array $options = array(), array $server = array())
-    {
-        static::bootKernel($options);
-        return static::$kernel->getContainer();
-    }
-
     protected $templating;
     protected $securityContext;
     protected $serviceUser;
-
 
     public function setUp()
     {
@@ -71,8 +61,9 @@ class QuestionnaireQuestionBlockTest extends WebTestCase
     public function testBlockShouldReturnResponseWithCode200()
     {
         $blockContext = new BlockContext(new Block(), array(
-            'question' => null,
-            'questionnaireUser' => null,
+            'question' => (new QuestionnaireQuestion())
+                            ->setId(12),
+            'questionnaireUser' => (new QuestionnaireUser()),
             'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_question.html.twig',
         ));
 
@@ -103,6 +94,6 @@ class QuestionnaireQuestionBlockTest extends WebTestCase
         $crawler = new Crawler(null, null);
         $crawler->addContent($result->getContent());
 
-        $this->assertEquals($crawler->filter("img")->count(), 1);
+        $this->assertEquals($crawler->filter("svg")->count(), 1);
     }
 }

@@ -8,8 +8,7 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserManagerInterface;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -17,7 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class StatisticQuestionnaireBlock extends SecureBlockService
+class StatisticQuestionnaireBlock extends SecureBlockServiceAbstract
 {
     protected $serviceUser;
 

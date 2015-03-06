@@ -11,23 +11,17 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Tests\Block\Dashboard;
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\ExerciseBundle\Block\ExerciseRandomBlockService;
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
-use Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\QuestionnaireBlock;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
+use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
+use Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard\StatisticAssessmentBlock;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Model\Block;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
 
-class QuestionnaireBlockTest extends WebTestCase
+class StatisticAssessmentBlockTest extends FitbaseTestAbstract
 {
-    protected function container(array $options = array(), array $server = array())
-    {
-        static::bootKernel($options);
-        return static::$kernel->getContainer();
-    }
-
     protected $templating;
     protected $securityContext;
     protected $serviceUser;
@@ -66,11 +60,26 @@ class QuestionnaireBlockTest extends WebTestCase
 
     public function testBlockShouldReturnResponseWithCode200()
     {
+        $category1 = (new Category());
+        $category1->setSlug('stress');
+
+        $category2 = (new Category());
+        $category2->setSlug('augen');
+
         $blockContext = new BlockContext(new Block(), array(
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire.html.twig',
+            'company' => (new Company())
+                ->addCategory(
+                    (new CompanyCategory())
+                        ->setCategory($category1)
+                )
+                ->addCategory(
+                    (new CompanyCategory())
+                        ->setCategory($category2)
+                ),
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/statistic/assessment.html.twig',
         ));
 
-        $block = new QuestionnaireBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
+        $block = new StatisticAssessmentBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
             $this->securityContext, $this->serviceUser);
 
         $result = $block->execute($blockContext, new Response());
@@ -79,14 +88,29 @@ class QuestionnaireBlockTest extends WebTestCase
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
-    
+
     public function testBlockShouldRenderAnImage()
     {
+        $category1 = (new Category());
+        $category1->setSlug('stress');
+
+        $category2 = (new Category());
+        $category2->setSlug('augen');
+
         $blockContext = new BlockContext(new Block(), array(
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire.html.twig',
+            'company' => (new Company())
+                ->addCategory(
+                    (new CompanyCategory())
+                        ->setCategory($category1)
+                )
+                ->addCategory(
+                    (new CompanyCategory())
+                        ->setCategory($category2)
+                ),
+            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/statistic/assessment.html.twig',
         ));
 
-        $block = new QuestionnaireBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
+        $block = new StatisticAssessmentBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
             $this->securityContext, $this->serviceUser);
 
         $result = $block->execute($blockContext, new Response());
@@ -94,6 +118,6 @@ class QuestionnaireBlockTest extends WebTestCase
         $crawler = new Crawler(null, null);
         $crawler->addContent($result->getContent());
 
-        $this->assertEquals($crawler->filter("img")->count(), 1);
+        $this->assertEquals($crawler->filter("svg")->count(), 1);
     }
 }

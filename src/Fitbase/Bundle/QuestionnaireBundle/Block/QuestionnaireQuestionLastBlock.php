@@ -8,15 +8,6 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Block;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserManagerInterface;
-use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
-
-
 class QuestionnaireQuestionLastBlock extends QuestionnaireQuestionBlock
 {
     /**
@@ -30,7 +21,7 @@ class QuestionnaireQuestionLastBlock extends QuestionnaireQuestionBlock
     {
         $result = array();
         if (($questionnaire = $questionnaireUser->getQuestionnaire())) {
-            if (($user = $this->serviceUser->current())) {
+            if (($user = $questionnaireUser->getUser())) {
                 if (($company = $user->getCompany())) {
                     if (($users = $company->getUsers())) {
 

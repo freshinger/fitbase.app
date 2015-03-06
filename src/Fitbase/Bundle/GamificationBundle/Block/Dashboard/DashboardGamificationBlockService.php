@@ -9,7 +9,7 @@ namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
 use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class DashboardGamificationBlockService extends SecureBlockService
+class DashboardGamificationBlockService extends SecureBlockServiceAbstract
 {
     protected $serviceUser;
     protected $objectManager;

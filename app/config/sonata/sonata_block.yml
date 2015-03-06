@@ -120,8 +120,7 @@ sonata_block:
         fitbase.block.dashboard.statistic_user_activity:
         fitbase.block.dashboard.statistic_user_registration:
         fitbase.block.dashboard.statistic_user_focus:
-        fitbase.block.dashboard.statistic_user_stress:
-        fitbase.block.dashboard.statistic_user_back:
+        fitbase.block.dashboard.statistic_user_category:
         fitbase.block.dashboard.statistic_assessment:
 
 

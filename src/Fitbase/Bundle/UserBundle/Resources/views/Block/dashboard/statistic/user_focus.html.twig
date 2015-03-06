@@ -109,10 +109,10 @@
             var weights = [];
             var categories = [];
             {% if categories is defined and categories %}
-            {% for category in categories %}
-            weights.push('{{ category.countUser }}');
-            categories.push('{{ category }}');
-            {% endfor %}
+                {% for category in categories %}
+                    weights.push('{{ category.countUser }}');
+                    categories.push('{{ category }}');
+                {% endfor %}
             {% endif %}
 
 

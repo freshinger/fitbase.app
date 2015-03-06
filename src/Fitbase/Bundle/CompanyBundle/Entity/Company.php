@@ -353,6 +353,25 @@ class Company
     }
 
     /**
+     * Get CompanyCategory by slug
+     * @param $slug
+     * @return mixed|null
+     */
+    public function getCategoryBySlug($slug)
+    {
+        if (($collection = $this->getCategories())) {
+            foreach ($collection as $companyCategory) {
+                if (($category = $companyCategory->getCategory())) {
+                    if ($category->getSlug() == $slug) {
+                        return $companyCategory;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $users;
@@ -560,6 +579,7 @@ class Company
     {
         return $this->background3;
     }
+
     /**
      * @var string
      */
@@ -582,12 +602,13 @@ class Company
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -620,7 +641,7 @@ class Company
     /**
      * Get actioncodes
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getActioncodes()
     {
@@ -649,7 +670,7 @@ class Company
     /**
      * Get questionnaire
      *
-     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
      */
     public function getQuestionnaire()
     {

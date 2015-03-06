@@ -8,26 +8,14 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Block;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserManagerInterface;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class QuestionnaireQuestionBlock extends SecureBlockService
+class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
 {
-    protected $serviceUser;
-    protected $objectManager;
-
-    public function __construct($name, array $roles = array(), EngineInterface $templating, SecurityContextInterface $securityContext, $serviceUser)
-    {
-        parent::__construct($name, $roles, $templating, $securityContext);
-        $this->serviceUser = $serviceUser;
-    }
-
     /**
      * Set defaults
      * @param OptionsResolverInterface $resolver
@@ -74,17 +62,15 @@ class QuestionnaireQuestionBlock extends SecureBlockService
                 $statistics[$answer->getName()] = 0;
             }
 
-            if (($user = $this->serviceUser->current())) {
-                if (($userAnswers = $this->getStatisticsData($questionnaireUser, $question))) {
+            if (($userAnswers = $this->getStatisticsData($questionnaireUser, $question))) {
 
-                    foreach ($userAnswers as $userAnswer) {
-                        if (($answers = $userAnswer->getAnswers())) {
-                            foreach ($answers as $answer) {
-                                if (!array_key_exists($answer->getName(), $statistics)) {
-                                    $statistics[$answer->getName()] = 0;
-                                }
-                                $statistics[$answer->getName()]++;
+                foreach ($userAnswers as $userAnswer) {
+                    if (($answers = $userAnswer->getAnswers())) {
+                        foreach ($answers as $answer) {
+                            if (!array_key_exists($answer->getName(), $statistics)) {
+                                $statistics[$answer->getName()] = 0;
                             }
+                            $statistics[$answer->getName()]++;
                         }
                     }
                 }
@@ -111,7 +97,7 @@ class QuestionnaireQuestionBlock extends SecureBlockService
     {
         $result = array();
         if (($questionnaireCompany = $questionnaireUser->getSlice())) {
-            if (($user = $this->serviceUser->current())) {
+            if (($user = $questionnaireUser->getUser())) {
                 if (($company = $user->getCompany())) {
                     if (($users = $company->getUsers())) {
                         foreach ($users as $user) {

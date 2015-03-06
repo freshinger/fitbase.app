@@ -25,7 +25,6 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
         </service>
 
 
@@ -40,26 +39,14 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard.statistic_user_stress" scope="request" class="Fitbase\Bundle\UserBundle\Block\Dashboard\StatisticUserStressBlock">
+        <service id="fitbase.block.dashboard.statistic_user_category" scope="request" class="Fitbase\Bundle\UserBundle\Block\Dashboard\StatisticUserCategoryBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard.statistic_user_stress</argument>
+            <argument>fitbase.block.dashboard.statistic_user_category</argument>
             <argument type="collection">
                 <argument>ROLE_COMPANY</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="entity_manager"/>
-        </service>
-
-        <service id="fitbase.block.dashboard.statistic_user_back" scope="request" class="Fitbase\Bundle\UserBundle\Block\Dashboard\StatisticUserBackBlock">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard.statistic_user_back</argument>
-            <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
-            </argument>
-            <argument type="service" id="templating"/>
-            <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
         </service>
 
     </services>

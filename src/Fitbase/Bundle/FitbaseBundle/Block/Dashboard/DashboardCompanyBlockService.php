@@ -8,16 +8,14 @@
 namespace Fitbase\Bundle\FitbaseBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
-use Sonata\BlockBundle\Block\BaseBlockService;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\BlockServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class DashboardCompanyBlockService extends SecureBlockService
+class DashboardCompanyBlockService extends SecureBlockServiceAbstract
 {
     protected $serviceUser;
 

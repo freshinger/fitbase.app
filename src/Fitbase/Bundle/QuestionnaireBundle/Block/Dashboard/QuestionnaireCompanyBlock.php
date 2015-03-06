@@ -10,7 +10,7 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
 
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
 use Fitbase\Bundle\CompanyBundle\Form\CompanyQuestionnaireForm;
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockService;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class QuestionnaireCompanyBlock extends SecureBlockService
+class QuestionnaireCompanyBlock extends SecureBlockServiceAbstract
 {
     protected $formFactory;
     protected $serviceUser;

@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Entity;
 
 
+use Application\Sonata\ClassificationBundle\Entity\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class QuestionnaireQuestion
@@ -200,11 +201,11 @@ class QuestionnaireQuestion
      * @param $category
      * @return bool
      */
-    public function hasCategory($category)
+    public function hasCategory(Category $category)
     {
         if (($collection = $this->getCategories())) {
-            foreach ($collection as $categoryUser) {
-                if ($categoryUser->getId() == $category->getId()) {
+            foreach ($collection as $categoryQuestion) {
+                if ($categoryQuestion->getId() == $category->getId()) {
                     return true;
                 }
             }

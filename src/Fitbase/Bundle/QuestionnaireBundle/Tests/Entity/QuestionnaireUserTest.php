@@ -3,10 +3,11 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Tests\Entity;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class QuestionnaireUserTest extends WebTestCase
+class QuestionnaireUserTest extends FitbaseTestAbstract
 {
     public function test_MethodGetAnswersShouldReturnArrayCollection()
     {
