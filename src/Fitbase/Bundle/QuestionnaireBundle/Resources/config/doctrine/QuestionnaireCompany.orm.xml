@@ -22,7 +22,7 @@
         </many-to-one>
 
         <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire">
-            <join-column name="company_questionnaire_id" referenced-column-name="id" on-delete="SET NULL"/>
+            <join-column name="company_questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
         <one-to-many field="questionnaires" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser" mapped-by="slice">
