@@ -66,7 +66,7 @@ class UserWizardController extends Controller
 
 
                                 $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
-                                if (($count = $repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser))) {
+                                if (($count = $repositoryQuestionnaireQuestion->findCountByQuestionnaireUser($questionnaireUser)) > 0) {
                                     return $this->questionnaireNextAction($request);
                                 }
 
