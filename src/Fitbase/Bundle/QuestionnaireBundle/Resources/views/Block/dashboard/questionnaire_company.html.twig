@@ -17,10 +17,7 @@
                                         {{ questionnaireCompany }}
                                     </div>
                                     <div class="col-xs-2">
-                                        {% set collection = questionnaireCompany.questionnaires %}
-                                        {% if collection is defined and collection %}
-                                            {{ questionnaireCompany.questionnaires|length }}({{ questionnaireCompany.company.users|length }})
-                                        {% endif %}
+                                        {{ questionnaireCompany.questionnairesDone|length }}({{ questionnaireCompany.company.users|length }})
                                     </div>
                                     <div class="col-xs-3">
                                         <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">

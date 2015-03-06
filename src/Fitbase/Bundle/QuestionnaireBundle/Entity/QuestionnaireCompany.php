@@ -198,6 +198,7 @@ class QuestionnaireCompany
             }
         }
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -237,10 +238,27 @@ class QuestionnaireCompany
     /**
      * Get questionnaires
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getQuestionnaires()
     {
         return $this->questionnaires;
     }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection|null
+     */
+    public function getQuestionnairesDone()
+    {
+        if (($collection = $this->getQuestionnaires())) {
+            return $collection->filter(function ($questionnaireUser) {
+                if ($questionnaireUser->getDone()) {
+                    return true;
+                }
+                return false;
+            });
+        }
+        return null;
+    }
+
 }
