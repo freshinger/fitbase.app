@@ -137,12 +137,12 @@ jms_serializer:
 assetic:
     bundle:
         - SonataAdminBundle
-        - FitbaseFitbaseBundle
+        - JMoseCommandSchedulerBundle
         - FitbaseQuestionnaireBundle
         - FitbaseWeeklytaskBundle
         - FitbaseGamificationBundle
         - FitbaseExerciseBundle
-        - JMoseCommandSchedulerBundle
+        - FitbaseFitbaseBundle
 
     debug:          %kernel.debug%
     use_controller: false

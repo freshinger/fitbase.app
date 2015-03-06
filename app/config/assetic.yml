@@ -124,15 +124,15 @@ assetic:
 
         sonata_front_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/moment/min/moment.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
                 - %kernel.root_dir%/../web/assetic/sonata_jqueryui_js.js
 
             filters:
