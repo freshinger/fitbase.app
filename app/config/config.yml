@@ -137,6 +137,7 @@ jms_serializer:
 assetic:
     bundle:
         - SonataAdminBundle
+        - FitbaseFitbaseBundle
         - FitbaseQuestionnaireBundle
         - FitbaseWeeklytaskBundle
         - FitbaseGamificationBundle
