@@ -30,7 +30,7 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.request' => array('onKernelRequestEvent', -128),
+            'kernel.request' => array('onKernelRequestEvent', 0),
             'user_singlesignon_create' => array('onUserSingleSignOnCreateEvent', -128),
         );
     }
@@ -41,34 +41,31 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
      */
     public function onKernelRequestEvent(GetResponseEvent $event)
     {
-        if (($request = $event->getRequest())) {
-            if (($singlesignon = $request->get('sign'))) {
 
-                $entityManager = $this->container->get('entity_manager');
-                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserSingleSignOn');
-                if (($userSingleSignOn = $repositoryExerciseUser->findOneByCodeAndNotProcessed($singlesignon))) {
-                    if (($user = $userSingleSignOn->getUser())) {
+        if (strlen(($sign = $event->getRequest()->get('sign')))) {
 
-                        $datetime = $this->container->get('datetime');
-                        $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserSingleSignOn');
+            if (($singlesignon = $repositoryExerciseUser->findOneByCodeAndNotProcessed($sign))) {
+                if (($user = $singlesignon->getUser())) {
 
-                        if (($date = $userSingleSignOn->getDate())) {
-                            $date->modify('+1 week');
-                        }
+                    $datetime = $this->container->get('datetime');
+                    $singlesignon->setProcessedDate($datetime->getDateTime('now'));
 
+                    if (($date = $singlesignon->getDate())) {
+                        $date->modify('+1 week');
                         if ($datetime->getDateTime('now') >= $date) {
-                            $userSingleSignOn->setProcessed(1);
+                            $singlesignon->setProcessed(true);
                         }
+                    }
 
-                        $this->container->get('entity_manager')->persist($userSingleSignOn);
-                        $this->container->get('entity_manager')->flush($userSingleSignOn);
+                    $this->container->get('entity_manager')->persist($singlesignon);
+                    $this->container->get('entity_manager')->flush($singlesignon);
 
-                        //TODO: do not process disabled and inactive users
-                        if (!$userSingleSignOn->getProcessed()) {
-                            $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
-                            $this->container->get('security.context')->setToken($token);
-                        }
+                    if (!$singlesignon->getProcessed()) {
 
+                        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+                        $this->container->get('security.context')->setToken($token);
                     }
                 }
             }
