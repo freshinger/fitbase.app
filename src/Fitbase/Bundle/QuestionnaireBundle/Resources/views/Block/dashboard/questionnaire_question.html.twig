@@ -71,7 +71,7 @@
                 {% if statistics is defined and statistics %}
                     {% for key,statistic in statistics %}
                         weights.push('{{ statistic }}');
-                        categories.push('{{ key }}({{ statistic }})');
+                        categories.push('{{ key }}');
                     {% endfor %}
                 {% endif %}
 
