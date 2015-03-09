@@ -65,8 +65,8 @@
             var containerEl = $(selector).get(0);
 
             var width = containerEl.clientWidth,
-                    height = width / 2,
-                    radius = Math.min(width, height) / 2.5;
+                    height = width / 2.5,
+                    radius = Math.min(width, height) / 3;
 
 
             var svg = d3.select(selector).select("svg")
