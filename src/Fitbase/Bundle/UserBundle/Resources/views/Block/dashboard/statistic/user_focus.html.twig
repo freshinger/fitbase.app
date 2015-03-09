@@ -159,11 +159,10 @@
                         .selectAll("text")
                         .data(pie(data), key);
 
-
                 function isPositionFalse(posY, cache) {
                     for (var key in cache) {
                         var position = cache[key];
-                        if (Math.abs(posY - position) < 12) {
+                        if (Math.abs(posY - position) < 11) {
                             return true;
                         }
                     }
@@ -188,6 +187,7 @@
                             var posX = radius * (midAngle(d2) < Math.PI ? 1 : -1);
                             var posY = pos[1];
 
+                            var difference = 0;
                             while (isPositionFalse(posY, cacheText)) {
                                 posY = posY + 10;
                             }
