@@ -30,7 +30,7 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.request' => array('onKernelRequestEvent', 128),
+            'kernel.request' => array('onKernelRequestEvent', -128),
             'user_singlesignon_create' => array('onUserSingleSignOnCreateEvent', -128),
         );
     }
