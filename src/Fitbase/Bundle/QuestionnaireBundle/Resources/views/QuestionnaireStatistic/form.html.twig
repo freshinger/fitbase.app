@@ -28,24 +28,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-3">
-                <div id="{{ id }}"></div>
-                {% set type = type|default('hidden') %}
-                {{ block('form_widget_simple') }}
-                <script type="text/javascript">
-                    $(function () {
-                        $('div[id={{ id }}]').slider({
-                            min: parseInt('{{ min }}'),
-                            max: parseInt('{{ max }}'),
-                            value: parseInt('{{ value }}'),
-                            slide: function (event, ui) {
-                                $('input[id={{ id }}]').val(ui.value)
-                            }
-                        });
-                    });
-                </script>
-            </td>
-            <td class="col-xs-3">
+            <td class="col-xs-6" colspan="2">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_question_last' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -64,12 +47,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-3">
-                <div class="form-group">
-                    {{ form_widget(form) }}
-                </div>
-            </td>
-            <td class="col-xs-3">
+            <td class="col-xs-6" colspan="2">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_question_last' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -87,12 +65,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-3">
-                <div class="form-group">
-                    {{ form_widget(form) }}
-                </div>
-            </td>
-            <td class="col-xs-3">
+            <td class="col-xs-6" colspan="2">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_question_last' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -110,12 +83,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-3">
-                <div class="form-group">
-                    {{ form_widget(form) }}
-                </div>
-            </td>
-            <td class="col-xs-3">
+            <td class="col-xs-6" colspan="2">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_question_last' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
