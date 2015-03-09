@@ -3,7 +3,7 @@
 
         {% if category is defined and category %}
             <h4 class="short hue">
-                {{ category.label }}
+                {{ category.name }}
             </h4>
 
             <div id="statistic_user_{{ category.slug }}">
@@ -82,9 +82,6 @@
                     .style("fill", function (d) {
                         return d.data.color;
                     })
-//                    .attr('class', function (d) {
-//                        return 'pieChart__' + d.data.color;
-//                    })
                     .attr('filter', 'url(#pieChartInsetShadow)')
                     .attr('d', arc)
                     .each(function () {
@@ -132,13 +129,10 @@
 
             function drawDetailedInformation(data, element) {
                 var bBox = element.getBBox(),
-                        infoWidth = width * 0.3,
+                        infoWidth = width * 0.4,
                         anchor,
                         infoContainer,
                         position;
-
-
-                console.info(( bBox.x + bBox.width / 1.8 ));
 
                 if (( bBox.x + bBox.width / 1.8 ) > 0) {
                     infoContainer = detailedInfo.append('g')
@@ -154,7 +148,7 @@
                             .attr('width', infoWidth)
                             .attr(
                             'transform',
-                            'translate(' + 0 + ',' + ( bBox.height + (bBox.y / 3) ) + ')'
+                            'translate(' + 2 + ',' + ( bBox.height + (bBox.y / 3) ) + ')'
                     );
                     anchor = 'start';
                     position = 'left';

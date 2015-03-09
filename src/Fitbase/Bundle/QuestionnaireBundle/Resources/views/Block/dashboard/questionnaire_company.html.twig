@@ -17,7 +17,9 @@
                                         {{ questionnaireCompany }}
                                     </div>
                                     <div class="col-xs-2">
-                                        {{ questionnaireCompany.questionnairesDone|length }}({{ questionnaireCompany.company.users|length }})
+                                        <span title="Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer">
+                                            {{ questionnaireCompany.questionnairesDone|length }}({{ questionnaireCompany.company.users|length }})
+                                        </span>
                                     </div>
                                     <div class="col-xs-3">
                                         <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">

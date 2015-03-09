@@ -41,7 +41,6 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
      */
     public function onKernelRequestEvent(GetResponseEvent $event)
     {
-
         if (strlen(($sign = $event->getRequest()->get('sign')))) {
 
             $entityManager = $this->container->get('entity_manager');
