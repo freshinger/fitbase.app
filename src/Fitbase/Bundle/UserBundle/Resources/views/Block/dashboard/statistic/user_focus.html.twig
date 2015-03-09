@@ -189,7 +189,7 @@
 
                             var difference = 0;
                             while (isPositionFalse(posY, cacheText)) {
-                                posY = posY + 10;
+                                posY = posY + 3;
                             }
 
                             cacheText.push(posY);
@@ -228,8 +228,8 @@
 
                             var posMid = outerArc.centroid(d2);
                             while (isPositionFalse(pos[1], cachePolyLine)) {
-                                pos[1] = pos[1] + 10;
-                                posMid[1] = posMid[1] + 10;
+                                pos[1] = pos[1] + 3;
+                                posMid[1] = posMid[1] + 3;
                             }
 
                             cachePolyLine.push(pos[1]);
