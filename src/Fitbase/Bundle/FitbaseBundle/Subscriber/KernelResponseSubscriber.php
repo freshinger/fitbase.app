@@ -34,7 +34,7 @@ class KernelResponseSubscriber extends ContainerAware implements EventSubscriber
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', 128),
+            KernelEvents::RESPONSE => array('onKernelResponse', 120),
         );
     }
 
