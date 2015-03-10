@@ -23,200 +23,31 @@
     </div>
 
     <script type="text/javascript">
-
         $(function () {
 
-            (function (selector) {
+            function color(index) {
+                var colors = ["#a2d049", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
+                return colors[index];
+            }
 
-                var width = 600,
-                        height = width / 2.5,
-                        radius = Math.min(width, height) / 2;
-
-                var svg = d3.select(selector)
-                        .select("svg")
-                        .style("width", width + "px")
-                        .style("height", height + "px")
-                        .append("g")
-
-                svg.append("g")
-                        .attr("class", "slices");
-                svg.append("g")
-                        .attr("class", "labels");
-                svg.append("g")
-                        .attr("class", "lines");
-
-                var pie = d3.layout.pie()
-                        .sort(null)
-                        .value(function (d) {
-                            return d.value;
-                        });
-
-                var arc = d3.svg.arc()
-                        .outerRadius(radius * 0.8)
-                        .innerRadius(radius * 0.4);
-
-                var outerArc = d3.svg.arc()
-                        .innerRadius(radius * 0.9)
-                        .outerRadius(radius * 0.9);
-
-                svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-                var key = function (d) {
-                    return d.data.label;
-                };
-
-
-                var weights = [];
-                var categories = [];
-                {% if statistics is defined and statistics %}
-                    {% for key,statistic in statistics %}
-                        weights.push('{{ statistic }}');
-                        categories.push('{{ key }}');
-                    {% endfor %}
-                {% endif %}
-
-
-                var color = d3.scale.ordinal()
-                        .domain(categories)
-                        .range(["#a2d049", "#397bc9", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-
-                var weight = d3.scale.ordinal()
-                        .domain(categories)
-                        .range(weights);
-
-
-                function data() {
-                    var labels = color.domain();
-                    return labels.map(function (label) {
-                        return {label: label, value: weight(label)};
+            var data = [];
+            {% if statistics is defined and statistics %}
+                {% for key,statistic in statistics %}
+                    data.push({
+                        'index': {{ loop.index }},
+                        'color': color({{ loop.index }}-1),
+                        'label': '{{ key }} ({{ statistic }})',
+                        'value': '{{ statistic }}'
                     });
-                }
-
-                change(data());
-
-
-                function change(data) {
-
-                    /* ------- PIE SLICES -------*/
-                    var slice = svg.select(".slices").selectAll("path.slice")
-                            .data(pie(data), key);
-
-                    slice.enter()
-                            .insert("path")
-                            .style("fill", function (d) {
-                                return color(d.data.label);
-                            })
-                            .attr('filter', 'url(#pieChartInsetShadow)')
-                            .attr("class", "slice");
-
-                    slice
-                            .transition().duration(1000)
-                            .attrTween("d", function (d) {
-                                this._current = this._current || d;
-                                var interpolate = d3.interpolate(this._current, d);
-                                this._current = interpolate(0);
-                                return function (t) {
-                                    return arc(interpolate(t));
-                                };
-                            })
-
-                    slice.exit()
-                            .remove();
-
-                    /* ------- TEXT LABELS -------*/
-
-                    var text = svg.select(".labels").selectAll("text")
-                            .data(pie(data), key);
-
-                    function midAngle(d) {
-                        return d.startAngle + (d.endAngle - d.startAngle) / 2;
-                    }
-
-                    function isPositionFalse(posY, cache) {
-                        for (var key in cache) {
-                            var position = cache[key];
-                            if (Math.abs(posY - position) < 15) {
-                                return true;
-                            }
-                        }
-                        return false;
-                    }
-
-                    var cacheText = [];
-
-                    text.enter().append("text")
-                            .attr("dy", ".35em")
-                            .text(function (d) {
-                                return d.data.label;
-                            })
-                            .attr("transform", function (d) {
-                                this._current = this._current || d;
-                                var interpolate = d3.interpolate(this._current, d);
-                                this._current = interpolate(0);
-
-                                var d2 = interpolate(d.value);
-                                var pos = outerArc.centroid(d2);
-
-                                var posX = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                                var posY = pos[1];
-
-                                while (isPositionFalse(posY, cacheText)) {
-                                    posY = posY + 10;
-                                }
-
-                                cacheText.push(posY);
-
-                                return "translate(" + posX + ", " + posY + ")";
-                            })
-                            .attr("text-anchor", function (d) {
-                                this._current = this._current || d;
-                                var interpolate = d3.interpolate(this._current, d);
-                                this._current = interpolate(0);
-                                var d2 = interpolate(d.value);
-                                return midAngle(d2) < Math.PI ? "start" : "end";
-                            })
-                    ;
-
-                    text.exit().remove();
-
-                    /* ------- SLICE TO TEXT POLYLINES -------*/
-
-                    var polyline = svg.select(".lines").selectAll("polyline")
-                            .data(pie(data), key);
-
-                    var cachePolyLine = [];
-
-                    polyline.enter().append("polyline")
-                            .attr("points", function (d) {
-                                this._current = this._current || d;
-                                var interpolate = d3.interpolate(this._current, d);
-                                this._current = interpolate(0);
-                                var d2 = interpolate(d.value);
-                                var pos = outerArc.centroid(d2);
-                                pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-
-
-                                var posMid = outerArc.centroid(d2);
-                                while (isPositionFalse(pos[1], cachePolyLine)) {
-                                    pos[1] = pos[1] + 10;
-                                    posMid[1] = posMid[1] + 10;
-                                }
-
-                                cachePolyLine.push(pos[1]);
-
-
-                                return [arc.centroid(d2), posMid, pos];
-                            })
-                    ;
-
-                    polyline.exit().remove();
-                };
-
-
-            })('#statistic_user_{{ question.id }}');
-
+                {% endfor %}
+            var statisticQuestionPie = $('#statistic_user_{{ question.id }}');
+            if (statisticQuestionPie.length) {
+                statisticQuestionPie.pie(data, {
+                    duration: 1500,
+                    delay: 500
+                });
+            }
+            {% endif %}
         });
-
-
     </script>
 {% endif %}

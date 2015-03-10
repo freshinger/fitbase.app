@@ -1,11 +1,4 @@
-{% extends 'SonataPageBundle::demo_layout.html.twig' %}
-
-{% block sonata_page_javascripts %}
-    {{ parent() }}
-    {% javascripts '@FitbaseQuestionnaireBundle/Resources/public/js/*' output='js/jquery.questionnaire.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-{% endblock %}
+{% extends '::layout.html.twig' %}
 
 {% block sonata_page_stylesheets %}
     {{ parent() }}

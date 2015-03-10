@@ -1,0 +1,11 @@
+{% extends 'SonataPageBundle::demo_layout.html.twig' %}
+
+{% block sonata_page_javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@FitbaseFitbaseBundle/Resources/public/js/*'
+        '@FitbaseQuestionnaireBundle/Resources/public/js/*'
+        output='js/fitbase.js' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
