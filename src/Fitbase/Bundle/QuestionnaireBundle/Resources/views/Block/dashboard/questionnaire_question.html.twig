@@ -36,7 +36,7 @@
                     data.push({
                         'index': {{ loop.index }},
                         'color': color({{ loop.index }}-1),
-                        'label': '{{ key }} ({{ statistic }})',
+                        'label': '{{ key|raw }} ({{ statistic }})',
                         'value': '{{ statistic }}'
                     });
                 {% endfor %}
