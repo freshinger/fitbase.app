@@ -41,6 +41,11 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
             if (($response = $controller->focusAction($request)) !== null) {
                 $event->setResponse($response);
                 $event->stopPropagation();
+            } else {
+
+                $user->setWizard(1);
+                $this->container->get('entity_manager')->persist($user);
+                $this->container->get('entity_manager')->flush($user);
             }
         }
     }

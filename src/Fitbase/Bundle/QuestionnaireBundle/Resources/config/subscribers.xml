@@ -46,5 +46,13 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="fitbase.subscriber.questionnaire.kernel_response"
+                 class="Fitbase\Bundle\QuestionnaireBundle\Subscriber\KernelResponseSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
     </services>
 </container>

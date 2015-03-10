@@ -6,10 +6,11 @@
  * Time: 13:58
  */
 
-namespace Fitbase\Bundle\FitbaseBundle\Subscriber;
+namespace Fitbase\Bundle\QuestionnaireBundle\Subscriber;
 
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
+use Fitbase\Bundle\QuestionnaireBundle\Controller\UserWizardController;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,15 +19,6 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 class KernelResponseSubscriber extends ContainerAware implements EventSubscriberInterface
 {
-    protected $serviceUser;
-    protected $eventDispatcher;
-
-    public function __construct($serviceUser, $eventDispatcher)
-    {
-        $this->serviceUser = $serviceUser;
-        $this->eventDispatcher = $eventDispatcher;
-    }
-
     /**
      * Get subscribers
      * @return array
@@ -34,7 +26,7 @@ class KernelResponseSubscriber extends ContainerAware implements EventSubscriber
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', -10),
+            KernelEvents::RESPONSE => array('onKernelResponse', -20),
         );
     }
 
@@ -55,15 +47,18 @@ class KernelResponseSubscriber extends ContainerAware implements EventSubscriber
             return;
         }
 
-        if (($user = $this->serviceUser->current())) {
-            if (!$user->getWizard()) {
+        if (($user = $this->container->get('user')->current())) {
 
-                $eventWizard = new UserWizardEvent($user);
-                $this->eventDispatcher->dispatch('user_wizard', $eventWizard);
+            $managerEntity = $this->container->get('entity_manager');
+            $repositoryQuestionnaireUser = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');
+            if (($questionnaireUser = $repositoryQuestionnaireUser->findOneByUserAndNotDoneAndNotPause($user))) {
 
-                if (($response = $eventWizard->getResponse())) {
+                $controller = new UserWizardController();
+                $controller->setContainer($this->container);
 
-                    $event->setResponse($eventWizard->getResponse());
+                $request = $this->container->get('request');
+                if (($response = $controller->questionnaireAction($request)) !== null) {
+                    $event->setResponse($response);
                     $event->stopPropagation();
                 }
             }
