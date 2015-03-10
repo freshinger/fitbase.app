@@ -49,6 +49,25 @@ class UserActivityRepository extends EntityRepository
     }
 
     /**
+     * Find count of points for company
+     * @param $company
+     * @return int
+     */
+    public function findCountPointByCompany($company)
+    {
+        $points = 0;
+        if (($collection = $company->getUsers())) {
+            foreach ($collection as $user) {
+                if (($activity = $this->findOneLastByUser($user))) {
+                    $points += $activity->getCountPointTotal();
+                }
+            }
+        }
+        return $points;
+    }
+
+
+    /**
      * Get user point statistic
      * @param null $user
      * @param \DateTime $date

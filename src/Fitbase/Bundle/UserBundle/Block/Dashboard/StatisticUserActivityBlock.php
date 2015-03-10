@@ -12,10 +12,20 @@ use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Templating\EngineInterface;
 
 
 class StatisticUserActivityBlock extends SecureBlockServiceAbstract
 {
+    protected $entityManager;
+
+    public function __construct($name, array $roles = array(), EngineInterface $templating, SecurityContextInterface $securityContext, $entityManager)
+    {
+        parent::__construct($name, $roles, $templating, $securityContext);
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * Set defaults
      * @param OptionsResolverInterface $resolver
@@ -34,62 +44,27 @@ class StatisticUserActivityBlock extends SecureBlockServiceAbstract
      */
     public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
     {
-        $statistics = array(
-            'No users' => 1
-        );
+        $countUser = 0;
+        $countField = 0;
+        $countQuiz = 0;
 
         if (($company = $blockContext->getSetting('company'))) {
-            $statistics = $this->getStatistics($company->getUsers(), $company->getActioncodes());
+            $countUser = count($company->getUsers());
+
+            $repositoryUserActivity = $this->entityManager->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
+            $countField = $repositoryUserActivity->findCountPointByCompany($company);
+
+            $repositoryUserActivity = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+            $countQuiz = $repositoryUserActivity->findCountDoneByCompany($company);
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'statistics' => $statistics
+            'countUser' => $countUser,
+            'countField' => $countField,
+            'countQuiz' => $countQuiz,
         ));
     }
 
-    /**
-     * Get statistical data
-     *
-     * @param null $questionnaire
-     * @param null $users
-     * @param null $actioncodes
-     * @return array
-     */
-    protected function getStatistics($users = null, $actioncodes = null)
-    {
-        $statistic = array(
-            'done' => 0,
-            'pause' => 0,
-        );
-
-        if (count($users)) {
-            foreach ($users as $user) {
-                // Get assessment questionnaire for user from company
-                $statistic['done']++;
-                continue;
-            }
-        }
-
-        // Potential users
-        // mark not registered users as a
-        // not processed questionnaire
-        if (count($actioncodes)) {
-            foreach ($actioncodes as $actioncode) {
-                if (!$actioncode->getProcessed()) {
-                    $statistic['pause']++;
-                }
-            }
-        }
-
-        if (array_sum($statistic) <= 0) {
-            $statistic = array(
-                'done' => 0,
-                'pause' => 1,
-            );
-        }
-
-        return $statistic;
-    }
 
     /**
      * {@inheritdoc}

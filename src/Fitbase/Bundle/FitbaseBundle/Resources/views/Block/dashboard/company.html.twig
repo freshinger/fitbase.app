@@ -193,7 +193,20 @@
 
 </style>
 
+
 <div class="container">
+    <div class="container">
+        <p>
+            Willkommen auf dem Dashboard
+            {% if company is defined %}
+                für Ihr Uhternehmen: {{ company.name }}
+            {% endif %}
+        </p>
+
+        <p>Mit diesem Online Reporting Tool erhalten Sie verschiedene Auswertungsmöglichkeiten und können
+            Fragebögen automatisch an alle Ihre Mitarbeiter, die fitbase nutzen, senden.</p>
+    </div>
+
     <div class="row">
 
         <div class="col-xs-4">
@@ -205,10 +218,10 @@
         <div class="col-xs-4">
             {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_assessment' }, { 'company': company }) }}
         </div>
-        <div class="col-xs-3">
-            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_registration' }, { 'company': company }) }}
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_activity' }, { 'company': company }) }}
         </div>
-        <div class="col-xs-5">
+        <div class="col-xs-4">
             {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_focus' }, { 'company': company }) }}
         </div>
         <div class="col-xs-4">

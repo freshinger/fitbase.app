@@ -6,8 +6,29 @@
         <h4 class="short hue">
             {{ 'Aktivität'|trans({}, 'FitbaseUserBundle') }}
         </h4>
-
-        {{ pie_user(statistics)|raw }}
-
+        <div class="row">
+            <div class="col-xs-8">
+                {{ 'Anzahl der Teilnehmer:'|trans({}, 'FitbaseUserBundle') }}
+            </div>
+            <div class="col-xs-4">
+                {{ countUser }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                {{ 'Anzahl der Blätter:'|trans({}, 'FitbaseUserBundle') }}
+            </div>
+            <div class="col-xs-4">
+                {{ countField }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                {{ 'Absolvierte Quizze:'|trans({}, 'FitbaseUserBundle') }}
+            </div>
+            <div class="col-xs-4">
+                {{ countQuiz }}
+            </div>
+        </div>
     </div>
 </div>

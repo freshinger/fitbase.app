@@ -3,7 +3,21 @@
 
         {% if category is defined and category %}
             <h4 class="short hue">
-                {{ category.name }}
+                {% if category.slug == "stress" %}
+                    {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
+                    <span title="Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus."
+                          style="float: right; font-size: 12px">
+                        Info
+                    </span>
+                {% elseif category.slug == "ruecken" %}
+                    {{ 'Rücken Barometer'|trans({}, 'FitbaseUserBundle') }}
+                    <span title="Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus."
+                          style="float: right; font-size: 12px">
+                        Info
+                    </span>
+                {% else %}
+                    {{ category.name }}
+                {% endif %}
             </h4>
 
             <div id="statistic_user_{{ category.slug }}">
@@ -30,6 +44,11 @@
             </div>
         {% endif %}
 
+    </div>
+    <div class="panel-footer">
+        <a href="javascript: void(0);">
+            {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </a>
     </div>
 </div>
 
@@ -129,7 +148,7 @@
 
             function drawDetailedInformation(data, element) {
                 var bBox = element.getBBox(),
-                        infoWidth = width * 0.4,
+                        infoWidth = width * 0.5,
                         anchor,
                         infoContainer,
                         position;
@@ -198,20 +217,39 @@
         }
 
         {% if category is defined and category %}
-            drawPieChart('statistic_user_{{ category.slug }}', [
-                {
-                    color: '#397bc9',
-                    description: 'der Mitglieder haben beschwerden',
-                    title: 'flowers',
-                    value: parseFloat("{{ percent }}")
-                },
-                {
-                    color: '#a2d049',
-                    description: 'der Mitglieder geht es gut',
-                    title: 'trains',
-                    value: 1 - parseFloat("{{ percent }}")
-                }
-            ]);
+
+        function description(positive) {
+            if (positive) {
+                {% if category.slug == "stress" %}
+                    return 'der Teilnehmer fühlen sich nicht belastet';
+                {% elseif category.slug == "ruecken" %}
+                    return 'der Teilnehmer haben keine Rückenbeschwerden';
+                {% endif %}
+                return 'der Teilnehmer geht es gut';
+            }
+            {% if category.slug == "stress" %}
+                return 'der Teilnehmer fühlen sich belastet';
+            {% elseif category.slug == "ruecken" %}
+                return 'der Teilnehmer haben Rückenbeschwerden';
+            {% endif %}
+            return 'der Teilnehmer haben beschwerden';
+        }
+
+
+        drawPieChart('statistic_user_{{ category.slug }}', [
+            {
+                color: '#397bc9',
+                description: description(false),
+                title: 'flowers',
+                value: parseFloat("{{ percent }}")
+            },
+            {
+                color: '#a2d049',
+                description: description(true),
+                title: 'trains',
+                value: 1 - parseFloat("{{ percent }}")
+            }
+        ]);
         {% endif %}
 
     })();

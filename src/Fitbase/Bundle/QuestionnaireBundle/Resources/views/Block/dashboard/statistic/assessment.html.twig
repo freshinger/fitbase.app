@@ -2,7 +2,13 @@
     <div class="panel-body">
 
         <h4 class="short hue">
-            Bedarfsanalyse
+            {{ 'Bedarfsanalyse'|trans({}, 'FitbaseQuestionnaireBundle') }}
+            <span title='Die Bedarfsanalyse wird für jeden Teilnehmer zu beginn eingeblendet und hilft dem Teilnehmer,
+            den passenden Fokus für das Online-Coaching zu aktivieren. Auswertungen zu einyelnen Fragen können über
+            "Detaillierte Auswertung" eingesehen werden'
+                  style="float: right; font-size: 12px">
+                {{ 'Info'|trans({}, 'FitbaseQuestionnaireBundle') }}
+            </span>
         </h4>
 
         <div id="statistic_user_assessment">
@@ -32,7 +38,7 @@
     {% if questionnaire is defined and questionnaire %}
         <div class="panel-footer">
             <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}">
-                Detalierter Ansicht
+                {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
             </a>
         </div>
     {% endif %}
@@ -134,7 +140,7 @@
 
             function drawDetailedInformation(data, element) {
                 var bBox = element.getBBox(),
-                        infoWidth = width * 0.4,
+                        infoWidth = width * 0.5,
                         anchor,
                         infoContainer,
                         position;
@@ -206,13 +212,13 @@
             drawPieChart('statistic_user_assessment', [
                 {
                     color: '#397bc9',
-                    description: 'der Mitglieder haben Bedarfsanalyse bearbeitet',
+                    description: 'der Teilnehmer haben die Bedarfsanalyse durchgeführt',
                     title: 'flowers',
                     value: parseFloat("{{ percent }}")
                 },
                 {
                     color: '#a2d049',
-                    description: 'der Mitglieder warten noch',
+                    description: 'der Teilnehmer haben die Bedarfsanalyse nicht durchgeführt',
                     title: 'trains',
                     value: 1 - parseFloat("{{ percent }}")
                 }

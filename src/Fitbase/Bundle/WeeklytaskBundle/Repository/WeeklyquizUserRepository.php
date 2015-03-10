@@ -299,24 +299,35 @@ class WeeklyquizUserRepository extends EntityRepository
      * @param $company
      * @return mixed
      */
-    public function findCountByCompany($company)
+    public function findCountDoneByCompany($company)
+    {
+        $points = 0;
+        if (($collection = $company->getUsers())) {
+            foreach ($collection as $user) {
+                if (($countQuiz = $this->findCountDoneByUser($user))) {
+                    $points += $countQuiz;
+                }
+            }
+        }
+        return $points;
+    }
+
+    /**
+     * @param $user
+     * @return int
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findCountDoneByUser($user)
     {
         $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
-
-        $queryBuilder->leftJoin('WeeklyquizUser.user', 'User');
-        $queryBuilder->leftJoin('User.metas', 'UserMeta');
+        $queryBuilder->select('SUM(WeeklyquizUser)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
-            $this->getExprCompany($queryBuilder, $company)
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDone($queryBuilder)
         ));
 
-        $queryBuilder->groupBy('WeeklyquizUser.quizId');
-
-        if (($result = $queryBuilder->getQuery()->getResult())) {
-            return count($result);
-        }
-
-        return 0;
+        return (int)$queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 
     /**

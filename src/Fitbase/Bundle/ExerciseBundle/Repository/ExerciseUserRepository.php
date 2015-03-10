@@ -2,10 +2,22 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Repository;
 
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 
 class ExerciseUserRepository extends EntityRepository
 {
+    /**
+     * Find all done records
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function  getExprDone($queryBuilder)
+    {
+        $queryBuilder->setParameter(':done', 1);
+        return $queryBuilder->expr()->eq('ExerciseUser.done', ':done');
+    }
+
     /**
      * Get all not processed tasks
      * @param $queryBuilder
@@ -176,5 +188,41 @@ class ExerciseUserRepository extends EntityRepository
         $queryBuilder->setMaxResults(1);
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @param $company
+     * @return int
+     */
+    public function findCountDoneByCompany($company)
+    {
+        $points = 0;
+        if (($collection = $company->getUsers())) {
+            foreach ($collection as $user) {
+                if (($countPoint = $this->findCountDoneByUser($user))) {
+                    $points += $countPoint;
+                }
+            }
+        }
+        return $points;
+    }
+
+    /**
+     * Find count by user
+     * @param $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findCountDoneByUser($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUser');
+        $queryBuilder->select("COUNT(ExerciseUser)");
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDone($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_SINGLE_SCALAR);
     }
 }

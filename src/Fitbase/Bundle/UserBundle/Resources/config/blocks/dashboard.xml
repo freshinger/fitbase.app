@@ -13,7 +13,7 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
         </service>
 
 
