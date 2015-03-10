@@ -55,7 +55,7 @@ class QuestionnaireAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('questions', null, array('template' => 'FitbaseQuestionnaireBundle:Admin:questionnaire_list_question.html.twig'))
+            ->add('questions')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
