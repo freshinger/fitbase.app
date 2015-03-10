@@ -36,8 +36,14 @@ class StatisticUserFocusBlock extends SecureBlockServiceAbstract
     {
         $categories = null;
         if (($company = $blockContext->getSetting('company'))) {
-            if (!($categories = $company->getCategories())) {
-                $categories = null;
+            if (($categories = $company->getCategories())) {
+                $categories = $categories->toArray();
+                uasort($categories, function ($category1, $category2) {
+                    if ($category1->getCountUser() > $category2->getCountUser()) {
+                        return -1;
+                    }
+                    return 1;
+                });
             }
         }
 
