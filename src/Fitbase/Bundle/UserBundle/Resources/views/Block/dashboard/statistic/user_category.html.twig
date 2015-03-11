@@ -5,13 +5,13 @@
             <h4 class="short hue">
                 {% if category.slug == "stress" %}
                     {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
-                    <span title="Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus."
+                    <span class="tooltip-popup" title="Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus."
                           style="float: right; font-size: 12px">
                         Info
                     </span>
                 {% elseif category.slug == "ruecken" %}
                     {{ 'Rücken Barometer'|trans({}, 'FitbaseUserBundle') }}
-                    <span title="Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus."
+                    <span class="tooltip-popup" title="Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus."
                           style="float: right; font-size: 12px">
                         Info
                     </span>
