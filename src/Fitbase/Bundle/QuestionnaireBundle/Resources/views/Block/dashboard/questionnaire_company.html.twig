@@ -1,60 +1,83 @@
-<div class="panel panel-default">
-    <div class="panel-body">
+<h4 class="short hue">
+    {{ 'Kurzumfragen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+</h4>
 
-        <h4 class="short hue">
-            {{ 'Weitere Fragebögen'|trans({}, 'FitbaseQuestionnaireBundle') }}
-        </h4>
+<p>
+    Mit diesem Umfrage-Tool erhalten Sie die Möglichkeit, weitere Fragebögen an die fitbase Teilnehmer in Ihrem
+    Hause zu versenden.
+    Über das Dropdown Menü können Sie einen passenden Fragebogen auswählen, ein Versand-Datum bestimmen und mit dem
+    Button „Umfrage anlegen“ die Umfrage aktivieren. Jeder Teilnehmer erhält beim nächsten Login die Aufforderung,
+    an der Umfrage teilzunehmen. So erhalten Sie weitere Informationen zur Stimmung und zum Gesundheitszustand in
+    Ihrem Unternehmen. Sie können die Umfragen so häufig durchführen wie Sie möchten.
+    Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen. Nicht das passende dabei?
+    Sprechen Sie uns gerne an.
+</p>
+<br/>
+{% if questionnaires is defined and questionnaires %}
+    <div class="row">
+        <div class="col-xs-10">
 
-        {% if questionnaires is defined and questionnaires %}
-            <div class="row">
-                <table class="table table-striped table-hover table-responsive">
-                    <tbody>
-                    {% for questionnaireCompany in questionnaires %}
-                        <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-xs-7">
-                                        {{ questionnaireCompany }}
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <span title="Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer">
-                                            {{ questionnaireCompany.questionnairesDone|length }}({{ questionnaireCompany.company.users|length }})
-                                        </span>
-                                    </div>
-                                    <div class="col-xs-3">
-                                        <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
-                                            {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-12">
-                                        {% if questionnaireCompany.processed %}
-                                            versendet am {{ questionnaireCompany.date|date('Y/m/d') }}
-                                        {% else %}
-                                            geplannt am {{ questionnaireCompany.date|date('Y/m/d') }}
-                                        {% endif %}
-                                    </div>
+            <table class="table table-striped table-hover table-responsive">
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <strong>Durchgeführte Befragungen</strong>
+                            </div>
+                            <div class="col-xs-2">
+                                <strong>Datum</strong>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% for questionnaireCompany in questionnaires %}
+                    <tr>
+                        <td>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    {{ questionnaireCompany }}
                                 </div>
-                            </td>
-                        </tr>
+                                <div class="col-xs-2">
+                                    {{ questionnaireCompany.date|date('Y/m/d') }}
+                                </div>
+                                <div class="col-xs-2">
+                                        <span title="Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer">
+                                            {{ questionnaireCompany.questionnairesDone|length }}
+                                            ({{ questionnaireCompany.company.users|length }})
+                                        </span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
+                                        {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
 
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
-
-
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="panel-footer">
+{% endif %}
 
-        <h4 class="">
-            {{ 'Neue Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
-        </h4>
 
-        <p>
-            Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.
-        </p>
+<h4 class="">
+    {{ 'Neue Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
+</h4>
 
+<p>
+    Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.
+</p>
+
+<div class="row">
+    <div class="col-xs-8">
         {% form_theme form 'FitbaseQuestionnaireBundle:Block:dashboard/form.html.twig' %}
 
         {{ form(form) }}

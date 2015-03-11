@@ -46,6 +46,7 @@ class BuilderMenuCompany extends ContainerAware implements BuilderMenuInterface
             )
         ));
 
+
         $this->container->get('event_dispatcher')
             ->dispatch('company_menu_main', new UserMenuEvent($menu));
 

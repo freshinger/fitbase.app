@@ -43,8 +43,7 @@
             var statisticQuestionPie = $('#statistic_user_{{ question.id }}');
             if (statisticQuestionPie.length) {
                 statisticQuestionPie.pie(data, {
-                    duration: 1500,
-                    delay: 500
+                    radius_inner: 30
                 });
             }
             {% endif %}

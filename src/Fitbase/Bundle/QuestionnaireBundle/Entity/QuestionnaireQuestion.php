@@ -252,6 +252,21 @@ class QuestionnaireQuestion
     }
 
     /**
+     * Get common count point for question
+     * @return int
+     */
+    public  function getCountPoint()
+    {
+        $result = 0;
+        if (($answers = $this->getAnswers())) {
+            foreach ($answers as $answer) {
+                $result += $answer->getCountPoint();
+            }
+        }
+        return $result;
+    }
+
+    /**
      * Get categories
      *
      * @return \Doctrine\Common\Collections\Collection

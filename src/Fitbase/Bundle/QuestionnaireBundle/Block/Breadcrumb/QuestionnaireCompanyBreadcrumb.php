@@ -11,14 +11,14 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Block\Breadcrumb;
 use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 
-class QuestionnaireBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
+class QuestionnaireCompanyBreadcrumb extends FitbaseBreadcrumbBlockService
 {
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'fitbase.questionnaire.block.breadcrumb';
+        return 'fitbase.breadcrumb.questionnaire.company';
     }
 
     /**
@@ -28,8 +28,8 @@ class QuestionnaireBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('Fragebogen', array(
-            'path' => 'page_slug',
+        $menu->addChild('Kurzumfragen', array(
+            'route' => 'questionnaire_company',
         ));
 
         return $menu;

@@ -10,6 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 class QuestionnaireStatisticController extends Controller
 {
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function questionnaireCompanyAction(Request $request)
+    {
+        if (($user = $this->get('user')->current())) {
+
+            return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire_company.html.twig', array(
+                'company' => $user->getCompany(),
+            ));
+        }
+    }
+
+    /**
      *
      * @param Request $request
      * @param null $unique

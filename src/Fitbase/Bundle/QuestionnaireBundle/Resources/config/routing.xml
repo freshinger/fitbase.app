@@ -8,6 +8,10 @@
         <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:index</default>
     </route>
 
+    <route id="questionnaire_company" pattern="/company/questionnaire">
+        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireCompany</default>
+    </route>
+
     <route id="questionnaire_statistic_slice" pattern="/statistic/slice/{unique}">
         <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireSlice</default>
     </route>

@@ -5,34 +5,37 @@
             {{ 'Aktivierter Fokus'|trans({}, 'FitbaseUserBundle') }}
         </h4>
 
-
-        <div id="statistic_user_focus">
-            <svg id="pieChartSVG">
-                <defs>
-                    <filter id='pieChartInsetShadow'>
-                        <feOffset dx='0' dy='0'/>
-                        <feGaussianBlur stdDeviation='3' result='offset-blur'/>
-                        <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
-                        <feFlood flood-color='black' flood-opacity='1' result='color'/>
-                        <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
-                        <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
-                    </filter>
-                    <filter id="pieChartDropShadow">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                        <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
-                        <feMerge>
-                            <feMergeNode/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
+        <div class="row">
+            <div class="col-xs-9">
+                <div id="statistic_user_focus">
+                    <svg id="pieChartSVG">
+                        <defs>
+                            <filter id='pieChartInsetShadow'>
+                                <feOffset dx='0' dy='0'/>
+                                <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                                <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                                <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                                <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                                <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                            </filter>
+                            <filter id="pieChartDropShadow">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                                <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                                <feMerge>
+                                    <feMergeNode/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 
 <script type="text/javascript">
-
     $(function () {
 
         function color(index) {
@@ -42,21 +45,21 @@
 
         var data = [];
         {% if categories is defined and categories %}
-            {% for category in categories %}
-                data.push({
-                    'index': {{ loop.index }},
-                    'color': color({{ loop.index }}-1),
-                    'label': '{{ category }} ({{ category.countUser }})',
-                    'value': '{{ category.countUser }}'
-                });
-            {% endfor %}
-            var statisticUserFocusPie = $('#statistic_user_focus');
-            if (statisticUserFocusPie.length) {
-                statisticUserFocusPie.pie(data, {
-                    duration: 1500,
-                    delay: 500
-                });
-            }
+        {% for category in categories %}
+        data.push({
+            'index': {{ loop.index }},
+            'color': color({{ loop.index }}-1),
+            'label': '{{ category }} ({{ category.countUser }})',
+            'value': '{{ category.countUser }}'
+        });
+        {% endfor %}
+        var statisticUserFocusPie = $('#statistic_user_focus');
+        if (statisticUserFocusPie.length) {
+            statisticUserFocusPie.pie(data, {
+                height: 220,
+                radius_inner: 26
+            });
+        }
         {% endif %}
 
     });
