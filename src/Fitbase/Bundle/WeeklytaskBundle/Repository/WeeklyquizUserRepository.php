@@ -320,7 +320,7 @@ class WeeklyquizUserRepository extends EntityRepository
     public function findCountDoneByUser($user)
     {
         $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
-        $queryBuilder->select('SUM(WeeklyquizUser)');
+        $queryBuilder->select('COUNT(WeeklyquizUser)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
