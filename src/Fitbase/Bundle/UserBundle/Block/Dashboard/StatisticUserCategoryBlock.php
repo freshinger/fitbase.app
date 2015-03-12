@@ -55,7 +55,7 @@ class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
                                         if (($question = $userAnswer->getQuestion())) {
                                             if (($question->hasCategory($category))) {
                                                 $questionCount += 1;
-                                                $categoryCountPointTotal += $question->getCountPoint();
+                                                $categoryCountPointTotal += $question->getCountPointMax();
                                                 $categoryCountPointUser += $userAnswer->getCountPoint();
                                             }
                                         }
