@@ -5,13 +5,15 @@
             <h4 class="short hue">
                 {% if category.slug == "stress" %}
                     {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
-                    <span class="tooltip-popup" title="Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus."
+                    <span class="tooltip-popup"
+                          title="Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus."
                           style="float: right; font-size: 12px">
                         Info
                     </span>
                 {% elseif category.slug == "ruecken" %}
                     {{ 'Rücken Barometer'|trans({}, 'FitbaseUserBundle') }}
-                    <span class="tooltip-popup" title="Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus."
+                    <span class="tooltip-popup"
+                          title="Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus."
                           style="float: right; font-size: 12px">
                         Info
                     </span>
@@ -48,18 +50,19 @@
     <div class="panel-footer">
         &nbsp;
         {#<a href="javascript: void(0);">#}
-            {#{{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}#}
+        {#{{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}#}
         {#</a>#}
     </div>
 </div>
 
 <script type="text/javascript">
     (function () {
-
-        $('#statistic_user_{{ category.slug }}').barometer({
-            value: '{{ percent }}',
-            description: '{{ description }}'
-        }, {});
+        {% if category is defined and category %}
+            $('#statistic_user_{{ category.slug }}').barometer({
+                value: '{{ percent }}',
+                description: '{{ description }}'
+            }, {});
+        {% endif %}
 
     })();
 </script>

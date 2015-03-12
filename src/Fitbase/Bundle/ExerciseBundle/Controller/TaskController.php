@@ -7,11 +7,9 @@ use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryCompanyChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryFocusChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ExerciseChooser;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
-use Fitbase\Bundle\ExerciseBundle\Event\ExerciseEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TaskController extends Controller
 {
