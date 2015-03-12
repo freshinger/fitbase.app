@@ -89,9 +89,6 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
                         }
 
-                        print_r($categoryPriority);
-                        exit;
-
                         if (arsort($categoryPriority)) {
                             if (($order = array_keys($categoryPriority))) {
                                 if (($focusCategories = $focus->getCategories())) {
