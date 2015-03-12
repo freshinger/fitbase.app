@@ -23,13 +23,10 @@ class TaskController extends Controller
     public function focusAction(Request $request, $slug = null)
     {
         if (($user = $this->get('user')->current())) {
-
             if (($focus = $user->getFocus())) {
-                if (($collection = $focus->getParentCategories())) {
-                    return $this->showTask($user, $collection->map(function ($entity) {
-                        return $entity->getCategory();
-                    })->toArray());
-                }
+                return $this->showTask($user, array(
+                    $focus->getFirstCategory()
+                ));
             }
         }
     }
