@@ -85,7 +85,8 @@ class TaskController extends Controller
 
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
             'user' => $user,
-            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : (($exercise0->getType() != null) ? ($exercise0->getType() - 1) : 0),
+            'step' => 0,
+//            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : (($exercise0->getType() != null) ? ($exercise0->getType() - 1) : 0),
             'exercise' => !empty($exercise) ? $exercise : $exercise0,
             'exerciseUser' => $exerciseUser,
         ));
