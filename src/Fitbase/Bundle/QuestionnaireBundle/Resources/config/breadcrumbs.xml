@@ -43,6 +43,20 @@
             </call>
         </service>
 
+        <service id="fitbase.breadcrumb.questionnaire.company.preview" class="Fitbase\Bundle\QuestionnaireBundle\Block\Breadcrumb\QuestionnaireCompanyPreviewBreadcrumb">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+            <argument>questionnaire.company.preview</argument>
+            <argument>fitbase.breadcrumb.questionnaire.company.preview</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
         <service id="fitbase.breadcrumb.questionnaire.company.assessment" class="Fitbase\Bundle\QuestionnaireBundle\Block\Breadcrumb\QuestionnaireCompanyAssessmentBreadcrumb">
             <tag name="sonata.block"/>
             <tag name="sonata.breadcrumb"/>

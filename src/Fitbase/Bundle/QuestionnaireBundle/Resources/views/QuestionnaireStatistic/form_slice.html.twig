@@ -1,5 +1,6 @@
 {% extends "FitbaseQuestionnaireBundle::form.html.twig" %}
 
+
 {% block form_widget_compound %}
     {% spaceless %}
         <div class="modal-body" {{ block('widget_container_attributes') }}>
@@ -28,7 +29,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-5" colspan="2">
+            <td class="col-xs-5">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -38,7 +39,6 @@
     {% endspaceless %}
 {% endblock questionnaire_slider_widget %}
 
-
 {% block questionnaire_checkbox_widget %}
     {% spaceless %}
         <tr>
@@ -47,7 +47,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-5" colspan="2">
+            <td class="col-xs-5">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -65,7 +65,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-5" colspan="2">
+            <td class="col-xs-5">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -83,7 +83,7 @@
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-5" colspan="2">
+            <td class="col-xs-5">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser

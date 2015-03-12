@@ -4,13 +4,7 @@
 
 <p>
     Mit diesem Umfrage-Tool erhalten Sie die Möglichkeit, weitere Fragebögen an die fitbase Teilnehmer in Ihrem
-    Hause zu versenden.
-    Über das Dropdown Menü können Sie einen passenden Fragebogen auswählen, ein Versand-Datum bestimmen und mit dem
-    Button „Umfrage anlegen“ die Umfrage aktivieren. Jeder Teilnehmer erhält beim nächsten Login die Aufforderung,
-    an der Umfrage teilzunehmen. So erhalten Sie weitere Informationen zur Stimmung und zum Gesundheitszustand in
-    Ihrem Unternehmen. Sie können die Umfragen so häufig durchführen wie Sie möchten.
-    Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen. Nicht das passende dabei?
-    Sprechen Sie uns gerne an.
+    Hause zu versenden. Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen.
 </p>
 <br/>
 {% if questionnaires is defined and questionnaires %}
@@ -51,7 +45,12 @@
                                             ({{ questionnaireCompany.company.users|length }})
                                         </span>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-xs-1">
+                                    <a href="{{ path("questionnaire_statistic_preview", { 'unique': questionnaireCompany.id }) }}">
+                                        {{ 'vorschau'|trans({}, 'FitbaseGamificationBundle') }}
+                                    </a>
+                                </div>
+                                <div class="col-xs-1">
                                     <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
                                         {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
                                     </a>
@@ -71,9 +70,12 @@
 <h4 class="">
     {{ 'Neue Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
 </h4>
-
 <p>
-    Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.
+    Über das Dropdown Menü können Sie einen passenden Fragebogen auswählen, ein Versand-Datum bestimmen und mit dem
+    Button „Umfrage anlegen“ die Umfrage aktivieren. Jeder Teilnehmer erhält beim nächsten Login die Aufforderung,
+    an der Umfrage teilzunehmen. So erhalten Sie weitere Informationen zur Stimmung und zum Gesundheitszustand in
+    Ihrem Unternehmen. Sie können die Umfragen so häufig durchführen wie Sie möchten. Nicht das
+    passende dabei? Sprechen Sie uns gerne an.
 </p>
 
 <div class="row">

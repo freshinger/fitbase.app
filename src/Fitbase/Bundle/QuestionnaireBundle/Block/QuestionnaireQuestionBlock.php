@@ -42,6 +42,8 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
             }
         }
 
+//        "#a2d049", "#d1de3f", "#fce14b", "#f08e3e", "#e65a3b", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"
+
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'question' => $question,
             'statistics' => $statistics
@@ -63,7 +65,6 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
             }
 
             if (($userAnswers = $this->getStatisticsData($questionnaireUser, $question))) {
-
                 foreach ($userAnswers as $userAnswer) {
                     if (($answers = $userAnswer->getAnswers())) {
                         foreach ($answers as $answer) {

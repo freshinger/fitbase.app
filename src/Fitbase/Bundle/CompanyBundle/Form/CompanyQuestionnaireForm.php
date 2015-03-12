@@ -39,7 +39,7 @@ class CompanyQuestionnaireForm extends AbstractType
             ))
             ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
             ->add('save', 'submit', array(
-                'label' => 'Anlegen',
+                'label' => 'Umfrage anlegen',
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 ),

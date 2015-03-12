@@ -1,0 +1,15 @@
+{{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire.company.preview', 'current_uri': app.request.requestUri }) }}
+
+<div class="modal-header">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="modal-title">
+                {{ questionnaire }}
+            </h3>
+        </div>
+    </div>
+</div>
+
+{% form_theme form "FitbaseQuestionnaireBundle:QuestionnaireStatistic:form_preview.html.twig" %}
+
+{{ form(form) }}
