@@ -1,13 +1,5 @@
 <div class="col-xs-8 col-xs-offset-2">
-    {% if company is defined and company %}
-        {% if company.image is defined and company.image %}
-            {% thumbnail company.image, 'icon' with { } %}
-        {% else %}
-            <img src="/image/logo_footer.png" alt="fitbase.de"/>
-        {% endif %}
-    {% else %}
-        <img src="/image/logo_footer.png" alt="fitbase.de"/>
-    {% endif %}
+    <img src="/image/logo_footer.png" alt="fitbase.de"/>
 </div>
 <div class="col-xs-8 col-xs-offset-2">
     © Fitbase.de 2013 - <a href="https://www.fitbase.de/impressum/">Impressum</a> | <a
