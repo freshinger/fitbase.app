@@ -77,10 +77,9 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
                 }
             }
 
+
             if (array_sum($statistics) <= 0) {
-                foreach ($answers as $answer) {
-                    $statistics[$answer->getName()] = 1;
-                }
+                return null;
             }
         }
 
