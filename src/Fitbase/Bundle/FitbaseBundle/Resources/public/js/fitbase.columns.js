@@ -242,7 +242,7 @@
                 .append('foreignObject')
                 .attr('x', 5)
                 .attr('y', 5)
-                .attr('width', config.width / 2)
+                .attr('width', config.width / 3)
                 .attr('height', config.height / 5)
                 .append('xhtml:body')
                 .style('font-size', '0.9em')
