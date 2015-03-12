@@ -24,9 +24,11 @@ class TaskController extends Controller
     {
         if (($user = $this->get('user')->current())) {
             if (($focus = $user->getFocus())) {
-                return $this->showTask($user, array(
-                    $focus->getFirstCategory()->getCategory()
-                ));
+                if (($category = $focus->getFirstCategory()->getCategory())) {
+                    return $this->showTask($user, array_merge(array($category), $category->getChildren()->toArray()));
+
+                }
+
             }
         }
     }
@@ -85,8 +87,7 @@ class TaskController extends Controller
 
         return $this->render('FitbaseExerciseBundle:Task:task.html.twig', array(
             'user' => $user,
-            'step' => 0,
-//            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : (($exercise0->getType() != null) ? ($exercise0->getType() - 1) : 0),
+            'step' => !empty($exercise) ? (($exercise->getType() != null) ? ($exercise->getType() - 1) : 0) : (($exercise0->getType() != null) ? ($exercise0->getType() - 1) : 0),
             'exercise' => !empty($exercise) ? $exercise : $exercise0,
             'exerciseUser' => $exerciseUser,
         ));
