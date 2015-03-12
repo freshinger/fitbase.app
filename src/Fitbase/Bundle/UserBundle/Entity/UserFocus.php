@@ -173,6 +173,35 @@ class UserFocus
     }
 
     /**
+     * Get first categories with children
+     * @return array
+     */
+    public function getFirstCategories()
+    {
+        $collection = array();
+        if (($category = $this->getFirstCategory()->getCategory())) {
+            $collection = array_merge($collection, $this->getCategoryChildren($category));
+        }
+        return $collection;
+    }
+
+    /**
+     * Get category children for each category
+     * @param $category
+     * @return array
+     */
+    protected function getCategoryChildren($category)
+    {
+        $collection = array($category);
+        if (($children = $category->getChildren())) {
+            foreach ($children as $child) {
+                $collection = array_merge($collection, $this->getCategoryChildren($child));
+            }
+        }
+        return $collection;
+    }
+
+    /**
      *
      * @param $categories
      */

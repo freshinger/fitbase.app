@@ -13,6 +13,22 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceFocus extends ContainerAware
 {
+
+    /**
+     * Get focus for current user
+     * @return null
+     */
+    public function current()
+    {
+        if (($user = $this->container->get('user')->current())) {
+            if (($focus = $user->getFocus())) {
+                return $focus;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * Get user focus
      * @param $user
@@ -44,4 +60,6 @@ class ServiceFocus extends ContainerAware
         }
         return false;
     }
+
+
 }
