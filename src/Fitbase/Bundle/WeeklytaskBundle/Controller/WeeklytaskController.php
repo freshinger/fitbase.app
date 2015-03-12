@@ -146,11 +146,6 @@ class WeeklytaskController extends Controller
     {
         $notices = array();
 
-        $formBuilder = new WeeklyquizUserForm();
-        $formBuilder->setContainer($this->container);
-        $formBuilder->setWeeklyquizUser($weeklyquizUser);
-
-
         $entityManager = $this->get('entity_manager');
         $repositoryWeeklyquizUserAnswer = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer');
 
@@ -184,10 +179,21 @@ class WeeklytaskController extends Controller
                         }
                     }
 
+                    // Fix not checkbox values
+                    if (($question = $answerUser->getQuestion())) {
+                        if (!in_array($question->getType(), array('checkbox'))) {
+                            $resultAnswers = array_shift($resultAnswers);
+                        }
+                    }
+
                     $result[$question->getId()] = $resultAnswers;
                 }
             }
         }
+
+        $formBuilder = new WeeklyquizUserForm();
+        $formBuilder->setContainer($this->container);
+        $formBuilder->setWeeklyquizUser($weeklyquizUser);
 
         $form = $this->createForm($formBuilder, $result);
 
