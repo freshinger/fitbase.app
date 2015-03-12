@@ -25,7 +25,7 @@ class TaskController extends Controller
         if (($user = $this->get('user')->current())) {
             if (($focus = $user->getFocus())) {
                 return $this->showTask($user, array(
-                    $focus->getFirstCategory()
+                    $focus->getFirstCategory()->getCategory()
                 ));
             }
         }
