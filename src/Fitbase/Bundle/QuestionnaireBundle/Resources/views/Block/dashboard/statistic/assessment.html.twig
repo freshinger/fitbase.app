@@ -53,12 +53,12 @@
         container.waterfall([
             {
                 label: 'Ja',
-                value: parseInt('{{ percent }}'),
+                value: parseFloat('{{ percent }}'),
                 color: '#fce14b'
             },
             {
                 label: 'Nein',
-                value: 100 - parseInt('{{ percent }}'),
+                value: 100 - parseFloat('{{ percent }}'),
                 color: '#a2d049'
             }
         ], {title: '{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}'});

@@ -49,7 +49,7 @@ class StatisticAssessmentBlock extends SecureBlockServiceAbstract
         $total = (isset($statistic['pause']) ? $statistic['pause'] : 0) + $done;
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'percent' => (float)$done / $total,
+            'percent' => (float)($done / $total * 100),
             'questionnaire' => $questionnaire
         ));
     }
