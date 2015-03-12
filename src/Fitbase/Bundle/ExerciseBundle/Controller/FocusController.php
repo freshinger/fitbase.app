@@ -31,24 +31,19 @@ class FocusController extends Controller
     {
         if (($user = $this->get('user')->current())) {
             if (($focus = $user->getFocus())) {
-                if (($categoryFocus = $focus->getCategories()->first())) {
 
-                    if (($category = $categoryFocus->getCategory())) {
-                        // Find a parent category
-                        // for a given category
-                        if (!($parent = $category->getParent())) {
-                            $parent = $category;
-                        }
+                if (($focusCategory = $focus->getFirstCategory())) {
+                    if (($category = $focusCategory->getCategory())) {
 
-                        if (in_array($parent->getSlug(), array('ruecken'))) {
+                        if (in_array($category->getSlug(), array('ruecken'))) {
                             $controller = new TaskController();
                             $controller->setContainer($this->container);
-                            return $controller->focusAction($request, $parent->getSlug());
+                            return $controller->focusAction($request, $category->getSlug());
                         }
 
                         $controller = new CategoryController();
                         $controller->setContainer($this->container);
-                        return $controller->categoryAction($request, $parent->getSlug());
+                        return $controller->categoryAction($request, $category->getSlug());
                     }
                 }
             }
