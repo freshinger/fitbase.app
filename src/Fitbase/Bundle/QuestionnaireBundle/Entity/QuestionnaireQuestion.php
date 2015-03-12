@@ -252,10 +252,27 @@ class QuestionnaireQuestion
     }
 
     /**
+     * Get max count point for question
+     * @return int
+     */
+    public function getCountPointMax()
+    {
+        $result = 0;
+        if (($answers = $this->getAnswers())) {
+            foreach ($answers as $answer) {
+                if ($answer->getCountPoint() > $result) {
+                    $result = $answer->getCountPoint();
+                }
+            }
+        }
+        return $result;
+    }
+
+    /**
      * Get common count point for question
      * @return int
      */
-    public  function getCountPoint()
+    public function getCountPoint()
     {
         $result = 0;
         if (($answers = $this->getAnswers())) {

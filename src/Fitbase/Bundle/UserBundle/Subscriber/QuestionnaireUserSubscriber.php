@@ -46,9 +46,12 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
     {
         $result = 0;
         if (count($collection)) {
-            $points = round(12 / count($collection));
-            foreach ($collection as $answer) {
-                $result += round($answer->getCountPoint() * $points / 100);
+            foreach ($collection as $userAnswer) {
+                if (($question = $userAnswer->getQuestion())) {
+                    if (($countPointMax = $question->getCountPointMax()) > 0) {
+                        $result += round($userAnswer->getCountPoint() * 100 / $countPointMax);
+                    }
+                }
             }
         }
         return $result;
@@ -64,11 +67,11 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
         if (($questionnaireUser = $event->getEntity())) {
             if (($user = $questionnaireUser->getUser())) {
                 if (($focus = $user->getFocus())) {
-                    if (($answers = $questionnaireUser->getAnswers())) {
+                    if (($userAnswers = $questionnaireUser->getAnswers())) {
 
                         $categoryPriority = array();
-                        foreach ($answers as $answer) {
-                            if (($question = $answer->getQuestion())) {
+                        foreach ($userAnswers as $userAnswer) {
+                            if (($question = $userAnswer->getQuestion())) {
                                 if (($categories = $question->getCategories())) {
                                     foreach ($categories as $category) {
 
@@ -76,7 +79,7 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                                             $categoryPriority[$category->getId()] = array();
                                         }
 
-                                        array_push($categoryPriority[$category->getId()], $answer);
+                                        array_push($categoryPriority[$category->getId()], $userAnswer);
                                     }
                                 }
                             }
@@ -85,6 +88,9 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                         foreach ($categoryPriority as $id => $row) {
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
                         }
+
+                        print_r($categoryPriority);
+                        exit;
 
                         if (arsort($categoryPriority)) {
                             if (($order = array_keys($categoryPriority))) {
