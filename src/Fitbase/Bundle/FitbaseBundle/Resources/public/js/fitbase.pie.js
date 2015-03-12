@@ -42,6 +42,7 @@
 
             var pie = container.append('g')
                 .attr('class', 'pieChart--diagramm')
+                .attr('filter', 'url(#pieChartInsetShadow)')
                 .attr('transform', 'translate(' + config.width / 1.4 + ',' + config.height / 2 + ')');
 
             var pieData = d3.layout.pie()
@@ -57,7 +58,6 @@
                 .selectAll('path').data(pieData)
                 .enter()
                 .append('path')
-                .attr('filter', 'url(#pieChartInsetShadow)')
                 .style("fill", function (d) {
                     return d.data.color;
                 })

@@ -30,8 +30,8 @@
 
             var waterfall = svg.append('g').attr('class', 'waterfall');
 
-            this.__drawWaterfallBackground(waterfall, data, config);
-            this.__drawWaterfallBackgroundLabels(waterfall, data, config);
+            this.__drawWaterfallBackground(this, waterfall, data, config);
+            this.__drawWaterfallBackgroundLabels(this, waterfall, data, config);
 
         },
 
@@ -43,73 +43,118 @@
          * @param config
          * @private
          */
-        __drawWaterfallBackground: function (container, data, config) {
+        __drawWaterfallBackground: function (self, container, data, config) {
             var waterfallBackground = container.append('g')
                 .attr('class', 'waterfall-column');
 
-            var count = 0;
-
+            var indexX = 0;
+            var indexY = 0;
             var waterfallBackgroundElements = waterfallBackground.selectAll('.waterfall-column')
-                .data(data)
-                .enter()
-                .append('g')
-                .attr('class', 'waterfall-column-element');
+                .data(data).enter()
+                .append('g').attr('class', 'waterfall-column-element');
 
             waterfallBackgroundElements.append('rect')
-                .attr('x', function (d) {
-                    var distance = (((config.width * config.width_background / 100 ) ) * count);
-                    count = count + 1;
-                    return config.center + distance;
-                }).attr('y', config.height)
-                .attr('width', function () {
-                    return config.width * config.width_background / 100
+                .attr('x', function (data) {
+                    return self.__getColumnPositionX(indexX++, data, config);
+                })
+                .attr('y', function (data) {
+                    return self.__getColumnPositionY(indexY++, data, config);
                 })
                 .attr('height', 0)
+                .attr('width', function (data) {
+                    return self.__getColumnWidth(data, config)
+                })
                 .attr('fill', function (d) {
                     return d.color;
                 })
                 .transition()
                 .duration(config.duration)
-                .attr('y', function (d) {
-                    return config.height - (d.value * config.height / 100);
+                .attr('y', function (data) {
+                    return config.height - self.__getColumnHeight(data, config);
                 })
-                .attr('height', function (d) {
-                    return d.value * config.height / 100;
+                .attr('height', function (data) {
+                    return self.__getColumnHeight(data, config);
                 });
 
-            var count = 0;
+
+            var indexX = 0;
+            var indexY = 0;
             waterfallBackgroundElements
                 .append('g')
                 .attr('class', 'waterfall-column-text')
                 .append('text')
-                .attr('y', config.height)
-                .attr('x', function (d) {
-                    var distance = (((config.width * config.width_background / 100 ) ) * count);
-                    count = count + 1;
-                    return config.center + (distance + (config.width * config.width_background / 100) / 4);
+                .attr('x', function (data) {
+                    return self.__getColumnPositionX(indexX++, data, config)
+                    + (self.__getColumnWidth(data, config) / 4);
+                })
+                .attr('y', function (data) {
+                    return self.__getColumnPositionY(indexY++, data, config);
                 })
                 .text(function (d) {
                     return '0%';
                 })
                 .transition()
                 .duration(config.duration)
-                .attr('y', function (d) {
-                    return config.height - (d.value * config.height / 100) - 5;
+                .attr('y', function (data) {
+                    return config.height - self.__getColumnHeight(data, config) - 5;
                 })
                 .tween('text', function (d) {
-                    // get current value as starting point for tween animation
-                    // create interpolator and do not show nasty floating numbers
                     var interpolator = d3.interpolateRound(0, d.value);
-                    // this returned function will be called a couple
-                    // of times to animate anything you want inside
-                    // of your custom tween
                     return function (t) {
-                        // set new value to current text element
                         this.textContent = interpolator(t) + '%';
                     };
                 });
-            ;
+        },
 
+        /**
+         * Calculate a x position for column
+         *
+         * @param index
+         * @param data
+         * @param config
+         * @returns {*}
+         * @private
+         */
+        __getColumnPositionX: function (index, data, config) {
+            var distance = (((config.width * config.width_background / 100 ) ) * index);
+            return config.center + distance;
+        },
+        
+        /**
+         * Calculate a y-position for column
+         *
+         * @param index
+         * @param data
+         * @param config
+         * @returns {*|config.height}
+         * @private
+         */
+        __getColumnPositionY: function (index, data, config) {
+            return config.height;
+        },
+
+        /**
+         * Calculate a column-width
+         *
+         * @param data
+         * @param config
+         * @returns {number}
+         * @private
+         */
+        __getColumnWidth: function (data, config) {
+            return config.width * config.width_background / 100
+        },
+
+        /**
+         * Calculate a column-height
+         *
+         * @param data
+         * @param config
+         * @returns {number}
+         * @private
+         */
+        __getColumnHeight: function (data, config) {
+            return data.value * (config.height * 0.9) / 100;
         },
 
         /**
@@ -120,7 +165,7 @@
          * @param config
          * @private
          */
-        __drawWaterfallBackgroundLabels: function (container, data, config) {
+        __drawWaterfallBackgroundLabels: function (self, container, data, config) {
             var waterfallColumnLabel = container.append('g')
                 .attr('class', 'waterfall-column-label');
 
@@ -167,7 +212,7 @@
                         counter--;
                         if (counter == 0) {
                             self.__drawWaterfallBackgroundTitle(
-                                waterfallColumnLabel, data, config);
+                                self, waterfallColumnLabel, data, config);
                         }
                     });
 
@@ -184,7 +229,7 @@
          * @param config
          * @private
          */
-        __drawWaterfallBackgroundTitle: function (container, data, config) {
+        __drawWaterfallBackgroundTitle: function (self, container, data, config) {
 
             var waterfallColumnLabelText = container.append('g')
                 .attr('class', 'waterfall-column-label-text')

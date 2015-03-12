@@ -45,25 +45,26 @@
 </div>
 
 <script type="text/javascript">
-    (function () {
 
-        var container = $('#statistic_user_assessment');
-        if (container.is('div')) {
-            container.waterfall([
-                {
-                    label: 'Ja',
-                    value: parseInt('{{ percent }}'),
-                    color: '#fce14b'
-                },
-                {
-                    label: 'Nein',
-                    value: 100 - parseInt('{{ percent }}'),
-                    color: '#a2d049'
-                }
-            ], {title: '{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}'});
-        }
+(function () {
+
+    var container = $('#statistic_user_assessment');
+    if (container.is('div')) {
+        container.waterfall([
+            {
+                label: 'Ja',
+                value: parseInt('{{ percent }}'),
+                color: '#fce14b'
+            },
+            {
+                label: 'Nein',
+                value: 100 - parseInt('{{ percent }}'),
+                color: '#a2d049'
+            }
+        ], {title: '{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}'});
+    }
 
 
-    })();
+})();
 </script>
 
