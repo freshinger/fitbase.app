@@ -39,8 +39,7 @@
          */
         __drawBarometerScala: function (container, data, config) {
             var barometerScala = container.append('g')
-                .attr('class', 'barometer-scala')
-                .attr('filter', 'url(#pieChartInsetShadow)');
+                .attr('class', 'barometer-scala');
 
             barometerScala.selectAll('.barometer-scala')
                 .data(config.scala)
@@ -85,8 +84,7 @@
          */
         __drawBarometerLines: function (container, data, config) {
             var barometerLine = container.append('g')
-                .attr('class', 'barometer-lines')
-                .attr('filter', 'url(#pieChartDropShadow)');
+                .attr('class', 'barometer-lines');
 
             barometerLine.append('line')
                 .attr('x1', config.center)
@@ -181,7 +179,6 @@
         }
     });
 
-
     $.fn.barometer = function (data, config) {
 
         return new Barometer($(this), data, $.extend({
@@ -192,18 +189,18 @@
                 {
                     start: 60,
                     height: 40,
-                    color: 'red',
+                    color: '#e65a3b',
                     round: true
                 },
                 {
                     start: 60,
                     height: 20,
-                    color: 'red'
+                    color: '#e65a3b'
                 },
                 {
                     start: 30,
                     height: 30,
-                    color: 'yellow'
+                    color: '#fce14b'
                 },
                 {
                     start: 0,
