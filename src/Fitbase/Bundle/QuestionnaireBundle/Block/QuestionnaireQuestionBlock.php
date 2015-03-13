@@ -42,8 +42,6 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
             }
         }
 
-//        "#a2d049", "#d1de3f", "#fce14b", "#f08e3e", "#e65a3b", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"
-
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'question' => $question,
             'statistics' => $statistics
@@ -61,24 +59,40 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
         $statistics = array();
         if (($answers = $question->getAnswers())) {
             foreach ($answers as $answer) {
-                $statistics[$answer->getName()] = 0;
+                $statistic = new \stdClass();
+                $statistic->color = $answer->getColor();
+                $statistic->name = $answer->getName();
+                $statistic->value = 0;
+
+                $statistics[$answer->getId()] = $statistic;
             }
 
+            $total = 0;
             if (($userAnswers = $this->getStatisticsData($questionnaireUser, $question))) {
                 foreach ($userAnswers as $userAnswer) {
                     if (($answers = $userAnswer->getAnswers())) {
                         foreach ($answers as $answer) {
-                            if (!array_key_exists($answer->getName(), $statistics)) {
-                                $statistics[$answer->getName()] = 0;
+                            if (!array_key_exists($answer->getId(), $statistics)) {
+
+                                $statistic = new \stdClass();
+                                $statistic->color = $answer->getColor();
+                                $statistic->name = $answer->getName();
+                                $statistic->value = 0;
+
+                                $statistics[$answer->getId()] = $statistic;
                             }
-                            $statistics[$answer->getName()]++;
+
+                            if ($statistics[$answer->getId()] instanceof \stdClass) {
+                                $total++;
+                                $statistics[$answer->getId()]->value++;
+                            }
                         }
                     }
                 }
             }
 
 
-            if (array_sum($statistics) <= 0) {
+            if ($total <= 0) {
                 return null;
             }
         }
