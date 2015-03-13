@@ -93,6 +93,13 @@ class QuestionnaireQuestion
             return '#a2d049';
         }
 
+        if (count($this->getAnswers()) == 4) {
+            $colors = array("#a2d049", "#d1de3f", "#f08e3e", "#e65a3b");
+            if (array_key_exists($answer->getCountPoint(), $colors)) {
+                return $colors[$answer->getCountPoint()];
+            }
+        }
+
         if (count($this->getAnswers()) == 5) {
             $colors = array("#a2d049", "#d1de3f", "#fce14b", "#f08e3e", "#e65a3b");
             if (array_key_exists($answer->getCountPoint(), $colors)) {
@@ -101,7 +108,7 @@ class QuestionnaireQuestion
         }
 
         if (count($this->getAnswers()) == 6) {
-            $colors = array("#a2d049", "#d1de3f", "#d7ecaf", "#fce14b",  "#f08e3e", "#e65a3b");
+            $colors = array("#a2d049", "#d1de3f", "#d7ecaf", "#fce14b", "#f08e3e", "#e65a3b");
             if (array_key_exists($answer->getCountPoint(), $colors)) {
                 return $colors[$answer->getCountPoint()];
             }
