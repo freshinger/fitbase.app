@@ -99,8 +99,15 @@ class QuestionnaireQuestion
                 return $colors[$answer->getCountPoint()];
             }
         }
-        if (count($this->getAnswers()) >= 10) {
 
+        if (count($this->getAnswers()) == 6) {
+            $colors = array("#a2d049", "#d1de3f", "#fce14b", "#d7ecaf", "#f08e3e", "#e65a3b");
+            if (array_key_exists($answer->getCountPoint(), $colors)) {
+                return $colors[$answer->getCountPoint()];
+            }
+        }
+
+        if (count($this->getAnswers()) >= 10) {
             $colors = array("#a2d049", "#d1de3f", "#fce14b", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#f08e3e", "#a05d56", "#6b486b", "#e65a3b");
             if (array_key_exists($answer->getCountPoint(), $colors)) {
                 return $colors[$answer->getCountPoint()];
