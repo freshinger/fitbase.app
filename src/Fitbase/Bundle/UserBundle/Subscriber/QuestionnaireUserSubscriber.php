@@ -52,9 +52,10 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                         $result += round($userAnswer->getCountPoint() * 100 / $countPointMax);
                     }
                 }
+                return $result / count($collection);
             }
         }
-        return $result;
+        return 0;
     }
 
 
@@ -85,11 +86,12 @@ class QuestionnaireUserSubscriber extends ContainerAware implements EventSubscri
                             }
                         }
 
+
                         foreach ($categoryPriority as $id => $row) {
                             $categoryPriority[$id] = $this->doCalculateCategoryPosition($row);
                         }
 
-                        if (arsort($categoryPriority)) {
+                        if (asort($categoryPriority)) {
                             if (($order = array_keys($categoryPriority))) {
                                 if (($focusCategories = $focus->getCategories())) {
                                     $entityManager = $this->container->get('entity_manager');
