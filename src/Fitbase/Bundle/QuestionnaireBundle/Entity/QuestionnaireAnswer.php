@@ -176,4 +176,15 @@ class QuestionnaireAnswer
     {
         return $this->countPoint;
     }
+
+    /**
+     * Get color for this answer
+     * @return string
+     */
+    public function getColor()
+    {
+        if (($question = $this->getQuestion())) {
+            return $question->getAnswerColor($this);
+        }
+    }
 }

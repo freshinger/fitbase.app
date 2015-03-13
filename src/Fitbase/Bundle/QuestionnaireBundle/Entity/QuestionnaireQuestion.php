@@ -66,6 +66,7 @@ class QuestionnaireQuestion
     public function setAnswers($answers)
     {
         $this->answers = $answers;
+        return $this;
     }
 
     /**
@@ -74,6 +75,40 @@ class QuestionnaireQuestion
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Calculate color for answer
+     * @param $count
+     * @param $answer
+     * @return string
+     */
+    public function getAnswerColor($answer)
+    {
+        //        var colors = ["#a2d049", "#d1de3f", "#fce14b", "#f08e3e", "#e65a3b", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
+        if (count($this->getAnswers()) == 2) {
+            if ($answer->getCountPoint() == $this->getCountPointMax()) {
+                return '#e65a3b';
+            }
+            return '#a2d049';
+        }
+
+        if (count($this->getAnswers()) == 5) {
+            $colors = array("#a2d049", "#d1de3f", "#fce14b", "#f08e3e", "#e65a3b");
+            if (array_key_exists($answer->getCountPoint(), $colors)) {
+                return $colors[$answer->getCountPoint()];
+            }
+        }
+        if (count($this->getAnswers()) >= 10) {
+
+            $colors = array("#a2d049", "#d1de3f", "#fce14b", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#f08e3e", "#a05d56", "#6b486b", "#e65a3b");
+            if (array_key_exists($answer->getCountPoint(), $colors)) {
+                return $colors[$answer->getCountPoint()];
+            }
+        }
+
+
+        return '#FFFFFF';
     }
 
     /**

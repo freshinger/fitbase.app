@@ -51,7 +51,7 @@
                                 <h4>Antworte</h4>
                                 {% for answer in question.answers %}
                                     <div class="row">
-                                        <div class="col-xs-12">
+                                        <div class="col-xs-12" style="background-color: {{ answer.color }}">
                                             {{ loop.index }}.&nbsp;{{ answer.name }}
                                             {% if answer.countPoint %}
                                                 ({{ answer.countPoint }})
