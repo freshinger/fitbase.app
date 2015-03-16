@@ -15,6 +15,13 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceGraph extends ContainerAware
 {
+    /**
+     * Draw pie -diagram
+     * @param null $name
+     * @param array $data
+     * @return PieGraph
+     * @throws \JpGraph\ModuleNotFoundException
+     */
     public function pie($name = null, $data = array(10, 10, 10, 10, 10, 10, 10, 10, 10, 10,))
     {
         if (!count($data)) {
@@ -24,7 +31,7 @@ class ServiceGraph extends ContainerAware
         JpGraph::load();
         JpGraph::module('pie');
 
-        $graph = new PieGraph(350, 380);
+        $graph = new PieGraph(550, 580);
         $graph->SetShadow();
         $graph->title->Set($name);
 
