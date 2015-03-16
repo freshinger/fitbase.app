@@ -37,6 +37,7 @@ class QuestionnaireCompany
     public function setCompany($company)
     {
         $this->company = $company;
+        return $this;
     }
 
     /**

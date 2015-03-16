@@ -69,12 +69,20 @@ class QuestionnaireCompanyBlock extends SecureBlockServiceAbstract
                 }
             }
 
+            $repositoryCompanyQuestionnaire = $this->objectManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire');
+            if (!($questionnairesAvailable = $repositoryCompanyQuestionnaire->findByCompany($company))) {
+                $questionnairesAvailable = array();
+            }
+
             $repositoryQuestionnaireCompany = $this->objectManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
+            if (!($questionnairesProcessed = $repositoryQuestionnaireCompany->findByCompany($company))) {
+                $questionnairesProcessed = array();
+            }
+
             return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
                 'form' => $form->createView(),
-                'questionnaires' => $repositoryQuestionnaireCompany->findBy(array(
-                    'company' => $company,
-                )),
+                'questionnairesAvailable' => $questionnairesAvailable,
+                'questionnairesProcessed' => $questionnairesProcessed,
             ));
         }
     }
