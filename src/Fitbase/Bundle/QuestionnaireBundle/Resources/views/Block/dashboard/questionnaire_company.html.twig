@@ -11,7 +11,7 @@
     <div class="col-xs-6">
 
         <h4 class="short hue">
-            {{ 'Befragungen zu verfügung'|trans({}, 'FitbaseQuestionnaireBundle') }}
+            {{ 'Vorlagen für Kurzumfragen'|trans({}, 'FitbaseQuestionnaireBundle') }}
         </h4>
 
         <table class="table table-striped table-hover table-responsive">
@@ -54,7 +54,9 @@
             <tbody>
             {% for questionnaireCompany in questionnairesProcessed %}
                 <tr>
-                    <td>{{ questionnaireCompany }}</td>
+                    <td>
+                        {{ questionnaireCompany }}
+                    </td>
                     <td>{{ questionnaireCompany.date|date('Y/m/d') }}</td>
                     <td>
                         <span title="Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer">
