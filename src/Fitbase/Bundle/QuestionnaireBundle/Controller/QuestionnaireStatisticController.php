@@ -69,17 +69,19 @@ class QuestionnaireStatisticController extends Controller
             if (($questionnaireCompany = $repositoryQuestionnaire->findOneByUniqueAndCompany($unique, $company))) {
 
                 $entity = new QuestionnaireUser();
-                $entity->setUser(
-                    (new User())->setFocus(
-                        (new UserFocus())
-                            ->setCategories(
-                                $company->getCategories()->map(function ($companyCategory) {
-                                    return (new UserFocusCategory())
-                                        ->setCategory($companyCategory->getCategory());
-                                })
-                            )
-                    )
-                );
+                $entity->setUser($user);
+
+//                $entity->setUser(
+//                    (new User())->setFocus(
+//                        (new UserFocus())
+//                            ->setCategories(
+//                                $company->getCategories()->map(function ($companyCategory) {
+//                                    return (new UserFocusCategory())
+//                                        ->setCategory($companyCategory->getCategory());
+//                                })
+//                            )
+//                    )
+//                );
                 $entity->setSlice($questionnaireCompany);
                 $entity->setQuestionnaire($questionnaireCompany->getQuestionnaire());
 
