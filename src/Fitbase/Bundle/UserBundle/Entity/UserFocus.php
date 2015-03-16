@@ -137,6 +137,18 @@ class UserFocus
     }
 
     /**
+     * Set user focus categories
+     * @param array $categories
+     * @return $this
+     */
+    public function setCategories($categories = array())
+    {
+        $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
      * Remove categories
      *
      * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $categories

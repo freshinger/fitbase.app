@@ -2,9 +2,12 @@
 
 namespace Fitbase\Bundle\QuestionnaireBundle\Controller;
 
+use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Fitbase\Bundle\QuestionnaireBundle\Form\QuestionnaireUserForm;
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
+use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -70,9 +73,20 @@ class QuestionnaireStatisticController extends Controller
             $repositoryQuestionnaire = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire');
             if (($companyQuestionnaire = $repositoryQuestionnaire->findOneByUniqueAndCompany($unique, $company))) {
 
+
                 $entity = new QuestionnaireUser();
                 $entity->setQuestionnaire($companyQuestionnaire);
-                $entity->setUser($user);
+                $entity->setUser(
+                    (new User())->setFocus(
+                        (new UserFocus())
+                            ->setCategories(
+                                $company->getCategories()->map(function ($companyCategory) {
+                                    return (new UserFocusCategory())
+                                        ->setCategory($companyCategory->getCategory());
+                                })
+                            )
+                    )
+                );
                 $entity->setSlice(
                     (new QuestionnaireCompany())
                         ->setCompany($company)
