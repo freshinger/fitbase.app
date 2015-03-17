@@ -17,5 +17,9 @@
         <default key="_controller">FitbaseEmailBundle:Admin:emailWeeklyquiz</default>
     </route>
 
+    <route id="sonata_admin_email_user_registration" pattern="/email/user/registration/{unique}">
+        <default key="_controller">FitbaseEmailBundle:Admin:emailUserRegistration</default>
+    </route>
+
 
 </routes>

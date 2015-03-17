@@ -12,6 +12,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends CoreController
 {
+
+    /**
+     *
+     * @param Request $request
+     * @param null $unique
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function emailUserRegistrationAction(Request $request, $unique = null)
+    {
+        $entityManager = $this->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+        return $this->render('FitbaseEmailBundle:Admin:email_registration.html.twig', array(
+            'user' => $repositoryUser->find($unique),
+        ));
+    }
+
+
     /**
      * Import actioncodes
      *

@@ -98,16 +98,24 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('focus')
+//            ->add('focus')
             ->add('company')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
             ->add('createdAt', 'date');
 
-        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
-            $listMapper
-                ->add('impersonating', 'string', array('template' => 'FitbaseUserBundle:Admin:Field/impersonating.html.twig'));
-        }
+//        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
+//            $listMapper
+//                ->add('impersonating', 'string', array('template' => 'FitbaseUserBundle:Admin:Field/impersonating.html.twig'));
+//        }
+        $listMapper->add('_action', 'actions', array(
+            'actions' => array(
+                'show' => array('template' => 'FitbaseUserBundle:Admin:list_action_email.html.twig'),
+                'edit' => array(),
+                'delete' => array(),
+            )
+        ));
+
     }
 
     /**

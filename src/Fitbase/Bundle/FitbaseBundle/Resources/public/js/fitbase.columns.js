@@ -212,7 +212,6 @@
                             self, waterfallColumnLabel, data, config);
                     }
                 });
-
         },
 
         /**
