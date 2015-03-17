@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body col-height-300">
 
         <h4 class="short hue">
             {{ 'Bedarfsanalyse'|trans({}, 'FitbaseQuestionnaireBundle') }}
@@ -45,23 +45,25 @@
 </div>
 
 <script type="text/javascript">
-
     (function () {
 
         var container = $('#statistic_user_assessment');
         if (container.is('div')) {
             container.waterfall([
-                {
-                    label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
-                    value: parseFloat('{{ percent }}'),
-                    color: '#fce14b'
-                },
-                {
-                    label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
-                    value: 100 - parseFloat('{{ percent }}'),
-                    color: '#a2d049'
-                }
-            ], {title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"});
+                        {
+                            label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                            value: parseFloat('{{ percent }}'),
+                            color: '#fce14b'
+                        },
+                        {
+                            label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                            value: 100 - parseFloat('{{ percent }}'),
+                            color: '#a2d049'
+                        }
+                    ],
+                    {
+                        title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"
+                    });
         }
 
 

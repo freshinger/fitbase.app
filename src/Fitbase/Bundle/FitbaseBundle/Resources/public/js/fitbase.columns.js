@@ -119,7 +119,7 @@
             var distance = (((config.width * config.width_background / 100 ) ) * index);
             return config.center + distance;
         },
-        
+
         /**
          * Calculate a y-position for column
          *
@@ -194,29 +194,24 @@
                 .attr('x', '-10').attr('y', '-15')
                 .attr('width', '18').attr('height', '18');
 
+            waterfallColumnLabelElements.append("text")
+                .attr('x', '0')
+                .text(function (d) {
+                    return d.label;
+                })
+                .style('font-size', '0em')
 
-            (function (self) {
-
-                waterfallColumnLabelElements.append("text")
-                    .attr('x', '0')
-                    .text(function (d) {
-                        return d.label;
-                    })
-                    .style('font-size', '0em')
-
-                    .transition()
-                    .duration(config.duration)
-                    .style('font-size', '1em')
-                    .attr('x', '20')
-                    .each('end', function (d) {
-                        counter--;
-                        if (counter == 0) {
-                            self.__drawWaterfallBackgroundTitle(
-                                self, waterfallColumnLabel, data, config);
-                        }
-                    });
-
-            })(this);
+                .transition()
+                .duration(config.duration)
+                .style('font-size', '1em')
+                .attr('x', '20')
+                .each('end', function (d) {
+                    counter--;
+                    if (counter == 0) {
+                        self.__drawWaterfallBackgroundTitle(
+                            self, waterfallColumnLabel, data, config);
+                    }
+                });
 
         },
 
