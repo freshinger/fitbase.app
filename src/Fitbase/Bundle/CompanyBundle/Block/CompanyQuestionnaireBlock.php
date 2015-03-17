@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\QuestionnaireBundle\Block\Dashboard;
+namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class QuestionnaireCompanyBlock extends SecureBlockServiceAbstract
+class CompanyQuestionnaireBlock extends SecureBlockServiceAbstract
 {
     protected $formFactory;
     protected $serviceUser;
@@ -42,7 +42,7 @@ class QuestionnaireCompanyBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_company.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:questionnaire.html.twig',
         ));
     }
 
@@ -92,6 +92,6 @@ class QuestionnaireCompanyBlock extends SecureBlockServiceAbstract
      */
     public function getName()
     {
-        return 'Dashboard (Questionnaire company)';
+        return 'Dashboard (Company-Questionnaire)';
     }
 } 

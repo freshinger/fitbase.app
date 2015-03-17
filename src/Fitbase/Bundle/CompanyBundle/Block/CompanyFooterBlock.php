@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompanyFooterBlockService extends BaseBlockService implements ContainerAwareInterface
+class CompanyFooterBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here

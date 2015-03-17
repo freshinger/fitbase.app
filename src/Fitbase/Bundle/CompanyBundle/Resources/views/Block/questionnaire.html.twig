@@ -65,15 +65,20 @@
                         </span>
                     </td>
                     <td>
-                        <a href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
+                        <a class="dialog-confirm"
+                           href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
                             {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
                         </a>
+                        <a class="questionnaire-remove"
+                           href="{{ path("questionnaire_statistic_slice_remove", { 'unique': questionnaireCompany.id }) }}">
+                            {{ 'löschen'|trans({}, 'FitbaseGamificationBundle') }}
+                        </a>
+
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
 
         <h4 class="">
             {{ 'Neuen Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
@@ -94,6 +99,45 @@
 
         {{ form(form) }}
 
-
     </div>
 </div>
+
+<div id="questionnaire-remove-dialog" title="Befragung löschen">
+    <p>Sind Sie sicher, dass Sie alle Ergebnisse löschen wollen?</p>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        var containerDialog = $('#questionnaire-remove-dialog');
+        if (containerDialog.is('div')) {
+            containerDialog.dialog({
+                autoOpen: false,
+                resizable: false
+            });
+        }
+
+        var container = $(".questionnaire-remove");
+        container.each(function (index, element) {
+
+            var containerLinkRemove = $(element);
+            containerLinkRemove.click(function (event) {
+                containerDialog.dialog({
+                    position: { my: "right", at: "center", of: containerLinkRemove},
+                    buttons: {
+                        'Ja': function () {
+                            containerDialog.dialog("close");
+                            $.redirect(containerLinkRemove.attr('href'));
+                        },
+                        'Nein': function () {
+                            containerDialog.dialog("close");
+                        }
+                    }
+                });
+                containerDialog.dialog('open');
+                return false;
+            });
+        });
+    });
+</script>

@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlockService" public="true">
+        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlock" public="true">
             <argument>fitbase.block.header_company</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="fitbase.orm.company_manager"/>
@@ -13,13 +13,28 @@
             <tag name="sonata.block"/>
         </service>
 
-        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyFooterBlockService" public="true">
+        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyFooterBlock" public="true">
             <tag name="sonata.block"/>
             <argument>fitbase.block.footer_company</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+        </service>
+
+
+        <service id="fitbase.block.dashboard.company.questionnaire" class="Fitbase\Bundle\CompanyBundle\Block\CompanyQuestionnaireBlock"  scope="request">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard.company.questionnaire</argument>
+            <argument type="collection">
+                <argument>ROLE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="request"/>
         </service>
 
     </services>

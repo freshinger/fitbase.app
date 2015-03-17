@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
-class CompanyHeaderBlockService extends BaseBlockService
+class CompanyHeaderBlock extends BaseBlockService
 {
     protected $user;
     protected $session;

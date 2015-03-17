@@ -5,6 +5,7 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Controller;
 use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
+use Fitbase\Bundle\QuestionnaireBundle\Event\QuestionnaireCompanyEvent;
 use Fitbase\Bundle\QuestionnaireBundle\Form\QuestionnaireUserForm;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
@@ -98,6 +99,30 @@ class QuestionnaireStatisticController extends Controller
     }
 
     /**
+     * Remove current questionnaire slice
+     *
+     * @param Request $request
+     * @param null $unique
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function questionnaireSliceRemoveAction(Request $request, $unique = null)
+    {
+        if (($company = $this->get('company')->current())) {
+
+            $entityManager = $this->get('entity_manager');
+            $repositoryQuestionnaire = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');
+            if (($questionnaireCompany = $repositoryQuestionnaire->findOneByUniqueAndCompany($unique, $company))) {
+
+                $event = new QuestionnaireCompanyEvent($questionnaireCompany);
+                $this->get('event_dispatcher')->dispatch('fitbase.questionnaire_company_remove', $event);
+
+                return $this->redirect($this->generateUrl('questionnaire_company'));
+            }
+        }
+    }
+
+
+    /**
      * Display questionnaire preview
      * @param Request $request
      * @param null $unique
@@ -150,10 +175,10 @@ class QuestionnaireStatisticController extends Controller
      */
     public function questionnaireCompanyAction(Request $request)
     {
-        if (($user = $this->get('user')->current())) {
+        if (($company = $this->get('company')->current())) {
 
             return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire_company.html.twig', array(
-                'company' => $user->getCompany(),
+                'company' => $company,
             ));
         }
     }

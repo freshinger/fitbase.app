@@ -20,6 +20,10 @@
         <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireSlice</default>
     </route>
 
+    <route id="questionnaire_statistic_slice_remove" pattern="/statistic/remove/slice/{unique}">
+        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireSliceRemove</default>
+    </route>
+
     <route id="questionnaire_statistic" pattern="/statistic/{unique}">
         <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire</default>
     </route>
