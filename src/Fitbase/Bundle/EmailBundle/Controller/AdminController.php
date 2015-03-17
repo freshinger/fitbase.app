@@ -21,12 +21,15 @@ class AdminController extends CoreController
      */
     public function emailUserRegistrationAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
-        return $this->render('FitbaseEmailBundle:Admin:email_registration.html.twig', array(
-            'user' => $repositoryUser->find($unique),
-        ));
+            $entityManager = $this->get('entity_manager');
+            $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+            return $this->render('FitbaseEmailBundle:Admin:email_registration.html.twig', array(
+                'user' => $repositoryUser->find($unique),
+            ));
+        }
     }
 
 
@@ -38,14 +41,17 @@ class AdminController extends CoreController
      */
     public function emailWeeklytaskAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
-        return $this->render('FitbaseEmailBundle:Admin:email_weeklytask.html.twig', array(
-            'user' => $this->container->get('user')->current(),
-            'userTask' => new WeeklytaskUser(),
-            'task' => $repositoryWeeklytask->find($unique)
-        ));
+            $entityManager = $this->get('entity_manager');
+            $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
+
+            return $this->render('FitbaseEmailBundle:Admin:email_weeklytask.html.twig', array(
+                'user' => $this->container->get('user')->current(),
+                'userTask' => new WeeklytaskUser(),
+                'task' => $repositoryWeeklytask->find($unique)
+            ));
+        }
     }
 
     /**
@@ -56,15 +62,18 @@ class AdminController extends CoreController
      */
     public function emailWeeklyquizAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
-        return $this->render('FitbaseEmailBundle:Admin:email_weeklyquiz.html.twig', array(
-            'user' => $this->container->get('user')->current(),
-            'task' => new Weeklytask(),
-            'quiz' => $repositoryWeeklyquiz->find($unique),
-            'userQuiz' => new WeeklyquizUser(),
-        ));
+            $entityManager = $this->get('entity_manager');
+            $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
+
+            return $this->render('FitbaseEmailBundle:Admin:email_weeklyquiz.html.twig', array(
+                'user' => $this->container->get('user')->current(),
+                'task' => new Weeklytask(),
+                'quiz' => $repositoryWeeklyquiz->find($unique),
+                'userQuiz' => new WeeklyquizUser(),
+            ));
+        }
     }
 
 
@@ -76,30 +85,32 @@ class AdminController extends CoreController
      */
     public function emailExerciseUserAction(Request $request, $unique = null)
     {
-        $entityManager = $this->get('entity_manager');
-        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 
-        if (($exerciseUser = $repositoryExerciseUser->find($unique))) {
+            $entityManager = $this->get('entity_manager');
+            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
 
-            $category = null;
-            if (($focus = $exerciseUser->getUser()->getFocus())) {
-                if (($categoryFocus = $focus->getFirstCategory())) {
-                    $categoryFocus = $categoryFocus->getCategory();
+            if (($exerciseUser = $repositoryExerciseUser->find($unique))) {
+
+                $category = null;
+                if (($focus = $exerciseUser->getUser()->getFocus())) {
+                    if (($categoryFocus = $focus->getFirstCategory())) {
+                        $categoryFocus = $categoryFocus->getCategory();
+                    }
                 }
+
+                $categories = (new ArrayCollection($this->get('chooser_category')->choose($focus)))
+                    ->filter(function ($element) {
+                        return !$element->getParent() ? true : false;
+                    });
+
+                return $this->render('FitbaseEmailBundle:Admin:email_exercise.html.twig', array(
+                    'user' => $exerciseUser->getUser(),
+                    'categoryFocus' => $categoryFocus,
+                    'categories' => $categories,
+                    'exerciseUser' => $exerciseUser,
+                ));
             }
-
-            $categories = (new ArrayCollection($this->get('chooser_category')->choose($focus)))
-                ->filter(function ($element) {
-                    return !$element->getParent() ? true : false;
-                });
-
-            return $this->render('FitbaseEmailBundle:Admin:email_exercise.html.twig', array(
-                'user' => $exerciseUser->getUser(),
-                'categoryFocus' => $categoryFocus,
-                'categories' => $categories,
-                'exerciseUser' => $exerciseUser,
-            ));
         }
-
     }
 }
