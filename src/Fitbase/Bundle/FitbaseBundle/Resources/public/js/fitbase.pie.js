@@ -22,7 +22,6 @@
             });
 
             var svg = d3.select(container.selector)
-                .select('svg')
                 .attr('width', config.width)
                 .attr('height', config.height);
 
