@@ -2,6 +2,8 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryCompanyChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryFocusChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ExerciseChooser;
@@ -96,15 +98,18 @@ class CategoryController extends Controller
             }
         }
 
+        $exercises = array();
         if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (!($exercises = $category->getExercises())) {
-                // TODO: notify admin if no exercises exists
+            if (($exercises = $category->getExercises())) {
+                if ($exercises instanceof Collection) {
+                    $exercises = $exercises->toArray();
+                }
             }
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_stress.html.twig', array(
             'category' => $category,
-            'exercises' => $exercises,
+            'exercises' => array_chunk($exercises, 2, true),
         ));
     }
 

@@ -12,22 +12,25 @@
         <div class="col-xs-5">
             {% if exercises is defined and exercises %}
                 <h2>Übungen</h2>
-                <div class="row">
-                    {% for exercise in exercises %}
-                        <div class="col-xs-5 panel">
-                            <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
-                                {% if exercise.image is defined %}
-                                    {% thumbnail exercise.image, 'thumbnail' %}
-                                    <span class="thumb-info-title">
+                {% for chunk in exercises %}
+                    <div class="row">
+                        {% for exercise in chunk %}
+                            <div class="col-xs-5 panel">
+                                <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
+                                    {% if exercise.image is defined %}
+                                        {% thumbnail exercise.image, 'thumbnail' %}
+                                        <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ exercise.name }}
                                     </span>
                                 </span>
-                                {% endif %}
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
             {% endif %}
         </div>
     </div>
