@@ -212,6 +212,7 @@ class CategoryController extends Controller
             }
         }
 
+        $exercises = array();
         if (($category = $repositoryCategory->findOneBySlug($slug))) {
             if (!($exercises = $category->getExercises())) {
                 // TODO: notify admin if no exercises exists
@@ -239,12 +240,16 @@ class CategoryController extends Controller
 
         $exercises = array();
         if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            $exercises = $category->getExercises();
+            if (($exercises = $category->getExercises())) {
+                if ($exercises instanceof Collection) {
+                    $exercises = $exercises->toArray();
+                }
+            }
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_augen.html.twig', array(
             'category' => $category,
-            'exercises' => $exercises,
+            'exercises' => array_chunk($exercises, 2, true),
         ));
     }
 
