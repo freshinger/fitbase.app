@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitbase\Bundle\QuestionnaireBundle\Controller;
+namespace Fitbase\Bundle\CompanyBundle\Controller;
 
 use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
@@ -12,7 +12,7 @@ use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class QuestionnaireStatisticController extends Controller
+class QuestionnaireController extends Controller
 {
     /**
      *

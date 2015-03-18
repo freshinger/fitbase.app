@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="questionnaire_company" pattern="/company/questionnaire">
+        <default key="_controller">FitbaseCompanyBundle:Questionnaire:questionnaireCompany</default>
+    </route>
+
+    <route id="questionnaire_statistic_preview" pattern="/statistic/preview/{unique}">
+        <default key="_controller">FitbaseCompanyBundle:Questionnaire:questionnairePreview</default>
+    </route>
+
+    <route id="questionnaire_statistic_slice" pattern="/statistic/slice/{unique}">
+        <default key="_controller">FitbaseCompanyBundle:Questionnaire:questionnaireSlice</default>
+    </route>
+
+    <route id="questionnaire_statistic_slice_remove" pattern="/statistic/remove/slice/{unique}">
+        <default key="_controller">FitbaseCompanyBundle:Questionnaire:questionnaireSliceRemove</default>
+    </route>
+
+    <route id="questionnaire_statistic" pattern="/statistic/{unique}">
+        <default key="_controller">FitbaseCompanyBundle:Questionnaire:questionnaire</default>
+    </route>
+
+</routes>

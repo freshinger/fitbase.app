@@ -46,13 +46,9 @@ class BuilderMenuCompany extends ContainerAware implements BuilderMenuInterface
             )
         ));
 
-
         $this->container->get('event_dispatcher')
             ->dispatch('company_menu_main', new UserMenuEvent($menu));
 
-//        $menu->addChild('Profil', array(
-//            'route' => 'sonata_user_profile_show',
-//        ));
 
         return $menu;
     }

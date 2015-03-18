@@ -8,24 +8,4 @@
         <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:index</default>
     </route>
 
-    <route id="questionnaire_company" pattern="/company/questionnaire">
-        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireCompany</default>
-    </route>
-
-    <route id="questionnaire_statistic_preview" pattern="/statistic/preview/{unique}">
-        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnairePreview</default>
-    </route>
-
-    <route id="questionnaire_statistic_slice" pattern="/statistic/slice/{unique}">
-        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireSlice</default>
-    </route>
-
-    <route id="questionnaire_statistic_slice_remove" pattern="/statistic/remove/slice/{unique}">
-        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaireSliceRemove</default>
-    </route>
-
-    <route id="questionnaire_statistic" pattern="/statistic/{unique}">
-        <default key="_controller">FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire</default>
-    </route>
-
 </routes>

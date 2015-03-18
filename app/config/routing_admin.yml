@@ -21,7 +21,6 @@ sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix:   /media
 
-
 fitbase_email:
     resource: "@FitbaseEmailBundle/Resources/config/routing_sonata.xml"
     prefix:   /email
