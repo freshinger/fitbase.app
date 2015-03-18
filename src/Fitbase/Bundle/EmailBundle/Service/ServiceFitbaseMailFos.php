@@ -13,6 +13,7 @@ namespace Fitbase\Bundle\EmailBundle\Service;
 
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Mailer\MailerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -33,9 +34,9 @@ class ServiceFitbaseMailFos extends FitbaseMailer implements MailerInterface
      * @param \Twig_Environment $twig
      * @param array $parameters
      */
-    public function __construct($kernel, \Swift_Mailer $mailer, UrlGeneratorInterface $router, \Twig_Environment $twig, array $parameters)
+    public function __construct($kernel, \Swift_Mailer $mailer, LoggerInterface $logger, UrlGeneratorInterface $router, \Twig_Environment $twig, array $parameters)
     {
-        parent::__construct($kernel, $mailer);
+        parent::__construct($kernel, $mailer, $logger);
 
         $this->router = $router;
         $this->twig = $twig;

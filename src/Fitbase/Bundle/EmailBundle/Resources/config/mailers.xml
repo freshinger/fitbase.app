@@ -10,12 +10,14 @@
         <service id="mail" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMail">
             <argument type="service" id="kernel"/>
             <argument type="service" id="mailer"/>
+            <argument type="service" id="logger"/>
         </service>
 
 
         <service id="mail.fos" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMailFos" public="false">
             <argument type="service" id="kernel"/>
             <argument type="service" id="mailer"/>
+            <argument type="service" id="logger"/>
             <argument type="service" id="router"/>
             <argument type="service" id="twig"/>
             <argument type="collection">

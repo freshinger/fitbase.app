@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\EmailBundle\Service;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 abstract class FitbaseMailer extends ContainerAware
@@ -19,15 +20,18 @@ abstract class FitbaseMailer extends ContainerAware
      */
     protected $mailer;
     protected $kernel;
+    protected $logger;
+
 
     /**
      * Class constructor
      * @param \Swift_Mailer $mailer
      */
-    public function __construct($kernel, \Swift_Mailer $mailer)
+    public function __construct($kernel, \Swift_Mailer $mailer, LoggerInterface $logger)
     {
         $this->mailer = $mailer;
         $this->kernel = $kernel;
+        $this->logger = $logger;
     }
 
     /**
@@ -66,7 +70,7 @@ abstract class FitbaseMailer extends ContainerAware
                         array_push($cids, $embed);
                     }
                 } catch (\Exception $ex) {
-                    $this->container->get('logger')->crit($ex->getMessage());
+                    $this->logger->crit($ex->getMessage());
                     continue;
                 }
             }
