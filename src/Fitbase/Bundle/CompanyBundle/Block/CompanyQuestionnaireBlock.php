@@ -8,7 +8,6 @@
 namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire;
 use Fitbase\Bundle\CompanyBundle\Form\CompanyQuestionnaireForm;
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany;
@@ -51,7 +50,7 @@ class CompanyQuestionnaireBlock extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($user = $this->serviceUser->current()) and ($company = $user->getCompany())) {
 

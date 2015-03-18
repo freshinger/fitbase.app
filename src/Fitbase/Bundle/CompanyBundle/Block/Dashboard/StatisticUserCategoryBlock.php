@@ -5,16 +5,14 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
+namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
 class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
@@ -28,7 +26,7 @@ class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
         $resolver->setDefaults(array(
             'slug' => null,
             'company' => null,
-            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_category.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_category.html.twig',
         ));
     }
 
@@ -36,7 +34,7 @@ class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $category = null;
         $questionCount = 0;

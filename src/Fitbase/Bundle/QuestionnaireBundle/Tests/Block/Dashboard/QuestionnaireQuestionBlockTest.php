@@ -54,7 +54,7 @@ class QuestionnaireQuestionBlockTest extends FitbaseTestAbstract
 
         $this->serviceUser = $this->getMock('ServiceUser', array('current'));
         $this->serviceUser->expects($this->any())->method('current')
-            ->will($this->returnValue((new User())->addRole('ROLE_COMPANY')));
+            ->will($this->returnValue((new User())->addRole('ROLE_FITBASE_COMPANY')));
     }
 
 
@@ -67,7 +67,7 @@ class QuestionnaireQuestionBlockTest extends FitbaseTestAbstract
             'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_question.html.twig',
         ));
 
-        $block = new QuestionnaireQuestionBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
+        $block = new QuestionnaireQuestionBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'),
             $this->securityContext, $this->serviceUser);
 
         $result = $block->execute($blockContext, new Response());
@@ -86,7 +86,7 @@ class QuestionnaireQuestionBlockTest extends FitbaseTestAbstract
             'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_question.html.twig',
         ));
 
-        $block = new QuestionnaireQuestionBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'),
+        $block = new QuestionnaireQuestionBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'),
             $this->securityContext, $this->serviceUser);
 
         $result = $block->execute($blockContext, new Response());

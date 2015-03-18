@@ -33,7 +33,7 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $statistics = array();
         if (($question = $blockContext->getSetting('question'))) {

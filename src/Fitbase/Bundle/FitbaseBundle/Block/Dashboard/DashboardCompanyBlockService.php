@@ -29,7 +29,7 @@ class DashboardCompanyBlockService extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $company = null;
         if (($user = $this->serviceUser->current())) {

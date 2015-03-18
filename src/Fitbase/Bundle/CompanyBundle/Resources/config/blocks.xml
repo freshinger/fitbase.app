@@ -2,6 +2,12 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="blocks/dashboard.xml"/>
+    </imports>
+
+
     <services>
 
         <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlock" public="true">
@@ -23,11 +29,12 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard.company.questionnaire" class="Fitbase\Bundle\CompanyBundle\Block\CompanyQuestionnaireBlock"  scope="request">
+        <service id="fitbase.block.dashboard.company.questionnaire"
+                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyQuestionnaireBlock" scope="request">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.company.questionnaire</argument>
             <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
+                <argument>ROLE_FITBASE_COMPANY</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>

@@ -34,7 +34,7 @@ class WeeklytaskDashboardBlockService extends SecureBlockServiceAbstract
      * @param Response $response
      * @return mixed
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($user = $this->serviceUser->current())) {
 

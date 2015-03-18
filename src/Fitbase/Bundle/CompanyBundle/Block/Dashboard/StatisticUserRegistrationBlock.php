@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\UserBundle\Block\Dashboard;
+namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
@@ -25,7 +25,7 @@ class StatisticUserRegistrationBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_registration.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
         ));
     }
 
@@ -33,7 +33,7 @@ class StatisticUserRegistrationBlock extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $statistics = null;
 

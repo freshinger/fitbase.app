@@ -47,12 +47,12 @@ class DashboardGamificationBlockService extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $repositoryGamificationUser = $this->objectManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
         if (!($gamification = $repositoryGamificationUser->findOneByUser($this->serviceUser->current()))) {
-            return $this->executeAvatarForm($blockContext, $response);
+            return $this->renderAvatarForm($blockContext, $response);
         }
 
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard.html.twig', array());
@@ -65,7 +65,7 @@ class DashboardGamificationBlockService extends SecureBlockServiceAbstract
      * @param Response $response
      * @return Response
      */
-    protected function executeAvatarForm(BlockContextInterface $blockContext, Response $response = null)
+    protected function renderAvatarForm(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($user = $this->serviceUser->current())) {
 

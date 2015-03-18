@@ -31,7 +31,7 @@ class StatisticAssessmentBlock extends SecureBlockServiceAbstract
      * Draw a block
      * {@inheritdoc}
      */
-    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
+    public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $statistic = array('done' => 0, 'pause' => 1);
 

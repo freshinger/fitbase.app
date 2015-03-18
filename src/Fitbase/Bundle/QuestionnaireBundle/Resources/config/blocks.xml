@@ -9,7 +9,7 @@
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic</argument>
             <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
+                <argument>ROLE_FITBASE_COMPANY</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
@@ -20,7 +20,7 @@
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
             <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
+                <argument>ROLE_FITBASE_COMPANY</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
@@ -31,7 +31,7 @@
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_question_last</argument>
             <argument type="collection">
-                <argument>ROLE_COMPANY</argument>
+                <argument>ROLE_FITBASE_COMPANY</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>

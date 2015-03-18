@@ -37,7 +37,8 @@ abstract class SecureBlockServiceAbstract extends BaseBlockService
     {
         foreach ($this->roles as $role) {
             if ($this->securityContext->isGranted($role)) {
-                return $this->executeSecure($blockContext, $response);
+
+                return $this->render($blockContext, $response);
             }
         }
 
@@ -49,5 +50,5 @@ abstract class SecureBlockServiceAbstract extends BaseBlockService
      * @param Response $response
      * @return mixed
      */
-    abstract function executeSecure(BlockContextInterface $blockContext, Response $response = null);
+    abstract function render(BlockContextInterface $blockContext, Response $response = null);
 }

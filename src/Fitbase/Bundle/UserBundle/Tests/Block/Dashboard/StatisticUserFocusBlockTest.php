@@ -24,7 +24,7 @@ class StatisticUserFocusBlockTest extends FitbaseTestAbstract
     public function test_blockShouldReturnStatus200()
     {
 
-        $block = new StatisticUserFocusBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserFocusBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $result = $block->execute(new BlockContext(new Block(), array(
             "company" => (new Company()),
@@ -42,7 +42,7 @@ class StatisticUserFocusBlockTest extends FitbaseTestAbstract
      */
     public function test_blockShouldHaveSVGImage()
     {
-        $block = new StatisticUserFocusBlock('name', array('ROLE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserFocusBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $category1 = (new Category());
         $category1->setName('stress');
