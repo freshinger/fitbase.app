@@ -90,6 +90,10 @@ fitbase:
     resource: "@FitbaseFitbaseBundle/Resources/config/routing.xml"
     prefix:   /
 
-fitbase_user_exercise_old:
+fitbase_exercise_old:
     resource: "@FitbaseExerciseBundle/Resources/config/routing/toremove.xml"
     prefix:   /uebungen
+
+fitbase_weeklytask_old:
+    resource: "@FitbaseWeeklytaskBundle/Resources/config/routing/toremove.xml"
+    prefix:   /infoeinheiten
