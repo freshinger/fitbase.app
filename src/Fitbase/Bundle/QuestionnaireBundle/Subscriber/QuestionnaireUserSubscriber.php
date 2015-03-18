@@ -17,12 +17,10 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class QuestionnaireUserSubscriber implements EventSubscriberInterface
 {
     protected $objectManager;
-    protected $securityContext;
 
-    public function __construct($objectManager, $securityContext)
+    public function __construct($objectManager)
     {
         $this->objectManager = $objectManager;
-        $this->securityContext = $securityContext;
     }
 
     /**
@@ -42,19 +40,9 @@ class QuestionnaireUserSubscriber implements EventSubscriberInterface
     public function onQuestionnaireUserCreateEvent(QuestionnaireUserEvent $event)
     {
         if (($questionnaireUser = $event->getEntity())) {
-            if (($user = $questionnaireUser->getUser())) {
 
-                $this->securityContext->setToken(
-                    new UsernamePasswordToken($user, null, 'main', $user->getRoles())
-                );
-
-                if ($this->securityContext->isGranted('ROLE_USER', $user)) {
-
-                    $this->objectManager->persist($questionnaireUser);
-                    $this->objectManager->flush($questionnaireUser);
-                }
-            }
-
+            $this->objectManager->persist($questionnaireUser);
+            $this->objectManager->flush($questionnaireUser);
         }
     }
 }

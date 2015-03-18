@@ -16,12 +16,14 @@ use Sonata\NotificationBundle\Consumer\ConsumerInterface;
 class CompanyQuestionnaireConsumer implements ConsumerInterface
 {
     protected $datetime;
+    protected $serviceUser;
     protected $objectManager;
     protected $eventDispatcher;
 
-    public function __construct($objectManager, $eventDispatcher, $datetime)
+    public function __construct($objectManager, $eventDispatcher, $datetime, $serviceUser)
     {
         $this->datetime = $datetime;
+        $this->serviceUser = $serviceUser;
         $this->objectManager = $objectManager;
         $this->eventDispatcher = $eventDispatcher;
     }
@@ -37,20 +39,22 @@ class CompanyQuestionnaireConsumer implements ConsumerInterface
         if (($message = $event->getMessage())) {
             if (($questionnaireCompany = $message->getValue('questionnaireCompany'))) {
                 if (($companyQuestionnaire = $questionnaireCompany->getQuestionnaire())) {
-                    if (($company = $questionnaireCompany->getCompany()) and ($users = $company->getUsers())) {
+                    if (($company = $questionnaireCompany->getCompany())) {
 
-                        foreach ($users as $user) {
+                        foreach ($company->getUsers() as $user) {
+                            if ($this->serviceUser->isGranted($user, 'ROLE_USER')) {
 
-                            $entity = new QuestionnaireUser();
-                            $entity->setUser($user);
-                            $entity->setDate($questionnaireCompany->getDate());
-                            $entity->setSlice($questionnaireCompany);
-                            $entity->setQuestionnaire($companyQuestionnaire);
-                            $entity->setPause(false);
-                            $entity->setDone(false);
+                                $entity = new QuestionnaireUser();
+                                $entity->setUser($user);
+                                $entity->setDate($questionnaireCompany->getDate());
+                                $entity->setSlice($questionnaireCompany);
+                                $entity->setQuestionnaire($companyQuestionnaire);
+                                $entity->setPause(false);
+                                $entity->setDone(false);
 
-                            $event = new QuestionnaireUserEvent($entity);
-                            $this->eventDispatcher->dispatch('fitbase.questionnaire_user_create', $event);
+                                $event = new QuestionnaireUserEvent($entity);
+                                $this->eventDispatcher->dispatch('fitbase.questionnaire_user_create', $event);
+                            }
                         }
                     }
                 }

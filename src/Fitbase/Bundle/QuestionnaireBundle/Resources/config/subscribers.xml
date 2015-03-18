@@ -42,7 +42,6 @@
         <service id="fitbase.subscriber.questionnaire.questionnaire_user"
                  class="Fitbase\Bundle\QuestionnaireBundle\Subscriber\QuestionnaireUserSubscriber">
             <argument type="service" id="entity_manager"/>
-            <argument type="service" id="security.context"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

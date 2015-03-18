@@ -29,12 +29,14 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
         $context->setScheme($this->getContainer()->getParameter('fitbase.project.scheme'));
         $context->setBaseUrl($this->getContainer()->getParameter('fitbase.project.url'));
 
+        $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('weeklytask')->toSend($datetime))) {
             foreach ($collection as $weeklytaskUser) {
-
-                $event = new WeeklytaskUserEvent($weeklytaskUser);
-                $this->get('event_dispatcher')->dispatch('weeklytask_reminder_send', $event);
+                if ($serviceUser->isGranted($weeklytaskUser->getUser(), 'ROLE_USER')) {
+                    $event = new WeeklytaskUserEvent($weeklytaskUser);
+                    $this->get('event_dispatcher')->dispatch('weeklytask_reminder_send', $event);
+                }
             }
         }
     }

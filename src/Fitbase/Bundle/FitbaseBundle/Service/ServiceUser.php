@@ -10,6 +10,7 @@ namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class ServiceUser extends ContainerAware
 {
@@ -25,6 +26,20 @@ class ServiceUser extends ContainerAware
             }
         }
         return null;
+    }
+
+    /**
+     * Check is user has a role
+     * @param $user
+     * @param $role
+     * @return bool
+     */
+    public function isGranted($user, $role = null)
+    {
+        $securityContext = $this->container->get('security.context');
+        $securityContext->setToken(new UsernamePasswordToken($user, null, 'main', $user->getRoles()));
+
+        return $securityContext->isGranted($role, $user);
     }
 
     /**

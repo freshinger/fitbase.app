@@ -29,12 +29,14 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
         $context->setScheme($this->getContainer()->getParameter('fitbase.project.scheme'));
         $context->setBaseUrl($this->getContainer()->getParameter('fitbase.project.url'));
 
+        $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('weeklyquiz')->toSend($datetime))) {
             foreach ($collection as $weeklyquizUser) {
-
-                $event = new WeeklyquizUserEvent($weeklyquizUser);
-                $this->get('event_dispatcher')->dispatch('weeklyquiz_reminder_send', $event);
+                if ($serviceUser->isGranted($weeklyquizUser->getUser(), 'ROLE_USER')) {
+                    $event = new WeeklyquizUserEvent($weeklyquizUser);
+                    $this->get('event_dispatcher')->dispatch('weeklyquiz_reminder_send', $event);
+                }
             }
         }
     }

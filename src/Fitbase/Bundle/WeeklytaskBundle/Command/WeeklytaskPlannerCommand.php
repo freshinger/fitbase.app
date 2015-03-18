@@ -29,18 +29,23 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
 
         $day = $datetime->format('N');
         if (($collection = $this->get('reminder')->getItemsWeeklytask($day))) {
             $backend = $this->get('sonata.notification.backend');
             foreach ($collection as $reminderUserItem) {
+
                 if (($user = $reminderUserItem->getUser())) {
-                    $output->writeln("Infoeinheit reminder for user: {$user->getId()} found");
-                    $backend->createAndPublish('weeklytask_planner', array(
-                        'user' => $user,
-                        'item' => $reminderUserItem,
-                    ));
+                    if ($serviceUser->isGranted($user, 'ROLE_USER')) {
+                        $output->writeln("Infoeinheit reminder for user: {$user->getId()} found");
+                        $backend->createAndPublish('weeklytask_planner', array(
+                            'user' => $user,
+                            'item' => $reminderUserItem,
+                        ));
+                    }
+
                 }
             }
         }

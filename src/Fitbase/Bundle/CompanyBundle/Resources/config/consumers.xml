@@ -9,6 +9,7 @@
             <argument type="service" id="entity_manager"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="datetime"/>
+            <argument type="service" id="user"/>
             <tag name="sonata.notification.consumer" type="fitbase.questionnaire_company"/>
         </service>
 

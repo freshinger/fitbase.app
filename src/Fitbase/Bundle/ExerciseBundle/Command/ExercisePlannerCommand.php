@@ -33,13 +33,13 @@ class ExercisePlannerCommand extends ContainerAwareCommand
         $datetime = $this->get('datetime')->getDateTime('now');
 
         $day = $datetime->format('N');
+        $serviceUser = $this->get('user');
         if (($collection = $this->get('reminder')->getItemsExercise($day))) {
             foreach ($collection as $reminderUserItem) {
-
-                $this->get('logger')->info('[exercise][planner] User: ' . $reminderUserItem->getUser()->getId());
-
-                $event = new ExerciseReminderEvent($reminderUserItem);
-                $this->get('event_dispatcher')->dispatch('exercise_reminder_create', $event);
+                if ($serviceUser->isGranted($reminderUserItem->getUser(), 'ROLE_USER')) {
+                    $event = new ExerciseReminderEvent($reminderUserItem);
+                    $this->get('event_dispatcher')->dispatch('exercise_reminder_create', $event);
+                }
             }
         }
     }
