@@ -57,6 +57,14 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
             }
 
             $user->setFocus($userFocus);
+
+
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryGroup = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\Group');
+            if (($group = $repositoryGroup->findOneByName('User'))) {
+                $user->addGroup($group);
+            }
+
             $entityManager->persist($user);
             $entityManager->flush($user);
         }
