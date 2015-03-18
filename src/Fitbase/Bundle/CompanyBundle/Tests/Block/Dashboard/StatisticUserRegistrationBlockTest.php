@@ -5,15 +5,14 @@
  * Date: 05/03/15
  * Time: 16:02
  */
-namespace Fitbase\Bundle\UserBundle\Tests\Block\Dashboard;
+namespace Fitbase\Bundle\CompanyBundle\Tests\Block\Dashboard;
 
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
+use Fitbase\Bundle\CompanyBundle\Block\Dashboard\StatisticUserRegistrationBlock;
 use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
-use Fitbase\Bundle\UserBundle\Block\Dashboard\StatisticUserActivityBlock;
-use Fitbase\Bundle\UserBundle\Block\Dashboard\StatisticUserRegistrationBlock;
 use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Model\Block;
 use Symfony\Component\DomCrawler\Crawler;
@@ -27,7 +26,7 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
 
         $result = $block->execute(new BlockContext(new Block(), array(
             "company" => (new Company()),
-            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_registration.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
         )), new Response());
 
         $this->assertTrue($result instanceof Response);
@@ -55,9 +54,9 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
                 ->addCategory(
                     (new CompanyCategory())
                         ->setCategory($category2)
-                ),            'template' => 'FitbaseUserBundle:Block:dashboard/statistic/user_registration.html.twig',
+                ),
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
         )), new Response());
-
 
 
         $crawler = new Crawler(null, null);
