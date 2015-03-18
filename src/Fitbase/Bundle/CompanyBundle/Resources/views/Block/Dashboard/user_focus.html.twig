@@ -6,8 +6,8 @@
         </h4>
 
         <div class="row">
-            <div class="col-xs-9 col-height-300">
-                <svg id="statistic_user_focus">
+            <div id="statistic_user_focus" class="col-xs-9 col-height-300">
+                <svg>
                     <defs>
                         <filter id='pieChartInsetShadow'>
                             <feOffset dx='0' dy='0'/>
@@ -54,7 +54,8 @@
         var statisticUserFocusPie = $('#statistic_user_focus');
         if (statisticUserFocusPie.length) {
             statisticUserFocusPie.pie(data, {
-                height: 220,
+                width: 400,
+                height: 200,
                 radius_inner: 26
             });
         }

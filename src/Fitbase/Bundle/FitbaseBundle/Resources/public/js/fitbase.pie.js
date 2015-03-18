@@ -12,21 +12,17 @@
 
         init: function (container, data, options) {
 
-
-            var parent = container.closest('div');
-
             var config = $.extend({
-                width: parent.get(0).clientWidth,
-                height: parent.get(0).clientWidth * 0.65
+                width: container.get(0).clientWidth,
+                height: container.get(0).clientWidth * 0.65
             }, options);
-
 
             $.extend(config, {
                 radius: Math.min(config.width, config.height) / 3.2
             });
-            console.info(config);
 
             var svg = d3.select(container.selector)
+                .select('svg')
                 .attr('width', config.width)
                 .attr('height', config.height);
 
