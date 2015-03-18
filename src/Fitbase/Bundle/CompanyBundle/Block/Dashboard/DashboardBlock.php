@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\FitbaseBundle\Block\Dashboard;
+namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class DashboardCompanyBlockService extends SecureBlockServiceAbstract
+class DashboardBlock extends SecureBlockServiceAbstract
 {
     protected $serviceUser;
 
@@ -36,7 +36,7 @@ class DashboardCompanyBlockService extends SecureBlockServiceAbstract
             $company = $user->getCompany();
         }
 
-        return $this->renderPrivateResponse('FitbaseFitbaseBundle:Block:dashboard/company.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Dashboard/dashboard.html.twig', array(
             'company' => $company,
         ));
     }

@@ -5,6 +5,18 @@
 
     <services>
 
+        <service id="fitbase.block.dashboard_company" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\DashboardBlock" scope="request" >
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_company</argument>
+            <argument type="collection">
+                <argument>ROLE_FITBASE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+        </service>
+
+
         <service id="fitbase.block.dashboard.statistic_user_activity" scope="request" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\StatisticUserActivityBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.statistic_user_activity</argument>
