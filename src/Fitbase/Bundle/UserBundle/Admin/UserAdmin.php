@@ -170,14 +170,14 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
                         'multiple' => true
                     ))
                     ->end()
-                    ->with('Management', array('class' => 'col-md-6'))
-                    ->add('realRoles', 'sonata_security_roles', array(
-                        'label' => 'form.label_roles',
-                        'expanded' => true,
-                        'multiple' => true,
-                        'required' => false
-                    ))
-                    ->end()
+//                    ->with('Management', array('class' => 'col-md-6'))
+//                    ->add('realRoles', 'sonata_security_roles', array(
+//                        'label' => 'form.label_roles',
+//                        'expanded' => true,
+//                        'multiple' => true,
+//                        'required' => false
+//                    ))
+//                    ->end()
                     ->end()
                     ->tab('Sicherheit')
                     ->with('Security', array('class' => 'col-md-6'))
