@@ -42,7 +42,7 @@ class CompanyQuestionnaireConsumer implements ConsumerInterface
                     if (($company = $questionnaireCompany->getCompany())) {
 
                         foreach ($company->getUsers() as $user) {
-                            if ($this->serviceUser->isGranted($user, 'ROLE_USER')) {
+                            if ($this->serviceUser->isGranted($user, 'ROLE_FITBASE_USER')) {
 
                                 $entity = new QuestionnaireUser();
                                 $entity->setUser($user);

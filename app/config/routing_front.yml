@@ -82,31 +82,10 @@ fos_comment:
     prefix: /comments
     defaults: { _format: html }
 
-
 _besimple_soap:
     resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
     prefix:   /api/wsdl
 
-fitbase_company:
-    resource: "@FitbaseCompanyBundle/Resources/config/routing/company.xml"
-    prefix:   /company
-
-fitbase_user:
-    resource: "@FitbaseUserBundle/Resources/config/routing.xml"
-    prefix:   /user
-
-fitbase_exercise:
-    resource: "@FitbaseExerciseBundle/Resources/config/routing.xml"
-    prefix:   /user/uebungen
-
-fitbase_weeklytask:
-    resource: "@FitbaseWeeklytaskBundle/Resources/config/routing.xml"
-    prefix:   /user/infoeinheiten
-
-fitbase_questionnaire:
-    resource: "@FitbaseQuestionnaireBundle/Resources/config/routing.xml"
-    prefix:   /user/questionnaire
-
-fitbase_gamification:
-    resource: "@FitbaseGamificationBundle/Resources/config/routing.xml"
-    prefix:   /user/gamification
+fitbase:
+    resource: "@FitbaseFitbaseBundle/Resources/config/routing.xml"
+    prefix:   /

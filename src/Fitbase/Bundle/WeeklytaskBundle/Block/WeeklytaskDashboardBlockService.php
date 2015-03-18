@@ -8,41 +8,33 @@
 namespace Fitbase\Bundle\WeeklytaskBundle\Block;
 
 
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
+use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
-class WeeklytaskDashboardBlockService extends BaseBlockService
+class WeeklytaskDashboardBlockService extends SecureBlockServiceAbstract
 {
+
     protected $serviceUser;
     protected $serviceEntityManager;
 
-    /**
-     * Constructor
-     * @param string $name
-     * @param EngineInterface $templating
-     * @param ContainerAwareInterface $user
-     */
-    public function __construct($name, EngineInterface $templating, ContainerAwareInterface $serviceUser, $serviceEntityManager)
+    public function __construct($name, array $roles = array(), EngineInterface $templating, SecurityContextInterface $securityContext, $serviceUser, $serviceEntityManager)
     {
-        parent::__construct($name, $templating);
+        parent::__construct($name, $roles, $templating, $securityContext);
 
         $this->serviceUser = $serviceUser;
         $this->serviceEntityManager = $serviceEntityManager;
     }
 
     /**
-     * {@inheritdoc}
+     * @param BlockContextInterface $blockContext
+     * @param Response $response
+     * @return mixed
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function executeSecure(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($user = $this->serviceUser->current())) {
 
@@ -77,4 +69,5 @@ class WeeklytaskDashboardBlockService extends BaseBlockService
     {
         return 'Dashboard (Wochenaufgaben)';
     }
-} 
+
+}

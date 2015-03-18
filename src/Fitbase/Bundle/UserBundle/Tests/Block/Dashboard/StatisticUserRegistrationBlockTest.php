@@ -23,7 +23,7 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
 {
     public function test_blockShouldReturnStatus200()
     {
-        $block = new StatisticUserRegistrationBlock('name', array('ROLE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserRegistrationBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $result = $block->execute(new BlockContext(new Block(), array(
             "company" => (new Company()),
@@ -36,7 +36,7 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
 
     public function test_blockShouldHaveSVGImage()
     {
-        $block = new StatisticUserRegistrationBlock('name', array('ROLE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserRegistrationBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $category1 = (new Category());
         $category1->setName('stress');

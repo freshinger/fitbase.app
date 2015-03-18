@@ -38,13 +38,13 @@ class Builder extends ContainerAware implements BuilderMenuInterface
         $securityContext = $this->container->get('security.context');
 
         $builder = null;
-        if ($securityContext->isGranted('ROLE_COMPANY')) {
+        if ($securityContext->isGranted('ROLE_FITBASE_COMPANY')) {
             $builder = new BuilderMenuCompany();
             $builder->setContainer($this->container);
             return $builder->mainMenu($factory, $options);
 
         }
-        if ($securityContext->isGranted('ROLE_USER')) {
+        if ($securityContext->isGranted('ROLE_FITBASE_USER')) {
             $builder = new BuilderMenuUser();
             $builder->setContainer($this->container);
             return $builder->mainMenu($factory, $options);

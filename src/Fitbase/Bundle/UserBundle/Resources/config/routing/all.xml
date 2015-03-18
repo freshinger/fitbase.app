@@ -4,8 +4,11 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <import resource="routing/all.xml" prefix="/"/>
-    <import resource="routing/user.xml" prefix="/user"/>
-    <import resource="routing/company.xml" prefix="/company"/>
+
+    <route id="actioncode" pattern="/code/{company}">
+        <default key="_controller">FitbaseUserBundle:Registration:code</default>
+        <default key="company"></default>
+    </route>
+
 
 </routes>

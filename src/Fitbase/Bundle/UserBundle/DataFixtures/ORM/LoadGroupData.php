@@ -34,17 +34,17 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $entity = new Group("Administrator");
-        $entity->addRole("ROLE_SUPER_ADMIN");
+        $entity->addRole("ROLE_FITBASE_ADMIN");
         $manager->persist($entity);
         $manager->flush($entity);
 
         $entity = new Group("User");
-        $entity->addRole("ROLE_USER");
+        $entity->addRole("ROLE_FITBASE_USER");
         $manager->persist($entity);
         $manager->flush($entity);
 
         $entity = new Group("Company");
-        $entity->addRole("ROLE_COMPANY");
+        $entity->addRole("ROLE_FITBASE_COMPANY");
         $manager->persist($entity);
         $manager->flush($entity);
     }

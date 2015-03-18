@@ -19,7 +19,7 @@ class StatisticUserActivityBlockTest extends FitbaseTestAbstract
 {
     public function test_blockShouldReturnStatus200()
     {
-        $block = new StatisticUserActivityBlock('name', array('ROLE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserActivityBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $result = $block->execute(new BlockContext(new Block(), array(
             "company" => (new Company()),

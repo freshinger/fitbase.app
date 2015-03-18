@@ -33,7 +33,7 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('weeklytask')->toSend($datetime))) {
             foreach ($collection as $weeklytaskUser) {
-                if ($serviceUser->isGranted($weeklytaskUser->getUser(), 'ROLE_USER')) {
+                if ($serviceUser->isGranted($weeklytaskUser->getUser(), 'ROLE_FITBASE_USER')) {
                     $event = new WeeklytaskUserEvent($weeklytaskUser);
                     $this->get('event_dispatcher')->dispatch('weeklytask_reminder_send', $event);
                 }

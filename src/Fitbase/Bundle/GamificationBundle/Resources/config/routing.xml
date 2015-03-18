@@ -4,28 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="gamification_health_chat" path="/health/chat">
-        <default key="_controller">FitbaseGamificationBundle:Gamification:healthChat</default>
-    </route>
-
-    <route id="gamification_health_emotion" path="/health/emotion">
-        <default key="_controller">FitbaseGamificationBundle:Gamification:healthEmotion</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_tree" path="/health/tree">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:tree</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_forest" path="/health/forest">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:forest</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_avatar" path="/health/avatar">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:avatar</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_statistic" path="/health/statistic">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:statistic</default>
-    </route>
+    <import resource="routing/all.xml" prefix="/"/>
+    <import resource="routing/user.xml" prefix="/user"/>
+    <import resource="routing/company.xml" prefix="/company"/>
 
 </routes>

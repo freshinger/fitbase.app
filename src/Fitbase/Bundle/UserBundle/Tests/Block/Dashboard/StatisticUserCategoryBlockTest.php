@@ -23,7 +23,7 @@ class StatisticUserCategoryBlockTest extends FitbaseTestAbstract
 {
     public function test_blockShouldReturnStatus200()
     {
-        $block = new StatisticUserCategoryBlock('name', array('ROLE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserCategoryBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $result = $block->execute(new BlockContext(new Block(), array(
             'slug' => 'stress',
@@ -43,7 +43,7 @@ class StatisticUserCategoryBlockTest extends FitbaseTestAbstract
      */
     public function test_blockShouldHaveSVGImage()
     {
-        $block = new StatisticUserCategoryBlock('name', array('ROLE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new StatisticUserCategoryBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $category1 = (new Category());
         $category1->setSlug('stress');

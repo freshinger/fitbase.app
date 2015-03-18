@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+
+    <route id="focus" path="/focus">
+        <default key="_controller">FitbaseExerciseBundle:Focus:focus</default>
+    </route>
+
+    <route id="category" path="/category/{slug}">
+        <default key="_controller">FitbaseExerciseBundle:Category:category</default>
+        <default key="slug"></default>
+    </route>
+
+    <route id="task" path="/task/{slug}/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Task:task</default>
+    </route>
+
+    <route id="exercise" path="/exercise/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:exercise</default>
+    </route>
+
+    <route id="done" path="/ajax/exercise/done/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Exercise:done</default>
+        <default key="unique"></default>
+    </route>
+
+
+    <route id="user_task" path="/user/task/{unique}/{step}">
+        <default key="_controller">FitbaseExerciseBundle:Task:userTask</default>
+    </route>
+
+</routes>

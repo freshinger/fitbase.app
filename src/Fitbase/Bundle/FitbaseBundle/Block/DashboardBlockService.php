@@ -37,7 +37,7 @@ class DashboardBlockService extends BaseBlockService
     {
         $content = null;
         // List all records in config like
-        // ROLE_USER => BlockService
+        // ROLE_FITBASE_USER => BlockService
         foreach ($this->config as $role => $block) {
             // check access rights for current user to
             // this block and

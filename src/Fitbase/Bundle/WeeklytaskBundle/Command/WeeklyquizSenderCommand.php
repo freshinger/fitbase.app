@@ -33,7 +33,7 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('weeklyquiz')->toSend($datetime))) {
             foreach ($collection as $weeklyquizUser) {
-                if ($serviceUser->isGranted($weeklyquizUser->getUser(), 'ROLE_USER')) {
+                if ($serviceUser->isGranted($weeklyquizUser->getUser(), 'ROLE_FITBASE_USER')) {
                     $event = new WeeklyquizUserEvent($weeklyquizUser);
                     $this->get('event_dispatcher')->dispatch('weeklyquiz_reminder_send', $event);
                 }

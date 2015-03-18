@@ -22,7 +22,7 @@
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard_user</argument>
             <argument type="collection">
-                <argument>ROLE_USER</argument>
+                <argument>ROLE_FITBASE_USER</argument>
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>

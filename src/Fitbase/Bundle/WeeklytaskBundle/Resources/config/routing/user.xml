@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <route id="weeklyquiz_user_view" pattern="/quiz/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userQuizView</default>
+    </route>
+
+    <route id="weeklytask_user_view" pattern="/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userView</default>
+    </route>
+
+</routes>

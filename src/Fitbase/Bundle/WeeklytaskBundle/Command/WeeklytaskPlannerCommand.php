@@ -38,7 +38,7 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
             foreach ($collection as $reminderUserItem) {
 
                 if (($user = $reminderUserItem->getUser())) {
-                    if ($serviceUser->isGranted($user, 'ROLE_USER')) {
+                    if ($serviceUser->isGranted($user, 'ROLE_FITBASE_USER')) {
                         $output->writeln("Infoeinheit reminder for user: {$user->getId()} found");
                         $backend->createAndPublish('weeklytask_planner', array(
                             'user' => $user,

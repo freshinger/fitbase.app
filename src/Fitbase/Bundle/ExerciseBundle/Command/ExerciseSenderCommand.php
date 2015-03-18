@@ -40,7 +40,7 @@ class ExerciseSenderCommand extends ContainerAwareCommand
         $datetime = $this->get('datetime')->getDateTime('now');
         if (($collection = $this->get('exercise')->send($datetime))) {
             foreach ($collection as $exerciseUser) {
-                if ($serviceUser->isGranted($exerciseUser->getUser(), 'ROLE_USER')) {
+                if ($serviceUser->isGranted($exerciseUser->getUser(), 'ROLE_FITBASE_USER')) {
                     $event = new ExerciseUserEvent($exerciseUser);
                     $this->get('event_dispatcher')->dispatch('exercise_reminder_send', $event);
                 }
