@@ -27,7 +27,6 @@ class FitbaseMailerTest extends FitbaseTestAbstract
         );
 
 
-
         $this->assertTrue(true);
     }
 
