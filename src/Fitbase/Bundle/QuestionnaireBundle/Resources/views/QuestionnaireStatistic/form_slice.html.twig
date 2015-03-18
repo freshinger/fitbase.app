@@ -24,12 +24,12 @@
 {% block questionnaire_slider_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -42,12 +42,12 @@
 {% block questionnaire_checkbox_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -60,12 +60,12 @@
 {% block questionnaire_radiobutton_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
@@ -78,12 +78,12 @@
 {% block questionnaire_selectbox_widget %}
     {% spaceless %}
         <tr>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
             </td>
-            <td class="col-xs-6 col-height-300">
+            <td class="col-xs-6">
                 {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.questionnaire_statistic_question' }, {
                     'question': question,
                     'questionnaireUser': questionnaireUser
