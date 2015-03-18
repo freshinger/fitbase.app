@@ -90,6 +90,6 @@ fitbase:
     resource: "@FitbaseFitbaseBundle/Resources/config/routing.xml"
     prefix:   /
 
-fitbase_user_exercise_old:
-    resource: "@FitbaseFitbaseBundle/Resources/config/routing/to-remove.xml"
-    prefix:   /uebungen
+#fitbase_user_exercise_old:
+#    resource: "@FitbaseFitbaseBundle/Resources/config/routing/to-remove.xml"
+#    prefix:   /uebungen
