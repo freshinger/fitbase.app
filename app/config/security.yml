@@ -63,6 +63,8 @@ security:
         # This firewall is used to handle the public login area
         # This part is handled by the FOS User Bundle
         main:
+            simple_preauth:
+                authenticator: authenticator_singlesignon
             entry_point: fitbase.entry_point.login
             pattern:      .*
             context:        user

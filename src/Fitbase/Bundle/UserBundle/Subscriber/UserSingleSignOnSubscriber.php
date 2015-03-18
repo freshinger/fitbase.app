@@ -30,47 +30,9 @@ class UserSingleSignOnSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.request' => array('onKernelRequestEvent', 0),
             'user_singlesignon_create' => array('onUserSingleSignOnCreateEvent', -128),
         );
     }
-
-    /**
-     * Check for sign in request and autosignon when found
-     * @param GetResponseEvent $event
-     */
-    public function onKernelRequestEvent(GetResponseEvent $event)
-    {
-        if (strlen(($sign = $event->getRequest()->get('sign')))) {
-
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserSingleSignOn');
-            if (($singlesignon = $repositoryExerciseUser->findOneByCodeAndNotProcessed($sign))) {
-                if (($user = $singlesignon->getUser())) {
-
-                    $datetime = $this->container->get('datetime');
-                    $singlesignon->setProcessedDate($datetime->getDateTime('now'));
-
-                    if (($date = $singlesignon->getDate())) {
-                        $date->modify('+1 week');
-                        if ($datetime->getDateTime('now') >= $date) {
-                            $singlesignon->setProcessed(true);
-                        }
-                    }
-
-                    $this->container->get('entity_manager')->persist($singlesignon);
-                    $this->container->get('entity_manager')->flush($singlesignon);
-
-                    if (!$singlesignon->getProcessed()) {
-
-                        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-                        $this->container->get('security.context')->setToken($token);
-                    }
-                }
-            }
-        }
-    }
-
 
     /**
      * Process created user

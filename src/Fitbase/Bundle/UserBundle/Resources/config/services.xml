@@ -20,6 +20,12 @@
 
     <services>
 
+        <service id="authenticator_singlesignon" class="Fitbase\Bundle\UserBundle\Security\AuthenticatorSinglesignon">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
         <service id="model_manager" class="Sonata\DoctrineORMAdminBundle\Model\ModelManager">
             <argument type="service" id="doctrine"/>

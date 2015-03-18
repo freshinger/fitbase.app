@@ -40,7 +40,7 @@ class QuestionnaireCompanyPreviewBreadcrumb extends QuestionnaireCompanyBreadcru
         $menu = parent::getMenu($blockContext);
 
 
-        $menu->addChild('Vorshau', array(
+        $menu->addChild('Vorschau', array(
             'route' => 'questionnaire_statistic_preview',
             'routeParameters' => array(
                 'unique' => $this->container->get('request')->get('unique')
