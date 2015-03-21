@@ -39,6 +39,26 @@ class UserHelper extends \Twig_Extension implements ContainerAwareInterface
     }
 
     /**
+     * Get Single sign on link
+     * @param $user
+     * @param $link
+     * @return string
+     */
+    public function getSign($user, $link)
+    {
+        if (($code = $this->container->get('singlesignon')->code($user))) {
+            if (($query = parse_url($link))) {
+                if (isset($query['query'])) {
+                    return "$link&sign=$code";
+                }
+                return "$link?sign=$code";
+            }
+        }
+        return $link;
+    }
+
+
+    /**
      * Generate login code
      * @param $user
      * @return string
