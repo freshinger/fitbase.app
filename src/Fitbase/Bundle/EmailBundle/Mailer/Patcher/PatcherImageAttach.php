@@ -77,7 +77,7 @@ class PatcherImageAttach implements SwiftMessagePatcherInterface
             if (!array_key_exists('host', $parts)) {
                 $parts['host'] = $this->host;
             }
-            return http_build_url($parts);
+            return http_build_url(null, $parts);
         }
 
         return null;
