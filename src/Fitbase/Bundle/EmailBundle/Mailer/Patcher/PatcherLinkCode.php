@@ -72,7 +72,7 @@ class PatcherLinkCode implements SwiftMessagePatcherInterface
 
             if ($parts['host'] == $this->host) {
                 return $this->helper->getSign(
-                    $user, http_build_url($parts));
+                    $user, http_build_url(null, $parts));
             }
         }
 
