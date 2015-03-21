@@ -20,11 +20,11 @@ class FitbaseMailerTest extends FitbaseTestAbstract
      */
     public function testMethod_onUserCreateEvent_ShouldSendEmail()
     {
-        $mailer = new ServiceFitbaseMail(
-            $this->container()->get('kernel'),
-            $this->container()->get('mailer'),
-            $this->container()->get('logger')
-        );
+//        $mailer = new ServiceFitbaseMail(
+//            $this->container()->get('kernel'),
+//            $this->container()->get('mailer'),
+//            $this->container()->get('logger')
+//        );
 
 
         $this->assertTrue(true);
