@@ -9,6 +9,7 @@
         <import resource="blocks.xml" />
         <import resource="subscribers.xml" />
         <import resource="mailers.xml" />
+        <import resource="helpers.xml" />
     </imports>
     
     <!--

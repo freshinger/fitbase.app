@@ -72,7 +72,7 @@ class ExerciseUserSubscriber implements EventSubscriberInterface
                 'exerciseUser' => $exerciseUser,
             ));
 
-            $this->mailer->mail($user->getEmail(), $title, $content);
+            $this->mailer->mail($user, $title, $content);
         }
 
         $exerciseUser->setProcessed(1);

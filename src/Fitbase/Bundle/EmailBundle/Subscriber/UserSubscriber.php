@@ -44,7 +44,7 @@ class UserSubscriber implements EventSubscriberInterface
                 'user' => $user,
             ));
 
-            $this->mailer->mail($user->getEmail(), $title, $content);
+            $this->mailer->mail($user, $title, $content);
         }
     }
 }

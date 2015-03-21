@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\EmailBundle\Service;
+namespace Fitbase\Bundle\EmailBundle\Mailer;
 
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Mailer\MailerInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * @author Christophe Coevoet <stof@notk.org>
  */
-class ServiceFitbaseMail extends FitbaseMailer
+class FitbaseMailerBase extends FitbaseMailerAbstract
 {
 
 }

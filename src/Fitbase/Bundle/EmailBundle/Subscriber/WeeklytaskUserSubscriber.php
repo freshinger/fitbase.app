@@ -55,7 +55,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
 
                 ));
 
-                $this->mailer->mail($user->getEmail(), $title, $content);
+                $this->mailer->mail($user, $title, $content);
             }
 
             $weeklytaskUser->setProcessed(1);

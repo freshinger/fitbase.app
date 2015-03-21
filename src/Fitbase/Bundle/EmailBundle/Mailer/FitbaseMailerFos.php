@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\EmailBundle\Service;
+namespace Fitbase\Bundle\EmailBundle\Mailer;
 
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Mailer\MailerInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * @author Christophe Coevoet <stof@notk.org>
  */
-class ServiceFitbaseMailFos extends FitbaseMailer implements MailerInterface
+class FitbaseMailerFos extends FitbaseMailerAbstract implements MailerInterface
 {
     protected $router;
     protected $twig;
@@ -43,6 +43,10 @@ class ServiceFitbaseMailFos extends FitbaseMailer implements MailerInterface
         $this->parameters = $parameters;
     }
 
+    /**
+     * Send confirmation message to user
+     * @param UserInterface $user
+     */
     public function sendConfirmationEmailMessage(UserInterface $user)
     {
         $template = $this->parameters['template']['confirmation'];
@@ -52,9 +56,13 @@ class ServiceFitbaseMailFos extends FitbaseMailer implements MailerInterface
             'confirmationUrl' => $url
         );
 
-        $this->sendMessage($template, $context, $this->parameters['from_email']['confirmation'], $user->getEmail());
+        $this->sendMessage($user, $template, $context, $this->parameters['from_email']['confirmation']);
     }
 
+    /**
+     * Send user reset password email
+     * @param UserInterface $user
+     */
     public function sendResettingEmailMessage(UserInterface $user)
     {
         $template = $this->parameters['template']['resetting'];
@@ -63,21 +71,21 @@ class ServiceFitbaseMailFos extends FitbaseMailer implements MailerInterface
             'user' => $user,
             'confirmationUrl' => $url
         );
-        $this->sendMessage($template, $context, $this->parameters['from_email']['resetting'], $user->getEmail());
+        $this->sendMessage($user, $template, $context, $this->parameters['from_email']['resetting']);
     }
 
     /**
-     * @param string $templateName
-     * @param array $context
-     * @param string $fromEmail
-     * @param string $toEmail
+     * @param UserInterface $user
+     * @param $templateName
+     * @param $context
+     * @param $from
      */
-    protected function sendMessage($templateName, $context, $fromEmail, $toEmail)
+    protected function sendMessage(UserInterface $user, $templateName, $context, $from)
     {
         $template = $this->twig->loadTemplate($templateName);
         $subject = $template->renderBlock('subject', $context);
         $htmlBody = $template->renderBlock('body_html', $context);
 
-        return $this->mail($toEmail, $subject, $htmlBody, $fromEmail);
+        return $this->mail($user, $subject, $htmlBody, $from);
     }
 }

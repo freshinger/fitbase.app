@@ -55,7 +55,7 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
                     'userQuiz' => $weeklyquizUser,
                 ));
 
-                $this->mailer->mail($user->getEmail(), $title, $content);
+                $this->mailer->mail($user, $title, $content);
             }
 
             $weeklyquizUser->setProcessed(1);

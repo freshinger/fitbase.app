@@ -7,14 +7,31 @@
 
     <services>
 
-        <service id="mail" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMail">
-            <argument type="service" id="kernel"/>
-            <argument type="service" id="mailer"/>
+        <service id="mailer.patcher.link_code" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherLinkCode">
+            <argument>%fitbase.project.scheme%</argument>
+            <argument>%fitbase.project.host%</argument>
+            <argument type="service" id="fitbase_helper.email.signon"/>
+        </service>
+
+        <service id="mailer.patcher.image_attach" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherImageAttach">
+            <argument>%fitbase.project.scheme%</argument>
+            <argument>%fitbase.project.host%</argument>
             <argument type="service" id="logger"/>
         </service>
 
+        <service id="mail" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerBase">
+            <argument type="service" id="kernel"/>
+            <argument type="service" id="mailer"/>
+            <argument type="service" id="logger"/>
+            <call method="addPatcher">
+                <argument type="service" id="mailer.patcher.link_code"/>
+            </call>
+            <call method="addPatcher">
+                <argument type="service" id="mailer.patcher.image_attach"/>
+            </call>
+        </service>
 
-        <service id="mail.fos" class="Fitbase\Bundle\EmailBundle\Service\ServiceFitbaseMailFos" public="false">
+        <service id="mail.fos" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerFos" public="false">
             <argument type="service" id="kernel"/>
             <argument type="service" id="mailer"/>
             <argument type="service" id="logger"/>
@@ -30,7 +47,14 @@
                     <argument key="resetting">%fos_user.resetting.email.from_email%</argument>
                 </argument>
             </argument>
+            <call method="addPatcher">
+                <argument type="service" id="mailer.patcher.link_code"/>
+            </call>
+            <call method="addPatcher">
+                <argument type="service" id="mailer.patcher.image_attach"/>
+            </call>
         </service>
+
     </services>
 
 </container>
