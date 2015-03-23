@@ -37,10 +37,15 @@ class TaskController extends Controller
                     $exerciseUser->setExercise0($exerciseManager->findOneByCategoriesAndType($categories, $types));
 
                     $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 1);
-                    $exerciseUser->setExercise1($exerciseManager->findOneByCategoriesAndType($categories, $types));
+                    $exerciseUser->setExercise1($exerciseManager->findOneByCategoriesAndType($categories, $types, array(
+                        $exerciseUser->getExercise0()
+                    )));
 
                     $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 2);
-                    $exerciseUser->setExercise2($exerciseManager->findOneByCategoriesAndType($categories, $types));
+                    $exerciseUser->setExercise2($exerciseManager->findOneByCategoriesAndType($categories, $types, array(
+                        $exerciseUser->getExercise0(),
+                        $exerciseUser->getExercise1()
+                    )));
 
                     $event = new ExerciseUserEvent($exerciseUser);
                     $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
@@ -86,10 +91,15 @@ class TaskController extends Controller
 
                             $exerciseManager = $this->get('fitbase.orm.exercise_manager');
                             $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 1);
-                            $exerciseUser->setExercise1($exerciseManager->findOneByCategoriesAndType(array($category), $types));
+                            $exerciseUser->setExercise1($exerciseManager->findOneByCategoriesAndType(array($category), $types, array(
+                                $exerciseUser->getExercise0()
+                            )));
 
                             $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 2);
-                            $exerciseUser->setExercise2($exerciseManager->findOneByCategoriesAndType(array($category), $types));
+                            $exerciseUser->setExercise2($exerciseManager->findOneByCategoriesAndType(array($category), $types, array(
+                                $exerciseUser->getExercise0(),
+                                $exerciseUser->getExercise1()
+                            )));
 
                             $event = new ExerciseUserEvent($exerciseUser);
                             $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);

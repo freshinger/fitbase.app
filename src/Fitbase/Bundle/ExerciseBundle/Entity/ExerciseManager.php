@@ -47,11 +47,11 @@ class ExerciseManager implements ExerciseManagerInterface
      * @param $types
      * @return mixed|null
      */
-    public function findOneByCategoriesAndType($categories, $types)
+    public function findOneByCategoriesAndType($categories, $types, $exercises = array())
     {
-        if (shuffle($categories)) {
+        if (count($categories) and shuffle($categories)) {
             foreach ($categories as $category) {
-                if (($exercises = $category->getExercises($types))) {
+                if (($exercises = $category->getExercises($types, $exercises))) {
 
                     if ($exercises instanceof Collection) {
                         $exercises = $exercises->toArray();

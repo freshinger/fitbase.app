@@ -81,14 +81,14 @@ class Category extends BaseCategory
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExercises($types = array())
+    public function getExercises($types = array(), $blacklist = array())
     {
         if (is_array($types) and count($types)) {
             // List all types to get needed
             // exercises types with array order
             foreach ($types as $type) {
 
-                $collection = $this->exercises->filter(function ($entity) use ($type) {
+                $collection = $this->exercises->filter(function ($entity) use ($type, $blacklist) {
                     // Skip all exercises
                     // without types
                     if ($entity->getType() == null) {
@@ -99,6 +99,15 @@ class Category extends BaseCategory
                     // required tipe with respect
                     // to type order in given array
                     if ($entity->getType() == $type) {
+                        // check ist entity exists in
+                        // a blacklist, that skip
+                        if (count($blacklist)) {
+                            foreach ($blacklist as $skipped) {
+                                if ($skipped->getId() == $entity->getId()) {
+                                    return false;
+                                }
+                            }
+                        }
                         return true;
                     }
 
