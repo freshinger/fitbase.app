@@ -277,6 +277,12 @@ class UserFocus
         return null;
     }
 
+    /**
+     * Find UserFocusCategory by slug
+     *
+     * @param null $slug
+     * @return mixed|null
+     */
     public function getCategoryBySlug($slug = null)
     {
         if (($categories = $this->getCategories())) {
