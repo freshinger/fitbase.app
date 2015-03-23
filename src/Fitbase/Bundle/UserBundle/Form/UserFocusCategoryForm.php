@@ -50,7 +50,7 @@ class UserFocusCategoryForm extends AbstractType
                 'choices' => array(
                     1 => 'Vor allem Mobilisationsübungen einspielen',
                     0 => 'Mobilisations-, Kräftigungs- und Dehnungsübungen gleichmäßig einspielen',
-                    3 => 'Vor allem Kräftigungsübungen einspielen',
+                    2 => 'Vor allem Kräftigungsübungen einspielen',
                 )
             ))
             ->add('save', 'submit', array(

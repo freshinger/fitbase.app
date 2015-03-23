@@ -8,6 +8,7 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
 
@@ -40,6 +41,115 @@ class ExerciseManager implements ExerciseManagerInterface
     }
 
     /**
+     * Get a random exercise from a category by type
+     *
+     * @param $categories
+     * @param $types
+     * @return mixed|null
+     */
+    public function findOneByCategoriesAndType($categories, $types)
+    {
+        if (shuffle($categories)) {
+            foreach ($categories as $category) {
+                if (($exercises = $category->getExercises($types))) {
+
+                    if ($exercises instanceof Collection) {
+                        $exercises = $exercises->toArray();
+                    }
+                    if (shuffle($exercises)) {
+                        return array_shift($exercises);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Find exercise type for different steps
+     * and for different UserFocusCategoryType
+     *
+     * @param $type
+     * @param int $step
+     * @return array
+     */
+    public function findTypeByFocusCategoryTypeAndStep($type, $step = 0)
+    {
+        switch ($step) {
+            // Get type priority
+            // for step 0
+            case 0:
+                return $this->findTypeByFocusCategoryTypeAndStep0($type);
+            // Get type priority
+            // for step 1
+            case 1:
+                return $this->findTypeByFocusCategoryTypeAndStep1($type);
+            // Get type priority
+            // for step 2
+            case 2:
+                return $this->findTypeByFocusCategoryTypeAndStep2($type);
+        }
+    }
+
+    /**
+     * Get exercise-type priority for
+     * step 0
+     *
+     * @param $type
+     * @return array
+     */
+    protected function findTypeByFocusCategoryTypeAndStep0($type)
+    {
+        switch ($type) {
+            case 0:
+                return array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG, null);
+            case 1:
+                return array(Exercise::MOBILISATION, null);
+            case 2:
+                return array(Exercise::KRAEFTIGUNG, null);
+        }
+    }
+
+    /**
+     * Get exercise-type priority
+     * for step 1
+     *
+     * @param $type
+     * @return array
+     */
+    protected function findTypeByFocusCategoryTypeAndStep1($type)
+    {
+        switch ($type) {
+            case 0:
+                return array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null);
+            case 1:
+                return array(Exercise::MOBILISATION, null);
+            case 2:
+                return array(Exercise::KRAEFTIGUNG, null);
+        }
+    }
+
+    /**
+     * Get exercise-type priority
+     * for step 2
+     *
+     * @param $type
+     * @return array
+     */
+    protected function findTypeByFocusCategoryTypeAndStep2($type)
+    {
+        switch ($type) {
+            case 0:
+                return array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null);
+            case 1:
+                return array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, null);
+            case 2:
+                return array(Exercise::DAEHNUNG, Exercise::MOBILISATION, null);
+        }
+    }
+
+
+    /**
      * Select three exercises
      *
      * @param \Application\Sonata\UserBundle\Entity\User $user
@@ -57,7 +167,7 @@ class ExerciseManager implements ExerciseManagerInterface
             if (!count(($children = $categories->getChildren()))) {
                 $children = array($categories);
             }
-            
+
             $categories = is_object($children) ? $children->toArray() : $children;
         }
 

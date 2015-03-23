@@ -32,12 +32,11 @@ class CategoryExercisesBreadcrumb extends CategoryBreadcrumbBlockService
         $entityManager = $this->container->get('entity_manager');
         $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
 
-
         $request = $this->container->get('request');
         $slug = $request->get('slug');
 
         if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            $menu->addChild("{$category->getName()} - Übungen", array(
+            $menu->addChild($category->getName(), array(
                 'route' => 'category_exercises',
                 'routeParameters' => array(
                     'slug' => $this->container->get('request')->get('slug'),
@@ -46,7 +45,6 @@ class CategoryExercisesBreadcrumb extends CategoryBreadcrumbBlockService
                 'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
             ));
         }
-
 
         return $menu;
     }

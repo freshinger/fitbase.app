@@ -194,34 +194,6 @@ class UserFocusCategory
     }
 
     /**
-     * @var \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory
-     */
-    private $primary;
-
-
-    /**
-     * Set primary
-     *
-     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary
-     * @return UserFocusCategory
-     */
-    public function setPrimary(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary = null)
-    {
-        $this->primary = $primary;
-
-        return $this;
-    }
-
-    /**
-     * Get primary
-     *
-     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory 
-     */
-    public function getPrimary()
-    {
-        return $this->primary;
-    }
-    /**
      * @var integer
      */
     private $type;
@@ -248,5 +220,71 @@ class UserFocusCategory
     public function getType()
     {
         return $this->type;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $primaries;
+
+
+    /**
+     * Add primaries
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primaries
+     * @return UserFocusCategory
+     */
+    public function addPrimary(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primaries)
+    {
+        $this->primaries[] = $primaries;
+
+        return $this;
+    }
+
+    /**
+     * Remove primaries
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primaries
+     */
+    public function removePrimary(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primaries)
+    {
+        $this->primaries->removeElement($primaries);
+    }
+
+    /**
+     * Get primaries
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPrimaries()
+    {
+        return $this->primaries;
+    }
+    /**
+     * @var \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory
+     */
+    private $primary;
+
+
+    /**
+     * Set primary
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary
+     * @return UserFocusCategory
+     */
+    public function setPrimary(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary = null)
+    {
+        $this->primary = $primary;
+
+        return $this;
+    }
+
+    /**
+     * Get primary
+     *
+     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory 
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
     }
 }

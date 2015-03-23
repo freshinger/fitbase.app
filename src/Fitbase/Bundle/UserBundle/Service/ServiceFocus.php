@@ -13,7 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceFocus extends ContainerAware
 {
-
     /**
      * Get focus for current user
      * @return null
@@ -26,6 +25,23 @@ class ServiceFocus extends ContainerAware
             }
         }
         return null;
+    }
+
+    /**
+     * Get actual focus categories
+     * @return array
+     */
+    public function categories()
+    {
+        if (($focus = $this->current())) {
+            if (($focusCategoryFirst = $focus->getFirstCategory())) {
+                if (($primary = $focusCategoryFirst->getPrimary())) {
+                    return array($primary->getCategory());
+                }
+                return $focus->getFirstCategories();
+            }
+        }
+        return array();
     }
 
 

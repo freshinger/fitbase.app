@@ -49,33 +49,35 @@ class ExerciseReminderSubscriber extends ContainerAware implements EventSubscrib
 
                     $this->container->get('logger')->info("[exercise][planner] Create for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
 
-                    $exercise0 = null;
-                    $exercise1 = null;
-                    $exercise2 = null;
 
-                    // Get 3 videos random, but with respect to user focus
-                    // and create a exercise for user with 3 videos
-                    if (($focus = $user->getFocus()) and ($focusCategory = $focus->getFirstCategory()) and ($category = $focusCategory->getCategory())) {
-                        if (($exercises = $this->container->get('fitbase.orm.exercise_manager')->findThreeRandom($user, $category))) {
-                            $exercise0 = isset($exercises[0]) ? $exercises[0] : null;
-                            $exercise1 = isset($exercises[1]) ? $exercises[1] : null;
-                            $exercise2 = isset($exercises[2]) ? $exercises[2] : null;
+                    if (($focus = $user->getFocus())) {
+                        if (($categories = $this->container->get('focus')->categories())) {
+                            if (($focusCategoryFirst = $focus->getFirstCategory())) {
+
+                                $entity = new ExerciseUser();
+                                $entity->setDone(0);
+                                $entity->setUser($user);
+                                $entity->setProcessed(0);
+                                $entity->setDate($datetime);
+
+                                $exerciseManager = $this->container->get('fitbase.orm.exercise_manager');
+                                $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 0);
+                                $entity->setExercise0($exerciseManager->findOneByCategoriesAndType($categories, $types));
+
+                                $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 1);
+                                $entity->setExercise1($exerciseManager->findOneByCategoriesAndType($categories, $types));
+
+                                $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 2);
+                                $entity->setExercise2($exerciseManager->findOneByCategoriesAndType($categories, $types));
+
+                                $this->container->get('entity_manager')->persist($entity);
+                                $this->container->get('entity_manager')->flush($entity);
+
+                                $this->container->get('logger')->info("[exercise][planner] Done for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
+                            }
                         }
                     }
 
-                    $entity = new ExerciseUser();
-                    $entity->setDone(0);
-                    $entity->setProcessed(0);
-                    $entity->setUser($user);
-                    $entity->setDate($datetime);
-                    $entity->setExercise0($exercise0);
-                    $entity->setExercise1($exercise1);
-                    $entity->setExercise2($exercise2);
-
-                    $this->container->get('entity_manager')->persist($entity);
-                    $this->container->get('entity_manager')->flush($entity);
-
-                    $this->container->get('logger')->info("[exercise][planner] Done for user: {$user->getId()}, date: {$datetime->format("d.n.Y")}");
 
                     return;
                 }

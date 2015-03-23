@@ -19,10 +19,6 @@
         <default key="slug"></default>
     </route>
 
-    <route id="task" path="/task/{slug}/{unique}">
-        <default key="_controller">FitbaseExerciseBundle:Task:task</default>
-    </route>
-
     <route id="exercise" path="/exercise/{unique}">
         <default key="_controller">FitbaseExerciseBundle:Exercise:exercise</default>
     </route>
@@ -32,6 +28,9 @@
         <default key="unique"></default>
     </route>
 
+    <route id="task" path="/task/{slug}/{unique}">
+        <default key="_controller">FitbaseExerciseBundle:Task:task</default>
+    </route>
 
     <route id="user_task" path="/user/task/{unique}/{step}">
         <default key="_controller">FitbaseExerciseBundle:Task:userTask</default>
