@@ -277,6 +277,24 @@ class UserFocus
         return null;
     }
 
+    public function getCategoryBySlug($slug = null)
+    {
+        if (($categories = $this->getCategories())) {
+            $categories = $categories->filter(function (\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $entity) use ($slug) {
+                if ($entity->getCategory()->getSlug() == $slug) {
+                    return true;
+                }
+                return false;
+            });
+
+            if (($collection = $categories->toArray())) {
+                return array_shift($collection);
+            }
+
+        }
+        return null;
+    }
+
     /**
      * Get user focus category by category
      * @param \Application\Sonata\ClassificationBundle\Entity\Category $category

@@ -61,25 +61,35 @@ class UserWizardController extends Controller
     public function focusSettingsAction(Request $request)
     {
         if (($focus = $this->get('focus')->current())) {
-
             if (($userFocusCategory = $focus->getFirstCategory())) {
+                // Display this form only for
+                // category ruecken, another categories
+                // have no settings to set up
+                if (($category = $userFocusCategory->getCategory())) {
+                    if (in_array($category->getSlug(), array('ruecken'))) {
 
-                $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
-                if ($request->get($form->getName())) {
-                    $form->handleRequest($request);
-                    if ($form->isValid()) {
+                        $userFocusCategory->setPrimary($focus->getCategoryBySlug('oberer-ruecken'));
+                        $userFocusCategory->setType(0);
 
-                        $event = new UserFocusCategoryEvent($userFocusCategory);
-                        $this->get('event_dispatcher')->dispatch('fitbase.user_focus_category_update', $event);
 
-                        return;
+                        $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
+                        if ($request->get($form->getName())) {
+                            $form->handleRequest($request);
+                            if ($form->isValid()) {
+
+                                $event = new UserFocusCategoryEvent($userFocusCategory);
+                                $this->get('event_dispatcher')->dispatch('fitbase.user_focus_category_update', $event);
+
+                                return;
+                            }
+                        }
+
+                        return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
+                            'form' => $form->createView(),
+                            'focus' => $focus,
+                        ));
                     }
                 }
-
-                return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
-                    'form' => $form->createView(),
-                    'focus' => $focus,
-                ));
             }
         }
     }
