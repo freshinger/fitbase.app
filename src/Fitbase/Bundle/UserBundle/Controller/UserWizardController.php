@@ -61,7 +61,7 @@ class UserWizardController extends Controller
     public function focusSettingsAction(Request $request)
     {
         if (($focus = $this->get('focus')->current())) {
-            if (($userFocusCategory = $focus->getFirstCategory())) {
+            if (($userFocusCategory = $focus->getCategoryBySlug('ruecken'))) {
                 // Display this form only for
                 // category ruecken, another categories
                 // have no settings to set up
