@@ -44,7 +44,7 @@ class CategoryBackSettingsBlock extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'focus' => null,
-            'template' => 'FitbaseUserBundle:Block:focus/settings_back.html.twig',
+            'template' => 'FitbaseUserBundle:Block:Focus/settings_back.html.twig',
         ));
     }
 
