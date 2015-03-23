@@ -13,14 +13,14 @@ use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class CategoryBreadcrumbBlockService extends FocusBreadcrumbBlockService
+class CategoryExercisesBreadcrumb extends CategoryBreadcrumbBlockService
 {
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'fitbase.category.block.breadcrumb';
+        return 'fitbase.category_exercises.block.breadcrumb';
     }
 
     /**
@@ -28,28 +28,25 @@ class CategoryBreadcrumbBlockService extends FocusBreadcrumbBlockService
      */
     protected function getMenu(BlockContextInterface $blockContext)
     {
-        $menu = parent::getRootMenu($blockContext);
-
+        $menu = parent::getMenu($blockContext);
         $entityManager = $this->container->get('entity_manager');
         $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+
 
         $request = $this->container->get('request');
         $slug = $request->get('slug');
 
         if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (($parent = $category->getParent())) {
-                $category = $parent;
-            }
-
-            $menu->addChild($category->getName(), array(
-                'route' => 'category',
+            $menu->addChild("{$category->getName()} - Übungen", array(
+                'route' => 'category_exercises',
                 'routeParameters' => array(
-                    'slug' => $slug,
+                    'slug' => $this->container->get('request')->get('slug'),
 
                 ),
                 'extras' => array('translation_domain' => 'FitbaseExerciseBundle')
             ));
         }
+
 
         return $menu;
     }

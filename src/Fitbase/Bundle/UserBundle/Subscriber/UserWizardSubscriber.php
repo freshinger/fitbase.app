@@ -10,11 +10,22 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
 use Fitbase\Bundle\UserBundle\Controller\UserWizardController;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Response;
 
-class UserWizardSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserWizardSubscriber implements EventSubscriberInterface
 {
+    protected $container;
+    protected $request;
+    protected $entityManager;
+
+    public function __construct($container, $request, $entityManager)
+    {
+        $this->request = $request;
+        $this->container = $container;
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -37,15 +48,23 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
             $controller = new UserWizardController();
             $controller->setContainer($this->container);
 
-            $request = $this->container->get('request');
-            if (($response = $controller->focusAction($request)) !== null) {
+            if (($response = $controller->focusAction($this->request)) == null) {
+                if (($response = $controller->focusSettingsAction($this->request)) == null) {
+
+                    //TODO: more wizards!!!!!
+                }
+            }
+
+            if ($response instanceof Response) {
                 $event->setResponse($response);
                 $event->stopPropagation();
-            } else {
+                return;
+            }
 
+            if (!$user->getWizard()) {
                 $user->setWizard(1);
-                $this->container->get('entity_manager')->persist($user);
-                $this->container->get('entity_manager')->flush($user);
+                $this->entityManager->persist($user);
+                $this->entityManager->flush($user);
             }
         }
     }

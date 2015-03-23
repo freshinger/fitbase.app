@@ -192,4 +192,61 @@ class UserFocusCategory
     {
         return $this->children;
     }
+
+    /**
+     * @var \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory
+     */
+    private $primary;
+
+
+    /**
+     * Set primary
+     *
+     * @param \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary
+     * @return UserFocusCategory
+     */
+    public function setPrimary(\Fitbase\Bundle\UserBundle\Entity\UserFocusCategory $primary = null)
+    {
+        $this->primary = $primary;
+
+        return $this;
+    }
+
+    /**
+     * Get primary
+     *
+     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory 
+     */
+    public function getPrimary()
+    {
+        return $this->primary;
+    }
+    /**
+     * @var integer
+     */
+    private $type;
+
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return UserFocusCategory
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 }

@@ -199,29 +199,15 @@ class CategoryController extends Controller
      */
     public function categoryBackAction(Request $request, $slug = null)
     {
-        $user = $this->get('user')->current();
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+        $focus = $this->get('focus')->current();
 
-        $exercises = array();
         $categories = array();
-
         if (($chooserCategory = $this->container->get('chooser_category'))) {
-            if (!($categories = $chooserCategory->choose($user->getFocus()))) {
-                // TODO: notify admin if no categories exists
-            }
-        }
-
-        $exercises = array();
-        if (($category = $repositoryCategory->findOneBySlug($slug))) {
-            if (!($exercises = $category->getExercises())) {
-                // TODO: notify admin if no exercises exists
-            }
+            $categories = $chooserCategory->choose($focus);
         }
 
         return $this->render('FitbaseExerciseBundle:Category:category_back.html.twig', array(
-            'category' => $category,
-            'exercises' => $exercises,
+            'focus' => $focus,
             'categories' => $categories,
         ));
     }
@@ -273,6 +259,37 @@ class CategoryController extends Controller
         return $this->render('FitbaseExerciseBundle:Category:category_default.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
+        ));
+    }
+
+
+    /**
+     * Display all exercises for given category
+     * @param Request $request
+     * @param null $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function categoryExercisesAction(Request $request, $slug = null)
+    {
+        $user = $this->get('user')->current();
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryCategory = $entityManager->getRepository('Application\Sonata\ClassificationBundle\Entity\Category');
+
+
+        $categories = array();
+        if (($chooserCategory = $this->container->get('chooser_category'))) {
+            $categories = $chooserCategory->choose($user->getFocus());
+        }
+
+        $exercises = array();
+        if (($category = $repositoryCategory->findOneBySlug($slug))) {
+            $exercises = $category->getExercises();
+        }
+
+        return $this->render('FitbaseExerciseBundle:Category:category_exercises.html.twig', array(
+            'category' => $category,
+            'exercises' => $exercises,
+            'categories' => $categories,
         ));
     }
 

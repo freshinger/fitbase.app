@@ -7,6 +7,7 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
+        <field name="type" type="integer" column="type" nullable="true"/>
         <field name="priority" type="integer" column="priority" nullable="true"/>
 
         <many-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus">
@@ -15,6 +16,10 @@
 
         <many-to-one field="category" target-entity="Application\Sonata\ClassificationBundle\Entity\Category">
             <join-column name="category_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="primary" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory">
+            <join-column name="primary_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
 

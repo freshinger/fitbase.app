@@ -129,6 +129,10 @@ sonata_block:
         fitbase.block.dashboard.questionnaire_statistic_question:
         fitbase.block.dashboard.questionnaire_question_last:
 
+        fitbase.block.focus.settings_back:
+
+
+
         # Formatter
         sonata.formatter.block.formatter:
 

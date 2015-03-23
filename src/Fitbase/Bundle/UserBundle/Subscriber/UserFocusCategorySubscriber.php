@@ -18,6 +18,21 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
      */
     public static function getSubscribedEvents()
     {
-        return array();
+        return array(
+            'fitbase.user_focus_category_update' => array('onUserFocusCategoryUpdate')
+        );
+    }
+
+    /**
+     * Save updated user focus category
+     * @param UserFocusCategoryEvent $event
+     */
+    public function onUserFocusCategoryUpdate(UserFocusCategoryEvent $event)
+    {
+        if (($entity = $event->getEntity())) {
+
+            $this->container->get('entity_manager')->persist($entity);
+            $this->container->get('entity_manager')->flush($entity);
+        }
     }
 }

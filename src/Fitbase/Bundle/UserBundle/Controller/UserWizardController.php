@@ -2,6 +2,8 @@
 
 namespace Fitbase\Bundle\UserBundle\Controller;
 
+use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
+use Fitbase\Bundle\UserBundle\Form\UserFocusCategoryForm;
 use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,11 +43,43 @@ class UserWizardController extends Controller
                         }
                     }
 
-                    return $this->render('FitbaseUserBundle:Subscriber:focus.html.twig', array(
+                    return $this->render('FitbaseUserBundle:Wizard:focus.html.twig', array(
                         'form' => $form->createView(),
                         'user' => $user,
                     ));
                 }
+            }
+        }
+    }
+
+    /**
+     * Get focus settings action
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function focusSettingsAction(Request $request)
+    {
+        if (($focus = $this->get('focus')->current())) {
+
+            if (($userFocusCategory = $focus->getFirstCategory())) {
+
+                $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
+                if ($request->get($form->getName())) {
+                    $form->handleRequest($request);
+                    if ($form->isValid()) {
+
+                        $event = new UserFocusCategoryEvent($userFocusCategory);
+                        $this->get('event_dispatcher')->dispatch('fitbase.user_focus_category_update', $event);
+
+                        return;
+                    }
+                }
+
+                return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
+                    'form' => $form->createView(),
+                    'focus' => $focus,
+                ));
             }
         }
     }

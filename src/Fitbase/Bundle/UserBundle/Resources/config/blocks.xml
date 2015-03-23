@@ -25,6 +25,14 @@
             </call>
         </service>
 
+        <service id="fitbase.block.focus.settings_back" class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryBackSettingsBlock" scope="request">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.focus.settings_back</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="request"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="form.factory"/>
+        </service>
 
     </services>
 </container>
