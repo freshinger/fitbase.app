@@ -56,7 +56,7 @@ class ExerciseManager implements ExerciseManagerInterface
                     if ($exercises instanceof Collection) {
                         $exercises = $exercises->toArray();
                     }
-                    if (shuffle($exercises)) {
+                    if (count($exercises) and shuffle($exercises)) {
                         return array_shift($exercises);
                     }
                 }
