@@ -32,11 +32,13 @@ class UserFocusImprovementCommand extends ContainerAwareCommand
                     if (($category = $focusCategory->getCategory())) {
                         if (in_array($category->getSlug(), array('ruecken'))) {
 
+                            $output->writeln($user->getId());
+
                             $focusCategory->setPrimary($focus->getCategoryBySlug('oberer-ruecken'));
                             $focusCategory->setType(0);
 
-                            $this->getContainer()->get('entity_manager')->persist($focus);
-                            $this->getContainer()->get('entity_manager')->flush($focus);
+                            $this->getContainer()->get('entity_manager')->persist($focusCategory);
+                            $this->getContainer()->get('entity_manager')->flush($focusCategory);
                         }
                     }
                 }
