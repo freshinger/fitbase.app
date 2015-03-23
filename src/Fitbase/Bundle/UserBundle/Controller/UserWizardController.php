@@ -68,9 +68,12 @@ class UserWizardController extends Controller
                 if (($category = $userFocusCategory->getCategory())) {
                     if (in_array($category->getSlug(), array('ruecken'))) {
 
-                        $userFocusCategory->setPrimary($focus->getCategoryBySlug('oberer-ruecken'));
-                        $userFocusCategory->setType(0);
-
+                        if (!($userFocusCategory->getPrimary())) {
+                            $userFocusCategory->setType(0);
+                            $userFocusCategory->setPrimary(
+                                $focus->getCategoryBySlug('oberer-rcken')
+                            );
+                        }
 
                         $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
                         if ($request->get($form->getName())) {
