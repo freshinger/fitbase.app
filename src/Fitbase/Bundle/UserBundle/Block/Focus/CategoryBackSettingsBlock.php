@@ -55,7 +55,7 @@ class CategoryBackSettingsBlock extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         if (($focus = $blockContext->getSetting('focus'))) {
-            if (($userFocusCategory = $focus->getFirstCategory())) {
+            if (($userFocusCategory = $focus->getCategoryBySlug('ruecken'))) {
 
                 $form = $this->formFactory->create(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
                 if ($this->request->get($form->getName())) {
