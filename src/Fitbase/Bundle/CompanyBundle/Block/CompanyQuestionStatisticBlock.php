@@ -5,16 +5,16 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\QuestionnaireBundle\Block;
+namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
+use Fitbase\Bundle\CompanyBundle\Block\Dashboard\AbstractStatisticLimitedBlock;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
+class CompanyQuestionStatisticBlock extends CompanyUserLimitedBlockAbstract
 {
     /**
      * Set defaults
@@ -25,7 +25,8 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
         $resolver->setDefaults(array(
             'question' => null,
             'questionnaireUser' => null,
-            'template' => 'FitbaseQuestionnaireBundle:Block:dashboard/questionnaire_question.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:questionnaire_question.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:questionnaire_question_locked.html.twig',
         ));
     }
 
@@ -42,11 +43,17 @@ class QuestionnaireQuestionBlock extends SecureBlockServiceAbstract
             }
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template_default'), array(
             'question' => $question,
             'statistics' => $statistics
         ));
     }
+
+    public function lock(BlockContextInterface $blockContext, Response $response = null)
+    {
+        return $this->renderPrivateResponse($blockContext->getSetting('template_locked'), array());
+    }
+
 
     /**
      * Get statistics

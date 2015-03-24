@@ -5,6 +5,7 @@
 
     <imports>
         <import resource="blocks/dashboard.xml"/>
+        <import resource="blocks/questionnaire.xml"/>
     </imports>
 
 

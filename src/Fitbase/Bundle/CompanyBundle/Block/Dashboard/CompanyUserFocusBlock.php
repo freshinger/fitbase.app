@@ -8,13 +8,14 @@
 namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
+use Fitbase\Bundle\CompanyBundle\Block\AbstractUserLimitedBlock;
+use Fitbase\Bundle\CompanyBundle\Block\CompanyUserLimitedBlockAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class StatisticUserFocusBlock extends SecureBlockServiceAbstract
+class CompanyUserFocusBlock extends CompanyUserLimitedBlockAbstract
 {
     /**
      * Set defaults
@@ -24,7 +25,8 @@ class StatisticUserFocusBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus_locked.html.twig',
         ));
     }
 
@@ -47,9 +49,20 @@ class StatisticUserFocusBlock extends SecureBlockServiceAbstract
             }
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template_default'), array(
             'categories' => $categories,
         ));
+    }
+
+    /**
+     * Display locked block
+     * @param BlockContextInterface $blockContext
+     * @param Response $response
+     * @return mixed|Response
+     */
+    public function lock(BlockContextInterface $blockContext, Response $response = null)
+    {
+        return $this->renderPrivateResponse($blockContext->getSetting('template_locked'), array());
     }
 
     /**

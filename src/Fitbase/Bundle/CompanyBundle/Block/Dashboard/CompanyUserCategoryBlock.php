@@ -9,13 +9,15 @@ namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
+use Fitbase\Bundle\CompanyBundle\Block\AbstractUserLimitedBlock;
+use Fitbase\Bundle\CompanyBundle\Block\CompanyUserLimitedBlockAbstract;
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
+class CompanyUserCategoryBlock extends CompanyUserLimitedBlockAbstract
 {
     /**
      * Set defaults
@@ -26,7 +28,8 @@ class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
         $resolver->setDefaults(array(
             'slug' => null,
             'company' => null,
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_category.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/user_category.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/user_category_locked.html.twig',
         ));
     }
 
@@ -71,10 +74,30 @@ class StatisticUserCategoryBlock extends SecureBlockServiceAbstract
             $percent = (100 - ($categoryCountPointUser * 100 / $categoryCountPointTotal));
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template_default'), array(
             'category' => $category,
             'percent' => $percent,
             'description' => $this->getDescription($category, $percent),
+        ));
+    }
+
+    /**
+     * Display locked block
+     * @param BlockContextInterface $blockContext
+     * @param Response $response
+     * @return mixed|Response
+     */
+    public function lock(BlockContextInterface $blockContext, Response $response = null)
+    {
+        $category = null;
+        if (($company = $blockContext->getSetting('company'))) {
+            if (($companyCategory = $company->getCategoryBySlug($blockContext->getSetting('slug')))) {
+                $category = $companyCategory->getCategory();
+            }
+        }
+
+        return $this->renderPrivateResponse($blockContext->getSetting('template_locked'), array(
+            'category' => $category
         ));
     }
 

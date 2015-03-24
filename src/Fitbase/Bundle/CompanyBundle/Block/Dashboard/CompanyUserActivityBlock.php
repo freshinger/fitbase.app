@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 
-class StatisticUserActivityBlock extends SecureBlockServiceAbstract
+class CompanyUserActivityBlock extends SecureBlockServiceAbstract
 {
     protected $entityManager;
 

@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class StatisticUserRegistrationBlock extends SecureBlockServiceAbstract
+class CompanyUserRegistrationBlock extends SecureBlockServiceAbstract
 {
     /**
      * Set defaults

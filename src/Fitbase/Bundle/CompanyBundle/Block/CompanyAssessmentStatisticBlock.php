@@ -5,10 +5,10 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\QuestionnaireBundle\Block;
+namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
-class QuestionnaireQuestionLastBlock extends QuestionnaireQuestionBlock
+class CompanyAssessmentStatisticBlock extends CompanyQuestionStatisticBlock
 {
     /**
      * get statistic data
