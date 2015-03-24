@@ -8,17 +8,44 @@
 
 namespace Fitbase\Bundle\WeeklytaskBundle\Subscriber;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class UserWizardSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserWizardSubscriber implements EventSubscriberInterface
 {
+    protected $datetime;
+    protected $weeklytask;
+
+
+    public function __construct($datetime, $weeklytask)
+    {
+        $this->datetime = $datetime;
+        $this->weeklytask = $weeklytask;
+    }
+
     /**
      * Get subscribers
      * @return array
      */
     public static function getSubscribedEvents()
     {
-        return array();
+        return array(
+            'user_wizard' => array('onUserWizardEvent', 88),
+        );
+    }
+
+    /**
+     * @param UserWizardEvent $event
+     */
+    public function onUserWizardEvent(UserWizardEvent $event)
+    {
+        if (($user = $event->getEntity())) {
+            $datetime = $this->datetime->getDateTime('now');
+            $datetime->setTime(4, 0);
+
+            if (!$this->weeklytask->isExists($user, $datetime)) {
+                $this->weeklytask->create($user, $datetime);
+            }
+        }
     }
 }

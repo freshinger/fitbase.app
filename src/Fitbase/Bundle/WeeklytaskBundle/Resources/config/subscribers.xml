@@ -18,9 +18,8 @@
 
         <service id="fitbase.subscriber.infoeinheit.user_wizard"
                  class="Fitbase\Bundle\WeeklytaskBundle\Subscriber\UserWizardSubscriber">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+            <argument type="service" id="datetime"/>
+            <argument type="service" id="weeklytask"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

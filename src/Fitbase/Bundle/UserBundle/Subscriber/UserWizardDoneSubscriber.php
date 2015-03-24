@@ -13,16 +13,12 @@ use Fitbase\Bundle\UserBundle\Controller\UserWizardController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserWizardSubscriber implements EventSubscriberInterface
+class UserWizardDoneSubscriber implements EventSubscriberInterface
 {
-    protected $container;
-    protected $request;
     protected $entityManager;
 
-    public function __construct($container, $request, $entityManager)
+    public function __construct($entityManager)
     {
-        $this->request = $request;
-        $this->container = $container;
         $this->entityManager = $entityManager;
     }
 
@@ -33,28 +29,21 @@ class UserWizardSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_wizard' => array('onUserWizardEvent', 98),
+            'user_wizard' => array('onUserWizardEvent', -128),
         );
     }
 
     /**
-     * Display questionnaire to user
+     * Set wizart as done
      * @param UserWizardEvent $event
      */
     public function onUserWizardEvent(UserWizardEvent $event)
     {
         if (($user = $event->getEntity())) {
-
-            $controller = new UserWizardController();
-            $controller->setContainer($this->container);
-
-            if (!($response = $controller->focusAction($this->request))) {
-                $response = $controller->focusSettingsAction($this->request);
-            }
-
-            if ($response instanceof Response) {
-                $event->setResponse($response);
-                $event->stopPropagation();
+            if (!$user->getWizard()) {
+                $user->setWizard(1);
+                $this->entityManager->persist($user);
+                $this->entityManager->flush($user);
             }
         }
     }
