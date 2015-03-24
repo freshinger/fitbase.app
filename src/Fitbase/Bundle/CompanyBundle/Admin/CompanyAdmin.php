@@ -96,8 +96,6 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
-
         $formMapper
             ->tab('General')
             ->with('General', array('class' => 'col-md-4'))
@@ -123,7 +121,6 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
 
         $formMapper->end();
 
-
         $formMapper
             ->tab('Statistic')
             ->with('Limits', array('class' => 'col-md-4'))
@@ -132,7 +129,6 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ))
             ->end()
             ->end();
-
 
         $formMapper
             ->tab('Style')

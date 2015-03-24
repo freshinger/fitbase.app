@@ -4,6 +4,14 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
     <class name="Fitbase\Bundle\CompanyBundle\Entity\Company">
+        <property name="userLimit">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="GreaterThanOrEqual">
+                <option name="value">0</option>
+            </constraint>
+        </property>
     </class>
 
 </constraint-mapping>
