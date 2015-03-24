@@ -21,12 +21,12 @@
         }
 
         #user_focus_category_type {
-            top: 20%;
+            top: 5%;
             position: relative;
         }
 
         #user_focus_category_type .col-xs-12 {
-            height: 70px;
+            height: 50px;
         }
 
     </style>
@@ -75,7 +75,7 @@
 {% block radio_widget -%}
     <span {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
     <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-    {{ label|striptags }}
+        <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
     </span>
 {%- endblock radio_widget %}
 
