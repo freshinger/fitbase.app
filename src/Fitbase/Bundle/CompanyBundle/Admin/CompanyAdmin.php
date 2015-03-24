@@ -121,25 +121,32 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
                 ->end();
         }
 
+        $formMapper->end();
 
-        $formMapper->with('Extra', array('class' => 'col-md-4'))
-            ->add('gamification')
+
+        $formMapper
+            ->tab('Statistic')
+            ->with('Limits', array('class' => 'col-md-4'))
+            ->add('userLimit', null, array(
+                'label' => 'Minimale Anzahl der Nutzer um die Statistic anzuzeigen'
+            ))
             ->end()
-            ->end()
+            ->end();
+
+
+        $formMapper
             ->tab('Style')
             ->with('Logo', array('class' => 'col-md-4'))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'company')))
             ->end()
             ->with('Header/Footer', array('class' => 'col-md-4'))
             ->add('header', 'genemu_jquerycolor', array('required' => false))
-//            ->add('footer', 'genemu_jquerycolor', array('required' => false))
             ->end()
             ->with('Background', array('class' => 'col-md-4'))
             ->add('background2', 'genemu_jquerycolor', array(
                 'required' => false, 'label' => 'Global background'
             ))
             ->add('background1', 'genemu_jquerycolor', array('required' => false, 'label' => 'Content background'))
-//            ->add('background3', 'genemu_jquerycolor', array('required' => false))
             ->end()
             ->end();
     }

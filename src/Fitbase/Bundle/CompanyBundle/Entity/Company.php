@@ -676,4 +676,32 @@ class Company
     {
         return $this->questionnaire;
     }
+    /**
+     * @var integer
+     */
+    private $userLimit;
+
+
+    /**
+     * Set userLimit
+     *
+     * @param integer $userLimit
+     * @return Company
+     */
+    public function setUserLimit($userLimit)
+    {
+        $this->userLimit = $userLimit;
+
+        return $this;
+    }
+
+    /**
+     * Get userLimit
+     *
+     * @return integer 
+     */
+    public function getUserLimit()
+    {
+        return $this->userLimit;
+    }
 }

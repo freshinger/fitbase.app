@@ -28,7 +28,7 @@
         <field name="background3" type="string" length="255" column="background_3" nullable="true"/>
 
 
-        <field name="gamification" type="boolean" column="gamification" nullable="true"/>
+        <field name="userLimit" type="integer" column="user_limit" nullable="true"/>
 
 
         <many-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media">
