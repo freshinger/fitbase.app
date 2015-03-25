@@ -80,7 +80,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         $focusCategory = new UserFocusCategory();
         $focusCategory->setFocus($userFocus);
         $focusCategory->setCategory($category);
-        $focusCategory->getUpdate(true);
+        $focusCategory->setUpdate(true);
         $focusCategory->setPriority(count($userFocus->getCategories()));
 
         $this->container->get('entity_manager')->persist($focusCategory);
