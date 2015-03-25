@@ -7,6 +7,7 @@ sonata_media:
     contexts:
         default:  # the default context is mandatory
             download:
+                strategy: sonata.media.security.connected_strategy
                 mode: http # X-Sendfile | http
             providers:
                 - sonata.media.provider.youtube
