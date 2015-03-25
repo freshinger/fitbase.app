@@ -22,7 +22,7 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
     public static function getSubscribedEvents()
     {
         return array(
-            'user_wizard' => array('onUserWizardEvent', 127),
+            'user_wizard' => array('onUserWizardEvent', -117),
         );
     }
 
@@ -38,7 +38,7 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
             $controller->setContainer($this->container);
 
             $request = $this->container->get('request');
-            if (($response = $controller->reminderAction($request)) !== null) {
+            if (($response = $controller->userWizardAction($request)) !== null) {
                 $event->setResponse($response);
                 $event->stopPropagation();
             }

@@ -1,0 +1,34 @@
+<table class="table table-striped table-hover table-responsive">
+    <thead>
+    <tr>
+        <th class="manage-column">{{ "Tag" | trans({}, 'FitbaseReminderBundle') }}</th>
+        <th class="manage-column">{{ "Zeit" | trans({}, 'FitbaseReminderBundle') }}</th>
+        <th class="manage-column">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if collection|length > 0 %}
+        {% for item in collection %}
+            <tr>
+                <td>{{ item.day|day | trans({}, 'FitbaseReminderBundle') }}</td>
+                <td>{{ item.time|date('H:i') }}</td>
+                <td><a href="?uniqueitem={{ item.id }}">löschen</a></td>
+            </tr>
+        {% endfor %}
+        <tr style="background: #f2f0f0;">
+            <td><b>{{ "Insgesamt" | trans({}, 'FitbaseReminderBundle') }}: {{ collection|length }}</b></td>
+            <td colspan="2"></td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">
+                {{ "Keine Erinnerungen gefunden" | trans({}, 'FitbaseReminderBundle') }}
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+{% form_theme form "FitbaseReminderBundle:Block:reminder_settings_exercise_form.html.twig" %}
+
+{{ form(form) }}

@@ -461,7 +461,7 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
 
                 $content->addChildren($reminder = $blockManager->create());
 
-                $reminder->setType('fitbase.block.dashboard_reminder');
+                $reminder->setType('fitbase.block.reminder.settings');
                 $reminder->setPosition(1);
                 $reminder->setEnabled(true);
                 $reminder->setPage($page);

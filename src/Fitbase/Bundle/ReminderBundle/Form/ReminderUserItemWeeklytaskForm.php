@@ -21,7 +21,7 @@ class ReminderUserItemWeeklytaskForm extends AbstractType
             ->add('day', 'choice', array(
                 'required' => false,
                 'label' => 'Tag',
-                'empty_value' => 'Tag der Woche',
+                'empty_value' => false,
                 'choices' => array(
                     '1' => 'Montag',
                     '2' => 'Dienstag',

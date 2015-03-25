@@ -9,6 +9,7 @@
         </id>
         <field name="type" type="integer" column="type" nullable="true"/>
         <field name="priority" type="integer" column="priority" nullable="true"/>
+        <field name="update" type="boolean" column="refresh" nullable="true"/>
 
         <many-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus">
             <join-column name="focus_id" referenced-column-name="id" on-delete="CASCADE"/>

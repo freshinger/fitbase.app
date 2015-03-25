@@ -9,7 +9,7 @@ namespace Fitbase\Bundle\CompanyBundle\Tests\Block\Dashboard;
 
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
-use Fitbase\Bundle\CompanyBundle\Block\Dashboard\StatisticUserRegistrationBlock;
+use Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyUserFocusBlock;
 use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
@@ -18,24 +18,30 @@ use Sonata\BlockBundle\Model\Block;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Response;
 
-class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
+class CompanyUserFocusBlockTest extends FitbaseTestAbstract
 {
     public function test_blockShouldReturnStatus200()
     {
-        $block = new StatisticUserRegistrationBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+
+        $block = new CompanyUserFocusBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $result = $block->execute(new BlockContext(new Block(), array(
             "company" => (new Company()),
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus.html.twig',
         )), new Response());
 
         $this->assertTrue($result instanceof Response);
         $this->assertEquals($result->getStatusCode(), 200);
     }
 
+    /**
+     * Check that block return
+     * a svg image
+     *
+     */
     public function test_blockShouldHaveSVGImage()
     {
-        $block = new StatisticUserRegistrationBlock('name', array('ROLE_FITBASE_USER'), $this->container()->get('templating'), $this->getSecurityContainer());
+        $block = new CompanyUserFocusBlock('name', array('ROLE_FITBASE_COMPANY'), $this->container()->get('templating'), $this->getSecurityContainer());
 
         $category1 = (new Category());
         $category1->setName('stress');
@@ -46,6 +52,7 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
         $category2->setSlug('augen');
 
         $result = $block->execute(new BlockContext(new Block(), array(
+            'slug' => 'stress',
             'company' => (new Company())
                 ->addCategory(
                     (new CompanyCategory())
@@ -55,14 +62,12 @@ class StatisticUserRegistrationBlockTest extends FitbaseTestAbstract
                     (new CompanyCategory())
                         ->setCategory($category2)
                 ),
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus.html.twig',
         )), new Response());
-
 
         $crawler = new Crawler(null, null);
         $crawler->addContent($result->getContent());
 
         $this->assertEquals(1, $crawler->filter("svg")->count());
     }
-
 } 

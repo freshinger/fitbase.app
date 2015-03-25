@@ -91,9 +91,12 @@ sonata_block:
 
         sonata.demo.block.newsletter:
 
+        fitbase.block.reminder.settings:
+        fitbase.block.reminder.exercise:
+        fitbase.block.reminder.weeklytask:
+
         fitbase.block.dashboard:
         fitbase.block.dashboard_profile:
-        fitbase.block.dashboard_reminder:
         fitbase.block.dashboard_weeklytask:
         fitbase.block.dashboard_gamification:
         fitbase.block.header_company:

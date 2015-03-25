@@ -1,0 +1,56 @@
+<h3>{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</h3>
+
+<div class="panel-info">
+    <p>Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.</p>
+
+    <div class="panel-body">
+        {{ sonata_block_render(
+            { 'type': 'fitbase.block.reminder.weeklytask' },
+            { 'template': 'FitbaseReminderBundle:Block:reminder_settings_weeklytask.html.twig'}
+        ) }}
+    </div>
+</div>
+
+<h3>{{ "Erinnerungsfunktion" | trans({}, 'FitbaseReminderBundle') }}</h3>
+
+<div class="panel-info">
+
+    <p>
+        Nutzen Sie die Erinnerungsfunktion, um zur gewählten Zeit per E-Mail auf Ihre Übung aufmerksam gemacht
+        zu
+        werden – am besten jeden Tag. Sie können die Emailadresse in Ihrem Profil jederzeit ändern. Alle Übungen
+        sind speziell auf die Durchführung im Büro abgestimmt. Wir empfehlen, die Übungen täglich durchzuführen,
+        z.B. um 10 Uhr.
+    </p>
+
+    <div class="panel-body">
+        {{ sonata_block_render(
+            { 'type': 'fitbase.block.reminder.exercise' },
+            { 'template': 'FitbaseReminderBundle:Block:reminder_settings_exercise.html.twig'}
+        ) }}
+    </div>
+</div>
+
+<h3>{{ "Fitbase pausieren" | trans({}, 'FitbaseReminderBundle') }}</h3>
+
+<div class="panel-info">
+
+    <div class="panel-body">
+
+        {% if reminder is defined and reminder %}
+            {% if reminder.pause is defined and reminder.pause %}
+                <div class="row">
+                    <div class="col-xs-10 alert alert-info">
+                        Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
+                        {{ reminder.pause }} Wochen pausiert.
+                        Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% form_theme form "FitbaseReminderBundle:Block:reminder_settings_form.html.twig" %}
+
+        {{ form(form) }}
+
+    </div>
+</div>

@@ -1,0 +1,94 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors is defined and errors %}
+            {% for error in errors %}
+                <div class="form-group alert alert-warning">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row %}
+
+{% block form_row -%}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{%- endblock form_row %}
+
+{% block checkbox_widget -%}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{ label|raw }}
+    </label>
+{%- endblock checkbox_widget %}
+
+{% block form_label -%}
+    {% if label is not sameas(false) -%}
+        <p>{{ label|trans({}, translation_domain) }}</p>
+    {%- endif %}
+{%- endblock form_label %}
+
+
+{% block time_widget -%}
+    {% set vars =  { 'attr': { 'class': 'form-control', 'style': 'width: 30%; display: inline;' }} %}
+    <div {{ block('widget_container_attributes') }}>
+    {{ form_widget(form.hour, vars) }}
+    {% if with_minutes %}
+
+    :&nbsp;&nbsp;{{ form_widget(form.minute, vars) }}
+    {% endif %}
+    {% if with_seconds %}
+        :&nbsp;&nbsp;{{ form_widget(form.second, vars) }}
+    {% endif %}
+    </div>
+{%- endblock time_widget %}
+
+
+{% block reminder_item_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-xs-12">
+                {% if form.parent is empty %}
+                    {{ form_errors(form) }}
+                {% endif %}
+                {{- form_errors(form.day) -}}
+                {{- form_errors(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                {{- form_widget(form.day) -}}
+            </div>
+            <div class="col-xs-8">
+                {{- form_widget(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                {{ form_rest(form) }}
+                {{ form_row(form.save) }}
+
+
+                {% if form.vars.submitted is defined and form.vars.submitted %}
+                    <script type="text/javascript">
+                        $(function () {
+                            var container = $(document);
+                            container.trigger({
+                                type: 'form',
+                                selector: 'form[name={{ id }}]'
+                            });
+                        });
+                    </script>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock reminder_item_widget %}
