@@ -66,7 +66,7 @@ class UserWizardController extends Controller
                 // category ruecken, another categories
                 // have no settings to set up
                 if (($category = $userFocusCategory->getCategory())) {
-                    if (in_array($category->getSlug(), array('ruecken'))) {
+                    if (in_array($category->getSlug(), array('ruecken')) and $category->getUpdate()) {
 
                         if (!($userFocusCategory->getPrimary())) {
                             $userFocusCategory->setType(0);
