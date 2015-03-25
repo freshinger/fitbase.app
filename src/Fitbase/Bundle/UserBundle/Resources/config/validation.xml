@@ -31,14 +31,20 @@
     </class>
 
     <class name="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory">
-        <property name="primary">
+        <property name="primaries">
             <constraint name="NotBlank">
                 <option name="message">Dieses Feld darf nich leer sein</option>
+                <option name="groups">
+                    <value>user</value>
+                </option>
             </constraint>
         </property>
         <property name="type">
             <constraint name="NotBlank">
                 <option name="message">Dieses Feld darf nich leer sein</option>
+                <option name="groups">
+                    <value>user</value>
+                </option>
             </constraint>
         </property>
     </class>

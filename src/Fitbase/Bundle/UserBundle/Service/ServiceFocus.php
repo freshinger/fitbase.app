@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\UserBundle\Service;
 
 
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceFocus extends ContainerAware
@@ -35,15 +36,25 @@ class ServiceFocus extends ContainerAware
     {
         if (($focus = $this->current())) {
             if (($focusCategoryFirst = $focus->getFirstCategory())) {
-                if (($primary = $focusCategoryFirst->getPrimary())) {
-                    return array($primary->getCategory());
+                // for selected primary categories from user
+                // process that and return only selected categories
+                if (($primaries = $focusCategoryFirst->getPrimaries())) {
+                    // only if collection not empty
+                    if (($primaries->count())) {
+                        return $primaries->map(function ($entity) {
+                            // Get real categories from user
+                            // focus categories and return as array
+                            return $entity->getCategory();
+                        })->toArray();
+                    }
                 }
+                // By default return all root categories
+                // from user focus
                 return $focus->getFirstCategories();
             }
         }
         return array();
     }
-
 
     /**
      * Get user focus

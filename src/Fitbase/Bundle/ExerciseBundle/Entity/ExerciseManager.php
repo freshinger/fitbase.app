@@ -49,16 +49,20 @@ class ExerciseManager implements ExerciseManagerInterface
      */
     public function findOneByCategoriesAndType($categories, $types, $exercises = array())
     {
-        if (count($categories) and shuffle($categories)) {
+        if (count($categories)) {
+            $collection = array();
             foreach ($categories as $category) {
                 if (($exercises = $category->getExercises($types, $exercises))) {
-
-                    if ($exercises instanceof Collection) {
-                        $exercises = $exercises->toArray();
-                    }
-                    if (count($exercises) and shuffle($exercises)) {
-                        return array_shift($exercises);
-                    }
+                    // add all exercises from all available categories
+                    // into pool and than randomize a collection
+                    $collection = array_merge($collection, $exercises->toArray());
+                }
+            }
+            if (count($collection)) {
+                if (shuffle($collection)) {
+                    // get a first element from
+                    // this randomized collection
+                    return array_shift($collection);
                 }
             }
         }

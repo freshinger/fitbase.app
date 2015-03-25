@@ -29,10 +29,30 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
      */
     public function onUserFocusCategoryUpdate(UserFocusCategoryEvent $event)
     {
+
         if (($entity = $event->getEntity())) {
 
-            $this->container->get('entity_manager')->persist($entity);
-            $this->container->get('entity_manager')->flush($entity);
+            $entityManager = $this->container->get('entity_manager');
+            $repositoryUserFocusCategory = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserFocusCategory');
+            if (($children = $repositoryUserFocusCategory->findByParent($entity))) {
+                foreach ($children as $child) {
+                    $child->setParent(null);
+                    $child->setType(null);
+                    $entityManager->persist($child);
+                }
+                $entityManager->flush();
+            }
+
+            if (($priorities = $entity->getPrimaries())) {
+                foreach ($priorities as $primary) {
+                    $primary->setParent($entity);
+                    $primary->setType($entity->getType());
+                    $entityManager->persist($primary);
+                }
+            }
+
+            $entityManager->persist($entity);
+            $entityManager->flush();
         }
     }
 }

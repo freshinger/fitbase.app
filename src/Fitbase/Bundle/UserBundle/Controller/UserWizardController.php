@@ -70,9 +70,10 @@ class UserWizardController extends Controller
 
                         if (!($userFocusCategory->getPrimary())) {
                             $userFocusCategory->setType(0);
-                            $userFocusCategory->setPrimary(
-                                $focus->getCategoryBySlug('oberer-rcken')
-                            );
+                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('oberer-ruecken'));
+                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('unterer-ruecken'));
+                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('mittlerer-ruecken'));
+                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('thera-band'));
                         }
 
                         $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);

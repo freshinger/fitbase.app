@@ -22,7 +22,7 @@ class UserFocusCategoryForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('primary', null, array(
+            ->add('primaries', null, array(
                 'label' => false,
                 'expanded' => true,
                 'empty_value' => false,
@@ -64,6 +64,7 @@ class UserFocusCategoryForm extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'validation_groups' => array('user'),
             'data_class' => 'Fitbase\Bundle\UserBundle\Entity\UserFocusCategory'
         ));
     }

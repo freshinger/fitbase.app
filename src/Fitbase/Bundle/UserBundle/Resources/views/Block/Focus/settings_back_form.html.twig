@@ -11,12 +11,12 @@
             height: 448px;
         }
 
-        #user_focus_category_primary {
+        #user_focus_category_primaries {
             top: 28%;
             position: relative;
         }
 
-        #user_focus_category_primary .col-xs-12 {
+        #user_focus_category_primaries .col-xs-12 {
             height: 95px;
         }
 
@@ -37,7 +37,7 @@
         {%- endif -%}
 
         <div class="col-xs-6 user-category-primary">
-            {{- form_widget(form.primary) -}}
+            {{- form_widget(form.primaries) -}}
         </div>
         <div class="col-xs-6 user-category-type">
             {{- form_widget(form.type) -}}
@@ -74,10 +74,17 @@
 
 {% block radio_widget -%}
     <span {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
         <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
     </span>
 {%- endblock radio_widget %}
+
+{% block checkbox_widget -%}
+    <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+        <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
+    </span>
+{%- endblock checkbox_widget %}
 
 
 {%- block button_row -%}

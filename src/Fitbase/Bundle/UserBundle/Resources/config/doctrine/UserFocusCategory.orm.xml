@@ -18,9 +18,18 @@
             <join-column name="category_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
-        <many-to-one field="primary" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory">
-            <join-column name="primary_id" referenced-column-name="id" on-delete="CASCADE"/>
+        <many-to-one field="parent" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory">
+            <join-column name="parent_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
+
+        <one-to-many field="primaries" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocusCategory" mapped-by="parent">
+            <order-by>
+                <order-by-field name="priority" direction="ASC"/>
+            </order-by>
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
 
     </entity>
 </doctrine-mapping>
