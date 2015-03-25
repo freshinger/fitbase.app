@@ -29,7 +29,6 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
      */
     public function onUserFocusCategoryUpdate(UserFocusCategoryEvent $event)
     {
-
         if (($entity = $event->getEntity())) {
 
             $entityManager = $this->container->get('entity_manager');
@@ -51,6 +50,7 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
                 }
             }
 
+            $entity->setUpdate(false);
             $entityManager->persist($entity);
             $entityManager->flush();
         }
