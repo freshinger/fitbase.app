@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\UserBundle\Controller;
 
 use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
+use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusCategoryForm;
 use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,24 +21,19 @@ class UserWizardController extends Controller
     {
         if (($user = $this->get('user')->current())) {
             if (($focus = $user->getFocus())) {
-                if (!$focus->getUpdate()) {
+                // Check is focus
+                // have to be updated
+                if ($focus->getUpdate()) {
 
                     $form = $this->createForm(new UserFocusPriorityForm($user), $focus);
                     if ($request->get($form->getName())) {
                         $form->handleRequest($request);
                         if ($form->isValid()) {
 
-                            $entityManager = $this->get('entity_manager');
-                            foreach ($focus->getCategories() as $category) {
-                                $entityManager->persist($category);
-                                $entityManager->flush($category);
-                            }
+                            $event = new UserFocusEvent($focus);
+                            $this->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
 
-                            $focus->setUpdate(1);
-                            $entityManager->persist($focus);
-                            $entityManager->flush($focus);
-
-                            $entityManager->refresh($focus);
+                            $this->get('entity_manager')->refresh($focus);
 
                             return null;
                         }
@@ -62,36 +58,40 @@ class UserWizardController extends Controller
     {
         if (($focus = $this->get('focus')->current())) {
             if (($userFocusCategory = $focus->getFirstCategory())) {
-                // Display this form only for
-                // category ruecken, another categories
-                // have no settings to set up
-                if (($category = $userFocusCategory->getCategory())) {
-                    if (in_array($category->getSlug(), array('ruecken')) and $userFocusCategory->getUpdate()) {
+                // Check is category
+                // have to be updated
+                if ($userFocusCategory->getUpdate()) {
+                    // Display this form only for
+                    // category ruecken, another categories
+                    // have no settings to set up
+                    if (($category = $userFocusCategory->getCategory())) {
+                        if (in_array($category->getSlug(), array('ruecken'))) {
 
-                        if (!($userFocusCategory->getPrimary())) {
-                            $userFocusCategory->setType(0);
-                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('oberer-ruecken'));
-                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('unterer-ruecken'));
-                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('mittlerer-ruecken'));
-                            $userFocusCategory->addPrimary($focus->getCategoryBySlug('thera-band'));
-                        }
-
-                        $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
-                        if ($request->get($form->getName())) {
-                            $form->handleRequest($request);
-                            if ($form->isValid()) {
-
-                                $event = new UserFocusCategoryEvent($userFocusCategory);
-                                $this->get('event_dispatcher')->dispatch('fitbase.user_focus_category_update', $event);
-
-                                return;
+                            if (!($userFocusCategory->getPrimary())) {
+                                $userFocusCategory->setType(0);
+                                $userFocusCategory->addPrimary($focus->getCategoryBySlug('oberer-ruecken'));
+                                $userFocusCategory->addPrimary($focus->getCategoryBySlug('unterer-ruecken'));
+                                $userFocusCategory->addPrimary($focus->getCategoryBySlug('mittlerer-ruecken'));
+                                $userFocusCategory->addPrimary($focus->getCategoryBySlug('thera-band'));
                             }
-                        }
 
-                        return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
-                            'form' => $form->createView(),
-                            'focus' => $focus,
-                        ));
+                            $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
+                            if ($request->get($form->getName())) {
+                                $form->handleRequest($request);
+                                if ($form->isValid()) {
+
+                                    $event = new UserFocusCategoryEvent($userFocusCategory);
+                                    $this->get('event_dispatcher')->dispatch('fitbase.user_focus_category_update', $event);
+
+                                    return;
+                                }
+                            }
+
+                            return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
+                                'form' => $form->createView(),
+                                'focus' => $focus,
+                            ));
+                        }
                     }
                 }
             }

@@ -32,6 +32,15 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="fitbase.subscriber.infoeinheit.user_focus"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Subscriber\UserFocusSubscriber">
+            <argument type="service" id="datetime"/>
+            <argument type="service" id="weeklytask"/>
+            <argument type="service" id="entity_manager"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
     </services>
 
 </container>

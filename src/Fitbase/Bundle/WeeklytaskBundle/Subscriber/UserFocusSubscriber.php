@@ -1,6 +1,6 @@
 <?php
 
-namespace Fitbase\Bundle\UserBundle\Subscriber;
+namespace Fitbase\Bundle\WeeklytaskBundle\Subscriber;
 
 
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
@@ -23,8 +23,21 @@ use Symfony\Component\Security\Core\AuthenticationEvents;
 use Symfony\Component\Security\Core\Event\AuthenticationEvent;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
-class UserFocusSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserFocusSubscriber implements EventSubscriberInterface
 {
+    protected $datetime;
+    protected $weeklytask;
+    protected $entityManager;
+
+
+    public function __construct($datetime, $weeklytask, $entityManager)
+    {
+        $this->datetime = $datetime;
+        $this->weeklytask = $weeklytask;
+        $this->entityManager = $entityManager;
+
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -32,28 +45,38 @@ class UserFocusSubscriber extends ContainerAware implements EventSubscriberInter
     public static function getSubscribedEvents()
     {
         return array(
-            'fitbase.user_focus_update' => array('onUserFocusUpdateEvent', 128),
+            'fitbase.user_focus_update' => array('onUserFocusUpdateEvent', -128),
         );
     }
 
     /**
-     * Update user focus and categories
+     * On focus update event, send weeklytask immediately
      * @param UserFocusEvent $event
      */
     public function onUserFocusUpdateEvent(UserFocusEvent $event)
     {
         if (($entity = $event->getEntity())) {
+            $this->entityManager->refresh($entity);
 
-            if ($entity->getCategories()->count()) {
-                foreach ($entity->getCategories() as $category) {
-                    $category->setUpdate(true);
-                    $this->container->get('entity_manager')->persist($category);
+            if (($user = $entity->getUser())) {
+                if (($focusCategoryFirst = $entity->getFirstCategory())) {
+                    if (($category = $focusCategoryFirst->getCategory())) {
+                        // Get last category, check if
+                        // current weeklytask have a different
+                        // categories, than create a new weeklytask
+                        if (($weeklytaskUser = $this->weeklytask->getLast($user))) {
+                            if (($weeklytask = $weeklytaskUser->getTask())) {
+                                if ($weeklytask->hasCategory($category)) {
+                                    return;
+                                }
+                            }
+                        }
+
+                        $datetime = $this->datetime->getDateTime('now');
+                        $this->weeklytask->create($user, $datetime);
+                    }
                 }
             }
-
-            $entity->setUpdate(false);
-            $this->container->get('entity_manager')->persist($entity);
-            $this->container->get('entity_manager')->flush();
         }
     }
 }

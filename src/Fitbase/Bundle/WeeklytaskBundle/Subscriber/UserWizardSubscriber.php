@@ -16,7 +16,6 @@ class UserWizardSubscriber implements EventSubscriberInterface
     protected $datetime;
     protected $weeklytask;
 
-
     public function __construct($datetime, $weeklytask)
     {
         $this->datetime = $datetime;
@@ -39,13 +38,7 @@ class UserWizardSubscriber implements EventSubscriberInterface
      */
     public function onUserWizardEvent(UserWizardEvent $event)
     {
-        if (($user = $event->getEntity())) {
-            $datetime = $this->datetime->getDateTime('now');
-            $datetime->setTime(4, 0);
 
-            if (!$this->weeklytask->isExists($user, $datetime)) {
-                $this->weeklytask->create($user, $datetime);
-            }
-        }
+
     }
 }

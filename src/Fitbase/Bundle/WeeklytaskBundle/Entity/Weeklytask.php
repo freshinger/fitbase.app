@@ -350,4 +350,19 @@ class Weeklytask
     {
         return $this->categories;
     }
+
+    /**
+     * Check is weeklytask has this category
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $category
+     * @return bool
+     */
+    public function hasCategory(\Application\Sonata\ClassificationBundle\Entity\Category $category)
+    {
+        if (($collection = $this->getCategories())) {
+            return $collection->exists(function ($key, $element) use ($category) {
+                return $element->getId() == $category->getId();
+            });
+        }
+        return false;
+    }
 }

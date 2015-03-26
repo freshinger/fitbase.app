@@ -14,6 +14,7 @@ use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
+use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
@@ -62,10 +63,8 @@ class ProfileFocusBlockService extends BaseBlockService implements ContainerAwar
                 $form->handleRequest($this->container->get('request'));
                 if ($form->isValid()) {
 
-                    foreach ($focus->getCategories() as $category) {
-                        $this->container->get('entity_manager')->persist($category);
-                        $this->container->get('entity_manager')->flush($category);
-                    }
+                    $event = new UserFocusEvent($focus);
+                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
 
                     $this->container->get('entity_manager')->refresh($focus);
 
