@@ -37,7 +37,10 @@ class CompanyQuestionnaireForm extends AbstractType
                     'class' => 'form-control',
                 ),
             ))
-            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
+            ->add('date', 'sonata_type_datetime_picker', array(
+                'label' => 'Datum',
+                'date_format' => 'dd.MM.yyyy, HH:mm'
+            ))
             ->add('save', 'submit', array(
                 'label' => 'Umfrage anlegen',
                 'attr' => array(

@@ -1,0 +1,17 @@
+{% if exercise is defined and exercise %}
+    <div class="row">
+        {% if exerciseUserChoice is defined and exerciseUserChoice %}
+            <div class="col-xs-12">
+                <span class="label label-success">
+                    {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
+                </span>
+            </div>
+        {% else %}
+            <div class="col-xs-12">
+                <a href="?like=true" class="label label-info">
+                    {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

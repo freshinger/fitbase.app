@@ -33,8 +33,6 @@ class ExerciseController extends Controller
                 ));
             }
         }
-
-        throw new AccessDeniedException('This user does not have access to this section.');
     }
 
     /**
@@ -55,8 +53,23 @@ class ExerciseController extends Controller
                 return new Response(null, 200);
             }
         }
+    }
 
-        throw new AccessDeniedException('This user does not have access to this section.');
+    /**
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function exerciseChoiceAction(Request $request)
+    {
+        $collection = array();
+        if (($focus = $this->get('focus')->current())) {
+            $collection = $focus->getParentCategories();
+        }
+
+        return $this->render('FitbaseExerciseBundle:Exercise:ExerciseChoice.html.twig', array(
+            'collection' => $collection
+        ));
     }
 
 //    /**

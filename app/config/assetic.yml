@@ -134,6 +134,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
                 - %kernel.root_dir%/../web/assetic/sonata_jqueryui_js.js
+                - %kernel.root_dir%/../web/js/fitbase.js
 
             filters:
                 - yui_js
@@ -147,6 +148,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
                 - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
+                - %kernel.root_dir%/../web/css/fitbase.css
 
             filters:
                 - cssrewrite

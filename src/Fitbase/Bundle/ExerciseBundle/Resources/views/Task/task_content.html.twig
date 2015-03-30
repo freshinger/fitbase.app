@@ -134,12 +134,15 @@
 
         </div>
         <div class="col-xs-5">
+
             {% if exercise is defined and exercise %}
                 {{ exercise.description|raw }}
 
+                {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice' }, { 'exercise': exercise }) }}
                 {% include 'FitbaseExerciseBundle:Exercise:done.html.twig' with { 'exercise': exercise } %}
 
             {% endif %}
+
         </div>
     </div>
 {% endif %}

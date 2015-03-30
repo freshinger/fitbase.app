@@ -98,12 +98,14 @@
                 <div class="col-xs-5">
                     {% if exercise is defined and exercise %}
                         {{ exercise.description|raw }}
+                        {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice' }, { 'exercise': exercise }) }}
                     {% endif %}
                 </div>
             {% else %}
                 <div class="col-xs-9">
                     {% if exercise is defined and exercise %}
                         {{ exercise.description|raw }}
+                        {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice' }, { 'exercise': exercise }) }}
                     {% endif %}
                 </div>
             {% endif %}

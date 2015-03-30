@@ -2,10 +2,21 @@
 
 {% block sonata_page_javascripts %}
     {{ parent() }}
-    {% javascripts
+        {% javascripts
         '@FitbaseFitbaseBundle/Resources/public/js/*'
         '@FitbaseQuestionnaireBundle/Resources/public/js/*'
+        '@FitbaseExerciseBundle/Resources/public/js/*'
         output='js/fitbase.js' %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
+
+{% block sonata_page_stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+    '@FitbaseFitbaseBundle/Resources/public/css/*'
+    '@FitbaseQuestionnaireBundle/Resources/public/css/*'
+    '@FitbaseExerciseBundle/Resources/public/css/*'
+    output='css/fitbase.css' %}
+    {% endstylesheets %}
+{% endblock %}
+

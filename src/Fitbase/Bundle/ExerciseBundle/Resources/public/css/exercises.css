@@ -1,0 +1,28 @@
+.thumb-info img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumb-info .col-xs-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.thumb-info .thumb-info-title {
+    color: #909090;
+    background: none repeat scroll 0 0 rgba(245, 245, 245, 0.9);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease 0s;
+    font-size: 12px;
+    letter-spacing: 0;
+    padding: 10px 10px 0px;
+    text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.thumb-info .thumb-info-title a {
+    color: #909090;
+}

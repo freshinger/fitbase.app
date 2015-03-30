@@ -27,29 +27,6 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
         );
     }
 
-//    protected function getName($category)
-//    {
-//        $names = array(
-//            'ruecken' => 'Rückenübungen',
-//            'stress' => 'Entspannungsübungen',
-//            'ernaehrung' => 'Ernährungstagebuch',
-//        );
-
-//        1. Entspannungsübungen
-//2. Ernährungstagebuch
-//3. Resilienzübungen
-//4. Augenübungen
-//5. Rückenübungen
-//6. Achtsamkeitsübungen
-//
-//
-//        if (in_array($category->getSlug(), array_keys($names))) {
-//            return $names[$category->getSlug()];
-//        }
-//
-//        return $category->getName();
-//    }
-
     /**
      * Process menu event, to fill custom menu from this bundle
      * @param \Fitbase\Bundle\FitbaseBundle\Event\UserMenuEvent $event
@@ -57,6 +34,7 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
     public function onUserMenuMain(\Fitbase\Bundle\FitbaseBundle\Event\UserMenuEvent $event)
     {
         if (($menu = $event->getEntity())) {
+
             if (($user = $this->container->get('user')->current())) {
                 if (($focus = $user->getFocus())) {
                     if (($categories = $focus->getParentCategories())) {
@@ -110,6 +88,11 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                     }
                 }
             }
+
+            $menu->addChild('Lieblingsübungen', array(
+                'route' => 'exercise_choice',
+            ));
+
         }
     }
 

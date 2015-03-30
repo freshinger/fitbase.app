@@ -110,6 +110,10 @@ sonata_block:
         fitbase.block.dashboard_dialog:
         fitbase.block.profile_focus:
         fitbase.block.exercise:
+        fitbase.block.exercise.user_choice:
+        fitbase.block.exercise.user_choice_social:
+        fitbase.block.exercise.user_choice_category:
+
         fitbase.block.exercise_random:
         fitbase.block.exercise_collection:
         fitbase.block.weeklytask:

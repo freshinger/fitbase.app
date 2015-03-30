@@ -1,66 +1,23 @@
-<style>
-
-    .panel {
-        /*width: auto;*/
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        background: none repeat scroll 0 0 rgba(245, 245, 245, 0.9);
-        box-shadow: none;
-    }
-
-    a.thumb-info span.thumb-info-title {
-        color: #909090;
-        font-size: 12px;
-        letter-spacing: 0;
-        padding: 7px 11px 9px;
-        text-transform: uppercase;
-        left: 0px;
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-    .thumb-info .thumb-info-title {
-        background: none repeat scroll 0 0 rgba(245, 245, 245, 0.9);
-        bottom: -1px;
-        font-size: 18px;
-        left: 20px;
-        letter-spacing: -1px;
-        padding: 9px 11px;
-        position: absolute;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-        text-transform: uppercase;
-        transition: all 0.3s ease 0s;
-        z-index: 1;
-    }
-
-    .thumb-info img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        max-height: 112px;
-    }
-
-    .thumb-info-inner {
-        width: 100%;
-    }
-
-</style>
-
 {% if exercises is defined %}
-    <div class="row" style="padding-right: 30px; max-width: 235px;">
+    <div class="row">
         {% for exercise in exercises|slice(0, 7) %}
-            <div class="col-xs-12 panel" style="padding: 0px !important;">
-                <a class="thumb-info" href="{{ path('exercise', {'unique': exercise.id}) }}">
-                    {% if exercise.image is defined %}
-                        {% thumbnail exercise.image, 'thumbnail' %}
-                        <span class="thumb-info-title">
-                                <span class="thumb-info-inner">
-                                    {{ exercise.name }}
-                                </span>
-                            </span>
-                    {% endif %}
-                </a>
+            <div class="col-xs-12">
+                <div class="well">
+                    <div class="row thumb-info">
+                        {% if exercise.image is defined %}
+                            <div class="col-xs-12">
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {% thumbnail exercise.image, 'thumbnail' %}
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="col-xs-12 thumb-info-title">
+                            <a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                {{ exercise.name }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>
