@@ -1,89 +1,90 @@
-{% if collection is defined and collection %}
+<div class="row">
+    {% if category is defined and category %}
+        <div class="col-xs-12">
+            <h3>{{ category }}</h3>
+        </div>
+    {% endif %}
     {% if collection|length > 0 %}
-        <div class="row">
-            {% if category is defined and category %}
-                <div class="col-xs-12">
-                    <h3>{{ category }}</h3>
-                </div>
-            {% endif %}
-            {% for exerciseChoice in collection | slice(0,2) %}
-                {% set exercise = exerciseChoice.exercise %}
-                <div class="col-xs-6">
-                    <div class="well">
-                        <div class="row thumb-info">
-                            {% if exercise.image is defined %}
-                                <div class="col-xs-12">
-                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                        {% thumbnail exercise.image, 'preview' %}
-                                    </a>
-                                </div>
-                            {% endif %}
-                            <div class="col-xs-12 thumb-info-title">
-                                <a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                    {{ exercise.name }}
+        {% for exerciseChoice in collection | slice(0,2) %}
+            {% set exercise = exerciseChoice.exercise %}
+            <div class="col-xs-6">
+                <div class="well">
+                    <div class="row thumb-info">
+                        {% if exercise.image is defined %}
+                            <div class="col-xs-12">
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {% thumbnail exercise.image, 'preview' %}
                                 </a>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-
-        {% if collection| slice(2,null) | length > 0 %}
-
-            <div id="exercises-{{ category.id }}" class="row hidden">
-                {% for exerciseChoice in collection | slice(2,null) %}
-                    {% set exercise = exerciseChoice.exercise %}
-                    <div class="col-xs-6">
-                        <div class="well">
-                            <div class="row thumb-info">
-                                {% if exercise.image is defined %}
-                                    <div class="col-xs-12">
-                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                            {% thumbnail exercise.image, 'preview' %}
-                                        </a>
-                                    </div>
-                                {% endif %}
-                                <div class="col-xs-12 thumb-info-title">
-                                    <a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                        {{ exercise.name }}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <ul class="pager">
-                        <li>
-                            <a href="#" class="show-exercises-{{ category.id }}">
-                                {{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}
+                        {% endif %}
+                        <div class="col-xs-12 thumb-info-title">
+                            <a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                {{ exercise.name }}
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <script type="text/javascript">
-                $(function () {
-
-                    var container = $(document);
-
-                    container.on('click', 'a.show-exercises-{{ category.id }}', function (event) {
-                        container.find('#exercises-{{ category.id }}').toggleClass('hidden');
-
-                        $(this).toggleText('{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}', '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}');
-                        return false;
-                    });
-
-                });
-
-            </script>
-        {% endif %}
-
+        {% endfor %}
+    {% else %}
+        <div class="col-xs-12">
+            Sie haben noch keine LIeblingsübungen in diesem Bereich
+        </div>
     {% endif %}
+</div>
+
+{% if collection| slice(2,null) | length > 0 %}
+
+    <div id="exercises-{{ category.id }}" class="row hidden">
+        {% for exerciseChoice in collection | slice(2,null) %}
+            {% set exercise = exerciseChoice.exercise %}
+            <div class="col-xs-6">
+                <div class="well">
+                    <div class="row thumb-info">
+                        {% if exercise.image is defined %}
+                            <div class="col-xs-12">
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {% thumbnail exercise.image, 'preview' %}
+                                </a>
+                            </div>
+                        {% endif %}
+                        <div class="col-xs-12 thumb-info-title">
+                            <a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                {{ exercise.name }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="pager">
+                <li>
+                    <a href="#" class="show-exercises-{{ category.id }}">
+                        {{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+
+            var container = $(document);
+
+            container.on('click', 'a.show-exercises-{{ category.id }}', function (event) {
+                container.find('#exercises-{{ category.id }}').toggleClass('hidden');
+
+                $(this).toggleText('{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}', '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}');
+                return false;
+            });
+
+        });
+
+    </script>
 {% endif %}
+
