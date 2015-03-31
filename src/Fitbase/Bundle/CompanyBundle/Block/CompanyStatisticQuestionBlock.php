@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class CompanyQuestionStatisticBlock extends CompanyUserLimitedBlockAbstract
+class CompanyStatisticQuestionBlock extends CompanyUserLimitedBlockAbstract implements CompanyBlockInterface
 {
     /**
      * Set defaults
@@ -25,8 +25,8 @@ class CompanyQuestionStatisticBlock extends CompanyUserLimitedBlockAbstract
         $resolver->setDefaults(array(
             'question' => null,
             'questionnaireUser' => null,
-            'template_default' => 'FitbaseCompanyBundle:Block:questionnaire_question.html.twig',
-            'template_locked' => 'FitbaseCompanyBundle:Block:questionnaire_question_locked.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:QuestionnaireQuestion.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:QuestionnaireQuestionLocked.html.twig',
         ));
     }
 

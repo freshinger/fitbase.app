@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-class CompanyUserRegistrationBlock extends SecureBlockServiceAbstract
+class CompanyStatisticUserRegistrationBlock extends SecureBlockServiceAbstract
 {
     /**
      * Set defaults
@@ -25,7 +25,7 @@ class CompanyUserRegistrationBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_registration.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/UserRegistration.html.twig',
         ));
     }
 

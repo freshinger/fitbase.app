@@ -43,7 +43,7 @@ class CompanyFooterBlock extends BaseBlockService implements ContainerAwareInter
         }
 
 
-        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:footer.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Footer.html.twig', array(
             'company' => $company,
         ));
     }

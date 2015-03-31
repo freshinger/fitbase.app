@@ -7,33 +7,30 @@
  */
 namespace Fitbase\Bundle\CompanyBundle\Block;
 
-
+use Fitbase\Bundle\CompanyBundle\Service\ServiceCompanyInterface;
 use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
-abstract class CompanyUserLimitedBlockAbstract extends SecureBlockServiceAbstract implements ContainerAwareInterface
+abstract class CompanyUserLimitedBlockAbstract extends SecureBlockServiceAbstract implements CompanyBlockInterface
 {
     /**
-     * Container Object
+     * Service company
      * @var
      */
-    protected $container;
+    protected $company;
 
     /**
-     * Sets the Container.
-     *
-     * @param ContainerInterface|null $container A ContainerInterface instance or null
-     *
-     * @api
+     * Set service company
+     * @param ServiceCompanyInterface $serviceCompany
+     * @return $this
      */
-    public function setContainer(ContainerInterface $container = null)
+    public function setServiceCompany(ServiceCompanyInterface $serviceCompany)
     {
-        $this->container = $container;
+        $this->company = $serviceCompany;
+        return $this;
     }
 
     /**
@@ -42,15 +39,14 @@ abstract class CompanyUserLimitedBlockAbstract extends SecureBlockServiceAbstrac
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (($company = $this->container->get('company')->current())) {
-            if (($users = $company->getUsers())) {
-                // Check count user and acceptable limit
-                // for current company, does not display
-                // a statistic if not enought users
-                if ($users->count() >= $company->getUserLimit()) {
-                    return parent::execute($blockContext, $response);
-                }
+        if (($company = $this->company->current())) {
+            // Check count user and acceptable
+            // limit for current company,
+            if (count($company->getUsers()) >= $company->getUserLimit()) {
+                return parent::execute($blockContext, $response);
             }
+            // Does not display
+            // a statistic if not enough users
             return $this->lock($blockContext, $response);
         }
 

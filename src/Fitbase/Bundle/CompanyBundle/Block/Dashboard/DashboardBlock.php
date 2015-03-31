@@ -36,7 +36,7 @@ class DashboardBlock extends SecureBlockServiceAbstract
             $company = $user->getCompany();
         }
 
-        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Dashboard/dashboard.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Dashboard.html.twig', array(
             'company' => $company,
         ));
     }

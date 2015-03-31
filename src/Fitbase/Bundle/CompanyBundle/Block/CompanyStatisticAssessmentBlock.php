@@ -8,7 +8,7 @@
 namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
-class CompanyAssessmentStatisticBlock extends CompanyQuestionStatisticBlock
+class CompanyStatisticAssessmentBlock extends CompanyStatisticQuestionBlock implements CompanyBlockInterface
 {
     /**
      * get statistic data

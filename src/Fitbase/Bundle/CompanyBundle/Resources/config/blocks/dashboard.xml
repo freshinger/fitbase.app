@@ -5,7 +5,8 @@
 
     <services>
 
-        <service id="fitbase.block.dashboard_company" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\DashboardBlock" scope="request" >
+        <service id="fitbase.block.dashboard_company" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\DashboardBlock"
+                 scope="request">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard_company</argument>
             <argument type="collection">
@@ -17,7 +18,8 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard.statistic_user_activity" scope="request" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyUserActivityBlock">
+        <service id="fitbase.block.dashboard.statistic_user_activity" scope="request"
+                 class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyStatisticUserActivityBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.statistic_user_activity</argument>
             <argument type="collection">
@@ -29,7 +31,8 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard.statistic_user_registration" scope="request" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyUserRegistrationBlock">
+        <service id="fitbase.block.dashboard.statistic_user_registration" scope="request"
+                 class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyStatisticUserRegistrationBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.statistic_user_registration</argument>
             <argument type="collection">
@@ -40,7 +43,8 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard.statistic_user_focus" scope="request" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyUserFocusBlock">
+        <service id="fitbase.block.dashboard.statistic_user_focus" scope="request"
+                 class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyStatisticUserFocusBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.statistic_user_focus</argument>
             <argument type="collection">
@@ -48,13 +52,14 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
+            <call method="setServiceCompany">
+                <argument type="service" id="company"/>
             </call>
         </service>
 
 
-        <service id="fitbase.block.dashboard.statistic_user_category" scope="request" class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyUserCategoryBlock">
+        <service id="fitbase.block.dashboard.statistic_user_category" scope="request"
+                 class="Fitbase\Bundle\CompanyBundle\Block\Dashboard\CompanyStatisticUserCategoryBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.statistic_user_category</argument>
             <argument type="collection">
@@ -62,8 +67,8 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
+            <call method="setServiceCompany">
+                <argument type="service" id="company"/>
             </call>
         </service>
 

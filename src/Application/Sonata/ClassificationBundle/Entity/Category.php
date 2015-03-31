@@ -39,6 +39,20 @@ class Category extends BaseCategory
     }
 
     /**
+     * Set slug
+     *
+     * @param int $slug
+     * @return $this|void
+     */
+    public function setSlug($slug)
+    {
+        parent::setSlug($slug);
+
+        return $this;
+    }
+
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $exercises;

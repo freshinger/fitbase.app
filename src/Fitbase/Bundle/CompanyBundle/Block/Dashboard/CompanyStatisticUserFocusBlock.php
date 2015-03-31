@@ -9,13 +9,14 @@ namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 
 use Fitbase\Bundle\CompanyBundle\Block\AbstractUserLimitedBlock;
+use Fitbase\Bundle\CompanyBundle\Block\CompanyBlockInterface;
 use Fitbase\Bundle\CompanyBundle\Block\CompanyUserLimitedBlockAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class CompanyUserFocusBlock extends CompanyUserLimitedBlockAbstract
+class CompanyStatisticUserFocusBlock extends CompanyUserLimitedBlockAbstract implements CompanyBlockInterface
 {
     /**
      * Set defaults
@@ -24,9 +25,8 @@ class CompanyUserFocusBlock extends CompanyUserLimitedBlockAbstract
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'company' => null,
-            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus.html.twig',
-            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/user_focus_locked.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/UserFocus.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/UserFocusLocked.html.twig',
         ));
     }
 
@@ -37,7 +37,7 @@ class CompanyUserFocusBlock extends CompanyUserLimitedBlockAbstract
     public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $categories = null;
-        if (($company = $blockContext->getSetting('company'))) {
+        if (($company = $this->company->current())) {
             if (($categories = $company->getCategories())) {
                 $categories = $categories->toArray();
                 uasort($categories, function ($category1, $category2) {

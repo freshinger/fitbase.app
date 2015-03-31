@@ -9,7 +9,7 @@
 namespace Fitbase\Bundle\CompanyBundle\Service;
 
 
-class ServiceCompany
+class ServiceCompany implements ServiceCompanyInterface
 {
     protected $serviceUser;
 

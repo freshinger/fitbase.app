@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 
-class CompanyUserActivityBlock extends SecureBlockServiceAbstract
+class CompanyStatisticUserActivityBlock extends SecureBlockServiceAbstract
 {
     protected $entityManager;
 
@@ -34,7 +34,7 @@ class CompanyUserActivityBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseCompanyBundle:Block:Dashboard/user_activity.html.twig',
+            'template' => 'FitbaseCompanyBundle:Block:Dashboard/UserActivity.html.twig',
         ));
     }
 

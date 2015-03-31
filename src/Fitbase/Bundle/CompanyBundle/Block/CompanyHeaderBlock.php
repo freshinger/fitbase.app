@@ -61,7 +61,7 @@ class CompanyHeaderBlock extends BaseBlockService
             }
         }
 
-        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:header.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Header.html.twig', array(
             'company' => $company,
         ));
     }

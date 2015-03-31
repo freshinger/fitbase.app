@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Block\BlockContext;
 use Sonata\BlockBundle\Model\Block;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompanyUserActivityBlockTest extends FitbaseTestAbstract
+class CompanyStatisticUserActivityBlockTest extends FitbaseTestAbstract
 {
     public function test_blockShouldReturnStatus200()
     {

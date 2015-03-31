@@ -10,14 +10,14 @@ namespace Fitbase\Bundle\CompanyBundle\Block\Dashboard;
 
 use Application\Sonata\ClassificationBundle\Entity\Category;
 use Fitbase\Bundle\CompanyBundle\Block\AbstractUserLimitedBlock;
+use Fitbase\Bundle\CompanyBundle\Block\CompanyBlockInterface;
 use Fitbase\Bundle\CompanyBundle\Block\CompanyUserLimitedBlockAbstract;
-use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
-class CompanyUserCategoryBlock extends CompanyUserLimitedBlockAbstract
+class CompanyStatisticUserCategoryBlock extends CompanyUserLimitedBlockAbstract implements CompanyBlockInterface
 {
     /**
      * Set defaults
@@ -27,9 +27,8 @@ class CompanyUserCategoryBlock extends CompanyUserLimitedBlockAbstract
     {
         $resolver->setDefaults(array(
             'slug' => null,
-            'company' => null,
-            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/user_category.html.twig',
-            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/user_category_locked.html.twig',
+            'template_default' => 'FitbaseCompanyBundle:Block:Dashboard/UserCategory.html.twig',
+            'template_locked' => 'FitbaseCompanyBundle:Block:Dashboard/UserCategoryLocked.html.twig',
         ));
     }
 
@@ -44,9 +43,8 @@ class CompanyUserCategoryBlock extends CompanyUserLimitedBlockAbstract
         $categoryCountPointTotal = 0;
         $categoryCountPointUser = 0;
 
-        if (($company = $blockContext->getSetting('company'))) {
+        if (($company = $this->company->current())) {
             if (($companyCategory = $company->getCategoryBySlug($blockContext->getSetting('slug')))) {
-
                 if (($category = $companyCategory->getCategory())) {
                     if (($users = $company->getUsers()) and ($countTotal = count($users))) {
                         foreach ($users as $user) {
@@ -90,7 +88,7 @@ class CompanyUserCategoryBlock extends CompanyUserLimitedBlockAbstract
     public function lock(BlockContextInterface $blockContext, Response $response = null)
     {
         $category = null;
-        if (($company = $blockContext->getSetting('company'))) {
+        if (($company = $this->company->current())) {
             if (($companyCategory = $company->getCategoryBySlug($blockContext->getSetting('slug')))) {
                 $category = $companyCategory->getCategory();
             }

@@ -6,7 +6,7 @@
     <services>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
-                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyQuestionStatisticBlock">
+                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyStatisticQuestionBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
             <argument type="collection">
@@ -14,13 +14,13 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
+            <call method="setServiceCompany">
+                <argument type="service" id="company"/>
             </call>
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_question_last" scope="request"
-                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyAssessmentStatisticBlock">
+                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyStatisticAssessmentBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_question_last</argument>
             <argument type="collection">
@@ -28,9 +28,8 @@
             </argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="security.context"/>
-            <argument type="service" id="user"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
+            <call method="setServiceCompany">
+                <argument type="service" id="company"/>
             </call>
         </service>
 

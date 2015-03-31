@@ -168,7 +168,7 @@ class UserStateFormTest extends WebTestCase
 
 
         $this->assertTrue(array_key_exists('authKey', $form->createView()->children));
-        $this->assertEquals($form->createView()->children['authkey']->vars['value'], null);
+        $this->assertEquals($form->createView()->children['authKey']->vars['value'], null);
 
         $this->assertTrue(array_key_exists('timestamp', $form->createView()->children));
         $this->assertEquals($form->createView()->children['timestamp']->vars['value'], $model->getTimestamp());
