@@ -1,12 +1,12 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'profile', 'current_uri': app.request.requestUri }) }}
 
 <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
         <h3>{{ "Empfehlungen" | trans({}, 'FitbaseExerciseBundle') }}</h3>
 
         {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice_social' }) }}
     </div>
-    <div class="col-xs-8">
+    <div class="col-xs-9">
         <h3>{{ "Meine Lieblingsübungen" | trans({}, 'FitbaseExerciseBundle') }}</h3>
 
         {% if collection is defined and collection %}

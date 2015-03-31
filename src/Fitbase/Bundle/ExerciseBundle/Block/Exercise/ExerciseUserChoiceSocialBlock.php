@@ -68,7 +68,7 @@ class ExerciseUserChoiceSocialBlock extends BaseBlockService implements Containe
                         return $entity->getCategory();
                     });
 
-                    $collection = $repositoryExerciseUserChoice->findPopularByCategories($categories, 8);
+                    $collection = $repositoryExerciseUserChoice->findPopularByCategories($categories, 6);
                 }
             }
 

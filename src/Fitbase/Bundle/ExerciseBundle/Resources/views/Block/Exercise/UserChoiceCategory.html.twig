@@ -5,15 +5,15 @@
         </div>
     {% endif %}
     {% if collection|length > 0 %}
-        {% for exerciseChoice in collection | slice(0,2) %}
+        {% for exerciseChoice in collection | slice(0,3) %}
             {% set exercise = exerciseChoice.exercise %}
-            <div class="col-xs-6">
+            <div class="col-xs-4">
                 <div class="well">
                     <div class="row thumb-info">
                         {% if exercise.image is defined %}
                             <div class="col-xs-12">
                                 <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                    {% thumbnail exercise.image, 'preview' %}
+                                    {% thumbnail exercise.image, 'thumbnail' %}
                                 </a>
                             </div>
                         {% endif %}
@@ -33,18 +33,20 @@
     {% endif %}
 </div>
 
-{% if collection| slice(2,null) | length > 0 %}
+{% set collectionPart = collection| slice(3,null) %}
+
+{% if collectionPart | length > 0 %}
 
     <div id="exercises-{{ category.id }}" class="row hidden">
-        {% for exerciseChoice in collection | slice(2,null) %}
+        {% for exerciseChoice in collectionPart %}
             {% set exercise = exerciseChoice.exercise %}
-            <div class="col-xs-6">
+            <div class="col-xs-4">
                 <div class="well">
                     <div class="row thumb-info">
                         {% if exercise.image is defined %}
                             <div class="col-xs-12">
                                 <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                    {% thumbnail exercise.image, 'preview' %}
+                                    {% thumbnail exercise.image, 'thumbnail' %}
                                 </a>
                             </div>
                         {% endif %}

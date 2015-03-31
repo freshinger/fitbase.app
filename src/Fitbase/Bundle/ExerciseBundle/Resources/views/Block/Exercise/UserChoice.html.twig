@@ -1,14 +1,20 @@
 {% if exercise is defined and exercise %}
+    <style>
+        .btn-success.btn-nohover:hover {
+            border-color: #4cae4c !important;
+            background-color: #5cb85c !important;
+        }
+    </style>
     <div class="row">
         {% if exerciseUserChoice is defined and exerciseUserChoice %}
             <div class="col-xs-12">
-                <span class="label label-success">
+                <span class="btn btn-success btn-nohover">
                     {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
                 </span>
             </div>
         {% else %}
             <div class="col-xs-12">
-                <a href="?like=true" class="label label-info">
+                <a href="?like=true" class="btn btn-info">
                     {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
                 </a>
             </div>
