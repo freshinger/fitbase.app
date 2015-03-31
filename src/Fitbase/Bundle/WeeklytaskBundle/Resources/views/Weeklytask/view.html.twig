@@ -1,13 +1,13 @@
 {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask_user', 'current_uri': app.request.requestUri }) }}
 
 <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-3">
         {% set weeklytask = weeklytaskUser.task %}
         {{ sonata_block_render({ 'type': 'fitbase.block.weeklytask_collection' }, {
             'categories': weeklytask.categories
         }) }}
     </div>
-    <div class="col-xs-8 top10">
+    <div class="col-xs-9 top10">
         {{ sonata_block_render({ 'type': 'fitbase.block.weeklytask' }, {
             'weeklytaskUser': weeklytaskUser
         }) }}
