@@ -20,11 +20,11 @@ class WeeklytaskController extends Controller
      * @param null $unique
      * @return Response
      */
-    public function userViewAction(Request $request, $unique = null)
+    public function taskAction(Request $request, $unique = null)
     {
         if (($user = $this->get('user')->current())) {
             if (($weeklytaskUser = $this->get('fitbase.orm.weeklytask_manager')->findOneByUserAndUnique($user, $unique))) {
-                return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view.html.twig', array(
+                return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Task.html.twig', array(
                     'weeklytaskUser' => $weeklytaskUser,
                 ));
             }
@@ -39,7 +39,7 @@ class WeeklytaskController extends Controller
      * @param null $unique
      * @return Response
      */
-    public function userQuizViewAction(Request $request, $unique = null)
+    public function quizAction(Request $request, $unique = null)
     {
         if (($user = $this->get('user')->current())) {
 
@@ -57,7 +57,7 @@ class WeeklytaskController extends Controller
                 return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
             }
 
-            return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
+            return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
                 'weeklyquiz' => $weeklyquizUser,
                 'weeklyquizUser' => $weeklyquizUser,
             ));

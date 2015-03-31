@@ -5,11 +5,11 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="weeklyquiz_user_view" pattern="/quiz/{unique}">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userQuizView</default>
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:quiz</default>
     </route>
 
     <route id="weeklytask_user_view" pattern="/{unique}">
-        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:userView</default>
+        <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:task</default>
     </route>
 
 </routes>

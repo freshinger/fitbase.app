@@ -79,7 +79,7 @@
         <tr>
             <td class="col-xs-4">
                 <h4>{{ label|raw }}</h4>
-                {{ description }}
+                {{ description|raw }}
             </td>
             <td class="col-xs-8">
                 <div class="form-group">
@@ -125,17 +125,13 @@
             </div>
         </div>
         <div class="modal-footer">
-            {% if points is defined and points %}
-                <span style="margin-right: 25%;">
-                    Sie erhalten maximal {{ points }} Punkte für dieses Quiz
-                </span>
+            {% if userQuiz is defined and userQuiz %}
+                {% if not userQuiz.done %}
+                    <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
+                        {{ "Quiz auswerten" | trans({}, 'FitbaseWeeklytaskBundle') }}
+                    </button>
+                {% endif %}
             {% endif %}
-            <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
-                Quiz auswerten
-            </button>
-            <a class="btn btn-primary" data-dismiss="modal" id="weeklytask_user_quiz_answer_close">
-                Später machen
-            </a>
         </div>
     {% endspaceless %}
 {% endblock form_widget_compound %}
