@@ -10,6 +10,7 @@
         <import resource="validators.xml"/>
         <import resource="blocks.xml"/>
         <import resource="orm.xml"/>
+        <import resource="breadcrumbs.xml"/>
     </imports>
     <services>
 
