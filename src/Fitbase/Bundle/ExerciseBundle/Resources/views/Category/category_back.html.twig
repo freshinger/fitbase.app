@@ -52,7 +52,7 @@
                     {% if category.exercises|length > 0 and category.parent is not null %}
                         {% if category.media is defined and category.media %}
                             <div class="col-xs-3 "
-                                 style="padding:0px; margin-bottom: 20px; max-width: 250px; margin-right: 25px;">
+                                 style="padding:0px; margin-bottom: 20px; max-width: 200px; margin-right: 25px;">
                                 <a class="thumb-info" href="{{ path('category_exercises', {'slug': category.slug}) }}">
                                     {% thumbnail category.media, 'icon' %}
                                     <span class="thumb-info-title">
