@@ -59,6 +59,7 @@ class WeeklytaskController extends Controller
 
             return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
                 'weeklyquiz' => $weeklyquizUser,
+                'weeklyquizUser' => $weeklyquizUser,
             ));
         }
 
@@ -131,6 +132,7 @@ class WeeklytaskController extends Controller
         return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
+            'weeklyquizUser' => $weeklyquizUser,
             'weeklyquiz' => $weeklyquizUser,
         ));
     }
@@ -200,6 +202,7 @@ class WeeklytaskController extends Controller
         return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
+            'weeklyquizUser' => $weeklyquizUser,
             'weeklyquiz' => $weeklyquizUser->getQuiz(),
         ));
     }
