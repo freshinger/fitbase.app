@@ -121,7 +121,7 @@
                                             {{ loop.index }}
                                             </span>
                                         <a href="{% path galleryHasMedia.media, 'original' %}">
-                                            {% thumbnail galleryHasMedia.media, 'preview' with {'width': 260} %}
+                                            {% thumbnail galleryHasMedia.media, 'preview' with {'width': 260, 'title': null} %}
                                         </a>
                                     </div>
                                 {% endfor %}

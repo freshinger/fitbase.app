@@ -54,7 +54,7 @@
                             <div class="col-xs-3 "
                                  style="padding:0px; margin-bottom: 20px; max-width: 200px; margin-right: 25px;">
                                 <a class="thumb-info" href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                    {% thumbnail category.media, 'icon' %}
+                                    {% thumbnail category.media, 'icon' with { 'title': null } %}
                                     <span class="thumb-info-title">
                                     <span class="thumb-info-inner">
                                         {{ category.name }}

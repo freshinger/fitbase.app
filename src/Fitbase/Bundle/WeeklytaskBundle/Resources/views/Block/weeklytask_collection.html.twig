@@ -31,7 +31,7 @@
                                     {% else %}
                                         {% set category = weeklytask.categories[0] %}
                                         {% if category is defined and  category %}
-                                            {% thumbnail category, 'preview' %}
+                                            {% thumbnail category, 'thumbnail' with { 'title': null } %}
                                         {% endif %}
                                     {% endif %}
                                 </a>

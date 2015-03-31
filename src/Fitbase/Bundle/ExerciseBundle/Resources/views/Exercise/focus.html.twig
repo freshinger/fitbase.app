@@ -10,7 +10,7 @@
                     </a>
                     {% if category.media is defined %}
                         <a href="{{ path('focus', {'slug': category.slug}) }}">
-                            {% thumbnail category.media, 'preview' with {'width': 200} %}
+                            {% thumbnail category.media, 'preview' with {'width': 200, 'title': null } %}
                         </a>
                     {% endif %}
                 </div>
@@ -27,7 +27,7 @@
                 <h4>{{ exercise.name }}</h4>
                 <a href="{{ path('exercise', {'unique': exercise.id}) }}">
                     {% if exercise.image is defined %}
-                        {% thumbnail exercise.image, 'preview' with {'width': 250} %}
+                        {% thumbnail exercise.image, 'preview' with {'width': 250, 'title': null } %}
                     {% endif %}
                 </a>
             </div>

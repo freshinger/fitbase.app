@@ -7,7 +7,7 @@
                     {% if exercise.image is defined %}
                         <div class="col-xs-12">
                             <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                {% thumbnail exercise.image, 'thumbnail' %}
+                                {% thumbnail exercise.image, 'thumbnail' with { 'title': null } %}
                             </a>
                         </div>
                     {% endif %}
