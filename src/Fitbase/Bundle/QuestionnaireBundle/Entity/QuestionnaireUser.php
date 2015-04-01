@@ -142,6 +142,8 @@ class QuestionnaireUser
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**

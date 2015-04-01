@@ -30,8 +30,34 @@ class QuestionnaireUserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
+            'fitbase.assessment_user_repeat' => array('onAssessmentUserRepeatEvent'),
             'fitbase.questionnaire_user_create' => array('onQuestionnaireUserCreateEvent'),
         );
+    }
+
+    /**
+     * Repeat user assessment
+     * @param QuestionnaireUserEvent $event
+     */
+    public function onAssessmentUserRepeatEvent(QuestionnaireUserEvent $event)
+    {
+        if (($questionnaireUser = $event->getEntity())) {
+            if (($user = $questionnaireUser->getUser())) {
+                if (($company = $user->getCompany())) {
+                    if (($companyQuestionnaire = $company->getQuestionnaire())) {
+
+                        $questionnaireUser->setQuestionnaire($companyQuestionnaire);
+                        $questionnaireUser->setSlice(null);
+                        $questionnaireUser->setDone(false);
+                        $questionnaireUser->setPause(false);
+                        $questionnaireUser->setCountPoint(0);
+
+                        $this->objectManager->persist($questionnaireUser);
+                        $this->objectManager->flush($questionnaireUser);
+                    }
+                }
+            }
+        }
     }
 
     /**

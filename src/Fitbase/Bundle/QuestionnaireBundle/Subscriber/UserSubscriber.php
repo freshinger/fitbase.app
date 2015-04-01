@@ -36,6 +36,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
                     $questionnaireUser = new QuestionnaireUser();
                     $questionnaireUser->setUser($user);
                     $questionnaireUser->setQuestionnaire($companyQuestionnaire);
+                    $questionnaireUser->setSlice(null);
                     $questionnaireUser->setDone(false);
                     $questionnaireUser->setPause(false);
                     $questionnaireUser->setCountPoint(0);

@@ -8,6 +8,8 @@
 namespace Fitbase\Bundle\GamificationBundle\Block;
 
 
+use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
+use Fitbase\Bundle\QuestionnaireBundle\Form\AssessmentUserRepeatForm;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -54,11 +56,12 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
             }
         }
 
+        $form = $this->container->get('form.factory')->create(new AssessmentUserRepeatForm(), new QuestionnaireUser());
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardFocus.html.twig', array(
             'user' => $user,
+            'form' => $form->createView(),
             'category' => $category,
             'nextWeeklytask' => $this->getNextIntervalWeeklytask($user),
-
             'collection' => $collectionWeeklytaskActual,
         ));
     }

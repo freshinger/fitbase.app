@@ -11,6 +11,9 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Subscriber;
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
 use Fitbase\Bundle\QuestionnaireBundle\Controller\UserWizardController;
+use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
+use Fitbase\Bundle\QuestionnaireBundle\Event\QuestionnaireUserEvent;
+use Fitbase\Bundle\QuestionnaireBundle\Form\AssessmentUserRepeatForm;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,6 +51,18 @@ class KernelResponseSubscriber extends ContainerAware implements EventSubscriber
         }
 
         if (($user = $this->container->get('user')->current())) {
+
+
+            $form = $this->container->get('form.factory')->create(new AssessmentUserRepeatForm(), new QuestionnaireUser());
+            if ($this->container->get('request')->get($form->getName())) {
+                $form->handleRequest($this->container->get('request'));
+                if ($form->isValid()) {
+
+                    $questionnaireUserEvent = new QuestionnaireUserEvent($form->getData()->setUser($user));
+                    $this->container->get('event_dispatcher')->dispatch('fitbase.assessment_user_repeat', $questionnaireUserEvent);
+                }
+            }
+
 
             $managerEntity = $this->container->get('entity_manager');
             $repositoryQuestionnaireUser = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser');

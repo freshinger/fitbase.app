@@ -58,9 +58,8 @@
     </div>
 
     <div class="panel-footer">
-        <a href="" class="btn btn-default">
-            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-            {{ 'Bedarfsermittlung wiederholen'|trans({}, 'FitbaseGamificationBundle') }}
-        </a>
+        {% form_theme form "FitbaseGamificationBundle:Block:DashboardFocusForm.html.twig" %}
+
+        {{ form(form) }}
     </div>
 </div>
