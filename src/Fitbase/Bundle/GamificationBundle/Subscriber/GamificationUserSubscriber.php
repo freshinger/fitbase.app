@@ -38,6 +38,7 @@ class GamificationUserSubscriber extends ContainerAware implements EventSubscrib
         $entityManager = $this->container->get('entity_manager');
         $repositoryGamificationUser = $entityManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
+        $gamificationUser->setUpdate(false);
         $gamificationUser->setTree(
             $this->container->get('templating')
                 ->render('FitbaseGamificationBundle:SVG:tree.svg.twig')
@@ -47,6 +48,7 @@ class GamificationUserSubscriber extends ContainerAware implements EventSubscrib
 
             $gamificationUserCurrent->setAvatar($gamificationUser->getAvatar());
             $gamificationUserCurrent->setTree($gamificationUser->getTree());
+            $gamificationUserCurrent->setUpdate(false);
 
             $this->container->get('entity_manager')->persist($gamificationUserCurrent);
             $this->container->get('entity_manager')->flush($gamificationUserCurrent);

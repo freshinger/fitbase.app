@@ -8,6 +8,7 @@
 namespace Fitbase\Bundle\GamificationBundle\Block;
 
 
+use Fitbase\Bundle\GamificationBundle\Form\GamificationUserUpdateForm;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -49,7 +50,9 @@ class DashboardAvatarBlockService extends BaseBlockService implements ContainerA
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_avatar.html.twig', array(
+        $form = $this->container->get('form.factory')->create(new GamificationUserUpdateForm(), $gamification);
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardAvatar.html.twig', array(
+            'form' => $form->createView(),
             'gamification' => $gamification,
             'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
         ));

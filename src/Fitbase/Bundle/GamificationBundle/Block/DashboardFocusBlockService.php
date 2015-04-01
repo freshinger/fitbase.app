@@ -54,7 +54,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
             }
         }
 
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_focus.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardFocus.html.twig', array(
             'user' => $user,
             'category' => $category,
             'nextWeeklytask' => $this->getNextIntervalWeeklytask($user),

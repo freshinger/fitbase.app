@@ -14,6 +14,7 @@ use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
 use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
 use Fitbase\Bundle\GamificationBundle\Form\GamificationUserForm;
+use Fitbase\Bundle\GamificationBundle\Form\GamificationUserUpdateForm;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -50,8 +51,20 @@ class DashboardGamificationBlockService extends SecureBlockServiceAbstract
     public function render(BlockContextInterface $blockContext, Response $response = null)
     {
         $repositoryGamificationUser = $this->objectManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+        if (($gamification = $repositoryGamificationUser->findOneByUser($this->serviceUser->current()))) {
+            $form = $this->formFactory->create(new GamificationUserUpdateForm(), $gamification);
+            if ($this->request->get($form->getName())) {
+                $form->handleRequest($this->request);
+                if ($form->isValid()) {
 
-        if (!($gamification = $repositoryGamificationUser->findOneByUser($this->serviceUser->current()))) {
+                    $gamification->setUpdate(true);
+                    $this->objectManager->persist($gamification);
+                    $this->objectManager->flush($gamification);
+                }
+            }
+        }
+
+        if ((!$gamification instanceof GamificationUser) or $gamification->getUpdate()) {
             return $this->renderAvatarForm($blockContext, $response);
         }
 
@@ -76,6 +89,7 @@ class DashboardGamificationBlockService extends SecureBlockServiceAbstract
                 $this->templating,
                 $this->gamification
             );
+
 
             $form = $this->formFactory->create($formType, $gamificationUser);
             if ($this->request->get($form->getName())) {

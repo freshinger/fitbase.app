@@ -9,6 +9,9 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <field name="update" type="boolean" column="refresh" nullable="true"/>
+
+
         <field name="avatar" type="text" column="avatar" nullable="true"/>
         <field name="tree" type="text" column="tree" nullable="true"/>
 

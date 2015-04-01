@@ -79,4 +79,32 @@ class GamificationUser
     {
         return $this->user;
     }
+    /**
+     * @var boolean
+     */
+    private $update;
+
+
+    /**
+     * Set update
+     *
+     * @param boolean $update
+     * @return GamificationUser
+     */
+    public function setUpdate($update)
+    {
+        $this->update = $update;
+
+        return $this;
+    }
+
+    /**
+     * Get update
+     *
+     * @return boolean 
+     */
+    public function getUpdate()
+    {
+        return $this->update;
+    }
 }
