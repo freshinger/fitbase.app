@@ -44,7 +44,8 @@ class GalleryHasMediaAdmin extends Admin
                 'link_parameters' => $link_parameters
             ))
             ->add('showedAt', 'sonata_type_date_picker', array(
-                'format' => 'dd/MM/yyyy'
+                'required' => false,
+                'format' => 'dd/MM/yyyy',
             ))
             ->add('enabled', null, array('required' => false))
             ->add('position', 'hidden')
