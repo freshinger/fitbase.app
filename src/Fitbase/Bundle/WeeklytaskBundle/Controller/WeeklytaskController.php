@@ -129,7 +129,7 @@ class WeeklytaskController extends Controller
             }
         }
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
+        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
             'weeklyquizUser' => $weeklyquizUser,
@@ -199,7 +199,7 @@ class WeeklytaskController extends Controller
 
         $form = $this->createForm($formBuilder, $result);
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig', array(
+        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
             'weeklyquizUser' => $weeklyquizUser,
