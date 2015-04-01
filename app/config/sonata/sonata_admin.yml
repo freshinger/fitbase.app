@@ -67,7 +67,7 @@ sonata_admin:
                 icon:            '<i class="fa fa-play-circle"></i>'
                 items:
                     - sonata.media.admin.media
-                    - sonata.media.admin.gallery
+                    - fitbase.media.admin.gallery
 
             sonata.admin.group.content:
                 label:           "Fitbase Content"

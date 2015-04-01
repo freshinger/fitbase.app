@@ -37,4 +37,31 @@ class GalleryHasMedia extends BaseGalleryHasMedia
     {
         return $this->id;
     }
+    /**
+     * @var \DateTime
+     */
+    private $showedAt;
+
+    /**
+     * Set showedAt
+     *
+     * @param \DateTime $showedAt
+     * @return GalleryHasMedia
+     */
+    public function setShowedAt($showedAt)
+    {
+        $this->showedAt = $showedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get showedAt
+     *
+     * @return \DateTime 
+     */
+    public function getShowedAt()
+    {
+        return $this->showedAt;
+    }
 }

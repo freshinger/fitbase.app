@@ -102,7 +102,9 @@ sonata_media:
 
         image:
            thumbnail: sonata.media.thumbnail.format          # default value
-           allowed_extensions: ['jpeg', 'jpg', 'png', 'bmp', 'gif']
+           allowed_extensions: ['jpeg', 'jpg', 'png', 'bmp', 'gif', 'svg']
+           allowed_mime_types: ['image/jpeg', 'image/pjpeg', 'image/png', 'image/svg+xml', 'image/gif', 'image/vnd.wap.wbmp']
+
 #           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
 #            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
         vimeo:

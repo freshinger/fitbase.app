@@ -40,7 +40,7 @@
         </many-to-one>
 
         <many-to-one field="questionnaire" target-entity="Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire">
-            <join-column name="questionnaire_id" referenced-column-name="id" on-delete="CASCADE"/>
+            <join-column name="questionnaire_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
         <one-to-many field="users" target-entity="Application\Sonata\UserBundle\Entity\User" mapped-by="company">
@@ -60,6 +60,14 @@
                 <order-by-field name="id" direction="ASC"/>
             </order-by>
         </one-to-many>
+
+        <many-to-one field="avatars" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
+            <join-column name="avatars_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
+
+        <many-to-one field="attributes" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
+            <join-column name="attributes_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
 
     </entity>
 </doctrine-mapping>

@@ -36,6 +36,8 @@ class CollectionAdmin extends Admin
             array('required' => false)
         );
 
+
+
         if (interface_exists('Sonata\MediaBundle\Model\MediaInterface')) {
             $formMapper->add('media', 'sonata_type_model_list',
                 array('required' => false),

@@ -10,6 +10,7 @@
 
 namespace Application\Sonata\MediaBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\MediaBundle\Entity\BaseGallery as BaseGallery;
 
 /**
@@ -36,5 +37,78 @@ class Gallery extends BaseGallery
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $galleryHasGallery;
+
+    /**
+     * Get galleryHasGallery
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGalleryHasGallery()
+    {
+        return $this->galleryHasGallery;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $children
+     */
+    public function removeChild(\Application\Sonata\MediaBundle\Entity\Gallery $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+
+    /**
+     * Add galleryHasGallery
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasGallery $galleryHasGallery
+     * @return Gallery
+     */
+    public function addGalleryHasGallery(\Application\Sonata\MediaBundle\Entity\GalleryHasGallery $galleryHasGallery)
+    {
+        $galleryHasGallery->setGallery($this);
+
+        $this->galleryHasGallery[] = $galleryHasGallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove galleryHasGallery
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\GalleryHasGallery $galleryHasGallery
+     */
+    public function removeGalleryHasGallery(\Application\Sonata\MediaBundle\Entity\GalleryHasGallery $galleryHasGallery)
+    {
+        $this->galleryHasGallery->removeElement($galleryHasGallery);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setGalleryHasGallery($galleryHasGalleries)
+    {
+        $this->galleryHasGallery = new ArrayCollection();
+
+        foreach ($galleryHasGalleries as $galleryHasGallery) {
+            $this->addGalleryHasGallery($galleryHasGallery);
+        }
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->galleryHasGallery = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

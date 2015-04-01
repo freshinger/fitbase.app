@@ -10,6 +10,7 @@
         <import resource="admin.xml" />
         <import resource="blocks.xml" />
         <import resource="subscribers.xml" />
+        <import resource="types.xml"/>
 
     </imports>
 
@@ -28,8 +29,6 @@
         </service>
 
         <service id="entity_manager" class="%doctrine.orm.entity_manager.class%" factory-service="doctrine" factory-method="getManager"/>
-
-
 
     </services>
 

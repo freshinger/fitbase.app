@@ -118,6 +118,15 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
                 ))
                 ->end();
         }
+        $formMapper
+            ->with('Images', array('class' => 'col-md-4'))
+                ->add('avatars', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array('context' => 'company')
+                ))
+                ->add('attributes', 'sonata_type_model_list', array('required' => false), array(
+                    'link_parameters' => array('context' => 'company')
+                ))
+            ->end();
 
         $formMapper->end();
 

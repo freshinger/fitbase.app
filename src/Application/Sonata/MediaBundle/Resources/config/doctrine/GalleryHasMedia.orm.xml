@@ -17,5 +17,8 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <field name="showedAt" column="showed_at" type="datetime" nullable="true"/>
+
+
     </entity>
 </doctrine-mapping>

@@ -704,4 +704,88 @@ class Company
     {
         return $this->userLimit;
     }
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    private $gallery;
+
+
+    /**
+     * Set gallery
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     * @return Company
+     */
+    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    private $avatars;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Gallery
+     */
+    private $attributes;
+
+
+    /**
+     * Set avatars
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $avatars
+     * @return Company
+     */
+    public function setAvatars(\Application\Sonata\MediaBundle\Entity\Gallery $avatars = null)
+    {
+        $this->avatars = $avatars;
+
+        return $this;
+    }
+
+    /**
+     * Get avatars
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     */
+    public function getAvatars()
+    {
+        return $this->avatars;
+    }
+
+    /**
+     * Set attributes
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Gallery $attributes
+     * @return Company
+     */
+    public function setAttributes(\Application\Sonata\MediaBundle\Entity\Gallery $attributes = null)
+    {
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
 }
