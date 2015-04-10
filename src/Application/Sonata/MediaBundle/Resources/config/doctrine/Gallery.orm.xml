@@ -18,11 +18,11 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-many field="galleryHasGallery" target-entity="Application\Sonata\MediaBundle\Entity\GalleryHasGallery" mapped-by="gallery" orphan-removal="true">
-            <cascade>
-                <cascade-all/>
-            </cascade>
-        </one-to-many>
+        <!--<one-to-many field="galleryHasGallery" target-entity="Application\Sonata\MediaBundle\Entity\GalleryHasGallery" mapped-by="gallery" orphan-removal="true">-->
+            <!--<cascade>-->
+                <!--<cascade-all/>-->
+            <!--</cascade>-->
+        <!--</one-to-many>-->
 
     </entity>
 </doctrine-mapping>

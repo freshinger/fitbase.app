@@ -11,26 +11,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GamificationUserForm extends GamificationDialogQuestionAbstractForm
 {
-    protected $templating;
-    protected $gamification;
-
-    public function __construct($templating, $gamification)
-    {
-        $this->templating = $templating;
-        $this->gamification = $gamification;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $type = new AvatarType($this->templating, $this->gamification);
-
-        $builder->add('avatar', $type, array(
-            'required' => true,
-        ));
+        $builder->add('avatar', new AvatarType());
     }
 
     /**

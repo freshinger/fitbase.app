@@ -59,7 +59,12 @@ sonata_admin:
                     - fitbase.admin.user_actioncode
                     - sonata.user.admin.group
 
-
+            fitbase.admin.group.gamification:
+                label:           "Fitbase Gamification"
+                label_catalogue: FitbaseGamificationBundle
+                icon:            '<i class="fa fa-play-circle"></i>'
+                items:
+                    - fitbase.admin.gamification.settings
 
             fitbase.admin.group.media:
                 label:           "Fitbase Medien"

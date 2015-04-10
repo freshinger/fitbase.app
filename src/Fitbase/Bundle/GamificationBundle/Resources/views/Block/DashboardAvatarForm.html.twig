@@ -16,7 +16,7 @@
         {%- endif -%}
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>
-        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         {{ label|trans({}, translation_domain) }}
     </button>
 {%- endblock button_widget -%}

@@ -1,7 +1,9 @@
 <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body" style="height: 414px;">
 
-        <h4 class="short hue">Ihre Aktivität</h4>
+        <h4 class="short hue">
+            {{ 'Ihre Aktivität'|trans({}, 'FitbaseGamificationBundle') }}
+        </h4>
 
         {{ graph(statistic)|raw }}
     </div>

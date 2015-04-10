@@ -21,36 +21,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AvatarType extends AbstractType
 {
-
-    protected $templating;
-    protected $gamification;
-
-    public function __construct($templating, $gamification)
-    {
-        $this->templating = $templating;
-        $this->gamification = $gamification;
-    }
-
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $transformer = new AvatarDataTransformer($this->templating);
-        $builder->addModelTransformer($transformer);
-    }
-
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        parent::buildView($view, $form, $options);
-        $view->vars['monkey'] = $this->gamification->getSvgMonkey();
-        $view->vars['bear'] = $this->gamification->getSvgBear();
-        $view->vars['deer'] = $this->gamification->getSvgDeer();
-        $view->vars['crane'] = $this->gamification->getSvgCrane();
-        $view->vars['tiger'] = $this->gamification->getSvgTiger();
-    }
-
     /**
      * Set default options for this type
      * @param OptionsResolverInterface $resolver
@@ -59,6 +29,9 @@ class AvatarType extends AbstractType
     {
         $resolver->setDefaults(array(
             'label' => false,
+            'class' => 'Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar',
+            'required' => true,
+            'expanded' => true,
         ));
     }
 
@@ -68,11 +41,11 @@ class AvatarType extends AbstractType
      */
     public function getParent()
     {
-        return 'hidden';
+        return 'entity';
     }
 
     /**
-     * Get element name for templater
+     * Get element name for templating
      * @return string
      */
     public function getName()

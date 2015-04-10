@@ -13,6 +13,20 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 
 class ServiceQuestionnaire extends ContainerAware
 {
+
+    /**
+     * Get company assessment
+     * @return null
+     */
+    public function assessment()
+    {
+        if (($company = $this->container->get('company')->current())) {
+            return $company->getQuestionnaire();
+        }
+        return null;
+    }
+
+
     /**
      * Calculate health percent from points
      * @param $points

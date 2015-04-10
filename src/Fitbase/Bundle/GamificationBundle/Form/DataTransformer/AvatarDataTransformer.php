@@ -62,12 +62,12 @@ class AvatarDataTransformer implements DataTransformerInterface, ContainerAwareI
      */
     public function reverseTransform($value)
     {
-        if (isset($this->association[$value])) {
-            $render = $this->templating->render(
-                $this->association[$value]
-            );
-            return trim($render);
-        }
+//        if (isset($this->association[$value])) {
+//            $render = $this->templating->render(
+//                $this->association[$value]
+//            );
+//            return trim($render);
+//        }
         return null;
     }
 }

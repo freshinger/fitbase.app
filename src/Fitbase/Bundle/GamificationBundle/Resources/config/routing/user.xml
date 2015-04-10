@@ -4,6 +4,19 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="gamification_picture_avatar" path="/picture/avatar">
+        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:avatar</default>
+    </route>
+
+    <route id="gamification_picture_tree" path="/picture/tree">
+        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:tree</default>
+    </route>
+
+    <route id="gamification_picture_forest" path="/picture/forest">
+        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:forest</default>
+    </route>
+
+
     <route id="gamification_health_chat" path="/health/chat">
         <default key="_controller">FitbaseGamificationBundle:Gamification:healthChat</default>
     </route>

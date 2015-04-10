@@ -27,13 +27,20 @@
             <join-column name="company_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
+        <one-to-many field="gamifications" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationUser" mapped-by="user">
+            <order-by>
+                <order-by-field name="id" direction="ASC"/>
+            </order-by>
+        </one-to-many>
+
         <one-to-many field="reminders" target-entity="Fitbase\Bundle\ReminderBundle\Entity\ReminderUser" mapped-by="user">
             <order-by>
                 <order-by-field name="id" direction="ASC"/>
             </order-by>
         </one-to-many>
 
-        <one-to-many field="questionnaires" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser" mapped-by="user">
+        <one-to-many field="questionnaires" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser"
+                     mapped-by="user">
             <order-by>
                 <order-by-field name="id" direction="DESC"/>
             </order-by>

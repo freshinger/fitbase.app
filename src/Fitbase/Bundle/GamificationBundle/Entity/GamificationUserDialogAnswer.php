@@ -148,4 +148,4 @@ class GamificationUserDialogAnswer
         return (boolean)$this->value;
     }
 
-} 
+}

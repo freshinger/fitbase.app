@@ -349,4 +349,41 @@ class User extends BaseUser
 
         return null;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gamifications;
+
+    /**
+     * Add gamifications
+     *
+     * @param \Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamifications
+     * @return User
+     */
+    public function addGamification(\Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamifications)
+    {
+        $this->gamifications[] = $gamifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove gamifications
+     *
+     * @param \Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamifications
+     */
+    public function removeGamification(\Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamifications)
+    {
+        $this->gamifications->removeElement($gamifications);
+    }
+
+    /**
+     * Get gamifications
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGamifications()
+    {
+        return $this->gamifications;
+    }
 }

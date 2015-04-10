@@ -39,22 +39,15 @@ class DashboardAvatarBlockService extends BaseBlockService implements ContainerA
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        $user = $this->container->get('user')->current();
 
         $managerEntity = $this->container->get('entity_manager');
         $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
-
-        if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        $gamification = $repositoryGamificationUser->findOneByUser($user);
 
         $form = $this->container->get('form.factory')->create(new GamificationUserUpdateForm(), $gamification);
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardAvatar.html.twig', array(
             'form' => $form->createView(),
-            'gamification' => $gamification,
-            'avatar' => $this->container->get('gamification')->getSvgAvatar($gamification),
         ));
     }
 
@@ -63,6 +56,6 @@ class DashboardAvatarBlockService extends BaseBlockService implements ContainerA
      */
     public function getName()
     {
-        return 'Dashboard Avatar (Gamification)';
+        return 'Avatar (Gamification)';
     }
 } 

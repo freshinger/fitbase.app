@@ -61,12 +61,8 @@
             </order-by>
         </one-to-many>
 
-        <many-to-one field="avatars" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
-            <join-column name="avatars_id" referenced-column-name="id" on-delete="SET NULL"/>
-        </many-to-one>
-
-        <many-to-one field="attributes" target-entity="Application\Sonata\MediaBundle\Entity\Gallery">
-            <join-column name="attributes_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <many-to-one field="gamification" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettings">
+            <join-column name="gamification_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>
 
     </entity>

@@ -105,6 +105,7 @@ sonata_block:
         fitbase.block.dashboard_tree:
         fitbase.block.dashboard_forest:
         fitbase.block.dashboard_avatar:
+        fitbase.block.gamification.dashboard_weeklytask:
         fitbase.block.dashboard_activity:
         fitbase.block.dashboard_statistic:
         fitbase.block.dashboard_dialog:
@@ -119,6 +120,7 @@ sonata_block:
         fitbase.block.weeklytask:
         fitbase.block.weeklytask_collection:
 
+
         fitbase.email_block.user:
         fitbase.email_block.header:
         fitbase.email_block.footer:
@@ -129,6 +131,7 @@ sonata_block:
         fitbase.block.dashboard.statistic_user_focus:
         fitbase.block.dashboard.statistic_user_category:
         fitbase.block.dashboard.statistic_assessment:
+        fitbase.block.knowledge.dashboard_knowledge:
 
         fitbase.block.dashboard.company.questionnaire:
 

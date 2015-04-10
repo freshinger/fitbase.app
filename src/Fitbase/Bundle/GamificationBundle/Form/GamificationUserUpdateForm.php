@@ -20,7 +20,7 @@ class GamificationUserUpdateForm extends GamificationDialogQuestionAbstractForm
         $builder->add('save', 'submit', array(
             'label' => 'Charakter wechseln',
             'attr' => array(
-                'class' => 'btn btn-default',
+                'class' => 'btn btn-default btn-block',
             ),
         ));
     }

@@ -38,20 +38,10 @@ class DashboardTreeBlockService extends BaseBlockService implements ContainerAwa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        $user = $this->container->get('user')->current();
 
-        $managerEntity = $this->container->get('entity_manager');
-        $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
-
-        if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_tree.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardTree.html.twig', array(
             'points' => $this->container->get('statistic')->points($user),
-            'tree' => $this->container->get('gamification')->getSvgTree($gamification),
         ));
     }
 
@@ -60,6 +50,6 @@ class DashboardTreeBlockService extends BaseBlockService implements ContainerAwa
      */
     public function getName()
     {
-        return 'Dashboard Tree (Gamification)';
+        return 'Tree (Gamification)';
     }
 } 

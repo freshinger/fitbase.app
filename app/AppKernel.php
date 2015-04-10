@@ -142,6 +142,7 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\EmailBundle\FitbaseEmailBundle(),
             new Fitbase\Bundle\ScheduleBundle\FitbaseScheduleBundle(),
             new Wellbeing\Bundle\ApiBundle\WellbeingApiBundle(),
+            new Fitbase\Bundle\KnowledgeBundle\FitbaseKnowledgeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

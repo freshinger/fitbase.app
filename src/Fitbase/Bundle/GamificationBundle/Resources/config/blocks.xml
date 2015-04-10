@@ -18,7 +18,7 @@
         </service>
 
         <service id="fitbase.block.dashboard_gamification" scope="request"
-                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\DashboardGamificationBlockService">
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardGamificationBlockService">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard_user</argument>
             <argument type="collection">
@@ -44,6 +44,17 @@
                 <argument type="service" id="service_container"/>
             </call>
         </service>
+
+        <service id="fitbase.block.gamification.dashboard_weeklytask"
+                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardWeeklytaskBlock" public="true">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.gamification.dashboard_weeklytask</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
         <service id="fitbase.block.dashboard_tree"
                  class="Fitbase\Bundle\GamificationBundle\Block\DashboardTreeBlockService" public="true">

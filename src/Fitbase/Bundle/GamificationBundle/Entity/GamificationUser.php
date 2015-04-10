@@ -13,24 +13,8 @@ class GamificationUser
 {
     protected $id;
     protected $user;
-    protected $avatar;
     protected $tree;
 
-    /**
-     * @param mixed $avatar
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
 
     /**
      * @param mixed $tree
@@ -79,6 +63,7 @@ class GamificationUser
     {
         return $this->user;
     }
+
     /**
      * @var boolean
      */
@@ -101,10 +86,81 @@ class GamificationUser
     /**
      * Get update
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getUpdate()
     {
         return $this->update;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar
+     */
+    private $avatar;
+
+
+    /**
+     * Set avatar
+     *
+     * @param \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar $avatar
+     * @return GamificationUser
+     */
+    public function setAvatar(\Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar $avatar = null)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Get avatar media object
+     *
+     * @param null $date
+     * @return null
+     */
+    public function getAvatarMedia($date = null)
+    {
+        if (($avatar = $this->getAvatar())) {
+            if (($collection = $avatar->getGalleryHasMedia())) {
+                foreach ($collection as $id => $hasMedia) {
+
+                    if (($dateShow = $hasMedia->getShowAt())) {
+                        if (($interval = $hasMedia->getinterval())) {
+
+                            $dateShow->setDate(
+                                $date->format('Y'),
+                                $dateShow->format('m'),
+                                $dateShow->format('d')
+                            );
+
+                            if ($dateShow <= $date) {
+                                $dateShow->modify("+$interval week");
+                                if ($dateShow >= $date) {
+                                    return $hasMedia->getMedia();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                foreach ($collection as $id => $hasMedia) {
+                    if (!($dateShow = $hasMedia->getShowAt())) {
+                        return $hasMedia->getMedia();
+                    }
+                }
+
+            }
+        }
+        return null;
     }
 }

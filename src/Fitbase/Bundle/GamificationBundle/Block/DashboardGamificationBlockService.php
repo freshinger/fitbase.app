@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
+namespace Fitbase\Bundle\GamificationBundle\Block;
 
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -85,13 +85,7 @@ class DashboardGamificationBlockService extends SecureBlockServiceAbstract
             $gamificationUser = new GamificationUser();
             $gamificationUser->setUser($user);
 
-            $formType = new GamificationUserForm(
-                $this->templating,
-                $this->gamification
-            );
-
-
-            $form = $this->formFactory->create($formType, $gamificationUser);
+            $form = $this->formFactory->create(new GamificationUserForm(), $gamificationUser);
             if ($this->request->get($form->getName())) {
                 $form->handleRequest($this->request);
                 if ($form->isValid()) {

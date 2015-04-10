@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatarHasMedia" table="fitbase_gamification_gallery_avatar_media"
+            repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationSettingsGalleryAvatarHasMediaRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="showAt" column="show_at" type="datetime" nullable="true"/>
+        <field name="interval" column="spacing" type="integer" nullable="true"/>
+
+        <many-to-one field="gallery" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar" inversed-by="galleryHasMedia">
+            <join-column name="gallery_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="media" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <join-column name="media_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+    </entity>
+</doctrine-mapping>

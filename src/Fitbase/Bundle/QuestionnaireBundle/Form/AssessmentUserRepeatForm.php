@@ -17,7 +17,7 @@ class AssessmentUserRepeatForm extends AbstractType
         $builder->add('save', 'submit', array(
             'label' => 'Bedarfsermittlung wiederholen',
             'attr' => array(
-                'class' => 'btn btn-default',
+                'class' => 'btn btn-default btn-block',
             ),
         ));
     }

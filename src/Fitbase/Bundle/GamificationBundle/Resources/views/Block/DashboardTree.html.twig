@@ -1,14 +1,12 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <h4 class="short hue">
-            Ihr Gesundheitsbaum
+            {{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}
         </h4>
 
-        {% if tree is defined %}
-            <div class="tree">
-                {{ image(tree)|raw }}
-            </div>
-        {% endif %}
+        <img title="{{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}"
+             src="{{ path('gamification_picture_tree') }}">
+
     </div>
     <div class="panel-footer">
         <p>

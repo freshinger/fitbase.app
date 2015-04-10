@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h4 class="short hue">
+            {{ 'Ihre letzte Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}
+        </h4>
+
+        <div class="row">
+            {% if collection is defined and collection %}
+                <div class="col-xs-12">
+                    <table class="table table-striped table-hover table-responsive">
+                        <tbody>
+                        {% for task in collection %}
+                            {% if task is defined and task %}
+                                <tr>
+                                    <td class="shade">
+                                        {{ task.task }}
+                                    </td>
+                                    <td class="shade">
+                                        <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
+                                            {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

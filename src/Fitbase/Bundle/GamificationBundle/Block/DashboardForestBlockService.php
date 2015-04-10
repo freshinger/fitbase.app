@@ -60,7 +60,7 @@ class DashboardForestBlockService extends BaseBlockService implements ContainerA
             }
         }
 
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_forest.html.twig', array(
+        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardForest.html.twig', array(
             'points' => $points,
             'forest' => $this->container->get('gamification')->getSvgForest($gamification),
         ));

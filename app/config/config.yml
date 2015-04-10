@@ -140,9 +140,9 @@ assetic:
         - JMoseCommandSchedulerBundle
         - FitbaseQuestionnaireBundle
         - FitbaseWeeklytaskBundle
-        - FitbaseGamificationBundle
         - FitbaseExerciseBundle
         - FitbaseFitbaseBundle
+        - FitbaseGamificationBundle
 
     debug:          %kernel.debug%
     use_controller: false

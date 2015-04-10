@@ -14,6 +14,21 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceGamification extends ContainerAware
 {
     /**
+     * Get current gamification object
+     * @return null
+     */
+    public function current()
+    {
+        if (($user = $this->container->get('user')->current())) {
+            if (($collection = $user->getGamifications())) {
+                return $collection->get(0);
+            }
+        }
+        return null;
+    }
+
+
+    /**
      * Get svg for baum
      * @param \Fitbase\Bundle\GamificationBundle\Entity\GamificationUser $gamification
      * @return mixed

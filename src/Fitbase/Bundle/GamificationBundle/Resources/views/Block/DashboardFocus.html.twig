@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-body todays-exercise">
+    <div class="panel-body panel-dashboard-block">
 
         <h4 class="short hue">
             {{ 'Ihr Fokus'|trans({}, 'FitbaseGamificationBundle') }}
@@ -56,10 +56,16 @@
         </div>
 
     </div>
-
     <div class="panel-footer">
-        {% form_theme form "FitbaseGamificationBundle:Block:DashboardFocusForm.html.twig" %}
 
-        {{ form(form) }}
+        <div class="row">
+            {% if form is defined and form %}
+                <div class="col-xs-12">
+                    {% form_theme form "FitbaseGamificationBundle:Block:DashboardFocusForm.html.twig" %}
+
+                    {{ form(form) }}
+                </div>
+            {% endif %}
+        </div>
     </div>
 </div>

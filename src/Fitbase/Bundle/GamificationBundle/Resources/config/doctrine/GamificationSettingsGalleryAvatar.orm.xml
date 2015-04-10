@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar"
+            table="fitbase_gamification_gallery_avatar"
+            repository-class="Fitbase\Bundle\GamificationBundle\Repository\GamificationSettingsGalleryAvatarRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name" type="text" column="name" nullable="true"/>
+
+        <one-to-many field="galleryHasMedia"
+                     target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatarHasMedia"
+                     mapped-by="gallery" orphan-removal="true">
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-many>
+
+    </entity>
+</doctrine-mapping>

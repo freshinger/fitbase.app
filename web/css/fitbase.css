@@ -211,3 +211,7 @@
 .thumb-info .thumb-info-title a {
     color: #909090;
 }
+
+.panel-dashboard-block {
+    height: 343px;
+}

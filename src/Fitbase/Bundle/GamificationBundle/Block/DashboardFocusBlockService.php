@@ -47,7 +47,7 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
 
         $entityManager = $this->container->get('entity_manager');
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 2);
+        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 3);
 
         $category = null;
         if (($focus = $this->container->get('focus')->focus($user))) {
@@ -56,14 +56,25 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
             }
         }
 
-        $form = $this->container->get('form.factory')->create(new AssessmentUserRepeatForm(), new QuestionnaireUser());
         return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardFocus.html.twig', array(
             'user' => $user,
-            'form' => $form->createView(),
+            'form' => ($form = $this->getAssessmentRepeatForm()) == null ? null : $form->createView(),
             'category' => $category,
             'nextWeeklytask' => $this->getNextIntervalWeeklytask($user),
             'collection' => $collectionWeeklytaskActual,
         ));
+    }
+
+    /**
+     * Get assessment form view
+     * @return null
+     */
+    protected function getAssessmentRepeatForm()
+    {
+        if ($this->container->get('questionnaire')->assessment()) {
+            return $this->container->get('form.factory')->create(new AssessmentUserRepeatForm(), new QuestionnaireUser());
+        }
+        return null;
     }
 
     /**
@@ -98,7 +109,6 @@ class DashboardFocusBlockService extends BaseBlockService implements ContainerAw
 
                 return (($diff = ($next - $current)) > 0) ? $diff : 7 + $diff;
             }
-
         }
 
         return null;

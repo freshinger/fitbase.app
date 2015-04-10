@@ -17,5 +17,96 @@
         </service>
 
 
+        <service id="fitbase.admin.gamification.settings"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="Settings"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettings</argument>
+            <argument/>
+        </service>
+
+
+        <service id="fitbase.admin.gamification.settings.avatar"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsHasAvatarAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="GamificationSettingsHasAvatar"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsHasAvatar</argument>
+            <argument/>
+        </service>
+
+
+        <service id="fitbase.admin.gamification.settings.tree"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsHasTreeAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="GamificationSettingsHasTree"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsHasTree</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.gamification.settings.background"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsHasBackgroundAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="GamificationSettingsHasBackground"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsHasBackground</argument>
+            <argument/>
+        </service>
+
+
+        <service id="fitbase.admin.gamification.settings.gallery.avatar"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsGalleryAvatarAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="Avatars"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.gamification.settings.gallery.avatar_has_media"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsGalleryAvatarHasMediaAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="GamificationSettingsGalleryAvatarHasMedia"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatarHasMedia</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.gamification.settings.gallery.tree"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsGalleryTreeAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="Trees"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryTree</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.gamification.settings.gallery.tree_has_media"
+                 class="Fitbase\Bundle\GamificationBundle\Admin\GamificationSettingsGalleryTreeHasMediaAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Gamification" label="GamificationSettingsGalleryTreeHasMedia"/>
+            <argument/>
+            <argument>Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryTreeHasMedia</argument>
+            <argument/>
+        </service>
+
     </services>
 </container>

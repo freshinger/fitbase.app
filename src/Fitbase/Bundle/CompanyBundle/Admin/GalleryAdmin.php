@@ -67,19 +67,19 @@ class GalleryAdmin extends Admin
             ->add('defaultFormat', 'choice', array('choices' => $formats))
             ->end()
             ->end()
-            ->tab('Gallery')
-            ->with('Gallery', array('class' => 'col-md-12'))
-            ->add('galleryHasGallery', 'sonata_type_collection', array(
-                    'cascade_validation' => true,
-                ), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'position',
-                    'link_parameters' => array('context' => $context),
-                )
-            )
-            ->end()
-            ->end()
+//            ->tab('Gallery')
+//            ->with('Gallery', array('class' => 'col-md-12'))
+//            ->add('galleryHasGallery', 'sonata_type_collection', array(
+//                    'cascade_validation' => true,
+//                ), array(
+//                    'edit' => 'inline',
+//                    'inline' => 'table',
+//                    'sortable' => 'position',
+//                    'link_parameters' => array('context' => $context),
+//                )
+//            )
+//            ->end()
+//            ->end()
             ->tab('Media')
             ->with('Images', array('class' => 'col-md-8'))
             ->add('galleryHasMedias', 'sonata_type_collection', array(
