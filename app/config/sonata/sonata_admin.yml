@@ -54,7 +54,7 @@ sonata_admin:
             fitbase.admin.group.common:
                 label:           "Fitbase Administration"
                 label_catalogue: FitbaseUserBundle
-                icon:            '<i class="fa fa-play-circle"></i>'
+                icon:            '<i class="fa fa-folder"></i>'
                 items:
                     - fitbase.admin.user_actioncode
                     - sonata.user.admin.group
@@ -62,7 +62,7 @@ sonata_admin:
             fitbase.admin.group.gamification:
                 label:           "Fitbase Gamification"
                 label_catalogue: FitbaseGamificationBundle
-                icon:            '<i class="fa fa-play-circle"></i>'
+                icon:            '<i class="fa fa-gamepad"></i>'
                 items:
                     - fitbase.admin.gamification.settings
 
@@ -148,7 +148,7 @@ sonata_admin:
 
             fitbase.admin.group.user:
                 label: Fitbase Benutzer
-                icon:  '<i class="fa fa-male"></i>'
+                icon:  '<i class="fa fa-users"></i>'
                 items:
                     - fitbase.admin.user
                     - fitbase.admin.exercise_user

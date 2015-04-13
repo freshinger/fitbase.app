@@ -21,10 +21,14 @@ use Symfony\Component\Form\FormError;
 
 class AdminController extends CoreController
 {
-
+    /**
+     *
+     * @param Request $request
+     * @param $unique
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function weeklytasksAction(Request $request, $unique)
     {
-
         $entityManager = $this->get('entity_manager');
         $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
 

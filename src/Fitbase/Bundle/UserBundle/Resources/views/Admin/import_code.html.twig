@@ -31,11 +31,11 @@
             </div>
         {% endfor %}
         {% for notice in app.session.flashbag.get('notice') %}
-        <div class="alert alert-info alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{ notice }}
-        </div>
-    {% endfor %}
+            <div class="alert alert-info alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ notice }}
+            </div>
+        {% endfor %}
         {% for notice in app.session.flashbag.get('error') %}
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -45,19 +45,23 @@
     {% endif %}
 
     <div class="row">
-        <div class="col-xs-8">
-            <div class="box box-success">
-                <div class="box-header">
-                    <h4 class="box-title">
-                        {{ "General"|trans({}, 'SonataAdminBundle') }}
-                    </h4>
-                </div>
-                <div class="box-body">
-                    <div class="sonata-ba-collapsed-fields">
-                        {% form_theme form 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
-                        {{ form(form) }}
+        <div class="col-md-12">
+            <div class="col-md-7">
+
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h4 class="box-title">
+                            {{ "General"|trans({}, 'SonataAdminBundle') }}
+                        </h4>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            {% form_theme form 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
+                            {{ form(form) }}
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

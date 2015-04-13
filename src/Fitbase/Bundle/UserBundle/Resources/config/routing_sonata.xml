@@ -15,7 +15,7 @@
     </route>
 
     <route id="sonata_admin_import_user" pattern="/import/user">
-        <default key="_controller">FitbaseUserBundle:Admin:importUser</default>
+        <default key="_controller">FitbaseUserBundle:UserAdmin:import</default>
     </route>
 
 </routes>

@@ -20,6 +20,10 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <call method="setTemplate">
+                <argument>list</argument>
+                <argument>FitbaseUserBundle:Admin:UserList.html.twig</argument>
+            </call>
         </service>
 
         <service id="fitbase.admin.user_focus" class="Fitbase\Bundle\UserBundle\Admin\UserFocusAdmin">
@@ -51,6 +55,10 @@
             <argument/>
             <argument>Fitbase\Bundle\UserBundle\Entity\UserActioncode</argument>
             <argument/>
+            <call method="setTemplate">
+                <argument>list</argument>
+                <argument>FitbaseUserBundle:Admin:UserActioncodeList.html.twig</argument>
+            </call>
         </service>
 
 
