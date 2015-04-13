@@ -9,7 +9,8 @@
 namespace Fitbase\Bundle\GamificationBundle\Entity;
 
 
-class GamificationSettingsHasTree {
+class GamificationSettingsHasTree
+{
 
     /**
      * @var string
@@ -48,7 +49,7 @@ class GamificationSettingsHasTree {
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -58,7 +59,7 @@ class GamificationSettingsHasTree {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -81,7 +82,7 @@ class GamificationSettingsHasTree {
     /**
      * Get settings
      *
-     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettings 
+     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettings
      */
     public function getSettings()
     {
@@ -104,7 +105,7 @@ class GamificationSettingsHasTree {
     /**
      * Get media
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMedia()
     {
@@ -117,11 +118,12 @@ class GamificationSettingsHasTree {
      */
     public function __toString()
     {
-        if (($media = $this->getMedia())) {
-            return $media->getName();
+        if (($gallery = $this->getGallery())) {
+            return $gallery->getName();
         }
         return '';
     }
+
     /**
      * @var \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryTree
      */
@@ -144,12 +146,13 @@ class GamificationSettingsHasTree {
     /**
      * Get gallery
      *
-     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryTree 
+     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryTree
      */
     public function getGallery()
     {
         return $this->gallery;
     }
+
     /**
      * @var \DateTime
      */
@@ -177,7 +180,7 @@ class GamificationSettingsHasTree {
     /**
      * Get showAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getShowAt()
     {
@@ -200,7 +203,7 @@ class GamificationSettingsHasTree {
     /**
      * Get interval
      *
-     * @return integer 
+     * @return integer
      */
     public function getInterval()
     {

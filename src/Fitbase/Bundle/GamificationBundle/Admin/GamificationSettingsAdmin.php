@@ -90,9 +90,15 @@ class GamificationSettingsAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('settingsHasAvatar')
-            ->add('settingsHasTree')
-            ->add('settingsHasBackground');
+            ->add('settingsHasAvatar', null, array(
+                'label' => 'Avatare'
+            ))
+            ->add('settingsHasTree', null, array(
+                'label' => 'Bäume'
+            ))
+            ->add('settingsHasBackground', null, array(
+                'label' => 'Hintergründe'
+            ));
     }
 
     /**
