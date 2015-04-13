@@ -43,7 +43,7 @@ class GamificationSettingsHasTreeAdmin extends Admin implements ContainerAwareIn
         $formMapper
             ->add('gallery', 'sonata_type_model_list')
             ->add('showAt', 'sonata_type_date_picker', array(
-                'required' => false
+                'required' => false,
             ))
             ->add('interval', 'integer', array(
                 'required' => false

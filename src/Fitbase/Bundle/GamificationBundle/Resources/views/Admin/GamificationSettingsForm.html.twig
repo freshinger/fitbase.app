@@ -1,0 +1,19 @@
+{% extends 'SonataDoctrineORMAdminBundle:Form:form_admin_fields.html.twig' %}
+
+
+{% block sonata_admin_orm_one_to_many_widget %}
+    <style>
+        .table .input-group-addon, .table .input-group-btn {
+            width: initial;
+        }
+
+        .table .input-group .form-control {
+            width: initial;
+        }
+
+        .table .form-control {
+            width: initial;
+        }
+    </style>
+    {{ parent() }}
+{% endblock %}
