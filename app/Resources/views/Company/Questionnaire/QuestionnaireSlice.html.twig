@@ -1,0 +1,33 @@
+{% extends "layout.html.twig" %}
+
+{% use "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ questionnaire }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire.company.slice', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    <!-- Content Text-->
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ questionnaire }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+
+                {% form_theme form "Company/Questionnaire/QuestionnaireSliceForm.html.twig" %}
+
+                {{ form(form) }}
+
+            </div>
+        </div>
+    </div>
+    <!-- End Content Text-->
+{% endblock content %}
+
