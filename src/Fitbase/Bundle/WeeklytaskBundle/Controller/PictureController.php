@@ -105,13 +105,10 @@ class PictureController extends Controller
     protected function patchSrc($src)
     {
         if (($parts = parse_url($src))) {
-            if (!array_key_exists('scheme', $parts)) {
-                $parts['scheme'] = $this->container->getParameter('fitbase.project.scheme');
+            if (!array_key_exists('scheme', $parts) and !!array_key_exists('host', $parts)) {
+                return $this->get('kernel')->getRootDir() . "/../web$src";
+
             }
-            if (!array_key_exists('host', $parts)) {
-                $parts['host'] = $this->container->getParameter('fitbase.project.host');
-            }
-            return http_build_url(null, $parts);
         }
 
         return null;
