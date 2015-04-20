@@ -1,0 +1,43 @@
+<div class="row scroll">
+    {% for weeklytaskUser in weeklytasks %}
+        {% set weeklytask = weeklytaskUser.task %}
+        {% if weeklytask is defined and weeklytask %}
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ weeklytask.name }}</h4>
+                </div>
+                <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+                    <div class="owl-wrapper-outer autoHeight">
+                        <div class="owl-wrapper" style="left: 0px; display: block;">
+                            <div class="owl-item">
+                                <li>
+                                    <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
+
+                                        {% set icon = icon(weeklytask) %}
+                                        {% if icon is defined and icon %}
+                                            {{ icon|raw }}
+                                        {% else %}
+                                            {% set category = weeklytask.categories[0] %}
+                                            {% if category is defined and  category %}
+                                                {% thumbnail category, 'thumbnail' with { 'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+
+                                    <div class="info-single-carousel">
+                                        <p>
+                                            {{ weeklytask.content|raw|striptags|slice(0,120) }}...
+                                            <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
+                                                {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

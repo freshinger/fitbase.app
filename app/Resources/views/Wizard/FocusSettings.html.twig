@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% use "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ "Reminder Wizard" | trans({}, 'FitbaseReminderBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ 'Fokus ändern'|trans({}, 'FitbaseUserBundle') }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
+                linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
+                Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.
+                </p>
+                {% form_theme form "Wizard/FocusSettingsForm.html.twig" %}
+
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

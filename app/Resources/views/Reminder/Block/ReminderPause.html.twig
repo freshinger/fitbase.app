@@ -1,0 +1,36 @@
+<h3>{{ "Fitbase pausieren" | trans({}, 'FitbaseReminderBundle') }}</h3>
+
+<div class="panel-info">
+
+    <div class="panel-body">
+
+        {% if reminder is defined and reminder %}
+            {% if reminder.pause is defined and reminder.pause %}
+                <div class="row">
+                    <div class="col-xs-10 alert alert-info">
+                        Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
+                        {{ reminder.pause }} Wochen pausiert.
+                        Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+
+
+
+        {% if form is defined and form %}
+            {% if form.vars is defined %}
+                {% if form.vars.submitted %}
+
+                    <div class="opened"></div>
+                {% endif %}
+            {% endif %}
+
+            {% form_theme form "Reminder/Block/ReminderPauseForm.html.twig" %}
+
+            {{ form(form) }}
+        {% endif %}
+
+
+    </div>
+</div>

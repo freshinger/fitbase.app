@@ -1,52 +1,65 @@
-<div class="row">
-    <div class="col-xs-3">
-    </div>
-    <div class="col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <h2 class="col-sm-offset-1">{{ 'Passwort zurücksetzen'|trans({}, 'SonataUserBundle') }}</h2>
-            </div>
-            <div class="panel-body">
-                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"
-                      class="fos_user_resetting_request form-horizontal">
-                    <p>
-                        Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie sich
-                        mit
-                        Ihren Zugangsdaten ein.
-                    </p>
-                    {% if invalid_username is defined %}
-                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
-                    {% endif %}
+{% extends "content.html.twig" %}
 
-                    <div class="row form-group">
-                        <div class="col-xs-12">
-                            <label for="username" class="control-label">
-                                {{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}
-                            </label>
-                        </div>
+{% block title %}
+    <h1>{{ 'Passwort zurücksetzen'|trans({}, 'SonataUserBundle') }}</h1>
+{% endblock title %}
 
-                        <div class="col-xs-12 ">
-                            <input type="text" id="username" name="username" required="required" class="form-control"/>
-                        </div>
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire.company.assessment', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ 'Passwort zurücksetzen'|trans({}, 'SonataUserBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+
+
+                        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"
+                              class="fos_user_resetting_request form-theme">
+                            <p>
+                                Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen
+                                Sie
+                                sich
+                                mit
+                                Ihren Zugangsdaten ein.
+                            </p>
+                            {% if invalid_username is defined %}
+                                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+                            {% endif %}
+                            <div class="row form-group">
+                                <div class="col-xs-12">
+                                    <label for="username" class="control-label">
+                                        {{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}
+                                    </label>
+                                </div>
+
+                                <div class="col-xs-12 ">
+                                    <input type="text" id="username" name="username" required="required"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-xs-12">
+                                    <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                                           value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}"/>
+                                </div>
+                            </div>
+
+                        </form>
+
+
                     </div>
-
-                    <div class="row form-group">
-                        <div class="col-xs-12">
-                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
-                                   value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}"/>
-                        </div>
-                    </div>
-
-                </form>
-
+                </div>
             </div>
         </div>
-
     </div>
-    <div class="col-xs-3">
-    </div>
-</div>
-
-
-
-
+{% endblock %}

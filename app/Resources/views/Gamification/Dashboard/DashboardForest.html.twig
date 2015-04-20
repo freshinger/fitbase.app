@@ -1,0 +1,33 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles">
+        <h4>{{ 'Der Unternehmenswald'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+    </div>
+
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
+                <div class="owl-item">
+                    <li>
+                        <img title="{{ 'Der Unternehmenswald'|trans({}, 'FitbaseGamificationBundle') }}"
+                             src="{{ path('gamification_picture_forest') }}">
+
+                        <div class="info-single-carousel">
+                            <p>
+                                {% if points is defined and points %}
+                                    Der Unternehmenswald ist bisher mit {{ points }} Blättern begrünt
+                                {% else %}
+                                    Sie haben noch keine Blätter gesammelt
+                                {% endif %}
+                            </p>
+
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+</div>
+
+

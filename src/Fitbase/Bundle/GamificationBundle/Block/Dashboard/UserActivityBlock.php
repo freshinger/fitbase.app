@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\ExerciseBundle\Block;
+namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
 
 
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
@@ -16,10 +16,9 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ExerciseBlockService extends BaseBlockService implements ContainerAwareInterface
+class UserActivityBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -36,30 +35,32 @@ class ExerciseBlockService extends BaseBlockService implements ContainerAwareInt
         $this->container = $container;
     }
 
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'unique' => null,
-        ));
-    }
-
     /**
      * Draw a block
      * {@inheritdoc}
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $exercise = null;
-        if (($user = $this->container->get('user')->current())) {
-
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-            $exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique'));
+        if (!($user = $this->container->get('user')->current())) {
+            throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->renderPrivateResponse('Exercise/Block/Exercise.html.twig', array(
-            'exercise' => $exercise
+        if ($this->container->get('focus')->check($user, 'stress')) {
+            $template = 'Gamification/Dashboard/DashboardActivityStress.html.twig';
+            return $this->renderPrivateResponse($template, array(
+                'user' => $user,
+            ));
+        }
+
+        if ($this->container->get('focus')->check($user, 'ernaehrung')) {
+            $template = 'Gamification/Dashboard/DashboardActivityFeeding.html.twig';
+            return $this->renderPrivateResponse($template, array(
+                'user' => $user,
+            ));
+        }
+
+        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardActivity.html.twig', array(
+            'user' => $user,
         ));
     }
 
@@ -68,6 +69,6 @@ class ExerciseBlockService extends BaseBlockService implements ContainerAwareInt
      */
     public function getName()
     {
-        return 'Exercise page (Exercise)';
+        return 'Dashboard Activity (Gamification)';
     }
 } 
