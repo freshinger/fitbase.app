@@ -1,0 +1,7 @@
+{% extends 'knp_menu.html.twig' %}
+
+
+{% block root %}
+    {% set listAttributes = item.childrenAttributes %}
+    {{ block('list') -}}
+{% endblock %}
