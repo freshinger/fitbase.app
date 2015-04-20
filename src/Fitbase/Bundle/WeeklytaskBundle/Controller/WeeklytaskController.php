@@ -24,7 +24,7 @@ class WeeklytaskController extends Controller
     {
         if (($user = $this->get('user')->current())) {
             if (($weeklytaskUser = $this->get('fitbase.orm.weeklytask_manager')->findOneByUserAndUnique($user, $unique))) {
-                return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Task.html.twig', array(
+                return $this->render('Weeklytask/Weeklytask.html.twig', array(
                     'weeklytaskUser' => $weeklytaskUser,
                 ));
             }
@@ -57,7 +57,7 @@ class WeeklytaskController extends Controller
                 return $this->showUserQuizViewFormAction($request, $user, $weeklyquizUser);
             }
 
-            return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
+            return $this->render('Weeklytask/Weeklyquiz.html.twig', array(
                 'weeklyquiz' => $weeklyquizUser,
                 'weeklyquizUser' => $weeklyquizUser,
             ));
@@ -129,7 +129,7 @@ class WeeklytaskController extends Controller
             }
         }
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
+        return $this->render('Weeklytask/Weeklyquiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
             'weeklyquizUser' => $weeklyquizUser,
@@ -199,7 +199,7 @@ class WeeklytaskController extends Controller
 
         $form = $this->createForm($formBuilder, $result);
 
-        return $this->render('FitbaseWeeklytaskBundle:Weeklytask:Quiz.html.twig', array(
+        return $this->render('Weeklytask/Weeklyquiz.html.twig', array(
             'form' => $form->createView(),
             'notices' => $notices,
             'weeklyquizUser' => $weeklyquizUser,

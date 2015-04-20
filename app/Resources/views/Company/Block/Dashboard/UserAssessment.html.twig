@@ -1,0 +1,74 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles">
+        <h4>{{ 'Bedarfsanalyse'|trans({}, 'FitbaseQuestionnaireBundle') }}</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div id="statistic_user_assessment" style="height: 100%;">
+                <svg id="pieChartSVG">
+                    <defs>
+                        <filter id='pieChartInsetShadow'>
+                            <feOffset dx='0' dy='0'/>
+                            <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                            <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                            <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                            <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                            <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                        </filter>
+                        <filter id="pieChartDropShadow">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                            <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                            <feMerge>
+                                <feMergeNode/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
+
+            {#<p>Die Bedarfsanalyse wird für jeden Teilnehmer zu beginn eingeblendet und hilft dem Teilnehmer,#}
+            {#den passenden Fokus für das Online-Coaching zu aktivieren. Auswertungen zu einyelnen Fragen können über#}
+            {#"Detaillierte Auswertung" eingesehen werden</p>#}
+        </div>
+    </div>
+    <div class="panel-footer" style="height: 87px;">
+        {% if questionnaire is defined and questionnaire %}
+            <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
+               class="btn btn-default btn-block" style="margin-top: 15px">
+                {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
+            </a>
+        {% endif %}
+    </div>
+</div>
+<!-- End Content Text-->
+
+
+<script type="text/javascript">
+    (function () {
+
+        var container = $('#statistic_user_assessment');
+        if (container.is('div')) {
+            container.waterfall([
+                        {
+                            label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                            value: parseFloat('{{ percent }}'),
+                            color: '#fce14b'
+                        },
+                        {
+                            label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                            value: 100 - parseFloat('{{ percent }}'),
+                            color: '#a2d049'
+                        }
+                    ],
+                    {
+                        title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"
+                    });
+        }
+
+
+    })();
+</script>
+

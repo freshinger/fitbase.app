@@ -25,7 +25,7 @@ class ExerciseRandomBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'category' => null,
-            'template' => 'FitbaseExerciseBundle:Block:exercise.html.twig',
+            'template' => 'Exercise/Block/Exercise.html.twig',
         ));
     }
 

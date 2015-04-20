@@ -44,7 +44,7 @@ class ReminderExerciseBlock extends BaseBlockService implements ContainerAwareIn
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'FitbaseReminderBundle:Block:reminder_exercise.html.twig',
+            'template' => 'Reminder/Block/ReminderExercise.html.twig',
         ));
     }
 

@@ -36,7 +36,7 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('main', array_merge($options, array(
-            'childrenAttributes' => array('class' => 'nav nav-pills'),
+            'childrenAttributes' => array('class' => 'sf-menu l_tinynav1 sf-js-enabled sf-arrows', 'id' => 'menu'),
         )));
 
         $menu->addChild('Startseite', array(
@@ -59,6 +59,12 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',
         ));
+
+        $menu->addChild('Abmelden', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/logout'
+            )));
 
         return $menu;
     }

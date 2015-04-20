@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb;
 
+use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\SeoBundle\Block\Breadcrumb\BaseBreadcrumbMenuBlockService;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -32,5 +33,27 @@ class FitbaseBreadcrumbBlockService extends BaseBreadcrumbMenuBlockService
             'menu_template' => 'FitbaseFitbaseBundle:Menu:breadcrumb.html.twig',
             'include_homepage_link' => true,
         ));
+    }
+
+    /**
+     * Initialize breadcrumb menu.
+     *
+     * @param BlockContextInterface $blockContext
+     *
+     * @return ItemInterface
+     */
+    protected function getRootMenu(BlockContextInterface $blockContext)
+    {
+        $blockContext->setSetting('include_homepage_link', false);
+
+        $menu = parent::getRootMenu($blockContext);
+        $menu->setChildrenAttribute('class', 'breadcrumb');
+
+        $menu->addChild('Startseite', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/'
+            )));
+        return $menu;
     }
 }

@@ -6,10 +6,10 @@
 
     <services>
 
-        <service id="fitbase.block.knowledge.dashboard_knowledge"
-                 class="Fitbase\Bundle\KnowledgeBundle\Block\DashboardKnowledgeBlock">
+        <service id="fitbase.block.knowledge.knowledge_user"
+                 class="Fitbase\Bundle\KnowledgeBundle\Block\UserKnowledgeBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.knowledge.dashboard_knowledge</argument>
+            <argument>fitbase.block.knowledge.knowledge_user</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

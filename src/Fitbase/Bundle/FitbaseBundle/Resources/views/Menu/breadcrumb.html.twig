@@ -9,11 +9,36 @@ file that was distributed with this source code.
 
 #}
 
-{% extends 'ApplicationSonataSeoBundle:Block:breadcrumb.html.twig' %}
+{#{% extends 'ApplicationSonataSeoBundle:Block:breadcrumb.html.twig' %}#}
+{% extends 'knp_menu.html.twig' %}
+
+{% block item %}
+    {% if item.displayed %}
+        <li>
+            {%- if item.uri is not empty and (not matcher.isCurrent(item) or options.currentAsLink) %}
+                {{ block('linkElement') }}
+            {%- else %}
+                {{ block('spanElement') }}
+            {%- endif %}
+            {{ block('list') }}
+        </li>
+    {% endif %}
+{% endblock %}
+
 
 {% block root %}
     {% set listAttributes = item.childrenAttributes %}
-    {{ block('list') -}}
+    <style>
+        ul.breadcrumb {
+            background-color: #FFFFFF;
+        }
+    </style>
+
+    <div class="crumbs">
+        <div class="container">
+            {{ block('list') -}}
+        </div>
+    </div>
 
     {% if app is defined and app.session is defined %}
         {% for success in app.session.flashbag.get('success') %}

@@ -91,34 +91,45 @@ sonata_block:
 
         sonata.demo.block.newsletter:
 
-        fitbase.block.reminder.settings:
+        fitbase.block.content:
+        fitbase.block.user.profile:
+
+        fitbase.block.header_company:
+        fitbase.block.footer_company:
+
+        fitbase.block.reminder.pause:
         fitbase.block.reminder.exercise:
         fitbase.block.reminder.weeklytask:
 
         fitbase.block.dashboard:
-        fitbase.block.dashboard_profile:
-        fitbase.block.dashboard_weeklytask:
-        fitbase.block.dashboard_gamification:
-        fitbase.block.header_company:
-        fitbase.block.footer_company:
-        fitbase.block.dashboard_focus:
-        fitbase.block.dashboard_tree:
-        fitbase.block.dashboard_forest:
-        fitbase.block.dashboard_avatar:
+
+        fitbase.block.weeklytask.dashboard:
+        fitbase.block.weeklytask.weeklytask:
+        fitbase.block.weeklytask.history:
+
+        fitbase.block.gamification.dashboard:
+        fitbase.block.gamification.dashboard_focus:
+        fitbase.block.gamification.dashboard_tree:
+        fitbase.block.gamification.dashboard_forest:
+        fitbase.block.gamification.dashboard_avatar:
+        fitbase.block.gamification.dashboard_activity:
+        fitbase.block.gamification.dashboard_statistic:
+        fitbase.block.gamification.dashboard_dialog:
+
+
+
         fitbase.block.gamification.dashboard_weeklytask:
-        fitbase.block.dashboard_activity:
-        fitbase.block.dashboard_statistic:
-        fitbase.block.dashboard_dialog:
+
         fitbase.block.profile_focus:
         fitbase.block.exercise:
         fitbase.block.exercise.user_choice:
         fitbase.block.exercise.user_choice_social:
         fitbase.block.exercise.user_choice_category:
+        fitbase.block.exercise.user_task:
 
         fitbase.block.exercise_random:
         fitbase.block.exercise_collection:
-        fitbase.block.weeklytask:
-        fitbase.block.weeklytask_collection:
+        fitbase.block.weeklyquiz.pending:
 
 
         fitbase.email_block.user:
@@ -126,14 +137,15 @@ sonata_block:
         fitbase.email_block.footer:
 
 
-        fitbase.block.dashboard.statistic_user_activity:
-        fitbase.block.dashboard.statistic_user_registration:
         fitbase.block.dashboard.statistic_user_focus:
+        fitbase.block.dashboard.statistic_user_activity:
         fitbase.block.dashboard.statistic_user_category:
         fitbase.block.dashboard.statistic_assessment:
-        fitbase.block.knowledge.dashboard_knowledge:
+        fitbase.block.knowledge.knowledge_user:
 
-        fitbase.block.dashboard.company.questionnaire:
+        fitbase.block.company.questionnaire_history:
+        fitbase.block.company.questionnaire_preview:
+        fitbase.block.company.questionnaire_create:
 
         fitbase.block.dashboard.questionnaire_statistic:
         fitbase.block.dashboard.questionnaire_statistic_question:

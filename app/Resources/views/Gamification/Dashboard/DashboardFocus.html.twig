@@ -1,0 +1,70 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles">
+        <h4>{{ 'Ihr Fokus'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+    </div>
+    <div class="row" style="height: 339px;">
+        <div class="col-md-12">
+
+            <div class="row">
+                {% if category is defined and category %}
+                    <div class="col-md-4" align="center" style="margin-top: 10px; margin-bottom: 15px">
+                        <a href="{{ path('focus', {'slug': category.slug}) }}">
+                            {% if category.media is defined %}
+                                {% thumbnail category.media, 'preview' with {'width': 75, 'title': null } %}
+                            {% endif %}
+                        </a>
+                    </div>
+                {% endif %}
+
+                <div class="col-md-8">
+                    {% if category is defined and category %}
+                        <p>Momentan haben Sie den Fokus {{ category.name }}  gewählt.</p>
+                    {% endif %}
+
+                    {% if nextWeeklytask is defined and nextWeeklytask %}
+                        <p>Ihre nächste Infoeinheit erhalten Sie in {{ nextWeeklytask }} Tag(en).</p>
+                    {% endif %}
+
+                    {% if nextExercise is defined and nextExercise %}
+                        <p>Ihre nächste Aktivität ist geplant in {{ nextExercise }} Stunden.</p>
+                    {% endif %}
+
+                </div>
+                {% if collection is defined and collection %}
+                    <div class="col-md-12">
+                        <h4>{{ 'Letzte Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+                        <table class="table table-striped table-hover table-responsive">
+                            <tbody>
+                            {% for task in collection %}
+                                {% if task is defined and task %}
+                                    <tr>
+                                        <td class="shade">
+                                            {{ task.task }}
+                                        </td>
+                                        <td class="shade">
+                                            <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
+                                                {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if form is defined and form %}
+        <div class="panel-footer">
+            {% form_theme form "Gamification/Dashboard/DashboardFocusForm.html.twig" %}
+
+            {{ form(form) }}
+        </div>
+    {% endif %}
+
+</div>
+<!-- End Content Text-->

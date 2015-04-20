@@ -1,0 +1,72 @@
+{% use 'form.html.twig' %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        <div class="modal-body" {{ block('widget_container_attributes') }}>
+            <div class="row">
+                <div class="col-xs-12 errors">
+                    <p>
+                        Die Charaktere werden Sie durch die Fitbase begleiten und sind aus dem Qi Gong
+                        abgeleitet. Wählen Sie nun einen Charakter Ihrer Wahl. Mit jeder durchgeführten Aktivität auf
+                        der Fitbase sammeln Sie Punkte für Ihren Charakter,
+                        damit wächst sein Baum, er entwickelt sich weiter und Sie stärken Ihre Gesundheit.
+                    </p>
+                    {% if form.parent is empty %}
+                        {{ form_errors(form) }}
+                    {% endif %}
+                </div>
+                <div class="col-xs-12">
+                    {{ block('form_rows') }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        <div class="row featured-boxes">
+            {%- for child in form %}
+                <div class="col-xs-3" style="width: 20%;">
+                    {{- form_widget(child) -}}
+                </div>
+            {% endfor -%}
+        </div>
+    </div>
+    <style>
+        .avatar h4 {
+            text-align: center;
+        }
+
+        .avatar img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var container = $(document);
+            container.on('click', 'a.avatar', function (event) {
+                var element = $(this);
+                var form = element.closest('form');
+                form.find('input[type=hidden]').val(element.attr('id'));
+                form.submit();
+                return false;
+            });
+        });
+    </script>
+    <input type="hidden" {{ block('widget_attributes') }}/>
+{%- endblock choice_widget_expanded -%}
+
+{%- block radio_widget -%}
+    <div class="featured-box featured-box-tertiary">
+        <div class="box-content avatar">
+            <a href="#" class="avatar" id="{{ value }}">
+                {{ avatarPreview(value)|raw }}
+            </a>
+            <h4>{{ label }}</h4>
+        </div>
+    </div>
+{%- endblock radio_widget -%}

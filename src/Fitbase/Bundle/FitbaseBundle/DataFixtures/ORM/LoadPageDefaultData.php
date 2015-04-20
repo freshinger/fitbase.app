@@ -360,7 +360,7 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
                     'page' => $page,
                     'code' => 'content',
                 )));
-                $content->setType('fitbase.block.dashboard_gamification');
+                $content->setType('fitbase.block.gamification.dashboard');
 
 
                 $pageManager->save($page);
@@ -409,7 +409,7 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
                     'page' => $page,
                     'code' => 'content',
                 )));
-                $content->setType('fitbase.block.dashboard_weeklytask');
+                $content->setType('fitbase.block.weeklytask.dashboard');
 
 
                 $pageManager->save($page);
@@ -461,17 +461,17 @@ class LoadPageDefaultData extends AbstractFixture implements ContainerAwareInter
 
                 $content->addChildren($reminder = $blockManager->create());
 
-                $reminder->setType('fitbase.block.reminder.settings');
+                $reminder->setType('fitbase.block.reminder.pause');
                 $reminder->setPosition(1);
                 $reminder->setEnabled(true);
                 $reminder->setPage($page);
 
                 $content->addChildren($profile = $blockManager->create());
 
-                $profile->setType('fitbase.block.dashboard_profile');
-                $profile->setPosition(2);
-                $profile->setEnabled(true);
-                $profile->setPage($page);
+//                $profile->setType('fitbase.block.dashboard_profile');
+//                $profile->setPosition(2);
+//                $profile->setEnabled(true);
+//                $profile->setPage($page);
 
 
                 $pageManager->save($page);

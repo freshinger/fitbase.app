@@ -4,8 +4,5 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="questionnaire" pattern="/questionnaire">
-        <default key="_controller">FitbaseQuestionnaireBundle:Questionnaire:index</default>
-    </route>
 
 </routes>

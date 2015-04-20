@@ -124,31 +124,21 @@ assetic:
 
         sonata_front_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/moment/min/moment.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
                 - %kernel.root_dir%/../web/assetic/sonata_jqueryui_js.js
-                - %kernel.root_dir%/../web/js/fitbase.js
 
             filters:
                 - yui_js
 
         sonata_front_css:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2-bootstrap.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.css
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2-bootstrap.css
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
-                - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
-                - %kernel.root_dir%/../web/css/fitbase.css
+#                - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
+#                - %kernel.root_dir%/../web/css/fitbase.css
 
             filters:
                 - cssrewrite

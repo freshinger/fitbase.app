@@ -1,58 +1,71 @@
-<div class="row">
-    <div class="col-xs-3">
-    </div>
-    <div class="col-xs-6">
-        <div class="panel">
-            <div class="panel-heading">
-                <h2 class="col-sm-offset-1">{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</h2>
-            </div>
-            <div class="panel-body">
-                <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }}
-                      method="POST" class="fos_user_resetting_reset form-horizontal">
+{% extends "content.html.twig" %}
 
-                    <p>
-                        Bitte vergeben Sie hier ein neues Passwort.
-                    </p>
+{% block title %}
+    <h1>{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</h1>
+{% endblock title %}
 
-                    {% form_theme form _self %}
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire.company.assessment', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
 
-                    {% use "form_div_layout.html.twig" %}
 
-                    {% block form_rows -%}
-                        {% for child in form %}
-                            {{- form_row(child, { 'attr': { 'class': 'form-control' } } ) -}}
-                        {% endfor %}
-                    {%- endblock form_rows %}
+{% block content %}
 
-                    {% block form_row -%}
-                        <div class="row form-group">
-                            <div class="col-xs-12">
-                                {{- form_errors(form) -}}
-                                {{- form_label(form) -}}
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+
+
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+
+
+                        <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }}
+                              method="POST" class="fos_user_resetting_reset form-theme">
+                            <p>
+                                Bitte vergeben Sie hier ein neues Passwort.
+                            </p>
+
+                            {% form_theme form _self %}
+
+                            {% use "form_div_layout.html.twig" %}
+
+                            {% block form_rows -%}
+                                {% for child in form %}
+                                    {{- form_row(child, { 'attr': { 'class': 'form-control' } } ) -}}
+                                {% endfor %}
+                            {%- endblock form_rows %}
+
+                            {% block form_row -%}
+                                <div class="row form-group">
+                                    <div class="col-xs-12">
+                                        {{- form_errors(form) -}}
+                                        {{- form_label(form) -}}
+                                    </div>
+                                    <div class="col-xs-12">
+                                        {{- form_widget(form) -}}
+                                    </div>
+                                </div>
+                            {%- endblock form_row %}
+
+                            {{ form_widget(form) }}
+
+
+                            <div class="row form-group">
+                                <div class="col-xs-12">
+                                    <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+                                           value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}"/>
+                                </div>
                             </div>
-                            <div class="col-xs-12">
-                                {{- form_widget(form) -}}
-                            </div>
-                        </div>
-                    {%- endblock form_row %}
 
-                    {{ form_widget(form) }}
+                        </form>
 
-
-                    <div class="row form-group">
-                        <div class="col-xs-12">
-                            <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
-                                   value="{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}"/>
-                        </div>
                     </div>
-
-                </form>
-
-
+                </div>
             </div>
         </div>
-
     </div>
-    <div class="col-xs-3">
-    </div>
-</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Infoeinheiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytask_user', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-9">
+            {{ sonata_block_render({ 'type': 'fitbase.block.weeklytask.weeklytask' }, {
+            'weeklytaskUser': weeklytaskUser
+            }) }}
+        </div>
+        <div class="col-xs-3">
+            {% set weeklytask = weeklytaskUser.task %}
+            {{ sonata_block_render({ 'type': 'fitbase.block.weeklytask.history' }, {
+            'categories': weeklytask.categories
+            }) }}
+        </div>
+    </div>
+{% endblock content %}

@@ -5,22 +5,22 @@
 
     <services>
 
-        <service id="fitbase.gamification.block.breadcrumb"
+        <service id="fitbase.block.gamification.breadcrumb"
                  class="Fitbase\Bundle\GamificationBundle\Block\Breadcrumb\GamificationBreadcrumbBlockService">
             <tag name="sonata.block"/>
             <tag name="sonata.breadcrumb"/>
-
             <argument>gamification</argument>
-            <argument>fitbase.gamification.block.breadcrumb</argument>
+            <argument>fitbase.block.gamification.breadcrumb</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="knp_menu.menu_provider"/>
             <argument type="service" id="knp_menu.factory"/>
         </service>
 
-        <service id="fitbase.block.dashboard_gamification" scope="request"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardGamificationBlockService">
+
+        <service id="fitbase.block.gamification.dashboard" scope="request"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\DashboardBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_user</argument>
+            <argument>fitbase.block.gamification.dashboard</argument>
             <argument type="collection">
                 <argument>ROLE_FITBASE_USER</argument>
             </argument>
@@ -34,11 +34,10 @@
             <argument type="service" id="gamification"/>
         </service>
 
-
-        <service id="fitbase.block.dashboard_focus"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardFocusBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_focus"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserFocusBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_focus</argument>
+            <argument>fitbase.block.gamification.dashboard_focus</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
@@ -46,7 +45,7 @@
         </service>
 
         <service id="fitbase.block.gamification.dashboard_weeklytask"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardWeeklytaskBlock" public="true">
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserWeeklytaskBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.gamification.dashboard_weeklytask</argument>
             <argument type="service" id="templating"/>
@@ -56,60 +55,60 @@
         </service>
 
 
-        <service id="fitbase.block.dashboard_tree"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardTreeBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_tree"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserTreeBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_tree</argument>
+            <argument>fitbase.block.gamification.dashboard_tree</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard_forest"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardForestBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_forest"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserForestBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_forest</argument>
+            <argument>fitbase.block.gamification.dashboard_forest</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard_avatar"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardAvatarBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_avatar"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserAvatarBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_avatar</argument>
+            <argument>fitbase.block.gamification.dashboard_avatar</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard_activity"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardActivityBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_activity"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserActivityBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_activity</argument>
+            <argument>fitbase.block.gamification.dashboard_activity</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard_statistic"
-                 class="Fitbase\Bundle\GamificationBundle\Block\DashboardStatisticBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_statistic"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserStatisticBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_statistic</argument>
+            <argument>fitbase.block.gamification.dashboard_statistic</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
-        <service id="fitbase.block.dashboard_dialog"
-                 class="Fitbase\Bundle\GamificationBundle\Block\GamificationDialogBlockService" public="true">
+        <service id="fitbase.block.gamification.dashboard_dialog"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserDialogBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_dialog</argument>
+            <argument>fitbase.block.gamification.dashboard_dialog</argument>
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

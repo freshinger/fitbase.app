@@ -387,5 +387,15 @@ class WeeklyquizUserRepository extends EntityRepository
         return $queryBuilder->getQuery()->getResult();
     }
 
+    public function findAllNotDoneByUser($user)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
 
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprNotDone($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

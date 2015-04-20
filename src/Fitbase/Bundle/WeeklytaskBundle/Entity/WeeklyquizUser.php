@@ -241,4 +241,15 @@ class WeeklyquizUser
     {
         return $this->userTask;
     }
+
+    /**
+     * @return null
+     */
+    public function __toString()
+    {
+        if (($quiz = $this->getQuiz())) {
+            return $quiz->getName();
+        }
+        return null;
+    }
 }

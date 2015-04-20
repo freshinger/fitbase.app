@@ -30,8 +30,8 @@ class GamificationPictureController extends Controller
     {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageBlob($this->renderView('FitbaseGamificationBundle:GamificationPicture:Avatar.html.twig', array()));
-        $imagick->scaleImage(270, 0);
+        $imagick->readImageBlob($this->renderView('Gamification/Picture/Avatar.html.twig', array()));
+        $imagick->scaleImage(360, 0);
 
         if (($gamification = $this->get('gamification')->current())) {
 
@@ -45,7 +45,7 @@ class GamificationPictureController extends Controller
                 $imagick2 = new \Imagick();
                 $imagick2->readImageBlob(\file_get_contents($root . $path));
                 $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 160, 28);
+                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 230, 73);
             }
         }
 
@@ -64,7 +64,7 @@ class GamificationPictureController extends Controller
                     $imagick2 = new \Imagick();
                     $imagick2->readImageBlob(\file_get_contents($root . $path));
                     $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                    $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 20, 0);
+                    $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 30, 45);
                 }
             }
         }
@@ -87,8 +87,8 @@ class GamificationPictureController extends Controller
     {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageBlob($this->renderView('FitbaseGamificationBundle:GamificationPicture:Tree.html.twig', array()));
-        $imagick->scaleImage(270, 0);
+        $imagick->readImageBlob($this->renderView('Gamification/Picture/Tree.html.twig', array()));
+        $imagick->scaleImage(360, 0);
         $imagick->setImageFormat("png");
 
         if (($company = $this->get('company')->current())) {
@@ -128,8 +128,8 @@ class GamificationPictureController extends Controller
     {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageBlob($this->renderView('FitbaseGamificationBundle:GamificationPicture:Forest.html.twig', array()));
-        $imagick->scaleImage(270, 0);
+        $imagick->readImageBlob($this->renderView('Gamification/Picture/Forest.html.twig', array()));
+        $imagick->scaleImage(360, 0);
         $imagick->setImageFormat("png");
 
         return new Response($imagick, 200, array(

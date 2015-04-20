@@ -81,7 +81,7 @@ class UserWizardController extends Controller
                     }
 
 
-                    return $this->render('FitbaseQuestionnaireBundle:Wizard:questionnaire.html.twig', array(
+                    return $this->render('Wizard/Questionnaire.html.twig', array(
                         'form' => $form->createView(),
                         'questionnaire' => $questionnaire,
                     ));
@@ -191,7 +191,7 @@ class UserWizardController extends Controller
 
                     $formBuilder = new QuestionnaireUserForm($this->container, $questionnaireUser, 10);
                     $form = $this->container->get('form.factory')->create($formBuilder, array());
-                    return $this->render('FitbaseQuestionnaireBundle:Wizard:questionnaire.html.twig', array(
+                    return $this->render('Wizard/Questionnaire.html.twig', array(
                         'form' => $form->createView(),
                         'questionnaire' => $questionnaire,
                     ));

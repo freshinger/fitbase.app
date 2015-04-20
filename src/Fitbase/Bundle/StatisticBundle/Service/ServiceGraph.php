@@ -31,7 +31,7 @@ class ServiceGraph extends ContainerAware
         JpGraph::load();
         JpGraph::module('pie');
 
-        $graph = new PieGraph(550, 580);
+        $graph = new PieGraph(510, 430);
         $graph->SetShadow();
         $graph->title->Set($name);
 
@@ -60,7 +60,7 @@ class ServiceGraph extends ContainerAware
         JpGraph::module('bar');
 
 
-        $graph = new \Graph(335, 400, 'auto');
+        $graph = new \Graph(360, 500, 'auto');
         $graph->SetScale("textlin");
 
         $graph->SetTheme(new \UniversalTheme);

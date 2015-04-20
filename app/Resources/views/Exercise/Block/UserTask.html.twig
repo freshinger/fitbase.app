@@ -1,0 +1,192 @@
+<div class="row">
+    {% set width='620' %}
+    {% set height='320' %}
+
+    {% set mp4=null %}
+    {% set webm=null %}
+    {% set medias=null %}
+
+    {% if exercise is defined and exercise %}
+        {% set mp4=exercise.mp4 %}
+        {% set webm=exercise.webm %}
+        {% if exercise.gallery is defined and exercise.gallery %}
+            {% set medias=exercise.gallery.galleryHasMedias %}
+        {% endif %}
+    {% endif %}
+
+    {% if (mp4 or webm) or  medias %}
+        <div class="col-xs-7">
+
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>
+                        {% if exercise is defined %}
+                            {{ exercise.name }} - Media
+                        {% endif %}
+                    </h4>
+                </div>
+
+                <div class="row">
+
+                    {% if mp4 or webm %}
+                        <div class="col-md-12">
+                            {% block exercise_video %}
+                                <video width="{{ width }}" controls autoplay>
+                                    <source src="{{ video(mp4) }}" type="video/mp4"/>
+                                    <source src="{{ video(webm) }}" type="video/webm"/>
+
+                                    <object class="flashplayer" width="{{ width }}"
+                                            height="{{ height }}"
+                                            type="application/x-shockwave-flash"
+                                            data="/flash/player.swf?v1.3.5">
+                                        <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                        <param name="quality" value="high"/>
+                                        <param name="menu" value="false"/>
+                                        <param name="scale" value="noscale"/>
+                                        <param name="allowfullscreen" value="true">
+                                        <param name="allowscriptaccess" value="always">
+                                        <param name="swlivevonnect" value="true"/>
+                                        <param name="cachebusting" value="false">
+                                        <param name="flashvars"
+                                               value="skin=/flash/skins/mySkin.swf&video={{ video(mp4) }}&autoplay=1"/>
+                                    </object>
+
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            var flashplayer = $('.flashplayer');
+                                            if (!flashplayer.flash()) {
+                                                flashplayer.remove();
+                                            }
+                                        });
+                                    </script>
+                                </video>
+                            {% endblock exercise_video %}
+                        </div>
+
+                        <div class="col-md-12" style="text-align: center;">
+
+                            {% block content_navigation %}
+                                <style>
+                                    ul.pagination {
+                                        width: 540px;
+                                    }
+
+                                    div.text-wrap {
+                                        text-overflow: ellipsis;
+                                        width: 132px;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                    }
+                                </style>
+                                <ul class="pagination">
+                                    {% if step > 0 %}
+                                        <li>
+                                            <a href="{{ path('user_task', { 'unique': task.id, 'step': (step - 1) }) }}">
+                                                <
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if task.exercise0 is defined and task.exercise0 %}
+                                        <li {% if step == 0 %}class="active"{% endif %}>
+                                            <a href="{{ path('user_task', { 'unique': task.id, 'step': 0 }) }}">
+                                                <div class="text-wrap">
+                                                    1. {{ task.exercise0.name }}
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if task.exercise1 is defined and task.exercise1 %}
+                                        <li {% if step == 1 %}class="active"{% endif %} >
+                                            <a href="{{ path('user_task', { 'unique': task.id, 'step': 1 }) }}">
+                                                <div class="text-wrap">
+                                                    2. {{ task.exercise1.name }}
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if task.exercise2 is defined and task.exercise2 %}
+                                        <li {% if step == 2 %}class="active"{% endif %}>
+                                            <a href="{{ path('user_task', { 'unique': task.id, 'step': 2 }) }}">
+                                                <div class="text-wrap">
+                                                    3. {{ task.exercise2.name }}
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if step < 2 %}
+                                        <li>
+                                            <a href="{{ path('user_task', { 'unique': task.id, 'step': (step + 1) }) }}">
+                                                >
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endblock %}
+                        </div>
+                    {% endif %}
+
+                    {% if medias %}
+                        <div class="col-md-12">
+                            {% block exercise_picture %}
+                                <div class="row">
+                                    {% for hasMedia in medias %}
+                                        <div class="col-xs-6">
+                                        <span class="label label-default">
+                                            {{ loop.index }}
+                                        </span>
+                                            <a href="{% path hasMedia.media, 'original' %}">
+                                                {% thumbnail hasMedia.media, 'preview' with {'width': 260, 'title': null} %}
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endblock exercise_picture %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="{% if (mp4 or webm) or  medias %}col-xs-5{% else %}col-xs-9{% endif %}">
+
+        {% block exercise_text %}
+            <div class="panel-box" style="min-height: 410px;">
+                <div class="titles">
+                    <h4>
+                        {% if exercise is defined %}
+                            {{ exercise.name }} - Inhalte
+                        {% endif %}
+                        <span style="float: right;">
+                            {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice' }, { 'exercise': exercise }) }}
+                        </span>
+                    </h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if exercise is defined %}
+                            {{ exercise.description|raw }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% include 'Exercise/ExerciseDone.html.twig' with { 'exercise': exercise } %}
+
+        {% endblock exercise_text %}
+
+    </div>
+
+    {% if not mp4 and not webm and not medias %}
+        <div class="col-xs-3">
+            {{ sonata_block_render({ 'type': 'fitbase.block.exercise_collection' }, {
+            'categories': exercise.categories
+            }) }}
+        </div>
+    {% endif %}
+
+</div>
+
