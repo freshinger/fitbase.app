@@ -5,9 +5,10 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\GamificationBundle\Block;
+namespace Fitbase\Bundle\KnowledgeBundle\Block;
 
 
+use Fitbase\Bundle\GamificationBundle\Form\GamificationUserUpdateForm;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class DashboardTreeBlockService extends BaseBlockService implements ContainerAwareInterface
+class UserKnowledgeBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -38,11 +39,7 @@ class DashboardTreeBlockService extends BaseBlockService implements ContainerAwa
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user = $this->container->get('user')->current();
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:DashboardTree.html.twig', array(
-            'points' => $this->container->get('statistic')->points($user),
-        ));
+        return $this->renderPrivateResponse('Knowledge/Block/Knowledge.html.twig', array());
     }
 
     /**
@@ -50,6 +47,6 @@ class DashboardTreeBlockService extends BaseBlockService implements ContainerAwa
      */
     public function getName()
     {
-        return 'Tree (Gamification)';
+        return 'User knowledge (Dashboard)';
     }
 } 

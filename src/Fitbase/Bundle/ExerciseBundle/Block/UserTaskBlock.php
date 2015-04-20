@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\GamificationBundle\Block;
+namespace Fitbase\Bundle\ExerciseBundle\Block;
 
 
 use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
@@ -16,9 +16,10 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class DashboardActivityBlockService extends BaseBlockService implements ContainerAwareInterface
+class UserTaskBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -35,32 +36,32 @@ class DashboardActivityBlockService extends BaseBlockService implements Containe
         $this->container = $container;
     }
 
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'step' => 0,
+            'task' => null,
+            'exercise' => null,
+            'template' => 'Exercise/Block/UserTask.html.twig',
+        ));
+    }
+
     /**
      * Draw a block
      * {@inheritdoc}
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+        if (!($exercise = $blockContext->getSetting('exercise'))) {
+            if (($task = $blockContext->getSetting('task'))) {
+                $exercise = $task->getExercise0();
+            }
         }
 
-        if ($this->container->get('focus')->check($user, 'stress')) {
-            $template = 'FitbaseGamificationBundle:Block:dashboard_activity_stress.html.twig';
-            return $this->renderPrivateResponse($template, array(
-                'user' => $user,
-            ));
-        }
-
-        if ($this->container->get('focus')->check($user, 'ernaehrung')) {
-            $template = 'FitbaseGamificationBundle:Block:dashboard_activity_feeding.html.twig';
-            return $this->renderPrivateResponse($template, array(
-                'user' => $user,
-            ));
-        }
-
-        return $this->renderPrivateResponse('FitbaseGamificationBundle:Block:dashboard_activity.html.twig', array(
-            'user' => $user,
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+            'step' => $blockContext->getSetting('step'),
+            'task' => $blockContext->getSetting('task'),
+            'exercise' => $exercise,
         ));
     }
 
@@ -69,6 +70,6 @@ class DashboardActivityBlockService extends BaseBlockService implements Containe
      */
     public function getName()
     {
-        return 'Dashboard Activity (Gamification)';
+        return 'User task (Exercise)';
     }
 } 

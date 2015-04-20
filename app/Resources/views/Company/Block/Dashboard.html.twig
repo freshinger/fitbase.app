@@ -1,0 +1,49 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Startseite'|trans({}, 'FitbaseGamificationBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li>{{ 'Startseite'|trans({}, 'SonataUserBundle') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="container">
+        <div class="container" style="font-size: 1.1em; padding-bottom: 5px;">
+            <p>
+                Willkommen auf dem Dashboard
+                {% if company is defined %}
+                    für Ihr Unternehmen: {{ company.name }}
+                {% endif %}
+            </p>
+
+            <p>Mit diesem Online Reporting Tool erhalten Sie verschiedene Auswertungsmöglichkeiten und können
+                Fragebögen automatisch an alle Ihre Mitarbeiter, die fitbase nutzen, senden.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_category' }, { 'slug': 'stress' }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_category' }, { 'slug': 'ruecken' }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_assessment' }, { 'company': company }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_activity' }, { 'company': company }) }}
+        </div>
+        <div class="col-xs-8">
+            {{ sonata_block_render({ 'type': 'fitbase.block.dashboard.statistic_user_focus' }) }}
+        </div>
+    </div>
+{% endblock content %}
+

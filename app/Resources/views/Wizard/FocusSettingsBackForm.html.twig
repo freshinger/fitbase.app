@@ -74,15 +74,15 @@
 
 {% block radio_widget -%}
     <span {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
     </span>
 {%- endblock radio_widget %}
 
 {% block checkbox_widget -%}
     <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-        <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-        <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    <span style="font-size: 1.1em; padding-left: 10px; vertical-align: middle">{{ label|striptags }}</span>
     </span>
 {%- endblock checkbox_widget %}
 
