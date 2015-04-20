@@ -13,15 +13,20 @@
                                 <li>
                                     <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
 
-                                        {% set icon = icon(weeklytask) %}
-                                        {% if icon is defined and icon %}
-                                            {{ icon|raw }}
-                                        {% else %}
-                                            {% set category = weeklytask.categories[0] %}
-                                            {% if category is defined and  category %}
-                                                {% thumbnail category, 'thumbnail' with { 'width': '360px', 'title': null, 'class': 'img-responsive' } %}
-                                            {% endif %}
-                                        {% endif %}
+                                        <img class="img-responsive"
+                                             src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">
+
+
+
+                                        {#{% set icon = icon(weeklytask) %}#}
+                                        {#{% if icon is defined and icon %}#}
+                                        {#{{ icon|raw }}#}
+                                        {#{% else %}#}
+                                        {#{% set category = weeklytask.categories[0] %}#}
+                                        {#{% if category is defined and  category %}#}
+                                        {#{% thumbnail category, 'thumbnail' with { 'width': '360px', 'title': null, 'class': 'img-responsive' } %}#}
+                                        {#{% endif %}#}
+                                        {#{% endif %}#}
                                     </a>
 
                                     <div class="info-single-carousel">
