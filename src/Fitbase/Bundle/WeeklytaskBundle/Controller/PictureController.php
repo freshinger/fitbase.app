@@ -42,14 +42,17 @@ class PictureController extends Controller
 
                         if (($images = pq('img'))) {
                             if (($image = (isset($images[0]) ? pq($images[0]) : null)) != null) {
+                                if (($path = $this->patchSrc($image->attr('src')))) {
 
-                                $imagick2 = new \Imagick();
-                                $imagick2->readImageBlob(\file_get_contents($image->attr('src')));
-                                $imagick2->scaleImage(360, 0);
-                                return new Response($imagick2, 200, array(
-                                    'Content-Type' => 'image/png',
-                                    'Content-Disposition' => 'inline; filename="forest.png"'
-                                ));
+                                    $imagick2 = new \Imagick();
+                                    $imagick2->readImageBlob(\file_get_contents($path));
+                                    $imagick2->scaleImage(360, 0);
+
+                                    return new Response($imagick2, 200, array(
+                                        'Content-Type' => 'image/png',
+                                        'Content-Disposition' => 'inline; filename="forest.png"'
+                                    ));
+                                }
                             }
                         }
 
@@ -78,7 +81,7 @@ class PictureController extends Controller
                 }
             }
         }
-        
+
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
         $imagick->readImageBlob($this->renderView('Gamification/Picture/Forest.html.twig', array()));
@@ -89,6 +92,28 @@ class PictureController extends Controller
             'Content-Type' => 'image/png',
             'Content-Disposition' => 'inline; filename="forest.png"'
         ));
+    }
 
+
+    /**
+     * Patch src to get a full link to download
+     *
+     * @param $user
+     * @param $src
+     * @return null
+     */
+    protected function patchSrc($src)
+    {
+        if (($parts = parse_url($src))) {
+            if (!array_key_exists('scheme', $parts)) {
+                $parts['scheme'] = $this->container->getParameter('scheme');
+            }
+            if (!array_key_exists('host', $parts)) {
+                $parts['host'] = $this->container->getParameter('host');
+            }
+            return http_build_url(null, $parts);
+        }
+
+        return null;
     }
 }
