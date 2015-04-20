@@ -1,0 +1,207 @@
+<!-- Content Text-->
+<div class="panel-box">
+    {% block exercise_list_title %}
+        <div class="titles">
+            <h4>{{ category }}</h4>
+        </div>
+    {% endblock exercise_list_title %}
+
+    {% set limit = 3 %}
+
+
+    {% if collection|length > 0 %}
+        {% for exerciseChoice in collection | slice(0,limit) %}
+            {% set exercise = exerciseChoice.exercise %}
+
+            {% block exercise_list_item %}
+                <div class="post-item">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="img-hover">
+                                {% thumbnail exercise.image, 'thumbnail'  with { 'title': null, 'class': 'img-responsive' } %}
+
+                                <div class="overlay"><a href="{{ path('exercise', { 'unique': exercise.id}) }}">+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h4>
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {{ exercise.name }}
+                                </a>
+                            </h4>
+
+                            <p>
+                                {{ exercise.description|raw|striptags|slice(0,300) }}...
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endblock exercise_list_item %}
+
+        {% endfor %}
+
+        {% if collection|length > limit %}
+
+
+            <div class="post-items-content" style="display: none;">
+                {% for exerciseChoice in collection | slice(limit,null) %}
+                    {% set exercise = exerciseChoice.exercise %}
+
+                    <div class="post-item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="img-hover">
+                                    {% thumbnail exercise.image, 'thumbnail'  with { 'title': null, 'class': 'img-responsive' } %}
+
+                                    <div class="overlay">
+                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">+</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h4>
+                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                        {{ exercise.name }}
+                                    </a>
+                                </h4>
+
+                                <p>
+                                    {{ exercise.description|raw|striptags|slice(0,300) }}...
+                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                        {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="post-item">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a href="#" class="post-items-trigger btn btn-default">
+                            {{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+
+
+
+
+    {% else %}
+
+        {% block exercise_list_empty %}
+            <!-- Empty content Text-->
+            <div class="post-item">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ "Sie haben noch keine Lieblingsübungen in diesem Bereich." | trans({}, 'FitbaseExerciseBundle') }}
+                    </div>
+                </div>
+            </div>
+            <!-- End Empty Content Text-->
+        {% endblock exercise_list_empty %}
+
+    {% endif %}
+</div>
+<!-- End Content Text-->
+
+<script type="text/javascript">
+    $(function () {
+        var $trigger = $('.post-items-trigger');
+        var $content = $('.post-items-content');
+
+        $trigger.click(function (event) {
+            var $element = $(this);
+            $element.toggleText('{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}', '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}');
+            $element.closest('div.post-item').prev().toggle();
+            event.preventDefault();
+        });
+
+
+    });
+</script>
+
+
+{#{% set collectionPart = collection| slice(3,null) %}#}
+
+{#{% if collectionPart | length > 0 %}#}
+
+    {#<div id="exercises-{{ category.id }}" class="row hidden">#}
+        {#{% for exerciseChoice in collectionPart %}#}
+            {#{% set exercise = exerciseChoice.exercise %}#}
+            {#<div class="col-xs-4">#}
+
+<!-- Content Text-->
+{#<div class="panel-box">#}
+                    {#<div class="titles">#}
+                        {#<h4>{{ 'Übungen'|trans({}, 'FitbaseGamificationBundle') }}</h4>#}
+                    {#</div>#}
+                    {#<div class="row">#}
+                        {#<div class="col-md-12">#}
+
+
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+<!-- End Content Text-->
+
+{#<div class="well">#}
+                {#<div class="row thumb-info">#}
+                {#{% if exercise.image is defined %}#}
+                {#<div class="col-xs-12">#}
+                {#<a href="{{ path('exercise', { 'unique': exercise.id}) }}">#}
+                {#{% thumbnail exercise.image, 'thumbnail'  with { 'title': null } %}#}
+                {#</a>#}
+                {#</div>#}
+                {#{% endif %}#}
+                {#<div class="col-xs-12 thumb-info-title">#}
+                {#<a class="thumb-info-inner" href="{{ path('exercise', { 'unique': exercise.id}) }}">#}
+                {#{{ exercise.name }}#}
+                {#</a>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {##}
+            {#</div>#}
+        {#{% endfor %}#}
+    {#</div>#}
+
+    {#<div class="row">#}
+    {#<div class="col-xs-12">#}
+    {#<ul class="pager">#}
+    {#<li>#}
+    {#<a href="#" class="show-exercises-{{ category.id }}">#}
+    {#{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}#}
+    {#</a>#}
+    {#</li>#}
+    {#</ul>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<script type="text/javascript">#}
+    {#$(function () {#}
+
+    {#var container = $(document);#}
+
+    {#container.on('click', 'a.show-exercises-{{ category.id }}', function (event) {#}
+    {#container.find('#exercises-{{ category.id }}').toggleClass('hidden');#}
+
+    {#$(this).toggleText('{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}', '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}');#}
+    {#return false;#}
+    {#});#}
+
+    {#});#}
+
+    {#</script>#}
+{#{% endif %}#}
+

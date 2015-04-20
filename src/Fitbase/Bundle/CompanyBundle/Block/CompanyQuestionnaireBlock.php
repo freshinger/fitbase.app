@@ -41,7 +41,7 @@ class CompanyQuestionnaireBlock extends SecureBlockServiceAbstract
     {
         $resolver->setDefaults(array(
             'company' => null,
-            'template' => 'FitbaseCompanyBundle:Block:Questionnaire.html.twig',
+            'template' => 'Company/Block/Questionnaire.html.twig',
         ));
     }
 

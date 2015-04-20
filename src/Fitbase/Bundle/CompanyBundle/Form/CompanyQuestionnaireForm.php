@@ -32,10 +32,7 @@ class CompanyQuestionnaireForm extends AbstractType
                     $queryBuilder->where($queryBuilder->expr()->eq('CompanyQuestionnaire.company', ':company'));
                     $queryBuilder->setParameter(':company', $this->company->getId());
                     return $queryBuilder;
-                },
-                'attr' => array(
-                    'class' => 'form-control',
-                ),
+                }
             ))
             ->add('date', 'sonata_type_datetime_picker', array(
                 'label' => 'Datum',

@@ -1,0 +1,67 @@
+{% extends "layout.html.twig" %}
+
+{% use "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ "Wizard" | trans({}, 'FitbaseReminderBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten möchten.
+                    Unsere Empfehlung: 1-2 pro
+                    Woche. Sie können diese Angaben jederzeit im Profil ändern.</p>
+
+                {{ sonata_block_render({ 'type': 'fitbase.block.reminder.weeklytask' }) }}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ "Erinnerungsfunktion" | trans({}, 'FitbaseReminderBundle') }}</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p>Hier können Sie festlegen, wie viele Erinnerungen Sie pro Woche erhalten möchten. Unsere Empfehlung:
+                    Jeden
+                    Tag. Sie können diese Angaben jederzeit im Profil ändern.</p>
+
+                {{ sonata_block_render({ 'type': 'fitbase.block.reminder.exercise' }) }}
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-10">
+            <p>
+                Klicken Sie auf weiter, um fitbase zu starten.
+            </p>
+        </div>
+
+        <div class="panel-body col-xs-12">
+            {% form_theme form _self %}
+
+            {{ form(form) }}
+
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,88 @@
+<div class="row">
+    <!-- Logo-->
+    <div class="col-md-2 logo">
+        <a title="Return Home" href="index.html">
+            {% set logo = '/image/logo.png' %}
+
+            {% if company is defined and company %}
+                {% if company.image is defined and company.image %}
+                    {% set logo = null %}
+                    {% thumbnail company.image, 'thumbnail' with {'class': 'img-responsive'} %}
+                {% endif %}
+            {% endif %}
+
+            {% if logo is defined and logo %}
+                <img src="{{ logo }}" class="img-responsive"/>
+            {% endif %}
+        </a>
+    </div>
+    <!-- End Logo-->
+
+    <!-- Adds Header-->
+    <div class="col-md-10">
+        <!-- mainmenu-->
+        <div id="undefined-sticky-wrapper" class="sticky-wrapper" style="height: 76px;">
+            <nav class="mainmenu">
+                {{ sonata_block_render({ 'type': 'sonata.block.service.menu' }, { 'menu_name':'FitbaseFitbaseBundle:Builder:mainMenu' }) }}
+            </nav>
+        </div>
+        <!-- End mainmenu-->
+    </div>
+    {#<!-- End Adds Header-->#}
+</div>
+
+
+{#<div class="row">#}
+    {#<!-- Logo-->#}
+    {#<div class="col-md-3 logo">#}
+        {#<a href="index.html" title="Return Home">#}
+
+            {#<style class="company">#}
+            {#{% if company.header is defined and company.header %}#}
+            {#.page-header {#}
+            {#background-color:# {{ company.header }};#}
+            {#}#}
+
+            {#{% endif %}#}
+
+            {#{% if company.background1 is defined and company.background1 %}#}
+            {#.page-content {#}
+            {#background-color: # {{ company.background1 }};#}
+            {#}#}
+
+            {#{% endif %}#}
+
+            {#{% if company.background2 is defined and company.background2 %}#}
+            {#body.sonata-bc {#}
+            {#background-color: # {{ company.background2 }};#}
+            {#}#}
+
+            {#{% endif %}#}
+
+            {#</style>#}
+
+            {#{% set logo = '/image/logo.png' %}#}
+
+            {#{% if company is defined and company %}#}
+                {#{% if company.image is defined and company.image %}#}
+                    {#{% set logo = null %}#}
+                    {#{% thumbnail company.image, 'thumbnail' with {'class': 'img-responsive'} %}#}
+                {#{% endif %}#}
+            {#{% endif %}#}
+
+            {#{% if logo is defined and logo %}#}
+                {#<img src="{{ logo }}" class="img-responsive"/>#}
+            {#{% endif %}#}
+
+        {#</a>#}
+    {#</div>#}
+    {#<!-- End Logo-->#}
+
+    {#<!-- Adds Header-->#}
+    {#<div class="col-md-9 adds">#}
+        {#<a href="#" target="_blank">#}
+            {#<img src="/img/adds/banner.jpg" alt="" class="img-responsive">#}
+        {#</a>#}
+    {#</div>#}
+    {#<!-- End Adds Header-->#}
+{#</div>#}

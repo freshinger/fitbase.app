@@ -1,0 +1,41 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Startseite'|trans({}, 'FitbaseGamificationBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li>{{ 'Startseite'|trans({}, 'SonataUserBundle') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.gamification.dashboard_avatar' }) }}
+        </div>
+        <div class="col-md-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.gamification.dashboard_focus' }) }}
+        </div>
+        <div class="col-md-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.gamification.dashboard_activity' }) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.gamification.dashboard_forest' }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.gamification.dashboard_statistic' }) }}
+        </div>
+        <div class="col-xs-4">
+            {{ sonata_block_render({ 'type': 'fitbase.block.knowledge.knowledge_user' }) }}
+        </div>
+    </div>
+{% endblock content %}

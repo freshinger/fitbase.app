@@ -1,0 +1,51 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ category.label }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'category', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    {% block content_category %}
+        {% if exercises is defined and exercises %}
+            <div class="row">
+                {% for exercise in exercises %}
+                    <div class="col-xs-4">
+                        <div class="panel-box" style="min-height: 410px;">
+                            <div class="titles">
+                                <h4>{{ exercise.name }}</h4>
+                            </div>
+                            <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                <div class="owl-wrapper-outer autoHeight">
+                                    <div class="owl-wrapper" style="left: 0px; display: block;">
+                                        <div class="owl-item">
+                                            <li>
+                                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                                    {% thumbnail exercise.image, 'preview'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                                </a>
+
+                                                <div class="info-single-carousel">
+                                                    <p>
+                                                        {{ exercise.description|raw|striptags|slice(0,180) }}...
+                                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                                            {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                                        </a>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock content_category %}
+{% endblock content %}
+
+

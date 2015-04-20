@@ -35,7 +35,7 @@ class UserWizardController extends Controller
                         }
                     }
 
-                    return $this->render('FitbaseReminderBundle:Wizard:reminder.html.twig', array(
+                    return $this->render('Wizard/Reminder.html.twig', array(
                         'form' => $form->createView()
                     ));
                 }

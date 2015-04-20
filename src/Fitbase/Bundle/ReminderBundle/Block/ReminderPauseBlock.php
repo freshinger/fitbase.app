@@ -30,7 +30,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAwareInterface
+class ReminderPauseBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -47,7 +47,6 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
         $this->container = $container;
     }
 
-
     /**
      * Set defaults
      * @param OptionsResolverInterface $resolver
@@ -55,7 +54,7 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Reminder/Block/ReminderWeeklytask.html.twig',
+            'template' => 'Reminder/Block/ReminderPause.html.twig',
         ));
     }
 
@@ -66,49 +65,39 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $user = null;
-        $reminder = null;
-        $entityManager = $this->container->get('entity_manager');
+        $reminder = new ReminderUser();
         if (($user = $this->container->get('user')->current())) {
+
+            $entityManager = $this->container->get('entity_manager');
             $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
-            $reminder = $repositoryReminder->findOneByUser($user);
-        }
 
-        $form = $this->container->get('form.factory')->create(new ReminderUserItemForm(), new ReminderUserItem());
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
-            if ($form->isValid()) {
-                if (($entity = $form->getData())) {
+            if (($reminder = $repositoryReminder->findOneByUser($user))) {
+                if (($unique = $this->container->get('request')->get('stoppause'))) {
 
-                    $entity->setUser($user);
-                    $entity->setType('weeklytask');
-                    $entity->setReminder($reminder);
+                    $reminder->setPause(false);
+                    $reminder->setPauseStart(null);
 
-                    $event = new ReminderUserItemEvent($form->getData());
-                    $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
+                    $event = new ReminderUserEvent($reminder);
+                    $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
                 }
             }
         }
 
-        if (($unique = $this->container->get('request')->get('uniqueitem'))) {
-            $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-            if (($item = $repositoryReminderItem->findOneByUserAndId($user, $unique))) {
+        $form = $this->container->get('form.factory')->create(new ReminderUserPauseForm(), $reminder);
+        if ($this->container->get('request')->get($form->getName())) {
+            $form->handleRequest($this->container->get('request'));
+            if ($form->isValid()) {
 
-                $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_remove', $event);
+                $reminder->setPauseStart($this->container->get('datetime')->getDateTime('now'));
 
-                $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_removed', $event);
+                $event = new ReminderUserEvent($reminder);
+                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
             }
         }
 
-
-        $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-        $collection = $repositoryReminderItem->findAllByReminderAndType($reminder, 'weeklytask');
-
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+            'reminder' => $reminder,
             'form' => $form->createView(),
-            'collection' => $collection,
         ));
     }
 
@@ -117,6 +106,6 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
      */
     public function getName()
     {
-        return 'Reminder weeklytask (Form)';
+        return 'Reminder pause (Form)';
     }
 }

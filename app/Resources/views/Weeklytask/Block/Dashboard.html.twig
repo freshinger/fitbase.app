@@ -1,0 +1,287 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Infoeinheiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklytasks', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content_top %}
+    <div class="bg-dark dark-home">
+        <div class="row">
+            <!-- Left Content - Tabs and Carousel -->
+            <div class="col-md-9">
+                <!-- Content Tabs -->
+                <div class="tab-content">
+                    <!-- Tab One - Feature News -->
+                    <div id="feature-news" class="tab-pane active">
+                        <!-- blog post-->
+                        <ul class="events-carousel padding-top owl-carousel owl-theme" id="events-carousel"
+                            style="opacity: 1; display: block;">
+                            <!-- Item blog post -->
+                            <div class="owl-wrapper-outer">
+                                <div class="owl-wrapper"
+                                     style="left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+
+
+                                    <div class="panel-box">
+                                        <div class="titles">
+                                            <h4>{{ 'Übersicht Infoeinheiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>
+                                                    <img src="/image/infoeinheiten.jpg"/>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                Die Fitbase unterstützt Sie dabei, <strong>Ihre Lebensweise aktiver,
+                                                    bewusster und gesünder</strong>
+                                                zu gestalten. Dazu schicken
+                                                wir Ihnen <strong>regelmäßig kurze Infoeinheiten</strong>. Die
+                                                Infoeinheiten sind thematisch aufeinander
+                                                aufgebaut und stellen Ihnen zudem auch umfassendes Wissen zur
+                                                Verfügung.
+
+                                                <br/>
+                                                <br/>
+                                                <br/>
+
+                                                <div class="row">
+                                                    <div class="col-xs-8">
+                                                        <h4>Ihre gesammelten Punkte:</h4>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <h4><strong>{{ countDonePoints }}</strong></h4>
+                                                    </div>
+                                                    <div class="col-xs-8">
+                                                        <h4>Ihre erledigten Infoeinheiten:</h4>
+                                                    </div>
+                                                    <div class="col-xs-4">
+                                                        <h4><strong>{{ countDone }}</strong></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </ul>
+                        <!-- End blog post-->
+                    </div>
+                    <!-- Tab One - Feature News -->
+                </div>
+                <!-- Content Tabs -->
+            </div>
+            <!-- Left Content - Tabs and Carousel -->
+            <div class="col-md-3">
+                {{ sonata_block_render({ 'type': 'fitbase.block.weeklyquiz.pending' }) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock content_top %}
+
+
+{% block content %}
+
+
+    <!-- Content Text-->
+    <div class="panel-box">
+        {% block exercise_list_title %}
+            <br/>
+        {% endblock exercise_list_title %}
+
+        {% if collection|length > 0 %}
+            {% for weeklytaskUser in collection %}
+                {% set task = weeklytaskUser.task %}
+                {% set quiz = weeklytaskUser.userQuiz %}
+
+                {% block exercise_list_item %}
+                    <div class="post-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="img-hover">
+
+                                    {% set icon = icon(task) %}
+                                    {% if icon is defined and icon %}
+                                        {{ icon|raw }}
+                                    {% else %}
+                                        {% set category = task.categories[0] %}
+                                        {% if category is defined and  category %}
+                                            {% thumbnail category, 'thumbnail' with { 'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                        {% endif %}
+                                    {% endif %}
+
+                                    <div class="overlay">
+                                        <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">+</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h4>
+                                    <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
+                                        {{ task.name }}
+                                    </a>
+                                </h4>
+
+                                <p class="data-info">
+                                    {{ weeklytaskUser.date|date('d.m.Y') }}
+
+                                    {% set taskPoints = 0 %}
+                                    {% set quizPoints = 0 %}
+
+                                    {% if task is defined and task %}
+                                        {% set taskPoints = task.countPoint %}
+                                        <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
+                                            Gesammelte Punkte: {{ taskPoints|number_format }}
+                                        </a>
+                                    {% endif %}
+
+                                    {% if quiz is defined and quiz %}
+                                        {% set quizPoints = quiz.countPoint %}
+
+                                        <a href="{{ path('weeklyquiz_user_view', { 'unique': quiz.id } ) }}">
+                                            Gesammelte Quiz-Punkte: {{ quizPoints|number_format }}
+                                        </a>
+                                    {% endif %}
+                                </p>
+
+                                <p>
+                                    {{ task.content|raw|striptags|slice(0,300) }}...
+                                    <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
+                                        {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock exercise_list_item %}
+
+            {% endfor %}
+        {% else %}
+
+            {% block exercise_list_empty %}
+                <!-- Empty content Text-->
+                <div class="post-item">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ "Sie haben noch keine Infoeinheiten in diesem Bereich." | trans({}, 'FitbaseWeeklytaskBundle') }}
+                        </div>
+                    </div>
+                </div>
+                <!-- End Empty Content Text-->
+            {% endblock exercise_list_empty %}
+
+        {% endif %}
+    </div>
+    <!-- End Content Text-->
+
+
+
+
+
+    {#<div class="row">#}
+    {#<div class="col-xs-12 top10">#}
+
+    {#<table class="table table-striped table-hover table-responsive">#}
+    {#<thead>#}
+    {#<tr>#}
+    {#<th>Infoeinheit</th>#}
+    {#<th>Fokus</th>#}
+    {#<th>Datum</th>#}
+    {#<th>Quiz</th>#}
+    {#<th>Punkte</th>#}
+    {#</tr>#}
+    {#</thead>#}
+    {#<tbody>#}
+    {#{% if collection|length > 0 %}#}
+    {#{% for task in collection %}#}
+    {#{% if task is defined and task %}#}
+    {#{% set quiz = task.userQuiz %}#}
+
+    {#<tr>#}
+    {#<td class="shade">#}
+    {#<a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">#}
+    {#{{ task.task }}#}
+    {#</a>#}
+    {#</td>#}
+    {#<td class="shade center">#}
+    {#{% if task.task is defined and task.task %}#}
+    {#{% set weeklytask = task.task %}#}
+    {#{% if weeklytask.categories is defined and weeklytask.categories %}#}
+    {#{% for category in weeklytask.categories %}#}
+    {#{% if loop.index > 1 %}#}
+    {#,#}
+    {#{% endif %}#}
+    {#{{ category }}#}
+    {#{% endfor %}#}
+    {#{% endif %}#}
+    {#{% endif %}#}
+    {#</td>#}
+    {#<td class="shade center">#}
+    {#{% if task.date is defined and task.date %}#}
+    {#{{ task.date|date('d.m.Y') }}#}
+    {#{% endif %}#}
+    {#</td>#}
+    {#<td class="shade center">#}
+
+    {#{% if quiz is defined and quiz %}#}
+    {#<a href="{{ path('weeklyquiz_user_view', { 'unique': quiz.id } ) }}">#}
+    {#Zum Quiz#}
+    {#</a>#}
+    {#{% endif %}#}
+
+    {#</td>#}
+    {#<td class="shade center" width="25%">#}
+    {#{% set taskPoints = 0 %}#}
+    {#{% set quizPoints = 0 %}#}
+    {#<div class="row">#}
+    {#{% if task is defined and task %}#}
+    {#{% set taskPoints = task.countPoint %}#}
+    {#<div class="col-xs-6">#}
+    {#Infoeinheit:#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#{{ taskPoints }}&nbsp;#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#{% if quiz is defined and quiz %}#}
+    {#{% set quizPoints = quiz.countPoint %}#}
+    {#<div class="col-xs-6">#}
+    {#Quiz:#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#{{ quizPoints }}&nbsp;#}
+    {#</div>#}
+    {#{% endif %}#}
+    {#<div class="col-xs-6">#}
+    {#<b>Gesamt:</b>#}
+    {#</div>#}
+    {#<div class="col-xs-6">#}
+    {#<b>{{ taskPoints + quizPoints }}&nbsp;</b>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#</td>#}
+    {#</tr>#}
+    {#{% endif %}#}
+    {#{% endfor %}#}
+    {#<tr style="background: #f2f0f0;">#}
+    {#<td nowrap><b>Gesamt: {{ collection|length }}</b></td>#}
+    {#<td colspan="6"></td>#}
+    {#</tr>#}
+    {#{% else %}#}
+    {#<tr style="background: #f2f0f0;">#}
+    {#<td colspan="7">Keine Aufgaben wurde bearbeitet</td>#}
+    {#</tr>#}
+    {#{% endif %}#}
+    {#</tbody>#}
+    {#</table>#}
+    {#</div>#}
+    {#</div>#}
+{% endblock content %}
