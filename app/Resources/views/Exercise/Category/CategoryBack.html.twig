@@ -92,7 +92,7 @@
                                         </h4>
 
                                         <p>
-                                            {{ exercise.description|raw|striptags|slice(0,150) }}...
+                                            {{ exercise.description|raw|striptags|slice(0,110) }}...
                                             <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
                                                 {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
                                             </a>
