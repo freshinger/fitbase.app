@@ -105,7 +105,7 @@ class PictureController extends Controller
     protected function patchSrc($src)
     {
         if (($parts = parse_url($src))) {
-            if (!array_key_exists('scheme', $parts) and !!array_key_exists('host', $parts)) {
+            if (!array_key_exists('scheme', $parts) and !array_key_exists('host', $parts)) {
                 return $this->get('kernel')->getRootDir() . "/../web$src";
 
             }
