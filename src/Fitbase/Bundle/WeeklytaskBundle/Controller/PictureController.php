@@ -106,10 +106,10 @@ class PictureController extends Controller
     {
         if (($parts = parse_url($src))) {
             if (!array_key_exists('scheme', $parts)) {
-                $parts['scheme'] = $this->container->getParameter('scheme');
+                $parts['scheme'] = $this->container->getParameter('fitbase.project.scheme');
             }
             if (!array_key_exists('host', $parts)) {
-                $parts['host'] = $this->container->getParameter('host');
+                $parts['host'] = $this->container->getParameter('fitbase.project.host');
             }
             return http_build_url(null, $parts);
         }
