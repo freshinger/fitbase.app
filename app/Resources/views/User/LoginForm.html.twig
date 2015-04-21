@@ -3,7 +3,10 @@
 {% block button_row -%}
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+            <br/>
+            <a href="{{ path('fos_user_resetting_request') }}">
+                {{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}
+            </a>
         </div>
         <div class="col-md-12">
             {{- form_widget(form, { 'attr': { 'class': 'btn btn-lg btn-primary' }}) -}}

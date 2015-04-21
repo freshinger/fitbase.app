@@ -120,9 +120,9 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
         }
         $formMapper
             ->with('Gamification', array('class' => 'col-md-4'))
-                ->add('gamification', null, array('required' => false), array(
-                    'link_parameters' => array('context' => 'company')
-                ))
+            ->add('gamification', null, array('required' => false), array(
+                'link_parameters' => array('context' => 'company')
+            ))
 //                ->add('attributes', 'sonata_type_model_list', array('required' => false), array(
 //                    'link_parameters' => array('context' => 'company')
 //                ))
@@ -144,14 +144,14 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->with('Logo', array('class' => 'col-md-4'))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'company')))
             ->end()
-            ->with('Header/Footer', array('class' => 'col-md-4'))
-            ->add('header', 'genemu_jquerycolor', array('required' => false))
-            ->end()
-            ->with('Background', array('class' => 'col-md-4'))
-            ->add('background2', 'genemu_jquerycolor', array(
-                'required' => false, 'label' => 'Global background'
-            ))
-            ->add('background1', 'genemu_jquerycolor', array('required' => false, 'label' => 'Content background'))
+//            ->with('Header/Footer', array('class' => 'col-md-4'))
+//            ->add('header', 'genemu_jquerycolor', array('required' => false))
+//            ->end()
+            ->with('Farbe', array('class' => 'col-md-4'))
+//            ->add('background2', 'genemu_jquerycolor', array(
+//                'required' => false, 'label' => 'Global background'
+//            ))
+            ->add('background1', 'genemu_jquerycolor', array('required' => false, 'label' => 'Eigene Farbe'))
             ->end()
             ->end();
     }

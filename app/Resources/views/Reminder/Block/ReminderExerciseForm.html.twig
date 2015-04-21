@@ -1,9 +1,7 @@
 {% use "Reminder/Block/ReminderForm.html.twig" %}
 
 {% block button_row -%}
-    <p>
-        Klicken Sie auf speichern, wenn Sie Änderungen vorgenommen haben
-    </p>
+    <p>Klicken Sie auf speichern, wenn Sie Änderungen vorgenommen haben!</p>
     {% set vars =  { 'attr': { 'class': 'btn btn-default' }} %}
     {{- form_widget(form, vars) -}}
 {%- endblock button_row %}

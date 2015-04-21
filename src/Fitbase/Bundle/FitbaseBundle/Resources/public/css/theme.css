@@ -15,10 +15,11 @@
     width: 100%;
 }
 
-/*.form-group {*/
-    /*margin-bottom: 25px;*/
-/*}*/
+.alert-danger {
+    background-image: none;
+}
 
-/*.form-theme input {*/
-    /*margin-bottom: auto;*/
-/*}*/
+.alert {
+    border: none;
+    border-radius: inherit;
+}

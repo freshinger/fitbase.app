@@ -1,0 +1,32 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Passwort zurücksetzen'|trans({}, 'SonataUserBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li>{{ 'Passwort zurücksetzen'|trans({}, 'SonataUserBundle') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ 'Bitte überprüfen sie Ihre Email'|trans({}, 'SonataUserBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -23,14 +23,14 @@
 .owl-theme .owl-controls.clickable .owl-page:hover span,
 .pagination > .active > a,
 .pagination > .active:hover > a{
-	background: #88C425; 
-	background-color: #88C425; 
+	background: #88C425;
+	background-color: #88C425;
 }
 .footer-down{
 	background: #88C425 url("../../../img/img-theme/footer-down.png") repeat-x left 1px;
 }
 .events-carousel li .header-post .date{
-	background: #88C425;  
+	background: #88C425;
 	background: rgba(136, 196, 37, 0.6);
 }
 
@@ -78,7 +78,7 @@ address a,
 }
 .style-caption p,
 .item-clubs{
-	border-right: 5px solid #88C425;	
+	border-right: 5px solid #88C425;
 }
 .titles h4{
 	border-left: 5px solid #88C425;

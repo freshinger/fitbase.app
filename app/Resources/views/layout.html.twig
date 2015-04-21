@@ -16,7 +16,6 @@
     '@FitbaseFitbaseBundle/Resources/public/theme/css/slide/camera.css'
 
     '@FitbaseFitbaseBundle/Resources/public/theme/css/*.css'
-    '@FitbaseFitbaseBundle/Resources/public/theme/css/skins/green/green.css'
 
     '@FitbaseFitbaseBundle/Resources/public/css/*.css'
     '@FitbaseCompanyBundle/Resources/public/css/*.css'
@@ -24,18 +23,8 @@
     output='css/fitbase.css' %}
     {% endstylesheets %}
     <link rel="stylesheet" type="text/css" href="/css/fitbase.css">
+    <link rel="stylesheet" type="text/css" href="{{ path('company_theme') }}">
     {{ parent() }}
-
-    <style>
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-theme input {
-            margin-bottom: auto;
-        }
-    </style>
-
 {% endblock %}
 
 {% block sonata_page_javascripts %}
