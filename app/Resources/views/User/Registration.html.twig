@@ -1,0 +1,28 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li><a href="">{{ 'Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!-- Content Text-->
+            <div class="panel-box">
+                {% include 'User/RegistrationInternal.html.twig' with {'form': form} %}
+            </div>
+            <!-- End Content Text-->
+        </div>
+    </div>
+{% endblock content %}

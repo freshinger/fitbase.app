@@ -41,12 +41,12 @@ class RegistrationController extends Controller
                     $entity = new UserRegistration();
                     $entity->setActioncode($formActioncode->getData()->getCode());
                     $form = $this->createForm(new UserRegistrationForm(), $entity);
-                    return $this->render('FitbaseUserBundle:Registration:registration' . ($internal ? '_internal' : '') . '.html.twig', array(
+                    return $this->render('User/Registration' . ($internal ? 'Internal' : '') . '.html.twig', array(
                         'form' => $form->createView()
                     ));
                 }
 
-                return $this->render('FitbaseUserBundle:Registration:code' . ($internal ? '_internal' : '') . '.html.twig', array(
+                return $this->render('User/Code' . ($internal ? 'Internal' : '') . '.html.twig', array(
                     'form' => $formActioncode->createView()
                 ));
             }
@@ -105,12 +105,12 @@ class RegistrationController extends Controller
                 }
             }
 
-            return $this->render('FitbaseUserBundle:Registration:registration' . ($internal ? '_internal' : '') . '.html.twig', array(
+            return $this->render('User/Registration' . ($internal ? 'Internal' : '') . '.html.twig', array(
                 'form' => $formRegistration->createView()
             ));
         }
 
-        return $this->render('FitbaseUserBundle:Registration:code' . ($internal ? '_internal' : '') . '.html.twig', array(
+        return $this->render('User/Code' . ($internal ? 'Internal' : '') . '.html.twig', array(
             'form' => $formActioncode->createView()
         ));
     }
