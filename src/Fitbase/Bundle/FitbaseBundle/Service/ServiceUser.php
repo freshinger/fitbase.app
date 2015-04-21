@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 
+use Cocur\Slugify\Slugify;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -27,6 +28,24 @@ class ServiceUser extends ContainerAware
         }
         return null;
     }
+
+    /**
+     * Get unique username
+     * @param $user
+     * @return string
+     */
+    public function getUniqueUsername($user)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+        $username = (new Slugify())->slugify("{$user->getFirstname()}_{$user->getLastName()}");
+        while (($collection = $repositoryUser->findByUsername($username))) {
+            $username = $username . count($collection);
+        }
+        return $username;
+    }
+
 
     /**
      * Check is user has a role

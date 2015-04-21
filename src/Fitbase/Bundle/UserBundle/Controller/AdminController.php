@@ -138,7 +138,8 @@ class AdminController extends CoreController
      */
     public function importUser(Request $request)
     {
-        return $this->render('FitbaseUserBundle:Admin:import_user.html.twig', array(
+
+        return $this->render('FitbaseUserBundle:Admin:UserImport.html.twig', array(
             'base_template' => $this->getBaseTemplate(),
             'admin_pool' => $this->container->get('sonata.admin.pool'),
             'blocks' => $this->container->getParameter('sonata.admin.configuration.dashboard_blocks')

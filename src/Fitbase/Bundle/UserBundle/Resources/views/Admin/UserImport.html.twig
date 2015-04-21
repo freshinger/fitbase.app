@@ -34,29 +34,9 @@
         {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
     {% endblock notice %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6">
 
-                <div class="box box-success">
-                    <div class="box-header">
-                        <h4 class="box-title">
-                            {{ "General"|trans({}, 'SonataAdminBundle') }}
-                        </h4>
-                    </div>
-                    <div class="box-body">
-                        <div class="sonata-ba-collapsed-fields">
+    {% form_theme form 'FitbaseUserBundle:Admin:UserImportForm.html.twig' %}
+    {{ form(form, {'multipart': true }) }}
 
 
-                            {#{% form_theme form 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}#}
-                            {#{{ form(form) }}#}
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 {% endblock sonata_admin_content %}
