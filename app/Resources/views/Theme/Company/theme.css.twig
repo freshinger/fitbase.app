@@ -4,7 +4,7 @@
 {% if company is defined %}
     {% if company.background1 is defined %}
         {% if company.background1|length %}
-            {% set color=company.background1 %}
+            {% set color="##{company.background1}" %}
         {% endif %}
     {% endif %}
 {% endif %}
