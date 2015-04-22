@@ -10,25 +10,23 @@ namespace Fitbase\Bundle\CompanyBundle\Block;
 
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
-class CompanyFooterBlock extends BaseBlockService implements ContainerAwareInterface
+class CompanyFooterBlock extends BaseBlockService
 {
-    /**
-     * Store container here
-     * @var
-     */
-    protected $container;
+    protected $serviceCompany;
 
     /**
-     * Set container
-     * @param ContainerInterface $container
+     * @param string $name
+     * @param EngineInterface $templating
+     * @param $serviceCompany
      */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct($name, EngineInterface $templating, $serviceCompany)
     {
-        $this->container = $container;
+        parent::__construct($name, $templating);
+
+        $this->serviceCompany = $serviceCompany;
     }
 
     /**
@@ -37,14 +35,8 @@ class CompanyFooterBlock extends BaseBlockService implements ContainerAwareInter
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $company = null;
-        if (($user = $this->container->get('user')->current())) {
-            $company = $user->getCompany();
-        }
-
-
         return $this->renderPrivateResponse('Company/Block/Footer.html.twig', array(
-            'company' => $company,
+            'company' => $this->serviceCompany->current(),
         ));
     }
 
