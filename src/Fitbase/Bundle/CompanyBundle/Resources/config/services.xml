@@ -16,6 +16,8 @@
     <services>
         <service id="company" class="Fitbase\Bundle\CompanyBundle\Service\ServiceCompany">
             <argument type="service" id="user"/>
+            <argument type="service" id="fitbase.orm.company_manager"/>
+            <argument type="service" id="session"/>
         </service>
     </services>
 
