@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GamificationPictureController extends Controller
+class PictureController extends Controller
 {
     /**
      * Display user chat with avatar
@@ -45,7 +45,7 @@ class GamificationPictureController extends Controller
                 $imagick2 = new \Imagick();
                 $imagick2->readImageBlob(\file_get_contents($root . $path));
                 $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 230, 73);
+                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 200, 73);
             }
         }
 
@@ -64,7 +64,7 @@ class GamificationPictureController extends Controller
                     $imagick2 = new \Imagick();
                     $imagick2->readImageBlob(\file_get_contents($root . $path));
                     $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                    $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 30, 45);
+                    $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 50, 44);
                 }
             }
         }
