@@ -15,7 +15,13 @@
                        data-toggle="dropdown">{{ 'link_actions'|trans({}, 'SonataAdminBundle') }} <b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a class="sonata-action-element" href="#">
+                            <a class="sonata-action-element" href="{{ path('admin_sonata_user_user_list') }}">
+                                <i class="fa fa-list"></i>
+                                {{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sonata-action-element" href="{{ path('admin_sonata_user_user_create') }}">
                                 <i class="fa fa-plus-circle"></i>
                                 {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }}
                             </a>
