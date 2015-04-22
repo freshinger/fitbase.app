@@ -1,14 +1,13 @@
-<div class="panel-box">
+{% for exerciseChoice in collection %}
 
-    <div class="titles">
-        <h4>{{ "Empfehlungen" | trans({}, 'FitbaseExerciseBundle') }}</h4>
-    </div>
+    {% set exercise = exerciseChoice.exercise %}
 
-    {% for exerciseChoice in collection %}
+    {% block exercise_list_item %}
+        <div class="panel-box">
 
-        {% set exercise = exerciseChoice.exercise %}
-
-        {% block exercise_list_item %}
+            <div class="titles">
+                <h4>{{ exercise.name }}</h4>
+            </div>
             <div class="post-item">
                 <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                     <div class="owl-wrapper-outer autoHeight">
@@ -20,12 +19,6 @@
                                     </a>
 
                                     <div class="info-single-carousel">
-                                        <h4>
-                                            <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                {{ exercise.name }}
-                                            </a>
-                                        </h4>
-
                                         <p>
                                             {{ exercise.description|raw|striptags|slice(0,100) }}...
                                             <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
@@ -39,6 +32,7 @@
                     </div>
                 </ul>
             </div>
-        {% endblock exercise_list_item %}
-    {% endfor %}
-</div>
+        </div>
+    {% endblock exercise_list_item %}
+{% endfor %}
+

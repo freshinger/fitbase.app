@@ -17,9 +17,15 @@
                 {% endfor %}
             {% endif %}
         </div>
-        <div class="col-xs-3">
+        <aside class="col-md-3">
+
+            <aside>
+                <h4>{{ "Empfehlungen" | trans({}, 'FitbaseExerciseBundle') }}</h4>
+            </aside>
+
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice_social' }) }}
-        </div>
+
+        </aside>
     </div>
 {% endblock content %}
 
