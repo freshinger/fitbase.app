@@ -60,8 +60,9 @@ class AdminUserController extends CoreController
                                     $form->addError(new FormError($ex->getMessage()));
                                 }
 
-
                             }
+
+                            $this->get('session')->getFlashBag()->add('success', 'Neue Benutzer wurden angelegt.');
                         }
                     }
                 }
