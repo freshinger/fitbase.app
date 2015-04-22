@@ -138,7 +138,7 @@ class GamificationHelper extends \Twig_Extension implements ContainerAwareInterf
         $graph->SetBackgroundGradient('#FFFFFF', '#FFFFFF', GRAD_HOR, BGRAD_PLOT);
 
         $b1plot = new \BarPlot($values);
-        $b1plot->SetFillGradient("#c0e3e8", "#FFFFFF", GRAD_HOR);
+        $b1plot->SetFillGradient("#c0e3e8", "#c0e3e8", GRAD_HOR);
         $b1plot->SetWidth(60);
         $b1plot->SetWeight(0);
         $graph->Add($b1plot);

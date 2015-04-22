@@ -2,16 +2,19 @@
 
 {% block content %}
 
-    <p>
-        Durch einen Klick auf den Button
-        gelangen Sie direkt zur heutigen Übung.
-    </p>
-
-    <a href="{{ path('focus') }}" class="btn btn-primary btn-block">
-        Entspannungsübung durchführen
-    </a>
-
-    <br/>
+    <div class="row">
+        <div class="col-xs-12">
+            <p>
+                Durch einen Klick auf den Button
+                gelangen Sie direkt zur heutigen Übung.
+            </p>
+        </div>
+        <div class="col-xs-12">
+            <a href="{{ path('focus') }}" class="btn btn-primary btn-block">
+                {{ 'Entspannungsübung durchführen'|trans({}, 'FitbaseGamificationBundle') }}
+            </a>
+        </div>
+    </div>
 
 {% endblock %}
 
