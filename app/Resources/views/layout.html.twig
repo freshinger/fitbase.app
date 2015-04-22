@@ -28,6 +28,16 @@
 {% endblock %}
 
 {% block sonata_page_javascripts %}
+    <script type="text/javascript">
+        window.SONATA_CONFIG = {
+            CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+            USE_SELECT2: {% if admin_pool is defined and admin_pool.getOption('use_select2') %}true{% else %}false{% endif %},
+            USE_ICHECK: {% if admin_pool is defined and admin_pool.getOption('use_icheck') %}true{% else %}false{% endif %}
+        };
+        window.SONATA_TRANSLATIONS = {
+            CONFIRM_EXIT: '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+        };
+    </script>
     {% javascripts
     '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery/dist/jquery.min.js'
     '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery.scrollTo/jquery.scrollTo.js'
@@ -48,8 +58,6 @@
     output='js/fitbase.js' %}
     {% endjavascripts %}
     <script src="/js/fitbase.js"></script>
-
-    {{ parent() }}
 {% endblock %}
 
 

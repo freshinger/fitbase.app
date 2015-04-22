@@ -12554,29 +12554,29 @@ $(function () {
         return $(this);
 	}
 
-    $(window).on('beforeunload', function(event) {
-        var e = event || window.event,
-            message = window.SONATA_TRANSLATIONS.CONFIRM_EXIT,
-            changes = false
-        ;
-
-        $('form[data-original]').each(function() {
-            if ($(this).attr('data-original') !== $(this).serialize()) {
-                changes = true;
-
-                return;
-            }
-        });
-
-        if (changes) {
-            // For old IE and Firefox
-            if (e) {
-                e.returnValue = message;
-            }
-
-            return message;
-        }
-    });
+    //$(window).on('beforeunload', function(event) {
+    //    var e = event || window.event,
+    //        message = window.SONATA_TRANSLATIONS.CONFIRM_EXIT,
+    //        changes = false
+    //    ;
+    //
+    //    $('form[data-original]').each(function() {
+    //        if ($(this).attr('data-original') !== $(this).serialize()) {
+    //            changes = true;
+    //
+    //            return;
+    //        }
+    //    });
+    //
+    //    if (changes) {
+    //        // For old IE and Firefox
+    //        if (e) {
+    //            e.returnValue = message;
+    //        }
+    //
+    //        return message;
+    //    }
+    //});
 })(jQuery);
 
 /*!
