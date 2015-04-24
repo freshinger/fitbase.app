@@ -132,8 +132,6 @@ class RestApiController extends WsdlApiController
 
             }
 
-            \file_put_contents('/tmp/putStateAction.log', json_encode(($form->getData())) . "\n");
-
             return new JsonResponse('Validation failure. Check format of your fields.', 400);
         }
 
