@@ -119,6 +119,8 @@ class RestApiController extends WsdlApiController
             $form->submit($request->request->get($form->getName()));
             if ($form->isValid()) {
 
+                \file_put_contents('/tmp/putStateAction.log', "Valid!\n");
+
                 // TODO: replace to correct user from auth key
                 $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
                 $form->getData()->setUser($repositoryUser->find(1));
@@ -128,9 +130,12 @@ class RestApiController extends WsdlApiController
 
                 return new JsonResponse(["user_position" => [
                     "correct" => true
-                ]]);
+                ]], 500);
 
             }
+
+            \file_put_contents('/tmp/putStateAction.log', json_encode(($form->getData()))."\n");
+
             return new JsonResponse('Validation failure. Check format of your fields.', 400);
         }
 

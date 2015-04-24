@@ -4,15 +4,8 @@ namespace Wellbeing\Bundle\ApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * UserStateCoordinate
- */
-class Coordinate
+class UserCoordinateHead
 {
-    /**
-     * @var integer
-     */
-    private $id;
 
     /**
      * @var float
@@ -29,22 +22,22 @@ class Coordinate
      */
     private $z;
 
+    /**
+     * @var integer
+     */
+    private $id;
 
     /**
-     * Get id
-     *
-     * @return integer 
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserState
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $state;
+
 
     /**
      * Set x
      *
      * @param float $x
-     * @return Coordinate
+     * @return UserCoordinateHead
      */
     public function setX($x)
     {
@@ -67,7 +60,7 @@ class Coordinate
      * Set y
      *
      * @param float $y
-     * @return Coordinate
+     * @return UserCoordinateHead
      */
     public function setY($y)
     {
@@ -90,7 +83,7 @@ class Coordinate
      * Set z
      *
      * @param float $z
-     * @return Coordinate
+     * @return UserCoordinateHead
      */
     public function setZ($z)
     {
@@ -107,5 +100,38 @@ class Coordinate
     public function getZ()
     {
         return $this->z;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set state
+     *
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserState $state
+     * @return UserCoordinateHead
+     */
+    public function setState(\Wellbeing\Bundle\ApiBundle\Entity\UserState $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserState 
+     */
+    public function getState()
+    {
+        return $this->state;
     }
 }

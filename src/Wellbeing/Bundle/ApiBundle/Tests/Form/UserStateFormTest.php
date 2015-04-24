@@ -10,7 +10,22 @@ namespace Wellbeing\Bundle\ApiBundle\Tests\Form;
 
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Wellbeing\Bundle\ApiBundle\Entity\Coordinate;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine;
 use Wellbeing\Bundle\ApiBundle\Form\DataTransformer\UserStateDataTransformer;
 use Wellbeing\Bundle\ApiBundle\Form\UserState;
 
@@ -44,97 +59,97 @@ class UserStateFormTest extends WebTestCase
         return (new \Wellbeing\Bundle\ApiBundle\Entity\UserState())
             ->setDate(new \DateTime('now'))
             ->setHead(
-                (new Coordinate())
+                (new UserCoordinateHead())
                     ->setX(1.1)
                     ->setY(1.2)
                     ->setZ(1.3)
             )
             ->setShoulderLeft(
-                (new Coordinate())
+                (new UserCoordinateShoulderLeft())
                     ->setX(2.1)
                     ->setY(2.2)
                     ->setZ(2.3)
             )
             ->setShoulderCenter(
-                (new Coordinate())
+                (new UserCoordinateShoulderCenter())
                     ->setX(3.1)
                     ->setY(3.2)
                     ->setZ(3.3)
             )
             ->setShoulderRight(
-                (new Coordinate())
+                (new UserCoordinateShoulderRight())
                     ->setX(4.1)
                     ->setY(4.2)
                     ->setZ(4.3)
             )
             ->setElbowLeft(
-                (new Coordinate())
+                (new UserCoordinateElbowLeft())
                     ->setX(5.1)
                     ->setY(5.2)
                     ->setZ(5.3)
             )
             ->setElbowRight(
-                (new Coordinate())
+                (new UserCoordinateElbowRight())
                     ->setX(6.1)
                     ->setY(6.3)
                     ->setZ(6.3)
             )
             ->setHandLeft(
-                (new Coordinate())
+                (new UserCoordinateHandLeft())
                     ->setX(7.1)
                     ->setY(7.2)
                     ->setZ(7.3)
             )
             ->setHandRight(
-                (new Coordinate())
+                (new UserCoordinateHandRight())
                     ->setX(8.1)
                     ->setY(8.2)
                     ->setZ(8.3)
             )
             ->setCom(
-                (new Coordinate())
+                (new UserCoordinateCom())
                     ->setX(9.1)
                     ->setY(9.2)
                     ->setZ(9.3)
             )
             ->setSpine(
-                (new Coordinate())
+                (new UserCoordinateSpine())
                     ->setX(10.1)
                     ->setY(10.2)
                     ->setZ(10.3)
             )
             ->setHipLeft(
-                (new Coordinate())
+                (new UserCoordinateHipLeft())
                     ->setX(13.1)
                     ->setY(13.2)
                     ->setZ(12.3)
             )
             ->setHipRight(
-                (new Coordinate())
+                (new UserCoordinateHipRight())
                     ->setX(14.1)
                     ->setY(14.2)
                     ->setZ(14.3)
             )
             ->setKneeLeft(
-                (new Coordinate())
+                (new UserCoordinateKneeLeft())
                     ->setX(15.1)
                     ->setY(15.2)
                     ->setZ(15.3)
             )
             ->setKneeRight(
-                (new Coordinate())
+                (new UserCoordinateKneeRight())
                     ->setX(16.1)
                     ->setY(16.2)
                     ->setZ(16.3)
             )
             ->setFootLeft(
-                (new Coordinate())
+                (new UserCoordinateFootLeft())
                     ->setX(17.1)
                     ->setY(17.2)
                     ->setZ(17.3)
             )
             ->setFootRight(
-                (new Coordinate())
+                (new UserCoordinateFootRight())
                     ->setX(18.1)
                     ->setY(18.2)
                     ->setZ(18.3)
@@ -240,6 +255,10 @@ class UserStateFormTest extends WebTestCase
             ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
 
         $form->submit((array)\json_decode('{"authKey":"jqerXHGyHGaSTJSBRZmZ","timestamp":"1234123412","head":"1.1;1.2;1.3","shoulderCenter":"2.1;2.2;2.3","shoulderLeft":"3.1;3.2;3.3","shoulderRight":"4.1;4.2;4.3","elbowLeft":"5.1;5.2;5.3","elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3","spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3","kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":"5.1;5.2;5.3"}'));
+
+
+
+        print_r(count($form->getErrors()));
 
         $this->assertTrue($form->isValid());
     }
@@ -474,11 +493,7 @@ class UserStateFormTest extends WebTestCase
         $form = $this->container()->get('form.factory')
             ->create(new UserState(), new \Wellbeing\Bundle\ApiBundle\Entity\UserState());
 
-        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3",
-        "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3",
-        "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3",
-        "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3",
-        "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":""}'));
+        $form->submit((array)\json_decode('{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3", "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3", "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3", "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3", "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":""}'));
 
         $this->assertFalse($form->isValid());
     }

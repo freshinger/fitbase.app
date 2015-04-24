@@ -10,16 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 class UserState
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * @var \DateTime
-     */
-    private $date;
-
-    /**
      *
      * @var
      */
@@ -42,16 +32,101 @@ class UserState
         $this->authKey = $authKey;
         return $this;
     }
+    /**
+     * @var \DateTime
+     */
+    private $date;
 
     /**
-     * Get id
-     *
-     * @return integer
+     * @var integer
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead
+     */
+    private $head;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft
+     */
+    private $shoulderLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter
+     */
+    private $shoulderCenter;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight
+     */
+    private $shoulderRight;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft
+     */
+    private $elbowLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight
+     */
+    private $elbowRight;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft
+     */
+    private $handLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight
+     */
+    private $handRight;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom
+     */
+    private $com;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine
+     */
+    private $spine;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft
+     */
+    private $hipLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight
+     */
+    private $hipRight;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft
+     */
+    private $kneeLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight
+     */
+    private $kneeRight;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft
+     */
+    private $footLeft;
+
+    /**
+     * @var \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight
+     */
+    private $footRight;
+
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
+
 
     /**
      * Set date
@@ -69,7 +144,7 @@ class UserState
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDate()
     {
@@ -77,99 +152,25 @@ class UserState
     }
 
     /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * Get id
+     *
+     * @return integer 
      */
-    private $head;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $shoulderLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $shoulderCenter;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $shoulderRight;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $elbowLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $elbowRight;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $handLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $handRight;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $com;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $spine;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $hipLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $hipRight;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $kneeLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $kneeRight;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $footLeft;
-
-    /**
-     * @var \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
-     */
-    private $footRight;
-
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $user;
-
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set head
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $head
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead $head
      * @return UserState
      */
-    public function setHead(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $head = null)
+    public function setHead(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead $head = null)
     {
+        $head->setState($this);
+
         $this->head = $head;
 
         return $this;
@@ -178,7 +179,7 @@ class UserState
     /**
      * Get head
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead 
      */
     public function getHead()
     {
@@ -188,11 +189,12 @@ class UserState
     /**
      * Set shoulderLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft $shoulderLeft
      * @return UserState
      */
-    public function setShoulderLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderLeft = null)
+    public function setShoulderLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft $shoulderLeft = null)
     {
+        $shoulderLeft->setState($this);
         $this->shoulderLeft = $shoulderLeft;
 
         return $this;
@@ -201,7 +203,7 @@ class UserState
     /**
      * Get shoulderLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft 
      */
     public function getShoulderLeft()
     {
@@ -211,11 +213,13 @@ class UserState
     /**
      * Set shoulderCenter
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderCenter
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter $shoulderCenter
      * @return UserState
      */
-    public function setShoulderCenter(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderCenter = null)
+    public function setShoulderCenter(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter $shoulderCenter = null)
     {
+        $shoulderCenter->setState($this);
+
         $this->shoulderCenter = $shoulderCenter;
 
         return $this;
@@ -224,7 +228,7 @@ class UserState
     /**
      * Get shoulderCenter
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter 
      */
     public function getShoulderCenter()
     {
@@ -234,11 +238,13 @@ class UserState
     /**
      * Set shoulderRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight $shoulderRight
      * @return UserState
      */
-    public function setShoulderRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $shoulderRight = null)
+    public function setShoulderRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight $shoulderRight = null)
     {
+        $shoulderRight->setState($this);
+
         $this->shoulderRight = $shoulderRight;
 
         return $this;
@@ -247,7 +253,7 @@ class UserState
     /**
      * Get shoulderRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight 
      */
     public function getShoulderRight()
     {
@@ -257,11 +263,13 @@ class UserState
     /**
      * Set elbowLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $elbowLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft $elbowLeft
      * @return UserState
      */
-    public function setElbowLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $elbowLeft = null)
+    public function setElbowLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft $elbowLeft = null)
     {
+        $elbowLeft->setState($this);
+
         $this->elbowLeft = $elbowLeft;
 
         return $this;
@@ -270,7 +278,7 @@ class UserState
     /**
      * Get elbowLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft 
      */
     public function getElbowLeft()
     {
@@ -280,11 +288,13 @@ class UserState
     /**
      * Set elbowRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $elbowRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight $elbowRight
      * @return UserState
      */
-    public function setElbowRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $elbowRight = null)
+    public function setElbowRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight $elbowRight = null)
     {
+        $elbowRight->setState($this);
+
         $this->elbowRight = $elbowRight;
 
         return $this;
@@ -293,7 +303,7 @@ class UserState
     /**
      * Get elbowRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight 
      */
     public function getElbowRight()
     {
@@ -303,11 +313,13 @@ class UserState
     /**
      * Set handLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $handLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft $handLeft
      * @return UserState
      */
-    public function setHandLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $handLeft = null)
+    public function setHandLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft $handLeft = null)
     {
+        $handLeft->setState($this);
+
         $this->handLeft = $handLeft;
 
         return $this;
@@ -316,7 +328,7 @@ class UserState
     /**
      * Get handLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft 
      */
     public function getHandLeft()
     {
@@ -326,11 +338,13 @@ class UserState
     /**
      * Set handRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $handRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight $handRight
      * @return UserState
      */
-    public function setHandRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $handRight = null)
+    public function setHandRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight $handRight = null)
     {
+        $handRight->setState($this);
+
         $this->handRight = $handRight;
 
         return $this;
@@ -339,7 +353,7 @@ class UserState
     /**
      * Get handRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight 
      */
     public function getHandRight()
     {
@@ -349,11 +363,13 @@ class UserState
     /**
      * Set com
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $com
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom $com
      * @return UserState
      */
-    public function setCom(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $com = null)
+    public function setCom(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom $com = null)
     {
+        $com->setState($this);
+
         $this->com = $com;
 
         return $this;
@@ -362,7 +378,7 @@ class UserState
     /**
      * Get com
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom 
      */
     public function getCom()
     {
@@ -372,11 +388,13 @@ class UserState
     /**
      * Set spine
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $spine
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine $spine
      * @return UserState
      */
-    public function setSpine(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $spine = null)
+    public function setSpine(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine $spine = null)
     {
+        $spine->setState($this);
+
         $this->spine = $spine;
 
         return $this;
@@ -385,7 +403,7 @@ class UserState
     /**
      * Get spine
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine 
      */
     public function getSpine()
     {
@@ -395,11 +413,13 @@ class UserState
     /**
      * Set hipLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $hipLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft $hipLeft
      * @return UserState
      */
-    public function setHipLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $hipLeft = null)
+    public function setHipLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft $hipLeft = null)
     {
+        $hipLeft->setState($this);
+
         $this->hipLeft = $hipLeft;
 
         return $this;
@@ -408,7 +428,7 @@ class UserState
     /**
      * Get hipLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft 
      */
     public function getHipLeft()
     {
@@ -418,11 +438,13 @@ class UserState
     /**
      * Set hipRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $hipRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight $hipRight
      * @return UserState
      */
-    public function setHipRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $hipRight = null)
+    public function setHipRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight $hipRight = null)
     {
+        $hipRight->setState($this);
+
         $this->hipRight = $hipRight;
 
         return $this;
@@ -431,7 +453,7 @@ class UserState
     /**
      * Get hipRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight 
      */
     public function getHipRight()
     {
@@ -441,11 +463,13 @@ class UserState
     /**
      * Set kneeLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $kneeLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft $kneeLeft
      * @return UserState
      */
-    public function setKneeLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $kneeLeft = null)
+    public function setKneeLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft $kneeLeft = null)
     {
+        $kneeLeft->setState($this);
+
         $this->kneeLeft = $kneeLeft;
 
         return $this;
@@ -454,7 +478,7 @@ class UserState
     /**
      * Get kneeLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft 
      */
     public function getKneeLeft()
     {
@@ -464,10 +488,10 @@ class UserState
     /**
      * Set kneeRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $kneeRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight $kneeRight
      * @return UserState
      */
-    public function setKneeRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $kneeRight = null)
+    public function setKneeRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight $kneeRight = null)
     {
         $this->kneeRight = $kneeRight;
 
@@ -477,7 +501,7 @@ class UserState
     /**
      * Get kneeRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight 
      */
     public function getKneeRight()
     {
@@ -487,10 +511,10 @@ class UserState
     /**
      * Set footLeft
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $footLeft
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft $footLeft
      * @return UserState
      */
-    public function setFootLeft(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $footLeft = null)
+    public function setFootLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft $footLeft = null)
     {
         $this->footLeft = $footLeft;
 
@@ -500,7 +524,7 @@ class UserState
     /**
      * Get footLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft 
      */
     public function getFootLeft()
     {
@@ -510,10 +534,10 @@ class UserState
     /**
      * Set footRight
      *
-     * @param \Wellbeing\Bundle\ApiBundle\Entity\Coordinate $footRight
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight $footRight
      * @return UserState
      */
-    public function setFootRight(\Wellbeing\Bundle\ApiBundle\Entity\Coordinate $footRight = null)
+    public function setFootRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight $footRight = null)
     {
         $this->footRight = $footRight;
 
@@ -523,7 +547,7 @@ class UserState
     /**
      * Get footRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\Coordinate
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight 
      */
     public function getFootRight()
     {
@@ -546,7 +570,7 @@ class UserState
     /**
      * Get user
      *
-     * @return \Application\Sonata\UserBundle\Entity\User
+     * @return \Application\Sonata\UserBundle\Entity\User 
      */
     public function getUser()
     {
