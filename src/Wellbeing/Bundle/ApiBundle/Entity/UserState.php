@@ -32,6 +32,7 @@ class UserState
         $this->authKey = $authKey;
         return $this;
     }
+
     /**
      * @var \DateTime
      */
@@ -144,7 +145,7 @@ class UserState
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -154,7 +155,7 @@ class UserState
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -179,7 +180,7 @@ class UserState
     /**
      * Get head
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead
      */
     public function getHead()
     {
@@ -195,6 +196,7 @@ class UserState
     public function setShoulderLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft $shoulderLeft = null)
     {
         $shoulderLeft->setState($this);
+
         $this->shoulderLeft = $shoulderLeft;
 
         return $this;
@@ -203,7 +205,7 @@ class UserState
     /**
      * Get shoulderLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft
      */
     public function getShoulderLeft()
     {
@@ -228,7 +230,7 @@ class UserState
     /**
      * Get shoulderCenter
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter
      */
     public function getShoulderCenter()
     {
@@ -253,7 +255,7 @@ class UserState
     /**
      * Get shoulderRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight
      */
     public function getShoulderRight()
     {
@@ -278,7 +280,7 @@ class UserState
     /**
      * Get elbowLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft
      */
     public function getElbowLeft()
     {
@@ -303,7 +305,7 @@ class UserState
     /**
      * Get elbowRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight
      */
     public function getElbowRight()
     {
@@ -328,7 +330,7 @@ class UserState
     /**
      * Get handLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft
      */
     public function getHandLeft()
     {
@@ -353,7 +355,7 @@ class UserState
     /**
      * Get handRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight
      */
     public function getHandRight()
     {
@@ -378,7 +380,7 @@ class UserState
     /**
      * Get com
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom
      */
     public function getCom()
     {
@@ -403,7 +405,7 @@ class UserState
     /**
      * Get spine
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine
      */
     public function getSpine()
     {
@@ -428,7 +430,7 @@ class UserState
     /**
      * Get hipLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft
      */
     public function getHipLeft()
     {
@@ -453,7 +455,7 @@ class UserState
     /**
      * Get hipRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight
      */
     public function getHipRight()
     {
@@ -478,7 +480,7 @@ class UserState
     /**
      * Get kneeLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft
      */
     public function getKneeLeft()
     {
@@ -493,6 +495,9 @@ class UserState
      */
     public function setKneeRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight $kneeRight = null)
     {
+
+        $kneeRight->setState($this);
+
         $this->kneeRight = $kneeRight;
 
         return $this;
@@ -501,7 +506,7 @@ class UserState
     /**
      * Get kneeRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight
      */
     public function getKneeRight()
     {
@@ -516,6 +521,8 @@ class UserState
      */
     public function setFootLeft(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft $footLeft = null)
     {
+        $footLeft->setState($this);
+
         $this->footLeft = $footLeft;
 
         return $this;
@@ -524,7 +531,7 @@ class UserState
     /**
      * Get footLeft
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft
      */
     public function getFootLeft()
     {
@@ -539,6 +546,8 @@ class UserState
      */
     public function setFootRight(\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight $footRight = null)
     {
+        $footRight->setState($this);
+
         $this->footRight = $footRight;
 
         return $this;
@@ -547,7 +556,7 @@ class UserState
     /**
      * Get footRight
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight
      */
     public function getFootRight()
     {
@@ -570,10 +579,143 @@ class UserState
     /**
      * Get user
      *
-     * @return \Application\Sonata\UserBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Get min X coordinate
+     * @return null
+     */
+    public function getMinXCoordinate()
+    {
+        $minX = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y) = $set;
+                $minX = (is_null($minX) ? $x : ($x < $minX ? $x : $minX));
+            }
+        }
+
+        return $minX;
+    }
+
+    /**
+     * Get min X coordinate
+     * @return null
+     */
+    public function getMaxXCoordinate()
+    {
+        $maxX = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y) = $set;
+                $maxX = (is_null($maxX) ? $x : ($x > $maxX ? $x : $maxX));
+            }
+        }
+
+        return $maxX;
+    }
+
+    /**
+     * Get min Y coordinate
+     * @return null
+     */
+    public function getMinYCoordinate()
+    {
+        $minY = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y) = $set;
+                $minY = (is_null($minY) ? $y : ($y < $minY ? $y : $minY));
+            }
+
+        }
+
+        return $minY;
+    }
+
+    /**
+     * Get min X coordinate
+     * @return null
+     */
+    public function getMaxYCoordinate()
+    {
+        $maxY = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y) = $set;
+                $maxY = (is_null($maxY) ? $y : ($y > $maxY ? $y : $maxY));
+            }
+        }
+
+        return $maxY;
+    }
+
+    /**
+     * Get array with coordinates
+     * @return array
+     */
+    public function getCoordinates()
+    {
+        $coordinates = array();
+
+        if (($coordinate = $this->getHead())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+
+        if (($coordinate = $this->getShoulderCenter())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getShoulderRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getShoulderLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getElbowRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getElbowLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getHandRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getHandLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getCom())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getSpine())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getHipLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getHipRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getKneeLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getKneeRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getFootLeft())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        if (($coordinate = $this->getFootRight())) {
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+        }
+        return $coordinates;
     }
 }

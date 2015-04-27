@@ -167,6 +167,14 @@ sonata_admin:
                     - fitbase.admin.companycategory
                     - fitbase.admin.companyquestionnaire
 
+            wellbeing.admin.group.user_state:
+                label: Wellbeing
+                icon:  '<i class="fa fa-globe"></i>'
+                items:
+                    - wellbeing.api.user_state
+
+
+
 #            fitbase.admin.group.reminder:
 #                label: Fitbase Reminder
 #                icon:  '<i class="fa fa-play-circle"></i>'

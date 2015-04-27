@@ -10,9 +10,5 @@
         <field name="y" type="float" column="y"/>
         <field name="z" type="float" column="z"/>
 
-        <one-to-one field="state" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserState" inversed-by="handLeft">
-            <join-column name="state_id" referenced-column-name="id" on-delete="CASCADE"/>
-        </one-to-one>
-
     </entity>
 </doctrine-mapping>

@@ -1,0 +1,4 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+{% block field %}
+    <img src="{{ path('wellbeing_user_state_picture', { 'unique': object.id }) }}">
+{% endblock field %}

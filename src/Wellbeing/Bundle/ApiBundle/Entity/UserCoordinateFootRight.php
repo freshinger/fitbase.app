@@ -49,7 +49,7 @@ class UserCoordinateFootRight
     /**
      * Get x
      *
-     * @return float 
+     * @return float
      */
     public function getX()
     {
@@ -72,7 +72,7 @@ class UserCoordinateFootRight
     /**
      * Get y
      *
-     * @return float 
+     * @return float
      */
     public function getY()
     {
@@ -95,7 +95,7 @@ class UserCoordinateFootRight
     /**
      * Get z
      *
-     * @return float 
+     * @return float
      */
     public function getZ()
     {
@@ -105,7 +105,7 @@ class UserCoordinateFootRight
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -128,10 +128,19 @@ class UserCoordinateFootRight
     /**
      * Get state
      *
-     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserState 
+     * @return \Wellbeing\Bundle\ApiBundle\Entity\UserState
      */
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Object to string
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getX()};{$this->getY()};{$this->getZ()}";
     }
 }

@@ -3,6 +3,12 @@
 <routes xmlns="http://friendsofsymfony.github.com/schema/rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://friendsofsymfony.github.com/schema/rest https://raw.github.com/FriendsOfSymfony/FOSRestBundle/master/Resources/config/schema/routing/rest_routing-1.0.xsd">
 
-    <import type="rest" resource="wellbeing.controller.api.user" name-prefix="wellbeing_api_user_" />
+    <import type="rest" resource="wellbeing.controller.api.user" name-prefix="wellbeing_api_user_"/>
+
+
+    <route id="wellbeing_user_state_picture" path="/user/state/{unique}/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:state</default>
+        <default key="_format">png</default>
+    </route>
 
 </routes>

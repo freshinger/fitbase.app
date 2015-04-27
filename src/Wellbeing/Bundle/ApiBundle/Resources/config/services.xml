@@ -6,15 +6,15 @@
 
     <imports>
         <import resource="controllers.xml" />
+        <import resource="admin.xml"/>
     </imports>
     
-    <!--
-    <services>
-        <service id="wellbeing_api.example" class="Wellbeing\Bundle\ApiBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
+    <!--<services>-->
+        <!--<service id="wellbeing_api.example" class="Wellbeing\Bundle\ApiBundle\Example">-->
+            <!--<argument type="service" id="service_id" />-->
+            <!--<argument>plain_value</argument>-->
+            <!--<argument>%parameter_name%</argument>-->
+        <!--</service>-->
+    <!--</services>-->
+
 </container>
