@@ -34,15 +34,10 @@ class GamificationUserSubscriber extends ContainerAware implements EventSubscrib
     {
         assert(($gamificationUser = $event->getEntity()));
 
-
         $entityManager = $this->container->get('entity_manager');
         $repositoryGamificationUser = $entityManager->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
 
         $gamificationUser->setUpdate(false);
-        $gamificationUser->setTree(
-            $this->container->get('templating')
-                ->render('FitbaseGamificationBundle:SVG:tree.svg.twig')
-        );
 
         if (($gamificationUserCurrent = $repositoryGamificationUser->findOneByUser($gamificationUser->getUser()))) {
 

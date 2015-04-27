@@ -1,0 +1,48 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+
+{% block sonata_page_content_nav %}
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <span class="navbar-brand">
+                {{ "Benutzer importieren"|trans({}, 'FitbaseUserBundle') }}
+            </span>
+        </div>
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown sonata-actions">
+                    <a href="#" class="dropdown-toggle"
+                       data-toggle="dropdown">{{ 'link_actions'|trans({}, 'SonataAdminBundle') }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a class="sonata-action-element" href="{{ path('admin_sonata_user_user_list') }}">
+                                <i class="fa fa-list"></i>
+                                {{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sonata-action-element" href="{{ path('admin_sonata_user_user_create') }}">
+                                <i class="fa fa-plus-circle"></i>
+                                {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock sonata_page_content_nav %}
+
+
+{% block sonata_admin_content %}
+
+    {% block notice %}
+        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+    {% endblock notice %}
+
+
+    {% form_theme form 'FitbaseUserBundle:Admin:UserImportForm.html.twig' %}
+    {{ form(form, {'multipart': true }) }}
+
+
+{% endblock sonata_admin_content %}

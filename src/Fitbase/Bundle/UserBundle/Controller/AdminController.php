@@ -21,10 +21,14 @@ use Symfony\Component\Form\FormError;
 
 class AdminController extends CoreController
 {
-
+    /**
+     *
+     * @param Request $request
+     * @param $unique
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function weeklytasksAction(Request $request, $unique)
     {
-
         $entityManager = $this->get('entity_manager');
         $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
 
@@ -134,7 +138,8 @@ class AdminController extends CoreController
      */
     public function importUser(Request $request)
     {
-        return $this->render('FitbaseUserBundle:Admin:import_user.html.twig', array(
+
+        return $this->render('FitbaseUserBundle:Admin:UserImport.html.twig', array(
             'base_template' => $this->getBaseTemplate(),
             'admin_pool' => $this->container->get('sonata.admin.pool'),
             'blocks' => $this->container->getParameter('sonata.admin.configuration.dashboard_blocks')

@@ -11,17 +11,15 @@
 
 namespace Fitbase\Bundle\UserBundle\Admin;
 
-use Fitbase\Bundle\UserBundle\Entity\UserFocus;
-use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Fitbase\Bundle\UserBundle\Form\UserFocusForm;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
+use Knp\Menu\ItemInterface as MenuItemInterface;
 class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
 {
     protected $container;

@@ -5,15 +5,15 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="gamification_picture_avatar" path="/picture/avatar">
-        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:avatar</default>
+        <default key="_controller">FitbaseGamificationBundle:Picture:avatar</default>
     </route>
 
     <route id="gamification_picture_tree" path="/picture/tree">
-        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:tree</default>
+        <default key="_controller">FitbaseGamificationBundle:Picture:tree</default>
     </route>
 
     <route id="gamification_picture_forest" path="/picture/forest">
-        <default key="_controller">FitbaseGamificationBundle:GamificationPicture:forest</default>
+        <default key="_controller">FitbaseGamificationBundle:Picture:forest</default>
     </route>
 
 
@@ -23,22 +23,6 @@
 
     <route id="gamification_health_emotion" path="/health/emotion">
         <default key="_controller">FitbaseGamificationBundle:Gamification:healthEmotion</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_tree" path="/health/tree">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:tree</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_forest" path="/health/forest">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:forest</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_avatar" path="/health/avatar">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:avatar</default>
-    </route>
-
-    <route id="ajax_gamification_dashboard_statistic" path="/health/statistic">
-        <default key="_controller">FitbaseGamificationBundle:GamificationAjax:statistic</default>
     </route>
 
 </routes>

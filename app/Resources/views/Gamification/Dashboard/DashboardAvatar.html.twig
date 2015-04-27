@@ -1,0 +1,43 @@
+<div class="panel-box">
+    <div class="titles title-image-bottom">
+        <h4>{{ 'Ihr Charakter'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+    </div>
+
+    <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
+                <div class="owl-item">
+                    <li>
+                        <img class="img-responsive" title="{{ 'Ihr Charakter'|trans({}, 'FitbaseGamificationBundle') }}"
+                             src="{{ path('gamification_picture_avatar') }}">
+                    </li>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        Ich bin Ihr Charakter und begleite Sie durch das Online-Coaching. Für jede
+                        Übung, jede
+                        Infoeinheit und jedes Quiz sammeln Sie Punkte in Form von Blättern und begrünen
+                        so Ihren
+                        Gesundheitsbaum.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        {% form_theme form "Gamification/Dashboard/DashboardAvatarForm.html.twig" %}
+
+        {{ form(form) }}
+    </div>
+</div>

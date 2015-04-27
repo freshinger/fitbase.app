@@ -47,7 +47,7 @@ class QuestionnaireController extends Controller
                 $entity->setQuestionnaire($companyQuestionnaire);
                 $form = $this->createForm(new QuestionnaireUserForm($this->container, $entity), array());
 
-                return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire.html.twig', array(
+                return $this->render('Company/Questionnaire/Questionnaire.html.twig', array(
                     'form' => $form->createView(),
                     'questionnaire' => $companyQuestionnaire,
                 ));
@@ -90,7 +90,7 @@ class QuestionnaireController extends Controller
 
                 $form = $this->createForm(new QuestionnaireUserForm($this->container, $entity), array());
 
-                return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire_slice.html.twig', array(
+                return $this->render('Company/Questionnaire/QuestionnaireSlice.html.twig', array(
                     'form' => $form->createView(),
                     'questionnaire' => $questionnaireCompany,
                 ));
@@ -159,7 +159,7 @@ class QuestionnaireController extends Controller
                 );
 
                 $form = $this->createForm(new QuestionnaireUserForm($this->container, $entity), array());
-                return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire_preview.html.twig', array(
+                return $this->render('Company/Questionnaire/QuestionnairePreview.html.twig', array(
                     'form' => $form->createView(),
                     'questionnaire' => $companyQuestionnaire,
                 ));
@@ -177,7 +177,7 @@ class QuestionnaireController extends Controller
     {
         if (($company = $this->get('company')->current())) {
 
-            return $this->render('FitbaseQuestionnaireBundle:QuestionnaireStatistic:questionnaire_company.html.twig', array(
+            return $this->render('Company/Questionnaire/Dashboard.html.twig', array(
                 'company' => $company,
             ));
         }

@@ -5,18 +5,7 @@
 
     <services>
 
-        <service id="fitbase.block.dashboard_profile"
-                 class="Fitbase\Bundle\UserBundle\Block\ProfileDashboardBlockService" public="true">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_profile</argument>
-            <argument type="service" id="templating"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
-
-        <service id="fitbase.block.profile_focus" class="Fitbase\Bundle\UserBundle\Block\ProfileFocusBlockService"
-                 public="true">
+        <service id="fitbase.block.profile_focus" class="Fitbase\Bundle\UserBundle\Block\UserProfileFocusBlock" >
             <tag name="sonata.block"/>
             <argument>fitbase.block.profile_focus</argument>
             <argument type="service" id="templating"/>
@@ -25,7 +14,8 @@
             </call>
         </service>
 
-        <service id="fitbase.block.focus.settings_back" class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryBackSettingsBlock" scope="request">
+        <service id="fitbase.block.focus.settings_back" class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryBackSettingsBlock"
+                 scope="request">
             <tag name="sonata.block"/>
             <argument>fitbase.block.focus.settings_back</argument>
             <argument type="service" id="templating"/>

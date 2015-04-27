@@ -1,0 +1,40 @@
+{% extends "form.html.twig" %}
+
+
+{% block form_widget_compound %}
+    {% spaceless %}
+        <div class="modal-body" {{ block('widget_container_attributes') }}>
+            <div class="row">
+                <div class="col-xs-12 errors">
+                    {% if form.parent is empty %}
+                        {{ form_errors(form) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ block('form_rows') }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock form_widget_compound %}
+
+{% block form_row %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+    {% endspaceless %}
+{% endblock form_row %}
+
+{% block form_rows %}
+    {% spaceless %}
+        <table class="table table-hover">
+            <tbody>
+            {% for child in form %}
+                {{ form_row(child) }}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endspaceless %}
+{% endblock form_rows %}

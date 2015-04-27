@@ -95,3 +95,5 @@ class UserState extends AbstractType
         return 'user_state';
     }
 }
+
+//{"user_state":{"authKey":"asdfsdf","timestamp":"1234123412","head":"2.1;2.2;2.3", "shoulderCenter":"3.1;3.2;3.3","shoulderLeft":"4.1;4.2;4.3","shoulderRight":"5.1;5.2;5.3","elbowLeft":"5.1;5.2;5.3", "elbowRight":"5.1;5.2;5.3","handLeft":"5.1;5.2;5.3","handRight":"5.1;5.2;5.3","com":"5.1;5.2;5.3", "spine":"5.1;5.2;5.3","hipLeft":"5.1;5.2;5.3","hipRight":"5.1;5.2;5.3","kneeLeft":"5.1;5.2;5.3", "kneeRight":"5.1;5.2;5.3","footLeft":"5.1;5.2;5.3","footRight":""}}

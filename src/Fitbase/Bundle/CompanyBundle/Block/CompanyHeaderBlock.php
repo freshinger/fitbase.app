@@ -8,38 +8,26 @@
 namespace Fitbase\Bundle\CompanyBundle\Block;
 
 
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyManager;
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyManagerInterface;
-use Fitbase\Bundle\FitbaseBundle\Service\ServiceUser;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class CompanyHeaderBlock extends BaseBlockService
 {
-    protected $user;
-    protected $session;
-    protected $companyManager;
+    protected $serviceCompany;
 
     /**
      * @param string $name
      * @param EngineInterface $templating
-     * @param CompanyManagerInterface $companyManager
-     * @param ServiceUser $user
-     * @param SessionInterface $session
+     * @param $serviceCompany
      */
-    public function __construct($name, EngineInterface $templating, CompanyManagerInterface $companyManager, ServiceUser $user, SessionInterface $session)
+    public function __construct($name, EngineInterface $templating, $serviceCompany)
     {
         parent::__construct($name, $templating);
 
-        $this->user = $user;
-        $this->session = $session;
-        $this->companyManager = $companyManager;
+        $this->serviceCompany = $serviceCompany;
     }
 
     /**
@@ -48,21 +36,8 @@ class CompanyHeaderBlock extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $company = null;
-        if (($user = $this->user->current())) {
-            if (!($company = $this->companyManager->findOneByUser($user))) {
-                if (strlen(($slug = $this->session->get('company')))) {
-                    $company = $this->companyManager->findOneBySlug($slug);
-                }
-            }
-        } else {
-            if (strlen(($slug = $this->session->get('company')))) {
-                $company = $this->companyManager->findOneBySlug($slug);
-            }
-        }
-
-        return $this->renderPrivateResponse('FitbaseCompanyBundle:Block:Header.html.twig', array(
-            'company' => $company,
+        return $this->renderPrivateResponse('Company/Block/Header.html.twig', array(
+            'company' => $this->serviceCompany->current(),
         ));
     }
 

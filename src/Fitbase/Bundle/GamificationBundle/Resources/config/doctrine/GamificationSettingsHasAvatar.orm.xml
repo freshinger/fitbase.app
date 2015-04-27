@@ -15,9 +15,9 @@
 
         <field name="description" type="text" column="description" nullable="true"/>
 
-        <many-to-one field="media" target-entity="Application\Sonata\MediaBundle\Entity\Media">
-            <join-column name="media_id" referenced-column-name="id" on-delete="CASCADE"/>
-        </many-to-one>
+        <!--<many-to-one field="media" target-entity="Application\Sonata\MediaBundle\Entity\Media">-->
+            <!--<join-column name="media_id" referenced-column-name="id" on-delete="CASCADE"/>-->
+        <!--</many-to-one>-->
 
         <many-to-one field="gallery" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar">
             <join-column name="gallery_id" referenced-column-name="id" on-delete="CASCADE"/>

@@ -1,0 +1,11 @@
+{% if exercise is defined and exercise %}
+    {% if exerciseUserChoice is defined and exerciseUserChoice %}
+        <span class="btn btn-primary btn-nohover btn-xs">
+            {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
+        </span>
+    {% else %}
+        <a href="?like=true" class="btn btn-info btn-nohover btn-xs">
+            {{ 'Gefällt mir'|trans({}, 'FitbaseExerciseBundle') }}
+        </a>
+    {% endif %}
+{% endif %}

@@ -12,13 +12,13 @@ class PictureController extends Controller
     {
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageBlob($this->renderView('FitbaseKnowledgeBundle:Picture:Knowledge.html.twig', array()));
-        $imagick->scaleImage(270, 0);
+        $imagick->readImageBlob($this->renderView('Knowledge/Picture/Knowledge.html.twig', array()));
+        $imagick->scaleImage(360, 0);
         $imagick->setImageFormat("png");
 
         $rectangle = new \ImagickDraw();
         $rectangle->setFillColor(new \ImagickPixel('#ffffff'));
-        $rectangle->rectangle(5, 15, 250, 150);
+        $rectangle->rectangle(100, 80, 320, 220);
         $imagick->drawImage($rectangle);
 
         if (($knowledge = $this->get('knowledge')->current())) {
@@ -29,7 +29,7 @@ class PictureController extends Controller
             $draw->setFillColor(new \ImagickPixel('#000000'));
             $draw->setStrokeAntialias(true);
             $draw->setTextAntialias(true);
-            $draw->annotation(10, 30, wordwrap($knowledge->getContent(), 37));
+            $draw->annotation(105, 98, wordwrap($knowledge->getContent(), 37));
             $imagick->drawImage($draw);
         }
 
@@ -44,7 +44,7 @@ class PictureController extends Controller
                 $imagick2 = new \Imagick();
                 $imagick2->readImageBlob(\file_get_contents($root . $path));
                 $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 30, 133);
+                $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 20, 163);
             }
         }
 

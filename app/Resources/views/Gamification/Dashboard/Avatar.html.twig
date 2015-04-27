@@ -1,0 +1,42 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Startseite'|trans({}, 'FitbaseGamificationBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li>{{ 'Startseite'|trans({}, 'SonataUserBundle') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ 'Charakter Auswahl'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 class="modal-title">
+                            Hallo! Wählen Sie nun Ihren Charakter für die Fitbase.
+                        </h3>
+                    </div>
+                </div>
+
+                {% form_theme form "Gamification/Dashboard/AvatarForm.html.twig" %}
+
+                {{ form(form) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+

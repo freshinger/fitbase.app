@@ -1,0 +1,49 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles">
+        <h4>{{ 'Aktivitäten und Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+    </div>
+    <div class="row" style="height: 357px;">
+        <div class="col-md-12">
+
+            {% block content %}
+                <h5 class="short hue">
+                    {{ 'Führen Sie heute Ihre Übungen durch!'|trans({}, 'FitbaseGamificationBundle') }}
+                </h5>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>
+                            Durch einen Klick auf den Button
+                            gelangen Sie direkt zur heutigen Übung.
+                        </p>
+                    </div>
+                    <div class="col-xs-12">
+                        <a href="{{ path('focus') }}" class="btn btn-primary btn-block">
+                            {{ 'Heutige Übung starten'|trans({}, 'FitbaseGamificationBundle') }}
+                        </a>
+                    </div>
+                </div>
+            {% endblock %}
+            <br/>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        {{ 'Durch einen Klick auf den Button gelangen Sie direkt zu den Infoeinheiten und Quizzen.'|trans({}, 'FitbaseGamificationBundle') }}
+                    </p>
+                </div>
+                <div class="col-xs-12">
+                    <a href="{{ path('page_slug', {'path': '/infoeinheiten'}) }}" class="btn btn-primary btn-block">
+                        {{ 'Zu den Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a href="{{ path('sonata_user_profile_show') }}" class="btn btn-default btn-block">
+            {{ 'Fokus ändern'|trans({}, 'FitbaseGamificationBundle') }}
+        </a>
+    </div>
+</div>

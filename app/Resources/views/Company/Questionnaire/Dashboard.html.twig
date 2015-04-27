@@ -1,0 +1,41 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Kurzumfragen'|trans({}, 'FitbaseCompanyBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire.company', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    <p>
+        Mit diesem Umfrage-Tool erhalten Sie die Möglichkeit, weitere Fragebögen an die fitbase Teilnehmer in Ihrem
+        Hause zu versenden. Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen.
+    </p>
+
+    <div class="row">
+        <div class="col-md-7">
+            {{ sonata_block_render({ 'type': 'fitbase.block.company.questionnaire_history' }) }}
+        </div>
+        <div class="col-md-5">
+            {{ sonata_block_render({ 'type': 'fitbase.block.company.questionnaire_preview' }) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content_bottom %}
+    <!-- Sponsors -->
+    <div class="section-wide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    {{ sonata_block_render({ 'type': 'fitbase.block.company.questionnaire_create' }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Sponsors -->
+{% endblock content_bottom %}

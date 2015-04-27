@@ -35,11 +35,6 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         $this->container = $container;
     }
 
-    protected function configureTabMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        $menu->addChild('Import Actioncodes', array('uri' => $this->container->get('router')->generate('sonata_admin_import_code')));
-    }
-
     /**
      * {@inheritdoc}
      */

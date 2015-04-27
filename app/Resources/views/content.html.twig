@@ -1,0 +1,91 @@
+{% block layout %}
+
+    <!-- Section Title -->
+    <section class="section-title img-feature">
+        <div class="overlay-bg"></div>
+        <div class="container">
+            {% block title %}
+                <h1>Page Fullt Widht!</h1>
+            {% endblock title %}
+        </div>
+    </section>
+    <!-- End Section Title -->
+
+
+    <!-- Section Area - Content Central -->
+    <section class="content-info">
+
+        {% block breadcrumbs %}
+            <div class="crumbs">
+                <div class="container">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li>/</li>
+                        <li><a href="#">Pages</a></li>
+                        <li>/</li>
+                        <li>Page Fullt Widht</li>
+                    </ul>
+                </div>
+            </div>
+        {% endblock breadcrumbs %}
+        {#<div class="semiboxshadow text-center">#}
+            {#<img src="/img/img-theme/shp.png" class="img-responsive" alt="">#}
+        {#</div>#}
+
+        <!-- Content Top Central -->
+        {% block content_top %}
+        {% endblock content_top %}
+        <!-- End Content Top Central -->
+
+        <!-- Content Central -->
+        <section class="container padding-top-mini">
+            <!-- Start Container-->
+            {% block content %}
+            {% endblock content %}
+            <!-- End Container-->
+        </section>
+
+        <!-- End Content Central -->
+
+        <!-- Content Top Central -->
+        {% block content_bottom %}
+        {% endblock content_bottom %}
+        <!-- End Content Top Central -->
+
+        <!-- Sponsors -->
+        {#<div class="section-wide">#}
+        {#<div class="container">#}
+        {#<div class="row">#}
+        {#<div class="col-md-12">#}
+        {#<div class="text-center">#}
+        {#<h2>We have earned the trust of <span class="text-resalt">25,869</span> partners.</h2>#}
+
+        {#<p>Duis non lorem porta, eros sit amet, tempor sem. semper a tempus et.</p>#}
+        {#</div>#}
+        {#<ul id="sponsors" class="tooltip-hover">#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/1.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/2.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/3.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/4.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/5.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/3.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/4.png" alt="Image"></a></li>#}
+        {#<li data-toggle="tooltip" title data-original-title="Name Sponsor"><a href="#"><img#}
+        {#src="img/sponsors/3.png" alt="Image"></a></li>#}
+        {#</ul>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        <!-- End Sponsors -->
+
+    </section>
+    <!-- End Section Area - Content Central -->
+{% endblock layout %}

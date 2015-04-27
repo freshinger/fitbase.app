@@ -78,7 +78,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category.html.twig', array());
+        return $this->render('Exercise/Category/Category.html.twig', array());
     }
 
     /**
@@ -107,7 +107,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_stress.html.twig', array(
+        return $this->render('Exercise/Category/CategoryStress.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
         ));
@@ -183,7 +183,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_feeding.html.twig', array(
+        return $this->render('Exercise/Category/CategoryFeeding.html.twig', array(
             'form' => $form->createView(),
             'collection' => $repositoryFeedingUser->findByUserOrderByDate($user),
             'groups' => $resultGroup,
@@ -206,7 +206,7 @@ class CategoryController extends Controller
             $categories = $chooserCategory->choose($focus);
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_back.html.twig', array(
+        return $this->render('Exercise/Category/CategoryBack.html.twig', array(
             'focus' => $focus,
             'categories' => $categories,
         ));
@@ -233,7 +233,7 @@ class CategoryController extends Controller
             }
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_augen.html.twig', array(
+        return $this->render('Exercise/Category/CategoryAugen.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
         ));
@@ -256,7 +256,7 @@ class CategoryController extends Controller
             $exercises = $category->getExercises();
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_default.html.twig', array(
+        return $this->render('Exercise/Category/CategoryDefault.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
         ));
@@ -286,7 +286,7 @@ class CategoryController extends Controller
             $exercises = $category->getExercises();
         }
 
-        return $this->render('FitbaseExerciseBundle:Category:category_exercises.html.twig', array(
+        return $this->render('Exercise/Category/CategoryExercises.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
             'categories' => $categories,

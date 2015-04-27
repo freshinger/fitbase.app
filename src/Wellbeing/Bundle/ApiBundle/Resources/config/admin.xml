@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+        <service id="wellbeing.api.user_state" class="Wellbeing\Bundle\ApiBundle\Admin\UserStateAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="States"/>
+            <argument/>
+            <argument>Wellbeing\Bundle\ApiBundle\Entity\UserState</argument>
+            <argument/>
+        </service>
+    </services>
+
+</container>

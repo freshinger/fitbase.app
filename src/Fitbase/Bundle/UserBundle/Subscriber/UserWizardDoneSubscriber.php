@@ -29,7 +29,7 @@ class UserWizardDoneSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_wizard' => array('onUserWizardEvent', -128),
+//            'user_wizard' => array('onUserWizardEvent', -128),
         );
     }
 

@@ -1,0 +1,135 @@
+{% use "form.html.twig" %}
+
+{% block form_row -%}
+    <div class="row">
+        <div class="col-xs-12">
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {{- form_widget(form) -}}
+
+            {% if form.vars.submitted is defined and form.vars.submitted %}
+                <script type="text/javascript">
+                    $(function () {
+                        var container = $(document);
+                        container.trigger({
+                            type: 'form',
+                            selector: 'form[name={{ id }}]'
+                        });
+                    });
+                </script>
+            {% endif %}
+
+        </div>
+    </div>
+{%- endblock form_row %}
+
+
+{% block button_row -%}
+    <div class="row">
+        <div class="col-xs-12">
+            {{- form_widget(form) -}}
+        </div>
+    </div>
+{%- endblock button_row %}
+
+
+{% block user_focus_priority_categories_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(function () {
+                var container = $(document);
+                container.find(".sortable_container").sortable({
+                    update: function (event, ui) {
+                        container.find('.sortable_item').each(function (index, element) {
+                            var container = $(element).children('div');
+                            container.trigger({
+                                type: 'position_update',
+                                index: index
+                            });
+                        });
+                    }
+                });
+            });
+        </script>
+        {{ form_errors(form) }}
+        <div {{ block('widget_container_attributes') }} class="sortable_container">
+            {%- for child in form %}
+                <div class="col-xs-12 sortable_item" style="background-color: #FFFFFF">
+                    {{- form_widget(child, { 'index': loop.index }) -}}
+                </div>
+            {% endfor -%}
+        </div>
+    {% endspaceless %}
+{% endblock user_focus_priority_categories_widget %}
+
+
+{% block user_focus_priority_category_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(function () {
+                var global = $(document);
+                var container = $("#{{ id }}");
+                container.bind('position_update', function (event) {
+                    global.find('h4.{{ id }}').html((event.index + 1));
+                    container.find('input.priority').val(event.index);
+                });
+            });
+        </script>
+
+        {% set category = null %}
+        {% if form.vars is defined %}
+            {% if form.vars.value is defined %}
+                {% set category = form.vars.value.category %}
+            {% endif %}
+        {% endif %}
+
+        <div class="post-item">
+            <div class="row">
+
+                <div class="col-md-1">
+                    {% if index is defined %}
+                        <h4 class="category-focus {{ id }}">{{ index }}</h4>
+                    {% endif %}
+                </div>
+                <div class="col-md-2">
+                    <div class="img-hover">
+                        {% if category is defined %}
+                            {% thumbnail category.media, 'preview' with { 'height': 56, 'width': null, 'title': null } %}
+
+                            <div class="overlay">
+                                <a href="">+</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h4>
+                        {% if category is defined %}
+                            {{ category.name }}
+                        {% endif %}
+                    </h4>
+                    {% if category is defined %}
+                        <p>{{ category.description }}</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+
+        {% if form.vars.submitted is defined and form.vars.submitted %}
+            <script type="text/javascript">
+                $(function () {
+                    var container = $(document);
+                    container.trigger({
+                        type: 'form',
+                        selector: 'form[name={{ id }}]'
+                    });
+                });
+            </script>
+        {% endif %}
+
+    {% endspaceless %}
+{% endblock user_focus_priority_category_widget %}

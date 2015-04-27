@@ -1,0 +1,13 @@
+<div class="titles">
+    <h4>{{ 'Zugangscode einlösen'|trans({}, 'FitbaseUserBundle') }}</h4>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <p>Herzlich willkommen auf fitbase.de. Wir freuen uns, Sie begrüßen zu dürfen. Bitte geben Sie hier Ihren
+            Zugangscode ein.</p>
+
+        {% form_theme form 'User/CodeForm.html.twig' %}
+        {{ form(form) }}
+
+    </div>
+</div>

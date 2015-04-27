@@ -1,0 +1,17 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles title-image-bottom">
+        <h4>{{ 'Ihre Aktivität'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+    </div>
+
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block; height: 430px;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
+                <div class="owl-item">
+                    <li>{{ graph(statistic)|raw }}</li>
+                </div>
+            </div>
+        </div>
+    </ul>
+
+</div>

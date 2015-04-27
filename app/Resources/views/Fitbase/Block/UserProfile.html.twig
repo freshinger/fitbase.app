@@ -1,0 +1,138 @@
+<div class="panel-box">
+    <div class="row">
+        <div class="accrodation">
+
+            <!-- section 1 -->
+            <span class="acc-trigger">
+                <a href="#">{{ 'Fokus ändern'|trans({}, 'FitbaseUserBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+                    {{ sonata_block_render({ 'type': 'fitbase.block.profile_focus' }) }}
+                </div>
+            </div>
+            <!-- end section 1 -->
+
+            <!-- section 2 -->
+            <span class="acc-trigger">
+                <a href="#">{{ "title_user_account" | trans({}, 'SonataUserBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+
+
+                    {% if form is defined and form %}
+                        {% if form.vars is defined %}
+                            {% if form.vars.submitted %}
+
+                                <div class="opened"></div>
+                            {% endif %}
+                        {% endif %}
+
+                        {% form_theme form "User/UserProfileForm.html.twig" %}
+
+                        {{ form(form) }}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- end section 2 -->
+
+            <!-- section 3 -->
+            <span class="acc-trigger">
+                <a href="#">{{ 'sonata_change_password_link'|trans({}, 'SonataUserBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+
+                    <form action="" method="POST" class="form-theme">
+
+
+                        {% if formPassword is defined %}
+                            {% if formPassword.vars is defined %}
+                                {% if formPassword.vars.submitted %}
+                                    <div class="opened"></div>
+                                {% endif %}
+                            {% endif %}
+
+                            {% form_theme formPassword "User/UserProfileForm.html.twig" %}
+                            {{ form_widget(formPassword) }}
+                        {% endif %}
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" name="submit"
+                                        class="btn btn-default">
+                                    {{ 'Speichern'|trans({}, 'FitbaseUserBundle') }}
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <!-- end section 3 -->
+
+            <!-- section 4 -->
+            <span class="acc-trigger">
+                <a href="#">{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+                    <p>Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.</p>
+
+                    {{ sonata_block_render(
+                    { 'type': 'fitbase.block.reminder.weeklytask' }) }}
+                </div>
+            </div>
+            <!-- end section 4 -->
+
+
+            <!-- section 5 -->
+            <span class="acc-trigger">
+                <a href="#">{{ "Erinnerungsfunktion" | trans({}, 'FitbaseReminderBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+                    <p>
+                        Nutzen Sie die Erinnerungsfunktion, um zur gewählten Zeit per E-Mail auf Ihre Übung aufmerksam
+                        gemacht
+                        zu
+                        werden – am besten jeden Tag. Sie können die Emailadresse in Ihrem Profil jederzeit ändern. Alle
+                        Übungen
+                        sind speziell auf die Durchführung im Büro abgestimmt. Wir empfehlen, die Übungen täglich
+                        durchzuführen,
+                        z.B. um 10 Uhr.
+                    </p>
+
+                    <div class="panel-body">
+                        {{ sonata_block_render(
+                        { 'type': 'fitbase.block.reminder.exercise' }) }}
+                    </div>
+                </div>
+            </div>
+            <!-- end section 5 -->
+
+
+            <span class="acc-trigger">
+                <a href="#">{{ "Fitbase pausieren" | trans({}, 'FitbaseReminderBundle') }}</a>
+            </span>
+
+            <div class="acc-container">
+                <div class="content">
+                    {{ sonata_block_render(
+                    { 'type': 'fitbase.block.reminder.pause' }) }}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

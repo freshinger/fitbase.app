@@ -1,0 +1,62 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <div class="alert alert-danger">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
+{%- block form -%}
+    {{ form_start(form) }}
+    {{- form_widget(form, { 'attr': { 'class': 'form-theme' }}) -}}
+    {{ form_end(form) }}
+{%- endblock form -%}
+
+{% block form_rows -%}
+    <div class="row">
+        {% for child in form %}
+            <div class="col-md-12">
+                {{- form_row(child) -}}
+            </div>
+        {% endfor %}
+    </div>
+{%- endblock form_rows %}
+
+{%- block form_row -%}
+    {{- form_label(form) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+{%- endblock form_row -%}
+
+
+{%- block repeated_row -%}
+    {% for child in form %}
+        {{- form_row(child) -}}
+    {% endfor %}
+{%- endblock repeated_row -%}
+
+{%- block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row -%}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+            '%name%': name,
+            '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    <input type="{{ type|default('button') }}" {{ block('button_attributes') }}
+           value="{{ label|trans({}, translation_domain) }}"/>
+{%- endblock button_widget -%}

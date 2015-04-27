@@ -1,0 +1,23 @@
+{% use "form.html.twig" %}
+
+
+{% block form_rows -%}
+    {% for child in form %}
+        <div class="row">
+            <div class="col-xs-10">
+                {{- form_row(child) -}}
+            </div>
+        </div>
+    {% endfor %}
+{%- endblock form_rows %}
+
+{% block form_row -%}
+    {{- form_label(form) -}}
+    {{- form_widget(form) -}}
+    {{- form_errors(form) -}}
+{%- endblock form_row %}
+
+{% block button_row -%}
+    <br/>
+    {{- form_widget(form) -}}
+{%- endblock button_row %}

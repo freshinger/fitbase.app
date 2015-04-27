@@ -1,0 +1,22 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>
+        {% if exercise is defined %}
+            {{ exercise.name }}
+        {% endif %}
+    </h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'task', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_task' }, {
+        'step': 0,
+        'task': exerciseUser
+    }) }}
+{% endblock content %}
+

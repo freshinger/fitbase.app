@@ -11,6 +11,22 @@ namespace Wellbeing\Bundle\ApiBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Wellbeing\Bundle\ApiBundle\Entity\Coordinate;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight;
+use Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine;
 use Wellbeing\Bundle\ApiBundle\Model\UserState;
 
 class UserStateDataTransformer implements DataTransformerInterface
@@ -30,67 +46,67 @@ class UserStateDataTransformer implements DataTransformerInterface
                 $model->setTimestamp($value->getDate()->getTimestamp());
             }
 
-            if ($value->getHead() instanceof Coordinate) {
+            if ($value->getHead() instanceof UserCoordinateHead) {
                 $model->setHead("{$value->getHead()->getX()};{$value->getHead()->getY()};{$value->getHead()->getZ()}");
             }
 
-            if ($value->getShoulderLeft() instanceof Coordinate) {
+            if ($value->getShoulderLeft() instanceof UserCoordinateShoulderLeft) {
                 $model->setShoulderLeft("{$value->getShoulderLeft()->getX()};{$value->getShoulderLeft()->getY()};{$value->getShoulderLeft()->getZ()}");
             }
 
-            if ($value->getShoulderCenter() instanceof Coordinate) {
+            if ($value->getShoulderCenter() instanceof UserCoordinateShoulderCenter) {
                 $model->setShoulderCenter("{$value->getShoulderCenter()->getX()};{$value->getShoulderCenter()->getY()};{$value->getShoulderCenter()->getZ()}");
             }
 
-            if ($value->getShoulderRight() instanceof Coordinate) {
+            if ($value->getShoulderRight() instanceof UserCoordinateShoulderRight) {
                 $model->setShoulderRight("{$value->getShoulderRight()->getX()};{$value->getShoulderRight()->getY()};{$value->getShoulderRight()->getZ()}");
             }
 
-            if ($value->getElbowLeft() instanceof Coordinate) {
+            if ($value->getElbowLeft() instanceof UserCoordinateElbowLeft) {
                 $model->setElbowLeft("{$value->getElbowLeft()->getX()};{$value->getElbowLeft()->getY()};{$value->getElbowLeft()->getZ()}");
             }
 
-            if ($value->getElbowRight() instanceof Coordinate) {
+            if ($value->getElbowRight() instanceof UserCoordinateElbowRight) {
                 $model->setElbowRight("{$value->getElbowRight()->getX()};{$value->getElbowRight()->getY()};{$value->getElbowRight()->getZ()}");
             }
 
-            if ($value->getHandLeft() instanceof Coordinate) {
+            if ($value->getHandLeft() instanceof UserCoordinateHandLeft) {
                 $model->setHandLeft("{$value->getHandLeft()->getX()};{$value->getHandLeft()->getY()};{$value->getHandLeft()->getZ()}");
             }
 
-            if ($value->getHandRight() instanceof Coordinate) {
+            if ($value->getHandRight() instanceof UserCoordinateHandRight) {
                 $model->setHandRight("{$value->getHandRight()->getX()};{$value->getHandRight()->getY()};{$value->getHandRight()->getZ()}");
             }
 
-            if ($value->getCom() instanceof Coordinate) {
+            if ($value->getCom() instanceof UserCoordinateCom) {
                 $model->setCom("{$value->getCom()->getX()};{$value->getCom()->getY()};{$value->getCom()->getZ()}");
             }
 
-            if ($value->getSpine() instanceof Coordinate) {
+            if ($value->getSpine() instanceof UserCoordinateSpine) {
                 $model->setSpine("{$value->getSpine()->getX()};{$value->getSpine()->getY()};{$value->getSpine()->getZ()}");
             }
 
-            if ($value->getHipLeft() instanceof Coordinate) {
+            if ($value->getHipLeft() instanceof UserCoordinateHipLeft) {
                 $model->setHipLeft("{$value->getHipLeft()->getX()};{$value->getHipLeft()->getY()};{$value->getHipLeft()->getZ()}");
             }
 
-            if ($value->getHipRight() instanceof Coordinate) {
+            if ($value->getHipRight() instanceof UserCoordinateHipRight) {
                 $model->setHipRight("{$value->getHipRight()->getX()};{$value->getHipRight()->getY()};{$value->getHipRight()->getZ()}");
             }
 
-            if ($value->getKneeLeft() instanceof Coordinate) {
+            if ($value->getKneeLeft() instanceof UserCoordinateKneeLeft) {
                 $model->setKneeLeft("{$value->getKneeLeft()->getX()};{$value->getKneeLeft()->getY()};{$value->getKneeLeft()->getZ()}");
             }
 
-            if ($value->getKneeRight() instanceof Coordinate) {
+            if ($value->getKneeRight() instanceof UserCoordinateKneeRight) {
                 $model->setKneeRight("{$value->getKneeRight()->getX()};{$value->getKneeRight()->getY()};{$value->getKneeRight()->getZ()}");
             }
 
-            if ($value->getFootLeft() instanceof Coordinate) {
+            if ($value->getFootLeft() instanceof UserCoordinateFootLeft) {
                 $model->setFootLeft("{$value->getFootLeft()->getX()};{$value->getFootLeft()->getY()};{$value->getFootLeft()->getZ()}");
             }
 
-            if ($value->getFootRight() instanceof Coordinate) {
+            if ($value->getFootRight() instanceof UserCoordinateFootRight) {
                 $model->setFootRight("{$value->getFootRight()->getX()};{$value->getFootRight()->getY()};{$value->getFootRight()->getZ()}");
             }
         }
@@ -112,7 +128,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getHead())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHead(
-                    (new Coordinate())
+                    (new UserCoordinateHead())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -121,7 +137,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getShoulderLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderLeft(
-                    (new Coordinate())
+                    (new UserCoordinateShoulderLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -130,7 +146,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getShoulderCenter())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderCenter(
-                    (new Coordinate())
+                    (new UserCoordinateShoulderCenter())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -139,7 +155,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getShoulderRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setShoulderRight(
-                    (new Coordinate())
+                    (new UserCoordinateShoulderRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -148,7 +164,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getElbowLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setElbowLeft(
-                    (new Coordinate())
+                    (new UserCoordinateElbowLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -157,7 +173,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getElbowRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setElbowRight(
-                    (new Coordinate())
+                    (new UserCoordinateElbowRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -167,7 +183,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getHandLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHandLeft(
-                    (new Coordinate())
+                    (new UserCoordinateHandLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -177,7 +193,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getHandRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHandRight(
-                    (new Coordinate())
+                    (new UserCoordinateHandRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -187,7 +203,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getCom())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setCom(
-                    (new Coordinate())
+                    (new UserCoordinateCom())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -197,7 +213,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getSpine())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setSpine(
-                    (new Coordinate())
+                    (new UserCoordinateSpine())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -207,7 +223,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getHipLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHipLeft(
-                    (new Coordinate())
+                    (new UserCoordinateHipLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -217,7 +233,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getHipRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setHipRight(
-                    (new Coordinate())
+                    (new UserCoordinateHipRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -227,7 +243,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getKneeLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setKneeLeft(
-                    (new Coordinate())
+                    (new UserCoordinateKneeLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -237,7 +253,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getKneeRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setKneeRight(
-                    (new Coordinate())
+                    (new UserCoordinateKneeRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -247,7 +263,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getFootLeft())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setFootLeft(
-                    (new Coordinate())
+                    (new UserCoordinateFootLeft())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)
@@ -257,7 +273,7 @@ class UserStateDataTransformer implements DataTransformerInterface
             if (($coordinates = explode(';', $value->getFootRight())) and count($coordinates) == 3) {
                 list ($x, $y, $z) = $coordinates;
                 $entity->setFootRight(
-                    (new Coordinate())
+                    (new UserCoordinateFootRight())
                         ->setX((float)$x)
                         ->setY((float)$y)
                         ->setZ((float)$z)

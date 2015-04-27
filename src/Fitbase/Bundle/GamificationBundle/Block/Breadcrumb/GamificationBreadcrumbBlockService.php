@@ -18,7 +18,7 @@ class GamificationBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
      */
     public function getName()
     {
-        return 'fitbase.gamification.block.breadcrumb';
+        return 'fitbase.block.gamification.breadcrumb';
     }
 
     /**

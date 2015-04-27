@@ -44,7 +44,7 @@ class WeeklyquizBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'weeklyquizUser' => null,
-            'template' => 'FitbaseWeeklytaskBundle:Block:weeklyquiz.html.twig',
+            'template' => 'Weeklytask/Block/Weeklyquiz.html.twig',
         ));
     }
 

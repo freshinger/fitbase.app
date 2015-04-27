@@ -63,7 +63,7 @@ class GraphHelper extends \Twig_Extension implements ContainerAwareInterface
             $graph->img->Stream();
             $image = ob_get_contents();
             ob_end_clean();
-            return '<img style="width: 100%;" src="data:image/png;base64,' . base64_encode($image) . '"  />';
+            return '<img src="data:image/png;base64,' . base64_encode($image) . '"  />';
         }
 
         return null;

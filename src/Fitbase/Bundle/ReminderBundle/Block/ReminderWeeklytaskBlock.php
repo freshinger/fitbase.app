@@ -55,7 +55,7 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'FitbaseReminderBundle:Block:reminder_weeklytask.html.twig',
+            'template' => 'Reminder/Block/ReminderWeeklytask.html.twig',
         ));
     }
 

@@ -61,14 +61,12 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                                     'routeParameters' => array(
                                         'slug' => $category->getSlug()
                                     ),
-                                    'attributes' => array('class' => 'dropdown'),
+                                    'attributes' => array('class' => 'current'),
                                     'childrenAttributes' => array(
-                                        'class' => 'dropdown-menu',
-                                        'role' => 'menu'
+                                        'class' => 'sub-current',
                                     ),
                                     'linkAttributes' => array(
-                                        'class' => 'dropdown-toggle',
-                                        'data-toggle' => 'dropdown',
+                                        'class' => 'sf-with-ul',
                                     ),
                                 ));
                             }

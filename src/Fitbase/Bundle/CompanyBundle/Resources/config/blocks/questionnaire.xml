@@ -6,7 +6,7 @@
     <services>
 
         <service id="fitbase.block.dashboard.questionnaire_statistic_question" scope="request"
-                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyStatisticQuestionBlock">
+                 class="Fitbase\Bundle\CompanyBundle\Block\QuestionnaireQuestionBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_statistic_question</argument>
             <argument type="collection">
@@ -20,7 +20,7 @@
         </service>
 
         <service id="fitbase.block.dashboard.questionnaire_question_last" scope="request"
-                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyStatisticAssessmentBlock">
+                 class="Fitbase\Bundle\CompanyBundle\Block\QuestionnaireAssessmentBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.dashboard.questionnaire_question_last</argument>
             <argument type="collection">

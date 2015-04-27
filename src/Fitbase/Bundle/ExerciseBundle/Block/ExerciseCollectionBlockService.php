@@ -25,7 +25,7 @@ class ExerciseCollectionBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'categories' => array(),
-            'template' => 'FitbaseExerciseBundle:Block:exercises.html.twig',
+            'template' => 'Exercise/Block/Collection.html.twig',
         ));
     }
 

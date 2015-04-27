@@ -27,7 +27,7 @@ class ExerciseController extends Controller
         if (($user = $this->get('user')->current())) {
             if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
 
-                return $this->render('FitbaseExerciseBundle:Exercise:exercise.html.twig', array(
+                return $this->render('Exercise/Exercise.html.twig', array(
                     'user' => $user,
                     'exercise' => $exercise,
                 ));
@@ -67,18 +67,8 @@ class ExerciseController extends Controller
             $collection = $focus->getParentCategories();
         }
 
-        return $this->render('FitbaseExerciseBundle:Exercise:ExerciseChoice.html.twig', array(
+        return $this->render('Exercise/ExerciseChoice.html.twig', array(
             'collection' => $collection
         ));
     }
-
-//    /**
-//     * @param Request $request
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function dialogAction(Request $request)
-//    {
-//        return $this->render('FitbaseExerciseBundle:Exercise:dialog.html.twig', array());
-//    }
-
 }

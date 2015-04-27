@@ -31,9 +31,6 @@ class UserLoginForm extends AbstractType
             ))
             ->add('save', 'submit', array(
                 'label' => 'Anmelden',
-                'attr' => array(
-                    'class' => 'btn btn-primary',
-                ),
             ));
     }
 

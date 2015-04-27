@@ -1,6 +1,6 @@
 <?php
 
-namespace Wellbeing\Bundle\ApiBundle\Entity\Repository;
+namespace Wellbeing\Bundle\ApiBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

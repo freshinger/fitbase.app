@@ -36,7 +36,7 @@ class BuilderMenuCompany extends ContainerAware implements BuilderMenuInterface
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('main', array_merge($options, array(
-            'childrenAttributes' => array('class' => 'nav nav-pills'),
+            'childrenAttributes' => array('class' => 'sf-menu', 'id' => 'menu'),
         )));
 
         $menu->addChild('Startseite', array(
@@ -49,6 +49,11 @@ class BuilderMenuCompany extends ContainerAware implements BuilderMenuInterface
         $this->container->get('event_dispatcher')
             ->dispatch('company_menu_main', new UserMenuEvent($menu));
 
+        $menu->addChild('Abmelden', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/logout'
+            )));
 
         return $menu;
     }

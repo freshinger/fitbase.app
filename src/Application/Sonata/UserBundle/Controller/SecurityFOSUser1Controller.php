@@ -45,7 +45,7 @@ class SecurityFOSUser1Controller extends SecurityController
                 if (count($collection) > 0) {
                     if (count($collection) == 2) {
                         return $this->container->get('templating')
-                            ->renderResponse('ApplicationSonataUserBundle:Login:login_choice.html.twig', array(
+                            ->renderResponse('User/LoginChoice.html.twig', array(
                                 'linkFitbaseNeu' => $collection[0],
                                 'linkFitbaseAlt' => $collection[1],
                             ));
@@ -59,7 +59,7 @@ class SecurityFOSUser1Controller extends SecurityController
         }
 
         return $this->container->get('templating')
-            ->renderResponse('ApplicationSonataUserBundle:Login:login.html.twig', array(
+            ->renderResponse('User/Login.html.twig', array(
                 'form' => $form->createView()
             ));
     }

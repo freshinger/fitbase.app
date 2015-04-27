@@ -80,6 +80,14 @@
         </service>
 
 
+        <service id="fitbase.block.exercise.user_task" class="Fitbase\Bundle\ExerciseBundle\Block\UserTaskBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.exercise.user_task</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
     </services>
 </container>

@@ -46,7 +46,7 @@ class ExerciseUserChoiceSocialBlock extends BaseBlockService implements Containe
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'FitbaseExerciseBundle:Block:Exercise/UserChoiceSocial.html.twig',
+            'template' => 'Exercise/Block/UserChoiceSocial.html.twig',
         ));
     }
 
@@ -73,7 +73,6 @@ class ExerciseUserChoiceSocialBlock extends BaseBlockService implements Containe
             }
 
         }
-
 
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(

@@ -58,7 +58,7 @@ class ExerciseVideoBlockService extends BaseBlockService implements ContainerAwa
             $exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique'));
         }
 
-        return $this->renderPrivateResponse('FitbaseExerciseBundle:Block:exercise.html.twig', array(
+        return $this->renderPrivateResponse('Exercise/Block/Exercise.html.twig', array(
             'exercise' => $exercise
         ));
     }

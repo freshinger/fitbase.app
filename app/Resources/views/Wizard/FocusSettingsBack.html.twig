@@ -1,0 +1,46 @@
+{% extends "layout.html.twig" %}
+
+{% use "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ "Wizard" | trans({}, 'FitbaseUserBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="panel-box">
+        <div class="titles">
+            <h4>{{ "Fokus einstellungen" | trans({}, 'FitbaseReminderBundle') }}</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>{{ 'Übungsschwerpunkt'|trans({}, 'FitbaseUserBundle') }}</h3>
+                        Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer
+                        Übungseinheit
+                        aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen, erhalten Sie abwechselnd
+                        Übungen aus
+                        diesen Bereichen.
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>{{ 'Übungstyp'|trans({}, 'FitbaseUserBundle') }}</h3>
+                        Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”, “Kräftigung” und
+                        “Dehnung”.
+                        Sie können diese Zusammenstellung individualisieren, indem Sie folgende Auswahl treffen.
+                    </div>
+                </div>
+
+                {% form_theme form 'Wizard/FocusSettingsBackForm.html.twig' %}
+
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

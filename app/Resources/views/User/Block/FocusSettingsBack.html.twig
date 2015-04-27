@@ -1,0 +1,23 @@
+<div class="panel-info">
+    {#<h2>{{ 'Fokus einstellungen'|trans({}, 'FitbaseUserBundle') }}</h2>#}
+
+    <div class="row">
+        <div class="col-xs-6">
+            <h3>{{ 'Übungsschwerpunkt'|trans({}, 'FitbaseUserBundle') }}</h3>
+            Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer Übungseinheit
+            aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen, erhalten Sie abwechselnd Übungen aus
+            diesen Bereichen.
+        </div>
+        <div class="col-xs-6">
+            <h3>{{ 'Übungstyp'|trans({}, 'FitbaseUserBundle') }}</h3>
+            Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”, “Kräftigung” und “Dehnung”.
+            Sie können diese Zusammenstellung individualisieren, indem Sie folgende Auswahl treffen.
+        </div>
+    </div>
+
+
+    {% form_theme form 'User/Block/FocusSettingsBackForm.html.twig' %}
+
+    {{ form(form) }}
+
+</div>

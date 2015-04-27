@@ -1,0 +1,33 @@
+{% if exercises is defined %}
+    {% for exercise in exercises|slice(0, 4) %}
+        <div class="panel-box">
+            <div class="titles">
+                <h4>{{ exercise.name }}</h4>
+            </div>
+            <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+                <div class="owl-wrapper-outer autoHeight">
+                    <div class="owl-wrapper" style="left: 0px; display: block;">
+                        <div class="owl-item">
+                            <li>
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {% thumbnail exercise.image, 'thumbnail'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                </a>
+
+                                <div class="info-single-carousel">
+                                    <p>
+                                        {{ exercise.description|raw|striptags|slice(0,120) }}...
+                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                            {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    {% endfor %}
+{% endif %}
+
+

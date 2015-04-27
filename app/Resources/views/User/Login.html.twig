@@ -1,0 +1,47 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Einloggen oder Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    <div class="crumbs">
+        <div class="container">
+            <ul>
+                <li>{{ 'Einloggen'|trans({}, 'FitbaseUserBundle') }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Content Text-->
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ 'title_user_authentication'|trans({}, 'SonataUserBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p> Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie
+                            sich
+                            mit Ihren Zugangsdaten ein. </p>
+
+                        {% form_theme form 'User/LoginForm.html.twig' %}
+
+                        {{ form(form) }}
+                    </div>
+                </div>
+            </div>
+            <!-- End Content Text-->
+        </div>
+        <div class="col-md-6">
+            <!-- Content Text-->
+            <div class="panel-box">
+                {% render controller("FitbaseUserBundle:Registration:code", { 'internal': true }) %}
+            </div>
+            <!-- End Content Text-->
+        </div>
+    </div>
+{% endblock content %}

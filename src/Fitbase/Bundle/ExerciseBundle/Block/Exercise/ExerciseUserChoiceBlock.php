@@ -47,7 +47,7 @@ class ExerciseUserChoiceBlock extends BaseBlockService implements ContainerAware
     {
         $resolver->setDefaults(array(
             'exercise' => null,
-            'template' => 'FitbaseExerciseBundle:Block:Exercise/UserChoice.html.twig',
+            'template' => 'Exercise/Block/UserChoice.html.twig',
         ));
     }
 

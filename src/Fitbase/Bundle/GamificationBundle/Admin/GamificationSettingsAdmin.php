@@ -32,6 +32,14 @@ class GamificationSettingsAdmin extends Admin implements ContainerAwareInterface
     {
         $this->container = $container;
     }
+    /**
+     * Get form template
+     * @return array
+     */
+    public function getFormTheme()
+    {
+        return array('FitbaseGamificationBundle:Admin:GamificationSettingsForm.html.twig');
+    }
 
     /**
      * {@inheritdoc}
@@ -40,47 +48,50 @@ class GamificationSettingsAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->tab('General')
-                ->with('General', array('class' => 'col-md-6'))
-                    ->add('name', 'text')
-                ->end()
+            ->with('General', array('class' => 'col-md-6'))
+            ->add('name', 'text')
             ->end()
-            ->tab('Avatars')
-                ->with('General', array('class' => 'col-md-11'))
-                    ->add('settingsHasAvatar', 'sonata_type_collection', array(
-                            'cascade_validation' => true,
-                        ), array(
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                            'sortable' => 'position',
-                            'link_parameters' => array('context' => 'company'),
-                        )
-                    )
-                ->end()
             ->end()
-            ->tab('Trees')
-                ->with('General', array('class' => 'col-md-11'))
-                    ->add('settingsHasTree', 'sonata_type_collection', array(
-                            'cascade_validation' => true,
-                        ), array(
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                            'sortable' => 'position',
-                            'link_parameters' => array('context' => 'company'),
-                        ))
-                ->end()
+            ->tab('Avatare')
+            ->with('General', array('class' => 'col-md-11'))
+            ->add('settingsHasAvatar', 'sonata_type_collection', array(
+                    'label' => false,
+                    'cascade_validation' => true,
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                    'link_parameters' => array('context' => 'company'),
+                )
+            )
             ->end()
-            ->tab('Background')
-                ->with('General', array('class' => 'col-md-11'))
-                    ->add('settingsHasBackground', 'sonata_type_collection', array(
-                            'cascade_validation' => true,
-                        ), array(
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                            'sortable' => 'position',
-                            'link_parameters' => array('context' => 'company'),
-                        ))
-                ->end()
+            ->end()
+            ->tab('Bäume')
+            ->with('General', array('class' => 'col-md-11'))
+            ->add('settingsHasTree', 'sonata_type_collection', array(
+                'label' => false,
+                'cascade_validation' => true,
+            ), array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'sortable' => 'position',
+                'link_parameters' => array('context' => 'company'),
+            ))
+            ->end()
             ->end();
+//            ->tab('Hintergründe')
+//                ->with('General', array('class' => 'col-md-11'))
+//                    ->add('settingsHasBackground', 'sonata_type_collection', array(
+//                            'label' => false,
+//                            'cascade_validation' => true,
+//                        ), array(
+//                            'edit' => 'inline',
+//                            'inline' => 'table',
+//                            'sortable' => 'position',
+//                            'link_parameters' => array('context' => 'company'),
+//                        ))
+//                ->end()
+//            ->end();
     }
 
     /**
@@ -90,9 +101,15 @@ class GamificationSettingsAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->addIdentifier('name')
-            ->add('settingsHasAvatar')
-            ->add('settingsHasTree')
-            ->add('settingsHasBackground');
+            ->add('settingsHasAvatar', null, array(
+                'label' => 'Avatare'
+            ))
+            ->add('settingsHasTree', null, array(
+                'label' => 'Bäume'
+            ))
+            ->add('settingsHasBackground', null, array(
+                'label' => 'Hintergründe'
+            ));
     }
 
     /**

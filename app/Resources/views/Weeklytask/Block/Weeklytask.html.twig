@@ -1,0 +1,25 @@
+{% set weeklytask = null %}
+{% if weeklytaskUser is defined and weeklytaskUser %}
+    {% set weeklytask = weeklytaskUser.task %}
+{% endif %}
+
+
+<div class="panel-box">
+    <div class="titles">
+        <h4>
+            {% if weeklytask %}
+                {{ weeklytask.name }}
+            {% endif %}
+        </h4>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            {% if weeklytask %}
+                {{ weeklytask.content|raw }}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+

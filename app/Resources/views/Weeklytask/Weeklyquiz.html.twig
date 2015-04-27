@@ -1,0 +1,96 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>
+        {{ weeklyquiz }}
+    </h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'weeklyquiz_user', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content_top %}
+    <div class="bg-dark dark-home">
+        <div class="row">
+            <!-- Left Content - Tabs and Carousel -->
+            <div class="col-md-9">
+                <!-- Content Tabs -->
+                <div class="tab-content">
+                    <!-- Tab One - Feature News -->
+                    <div id="feature-news" class="tab-pane active">
+                        <!-- blog post-->
+                        <ul class="events-carousel padding-top owl-carousel owl-theme" id="events-carousel"
+                            style="opacity: 1; display: block;">
+                            <!-- Item blog post -->
+                            <div class="owl-wrapper-outer">
+                                <div class="owl-wrapper"
+                                     style="left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+
+
+                                    <div class="panel-box">
+                                        <div class="titles">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p>
+                                                    <img src="/image/weeklyquiz.jpg" alt="frau-stretching-300x285"/>
+                                                </p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                Herzlich willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten,
+                                                das Gelernte zu wiederholen und
+                                                Blätter für Ihren Gesundheitsbaum zu sammeln. Bitte beachten Sie, dass
+                                                mehrere Antworten je Frage
+                                                richtig sein können. Viel Spaß!
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </ul>
+                        <!-- End blog post-->
+                    </div>
+                    <!-- Tab One - Feature News -->
+                </div>
+                <!-- Content Tabs -->
+            </div>
+            <!-- Left Content - Tabs and Carousel -->
+            <div class="col-md-3">
+                {{ sonata_block_render({ 'type': 'fitbase.block.weeklyquiz.pending' }) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock content_top %}
+
+
+{% block content %}
+    <!-- Content Text-->
+    <div class="panel-box">
+        <div class="titles">
+        </div>
+
+        {% if form is defined and form %}
+            {% form_theme form "Weeklytask/WeeklyquizForm.html.twig" %}
+            {{ form(form) }}
+        {% endif %}
+
+        <script type="text/javascript">
+            $(function () {
+                var container = $(document);
+                {% if notices is defined and notices %}
+                {% for notice in notices %}
+                var event = $.extend({
+                    type: 'weeklyquiz_user_notice'
+                }, {{ notice|raw|json_encode()|raw }});
+                container.trigger(event);
+                {% endfor %}
+                {% endif %}
+            });
+        </script>
+    </div>
+{% endblock content %}

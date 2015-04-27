@@ -5,9 +5,10 @@
 
     <services>
 
-        <service id="fitbase.block.dashboard_weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskDashboardBlockService" public="true">
+        <service id="fitbase.block.weeklytask.dashboard" class="Fitbase\Bundle\WeeklytaskBundle\Block\DashboardBlock"
+                 public="true">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard_weeklytask</argument>
+            <argument>fitbase.block.weeklytask.dashboard</argument>
             <argument type="collection">
                 <argument>ROLE_FITBASE_USER</argument>
             </argument>
@@ -18,9 +19,9 @@
         </service>
 
 
-        <service id="fitbase.block.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskBlockService">
+        <service id="fitbase.block.weeklytask.weeklytask" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.weeklytask</argument>
+            <argument>fitbase.block.weeklytask.weeklytask</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="fitbase.orm.weeklytask_manager"/>
@@ -28,17 +29,23 @@
         </service>
 
 
-        <service id="fitbase.block.weeklytask_collection" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskCollectionBlockService">
+        <service id="fitbase.block.weeklytask.history"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklytaskHistoryBlock">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.weeklytask_collection</argument>
+            <argument>fitbase.block.weeklytask.history</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="fitbase.orm.weeklytask_manager"/>
             <argument type="service" id="user"/>
         </service>
 
-
+        <service id="fitbase.block.weeklyquiz.pending" class="Fitbase\Bundle\WeeklytaskBundle\Block\WeeklyquizPendingBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.weeklyquiz.pending</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
     </services>
-
-
 </container>

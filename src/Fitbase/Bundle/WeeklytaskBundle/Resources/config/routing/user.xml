@@ -12,4 +12,11 @@
         <default key="_controller">FitbaseWeeklytaskBundle:Weeklytask:task</default>
     </route>
 
+
+
+    <route id="weeklytask_picture_weeklytask" path="/picture/weeklytask/{unique}">
+        <default key="_controller">FitbaseWeeklytaskBundle:Picture:weeklytask</default>
+    </route>
+
+
 </routes>

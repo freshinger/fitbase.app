@@ -1,24 +1,169 @@
-{% extends 'SonataPageBundle::demo_layout.html.twig' %}
+{% extends 'SonataPageBundle::layout.html.twig' %}
 
-{% block sonata_page_javascripts %}
-    {{ parent() }}
-        {% javascripts
-        '@FitbaseFitbaseBundle/Resources/public/js/*'
-        '@FitbaseQuestionnaireBundle/Resources/public/js/*'
-        '@FitbaseExerciseBundle/Resources/public/js/*'
-        '@FitbaseGamificationBundle/Resources/public/js/*'
-        output='js/fitbase.js' %}
-    {% endjavascripts %}
-{% endblock %}
 
 {% block sonata_page_stylesheets %}
-    {{ parent() }}
     {% stylesheets
-    '@FitbaseFitbaseBundle/Resources/public/css/*'
-    '@FitbaseQuestionnaireBundle/Resources/public/css/*'
-    '@FitbaseExerciseBundle/Resources/public/css/*'
-    '@FitbaseGamificationBundle/Resources/public/css/*'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/bootstrap/bootstrap.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/bootstrap/bootstrap-theme.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/nav/megafish.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/js/fancybox/jquery.fancybox.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/skins/theme-options.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/animations/animate.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/carousel/owl.carousel.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/carousel/owl.theme.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/flickr/flickr.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/icons/font-awesome.min.css'
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/slide/camera.css'
+
+    '@FitbaseFitbaseBundle/Resources/public/theme/css/*.css'
+
+    '@FitbaseFitbaseBundle/Resources/public/css/*.css'
+    '@FitbaseCompanyBundle/Resources/public/css/*.css'
+
     output='css/fitbase.css' %}
     {% endstylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/fitbase.css">
+    <link rel="stylesheet" type="text/css" href="{{ path('company_theme') }}">
+    {{ parent() }}
 {% endblock %}
 
+{% block sonata_page_javascripts %}
+    <script type="text/javascript">
+        window.SONATA_CONFIG = {
+            CONFIRM_EXIT: {% if admin_pool is defined and admin_pool.getOption('confirm_exit') %}true{% else %}false{% endif %},
+            USE_SELECT2: {% if admin_pool is defined and admin_pool.getOption('use_select2') %}true{% else %}false{% endif %},
+            USE_ICHECK: {% if admin_pool is defined and admin_pool.getOption('use_icheck') %}true{% else %}false{% endif %}
+        };
+        window.SONATA_TRANSLATIONS = {
+            CONFIRM_EXIT: '{{ 'confirm_exit'|trans({}, 'SonataAdminBundle')|escape('js') }}'
+        };
+    </script>
+    {% javascripts
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery/dist/jquery.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery.scrollTo/jquery.scrollTo.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/moment/min/moment.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/select2/select2.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/bootstrap/dist/js/bootstrap.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+    '@SonataAdminBundle/Resources/public/jquery/*'
+
+    '@FitbaseFitbaseBundle/Resources/public/js/*.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/jquery/*.js'
+    '@FitbaseQuestionnaireBundle/Resources/public/js/*.js'
+    '@FitbaseExerciseBundle/Resources/public/js/*.js'
+    '@FitbaseGamificationBundle/Resources/public/js/*.js'
+    '@FitbaseWeeklytaskBundle/Resources/public/js/*.js'
+
+    output='js/fitbase.js' %}
+    {% endjavascripts %}
+    <script src="/js/fitbase.js"></script>
+{% endblock %}
+
+
+{% block sonata_page_container %}
+    <div id="layout">
+
+        <header class="header-2">
+            <!-- Header-->
+            <div class="headerbox">
+                <div class="container">
+                    {{ sonata_block_render({ 'type': 'fitbase.block.header_company' }) }}
+                </div>
+            </div>
+            <!-- End Header-->
+        </header>
+
+
+        {% block layout %}
+            {% if content is not defined %}
+                {% set content = null %}
+            {% endif %}
+
+
+            {% if page is not defined %}
+                {% set page = null %}
+            {% endif %}
+
+            {% if page is defined %}
+                <div class="row">
+                    {% if page.name != 'global' %}
+                        {{ sonata_page_render_container('content_top', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('content_top', page) }}
+                </div>
+            {% endif %}
+
+
+            {% if content is defined and content %}
+                {{ content|raw }}
+            {% else %}
+                {% set content = block('content') %}
+                {% if content|length > 0 %}
+                    {{ content|raw }}
+                {% elseif page is defined %}
+                    {{ sonata_page_render_container('content', page) }}
+                {% endif %}
+            {% endif %}
+
+
+            {% if page is defined %}
+                <div class="row">
+                    {{ sonata_page_render_container('content_bottom', page) }}
+
+                    {% if page.name != 'global' %}
+                        {{ sonata_page_render_container('content_bottom', 'global') }}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock layout %}
+
+        <footer id="footer">
+            {{ sonata_block_render({ 'type': 'fitbase.block.footer_company' }) }}
+        </footer>
+
+
+        {% block fitbase_theme_javascripts %}
+            {% javascripts
+
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/nav/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/totop/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/accordion/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/slide/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/fancybox/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/filters/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/twitter/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/flickr/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/counter/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/*.js'
+
+            output='js/fitbase.theme.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+            <script type="text/javascript">
+
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+
+                ga('create', 'UA-36559294-2', 'auto');
+
+                ga('send', 'pageview');
+            </script>
+        {% endblock fitbase_theme_javascripts %}
+
+
+    </div>
+{% endblock %}

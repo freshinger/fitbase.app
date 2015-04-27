@@ -1,0 +1,41 @@
+<aside>
+    <div class="title-color text-center">
+        <h4>{{ 'Quizze zu Bearbeiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
+    </div>
+
+    <div class="content-counter content-counter-home container">
+        <br/>
+
+        {% for weeklyquizUser in collection|slice(0,3) %}
+            {% set quiz = weeklyquizUser.quiz %}
+            <div class="post-item">
+                <h4>
+                    <a href="{{ path('weeklyquiz_user_view', { 'unique': weeklyquizUser.id } ) }}">
+                        {% if quiz is defined %}
+                            {{ quiz }}
+                        {% endif %}
+                    </a>
+                </h4>
+
+                {% if quiz is defined %}
+                    {{ quiz.description|raw|striptags|slice(0, 50) }}...
+                {% endif %}
+
+                <a href="{{ path('weeklyquiz_user_view', { 'unique': weeklyquizUser.id } ) }}">
+                    {{ 'zum Quiz...'|trans({}, 'FitbaseWeeklytaskBundle') }}
+                </a>
+            </div>
+        {% endfor %}
+
+        {% if collection|length == 0 %}
+            <div class="post-item">
+                <h4>
+                    <a>{{ 'Sie haben keine Quizze zu bearbeiten.'|trans({}, 'FitbaseWeeklytaskBundle') }}</a>
+                </h4>
+
+                Sie haben entweder alle Quizze durchgegangen oder noch keine erhalten.
+            </div>
+        {% endif %}
+
+    </div>
+</aside>

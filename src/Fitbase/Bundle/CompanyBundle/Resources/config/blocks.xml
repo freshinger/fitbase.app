@@ -14,9 +14,7 @@
         <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlock" public="true">
             <argument>fitbase.block.header_company</argument>
             <argument type="service" id="templating"/>
-            <argument type="service" id="fitbase.orm.company_manager"/>
-            <argument type="service" id="user"/>
-            <argument type="service" id="session"/>
+            <argument type="service" id="company"/>
             <tag name="sonata.block"/>
         </service>
 
@@ -24,16 +22,13 @@
             <tag name="sonata.block"/>
             <argument>fitbase.block.footer_company</argument>
             <argument type="service" id="templating"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+            <argument type="service" id="company"/>
         </service>
 
-
-        <service id="fitbase.block.dashboard.company.questionnaire"
-                 class="Fitbase\Bundle\CompanyBundle\Block\CompanyQuestionnaireBlock" scope="request">
+        <service id="fitbase.block.company.questionnaire_history"
+                 class="Fitbase\Bundle\CompanyBundle\Block\QuestionnaireHistoryBlock" scope="request">
             <tag name="sonata.block"/>
-            <argument>fitbase.block.dashboard.company.questionnaire</argument>
+            <argument>fitbase.block.company.questionnaire_history</argument>
             <argument type="collection">
                 <argument>ROLE_FITBASE_COMPANY</argument>
             </argument>
@@ -44,6 +39,38 @@
             <argument type="service" id="form.factory"/>
             <argument type="service" id="request"/>
         </service>
+
+        <service id="fitbase.block.company.questionnaire_preview"
+                 class="Fitbase\Bundle\CompanyBundle\Block\QuestionnairePreviewBlock" scope="request">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.company.questionnaire_preview</argument>
+            <argument type="collection">
+                <argument>ROLE_FITBASE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="request"/>
+        </service>
+
+
+        <service id="fitbase.block.company.questionnaire_create"
+                 class="Fitbase\Bundle\CompanyBundle\Block\QuestionnaireCreateBlock" scope="request">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.company.questionnaire_create</argument>
+            <argument type="collection">
+                <argument>ROLE_FITBASE_COMPANY</argument>
+            </argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.context"/>
+            <argument type="service" id="user"/>
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="form.factory"/>
+            <argument type="service" id="request"/>
+        </service>
+
 
     </services>
 </container>

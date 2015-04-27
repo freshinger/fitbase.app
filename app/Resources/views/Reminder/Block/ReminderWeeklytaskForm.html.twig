@@ -1,0 +1,7 @@
+{% use "Reminder/Block/ReminderExerciseForm.html.twig" %}
+
+{% block button_row -%}
+    <p>{{ "Klicken Sie auf speichern, wenn Sie Änderungen vorgenommen haben" | trans({}, 'FitbaseReminderBundle') }}</p>
+    {% set vars =  { 'attr': { 'class': 'btn btn-default' }} %}
+    {{- form_widget(form, vars) -}}
+{%- endblock button_row %}

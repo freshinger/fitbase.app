@@ -6,7 +6,7 @@
 
 
     <route id="focus" path="/focus">
-        <default key="_controller">FitbaseExerciseBundle:Focus:focus</default>
+        <default key="_controller">FitbaseExerciseBundle:UserFocus:focus</default>
     </route>
 
     <route id="category_exercises" path="/exercises/category/{slug}">
@@ -33,11 +33,11 @@
     </route>
 
     <route id="task" path="/task/{slug}/{unique}">
-        <default key="_controller">FitbaseExerciseBundle:Task:task</default>
+        <default key="_controller">FitbaseExerciseBundle:UserTask:task</default>
     </route>
 
     <route id="user_task" path="/user/task/{unique}/{step}">
-        <default key="_controller">FitbaseExerciseBundle:Task:userTask</default>
+        <default key="_controller">FitbaseExerciseBundle:UserTask:userTask</default>
     </route>
 
 </routes>

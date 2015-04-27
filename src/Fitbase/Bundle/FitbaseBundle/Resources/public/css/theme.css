@@ -1,0 +1,25 @@
+.btn {
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-default {
+    background: #e0e0e0;
+    background-color: #e0e0e0;
+}
+
+.form-theme select {
+    margin-bottom: 25px;
+    height: 36px;
+    border-radius: 0;
+    width: 100%;
+}
+
+.alert-danger {
+    background-image: none;
+}
+
+.alert {
+    border: none;
+    border-radius: inherit;
+}

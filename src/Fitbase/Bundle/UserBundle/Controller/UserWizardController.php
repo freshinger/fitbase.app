@@ -39,7 +39,7 @@ class UserWizardController extends Controller
                         }
                     }
 
-                    return $this->render('FitbaseUserBundle:Wizard:focus.html.twig', array(
+                    return $this->render('Wizard/FocusSettings.html.twig', array(
                         'form' => $form->createView(),
                         'user' => $user,
                     ));
@@ -87,7 +87,7 @@ class UserWizardController extends Controller
                                 }
                             }
 
-                            return $this->render('FitbaseUserBundle:Wizard:focus_settings.html.twig', array(
+                            return $this->render('Wizard/FocusSettingsBack.html.twig', array(
                                 'form' => $form->createView(),
                                 'focus' => $focus,
                             ));

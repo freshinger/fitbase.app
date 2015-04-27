@@ -119,11 +119,12 @@ class GamificationSettingsHasAvatar
      */
     public function __toString()
     {
-        if (($media = $this->getMedia())) {
-            return $media->getName();
+        if (($gallery = $this->getGallery())) {
+            return $gallery->getName();
         }
         return '';
     }
+
     /**
      * @var \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar
      */
@@ -146,7 +147,7 @@ class GamificationSettingsHasAvatar
     /**
      * Get gallery
      *
-     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar 
+     * @return \Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar
      */
     public function getGallery()
     {

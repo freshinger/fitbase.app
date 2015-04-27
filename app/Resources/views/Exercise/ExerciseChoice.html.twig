@@ -1,0 +1,33 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Meine Lieblingsübungen'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'user_choice', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-9">
+            {% if collection is defined and collection %}
+                {% for category in collection %}
+                    {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice_category' }, { 'category': category.category }) }}
+                {% endfor %}
+            {% endif %}
+        </div>
+        <aside class="col-md-3">
+
+            <aside>
+                <h4>{{ "Empfehlungen" | trans({}, 'FitbaseExerciseBundle') }}</h4>
+            </aside>
+
+            {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice_social' }) }}
+
+        </aside>
+    </div>
+{% endblock content %}
+
+
+

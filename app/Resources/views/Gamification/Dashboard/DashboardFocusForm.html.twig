@@ -1,0 +1,11 @@
+{% use "form.html.twig" %}
+
+{%- block form -%}
+    {{ form_start(form) }}
+    {{- form_widget(form) -}}
+    {{ form_end(form) }}
+{%- endblock form -%}
+
+{%- block button_row -%}
+    {{- form_widget(form, { 'attr': { 'class': 'btn btn-default btn-block' }}) -}}
+{%- endblock button_row -%}

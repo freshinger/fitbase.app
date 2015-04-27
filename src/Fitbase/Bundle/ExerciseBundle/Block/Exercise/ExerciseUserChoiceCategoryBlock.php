@@ -47,7 +47,7 @@ class ExerciseUserChoiceCategoryBlock extends BaseBlockService implements Contai
     {
         $resolver->setDefaults(array(
             'category' => null,
-            'template' => 'FitbaseExerciseBundle:Block:Exercise/UserChoiceCategory.html.twig',
+            'template' => 'Exercise/Block/UserChoiceCategory.html.twig',
         ));
     }
 
