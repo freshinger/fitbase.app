@@ -10,20 +10,39 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
 use Fitbase\Bundle\UserBundle\Controller\UserWizardController;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserWizardSubscriber implements EventSubscriberInterface
+class UserWizardSubscriber implements EventSubscriberInterface, ContainerAwareInterface
 {
+    /**
+     * @var
+     */
     protected $container;
-    protected $request;
+
+    /**
+     * @var
+     */
     protected $entityManager;
 
-    public function __construct($container, $request, $entityManager)
+
+    public function __construct($entityManager)
     {
-        $this->request = $request;
-        $this->container = $container;
         $this->entityManager = $entityManager;
+    }
+
+    /**
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 
     /**
@@ -48,8 +67,8 @@ class UserWizardSubscriber implements EventSubscriberInterface
             $controller = new UserWizardController();
             $controller->setContainer($this->container);
 
-            if (!($response = $controller->focusAction($this->request))) {
-                $response = $controller->focusSettingsAction($this->request);
+            if (!($response = $controller->focusAction($this->container->get('request')))) {
+                $response = $controller->focusSettingsAction($this->container->get('request'));
             }
 
             if ($response instanceof Response) {
@@ -58,4 +77,6 @@ class UserWizardSubscriber implements EventSubscriberInterface
             }
         }
     }
+
+
 }

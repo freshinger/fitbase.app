@@ -56,13 +56,14 @@
             </call>
         </service>
 
-        <!--<service id="fitbase.subscriber.user_wizard"-->
-                 <!--class="Fitbase\Bundle\UserBundle\Subscriber\UserWizardSubscriber" scope="request">-->
-            <!--<argument type="service" id="service_container"/>-->
-            <!--<argument type="service" id="request"/>-->
-            <!--<argument type="service" id="entity_manager"/>-->
-            <!--<tag name="kernel.event_subscriber"/>-->
-        <!--</service>-->
+        <service id="fitbase.subscriber.user_wizard"
+                 class="Fitbase\Bundle\UserBundle\Subscriber\UserWizardSubscriber">
+            <argument type="service" id="entity_manager"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
 
         <service id="fitbase.subscriber.user_wizard_done" class="Fitbase\Bundle\UserBundle\Subscriber\UserWizardDoneSubscriber">
             <argument type="service" id="entity_manager"/>
