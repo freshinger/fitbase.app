@@ -61,12 +61,12 @@ class PictureController extends Controller
             $draw->line(0, $height / 2, $width, $height / 2);
             $imagick->drawImage($draw);
 
-            $draw = new \ImagickDraw();
-            $draw->setFillColor('#909090');
-            $draw->annotation(5, 15, "X,Y");
-            $draw->annotation(5 + $width / 2, 15, "Y, Z");
-            $draw->annotation(5, 15 + $height / 2, "X, Z");
-            $imagick->drawImage($draw);
+//            $draw = new \ImagickDraw();
+//            $draw->setFillColor('#909090');
+//            $draw->annotation(5, 15, "X,Y");
+//            $draw->annotation(5 + $width / 2, 15, "Y, Z");
+//            $draw->annotation(5, 15 + $height / 2, "X, Z");
+//            $imagick->drawImage($draw);
 
 
             $xMax = $userState->getMaxXCoordinate();
