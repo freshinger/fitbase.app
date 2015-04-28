@@ -596,7 +596,7 @@ class UserState
 
         if (($coordinates = $this->getCoordinates())) {
             foreach ($coordinates as $set) {
-                list($x, $y) = $set;
+                list($x, $y, $z) = $set;
                 $minX = (is_null($minX) ? $x : ($x < $minX ? $x : $minX));
             }
         }
@@ -614,7 +614,7 @@ class UserState
 
         if (($coordinates = $this->getCoordinates())) {
             foreach ($coordinates as $set) {
-                list($x, $y) = $set;
+                list($x, $y, $z) = $set;
                 $maxX = (is_null($maxX) ? $x : ($x > $maxX ? $x : $maxX));
             }
         }
@@ -632,7 +632,7 @@ class UserState
 
         if (($coordinates = $this->getCoordinates())) {
             foreach ($coordinates as $set) {
-                list($x, $y) = $set;
+                list($x, $y, $z) = $set;
                 $minY = (is_null($minY) ? $y : ($y < $minY ? $y : $minY));
             }
 
@@ -651,13 +651,51 @@ class UserState
 
         if (($coordinates = $this->getCoordinates())) {
             foreach ($coordinates as $set) {
-                list($x, $y) = $set;
+                list($x, $y, $z) = $set;
                 $maxY = (is_null($maxY) ? $y : ($y > $maxY ? $y : $maxY));
             }
         }
 
         return $maxY;
     }
+
+    /**
+     * Get min X coordinate
+     * @return null
+     */
+    public function getMaxZCoordinate()
+    {
+        $maxZ = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y, $z) = $set;
+                $maxZ = (is_null($maxZ) ? $z : ($z > $maxZ ? $z : $maxZ));
+            }
+        }
+
+        return $maxZ;
+    }
+
+    /**
+     * Get min Z coordinate
+     * @return null
+     */
+    public function getMinZCoordinate()
+    {
+        $minZ = null;
+
+        if (($coordinates = $this->getCoordinates())) {
+            foreach ($coordinates as $set) {
+                list($x, $y, $z) = $set;
+                $minZ = (is_null($minZ) ? $z : ($z < $minZ ? $z : $minZ));
+            }
+
+        }
+
+        return $minZ;
+    }
+
 
     /**
      * Get array with coordinates
@@ -668,53 +706,53 @@ class UserState
         $coordinates = array();
 
         if (($coordinate = $this->getHead())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
 
         if (($coordinate = $this->getShoulderCenter())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getShoulderRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getShoulderLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getElbowRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getElbowLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getHandRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getHandLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getCom())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getSpine())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getHipLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getHipRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getKneeLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getKneeRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getFootLeft())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         if (($coordinate = $this->getFootRight())) {
-            array_push($coordinates, array($coordinate->getX(), $coordinate->getY()));
+            array_push($coordinates, array($coordinate->getX(), $coordinate->getY(), $coordinate->getZ()));
         }
         return $coordinates;
     }
