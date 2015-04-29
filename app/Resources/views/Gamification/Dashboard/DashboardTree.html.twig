@@ -4,8 +4,17 @@
             {{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}
         </h4>
 
-        <img title="{{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}"
-             src="{{ path('gamification_picture_tree') }}">
+        <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+            <div class="owl-wrapper-outer autoHeight">
+                <div class="owl-wrapper" style="left: 0px; display: block;">
+                    <li>
+
+                        <img title="{{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}"
+                             src="{{ path('gamification_picture_tree') }}">
+                    </li>
+                </div>
+            </div>
+        </ul>
 
     </div>
     <div class="panel-footer">

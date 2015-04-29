@@ -5,32 +5,30 @@
     {% block exercise_list_item %}
         <div class="panel-box">
 
-            <div class="titles">
+            <div class="titles title-image-bottom">
                 <h4>{{ exercise.name }}</h4>
             </div>
             <div class="post-item">
                 <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                     <div class="owl-wrapper-outer autoHeight">
                         <div class="owl-wrapper" style="left: 0px; display: block;">
-                            <div class="owl-item">
-                                <li>
-                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                        {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
-                                    </a>
+                            <li>
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
+                                </a>
 
-                                    <div class="info-single-carousel">
-                                        <p>
-                                            {% autoescape false %}
-                                                {{ exercise.description|raw|striptags|slice(0,150) }}...
-                                            {% endautoescape %}
+                                <div class="info-single-carousel">
+                                    <p>
+                                        {% autoescape false %}
+                                        {{ exercise.description|raw|striptags|slice(0,150) }}...
+                                        {% endautoescape %}
 
-                                            <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </li>
-                            </div>
+                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                            {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
                         </div>
                     </div>
                 </ul>

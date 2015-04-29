@@ -13,17 +13,25 @@
             {% endif %}
         </h4>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            {% set icon = "/image/dashboard_ruecken.png" %}
-            {% if category is defined and category %}
-                {% if category.slug == "stress" %}
-                    {% set icon = "/image/dashboard_stress.png" %}
+
+
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
+
+                {% set icon = "/image/dashboard_ruecken.png" %}
+                {% if category is defined and category %}
+                    {% if category.slug == "stress" %}
+                        {% set icon = "/image/dashboard_stress.png" %}
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            <img src="{{ icon }}" width="718px;" class="img-responsive">
+                <img src="{{ icon }}" width="718px;" class="img-responsive">
+
+            </div>
         </div>
-    </div>
+    </ul>
+
+
     <div class="panel-footer">
         {% if category is defined and category %}
             {% if category.slug == "stress" %}

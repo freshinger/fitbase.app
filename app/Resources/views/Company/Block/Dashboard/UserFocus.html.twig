@@ -3,64 +3,70 @@
     <div class="titles">
         <h4>{{ 'Aktivität'|trans({}, 'FitbaseUserBundle') }}</h4>
     </div>
-    <div class="row">
-        <div class="col-md-12">
 
-            <div id="statistic_user_focus">
-                <svg>
-                    <defs>
-                        <filter id='pieChartInsetShadow'>
-                            <feOffset dx='0' dy='0'/>
-                            <feGaussianBlur stdDeviation='3' result='offset-blur'/>
-                            <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
-                            <feFlood flood-color='black' flood-opacity='1' result='color'/>
-                            <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
-                            <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
-                        </filter>
-                        <filter id="pieChartDropShadow">
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                            <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
-                            <feMerge>
-                                <feMergeNode/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                </svg>
-            </div>
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
 
-            <script type="text/javascript">
-                $(function () {
+                <div id="statistic_user_focus">
 
-                    function color(index) {
-                        var colors = ["#a2d049", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
-                        return colors[index];
-                    }
+                    <svg class="img-responsive">
+                        <defs>
+                            <filter id='pieChartInsetShadow'>
+                                <feOffset dx='0' dy='0'/>
+                                <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                                <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                                <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                                <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                                <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                            </filter>
+                            <filter id="pieChartDropShadow">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                                <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                                <feMerge>
+                                    <feMergeNode/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                    </svg>
+                </div>
 
-                    var data = [];
-                    {% if categories is defined and categories %}
-                    {% for category in categories %}
-                    data.push({
-                        'index': {{ loop.index }},
-                        'color': color({{ loop.index }}-1),
-                        'label': '{{ category }} ({{ category.countUser }})',
-                        'value': '{{ category.countUser }}'
-                    });
-                    {% endfor %}
-                    var statisticUserFocusPie = $('#statistic_user_focus');
-                    if (statisticUserFocusPie.length) {
-                        statisticUserFocusPie.pie(data, {
-                            width: 600,
-                            height: 300,
-                            radius_inner: 46,
+
+                <script type="text/javascript">
+                    $(function () {
+
+                        function color(index) {
+                            var colors = ["#a2d049", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
+                            return colors[index];
+                        }
+
+                        var data = [];
+                        {% if categories is defined and categories %}
+                        {% for category in categories %}
+                        data.push({
+                            'index': {{ loop.index }},
+                            'color': color({{ loop.index }}-1),
+                            'label': '{{ category }} ({{ category.countUser }})',
+                            'value': '{{ category.countUser }}'
                         });
-                    }
-                    {% endif %}
+                        {% endfor %}
+                        var statisticUserFocusPie = $('#statistic_user_focus');
+                        if (statisticUserFocusPie.length) {
+                            statisticUserFocusPie.pie(data, {
+                                width: 400,
+                                height: 300,
+                                radius_inner: 46,
+                            });
+                        }
+                        {% endif %}
 
-                });
-            </script>
-
+                    });
+                </script>
+            </div>
         </div>
-    </div>
+    </ul>
+
+
 </div>
 <!-- End Content Text-->

@@ -9,26 +9,24 @@
                 <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                     <div class="owl-wrapper-outer autoHeight">
                         <div class="owl-wrapper" style="left: 0px; display: block;">
-                            <div class="owl-item">
-                                <li>
-                                    <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
-                                        <img class="img-responsive"
-                                             src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">
-                                    </a>
+                            <li>
+                                <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
+                                    <img class="img-responsive"
+                                         src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">
+                                </a>
 
-                                    <div class="info-single-carousel">
-                                        <p>
-                                            {% autoescape false %}
-                                                {{ weeklytask.content|raw|striptags|slice(0,140) }}...
-                                            {% endautoescape %}
+                                <div class="info-single-carousel">
+                                    <p>
+                                        {% autoescape false %}
+                                        {{ weeklytask.content|raw|striptags|slice(0,140) }}...
+                                        {% endautoescape %}
 
-                                            <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
-                                                {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </li>
-                            </div>
+                                        <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
+                                            {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                        </a>
+                                    </p>
+                                </div>
+                            </li>
                         </div>
                     </div>
                 </ul>

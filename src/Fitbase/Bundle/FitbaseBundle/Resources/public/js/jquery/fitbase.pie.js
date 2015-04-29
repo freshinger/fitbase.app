@@ -122,7 +122,7 @@
                 .enter()
                 .append("g")
                 .attr('transform', function (d) {
-                    return 'translate(' + 10 + ',' + (d.index * 25) + ')';
+                    return 'translate(' + 20 + ',' + (d.index * 25) + ')';
                 });
 
             elements.append("rect")
