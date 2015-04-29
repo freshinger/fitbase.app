@@ -18,7 +18,10 @@
 
                                     <div class="info-single-carousel">
                                         <p>
-                                            {{ weeklytask.content|raw|striptags|slice(0,120) }}...
+                                            {% autoescape false %}
+                                                {{ weeklytask.content|raw|striptags|slice(0,140) }}...
+                                            {% endautoescape %}
+
                                             <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
                                                 {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
                                             </a>

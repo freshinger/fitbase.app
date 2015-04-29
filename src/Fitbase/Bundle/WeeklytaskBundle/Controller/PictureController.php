@@ -46,7 +46,7 @@ class PictureController extends Controller
 
                                     $imagick2 = new \Imagick();
                                     $imagick2->readImageBlob(\file_get_contents($path));
-                                    $imagick2->scaleImage(360, 0);
+                                    $imagick2->adaptiveResizeImage(718, 436);
 
                                     return new Response($imagick2, 200, array(
                                         'Content-Type' => 'image/png',
@@ -65,7 +65,7 @@ class PictureController extends Controller
 
                                     $imagick2 = new \Imagick();
                                     $imagick2->readImageBlob(\file_get_contents($root . $path));
-                                    $imagick2->scaleImage(360, 0);
+                                    $imagick2->adaptiveResizeImage(718, 436);
 
                                     return new Response($imagick2, 200, array(
                                         'Content-Type' => 'image/png',
@@ -85,7 +85,7 @@ class PictureController extends Controller
         $imagick = new \Imagick();
         $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
         $imagick->readImageBlob($this->renderView('Gamification/Picture/Forest.html.twig', array()));
-        $imagick->scaleImage(360, 0);
+        $imagick->adaptiveResizeImage(718, 436);
         $imagick->setImageFormat("png");
 
         return new Response($imagick, 200, array(
