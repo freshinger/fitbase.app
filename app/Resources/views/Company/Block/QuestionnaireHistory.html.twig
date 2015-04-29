@@ -44,47 +44,6 @@
                 </tbody>
             </table>
 
-            <div id="questionnaire-remove-dialog" title="Befragung löschen">
-                <p>Sind Sie sicher, dass Sie alle Ergebnisse löschen wollen?</p>
-            </div>
-
-
-            <script type="text/javascript">
-                $(function () {
-
-                    var containerDialog = $('#questionnaire-remove-dialog');
-                    if (containerDialog.is('div')) {
-                        containerDialog.dialog({
-                            autoOpen: false,
-                            resizable: false
-                        });
-                    }
-
-                    var container = $(".questionnaire-remove");
-                    container.each(function (index, element) {
-
-                        var containerLinkRemove = $(element);
-                        containerLinkRemove.click(function (event) {
-                            containerDialog.dialog({
-                                position: {my: "right", at: "center", of: containerLinkRemove},
-                                buttons: {
-                                    'Ja': function () {
-                                        containerDialog.dialog("close");
-                                        $.redirect(containerLinkRemove.attr('href'));
-                                    },
-                                    'Nein': function () {
-                                        containerDialog.dialog("close");
-                                    }
-                                }
-                            });
-                            containerDialog.dialog('open');
-                            return false;
-                        });
-                    });
-                });
-            </script>
-
-
         </div>
     </div>
 </div>

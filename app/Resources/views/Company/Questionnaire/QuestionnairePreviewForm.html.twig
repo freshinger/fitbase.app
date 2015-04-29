@@ -47,11 +47,11 @@
 
 {% block text_labeled_widget %}
     {% spaceless %}
-        <div class="col-xs-4">
+        <div class="col-md-4">
             {% set type = type|default('text') %}
             {{ block('form_widget_simple') }}
         </div>
-        <label style="padding-left: 0px; padding-top: 7px;" class="col-xs-8 control-label">{{ text }}</label>
+        <label style="padding-left: 0px; padding-top: 7px;" class="col-md-8 control-label">{{ text }}</label>
     {% endspaceless %}
 {% endblock text_labeled_widget %}
 
@@ -61,7 +61,6 @@
     {{ label|striptags }}
     </label>
 {%- endblock radio_widget %}
-
 
 {% block checkbox_widget -%}
     <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
@@ -78,13 +77,9 @@
 
 {% block form_rows %}
     {% spaceless %}
-        <table class="table table-hover">
-            <tbody>
-            {% for child in form %}
-                {{ form_row(child) }}
-            {% endfor %}
-            </tbody>
-        </table>
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
     {% endspaceless %}
 {% endblock form_rows %}
 
@@ -111,13 +106,13 @@
 
 {% block questionnaire_slider_widget %}
     {% spaceless %}
-        <tr>
-            <td class="col-xs-8">
+        <div class="row">
+            <div class="col-md-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
-            </td>
-            <td class="col-xs-4">
+            </div>
+            <div class="col-md-4">
                 <div id="{{ id }}"></div>
                 {% set type = type|default('hidden') %}
                 {{ block('form_widget_simple') }}
@@ -133,78 +128,78 @@
                         });
                     });
                 </script>
-            </td>
-        </tr>
+            </div>
+        </div>
     {% endspaceless %}
 {% endblock questionnaire_slider_widget %}
 
 
 {% block questionnaire_checkbox_widget %}
     {% spaceless %}
-        <tr>
-            <td class="col-xs-8">
+        <div class="row">
+            <div class="col-md-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
-            </td>
-            <td class="col-xs-4">
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     {% endspaceless %}
 {% endblock questionnaire_checkbox_widget %}
 
 {% block questionnaire_radiobutton_widget %}
     {% spaceless %}
-        <tr>
-            <td class="col-xs-8">
+        <div class="row">
+            <div class="col-md-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
-            </td>
-            <td class="col-xs-4">
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     {% endspaceless %}
 {% endblock questionnaire_radiobutton_widget %}
 
 {% block questionnaire_selectbox_widget %}
     {% spaceless %}
-        <tr>
-            <td class="col-xs-8">
+        <div class="row">
+            <div class="col-md-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
                 {{ description }}
-            </td>
-            <td class="col-xs-4">
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     {% endspaceless %}
 {% endblock questionnaire_selectbox_widget %}
 
 
 {% block questionnaire_text_widget %}
     {% spaceless %}
-        <tr>
-            <td class="col-xs-4">
+        <div class="row">
+            <div class="col-md-8">
                 <h4>{{ label|raw }}</h4>
                 {{ form_errors(form) }}
 
                 {{ description }}
-            </td>
-            <td class="col-xs-8">
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     {{ form_widget(form) }}
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     {% endspaceless %}
 {% endblock questionnaire_text_widget %}

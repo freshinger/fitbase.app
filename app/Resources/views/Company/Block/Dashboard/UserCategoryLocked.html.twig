@@ -14,14 +14,14 @@
         </h4>
     </div>
     <div class="row">
-        <div class="col-md-12" style="height: 290px;">
+        <div class="col-md-12">
             {% set icon = "/image/dashboard_ruecken.png" %}
             {% if category is defined and category %}
                 {% if category.slug == "stress" %}
                     {% set icon = "/image/dashboard_stress.png" %}
                 {% endif %}
             {% endif %}
-            <img src="{{ icon }}">
+            <img src="{{ icon }}" width="718px;" class="img-responsive">
         </div>
     </div>
     <div class="panel-footer">
