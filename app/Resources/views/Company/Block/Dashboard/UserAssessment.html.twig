@@ -1,6 +1,6 @@
 <!-- Content Text-->
 <div class="panel-box">
-    <div class="titles">
+    <div class="titles title-image-bottom">
         <h4>{{ 'Bedarfsanalyse'|trans({}, 'FitbaseQuestionnaireBundle') }}</h4>
     </div>
 
@@ -9,7 +9,7 @@
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <div id="statistic_user_assessment">
-                    <svg id="pieChartSVG">
+                    <svg id="pieChartSVG" class="img-responsive">
                         <defs>
                             <filter id='pieChartInsetShadow'>
                                 <feOffset dx='0' dy='0'/>
@@ -35,10 +35,10 @@
         </div>
     </ul>
 
-    <div class="panel-footer" style="min-height: 110px;">
+    <div class="panel-footer">
         {% if questionnaire is defined and questionnaire %}
             <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
-               class="btn btn-default btn-block" style="margin-top: 25px">
+               class="btn btn-default btn-block" style="margin-top: 5px">
                 {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
             </a>
         {% endif %}
@@ -65,6 +65,7 @@
                         }
                     ],
                     {
+                        height: 400,
                         title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"
                     });
         }

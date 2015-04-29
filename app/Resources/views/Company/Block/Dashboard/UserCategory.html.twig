@@ -1,6 +1,6 @@
 <!-- Content Text-->
 <div class="panel-box">
-    <div class="titles">
+    <div class="titles title-image-bottom">
         <h4 class="short hue">
             {% if category.slug == "stress" %}
                 {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
@@ -12,7 +12,7 @@
         </h4>
     </div>
 
-    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block; min-height: 252px">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
 
@@ -54,7 +54,7 @@
         </div>
     </ul>
 
-    <div class="panel-footer">
+    <div class="panel-footer" style="min-height: 110px;">
         {% if category.slug == "stress" %}
             <p>Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus.</p>
         {% elseif category.slug == "ruecken" %}
