@@ -3,15 +3,15 @@
 
 {% block content_category %}
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-md-9">
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise_random' }, { 'category': category }) }}
         </div>
 
         {% if exercises is defined %}
-            <div class="col-xs-3">
+            <div class="col-md-3">
                 {% for exercise in exercises|slice(0, 3) %}
                     <div class="panel-box">
-                        <div class="titles">
+                        <div class="titles title-image-bottom">
                             <h4>{{ exercise.name }}</h4>
                         </div>
                         <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
@@ -19,7 +19,7 @@
                                 <div class="owl-wrapper" style="left: 0px; display: block;">
                                     <li>
                                         <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                            {% thumbnail exercise.image, 'preview'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                            {% thumbnail exercise.image, 'original'  with { 'title': null, 'class': 'img-responsive' } %}
                                         </a>
 
                                         <div class="info-single-carousel">

@@ -13,9 +13,9 @@
         {% if exercises is defined and exercises %}
             <div class="row">
                 {% for exercise in exercises %}
-                    <div class="col-xs-4">
+                    <div class="col-md-4">
                         <div class="panel-box" style="min-height: 410px;">
-                            <div class="titles">
+                            <div class="titles title-image-bottom">
                                 <h4>{{ exercise.name }}</h4>
                             </div>
                             <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
@@ -24,7 +24,7 @@
                                         <div class="owl-item">
                                             <li>
                                                 <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                    {% thumbnail exercise.image, 'preview'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                                    {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
                                                 </a>
 
                                                 <div class="info-single-carousel">

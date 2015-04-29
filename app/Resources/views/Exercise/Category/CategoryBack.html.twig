@@ -17,18 +17,19 @@
                         <!-- blog post-->
                         <ul class="events-carousel padding-top owl-carousel owl-theme" id="events-carousel"
                             style="opacity: 1; display: block;">
+
                             <!-- Item blog post -->
                             <div class="owl-wrapper-outer">
                                 <div class="owl-wrapper"
-                                     style="width: 2900px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+                                     style="left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
 
                                     {% for category in categories|reverse %}
                                         {% if category.parent is not null %}
-                                            <div class="owl-item" style="width: 290px;">
+                                            <div class="owl-item" style="width: 25%;">
                                                 <li>
                                                     <div class="header-post">
                                                         <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                            {% thumbnail category.media, 'preview' with { 'title': null } %}
+                                                            {% thumbnail category.media, 'original' with { 'title': null } %}
                                                         </a>
                                                     </div>
                                                     <div class="info-post">
@@ -47,6 +48,7 @@
 
                                 </div>
                             </div>
+
                         </ul>
                         <!-- End blog post-->
                     </div>
@@ -65,7 +67,7 @@
     <div clas="row">
         {% for category in categories|reverse %}
             {% if category.parent is not null %}
-                <div class="col-xs-6">
+                <div class="col-md-6">
 
                     <div class="panel-box">
                         <div class="titles">
@@ -77,7 +79,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="img-hover">
-                                            {% thumbnail exercise.image, 'thumbnail'  with { 'title': null, 'class': 'img-responsive' } %}
+                                            {% thumbnail exercise.image, 'original'  with { 'title': null, 'class': 'img-responsive' } %}
 
                                             <div class="overlay">
                                                 <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">+</a>
@@ -93,7 +95,7 @@
 
                                         <p>
                                             {% autoescape false %}
-                                                {{ exercise.description|raw|striptags|slice(0,140) }}...
+                                            {{ exercise.description|raw|striptags|slice(0,140) }}...
                                             {% endautoescape %}
 
                                             <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">

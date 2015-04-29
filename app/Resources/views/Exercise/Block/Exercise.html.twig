@@ -1,7 +1,7 @@
 {% if exercise is defined and exercise %}
 
     <div class="panel-box">
-        <div class="titles">
+        <div class="titles title-image-bottom">
             <h4>
                 {{ exercise.name }}
                 <span style="float: right;">
@@ -13,7 +13,7 @@
         <div class="row">
 
             {% if (exercise.webm is defined and exercise.webm) or (exercise.gallery.galleryHasMedias is defined and exercise.gallery.galleryHasMedias) %}
-                <div class="col-xs-7">
+                <div class="col-md-7">
 
                     {% block content_video %}
                         {% if exercise is defined and exercise %}
@@ -83,13 +83,13 @@
                     {% endblock %}
 
                 </div>
-                <div class="col-xs-5">
+                <div class="col-md-5">
                     {% if exercise is defined and exercise %}
                         {{ exercise.description|raw }}
                     {% endif %}
                 </div>
             {% else %}
-                <div class="col-xs-12">
+                <div class="col-md-12">
                     {% if exercise is defined and exercise %}
                         {{ exercise.description|raw }}
                     {% endif %}

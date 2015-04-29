@@ -15,12 +15,15 @@
                             <div class="owl-item">
                                 <li>
                                     <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                        {% thumbnail exercise.image, 'thumbnail'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                        {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
                                     </a>
 
                                     <div class="info-single-carousel">
                                         <p>
-                                            {{ exercise.description|raw|striptags|slice(0,100) }}...
+                                            {% autoescape false %}
+                                                {{ exercise.description|raw|striptags|slice(0,150) }}...
+                                            {% endautoescape %}
+
                                             <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
                                                 {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
                                             </a>

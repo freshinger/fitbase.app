@@ -21,15 +21,15 @@
                             <!-- Item blog post -->
                             <div class="owl-wrapper-outer">
                                 <div class="owl-wrapper"
-                                     style="width: 2900px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
+                                     style="left: 0px; display: block; transform: translate3d(0px, 0px, 0px);">
 
                                     {% for category in categories|reverse %}
                                         {% if category.parent is not null %}
-                                            <div class="owl-item" style="width: 290px;">
+                                            <div class="owl-item" style="width: 25%;">
                                                 <li>
                                                     <div class="header-post">
                                                         <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                            {% thumbnail category.media, 'preview' with { 'title': null } %}
+                                                            {% thumbnail category.media, 'original' with { 'title': null } %}
                                                         </a>
                                                     </div>
                                                     <div class="info-post">
@@ -61,15 +61,13 @@
 {% endblock content_top %}
 
 
-
-
 {% block content_category %}
     {% if exercises is defined and exercises %}
         <div class="row">
             {% for exercise in exercises %}
-                <div class="col-xs-4">
+                <div class="col-md-4">
                     <div class="panel-box" style="min-height: 410px;">
-                        <div class="titles">
+                        <div class="titles title-image-bottom">
                             <h4>{{ exercise.name }}</h4>
                         </div>
                         <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
@@ -78,13 +76,13 @@
                                     <div class="owl-item">
                                         <li>
                                             <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
-                                                {% thumbnail exercise.image, 'preview'  with {'width': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                                {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
                                             </a>
 
                                             <div class="info-single-carousel">
                                                 <p>
                                                     {% autoescape false %}
-                                                        {{ exercise.description|raw|striptags|slice(0,180) }}...
+                                                    {{ exercise.description|raw|striptags|slice(0,180) }}...
                                                     {% endautoescape %}
 
                                                     <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">

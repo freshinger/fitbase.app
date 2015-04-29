@@ -5,21 +5,30 @@
     </div>
 
 
-    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block; height: 430px;">
+    <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <div class="owl-item">
                     <li>
-                        <img src="{{ path('fitbase_knowledge_picture') }}">
+                        <img class="img-responsive" src="{{ path('fitbase_knowledge_picture') }}">
 
-                        <div class="info-single-carousel">
-                            <p>
-                                {{ 'coming soon... Rezept der Woche'|trans({}, 'FitbaseGamificationBundle') }}
-                            </p>
-                        </div>
                     </li>
                 </div>
             </div>
         </div>
     </ul>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>
+                        {{ 'coming soon... Rezept der Woche'|trans({}, 'FitbaseGamificationBundle') }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

@@ -16,6 +16,9 @@
         <default key="_controller">FitbaseGamificationBundle:Picture:forest</default>
     </route>
 
+    <route id="gamification_picture_statistic" path="/picture/statistic">
+        <default key="_controller">FitbaseGamificationBundle:Picture:statistic</default>
+    </route>
 
     <route id="gamification_health_chat" path="/health/chat">
         <default key="_controller">FitbaseGamificationBundle:Gamification:healthChat</default>

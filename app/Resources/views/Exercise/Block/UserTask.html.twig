@@ -15,7 +15,7 @@
     {% endif %}
 
     {% if (mp4 or webm) or  medias %}
-        <div class="col-xs-7">
+        <div class="col-md-7">
 
             <div class="panel-box">
                 <div class="titles">
@@ -152,7 +152,7 @@
         </div>
     {% endif %}
 
-    <div class="{% if (mp4 or webm) or  medias %}col-xs-5{% else %}col-xs-9{% endif %}">
+    <div class="{% if (mp4 or webm) or  medias %}col-md-5{% else %}col-md-9{% endif %}">
 
         {% block exercise_text %}
             <div class="panel-box" style="min-height: 410px;">
@@ -181,7 +181,7 @@
     </div>
 
     {% if not mp4 and not webm and not medias %}
-        <div class="col-xs-3">
+        <div class="col-md-3">
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise_collection' }, {
             'categories': exercise.categories
             }) }}
