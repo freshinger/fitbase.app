@@ -10,28 +10,37 @@
 // Email: support@iwthemes.com
 // Copyright: (C) 2014
 
-$(document).ready(function ($) {
+$(function ($) {
 
     'use strict';
 
-    //=================================== Twitter Feed  ===============================//
+    /**
+     * If twitter jquery-plugin defined
+     * and function exists, apply to
+     * twitter block and display feed
+     */
+    if ($.plugin('tweet')) {
+        $("#twitter").tweet({
+            modpath: 'js/twitter/index.php',
+            username: "envato", // Change for Your Username
+            count: 5,
+            loading_text: "Loading tweets..."
+        });
+    }
 
-    //$("#twitter").tweet({
-    //    modpath: 'js/twitter/index.php',
-    //    username: "envato", // Change for Your Username
-    //    count: 5,
-    //    loading_text: "Loading tweets..."
-    //});
-
-    //=================================== Flikr Feed  ========================================//
-
-    $('#flickr').jflickrfeed({
-        limit: 8, //Number of images to be displayed
-        qstrings: {
-            id: '31238496@N04'//Change this to any Flickr Set ID as you prefer in http://idgettr.com/
-        },
-        itemTemplate: '<li><a href="{{image_b}}" class="fancybox"><img src="{{image_s}}" alt="{{title}}" /></a></li>'
-    });
+    /**
+     * if jflickrfeed plugin exists
+     * and function defined apply to flickr element
+     */
+    if ($.plugin('jflickrfeed')) {
+        $('#flickr').jflickrfeed({
+            limit: 8, //Number of images to be displayed
+            qstrings: {
+                id: '31238496@N04'//Change this to any Flickr Set ID as you prefer in http://idgettr.com/
+            },
+            itemTemplate: '<li><a href="{{image_b}}" class="fancybox"><img src="{{image_s}}" alt="{{title}}" /></a></li>'
+        });
+    }
 
     //=================================== Google Map  ==============================//
 
@@ -90,51 +99,89 @@ $(document).ready(function ($) {
         zoom: 5
     };
 
-    //$("#map").gMap(mapSettings);
+    /**
+     * if gMap plugin exists and function defined
+     * apply to map element
+     */
+    if ($.plugin('gMap')) {
+        $("#map").gMap(mapSettings);
+    }
 
-    //=================================== Nav Responsive =============================//
+    /**
+     * If sticky plugin defined and
+     * function exists, apply to main menu
+     */
+    if ($.plugin('sticky')) {
+        $(".mainmenu").sticky({topSpacing: 0});
+    }
 
-    $('#menu').tinyNav({
-        active: 'selected'
-    });
-
-    //=================================== Sticky nav ===================================//
-
-    $(".mainmenu").sticky({topSpacing: 0});
 
     //=================================== Nav Superfish ===============================//
 
-    //$('ul.sf-menu').superfish();
+    /**
+     * If superfish plugin loaded
+     * and function exists, apply to
+     * superfish element
+     */
+    if ($.plugin('superfish')) {
+        $('ul.sf-menu').superfish();
+    }
 
-    //=================================== Counter  ==============================//
+    /**
+     * if tinyNav plugin exists
+     * and this function defined
+     * apply to menu
+     */
+    if ($.plugin('tinyNav')) {
+        $('#menu').tinyNav({
+            active: 'selected'
+        });
+    }
 
-    $('#event-one').countdown('2014/06/12', function (event) {
-        var $this = $(this).html(event.strftime(''
-        + '<span>%D <br> <small>days</small></span>  '
-        + '<span>%H <br> <small>hr</small> </span>  '
-        + '<span>%M <br> <small>min</small> </span>  '
-        + '<span>%S <br> <small>sec</small></span> '));
-    });
+    /**
+     * If counter plugin loaded
+     * and function exists
+     * apply to required counters
+     */
+    if ($.plugin('countdown')) {
 
-    $('#event-two').countdown('2014/09/10', function (event) {
-        var $this = $(this).html(event.strftime(''
-        + '<span>%D <br> <small>days</small></span>  '
-        + '<span>%H <br> <small>hr</small> </span>  '
-        + '<span>%M <br> <small>min</small> </span>  '
-        + '<span>%S <br> <small>sec</small></span> '));
-    });
-    $('#event-three').countdown('2014/12/24', function (event) {
-        var $this = $(this).html(event.strftime(''
-        + '<span>%D <br> <small>days</small></span>  '
-        + '<span>%H <br> <small>hr</small> </span>  '
-        + '<span>%M <br> <small>min</small> </span>  '
-        + '<span>%S <br> <small>sec</small></span> '));
-    });
+        $('#event-one').countdown('2014/06/12', function (event) {
+            var $this = $(this).html(event.strftime(''
+            + '<span>%D <br> <small>days</small></span>  '
+            + '<span>%H <br> <small>hr</small> </span>  '
+            + '<span>%M <br> <small>min</small> </span>  '
+            + '<span>%S <br> <small>sec</small></span> '));
+        });
+
+
+        $('#event-two').countdown('2014/09/10', function (event) {
+            var $this = $(this).html(event.strftime(''
+            + '<span>%D <br> <small>days</small></span>  '
+            + '<span>%H <br> <small>hr</small> </span>  '
+            + '<span>%M <br> <small>min</small> </span>  '
+            + '<span>%S <br> <small>sec</small></span> '));
+        });
+
+        $('#event-three').countdown('2014/12/24', function (event) {
+            var $this = $(this).html(event.strftime(''
+            + '<span>%D <br> <small>days</small></span>  '
+            + '<span>%H <br> <small>hr</small> </span>  '
+            + '<span>%M <br> <small>min</small> </span>  '
+            + '<span>%S <br> <small>sec</small></span> '));
+        });
+
+    }
+
 
     //=================================== Slide Services  ==============================//
 
 
-    if (typeof($.fn.owlCarousel) != "undefined") {
+    /**
+     * Check is carousel plugin exists
+     * and function has been defined
+     */
+    if ($.plugin('owlCarousel')) {
+
         $(".single-carousel").owlCarousel({
             items: 1,
             autoPlay: false,
@@ -220,88 +267,54 @@ $(document).ready(function ($) {
     }
 
 
-    //=================================== Subtmit Form  ===================================//
+    /**
+     * Check if fancybox plugin loaded
+     * and function exists
+     */
+    if ($.plugin('fancybox')) {
 
-    $('.form-theme').submit(function (event) {
-        event.preventDefault();
-        var url = $(this).attr('action');
-        var datos = $(this).serialize();
-        $.get(url, datos, function (resultado) {
-            $('.result').html(resultado);
+        $(".fancybox").fancybox({
+            openEffect: 'elastic',
+            closeEffect: 'elastic',
+
+            helpers: {
+                title: {
+                    type: 'inside'
+                }
+            }
         });
-    });
+    }
 
-    //=================================== Form Newslleter  =================================//
 
-    $('#newsletterForm').submit(function (event) {
-        event.preventDefault();
-        var url = $(this).attr('action');
-        var datos = $(this).serialize();
-        $.get(url, datos, function (resultado) {
-            $('#result-newsletter').html(resultado);
+    /**
+     * Check if tooltip plugin exists
+     * and function has been defined
+     */
+    if ($.plugin('tooltip')) {
+        $('.tooltip-hover').tooltip({
+            selector: "[data-toggle=tooltip]",
+            container: "body"
         });
-    });
+    }
 
-    //=================================== Ligbox  ===========================================//
-
-    //$(".fancybox").fancybox({
-    //    openEffect: 'elastic',
-    //    closeEffect: 'elastic',
-    //
-    //    helpers: {
-    //        title: {
-    //            type: 'inside'
-    //        }
-    //    }
-    //});
-
-    //=============================  tooltip demo ===========================================//
-
-    $('.tooltip-hover').tooltip({
-        selector: "[data-toggle=tooltip]",
-        container: "body"
-    });
+    /**
+     * If camera plugin exists,
+     * append to element
+     */
+    if ($.plugin('camera')) {
+        $('#slide').camera({
+            height: 'auto'
+        });
+    }
 
     //=================================== Totop  ============================================//
+
 
     $().UItoTop({
         scrollSpeed: 500,
         easingType: 'linear'
     });
 
-    //=================================== Portfolio Filters  ==============================//
-
-    $(window).load(function () {
-        var $container = $('.portfolioContainer');
-        $container.isotope({
-            filter: '*',
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-        });
-
-        $('.portfolioFilter a').click(function () {
-            $('.portfolioFilter .current').removeClass('current');
-            $(this).addClass('current');
-            var selector = $(this).attr('data-filter');
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                }
-            });
-            return false;
-        });
-    });
 
 });
 
-//=================================== Slide Home =====================================//
-
-//$('#slide').camera({
-//  height: 'auto'
-//});

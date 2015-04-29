@@ -36,7 +36,10 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('main', array_merge($options, array(
-            'childrenAttributes' => array('class' => 'sf-menu l_tinynav1 sf-js-enabled sf-arrows', 'id' => 'menu'),
+            'childrenAttributes' => array(
+                'id' => 'menu',
+                'class' => 'sf-menu sf-arrows sf-js-enabled fitbase-menu',
+            ),
         )));
 
         $menu->addChild('Startseite', array(
