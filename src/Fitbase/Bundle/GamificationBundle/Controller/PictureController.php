@@ -225,7 +225,7 @@ class PictureController extends Controller
                 $graph->ygrid->Show(false);
                 $graph->ygrid->SetFill(false);
 
-                $graph->xaxis->SetFont(FF_VERDANA, FS_NORMAL, 30);
+                $graph->xaxis->SetFont(FF_VERDANA, FS_NORMAL, 20);
                 $graph->xaxis->SetTickLabels($labels);
 
 
