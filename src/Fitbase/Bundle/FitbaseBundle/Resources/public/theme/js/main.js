@@ -244,16 +244,16 @@ $(document).ready(function ($) {
 
     //=================================== Ligbox  ===========================================//
 
-    $(".fancybox").fancybox({
-        openEffect: 'elastic',
-        closeEffect: 'elastic',
-
-        helpers: {
-            title: {
-                type: 'inside'
-            }
-        }
-    });
+    //$(".fancybox").fancybox({
+    //    openEffect: 'elastic',
+    //    closeEffect: 'elastic',
+    //
+    //    helpers: {
+    //        title: {
+    //            type: 'inside'
+    //        }
+    //    }
+    //});
 
     //=============================  tooltip demo ===========================================//
 
