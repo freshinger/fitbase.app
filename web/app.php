@@ -15,7 +15,7 @@ require_once __DIR__ . '/../app/AppKernel.php';
 
 $request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
 
-$kernel = new AppKernel('dev', true);
+$kernel = new AppKernel('prod', false);
 
 $response = $kernel->handle($request);
 $response->send();
