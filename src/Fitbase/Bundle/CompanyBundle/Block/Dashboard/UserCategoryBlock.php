@@ -12,6 +12,8 @@ use Application\Sonata\ClassificationBundle\Entity\Category;
 use Fitbase\Bundle\CompanyBundle\Block\AbstractUserLimitedBlock;
 use Fitbase\Bundle\CompanyBundle\Block\CompanyBlockInterface;
 use Fitbase\Bundle\CompanyBundle\Block\CompanyUserLimitedBlockAbstract;
+use Fitbase\Bundle\CompanyBundle\Block\Dashboard\DataTransformer\CategoryBackDescriptionTransformer;
+use Fitbase\Bundle\CompanyBundle\Block\Dashboard\DataTransformer\CategoryStressDescriptionTransformer;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -108,137 +110,18 @@ class UserCategoryBlock extends CompanyUserLimitedBlockAbstract implements Compa
     protected function getDescription($category, $percent)
     {
         if ($category instanceof Category) {
-            if ($category->getSlug() == 'ruecken') {
-                return $this->getDescriptionBack($percent);
-            }
-            if ($category->getSlug() == 'stress') {
-                return $this->getDescriptionStress($percent);
+
+            switch ($category->getSlug()) {
+                case 'ruecken':
+                    return (new CategoryBackDescriptionTransformer())
+                        ->transform($percent);
+                case 'stress';
+                    return (new CategoryStressDescriptionTransformer())
+                        ->transform($percent);
             }
         }
+
         return null;
-    }
-
-    /**
-     * Get description for back-category
-     * @param $percent
-     * @return string
-     */
-    protected function getDescriptionBack($percent)
-    {
-        $pointsMax = 4;
-        $pointsMin = 3.5;
-
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter ständig Rückenbeschwerden zu haben. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Rückengesundheit für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 3.5;
-        $pointsMin = 3;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter häufig bis sehr häufig Rückenbeschwerden zu haben. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Rückengesundheit für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 3;
-        $pointsMin = 2.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter häufig Rückenbeschwerden zu haben. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Rückengesundheit für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 2.5;
-        $pointsMin = 2;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter manchmal bis häufig Belastung durch Stress zu empfinden. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Rückengesundheit für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 2;
-        $pointsMin = 1.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter selten bis manchmal Rückenbeschwerden zu haben. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Rückengesundheit für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 1.5;
-        $pointsMin = 1;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter selten Belastung durch Rückenbeschwerden zu haben.";
-        }
-        $pointsMax = 1;
-        $pointsMin = 0.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter keine Belastung durch Rückenbeschwerden zu haben oder nur sehr selten.";
-        }
-
-
-        $pointsMax = 0.5;
-        $pointsMin = 0;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter keine Belastung durch Rückenbeschwerden zu haben.";
-        }
-    }
-
-    /**
-     * Get text descriptions for stress
-     * @param $percent
-     * @return string
-     */
-    protected function getDescriptionStress($percent)
-    {
-        $pointsMax = 4;
-        $pointsMin = 3.5;
-
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter ständig Belastung durch Stress zu empfinden. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Stressbewältigung für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 3.5;
-        $pointsMin = 3;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter häufig bis sehr häufig Belastung durch Stress zu empfinden. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Stressbewältigung für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 3;
-        $pointsMin = 2.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter häufig Belastung durch Stress zu empfinden. Sprechen " .
-            "Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Stressbewältigung für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 2.5;
-        $pointsMin = 2;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter manchmal bis häufig Belastung durch Stress zu empfinden. " .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Stressbewältigung für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 2;
-        $pointsMin = 1.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter selten bis manchmal Belastung durch Stress zu empfinden." .
-            "Sprechen Sie uns gerne an, um mehr über ergänzende Maßnahmen zur Stressbewältigung für Ihre Mitarbeiter zu erfahren.";
-        }
-
-        $pointsMax = 1.5;
-        $pointsMin = 1;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter selten Belastung durch Stress zu empfinden.";
-        }
-        $pointsMax = 1;
-        $pointsMin = 0.5;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter keine Belastung durch Stress zu empfinden oder nur sehr selten.";
-        }
-
-        $pointsMax = 0.5;
-        $pointsMin = 0;
-        if ((100 - ($pointsMin * 100 / 4)) > $percent and $percent >= (100 - ($pointsMax * 100 / 4))) {
-            return "In Ihrem Unternehmen scheinen die Mitarbeiter keine Belastung durch Stress zu empfinden.";
-        }
     }
 
     /**

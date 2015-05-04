@@ -1,6 +1,5 @@
 (function ($) {
 
-
     function Barometer(container, data, config) {
         this.init(container, data, config);
     }
@@ -201,14 +200,16 @@
          * @private
          */
         __drawBarometerText: function (self, container, data, config) {
+
+            console.info(data);
+
             var barometerText = container.append('g')
                 .attr('class', 'barometer-text');
 
-            barometerText.data(data.value)
-                .append('foreignObject')
-                .attr('x', config.width / 4)
-                .attr('y', 0)
-                .attr('width', config.width / 1.4)
+            barometerText.append('foreignObject')
+                .attr('x', config.width * 0.25)
+                .attr('y', config.width * 0.03)
+                .attr('width', config.width * 0.7)
                 .attr('height', config.height)
                 .append('xhtml:body')
                 .style('font-size', '0.9em')
