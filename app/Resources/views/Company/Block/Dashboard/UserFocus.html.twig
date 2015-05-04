@@ -10,7 +10,7 @@
 
                 <div id="statistic_user_focus">
 
-                    <svg>
+                    <svg id="pieChartSVG" class="img-responsive">
                         <defs>
                             <filter id='pieChartInsetShadow'>
                                 <feOffset dx='0' dy='0'/>
@@ -53,10 +53,7 @@
                         {% endfor %}
                         var statisticUserFocusPie = $('#statistic_user_focus');
                         if (statisticUserFocusPie.length) {
-                            statisticUserFocusPie.pie(data, {
-                                height: 300,
-                                radius_inner: 46
-                            });
+                            statisticUserFocusPie.pie(data, {});
                         }
                         {% endif %}
 

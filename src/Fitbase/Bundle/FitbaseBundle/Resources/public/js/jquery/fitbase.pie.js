@@ -14,11 +14,15 @@
 
             var config = $.extend({
                 width: container.get(0).clientWidth,
-                height: container.get(0).clientWidth * 0.65
+                height: container.get(0).clientWidth * 0.5
             }, options);
 
+
+            var radius = Math.min(config.width, config.height) * 0.35;
+
             $.extend(config, {
-                radius: Math.min(config.width, config.height) / 3.2
+                radius: radius,
+                radius_inner: radius * 0.55
             });
 
             var svg = d3.select(container.selector)
@@ -40,10 +44,13 @@
          */
         __renderPie: function (container, data, config) {
 
+            var position_x = config.width * 0.75;
+            var position_y = config.height * 0.5;
+
             var pie = container.append('g')
                 .attr('class', 'pieChart--diagramm')
                 .attr('filter', 'url(#pieChartInsetShadow)')
-                .attr('transform', 'translate(' + config.width / 1.4 + ',' + config.height / 2 + ')');
+                .attr('transform', 'translate(' + position_x + ',' + position_y + ')');
 
             var pieData = d3.layout.pie()
                 .value(function (d) {
@@ -71,6 +78,7 @@
                 .transition()
                 .duration(config.duration)
                 .attrTween('d', function (d) {
+
                     var interpolate = d3.interpolate(this._current, d);
                     this._current = interpolate(0);
 
@@ -89,8 +97,7 @@
                 .transition()
                 .duration(config.duration)
                 .delay(config.delay)
-                .attr('r', config.radius - (config.radius_inner * 100 / config.radius));
-
+                .attr('r', config.radius_inner);
 
             centerContainer.append('circle')
                 .attr('id', 'pieChart-clippy')
@@ -99,7 +106,7 @@
                 .transition()
                 .duration(config.duration)
                 .delay(config.delay)
-                .attr('r', config.radius - ((config.radius_inner + 5) * 100 / config.radius))
+                .attr('r', config.radius_inner - (config.height * 0.02))
                 .attr('fill', '#fff');
         },
 
@@ -113,8 +120,12 @@
          */
         __renderLabels: function (container, data, config) {
 
-            var pieLabels = container.append('g').attr('class', 'pieChart--labels')
-                .attr('transform', 'translate(0,' + ((config.height / 2) - config.radius) + ')');
+            var position_x = config.width * 0.1;
+            var position_y = config.height * 0.1;
+
+            var pieLabels = container.append('g')
+                .attr('class', 'pieChart--labels')
+                .attr('transform', 'translate(' + position_x + ',' + position_y + ')');
 
             var elements = pieLabels
                 .selectAll(".pieChart--labels")
@@ -122,19 +133,23 @@
                 .enter()
                 .append("g")
                 .attr('transform', function (d) {
-                    return 'translate(' + 20 + ',' + (d.index * 25) + ')';
+                    return 'translate(0,' + (d.index * (config.height * 0.08)) + ')';
                 });
 
             elements.append("rect")
                 .attr('fill', function (d) {
                     return d.color;
                 })
-                .attr('x', '0').attr('y', '0')
-                .attr('width', '0').attr('height', '0')
+                .attr('x', '0')
+                .attr('y', '0')
+                .attr('width', '0')
+                .attr('height', '0')
                 .transition()
                 .duration(config.duration)
-                .attr('x', '-10').attr('y', '-15')
-                .attr('width', '18').attr('height', '18');
+                .attr('x', -(config.width * 0.03))
+                .attr('y', -(config.width * 0.02))
+                .attr('width', config.width * 0.03)
+                .attr('height', config.width * 0.03);
 
             elements.append("text")
                 .attr('x', '0')
@@ -143,7 +158,7 @@
                 })
                 .transition()
                 .duration(config.duration)
-                .attr('x', '20');
+                .attr('x', (config.width * 0.01));
         }
     });
 
@@ -152,8 +167,8 @@
 
         return new Pie($(this), data, $.extend({
             duration: 1500,
-            delay: 500,
-            radius_inner: 50
+            delay: 500
+            //radius_inner: 50
         }, config));
     };
 
