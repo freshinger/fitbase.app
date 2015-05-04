@@ -108,6 +108,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
             ->add('company')
             ->add('questionnaire')
             ->add('user')
+            ->add('email')
             ->add('categories')
             ->add('duration')
             ->add('processed')
@@ -130,6 +131,7 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
             ->add('code')
             ->add('company')
             ->add('duration')
+            ->add('email')
             ->add('date');
     }
 
