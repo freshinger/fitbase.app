@@ -77,7 +77,7 @@ class UserCategoryBlock extends CompanyUserLimitedBlockAbstract implements Compa
         return $this->renderPrivateResponse($blockContext->getSetting('template_default'), array(
             'category' => $category,
             'percent' => $percent,
-            'description' => $this->getDescription($category, $percent),
+            'description' => $this->getDescription($category, 100 - $percent),
         ));
     }
 
