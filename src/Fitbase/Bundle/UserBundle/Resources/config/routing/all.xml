@@ -10,5 +10,9 @@
         <default key="company"></default>
     </route>
 
+    <route id="actioncode_invite" pattern="/invite/code/{code}">
+        <default key="_controller">FitbaseUserBundle:Registration:invite</default>
+        <default key="code"></default>
+    </route>
 
 </routes>

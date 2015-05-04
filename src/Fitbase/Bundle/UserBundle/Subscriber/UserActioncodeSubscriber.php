@@ -6,6 +6,7 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserSingleSignOnEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
@@ -30,48 +31,18 @@ class UserActioncodeSubscriber extends ContainerAware implements EventSubscriber
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.request' => array('onKernelRequestEvent', -128),
         );
     }
 
     /**
-     * Check for sign in request and autosignon when found
-     * @param GetResponseEvent $event
+     * Invite user
+     * @param UserEvent $event
      */
-    public function onKernelRequestEvent(GetResponseEvent $event)
+    public function onUserInviteEvent(UserEvent $event)
     {
-        if (($request = $event->getRequest())) {
+        if (($user = $event->getEntity())) {
 
-//            if (($singlesignon = $request->get('sign'))) {
-//
-//                $entityManager = $this->container->get('entity_manager');
-//                $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\UserBundle\Entity\UserSingleSignOn');
-//                if (($userSingleSignOn = $repositoryExerciseUser->findOneByCodeAndNotProcessed($singlesignon))) {
-//                    if (($user = $userSingleSignOn->getUser())) {
-//
-//                        $datetime = $this->container->get('datetime');
-//                        $userSingleSignOn->setProcessedDate($datetime->getDateTime('now'));
-//
-//                        if (($date = $userSingleSignOn->getDate())) {
-//                            $date->modify('+1 week');
-//                        }
-//
-//                        if ($datetime->getDateTime('now') >= $date) {
-//                            $userSingleSignOn->setProcessed(1);
-//                        }
-//
-//                        $this->container->get('entity_manager')->persist($userSingleSignOn);
-//                        $this->container->get('entity_manager')->flush($userSingleSignOn);
-//
-//                        //TODO: do not process disabled and inactive users
-//                        if (!$userSingleSignOn->getProcessed()) {
-//                            $token = new UsernamePasswordToken($user, null, 'admin', $user->getRoles());
-//                            $this->container->get('security.context')->setToken($token);
-//                        }
-//
-//                    }
-//                }
-//            }
+
         }
     }
 }

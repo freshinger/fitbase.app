@@ -1,0 +1,54 @@
+{% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% for error in errors %}
+            <div class="alert alert-danger">
+                {{ error.message }}
+            </div>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+
+{%- block form_widget_compound -%}
+
+    <div {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                {{ "General"|trans({}, 'SonataAdminBundle') }}
+                            </h4>
+                        </div>
+                        <div class="box-body">
+                            <div class="sonata-ba-collapsed-fields">
+
+                                {{- block('form_rows') -}}
+                                {{- form_rest(form) -}}
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {%- block buttons -%}
+            <div class="well well-small form-actions">
+                <button type="submit" class="btn btn-success" name="btn_update"><i
+                            class="fa fa-save"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}
+                </button>
+            </div>
+        {%- endblock buttons -%}
+    </div>
+{%- endblock form_widget_compound -%}
+
+

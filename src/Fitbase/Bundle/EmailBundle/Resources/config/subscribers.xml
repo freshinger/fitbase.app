@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
         <service id="fitbase.subscriber.email.user" class="Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber">
@@ -10,6 +10,17 @@
             <argument type="service" id="translator"/>
             <tag name="kernel.event_subscriber"/>
         </service>
+
+        <service id="fitbase.subscriber.email.user_actioncode" class="Fitbase\Bundle\EmailBundle\Subscriber\UserActioncodeSubscriber">
+            <argument type="service" id="mail"/>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
 
         <service id="fitbase.subscriber.email.exercise_user" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
             <argument type="service" id="mail"/>

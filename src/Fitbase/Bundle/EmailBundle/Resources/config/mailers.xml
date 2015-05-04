@@ -19,7 +19,7 @@
             <argument type="service" id="logger"/>
         </service>
 
-        <service id="mail" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerBase">
+        <service id="mail" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerUser">
             <argument type="service" id="kernel"/>
             <argument type="service" id="mailer"/>
             <argument type="service" id="logger"/>

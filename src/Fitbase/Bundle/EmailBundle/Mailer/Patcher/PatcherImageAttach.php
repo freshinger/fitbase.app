@@ -31,7 +31,7 @@ class PatcherImageAttach implements SwiftMessagePatcherInterface
      * @param \Swift_Message $message
      * @return mixed
      */
-    public function patch(User $user, \Swift_Message $message)
+    public function patch(User $user = null, \Swift_Message $message)
     {
         \phpQuery::newDocumentHTML($message->getBody());
 
@@ -68,7 +68,7 @@ class PatcherImageAttach implements SwiftMessagePatcherInterface
      * @param $src
      * @return null
      */
-    protected function patchSrc($user, $src)
+    protected function patchSrc(User $user = null, $src)
     {
         if (($parts = parse_url($src))) {
             if (!array_key_exists('scheme', $parts)) {

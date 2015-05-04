@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * @author Christophe Coevoet <stof@notk.org>
  */
-class FitbaseMailerBase extends FitbaseMailerAbstract
+class FitbaseMailerUser extends FitbaseMailerAbstract
 {
 
 }

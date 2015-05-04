@@ -18,4 +18,9 @@
         <default key="_controller">FitbaseUserBundle:AdminUser:import</default>
     </route>
 
+
+    <route id="sonata_admin_invite_user" pattern="/invite/user">
+        <default key="_controller">FitbaseUserBundle:AdminUser:invite</default>
+    </route>
+
 </routes>

@@ -38,6 +38,30 @@ abstract class FitbaseMailerAbstract extends ContainerAware
     }
 
     /**
+     * Build a message
+     * @param $email
+     * @param $title
+     * @param $content
+     * @param array $from
+     * @return \Swift_Mime_SimpleMimeEntity
+     */
+    protected function getMessage($email, $title, $content, $from = array('info@fitbase.de' => 'Fitbase'))
+    {
+        return \Swift_Message::newInstance()
+            ->setTo($email)
+            ->setFrom($from)
+            ->setSubject($title)
+            ->setContentType("text/html")
+            ->setBody($content);
+    }
+
+    /**
+     * Create mail and send
+     * @param $email
+     * @param $title
+     * @param $content
+     */
+    /**
      * Add swift message patcher to collection
      * @param SwiftMessagePatcherInterface $patcher
      */
@@ -47,32 +71,25 @@ abstract class FitbaseMailerAbstract extends ContainerAware
     }
 
     /**
-     * Create mail and send
      * @param $user
      * @param $title
      * @param $content
+     * @param array $from
      */
     public function mail(UserInterface $user, $title, $content, $from = array('info@fitbase.de' => 'Fitbase'))
     {
-        $message = \Swift_Message::newInstance();
-        $message->setTo($user->getEmail());
-        $message->setFrom($from);
-        $message->setSubject($title);
-        $message->setContentType("text/html");
-        $message->setBody($content);
+        if (($message = $this->getMessage($user->getEmail(), $title, $content, $from))) {
 
-        $patched = true;
-        if (count($this->patchers)) {
-            foreach ($this->patchers as $patcher) {
-                if (!$patcher->patch($user, $message)) {
-                    $patched = false;
+            if (count($this->patchers)) {
+                foreach ($this->patchers as $patcher) {
+                    if (!$patcher->patch($user, $message)) {
+                        return false;
+                    }
                 }
             }
-        }
 
-        // Check if all patches was
-        // a correct, than send a message
-        if ($patched) {
+            // Check if all patches was
+            // a correct, than send a message
             $this->mailer->send($message);
         }
     }
