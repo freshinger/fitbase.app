@@ -46,10 +46,10 @@ class UserActioncodeSubscriber extends ContainerAware implements EventSubscriber
             $user->setLastname($actioncode->getLastName());
             $user->setEmail($actioncode->getEmail());
 
-            $context = $this->container->get('router')->getContext();
-            $context->setHost($this->container->getParameter('fitbase.project.host'));
-            $context->setScheme($this->container->getParameter('fitbase.project.scheme'));
-            $context->setBaseUrl($this->container->getParameter('fitbase.project.url'));
+//            $context = $this->container->get('router')->getContext();
+//            $context->setHost($this->container->getParameter('fitbase.project.host'));
+//            $context->setScheme($this->container->getParameter('fitbase.project.scheme'));
+//            $context->setBaseUrl($this->container->getParameter('fitbase.project.url'));
 
             $title = $this->translator->trans('Willkommen bei fitbase');
             $content = $this->templating->render('Email/UserActioncodeInvite.html.twig', array(
