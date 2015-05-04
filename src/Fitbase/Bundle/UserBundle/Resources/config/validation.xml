@@ -4,6 +4,27 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
 
+    <class name="Fitbase\Bundle\UserBundle\Model\DocumentUserInvite">
+        <property name="file">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="text">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Fitbase\Bundle\UserBundle\Model\DocumentUserImport">
+        <property name="file">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+    </class>
+
     <class name="Fitbase\Bundle\UserBundle\Entity\UserActioncode">
         <property name="code">
             <constraint name="NotBlank">
