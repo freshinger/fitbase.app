@@ -46,7 +46,7 @@
                         {% if category is defined and category %}
                             var container = $('#statistic_user_{{ category.slug }}');
                             if (container.is('div')) {
-                                {% if percent is defined and percent %}
+                                {% if percent is defined %}
                                     {% if description is defined %}
                                         container.barometer({
                                             value: parseFloat('{{ percent }}'),
