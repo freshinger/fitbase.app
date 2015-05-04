@@ -13,6 +13,7 @@ use Fitbase\Bundle\UserBundle\Model\DocumentUserInvite;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Null;
 
 
 class AdminUserController extends CoreController
@@ -33,7 +34,7 @@ class AdminUserController extends CoreController
                     if (($company = $repositoryCompany->find($document->getCompany()))) {
 
                         if (($handle = fopen($document->getFile()->getRealPath(), "r")) !== FALSE) {
-                            while (($row = fgetcsv($handle, null, ",", '"')) !== FALSE) {
+                            while (($row = fgetcsv($handle, null, ";")) !== FALSE) {
 
                                 try {
 
@@ -105,7 +106,7 @@ class AdminUserController extends CoreController
                     if (($company = $repositoryCompany->find($document->getCompany()))) {
 
                         if (($handle = fopen($document->getFile()->getRealPath(), "r")) !== FALSE) {
-                            while (($row = fgetcsv($handle, null, ",", '"')) !== FALSE) {
+                            while (($row = fgetcsv($handle, null, ";")) !== FALSE) {
 
                                 try {
 
