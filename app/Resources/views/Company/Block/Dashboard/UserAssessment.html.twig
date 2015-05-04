@@ -8,6 +8,8 @@
     <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
+
+
                 <div id="statistic_user_assessment">
                     <svg id="pieChartSVG" class="img-responsive">
                         <defs>
@@ -35,8 +37,9 @@
         </div>
     </ul>
 
-    <div class="panel-footer">
+    <div class="panel-footer" style="min-height: 110px;">
         {% if questionnaire is defined and questionnaire %}
+            <br/>
             <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
                class="btn btn-default btn-block" style="margin-top: 5px">
                 {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
@@ -64,10 +67,8 @@
                             color: '#a2d049'
                         }
                     ],
-                    {
-                        height: 400,
-                        title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"
-                    });
+                    {title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"}
+            );
         }
 
 

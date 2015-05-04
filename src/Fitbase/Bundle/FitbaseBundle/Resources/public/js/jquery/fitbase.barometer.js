@@ -1,5 +1,6 @@
 (function ($) {
 
+
     function Barometer(container, data, config) {
         this.init(container, data, config);
     }
@@ -23,10 +24,10 @@
 
             var barometer = svg.append('g').attr('class', 'barometer');
 
-            this.__drawBarometerScala(barometer, data, config);
-            this.__drawBarometerLines(barometer, data, config);
-            this.__drawBarometerText(barometer, data, config);
-            this.__drawBarometerPosition(barometer, data, config);
+            this.__drawBarometerScala(this, barometer, data, config);
+            this.__drawBarometerLines(this, barometer, data, config);
+            this.__drawBarometerText(this, barometer, data, config);
+            this.__drawBarometerPosition(this, barometer, data, config);
 
         },
         /**
@@ -37,16 +38,17 @@
          * @param config
          * @private
          */
-        __drawBarometerScala: function (container, data, config) {
+        __drawBarometerScala: function (self, container, data, config) {
             var barometerScala = container.append('g')
                 .attr('class', 'barometer-scala');
+
 
             barometerScala.selectAll('.barometer-scala')
                 .data(config.scala)
                 .enter()
-                .append("rect")
+                .append('rect')
                 .attr('x', config.center - (config.scala_weight / 2))
-                .attr('y', config.height)
+                .attr('y', config.height - (config.height * 0.05))
                 .attr('rx', function (d) {
                     if (d.round) {
                         return "10px";
@@ -60,7 +62,7 @@
                     return '0px';
                 })
                 .attr('width', config.scala_weight)
-                .attr('height', 0)
+                .attr('height', 10)
                 .attr('fill', function (d) {
                     return d.color;
                 })
@@ -82,7 +84,7 @@
          * @param config
          * @private
          */
-        __drawBarometerLines: function (container, data, config) {
+        __drawBarometerLines: function (self, container, data, config) {
             var barometerLine = container.append('g')
                 .attr('class', 'barometer-lines');
 
@@ -94,7 +96,7 @@
                 .attr('y2', config.height)
                 .transition()
                 .duration(config.duration)
-                .attr('y1', 0)
+                .attr('y1', (config.height * 0.02))
                 .attr('y2', (config.height * 0.97))
             ;
 
@@ -112,12 +114,29 @@
                 .transition()
                 .duration(config.duration)
                 .attr('y1', function (d) {
-                    return ((d * 100 / parseInt(config.lines)) * (config.height * 0.95)) / 100;
+                    return self.__calcBarometerLinePosition(self, d, config)
                 })
                 .attr('y2', function (d) {
-                    return ((d * 100 / parseInt(config.lines)) * (config.height * 0.95)) / 100;
+                    return self.__calcBarometerLinePosition(self, d, config)
                 })
             ;
+        },
+
+        /**
+         * Calculate position for line
+         *
+         * @param self
+         * @param d
+         * @param config
+         * @returns {number}
+         * @private
+         */
+        __calcBarometerLinePosition: function (self, d, config) {
+
+            var current = d / parseInt(config.lines);
+            var height = config.height * 0.95;
+
+            return (current * height + (config.height * 0.02));
         },
         /**
          * Draw a current barometer position
@@ -127,7 +146,7 @@
          * @param config
          * @private
          */
-        __drawBarometerPosition: function (container, data, config) {
+        __drawBarometerPosition: function (self, container, data, config) {
             var barometerPosition = container.append('g')
                 .attr('class', 'barometer-position');
 
@@ -144,17 +163,35 @@
                 .transition()
                 .delay(config.delay)
                 .duration(config.duration)
-                .attr('points', function () {
-
-                    var position = ((config.height * 0.97) - (data.value * (config.height * 0.97)) / 100);
-
-                    var top = [config.center - 20, position + 5];
-                    var bottom = [config.center - 20, position - 5];
-                    var right = [config.center, ((config.height * 0.97) - (data.value * (config.height * 0.97)) / 100)];
-                    return top + ' ' + bottom + ' ' + right;
+                .attr('points', function (d) {
+                    return self.__calculateBarometerPosition(self, d, config, data);
                 });
-
         },
+
+        /**
+         * Calculate barometer pointer position
+         *
+         * @param self
+         * @param d
+         * @param config
+         * @param data
+         * @returns {string}
+         * @private
+         */
+        __calculateBarometerPosition: function (self, d, config, data) {
+
+            var top_max = config.height * 0.95;
+
+            var position = (top_max - (data.value * top_max) / 100);
+            position = (position > top_max) ? top_max : (position > 0) ? position : (config.height * 0.02);
+
+            var top = [config.center - 20, position + 5];
+            var bottom = [config.center - 20, position - 5];
+            var right = [config.center, position];
+
+            return top + ' ' + bottom + ' ' + right;
+        },
+
         /**
          * Draw a barometer text (description)
          *
@@ -163,7 +200,7 @@
          * @param config
          * @private
          */
-        __drawBarometerText: function (container, data, config) {
+        __drawBarometerText: function (self, container, data, config) {
             var barometerText = container.append('g')
                 .attr('class', 'barometer-text');
 
@@ -203,7 +240,7 @@
                     color: '#fce14b'
                 },
                 {
-                    start: 0,
+                    start: 1,
                     height: 30,
                     color: '#a2d049'
                 }

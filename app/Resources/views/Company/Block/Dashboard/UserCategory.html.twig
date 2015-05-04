@@ -12,13 +12,13 @@
         </h4>
     </div>
 
-    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block; min-height: 252px">
+    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
 
 
                 <div id="statistic_user_{{ category.slug }}">
-                    <svg id="pieChartSVG">
+                    <svg id="pieChartSVG" class="img-responsive">
                         <defs>
                             <filter id='pieChartInsetShadow'>
                                 <feOffset dx='0' dy='0'/>
@@ -43,13 +43,21 @@
                 <script type="text/javascript">
                     (function () {
                         {% if category is defined and category %}
-                        $('#statistic_user_{{ category.slug }}').barometer({
-                            value: '{{ percent }}',
-                            description: '{{ description }}'
-                        }, {});
+                        var container = $('#statistic_user_{{ category.slug }}');
+                        if (container.is('div')) {
+                            {% if percent is defined and percent %}
+                            {% if description is defined %}
+                            container.barometer({
+                                value: parseFloat('{{ percent }}'),
+                                description: '{{ description }}'
+                            }, {});
+                            {% endif %}
+                            {% endif %}
+                        }
                         {% endif %}
                     })();
                 </script>
+
             </div>
         </div>
     </ul>
