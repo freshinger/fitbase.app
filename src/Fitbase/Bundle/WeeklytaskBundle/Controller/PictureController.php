@@ -46,7 +46,7 @@ class PictureController extends Controller
 
                                     $imagick2 = new \Imagick();
                                     $imagick2->readImageBlob(\file_get_contents($path));
-                                    $imagick2->scaleImage(718, 0);
+                                    $imagick2->scaleImage(0, 436);
 
                                     return new Response($imagick2, 200, array(
                                         'Content-Type' => 'image/png',
@@ -65,7 +65,7 @@ class PictureController extends Controller
 
                                     $imagick2 = new \Imagick();
                                     $imagick2->readImageBlob(\file_get_contents($root . $path));
-                                    $imagick2->sampleImage(718, 0);
+                                    $imagick2->scaleImage(0, 436);
 
                                     return new Response($imagick2, 200, array(
                                         'Content-Type' => 'image/png',
