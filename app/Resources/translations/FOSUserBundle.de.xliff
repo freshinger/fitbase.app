@@ -6,6 +6,10 @@
                 <source>security.login.username</source>
                 <target>Benutzername oder E-Mail</target>
             </trans-unit>
+            <trans-unit id="resetting_check_email">
+                <source>resetting.check_email</source>
+                <target>Eine E-Mail wurde an %email% gesendet. Sie enthält einen Link, den Sie anklicken müssen, um Ihr Passwort zurückzusetzen.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
