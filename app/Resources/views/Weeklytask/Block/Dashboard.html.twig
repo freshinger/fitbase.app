@@ -104,18 +104,18 @@
                 {% block exercise_list_item %}
                     <div class="post-item">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="img-hover">
+                            {#<div class="col-md-3">#}
+                                {#<div class="img-hover">#}
 
-                                    <img class="img-responsive"
-                                         src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">
+                                    {#<img class="img-responsive"#}
+                                         {#src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">#}
 
-                                    <div class="overlay">
-                                        <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">+</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
+                                    {#<div class="overlay">#}
+                                        {#<a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">+</a>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                            <div class="col-md-12">
                                 <h4>
                                     <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
                                         {{ task.name }}

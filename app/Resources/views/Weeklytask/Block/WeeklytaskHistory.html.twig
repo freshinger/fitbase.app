@@ -3,17 +3,17 @@
         {% set weeklytask = weeklytaskUser.task %}
         {% if weeklytask is defined and weeklytask %}
             <div class="panel-box">
-                <div class="titles">
+                <div class="titles title-image-bottom">
                     <h4>{{ weeklytask.name }}</h4>
                 </div>
                 <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                     <div class="owl-wrapper-outer autoHeight">
                         <div class="owl-wrapper" style="left: 0px; display: block;">
                             <li>
-                                <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">
-                                    <img class="img-responsive"
-                                         src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">
-                                </a>
+                                {#<a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">#}
+                                    {#<img class="img-responsive"#}
+                                         {#src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">#}
+                                {#</a>#}
 
                                 <div class="info-single-carousel">
                                     <p>
