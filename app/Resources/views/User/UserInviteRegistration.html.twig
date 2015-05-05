@@ -8,7 +8,7 @@
     <div class="crumbs">
         <div class="container">
             <ul>
-                <li>{{ 'Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</li>
+                <li>{{ 'Jetzt anmelden'|trans({}, 'SonataUserBundle') }}</li>
             </ul>
         </div>
     </div>
@@ -20,7 +20,21 @@
         <div class="col-md-6 col-md-offset-3">
             <!-- Content Text-->
             <div class="panel-box">
-                {% include 'User/RegistrationInternal.html.twig' with {'form': form} %}
+                <div class="titles">
+                    <h4>{{ 'Jetzt anmelden'|trans({}, 'FitbaseUserBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
+                            abzuschließen
+                        </p>
+                        {% form_theme form 'User/RegistrationForm.html.twig' %}
+                        {{ form(form) }}
+
+                    </div>
+                </div>
             </div>
             <!-- End Content Text-->
         </div>
