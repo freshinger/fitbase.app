@@ -125,9 +125,6 @@ class AdminUserController extends CoreController
                                     $actioncode->setCount(0);
                                     $actioncode->setExpire(false);
 
-                                    if (($companyQuestionnaire = $company->getQuestionnaire())) {
-                                        $actioncode->setQuestionnaire($companyQuestionnaire);
-                                    }
                                     if (($companyCategories = $company->getCategories())) {
                                         $actioncode->setCategories($companyCategories->map(function ($companyCategory) {
                                             return $companyCategory->getCategory();
