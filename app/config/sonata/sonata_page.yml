@@ -17,6 +17,7 @@ sonata_page:
     ignore_uri_patterns:
         - ^/(.*)media/download(.*)
         - ^/admin(.*)
+        - ^/public(.*)
         - ^/invite(.*)
         - ^/api/(.*)
         - ^/ajax/(.*)
@@ -26,6 +27,7 @@ sonata_page:
     ignore_route_patterns:
         - (.*)media_download(.*)     # ignore admin route, ie route containing 'admin'
         - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
+        - (.*)public(.*)     # ignore admin route, ie route containing 'admin'
         - (.*)invite(.*)     # ignore admin route, ie route containing 'admin'
         - (.*)ajax(.*)      # ignore ajax route, ie route containing 'ajax'
         - (.*)picture(.*)      # ignore ajax route, ie route containing 'ajax'
