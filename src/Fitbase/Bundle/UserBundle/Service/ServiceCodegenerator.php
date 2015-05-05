@@ -31,7 +31,7 @@ class ServiceCodegenerator extends ContainerAware
     public function code($length = 10)
     {
         $code = '';
-        $string = 'abcdefhkmnprstuvwxyzABCDEFGHKLMNPQRSTUVWXYZ23456789!?';
+        $string = 'abcdefhkmnprstuvwxyzABCDEFGHKLMNPQRSTUVWXYZ23456789';
         for ($i = 0; $i < $length; $i++) {
             $code .= $string{rand(0, strlen($string) - 1)};
         }
