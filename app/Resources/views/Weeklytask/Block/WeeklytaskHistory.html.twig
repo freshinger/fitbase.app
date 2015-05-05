@@ -18,7 +18,7 @@
                                 <div class="info-single-carousel">
                                     <p>
                                         {% autoescape false %}
-                                        {{ weeklytask.content|raw|striptags|slice(0,140) }}...
+                                            {{ weeklytask.content|raw|striptags|slice(0,140) }}...
                                         {% endautoescape %}
 
                                         <a href="{{ path('weeklytask_user_view', {'unique': weeklytaskUser.id}) }}">

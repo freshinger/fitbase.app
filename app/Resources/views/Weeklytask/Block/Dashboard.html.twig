@@ -146,7 +146,7 @@
 
                                 <p>
                                     {% autoescape false %}
-                                        {{ task.content|raw|striptags|slice(0,300) }}...
+                                        {{ task.content|raw|striptags|slice(0,350) }}...
                                     {% endautoescape %}
                                     <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
                                         {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
