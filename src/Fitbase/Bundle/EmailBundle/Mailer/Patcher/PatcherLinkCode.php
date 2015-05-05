@@ -63,22 +63,21 @@ class PatcherLinkCode implements SwiftMessagePatcherInterface
     protected function patchHref(User $user = null, $href)
     {
         if (is_null($user)) {
-            if (($parts = parse_url($href))) {
-                if (!array_key_exists('scheme', $parts)) {
-                    $parts['scheme'] = $this->scheme;
-                }
-                if (!array_key_exists('host', $parts)) {
-                    $parts['host'] = $this->host;
-                }
-
-                if ($parts['host'] == $this->host) {
-                    return $this->helper->getSign(
-                        $user, http_build_url(null, $parts));
-                }
-            }
+            return $href;
         }
 
-        return $href;
-    }
+        if (($parts = parse_url($href))) {
+            if (!array_key_exists('scheme', $parts)) {
+                $parts['scheme'] = $this->scheme;
+            }
+            if (!array_key_exists('host', $parts)) {
+                $parts['host'] = $this->host;
+            }
 
+            if ($parts['host'] == $this->host) {
+                return $this->helper->getSign(
+                    $user, http_build_url(null, $parts));
+            }
+        }
+    }
 }
