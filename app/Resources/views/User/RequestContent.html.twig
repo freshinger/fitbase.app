@@ -30,13 +30,6 @@
 
                         <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"
                               class="fos_user_resetting_request form-theme">
-                            <p>
-                                Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen
-                                Sie
-                                sich
-                                mit
-                                Ihren Zugangsdaten ein.
-                            </p>
                             {% if invalid_username is defined %}
                                 <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
                             {% endif %}
