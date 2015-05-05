@@ -45,7 +45,7 @@ abstract class FitbaseMailerAbstract extends ContainerAware
      * @param array $from
      * @return \Swift_Mime_SimpleMimeEntity
      */
-    protected function getMessage($email, $title, $content, $from = array('noreply@fitbase.de' => 'Fitbase'))
+    protected function getMessage($email, $title, $content, $from)
     {
         return \Swift_Message::newInstance()
             ->setTo($email)
@@ -76,7 +76,7 @@ abstract class FitbaseMailerAbstract extends ContainerAware
      * @param $content
      * @param array $from
      */
-    public function mail(UserInterface $user, $title, $content, $from)
+    public function mail(UserInterface $user, $title, $content, $from = array('noreply@fitbase.de' => 'Fitbase'))
     {
         if (($message = $this->getMessage($user->getEmail(), $title, $content, $from))) {
 
