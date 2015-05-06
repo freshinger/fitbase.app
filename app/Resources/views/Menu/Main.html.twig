@@ -4,6 +4,6 @@
     {% set listAttributes = item.childrenAttributes %}
     {{ block('list') -}}
     <div class="menu-button">
-        Menu
+        {{ 'Menu'|trans({}, 'FitbaseFitbaseBundle') }}
     </div>
 {% endblock %}
