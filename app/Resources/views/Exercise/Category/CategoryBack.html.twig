@@ -63,11 +63,13 @@
 
 {% block content_bottom %}
     <!-- Sponsors -->
-    <div class="section-wide">
-        <div class="container">
-            {{ sonata_block_render({ 'type': 'fitbase.block.focus.settings_back' }, { 'focus': focus }) }}
+    {% if focus is defined and focus %}
+        <div class="section-wide">
+            <div class="container">
+                {{ sonata_block_render({ 'type': 'fitbase.block.focus.settings_back' }, { 'focus': focus }) }}
+            </div>
         </div>
-    </div>
+    {% endif %}
     <!-- End Sponsors -->
 {% endblock content_bottom %}
 

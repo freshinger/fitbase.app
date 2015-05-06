@@ -286,7 +286,7 @@ class CategoryController extends Controller
             $exercises = $category->getExercises();
         }
 
-        return $this->render('Exercise/Category/CategoryExercises.html.twig', array(
+        return $this->render('Exercise/Category/CategoryBackExercises.html.twig', array(
             'category' => $category,
             'exercises' => $exercises,
             'categories' => $categories,

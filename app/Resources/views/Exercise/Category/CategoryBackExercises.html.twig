@@ -1,0 +1,38 @@
+{% extends 'Exercise/Category/CategoryBack.html.twig' %}
+
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'category_exercises', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content_category %}
+    {% if exercises is defined and exercises %}
+        <div class="row">
+            {% for exercise in exercises %}
+                <div class="col-md-4">
+                    <div class="panel-box">
+                        <div class="titles title-image-bottom">
+                            <h4>{{ exercise.name }}</h4>
+                        </div>
+                        <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+                            <div class="owl-wrapper-outer autoHeight">
+                                <div class="owl-wrapper" style="left: 0px; display: block;">
+                                    <li>
+                                        <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
+                                            {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock content_category %}
+
+
+
+
+
