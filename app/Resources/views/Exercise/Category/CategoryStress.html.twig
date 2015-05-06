@@ -8,7 +8,7 @@
 
         {% if exercises is defined %}
             <div class="col-md-3">
-                {% for exercise in exercises|slice(0, 7) %}
+                {% for exercise in exercises %}
                     <div class="panel-box">
                         <div class="titles title-image-bottom">
                             <h4>{{ exercise.name }}</h4>

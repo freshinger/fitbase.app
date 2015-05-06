@@ -27,19 +27,18 @@
                                         {% if category.parent is not null %}
                                             <div class="owl-item" style="width: 25%;">
                                                 <li>
-                                                    <div class="header-post">
+                                                    <div class="header-post info-post">
                                                         <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
                                                             {% thumbnail category.media, 'original' with { 'title': null } %}
                                                         </a>
-                                                    </div>
-                                                    <div class="info-post">
-                                                        <h4>
-                                                            <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                                {{ category.name }}
-                                                            </a>
-                                                        </h4>
 
-                                                        <p>{{ category.description }}</p>
+                                                        <div class="padding-top">
+                                                            <h4>
+                                                                <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
+                                                                    {{ category.name }}
+                                                                </a>
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </li>
                                             </div>
@@ -60,59 +59,6 @@
         </div>
     </div>
 {% endblock content_top %}
-
-
-
-{% block content_category %}
-    <div clas="row">
-        {% for category in categories|reverse %}
-            {% if category.parent is not null %}
-                <div class="col-md-6">
-
-                    <div class="panel-box">
-                        <div class="titles">
-                            <h4>{{ category }}</h4>
-                        </div>
-
-                        {% for exercise in category.exercises|slice(0,3) %}
-                            <div class="post-item">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="img-hover">
-                                            {% thumbnail exercise.image, 'original'  with { 'title': null, 'class': 'img-responsive' } %}
-
-                                            <div class="overlay">
-                                                <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">+</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <h4>
-                                            <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
-                                                {{ exercise.name }}
-                                            </a>
-                                        </h4>
-
-                                        <p>
-                                            {% autoescape false %}
-                                            {{ exercise.description|raw|striptags|slice(0,140) }}...
-                                            {% endautoescape %}
-
-                                            <a href="{{ path('task', { 'slug': category.slug, 'unique': exercise.id}) }}">
-                                                {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-    </div>
-{% endblock content_category %}
 
 
 {% block content_bottom %}

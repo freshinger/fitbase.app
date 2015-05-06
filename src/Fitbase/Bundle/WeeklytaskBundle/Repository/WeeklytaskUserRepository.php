@@ -242,7 +242,7 @@ class WeeklytaskUserRepository extends EntityRepository
      * @param $category
      * @return array
      */
-    public function findAllByUserAndCategory($user, $category)
+    public function findAllByUserAndCategory($user, $category, $limit = 3)
     {
         $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
         $queryBuilder->leftJoin('WeeklytaskUser.task', 'Weeklytask');
@@ -255,6 +255,9 @@ class WeeklytaskUserRepository extends EntityRepository
 
         $queryBuilder->addOrderBy('WeeklytaskUser.date', 'DESC');
 
+        if (!is_null($limit)) {
+            $queryBuilder->setMaxResults($limit);
+        }
         return $queryBuilder->getQuery()->getResult();
     }
 

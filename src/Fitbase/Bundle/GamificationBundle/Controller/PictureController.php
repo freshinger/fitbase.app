@@ -75,46 +75,6 @@ class PictureController extends Controller
         ));
     }
 
-    /**
-     * Display avatar preview
-     * @param Request $request
-     * @return Response
-     */
-    public function treeAction(Request $request)
-    {
-        $imagick = new \Imagick();
-        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageBlob($this->renderView('Gamification/Picture/Tree.html.twig', array()));
-        $imagick->scaleImage(360, 0);
-        $imagick->setImageFormat("png");
-
-        if (($company = $this->get('company')->current())) {
-            if (($gamification = $company->getGamification())) {
-
-                $date = $this->get('datetime')->getDateTime('now');
-                $points = $this->get('statistic')->points($this->get('user')->current());
-
-                if (($media = $gamification->getTreeMedia($date, $points))) {
-
-                    $root = $this->get('kernel')->getRootDir() . '/../web';
-                    $path = $this->container->get('sonata.media.twig.extension')->path($media, 'icon');
-
-                    $imagick2 = new \Imagick();
-                    $imagick2->readImageBlob(\file_get_contents($root . $path));
-                    $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-                    $imagick->compositeImage($imagick2, \Imagick::COMPOSITE_DEFAULT, 85, 63);
-                }
-            }
-        }
-
-        $result = $imagick->mergeImageLayers(\Imagick::LAYERMETHOD_MERGE);
-        $result->setImageFormat("png");
-
-        return new Response($result->getImageBlob(), 200, array(
-            'Content-Type' => 'image/png',
-            'Content-Disposition' => 'inline; filename="tree.png"'
-        ));
-    }
 
     /**
      * Display company forest

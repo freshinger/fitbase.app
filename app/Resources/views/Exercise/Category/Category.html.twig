@@ -14,7 +14,7 @@
             <div class="row">
                 {% for exercise in exercises %}
                     <div class="col-md-4">
-                        <div class="panel-box" style="min-height: 410px;">
+                        <div class="panel-box">
                             <div class="titles title-image-bottom">
                                 <h4>{{ exercise.name }}</h4>
                             </div>
@@ -25,19 +25,6 @@
                                             <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
                                                 {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
                                             </a>
-
-                                            <div class="info-single-carousel">
-                                                <p>
-
-                                                    {% autoescape false %}
-                                                    {{ exercise.description|raw|striptags|slice(0,180) }}...
-                                                    {% endautoescape %}
-
-                                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                        {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                                    </a>
-                                                </p>
-                                            </div>
                                         </li>
                                     </div>
                                 </div>

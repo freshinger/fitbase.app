@@ -8,10 +8,6 @@
         <default key="_controller">FitbaseGamificationBundle:Picture:avatar</default>
     </route>
 
-    <route id="gamification_picture_tree" path="/picture/tree">
-        <default key="_controller">FitbaseGamificationBundle:Picture:tree</default>
-    </route>
-
     <route id="gamification_picture_forest" path="/picture/forest">
         <default key="_controller">FitbaseGamificationBundle:Picture:forest</default>
     </route>

@@ -9,35 +9,15 @@
 
         {% if exercises is defined %}
             <div class="col-md-3">
-                {% for exercise in exercises|slice(0, 3) %}
+                {% for exercise in exercises %}
                     <div class="panel-box">
                         <div class="titles title-image-bottom">
-                            <h4>{{ exercise.name }}</h4>
+                            <h4>
+                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                    {{ exercise.name }}
+                                </a>
+                            </h4>
                         </div>
-                        <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
-                            <div class="owl-wrapper-outer autoHeight">
-                                <div class="owl-wrapper" style="left: 0px; display: block;">
-                                    <li>
-                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                            {% thumbnail exercise.image, 'original'  with { 'title': null, 'class': 'img-responsive' } %}
-                                        </a>
-
-                                        <div class="info-single-carousel">
-                                            <p>
-
-                                                {% autoescape false %}
-                                                {{ exercise.description|raw|striptags|slice(0,140) }}...
-                                                {% endautoescape %}
-
-                                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                    {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </div>
-                            </div>
-                        </ul>
                     </div>
                 {% endfor %}
             </div>

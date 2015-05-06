@@ -51,7 +51,6 @@ class WeeklytaskHistoryBlock extends BaseBlockService
         ));
     }
 
-
     /**
      * {@inheritdoc}
      */
