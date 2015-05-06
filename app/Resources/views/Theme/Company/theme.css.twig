@@ -14,8 +14,9 @@
 h1 {
 text-transform: uppercase;
 }
-nav.mainmenu {
-{#text-transform: uppercase;#}
+
+.header-2 .mainmenu {
+position: relative;
 }
 
 div.title-image-bottom {
@@ -32,12 +33,8 @@ width: auto;
 }
 
 .section-title {
-    z-index: -10;
+z-index: -10;
 }
-
-{#.content-info {#}
-{#z-index: -10;#}
-{#}#}
 
 .dark-home {
 height: auto;
@@ -64,12 +61,12 @@ border-bottom: none;
 }
 
 .text-over-image {
-    position:absolute;
-    top:20px;
-    left:30px;
-    width:300px;
-    background-color: #ffffff;
-    padding: 10px;
+position:absolute;
+top:20px;
+left:30px;
+width:300px;
+background-color: #ffffff;
+padding: 10px;
 }
 
 
@@ -99,16 +96,16 @@ background-color: #ffffff;
 }
 
 .flexnav li > ul {
-    top: 100%;
+top: 100%;
 }
 
 .flexnav li ul {
-    width: auto;
-    z-index: 9999;
+width: auto;
+z-index: 9999;
 }
 .flexnav li ul li a {
-    border-color: {{ color }};
-    border-bottom: 1px solid {{ color }};
+border-color: {{ color }};
+border-bottom: 1px solid {{ color }};
 }
 
 .flexnav li ul li a {
@@ -117,13 +114,12 @@ width: 100%;
 }
 
 .flexnav .touch-button {
-    display: none;
+display: none;
 }
 .menu-button {
 border-color: {{ color }};
 background-color: #ffffff;
 }
-
 
 
 /* Backgrounds ----------------------------------------------------------*/
