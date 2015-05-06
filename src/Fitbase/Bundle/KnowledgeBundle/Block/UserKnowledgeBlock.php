@@ -39,7 +39,9 @@ class UserKnowledgeBlock extends BaseBlockService implements ContainerAwareInter
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderPrivateResponse('Knowledge/Block/Knowledge.html.twig', array());
+        return $this->renderPrivateResponse('Knowledge/Block/Knowledge.html.twig', array(
+            'knowledge' => $this->container->get('knowledge')->current()
+        ));
     }
 
     /**
