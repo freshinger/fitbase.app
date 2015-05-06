@@ -54,7 +54,7 @@
                                         <div class="owl-wrapper" style="left: 0px; display: block;">
                                             <li>
                                                 <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                    {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
+                                                    {% thumbnail exercise.image, 'original'  with { 'height': '360px', 'title': null, 'class': 'img-responsive' } %}
                                                 </a>
                                             </li>
                                         </div>
