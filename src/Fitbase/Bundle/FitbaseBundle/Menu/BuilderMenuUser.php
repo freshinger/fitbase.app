@@ -37,8 +37,8 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
     {
         $menu = $factory->createItem('main', array_merge($options, array(
             'childrenAttributes' => array(
-                'id' => 'menu',
-                'class' => 'sf-menu sf-arrows sf-js-enabled fitbase-menu',
+                'class' => 'fitbase-menu flexnav',
+                'data-breakpoint' => "992",
             ),
         )));
 

@@ -21,11 +21,9 @@
     <!-- Adds Header-->
     <div class="col-md-10">
         <!-- mainmenu-->
-        <div id="undefined-sticky-wrapper" class="sticky-wrapper" style="height: 76px;">
-            <nav class="mainmenu">
-                {{ sonata_block_render({ 'type': 'sonata.block.service.menu' }, { 'menu_name':'FitbaseFitbaseBundle:Builder:mainMenu' }) }}
-            </nav>
-        </div>
+        <nav class="mainmenu">
+            {{ sonata_block_render({ 'type': 'sonata.block.service.menu' }, { 'menu_name':'FitbaseFitbaseBundle:Builder:mainMenu' }) }}
+        </nav>
         <!-- End mainmenu-->
     </div>
     {#<!-- End Adds Header-->#}

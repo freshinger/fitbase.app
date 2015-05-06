@@ -119,24 +119,14 @@ $(function ($) {
     //=================================== Nav Superfish ===============================//
 
     /**
-     * If superfish plugin loaded
+     * If flexnav plugin loaded
      * and function exists, apply to
      * superfish element
      */
-    if ($.plugin('superfish')) {
-        $('ul.sf-menu').superfish();
+    if ($.plugin('flexNav')) {
+        $(".flexnav").flexNav();
     }
 
-    /**
-     * if tinyNav plugin exists
-     * and this function defined
-     * apply to menu
-     */
-    if ($.plugin('tinyNav')) {
-        $('#menu').tinyNav({
-            active: 'selected'
-        });
-    }
 
     /**
      * If counter plugin loaded

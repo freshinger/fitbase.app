@@ -12,6 +12,7 @@
     '@FitbaseFitbaseBundle/Resources/public/theme/css/carousel/owl.theme.css'
     '@FitbaseFitbaseBundle/Resources/public/theme/css/icons/font-awesome.min.css'
     '@FitbaseFitbaseBundle/Resources/public/theme/css/slide/camera.css'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/flexnav-master/css/flexnav.css'
 
     '@FitbaseFitbaseBundle/Resources/public/theme/css/*.css'
 
@@ -19,11 +20,10 @@
     '@FitbaseCompanyBundle/Resources/public/css/*.css'
     output='/css/fitbase.css' %}
     <link rel="stylesheet" type="text/css" href="{{ asset_url }}">
-
     {% endstylesheets %}
-    <link rel="stylesheet" type="text/css" href="/css/fitbase.css">
     <link rel="stylesheet" type="text/css" href="{{ path('company_theme') }}">
     {{ parent() }}
+
 {% endblock %}
 
 {% block sonata_page_javascripts %}
@@ -40,23 +40,25 @@
     </script>
 
     {% javascripts
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery/dist/jquery.min.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery.scrollTo/jquery.scrollTo.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/moment/min/moment.min.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/select2/select2.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/bootstrap/dist/js/bootstrap.min.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
-        '@SonataAdminBundle/Resources/public/jquery/*'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery/dist/jquery.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/jquery.scrollTo/jquery.scrollTo.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/moment/min/moment.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/select2/select2.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/bootstrap/dist/js/bootstrap.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/vendor/flexnav-master/js/jquery.flexnav.min.js'
 
-        '@FitbaseFitbaseBundle/Resources/public/js/*.js'
-        '@FitbaseFitbaseBundle/Resources/public/js/jquery/*.js'
-        '@FitbaseQuestionnaireBundle/Resources/public/js/*.js'
-        '@FitbaseExerciseBundle/Resources/public/js/*.js'
-        '@FitbaseGamificationBundle/Resources/public/js/*.js'
-        '@FitbaseWeeklytaskBundle/Resources/public/js/*.js'
-        output='/js/fitbase.js' %}
-        <script src="{{ asset_url }}" type="text/javascript"></script>
+    '@SonataAdminBundle/Resources/public/jquery/*'
+
+    '@FitbaseFitbaseBundle/Resources/public/js/*.js'
+    '@FitbaseFitbaseBundle/Resources/public/js/jquery/*.js'
+    '@FitbaseQuestionnaireBundle/Resources/public/js/*.js'
+    '@FitbaseExerciseBundle/Resources/public/js/*.js'
+    '@FitbaseGamificationBundle/Resources/public/js/*.js'
+    '@FitbaseWeeklytaskBundle/Resources/public/js/*.js'
+    output='/js/fitbase.js' %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
     {% endjavascripts %}
 
 {% endblock %}
@@ -126,14 +128,14 @@
 
         {% block fitbase_theme_javascripts %}
             {% javascripts
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/nav/*.js'
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/totop/*.js'
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/accordion/*.js'
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/filters/*.js'
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/counter/*.js'
-                '@FitbaseFitbaseBundle/Resources/public/theme/js/*.js'
-                output='/js/fitbase.theme.js' %}
-                <script src="{{ asset_url }}" type="text/javascript"></script>
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/nav/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/totop/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/accordion/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/filters/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/counter/*.js'
+            '@FitbaseFitbaseBundle/Resources/public/theme/js/*.js'
+            output='/js/fitbase.theme.js' %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
             {% endjavascripts %}
         {% endblock fitbase_theme_javascripts %}
 
@@ -149,7 +151,7 @@
                     }, i[r].l = 1 * new Date();
                     a = s.createElement(o),
 
-                    m = s.getElementsByTagName(o)[0];
+                            m = s.getElementsByTagName(o)[0];
                     a.async = 1;
                     a.src = g;
                     m.parentNode.insertBefore(a, m)
