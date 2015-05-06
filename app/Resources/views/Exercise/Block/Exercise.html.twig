@@ -23,25 +23,25 @@
                                     {% set width='540' %}
                                     {% set height='320' %}
 
-                                    <video width="{{ width }}" controls autoplay>
+                                    <video style="max-width: {{ width }}" controls autoplay class="img-responsive">
                                         <source src="{{ video(exercise.mp4) }}" type="video/mp4"/>
                                         <source src="{{ video(exercise.webm) }}" type="video/webm"/>
-
                                         {% if exercise.mp4 is defined %}
                                             {% if exercise.mp4 %}
-                                                <object class="flashplayer" width="{{ width }}" height="{{ height }}"
+                                                <object class="flashplayer"
+                                                        style="max-width: {{ width }};max-height: {{ height }}"
                                                         type="application/x-shockwave-flash"
                                                         data="/flash/player.swf?v1.3.5">
-                                                    <param name="movie" value="/flash/player.swf?v1.3.5"/>
-                                                    <param name="quality" value="high"/>
-                                                    <param name="menu" value="false"/>
-                                                    <param name="scale" value="noscale"/>
-                                                    <param name="allowfullscreen" value="true">
-                                                    <param name="allowscriptaccess" value="always">
-                                                    <param name="swlivevonnect" value="true"/>
-                                                    <param name="cachebusting" value="false">
-                                                    <param name="flashvars"
-                                                           value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}&autoplay=1"/>
+                                                <param name="movie" value="/flash/player.swf?v1.3.5"/>
+                                                <param name="quality" value="high"/>
+                                                <param name="menu" value="false"/>
+                                                <param name="scale" value="noscale"/>
+                                                <param name="allowfullscreen" value="true">
+                                                <param name="allowscriptaccess" value="always">
+                                                <param name="swlivevonnect" value="true"/>
+                                                <param name="cachebusting" value="false">
+                                                <param name="flashvars"
+                                                       value="skin=/flash/skins/mySkin.swf&video={{ video(exercise.mp4) }}&autoplay=1"/>
                                                 </object>
 
                                                 <script type="text/javascript">
@@ -72,7 +72,7 @@
                                             {{ loop.index }}
                                             </span>
                                                 <a href="{% path galleryHasMedia.media, 'original' %}">
-                                                    {% thumbnail galleryHasMedia.media, 'preview' with {'width': 260, 'title': null } %}
+                                                    {% thumbnail galleryHasMedia.media, 'original'  with { 'height': '360px', 'title': null, 'class': 'img-responsive' } %}
                                                 </a>
                                             </div>
                                         {% endfor %}

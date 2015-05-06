@@ -31,12 +31,12 @@
                     {% if mp4 or webm %}
                         <div class="col-md-12">
                             {% block exercise_video %}
-                                <video width="{{ width }}" controls autoplay>
+
+                                <video style="max-width: {{ width }}" controls autoplay class="img-responsive">
                                     <source src="{{ video(mp4) }}" type="video/mp4"/>
                                     <source src="{{ video(webm) }}" type="video/webm"/>
-
-                                    <object class="flashplayer" width="{{ width }}"
-                                            height="{{ height }}"
+                                    <object class="flashplayer"
+                                            style="max-width: {{ width }};max-height: {{ height }}"
                                             type="application/x-shockwave-flash"
                                             data="/flash/player.swf?v1.3.5">
                                         <param name="movie" value="/flash/player.swf?v1.3.5"/>
@@ -60,6 +60,8 @@
                                         });
                                     </script>
                                 </video>
+
+
                             {% endblock exercise_video %}
                         </div>
 
@@ -68,12 +70,12 @@
                             {% block content_navigation %}
                                 <style>
                                     ul.pagination {
-                                        width: 540px;
+                                        max-width: 540px;
                                     }
 
                                     div.text-wrap {
                                         text-overflow: ellipsis;
-                                        width: 132px;
+                                        max-width: 132px;
                                         overflow: hidden;
                                         white-space: nowrap;
                                     }
@@ -139,7 +141,7 @@
                                             {{ loop.index }}
                                         </span>
                                             <a href="{% path hasMedia.media, 'original' %}">
-                                                {% thumbnail hasMedia.media, 'preview' with {'width': 260, 'title': null} %}
+                                                {% thumbnail hasMedia.media, 'original'  with { 'height': '360px', 'title': null, 'class': 'img-responsive' } %}
                                             </a>
                                         </div>
                                     {% endfor %}
