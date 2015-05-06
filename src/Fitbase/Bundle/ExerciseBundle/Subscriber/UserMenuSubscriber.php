@@ -57,16 +57,16 @@ class UserMenuSubscriber extends ContainerAware implements EventSubscriberInterf
                         if (($categoryFocus = $categories->first())) {
                             if (($category = $categoryFocus->getCategory())) {
                                 $subMenu = $menu->addChild('Weitere Übungen', array(
-                                    'route' => 'category',
-                                    'routeParameters' => array(
-                                        'slug' => $category->getSlug()
-                                    ),
+//                                    'route' => 'category',
+//                                    'routeParameters' => array(
+//                                        'slug' => $category->getSlug()
+//                                    ),
                                     'attributes' => array('class' => 'current'),
                                     'childrenAttributes' => array(
                                         'class' => 'sub-current',
                                     ),
                                     'linkAttributes' => array(
-                                        'class' => 'sf-with-ul',
+                                        'class' => 'sf-with-ul touch-button',
                                     ),
                                 ));
                             }
