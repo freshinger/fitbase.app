@@ -33,11 +33,6 @@
                                href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
                                 {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
                             </a>
-                            <a class="questionnaire-remove"
-                               href="{{ path("questionnaire_statistic_slice_remove", { 'unique': questionnaireCompany.id }) }}">
-                                {{ 'löschen'|trans({}, 'FitbaseGamificationBundle') }}
-                            </a>
-
                         </td>
                     </tr>
                 {% endfor %}
