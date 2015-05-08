@@ -40,7 +40,7 @@ class UserSubscriber implements EventSubscriberInterface
         if (($user = $event->getEntity())) {
 
             $title = $this->translator->trans('Willkommen bei fitbase');
-            $content = $this->templating->render('Email/User.html.twig', array(
+            $content = $this->templating->render('Email/Subscriber/UserCreate.html.twig', array(
                 'user' => $user,
             ));
 

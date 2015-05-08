@@ -65,7 +65,7 @@ class ExerciseUserSubscriber implements EventSubscriberInterface
                 });
 
             $title = $this->translator->trans('Ihre fitbase Erinnerung');
-            $content = $this->templating->render('FitbaseEmailBundle:Subscriber:exercise.html.twig', array(
+            $content = $this->templating->render('Email/Subscriber/UserExercise.html.twig', array(
                 'user' => $exerciseUser->getUser(),
                 'categoryFocus' => $categoryFocus,
                 'categories' => $categories,

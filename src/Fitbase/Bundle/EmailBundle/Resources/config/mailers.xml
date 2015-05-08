@@ -31,7 +31,7 @@
             </call>
         </service>
 
-        <service id="mail.fos" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerFos" public="false">
+        <service id="mail.sonata" class="Fitbase\Bundle\EmailBundle\Mailer\FitbaseMailerSonata" public="false">
             <argument type="service" id="kernel"/>
             <argument type="service" id="mailer"/>
             <argument type="service" id="logger"/>

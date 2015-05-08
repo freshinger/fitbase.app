@@ -36,10 +36,15 @@ class EmailFooterBlockService extends BaseBlockService implements ContainerAware
         $this->container = $container;
     }
 
+    /**
+     * Get default values
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'user' => null,
+            'template' => 'Email/Footer.html.twig',
         ));
     }
 
@@ -54,7 +59,7 @@ class EmailFooterBlockService extends BaseBlockService implements ContainerAware
             $company = $user->getCompany();
         }
 
-        return $this->renderPrivateResponse('FitbaseEmailBundle:Block:footer.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'user' => $user,
             'company' => $company
         ));

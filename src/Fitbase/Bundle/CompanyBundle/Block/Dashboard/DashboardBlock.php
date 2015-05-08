@@ -12,6 +12,7 @@ use Fitbase\Bundle\FitbaseBundle\Block\SecureBlockServiceAbstract;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
@@ -25,6 +26,18 @@ class DashboardBlock extends SecureBlockServiceAbstract
         $this->serviceUser = $serviceUser;
     }
 
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Company/Block/Dashboard.html.twig',
+        ));
+    }
+
     /**
      * Draw a block
      * {@inheritdoc}
@@ -36,7 +49,7 @@ class DashboardBlock extends SecureBlockServiceAbstract
             $company = $user->getCompany();
         }
 
-        return $this->renderPrivateResponse('Company/Block/Dashboard.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'company' => $company,
         ));
     }

@@ -5,7 +5,6 @@ namespace Fitbase\Bundle\EmailBundle\Subscriber;
 
 use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -47,7 +46,7 @@ class UserActioncodeSubscriber extends ContainerAware implements EventSubscriber
             $user->setEmail($actioncode->getEmail());
 
             $title = $this->translator->trans('Willkommen bei fitbase');
-            $content = $this->templating->render('Email/UserActioncodeInvite.html.twig', array(
+            $content = $this->templating->render('Email/Subscriber/UserInvite.html.twig', array(
                 'actioncode' => $actioncode,
                 'user' => $user,
             ));

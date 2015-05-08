@@ -11,7 +11,7 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
-        mailer: mail.fos
+        mailer: mail.sonata
 
     resetting:
         email:

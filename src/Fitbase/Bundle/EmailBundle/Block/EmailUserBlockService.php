@@ -36,10 +36,16 @@ class EmailUserBlockService extends BaseBlockService implements ContainerAwareIn
         $this->container = $container;
     }
 
+    /**
+     * Get default settings
+     *
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'user' => null,
+            'template' => 'Email/User.html.twig',
         ));
     }
 
@@ -49,7 +55,7 @@ class EmailUserBlockService extends BaseBlockService implements ContainerAwareIn
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderPrivateResponse('FitbaseEmailBundle:Block:user.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'user' => $blockContext->getSetting('user')
         ));
     }

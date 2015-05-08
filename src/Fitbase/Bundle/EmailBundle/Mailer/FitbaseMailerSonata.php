@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 /**
  * @author Christophe Coevoet <stof@notk.org>
  */
-class FitbaseMailerFos extends FitbaseMailerUser implements MailerInterface
+class FitbaseMailerSonata extends FitbaseMailerUser implements MailerInterface
 {
     protected $router;
     protected $twig;

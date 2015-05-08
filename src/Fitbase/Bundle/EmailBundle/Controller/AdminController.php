@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends CoreController
 {
-
     /**
      *
      * @param Request $request
@@ -26,7 +25,7 @@ class AdminController extends CoreController
             $entityManager = $this->get('entity_manager');
             $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
 
-            return $this->render('FitbaseEmailBundle:Admin:email_registration.html.twig', array(
+            return $this->render('FitbaseEmailBundle:Admin:EmailRegistration.html.twig', array(
                 'user' => $repositoryUser->find($unique),
             ));
         }
@@ -46,7 +45,7 @@ class AdminController extends CoreController
             $entityManager = $this->get('entity_manager');
             $repositoryWeeklytask = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask');
 
-            return $this->render('FitbaseEmailBundle:Admin:email_weeklytask.html.twig', array(
+            return $this->render('FitbaseEmailBundle:Admin:EmailWeeklytask.html.twig', array(
                 'user' => $this->container->get('user')->current(),
                 'userTask' => new WeeklytaskUser(),
                 'task' => $repositoryWeeklytask->find($unique)
@@ -67,7 +66,7 @@ class AdminController extends CoreController
             $entityManager = $this->get('entity_manager');
             $repositoryWeeklyquiz = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz');
 
-            return $this->render('FitbaseEmailBundle:Admin:email_weeklyquiz.html.twig', array(
+            return $this->render('FitbaseEmailBundle:Admin:EmailWeeklyquiz.html.twig', array(
                 'user' => $this->container->get('user')->current(),
                 'task' => new Weeklytask(),
                 'quiz' => $repositoryWeeklyquiz->find($unique),
@@ -104,7 +103,7 @@ class AdminController extends CoreController
                         return !$element->getParent() ? true : false;
                     });
 
-                return $this->render('FitbaseEmailBundle:Admin:email_exercise.html.twig', array(
+                return $this->render('FitbaseEmailBundle:Admin:EmailExercise.html.twig', array(
                     'user' => $exerciseUser->getUser(),
                     'categoryFocus' => $categoryFocus,
                     'categories' => $categories,
