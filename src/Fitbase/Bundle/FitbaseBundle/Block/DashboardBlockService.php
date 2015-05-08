@@ -35,7 +35,6 @@ class DashboardBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $content = null;
         // List all records in config like
         // ROLE_FITBASE_USER => BlockService
         foreach ($this->config as $role => $block) {
@@ -48,10 +47,6 @@ class DashboardBlockService extends BaseBlockService
                     return $block->execute($blockContext, $response);
                 }
             }
-        }
-
-        if (!empty($content)) {
-            return $response->setContent($content);
         }
 
         throw new AccessDeniedException('This user does not have access to this section.');

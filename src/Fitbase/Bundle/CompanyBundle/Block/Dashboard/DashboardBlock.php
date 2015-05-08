@@ -49,7 +49,7 @@ class DashboardBlock extends SecureBlockServiceAbstract
             $company = $user->getCompany();
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+        return $this->renderPrivateResponse('Company/Block/Dashboard.html.twig', array(
             'company' => $company,
         ));
     }
