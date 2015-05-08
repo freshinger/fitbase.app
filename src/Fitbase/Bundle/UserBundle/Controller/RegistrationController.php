@@ -76,7 +76,7 @@ class RegistrationController extends Controller
                     return $this->redirect(
                         $this->get('fitbase_helper.user')->getSign($user,
                             $this->generateUrl('page_slug', array(
-                                'path' => '/',
+                                'path' => '/default',
                             ), true)
                         )
                     );
@@ -137,7 +137,7 @@ class RegistrationController extends Controller
                             return $this->redirect(
                                 $this->get('fitbase_helper.user')->getSign($user,
                                     $this->generateUrl('page_slug', array(
-                                        'path' => '/',
+                                        'path' => '/default',
                                     ), true)
                                 )
                             );
