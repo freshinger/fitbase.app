@@ -43,10 +43,16 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
 
         $managerEntity = $this->container->get('entity_manager');
         $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
+        $repositoryUserActivity = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
+
+        $activity = $repositoryUserActivity->findOneLastByUser($user);
         $gamification = $repositoryGamificationUser->findOneByUser($user);
+
 
         $form = $this->container->get('form.factory')->create(new GamificationUserUpdateForm(), $gamification);
         return $this->renderPrivateResponse('Gamification/Dashboard/DashboardAvatar.html.twig', array(
+            'activity' => $activity,
+            'gamification' => $gamification,
             'form' => $form->createView(),
         ));
     }

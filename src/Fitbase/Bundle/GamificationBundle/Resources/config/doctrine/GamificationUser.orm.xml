@@ -10,6 +10,7 @@
         </id>
 
         <field name="update" type="boolean" column="refresh" nullable="true"/>
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 
         <many-to-one field="avatar" target-entity="Fitbase\Bundle\GamificationBundle\Entity\GamificationSettingsGalleryAvatar">
             <join-column name="avatar_id" referenced-column-name="id" on-delete="SET NULL"/>
@@ -18,6 +19,9 @@
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
             <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
+
+
+
 
     </entity>
 </doctrine-mapping>

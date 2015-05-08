@@ -163,4 +163,32 @@ class GamificationUser
         }
         return null;
     }
+    /**
+     * @var integer
+     */
+    private $countPoint;
+
+
+    /**
+     * Set countPoint
+     *
+     * @param integer $countPoint
+     * @return GamificationUser
+     */
+    public function setCountPoint($countPoint)
+    {
+        $this->countPoint = $countPoint;
+
+        return $this;
+    }
+
+    /**
+     * Get countPoint
+     *
+     * @return integer 
+     */
+    public function getCountPoint()
+    {
+        return $this->countPoint;
+    }
 }

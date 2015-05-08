@@ -20,13 +20,13 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p>
-                        Ich bin Ihr Charakter und begleite Sie durch das Online-Coaching. Für jede
-                        Übung, jede
-                        Infoeinheit und jedes Quiz sammeln Sie Punkte in Form von Blättern und begrünen
-                        so Ihren
-                        Gesundheitsbaum.
+                        Hallo! Ich begleite Sie durch das Online-Coaching. Für jede Übung, jede Infoeinheit und jedes
+                        Quiz sammeln Sie Punkte in Form von Blättern und begrünen so Ihren Gesundheitsbaum.
                     </p>
 
+                    {% if gamification is defined and gamification %}
+                        <p>{{ 'Aktuelle Anzahl Blätter: points'|trans({'points': activity.countPointTotal|number_format(0, '.', ' ') }, 'FitbaseGamificationBundle') }}</p>
+                    {% endif %}
                 </div>
             </div>
 
