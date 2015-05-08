@@ -124,7 +124,7 @@ $(function ($) {
      * superfish element
      */
     if ($.plugin('flexNav')) {
-        $(".flexnav").flexNav();
+        $(".fitbase-menu").flexNav();
     }
 
 
