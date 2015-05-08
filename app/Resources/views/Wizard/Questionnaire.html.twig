@@ -3,11 +3,9 @@
 {% use "content.html.twig" %}
 
 {% block title %}
-    <h1>
-        {% if questionnaire is defined %}
-            {{ questionnaire }}
-        {% endif %}
-    </h1>
+    {% if questionnaire is defined %}
+        <h1>{{ questionnaire }}</h1>
+    {% endif %}
 {% endblock title %}
 
 {% block breadcrumbs %}

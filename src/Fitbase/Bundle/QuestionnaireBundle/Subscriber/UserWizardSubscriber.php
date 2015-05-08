@@ -10,7 +10,6 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Subscriber;
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
 use Fitbase\Bundle\QuestionnaireBundle\Controller\UserWizardController;
-use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 

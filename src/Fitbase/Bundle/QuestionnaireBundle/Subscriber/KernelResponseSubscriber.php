@@ -10,6 +10,7 @@ namespace Fitbase\Bundle\QuestionnaireBundle\Subscriber;
 
 
 use Fitbase\Bundle\FitbaseBundle\Event\UserWizardEvent;
+use Fitbase\Bundle\FitbaseBundle\Subscriber\UserPageResponseSubscriber;
 use Fitbase\Bundle\QuestionnaireBundle\Controller\UserWizardController;
 use Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUser;
 use Fitbase\Bundle\QuestionnaireBundle\Event\QuestionnaireUserEvent;
@@ -20,38 +21,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class KernelResponseSubscriber extends ContainerAware implements EventSubscriberInterface
+class KernelResponseSubscriber extends UserPageResponseSubscriber
 {
     /**
-     * Get subscribers
-     * @return array
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', -20),
-        );
-    }
-
-    /**
-     * Process kernel response
      * @param FilterResponseEvent $event
+     * @return mixed|void
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onUserPageResponse(FilterResponseEvent $event)
     {
-        $request = $event->getRequest();
-
-        if (!$event->isMasterRequest()) {
-            return;
-        }
-
-        // do not capture redirects or modify XML HTTP Requests
-        if ($request->isXmlHttpRequest()) {
-            return;
-        }
-
         if (($user = $this->container->get('user')->current())) {
-
 
             $form = $this->container->get('form.factory')->create(new AssessmentUserRepeatForm(), new QuestionnaireUser());
             if ($this->container->get('request')->get($form->getName())) {

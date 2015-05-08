@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class KernelResponseSubscriber extends ContainerAware implements EventSubscriberInterface
+class KernelResponseSubscriber extends UserPageResponseSubscriber
 {
     protected $serviceUser;
     protected $eventDispatcher;
@@ -28,33 +28,11 @@ class KernelResponseSubscriber extends ContainerAware implements EventSubscriber
     }
 
     /**
-     * Get subscribers
-     * @return array
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', -10),
-        );
-    }
-
-    /**
-     * Process kernel response
      * @param FilterResponseEvent $event
+     * @return mixed|void
      */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onUserPageResponse(FilterResponseEvent $event)
     {
-        $request = $event->getRequest();
-
-        if (!$event->isMasterRequest()) {
-            return;
-        }
-
-        // do not capture redirects or modify XML HTTP Requests
-        if ($request->isXmlHttpRequest()) {
-            return;
-        }
-
         if (($user = $this->serviceUser->current())) {
             if (!$user->getWizard()) {
 
