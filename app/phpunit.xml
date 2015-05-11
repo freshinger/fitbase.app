@@ -16,6 +16,8 @@
     <testsuites>
         <testsuite name="Fitbase Test Suite">
             <directory>../src/Fitbase/Bundle/EmailBundle/Tests</directory>
+            <directory>../src/Fitbase/Bundle/FitbaseBundle/Tests</directory>
+
             <!--<directory>../src/Fitbase/*/*Bundle/Tests</directory>-->
             <!--<directory>../src/Fitbase/*/Bundle/*Bundle/Tests</directory>-->
             <!--<directory>../src/Wellbeing/*/*Bundle/Tests</directory>-->

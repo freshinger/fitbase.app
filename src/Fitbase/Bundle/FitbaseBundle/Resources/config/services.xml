@@ -7,9 +7,9 @@
 
     <imports>
         <import resource="http_kernel.xml"/>
-        <import resource="admin.xml" />
-        <import resource="blocks.xml" />
-        <import resource="subscribers.xml" />
+        <import resource="admin.xml"/>
+        <import resource="blocks.xml"/>
+        <import resource="subscribers.xml"/>
         <import resource="types.xml"/>
 
     </imports>
@@ -28,7 +28,29 @@
             </call>
         </service>
 
-        <service id="entity_manager" class="%doctrine.orm.entity_manager.class%" factory-service="doctrine" factory-method="getManager"/>
+        <service id="entity_manager" class="%doctrine.orm.entity_manager.class%" factory-service="doctrine"
+                 factory-method="getManager"/>
+
+
+        <service id="detector.browser" class="Fitbase\Bundle\FitbaseBundle\Library\Detector\BrowserDetector">
+            <argument></argument>
+        </service>
+
+
+        <service id="detector.device" class="Fitbase\Bundle\FitbaseBundle\Library\Detector\DeviceDetector">
+            <argument type="service" id="detector.browser"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="templating.engine.twig" class="Fitbase\Bundle\FitbaseBundle\Library\Templating\FitbaseTwigEngine" public="false">
+            <argument type="service" id="twig"/>
+            <argument type="service" id="templating.name_parser"/>
+            <argument type="service" id="templating.locator"/>
+            <argument type="service" id="detector.device" strict="false"/>
+        </service>
 
     </services>
 
