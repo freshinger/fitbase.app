@@ -1,0 +1,50 @@
+{% extends 'Exercise/Category/Category.html.twig' %}
+
+{% block title %}
+    <h1>{{ 'Rückengesundheit'|trans({}, 'FitbaseExerciseBundle') }}</h1>
+{% endblock title %}
+
+
+{% block content_top %}
+    <section class="container padding-top-mini bg-dark dark-home">
+        <div class="row">
+            {% for category in categories|reverse %}
+                {% if category.parent is not null %}
+                    <div class="col-md-3">
+                        <div class="panel-box">
+                            <div class="titles title-image-bottom">
+                                <h4 class="text-cut">{{ category.name }}</h4>
+                            </div>
+                            <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                <div class="owl-wrapper-outer autoHeight">
+                                    <div class="owl-wrapper" style="left: 0px; display: block;">
+                                        <li>
+                                            <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
+                                                {% thumbnail category.media, 'original' with { 'title': null, 'class': 'img-responsive'  } %}
+                                            </a>
+                                        </li>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock content_top %}
+
+
+{% block content_bottom %}
+    <!-- Sponsors -->
+    {% if focus is defined and focus %}
+        <div class="section-wide">
+            <div class="container">
+                {{ sonata_block_render({ 'type': 'fitbase.block.focus.settings_back' }, { 'focus': focus }) }}
+            </div>
+        </div>
+    {% endif %}
+    <!-- End Sponsors -->
+{% endblock content_bottom %}
+
+
