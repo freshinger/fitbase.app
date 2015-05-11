@@ -14,7 +14,11 @@
 
                             <div class="info-single-carousel">
                                 <p>
-                                    {{ exercise.description|raw|striptags|slice(0,120) }}...
+
+                                    {% autoescape false %}
+                                        {{ exercise.description|raw|striptags|slice(0,130) }}...
+                                    {% endautoescape %}
+
                                     <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
                                         {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
                                     </a>
