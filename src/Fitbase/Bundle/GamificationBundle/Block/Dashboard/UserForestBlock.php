@@ -13,6 +13,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserForestBlock extends BaseBlockService implements ContainerAwareInterface
@@ -30,6 +31,17 @@ class UserForestBlock extends BaseBlockService implements ContainerAwareInterfac
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardForest.html.twig',
+        ));
     }
 
     /**
@@ -60,7 +72,7 @@ class UserForestBlock extends BaseBlockService implements ContainerAwareInterfac
             }
         }
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardForest.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'points' => $points,
         ));
     }

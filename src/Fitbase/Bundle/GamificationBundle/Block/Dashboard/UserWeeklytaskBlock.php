@@ -15,6 +15,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserWeeklytaskBlock extends BaseBlockService implements ContainerAwareInterface
@@ -35,6 +36,17 @@ class UserWeeklytaskBlock extends BaseBlockService implements ContainerAwareInte
     }
 
     /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardWeeklytask.html.twig',
+        ));
+    }
+
+    /**
      * Draw a block
      * TODO: create a test
      * {@inheritdoc}
@@ -47,7 +59,7 @@ class UserWeeklytaskBlock extends BaseBlockService implements ContainerAwareInte
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
         $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 4);
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardWeeklytask.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'collection' => $collectionWeeklytaskActual,
         ));
     }

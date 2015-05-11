@@ -15,6 +15,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
@@ -32,6 +33,17 @@ class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardFocus.html.twig',
+        ));
     }
 
     /**
@@ -56,7 +68,7 @@ class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
             }
         }
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardFocus.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'user' => $user,
             'form' => ($form = $this->getAssessmentRepeatForm()) == null ? null : $form->createView(),
             'category' => $category,

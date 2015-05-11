@@ -16,6 +16,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserActivityBlock extends BaseBlockService implements ContainerAwareInterface
@@ -36,6 +37,20 @@ class UserActivityBlock extends BaseBlockService implements ContainerAwareInterf
     }
 
     /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardActivity.html.twig',
+            'template_stress' => 'Gamification/Dashboard/DashboardActivityStress.html.twig',
+            'template_feeding' => 'Gamification/Dashboard/DashboardActivityFeeding.html.twig',
+
+        ));
+    }
+
+    /**
      * Draw a block
      * {@inheritdoc}
      */
@@ -46,20 +61,18 @@ class UserActivityBlock extends BaseBlockService implements ContainerAwareInterf
         }
 
         if ($this->container->get('focus')->check($user, 'stress')) {
-            $template = 'Gamification/Dashboard/DashboardActivityStress.html.twig';
-            return $this->renderPrivateResponse($template, array(
+            return $this->renderPrivateResponse($blockContext->getSetting('template_stress'), array(
                 'user' => $user,
             ));
         }
 
         if ($this->container->get('focus')->check($user, 'ernaehrung')) {
-            $template = 'Gamification/Dashboard/DashboardActivityFeeding.html.twig';
-            return $this->renderPrivateResponse($template, array(
+            return $this->renderPrivateResponse($blockContext->getSetting('template_feeding'), array(
                 'user' => $user,
             ));
         }
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardActivity.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'user' => $user,
         ));
     }

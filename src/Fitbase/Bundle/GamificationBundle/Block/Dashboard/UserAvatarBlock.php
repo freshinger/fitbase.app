@@ -14,6 +14,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterface
@@ -34,6 +35,17 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
     }
 
     /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardAvatar.html.twig',
+        ));
+    }
+
+    /**
      * Draw a block
      * {@inheritdoc}
      */
@@ -50,7 +62,7 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
 
 
         $form = $this->container->get('form.factory')->create(new GamificationUserUpdateForm(), $gamification);
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardAvatar.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'activity' => $activity,
             'gamification' => $gamification,
             'form' => $form->createView(),

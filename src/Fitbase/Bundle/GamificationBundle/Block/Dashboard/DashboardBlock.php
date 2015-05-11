@@ -18,6 +18,7 @@ use Fitbase\Bundle\GamificationBundle\Form\GamificationUserUpdateForm;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
@@ -43,6 +44,18 @@ class DashboardBlock extends SecureBlockServiceAbstract
         $this->eventDispatcher = $eventDispatcher;
         $this->gamification = $gamification;
     }
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/Dashboard.html.twig',
+        ));
+    }
+
 
     /**
      * Draw a block

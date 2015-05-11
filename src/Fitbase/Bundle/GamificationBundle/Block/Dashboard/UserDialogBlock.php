@@ -13,6 +13,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserDialogBlock extends BaseBlockService implements ContainerAwareInterface
@@ -33,6 +34,17 @@ class UserDialogBlock extends BaseBlockService implements ContainerAwareInterfac
     }
 
     /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardDialog.html.twig',
+        ));
+    }
+
+    /**
      * Draw a block
      * {@inheritdoc}
      */
@@ -49,7 +61,7 @@ class UserDialogBlock extends BaseBlockService implements ContainerAwareInterfac
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardDialog.html.twig', array());
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array());
     }
 
     /**

@@ -61,9 +61,9 @@ class GamificationPictureHelper extends \Twig_Extension implements ContainerAwar
             if (($collection = $gallery->getGalleryHasMedia())) {
                 if (($hasMedia = $collection->get(0))) {
                     if (($media = $hasMedia->getMedia())) {
-                        return sprintf('<img src="%s"  />',
+                        return sprintf('<img src="%s" class="img-responsive"  />',
                             $this->container->get('sonata.media.twig.extension')
-                                ->path($media, 'icon'));
+                                ->path($media, 'thumbnail'));
                     }
                 }
             }

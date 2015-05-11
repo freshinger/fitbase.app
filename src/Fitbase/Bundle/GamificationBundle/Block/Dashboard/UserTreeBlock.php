@@ -13,6 +13,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class UserTreeBlock extends BaseBlockService implements ContainerAwareInterface
@@ -33,6 +34,17 @@ class UserTreeBlock extends BaseBlockService implements ContainerAwareInterface
     }
 
     /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Gamification/Dashboard/DashboardTree.html.twig',
+        ));
+    }
+
+    /**
      * Draw a block
      * {@inheritdoc}
      */
@@ -40,7 +52,7 @@ class UserTreeBlock extends BaseBlockService implements ContainerAwareInterface
     {
         $user = $this->container->get('user')->current();
 
-        return $this->renderPrivateResponse('Gamification/Dashboard/DashboardTree.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'points' => $this->container->get('statistic')->points($user),
         ));
     }
