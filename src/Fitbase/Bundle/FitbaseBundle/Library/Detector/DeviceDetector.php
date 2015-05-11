@@ -60,11 +60,12 @@ class DeviceDetector extends ContainerAware implements DeviceDetectorInterface
     {
         parent::setContainer($container);
 
-        if (($request = $container->get('request'))) {
-            $this->browserDetector->setUserAgent($request->headers->get('User-Agent'));
+        if ($this->container->isScopeActive('request')) {
+            if (($request = $this->container->get('request'))) {
+                $this->browserDetector->setUserAgent($request->headers->get('User-Agent'));
+            }
         }
     }
-
 
     /**
      * Check is a desktop computer

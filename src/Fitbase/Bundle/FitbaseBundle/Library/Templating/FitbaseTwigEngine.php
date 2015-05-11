@@ -9,7 +9,6 @@
 namespace Fitbase\Bundle\FitbaseBundle\Library\Templating;
 
 
-use Fitbase\Bundle\FitbaseBundle\Library\Detector\DeviceDetector;
 use Fitbase\Bundle\FitbaseBundle\Library\Detector\DeviceDetectorInterface;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Config\FileLocatorInterface;
@@ -62,13 +61,15 @@ class FitbaseTwigEngine extends TwigEngine
     public function patch($name)
     {
         $prefix = null;
-        if ($this->deviceDetector->isMobile()) {
-            $prefix = "Mobile/";
-        } else if ($this->deviceDetector->isTablet()) {
-            $prefix = "Tablet/";
+        if (!$this->deviceDetector->isDesktop()) {
+            if ($this->deviceDetector->isMobile()) {
+                $prefix = "Mobile/";
+            } else if ($this->deviceDetector->isTablet()) {
+                $prefix = "Tablet/";
+            }
         }
 
-        if ($prefix != null) {
+        if ($prefix !== null) {
             $pos1 = 0;
             if (($pos1 = strrpos($name, ":")) or ($pos1 = strrpos($name, "/"))) {
                 $pos1++;

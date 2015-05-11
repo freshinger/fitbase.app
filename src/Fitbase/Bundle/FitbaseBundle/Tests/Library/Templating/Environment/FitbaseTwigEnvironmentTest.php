@@ -7,26 +7,25 @@
  */
 
 
-namespace Fitbase\Bundle\FitbaseBundle\Tests\Library\Templating;
+namespace Fitbase\Bundle\FitbaseBundle\Tests\Library\Templating\Environment;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Templating\Environment\FitbaseTwigEnvironment;
 use Fitbase\Bundle\FitbaseBundle\Library\Templating\FitbaseTwigEngine;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 
 
-class FitbaseTwigEngineTest extends FitbaseTestAbstract
+class FitbaseTwigEnvironmentTest extends FitbaseTestAbstract
 {
     protected $engine;
     protected $deviceDetector;
 
     public function setUp()
     {
-        $environment = $this->getMock('\Twig_Environment', array());
-        $parser = $this->getMock('Symfony\Component\Templating\TemplateNameParserInterface', array());
-        $locator = $this->getMock('Symfony\Component\Config\FileLocatorInterface', array());
+        $loader = $this->getMock('\Twig_LoaderInterface', array());
         $this->deviceDetector = $this->getMock('Fitbase\Bundle\FitbaseBundle\Library\Detector\DeviceDetectorInterface',
             array('isDesktop', 'isTablet', 'isMobile'));
 
-        $this->engine = new FitbaseTwigEngine($environment, $parser, $locator, $this->deviceDetector);
+        $this->engine = new FitbaseTwigEnvironment($loader, array(), $this->deviceDetector);
     }
 
     public function testMethodPatchShouldReturnMobileTemplateName()
