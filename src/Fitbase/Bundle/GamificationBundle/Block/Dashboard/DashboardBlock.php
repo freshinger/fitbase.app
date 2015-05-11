@@ -123,6 +123,6 @@ class DashboardBlock extends SecureBlockServiceAbstract
      */
     public function getName()
     {
-        return 'Dashboard (Gamification)';
+        return 'Dashboard main (Gamification dashboard)';
     }
 } 

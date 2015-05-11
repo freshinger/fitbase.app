@@ -40,7 +40,7 @@ class UserStatisticBlock extends BaseBlockService implements ContainerAwareInter
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardStatistic.html.twig',
+            'template' => 'Gamification/Dashboard/UserStatistic.html.twig',
         ));
     }
 
@@ -64,6 +64,6 @@ class UserStatisticBlock extends BaseBlockService implements ContainerAwareInter
      */
     public function getName()
     {
-        return 'Dashboard Statistic (Gamification)';
+        return 'User statistic (Gamification dashboard)';
     }
 } 

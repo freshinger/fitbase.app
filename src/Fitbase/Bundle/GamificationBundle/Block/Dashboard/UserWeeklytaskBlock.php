@@ -42,7 +42,7 @@ class UserWeeklytaskBlock extends BaseBlockService implements ContainerAwareInte
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardWeeklytask.html.twig',
+            'template' => 'Gamification/Dashboard/UserWeeklytask.html.twig',
         ));
     }
 

@@ -42,7 +42,7 @@ class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardFocus.html.twig',
+            'template' => 'Gamification/Dashboard/UserFocus.html.twig',
         ));
     }
 
@@ -131,6 +131,6 @@ class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
      */
     public function getName()
     {
-        return 'Dashboard Focus (Gamification)';
+        return 'User focus (Gamification dashboard)';
     }
 } 

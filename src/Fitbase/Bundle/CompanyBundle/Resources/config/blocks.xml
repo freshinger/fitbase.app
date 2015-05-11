@@ -8,17 +8,16 @@
         <import resource="blocks/questionnaire.xml"/>
     </imports>
 
-
     <services>
 
-        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyHeaderBlock" public="true">
+        <service id="fitbase.block.header_company" class="Fitbase\Bundle\CompanyBundle\Block\HeaderBlock" public="true">
             <argument>fitbase.block.header_company</argument>
             <argument type="service" id="templating"/>
             <argument type="service" id="company"/>
             <tag name="sonata.block"/>
         </service>
 
-        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\CompanyFooterBlock" public="true">
+        <service id="fitbase.block.footer_company" class="Fitbase\Bundle\CompanyBundle\Block\FooterBlock" public="true">
             <tag name="sonata.block"/>
             <argument>fitbase.block.footer_company</argument>
             <argument type="service" id="templating"/>

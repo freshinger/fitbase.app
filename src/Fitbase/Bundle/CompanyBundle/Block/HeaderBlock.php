@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 
-class CompanyHeaderBlock extends BaseBlockService
+class HeaderBlock extends BaseBlockService
 {
     protected $serviceCompany;
 

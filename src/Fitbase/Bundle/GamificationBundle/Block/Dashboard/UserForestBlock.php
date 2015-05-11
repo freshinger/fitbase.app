@@ -40,7 +40,7 @@ class UserForestBlock extends BaseBlockService implements ContainerAwareInterfac
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardForest.html.twig',
+            'template' => 'Gamification/Dashboard/UserForest.html.twig',
         ));
     }
 
@@ -82,6 +82,6 @@ class UserForestBlock extends BaseBlockService implements ContainerAwareInterfac
      */
     public function getName()
     {
-        return 'Dashboard Forest (Gamification)';
+        return 'User forest (Gamification dashboard)';
     }
 } 

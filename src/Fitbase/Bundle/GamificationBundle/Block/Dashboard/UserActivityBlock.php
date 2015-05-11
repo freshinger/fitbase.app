@@ -43,10 +43,9 @@ class UserActivityBlock extends BaseBlockService implements ContainerAwareInterf
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardActivity.html.twig',
-            'template_stress' => 'Gamification/Dashboard/DashboardActivityStress.html.twig',
-            'template_feeding' => 'Gamification/Dashboard/DashboardActivityFeeding.html.twig',
-
+            'template' => 'Gamification/Dashboard/UserActivity.html.twig',
+            'template_stress' => 'Gamification/Dashboard/UserActivityStress.html.twig',
+            'template_feeding' => 'Gamification/Dashboard/UserActivityFeeding.html.twig',
         ));
     }
 
@@ -82,6 +81,6 @@ class UserActivityBlock extends BaseBlockService implements ContainerAwareInterf
      */
     public function getName()
     {
-        return 'Dashboard Activity (Gamification)';
+        return 'Dashboard Activity (Gamification dashboard)';
     }
 } 

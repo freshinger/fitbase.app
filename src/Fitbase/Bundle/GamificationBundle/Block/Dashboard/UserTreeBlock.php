@@ -40,7 +40,7 @@ class UserTreeBlock extends BaseBlockService implements ContainerAwareInterface
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardTree.html.twig',
+            'template' => 'Gamification/Dashboard/UserTree.html.twig',
         ));
     }
 

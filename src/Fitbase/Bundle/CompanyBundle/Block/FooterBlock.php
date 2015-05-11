@@ -13,7 +13,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
-class CompanyFooterBlock extends BaseBlockService
+class FooterBlock extends BaseBlockService
 {
     protected $serviceCompany;
 

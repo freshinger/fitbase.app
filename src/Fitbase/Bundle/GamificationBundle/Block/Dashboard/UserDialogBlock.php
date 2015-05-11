@@ -40,7 +40,7 @@ class UserDialogBlock extends BaseBlockService implements ContainerAwareInterfac
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardDialog.html.twig',
+            'template' => 'Gamification/Dashboard/UserDialog.html.twig',
         ));
     }
 
@@ -69,6 +69,6 @@ class UserDialogBlock extends BaseBlockService implements ContainerAwareInterfac
      */
     public function getName()
     {
-        return 'Dashboard Dialog (Gamification)';
+        return 'User dialog (Gamification dashboard)';
     }
 } 

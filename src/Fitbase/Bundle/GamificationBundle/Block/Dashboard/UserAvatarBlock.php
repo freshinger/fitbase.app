@@ -41,7 +41,7 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/DashboardAvatar.html.twig',
+            'template' => 'Gamification/Dashboard/UserAvatar.html.twig',
         ));
     }
 
@@ -74,6 +74,6 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
      */
     public function getName()
     {
-        return 'Avatar (Gamification)';
+        return 'User Avatar (Gamification dashboard)';
     }
 } 
