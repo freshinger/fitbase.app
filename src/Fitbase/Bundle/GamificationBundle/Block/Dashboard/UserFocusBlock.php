@@ -47,7 +47,7 @@ class UserFocusBlock extends BaseBlockService implements ContainerAwareInterface
 
         $entityManager = $this->container->get('entity_manager');
         $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 3);
+        $collectionWeeklytaskActual = $weeklytaskUserRepository->findAllByUser($user, 5);
 
         $category = null;
         if (($focus = $this->container->get('focus')->focus($user))) {
