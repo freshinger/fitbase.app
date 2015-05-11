@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ExerciseVideoBlockService extends BaseBlockService implements ContainerAwareInterface
+class ExerciseVideoBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -40,6 +40,7 @@ class ExerciseVideoBlockService extends BaseBlockService implements ContainerAwa
     {
         $resolver->setDefaults(array(
             'unique' => null,
+            'template' => 'Exercise/Block/ExerciseVideo.html.twig',
         ));
     }
 
@@ -58,7 +59,7 @@ class ExerciseVideoBlockService extends BaseBlockService implements ContainerAwa
             $exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique'));
         }
 
-        return $this->renderPrivateResponse('Exercise/Block/Exercise.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'exercise' => $exercise
         ));
     }
@@ -68,6 +69,6 @@ class ExerciseVideoBlockService extends BaseBlockService implements ContainerAwa
      */
     public function getName()
     {
-        return 'Exercise page (Exercise)';
+        return 'Video exercise (Exercise)';
     }
 } 

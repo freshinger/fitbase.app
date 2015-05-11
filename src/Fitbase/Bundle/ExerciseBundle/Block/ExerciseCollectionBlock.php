@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseCollectionBlockService extends BaseBlockService
+class ExerciseCollectionBlock extends BaseBlockService
 {
     /**
      * Define
@@ -25,7 +25,7 @@ class ExerciseCollectionBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'categories' => array(),
-            'template' => 'Exercise/Block/Collection.html.twig',
+            'template' => 'Exercise/Block/ExerciseCollection.html.twig',
         ));
     }
 

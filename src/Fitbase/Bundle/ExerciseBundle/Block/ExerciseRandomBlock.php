@@ -15,7 +15,7 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseRandomBlockService extends BaseBlockService
+class ExerciseRandomBlock extends BaseBlockService
 {
     /**
      * Define
@@ -25,7 +25,7 @@ class ExerciseRandomBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'category' => null,
-            'template' => 'Exercise/Block/Exercise.html.twig',
+            'template' => 'Exercise/Block/ExerciseRandom.html.twig',
         ));
     }
 

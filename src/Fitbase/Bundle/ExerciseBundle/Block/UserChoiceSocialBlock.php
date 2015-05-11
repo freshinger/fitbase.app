@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\ExerciseBundle\Block\Exercise;
+namespace Fitbase\Bundle\ExerciseBundle\Block;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseUserChoiceSocialBlock extends BaseBlockService implements ContainerAwareInterface
+class UserChoiceSocialBlock extends BaseBlockService implements ContainerAwareInterface
 {
 
     /**
@@ -85,7 +85,7 @@ class ExerciseUserChoiceSocialBlock extends BaseBlockService implements Containe
      */
     public function getName()
     {
-        return 'User choice (Exercise)';
+        return 'User recommendations (Exercise)';
     }
 
 }

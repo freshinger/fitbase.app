@@ -30,7 +30,7 @@
             </call>
         </service>
 
-        <service id="fitbase.block.exercise" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseBlockService" public="true">
+        <service id="fitbase.block.exercise" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise</argument>
             <argument type="service" id="templating"/>
@@ -39,19 +39,19 @@
             </call>
         </service>
 
-        <service id="fitbase.block.exercise_random" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseRandomBlockService">
+        <service id="fitbase.block.exercise_random" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseRandomBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise</argument>
             <argument type="service" id="templating"/>
         </service>
 
-        <service id="fitbase.block.exercise_collection" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseCollectionBlockService">
+        <service id="fitbase.block.exercise_collection" class="Fitbase\Bundle\ExerciseBundle\Block\ExerciseCollectionBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise</argument>
             <argument type="service" id="templating"/>
         </service>
 
-        <service id="fitbase.block.exercise.user_choice" class="Fitbase\Bundle\ExerciseBundle\Block\Exercise\ExerciseUserChoiceBlock">
+        <service id="fitbase.block.exercise.user_choice" class="Fitbase\Bundle\ExerciseBundle\Block\UserChoiceBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise.user_choice</argument>
             <argument type="service" id="templating"/>
@@ -60,7 +60,7 @@
             </call>
         </service>
 
-        <service id="fitbase.block.exercise.user_choice_social" class="Fitbase\Bundle\ExerciseBundle\Block\Exercise\ExerciseUserChoiceSocialBlock">
+        <service id="fitbase.block.exercise.user_choice_social" class="Fitbase\Bundle\ExerciseBundle\Block\UserChoiceSocialBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise.user_choice_social</argument>
             <argument type="service" id="templating"/>
@@ -70,7 +70,7 @@
         </service>
 
 
-        <service id="fitbase.block.exercise.user_choice_category" class="Fitbase\Bundle\ExerciseBundle\Block\Exercise\ExerciseUserChoiceCategoryBlock">
+        <service id="fitbase.block.exercise.user_choice_category" class="Fitbase\Bundle\ExerciseBundle\Block\UserChoiceCategoryBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.exercise.user_choice_category</argument>
             <argument type="service" id="templating"/>

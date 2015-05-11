@@ -5,7 +5,7 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\ExerciseBundle\Block\Exercise;
+namespace Fitbase\Bundle\ExerciseBundle\Block;
 
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseUserChoiceBlock extends BaseBlockService implements ContainerAwareInterface
+class UserChoiceCategoryBlock extends BaseBlockService implements ContainerAwareInterface
 {
 
     /**
@@ -46,8 +46,8 @@ class ExerciseUserChoiceBlock extends BaseBlockService implements ContainerAware
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'exercise' => null,
-            'template' => 'Exercise/Block/UserChoice.html.twig',
+            'category' => null,
+            'template' => 'Exercise/Block/UserChoiceCategory.html.twig',
         ));
     }
 
@@ -57,30 +57,20 @@ class ExerciseUserChoiceBlock extends BaseBlockService implements ContainerAware
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $exerciseUserChoice = null;
-        if (($exercise = $blockContext->getSetting('exercise'))) {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryExerciseUserChoice = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserChoice');
+
+        $category = null;
+        $collection = array();
+        if (($category = $blockContext->getSetting('category'))) {
             if (($user = $this->container->get('user')->current())) {
-                $entityManager = $this->container->get('entity_manager');
-                $repositoryExerciseUserChoice = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserChoice');
-
-                if (!($exerciseUserChoice = $repositoryExerciseUserChoice->findOneByUserAndExercise($user, $exercise))) {
-                    if (($this->container->get('request')->get('like', false))) {
-
-                        $exerciseUserChoice = new ExerciseUserChoice();
-                        $exerciseUserChoice->setUser($user);
-                        $exerciseUserChoice->setExercise($exercise);
-                        $exerciseUserChoice->setDate($this->container->get('datetime')->getDateTime());
-
-                        $this->container->get('entity_manager')->persist($exerciseUserChoice);
-                        $this->container->get('entity_manager')->flush($exerciseUserChoice);
-                    }
-                }
+                $collection = $repositoryExerciseUserChoice->findByUserAndCategory($user, $category);
             }
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'exercise' => $exercise,
-            'exerciseUserChoice' => $exerciseUserChoice,
+            'category' => $blockContext->getSetting('category'),
+            'collection' => $collection,
         ));
     }
 
@@ -89,7 +79,7 @@ class ExerciseUserChoiceBlock extends BaseBlockService implements ContainerAware
      */
     public function getName()
     {
-        return 'User choice (Exercise)';
+        return 'User selected exercises by category (Exercise)';
     }
 
 }

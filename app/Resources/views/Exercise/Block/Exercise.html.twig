@@ -3,7 +3,8 @@
     <div class="panel-box">
         <div class="titles title-image-bottom">
             <h4>
-                {{ 'Ihre heutige Übung'|trans({}, 'FitbaseExerciseBundle') }}
+                {{ 'Ihre heutige Übung - name'|trans({"name": exercise.name}, 'FitbaseExerciseBundle') }}
+
                 <span style="float: right;">
                     {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice' }, { 'exercise': exercise }) }}
                 </span>

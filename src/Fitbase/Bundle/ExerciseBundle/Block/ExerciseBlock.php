@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class ExerciseBlockService extends BaseBlockService implements ContainerAwareInterface
+class ExerciseBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -36,10 +36,15 @@ class ExerciseBlockService extends BaseBlockService implements ContainerAwareInt
         $this->container = $container;
     }
 
+    /**
+     * Set default settings for this block
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'unique' => null,
+            'template' => 'Exercise/Block/Exercise.html.twig',
         ));
     }
 
@@ -58,7 +63,7 @@ class ExerciseBlockService extends BaseBlockService implements ContainerAwareInt
             $exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique'));
         }
 
-        return $this->renderPrivateResponse('Exercise/Block/Exercise.html.twig', array(
+        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'exercise' => $exercise
         ));
     }
@@ -68,6 +73,6 @@ class ExerciseBlockService extends BaseBlockService implements ContainerAwareInt
      */
     public function getName()
     {
-        return 'Exercise page (Exercise)';
+        return 'Exercise (Exercise)';
     }
 } 
