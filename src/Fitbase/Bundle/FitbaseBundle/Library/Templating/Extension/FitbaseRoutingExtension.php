@@ -14,6 +14,7 @@ use Symfony\Bridge\Twig\Extension\RoutingExtension;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 class FitbaseRoutingExtension extends RoutingExtension implements ContainerAwareInterface
 {
@@ -27,6 +28,20 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
         $this->generator = $generator;
 
         parent::__construct($generator);
+    }
+
+    /**
+     * Returns a list of functions to add to the existing list.
+     *
+     * @return array An array of functions
+     */
+    public function getFunctions()
+    {
+        return array(
+            new \Twig_SimpleFunction('url', array($this, 'getUrl'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
+            new \Twig_SimpleFunction('path', array($this, 'getPath'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
+            new \Twig_SimpleFunction('company_url', array($this, 'getUrlCompany'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
+        );
     }
 
     /**
@@ -45,19 +60,14 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
      * Get url
      * @param $name
      * @param array $parameters
-     * @param bool $schemeRelative
      * @param Company $company
      * @return string
      * @throws \Twig_Error_Runtime
      */
-    public function getUrl($name, $parameters = array(), $schemeRelative = false, Company $company = null)
+    public function getUrlCompany(Company $company, $name, $parameters = array())
     {
-//        if (is_null($company)) {
-//            throw new \Twig_Error_Runtime("You have to put 'Company' to 'url' method to identify user available site");
-//        }
-
-        if (!empty($company) and ($site = $company->getSite())) {
-            if (($context = $this->container->get('router')->getContext())) {
+        if (($site = $company->getSite())) {
+            if (($context = $this->generator->getContext())) {
                 // Base url have to be already defined
                 // if not - console application, override
                 // host, base url and other things
@@ -82,8 +92,6 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
             }
         }
 
-        return $this->generator->generate($name, $parameters, $schemeRelative ? UrlGeneratorInterface::NETWORK_PATH : UrlGeneratorInterface::ABSOLUTE_URL);
+        return $this->generator->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL);
     }
-
-
 }

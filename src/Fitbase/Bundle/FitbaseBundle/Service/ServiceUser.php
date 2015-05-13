@@ -86,8 +86,9 @@ class ServiceUser extends ContainerAware
 
         if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
 
+            // TODO: switch without sites
             $token = new UsernamePasswordToken($user, $password, "main", $user->getRoles());
-            $securityContext = $this->container->get('security.context'); // do it your way
+            $securityContext = $this->container->get('security.context');
             $securityContext->setToken($token);
 
             $company = $this->container->get('company')->current($user);

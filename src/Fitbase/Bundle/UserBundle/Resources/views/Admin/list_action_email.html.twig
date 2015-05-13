@@ -1,4 +1,4 @@
-<a href="{{ url('sonata_admin_email_user_registration', {'unique': object.id}) }}" class="btn btn-sm btn-default view_link" title="{{ 'action_show'|trans({}, 'SonataAdminBundle') }}">
+<a href="{{ path('sonata_admin_email_user_registration', {'unique': object.id}) }}" class="btn btn-sm btn-default view_link" title="{{ 'action_show'|trans({}, 'SonataAdminBundle') }}">
     <i class="glyphicon glyphicon-zoom-in"></i>
     {{ 'Registration email'|trans({}, 'SonataAdminBundle') }}
 </a>
