@@ -60,7 +60,6 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
             }
 
             $weeklyquizUser->setProcessed(1);
-            $weeklyquizUser->setProcessedDate(new \DateTime('now'));
 
             $this->objectManager->persist($weeklyquizUser);
             $this->objectManager->flush($weeklyquizUser);
