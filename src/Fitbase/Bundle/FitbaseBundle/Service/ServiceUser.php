@@ -92,7 +92,7 @@ class ServiceUser extends ContainerAware
             $securityContext->setToken($token);
 
             $company = $this->container->get('company')->current($user);
-            return $this->container->get('twig.extension.routing')->getUrl('dashboard', array(), false, $company);
+            return $this->container->get('twig.extension.routing')->getUrlCompany($company, 'dashboard', array());
         }
 
         return false;
