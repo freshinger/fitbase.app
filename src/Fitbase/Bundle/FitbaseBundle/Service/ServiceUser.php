@@ -85,10 +85,9 @@ class ServiceUser extends ContainerAware
         $encoder = $encoder_service->getEncoder($user);
 
         if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
+            $company = $this->container->get('company')->current($user);
             return $this->container->get('fitbase_helper.user')->getSign($user,
-                $this->container->get('router')->generate('page_slug', array(
-                    'path' => '/',
-                ), true)
+                $this->container->get('twig.extension.routing')->getUrl('dashboard', array(), false, $company)
             );
         }
 

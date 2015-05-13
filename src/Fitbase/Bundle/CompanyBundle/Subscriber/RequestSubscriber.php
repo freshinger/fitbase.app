@@ -5,6 +5,7 @@ namespace Fitbase\Bundle\CompanyBundle\Subscriber;
 use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
 use Fitbase\Bundle\ExerciseBundle\Event\CategoryEvent;
 use Sonata\PageBundle\Exception\InternalErrorException;
+use Sonata\PageBundle\Exception\PageNotFoundException;
 use Sonata\PageBundle\Model\SiteInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
@@ -36,7 +37,7 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
         if (($company = $this->container->get('company')->current())) {
             if (($site = $company->getSite())) {
                 if (!$this->siteMatch($company->getSite())) {
-                    throw new InternalErrorException('Requested site not available for current user' .
+                    throw new PageNotFoundException('Requested site not available for current user: ' .
                         htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
                 }
             }
