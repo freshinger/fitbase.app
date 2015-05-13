@@ -44,7 +44,6 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
     public function onWeeklyquizUserSendEvent(WeeklyquizUserEvent $event)
     {
         if (($weeklyquizUser = $event->getEntity())) {
-
             if (($user = $weeklyquizUser->getUser())) {
 
                 $title = $this->translator->trans('Ihr fitbase Quiz');
@@ -56,13 +55,17 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
                     'userQuiz' => $weeklyquizUser,
                 ));
 
-                $this->mailer->mail($user, $title, $content);
+
+                var_dump($content);
+                var_dump($user->getEmail());
+
+//                $this->mailer->mail($user, $title, $content);
             }
 
-            $weeklyquizUser->setProcessed(1);
-
-            $this->objectManager->persist($weeklyquizUser);
-            $this->objectManager->flush($weeklyquizUser);
+//            $weeklyquizUser->setProcessed(1);
+//
+//            $this->objectManager->persist($weeklyquizUser);
+//            $this->objectManager->flush($weeklyquizUser);
         }
     }
 }
