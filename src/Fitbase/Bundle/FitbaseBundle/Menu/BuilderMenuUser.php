@@ -43,21 +43,15 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
         )));
 
         $menu->addChild('Startseite', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/'
-            )
+            'route' => 'dashboard'
         ));
 
         $this->container->get('event_dispatcher')
             ->dispatch('user_menu_main', new UserMenuEvent($menu));
 
-
         $menu->addChild('Infoeinheiten', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/infoeinheiten'
-            )));
+            'route' => 'weeklytask_dashboard',
+        ));
 
         $menu->addChild('Profil', array(
             'route' => 'sonata_user_profile_show',

@@ -50,6 +50,7 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
                 $title = $this->translator->trans('Ihr fitbase Quiz');
                 $content = $this->templating->render('Email/Subscriber/UserWeeklyquiz.html.twig', array(
                     'user' => $weeklyquizUser->getUser(),
+                    'company' => $weeklyquizUser->getUser()->getCompany(),
                     'task' => $weeklyquizUser->getTask(),
                     'quiz' => $weeklyquizUser->getQuiz(),
                     'userQuiz' => $weeklyquizUser,

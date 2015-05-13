@@ -48,6 +48,7 @@ class UserActioncodeSubscriber extends ContainerAware implements EventSubscriber
             $title = $this->translator->trans('Willkommen bei fitbase');
             $content = $this->templating->render('Email/Subscriber/UserInvite.html.twig', array(
                 'actioncode' => $actioncode,
+                'company' => $actioncode->getCompany(),
                 'user' => $user,
             ));
 

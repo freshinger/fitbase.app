@@ -4,12 +4,20 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.subscriber.CompanySubscriber" class="Fitbase\Bundle\CompanyBundle\Subscriber\CompanySubscriber">
+        <service id="fitbase.subscriber.company.CompanySubscriber" class="Fitbase\Bundle\CompanyBundle\Subscriber\CompanySubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
+
+        <service id="fitbase.subscriber.company.RequestSubscriber" class="Fitbase\Bundle\CompanyBundle\Subscriber\RequestSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
 
     </services>
 </container>

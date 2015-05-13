@@ -49,25 +49,37 @@ class SiteAdmin extends \Sonata\PageBundle\Admin\SiteAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with($this->trans('form_site.label_general'), array('class' => 'col-md-6'))
-                ->add('name')
-                ->add('isDefault', null, array('required' => false))
-                ->add('enabled', null, array('required' => false))
-                ->add('host')
-                ->add('locale', 'locale', array(
-                    'required' => false
-                ))
-                ->add('relativePath', null, array('required' => false))
-                ->add('enabledFrom', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
-                ->add('enabledTo', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+            ->tab($this->trans('form_site.label_general'))
+                ->with($this->trans('form_site.label_general'), array('class' => 'col-md-6'))
+                    ->add('name')
+                    ->add('isDefault', null, array('required' => false))
+                    ->add('enabled', null, array('required' => false))
+                    ->add('enabledFrom', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                    ->add('enabledTo', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->end()
+                ->with($this->trans('form_site.label_host'), array('class' => 'col-md-6'))
+                    ->add('scheme', null, array(
+                        'required' => true
+                    ))
+                    ->add('host', null, array(
+                        'required' => true
+                    ))
+                    ->add('relativePath', null, array('required' => false))
+
+                    ->add('locale', 'locale', array(
+                        'required' => false
+                    ))
+                ->end()
+    //            ->with($this->trans('form_site.label_group'), array('class' => 'col-md-6'))
+    //                ->add('group')
+    //            ->end()
             ->end()
-            ->with($this->trans('form_site.label_group'), array('class' => 'col-md-6'))
-                ->add('group')
-            ->end()
-            ->with($this->trans('form_site.label_seo'), array('class' => 'col-md-6'))
-                ->add('title', null, array('required' => false))
-                ->add('metaDescription', 'textarea', array('required' => false))
-                ->add('metaKeywords', 'textarea', array('required' => false))
+            ->tab($this->trans('form_site.label_seo'))
+                    ->with($this->trans('form_site.label_seo'), array('class' => 'col-md-6'))
+                    ->add('title', null, array('required' => false))
+                    ->add('metaDescription', 'textarea', array('required' => false))
+                    ->add('metaKeywords', 'textarea', array('required' => false))
+                ->end()
             ->end()
         ;
     }

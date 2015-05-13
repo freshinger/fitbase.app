@@ -1,163 +1,163 @@
-{% extends "FitbaseQuestionnaireBundle::admin.html.twig" %}
+{#{% extends "FitbaseQuestionnaireBundle::admin.html.twig" %}#}
 
-{% block form_row -%}
-    {{- form_widget(form) -}}
-{%- endblock form_row %}
+{#{% block form_row -%}#}
+    {#{{- form_widget(form) -}}#}
+{#{%- endblock form_row %}#}
 
-{% block button_row -%}
-    {{- form_widget(form) -}}
-{%- endblock button_row %}
+{#{% block button_row -%}#}
+    {#{{- form_widget(form) -}}#}
+{#{%- endblock button_row %}#}
 
-{% block content %}
-
-
-    <div class="wrap" style="margin: 11px 15px 0px 15px;">
-        <h2>
-            Fragebogen
-            <a class="add-new-h2" href="?page=questionnaire&questionnaire_create=true">
-                Neu hinzufügen
-            </a>
-        </h2>
-
-        {% for message in flashbag.get('notice') %}
-            <div class="flash-notice">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        <div class="tablenav top">
-            <div class="alignleft actions bulkactions" style="width: 100%">
-                {% form_theme formSearch _self %}
-
-                {{ form(formSearch) }}
-            </div>
-            {#<br class="clear">#}
-        </div>
-
-        <script type="text/javascript">
-            jQuery(function (event) {
-                jQuery('a.filter-role').click(function (event) {
-                    var jElement = jQuery(this);
-                    var jInput = jQuery('#weeklytask_search_string');
-                    var jForm = jQuery('form[name=weeklytask_search]');
-
-                    jInput.val(jElement.attr('id'));
-                    jForm.submit();
-                    return false;
-                });
-            });
-        </script>
+{#{% block content %}#}
 
 
-        <table class="wp-list-table widefat">
-            <thead>
-            <tr>
-                <th class="manage-column">
-                    Id
-                </th>
-                <th class="manage-column">
-                    Benutzer
-                </th>
-                <th class="manage-column">
-                    Unternehmen
-                </th>
-                <th class="manage-column">
-                    Name and Beschreibung
-                </th>
-                <th class="manage-column">
-                    Angelegt am
-                </th>
-                <th class="manage-column">
-                    Bearbeitet
-                </th>
-                <th class="manage-column">
-                    Gesundheit
-                </th>
-                <th class="manage-column">
-                    Belastung
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if pagerfanta.nbResults > 0 %}
-                {% for questionnaireUser in pagerfanta.currentPageResults %}
-                    <tr class="{{ loop.index is even ? 'alternate' : '' }}">
-                        <td>{{ loop.index }}</td>
-                        <td nowrap>
-                            <a href="/wp-admin/user-edit.php?user_id={{ questionnaireUser.user.id }}">
-                                {{ questionnaireUser.user.displayName }}
-                            </a>
-                        </td>
-                        <td nowrap>
-                            {% set companyId = questionnaireUser.questionnaireCompany.company.id %}
-                            {% set companyName = questionnaireUser.questionnaireCompany.company.name %}
-                            {% if companyName|length > 0 %}
-                                <a href="?page=unternehmen&company_id={{ companyId }}">
-                                    {{ companyName }}
-                                </a>
-                            {% endif %}
-                        </td>
-                        <td>
-                            <a href="?page=questionnaire&questionnaire_id_edit={{ questionnaireUser.questionnaire.id }}">
-                                {{ questionnaireUser.questionnaire.name }}
-                            </a>
-                        </td>
-                        <td>{{ questionnaireUser.date|date('d.m.Y') }}</td>
-                        <td>
-                            {% if questionnaireUser.done %}
-                                Bearbeitet am {{ questionnaireUser.doneDate|date('d.m.Y') }}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if questionnaireUser.done %}
-                                {{ questionnaireUser.countPointHealth|health }} %
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if questionnaireUser.done %}
-                                {{ questionnaireUser.countPointStrain|strain }} %
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="7">Kein Remind-Plan gefunden</td>
-                </tr>
-            {% endif %}
-            </tbody>
-        </table>
-        {% if pagerfanta.haveToPaginate %}
-            <div class="tablenav bottom">
-                <div class="tablenav-pages">
-                    <span class="displaying-num">{{ pagerfanta.nbResults }}</span>
-                <span class="pagination-links">
-                    {% if pagerfanta.hasPreviousPage %}
-                        <a href="?page=questionnaire&navigate=1" title="Zur ersten Seite gehen"
-                           class="first-page ">«</a>
-                        <a href="?page=questionnaire&navigate={{ pagerfanta.previousPage }}"
-                           title="Zur vorherigen Seite gehen" class="prev-page">‹</a>
-                    {% else %}
-                        <a title="Zur ersten Seite gehen" class="first-page ">«</a>
-                        <a title="Zur vorherigen Seite gehen" class="prev-page disabled">‹</a>
-                    {% endif %}
-                    <span class="paging-input">{{ pagerfanta.currentPage }} von <span
-                                class="total-pages">{{ pagerfanta.nbPages }}</span></span>
-                    {% if pagerfanta.hasNextPage %}
-                        <a href="?page=questionnaire&navigate={{ pagerfanta.nextPage }}"
-                           title="Zur nächsten Seite gehen" class="next-page">›</a>
-                        <a href="?page=questionnaire&navigate={{ pagerfanta.nbPages }}"
-                           title="Zur letzten Seite gehen" class="last-page">»</a>
-                    {% else %}
-                        <a title="Zur nächsten Seite gehen" class="next-page disabled">›</a>
-                        <a title="Zur letzten Seite gehen" class="last-page disabled">»</a>
-                    {% endif %}
-                </span>
-                </div>
-                <br class="clear">
-            </div>
-        {% endif %}
-    </div>
+    {#<div class="wrap" style="margin: 11px 15px 0px 15px;">#}
+        {#<h2>#}
+            {#Fragebogen#}
+            {#<a class="add-new-h2" href="?page=questionnaire&questionnaire_create=true">#}
+                {#Neu hinzufügen#}
+            {#</a>#}
+        {#</h2>#}
+
+        {#{% for message in flashbag.get('notice') %}#}
+            {#<div class="flash-notice">#}
+                {#{{ message }}#}
+            {#</div>#}
+        {#{% endfor %}#}
+
+        {#<div class="tablenav top">#}
+            {#<div class="alignleft actions bulkactions" style="width: 100%">#}
+                {#{% form_theme formSearch _self %}#}
+
+                {#{{ form(formSearch) }}#}
+            {#</div>#}
+            {#&#123;&#35;<br class="clear">&#35;&#125;#}
+        {#</div>#}
+
+        {#<script type="text/javascript">#}
+            {#jQuery(function (event) {#}
+                {#jQuery('a.filter-role').click(function (event) {#}
+                    {#var jElement = jQuery(this);#}
+                    {#var jInput = jQuery('#weeklytask_search_string');#}
+                    {#var jForm = jQuery('form[name=weeklytask_search]');#}
+
+                    {#jInput.val(jElement.attr('id'));#}
+                    {#jForm.submit();#}
+                    {#return false;#}
+                {#});#}
+            {#});#}
+        {#</script>#}
 
 
-{% endblock content %}
+        {#<table class="wp-list-table widefat">#}
+            {#<thead>#}
+            {#<tr>#}
+                {#<th class="manage-column">#}
+                    {#Id#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Benutzer#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Unternehmen#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Name and Beschreibung#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Angelegt am#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Bearbeitet#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Gesundheit#}
+                {#</th>#}
+                {#<th class="manage-column">#}
+                    {#Belastung#}
+                {#</th>#}
+            {#</tr>#}
+            {#</thead>#}
+            {#<tbody>#}
+            {#{% if pagerfanta.nbResults > 0 %}#}
+                {#{% for questionnaireUser in pagerfanta.currentPageResults %}#}
+                    {#<tr class="{{ loop.index is even ? 'alternate' : '' }}">#}
+                        {#<td>{{ loop.index }}</td>#}
+                        {#<td nowrap>#}
+                            {#<a href="/wp-admin/user-edit.php?user_id={{ questionnaireUser.user.id }}">#}
+                                {#{{ questionnaireUser.user.displayName }}#}
+                            {#</a>#}
+                        {#</td>#}
+                        {#<td nowrap>#}
+                            {#{% set companyId = questionnaireUser.questionnaireCompany.company.id %}#}
+                            {#{% set companyName = questionnaireUser.questionnaireCompany.company.name %}#}
+                            {#{% if companyName|length > 0 %}#}
+                                {#<a href="?page=unternehmen&company_id={{ companyId }}">#}
+                                    {#{{ companyName }}#}
+                                {#</a>#}
+                            {#{% endif %}#}
+                        {#</td>#}
+                        {#<td>#}
+                            {#<a href="?page=questionnaire&questionnaire_id_edit={{ questionnaireUser.questionnaire.id }}">#}
+                                {#{{ questionnaireUser.questionnaire.name }}#}
+                            {#</a>#}
+                        {#</td>#}
+                        {#<td>{{ questionnaireUser.date|date('d.m.Y') }}</td>#}
+                        {#<td>#}
+                            {#{% if questionnaireUser.done %}#}
+                                {#Bearbeitet am {{ questionnaireUser.doneDate|date('d.m.Y') }}#}
+                            {#{% endif %}#}
+                        {#</td>#}
+                        {#<td>#}
+                            {#{% if questionnaireUser.done %}#}
+                                {#{{ questionnaireUser.countPointHealth|health }} %#}
+                            {#{% endif %}#}
+                        {#</td>#}
+                        {#<td>#}
+                            {#{% if questionnaireUser.done %}#}
+                                {#{{ questionnaireUser.countPointStrain|strain }} %#}
+                            {#{% endif %}#}
+                        {#</td>#}
+                    {#</tr>#}
+                {#{% endfor %}#}
+            {#{% else %}#}
+                {#<tr>#}
+                    {#<td colspan="7">Kein Remind-Plan gefunden</td>#}
+                {#</tr>#}
+            {#{% endif %}#}
+            {#</tbody>#}
+        {#</table>#}
+        {#{% if pagerfanta.haveToPaginate %}#}
+            {#<div class="tablenav bottom">#}
+                {#<div class="tablenav-pages">#}
+                    {#<span class="displaying-num">{{ pagerfanta.nbResults }}</span>#}
+                {#<span class="pagination-links">#}
+                    {#{% if pagerfanta.hasPreviousPage %}#}
+                        {#<a href="?page=questionnaire&navigate=1" title="Zur ersten Seite gehen"#}
+                           {#class="first-page ">«</a>#}
+                        {#<a href="?page=questionnaire&navigate={{ pagerfanta.previousPage }}"#}
+                           {#title="Zur vorherigen Seite gehen" class="prev-page">‹</a>#}
+                    {#{% else %}#}
+                        {#<a title="Zur ersten Seite gehen" class="first-page ">«</a>#}
+                        {#<a title="Zur vorherigen Seite gehen" class="prev-page disabled">‹</a>#}
+                    {#{% endif %}#}
+                    {#<span class="paging-input">{{ pagerfanta.currentPage }} von <span#}
+                                {#class="total-pages">{{ pagerfanta.nbPages }}</span></span>#}
+                    {#{% if pagerfanta.hasNextPage %}#}
+                        {#<a href="?page=questionnaire&navigate={{ pagerfanta.nextPage }}"#}
+                           {#title="Zur nächsten Seite gehen" class="next-page">›</a>#}
+                        {#<a href="?page=questionnaire&navigate={{ pagerfanta.nbPages }}"#}
+                           {#title="Zur letzten Seite gehen" class="last-page">»</a>#}
+                    {#{% else %}#}
+                        {#<a title="Zur nächsten Seite gehen" class="next-page disabled">›</a>#}
+                        {#<a title="Zur letzten Seite gehen" class="last-page disabled">»</a>#}
+                    {#{% endif %}#}
+                {#</span>#}
+                {#</div>#}
+                {#<br class="clear">#}
+            {#</div>#}
+        {#{% endif %}#}
+    {#</div>#}
+
+
+{#{% endblock content %}#}

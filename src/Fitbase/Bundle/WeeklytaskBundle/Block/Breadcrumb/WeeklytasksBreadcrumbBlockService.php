@@ -32,10 +32,7 @@ class WeeklytasksBreadcrumbBlockService extends FitbaseBreadcrumbBlockService
         $menu = parent::getRootMenu($blockContext);
 
         $menu->addChild('Infoeinheiten', array(
-            'route' => 'page_slug',
-            'routeParameters' => array(
-                'path' => '/infoeinheiten'
-            ),
+            'route' => 'weeklytask_dashboard',
             'extras' => array('translation_domain' => 'FitbaseWeeklytaskBundle')
         ));
 

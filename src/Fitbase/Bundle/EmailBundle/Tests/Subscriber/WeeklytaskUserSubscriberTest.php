@@ -10,16 +10,20 @@ namespace Fitbase\Bundle\EmailBundle\Tests\Subscriber;
 
 
 use Application\Sonata\UserBundle\Entity\User;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber;
 use Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber;
 use Fitbase\Bundle\EmailBundle\Subscriber\WeeklytaskUserSubscriber;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 
-class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
+class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
 {
     protected $mailer;
     protected $templating;
@@ -41,17 +45,26 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
             ->will($this->returnValue('true'));
 
-        $this->templating = $this->getMock('Templating', array('render'));
-        $this->templating->expects($this->any())
-            ->method('render')
-            ->will($this->returnValue('html content'));
-
-
-        $this->translator = $this->getMock('Translator', array('trans'));
-        $this->translator->expects($this->any())
-            ->method('trans')
-            ->will($this->returnValue('translation'));
+        $this->templating = $this->container()->get('templating');
+        $this->translator = $this->container()->get('translator');
     }
+
+    /**
+     * Get user object for this test
+     * @return User
+     */
+    protected function getUser()
+    {
+        return (new User())
+            ->setCompany(
+                (new Company())
+            )
+            ->setEmail('test@test.com')
+            ->setFocus(
+                (new UserFocus())
+            );
+    }
+
 
     /**
      * Check that method send email to user
@@ -75,15 +88,13 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
         (new WeeklytaskUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
             ->onWeeklytaskUserSendEvent(new WeeklytaskUserEvent(
                 (new WeeklytaskUser())
-                    ->setUser(
-                        (new User())
-                            ->setEmail('test@test.com')
-                    )
+                    ->setTask(new Weeklytask())
+                    ->setUser($this->getUser())
             ));
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
-        $this->assertEquals($title, $this->translator->trans());
-        $this->assertEquals($content, $this->templating->render());
+        $this->assertNotEmpty($title);
+        $this->assertNotEmpty($content);
     }
 
     /**
@@ -95,10 +106,8 @@ class WeeklytaskUserSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $event = new WeeklytaskUserEvent(
             (new WeeklytaskUser())
-                ->setUser(
-                    (new User())
-                        ->setEmail('test@test.com')
-                )
+                ->setTask(new Weeklytask())
+                ->setUser($this->getUser())
         );
 
         (new WeeklytaskUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))

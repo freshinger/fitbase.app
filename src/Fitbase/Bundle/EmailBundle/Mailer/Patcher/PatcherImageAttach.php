@@ -12,7 +12,6 @@ use Application\Sonata\UserBundle\Entity\User;
 
 class PatcherImageAttach implements SwiftMessagePatcherInterface
 {
-
     protected $host;
     protected $scheme;
     protected $logger;

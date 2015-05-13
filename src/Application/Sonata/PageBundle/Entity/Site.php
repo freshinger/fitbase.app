@@ -65,4 +65,32 @@ class Site extends BaseSite
     {
         return $this->group;
     }
+    /**
+     * @var string
+     */
+    private $scheme;
+
+
+    /**
+     * Set scheme
+     *
+     * @param string $scheme
+     * @return Site
+     */
+    public function setScheme($scheme)
+    {
+        $this->scheme = $scheme;
+
+        return $this;
+    }
+
+    /**
+     * Get scheme
+     *
+     * @return string 
+     */
+    public function getScheme()
+    {
+        return $this->scheme;
+    }
 }

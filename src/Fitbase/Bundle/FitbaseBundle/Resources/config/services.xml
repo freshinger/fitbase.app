@@ -55,6 +55,14 @@
             </call>
         </service>
 
+        <service id="twig.extension.routing" class="Fitbase\Bundle\FitbaseBundle\Library\Templating\Extension\FitbaseRoutingExtension">
+            <argument type="service" id="router" />
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
     </services>
 
 

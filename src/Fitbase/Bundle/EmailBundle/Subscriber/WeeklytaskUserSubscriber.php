@@ -50,6 +50,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
                 $title = $this->translator->trans('Ihre fitbase Infoeinheit');
                 $content = $this->templating->render('Email/Subscriber/UserWeeklytask.html.twig', array(
                     'user' => $weeklytaskUser->getUser(),
+                    'company' => $weeklytaskUser->getUser()->getCompany(),
                     'task' => $weeklytaskUser->getTask(),
                     'userTask' => $weeklytaskUser,
 

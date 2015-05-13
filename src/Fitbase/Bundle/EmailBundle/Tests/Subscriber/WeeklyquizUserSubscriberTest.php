@@ -10,13 +10,16 @@ namespace Fitbase\Bundle\EmailBundle\Tests\Subscriber;
 
 
 use Application\Sonata\UserBundle\Entity\User;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber;
 use Fitbase\Bundle\EmailBundle\Subscriber\WeeklyquizUserSubscriber;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
+use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
 
-class WeeklyquizUserSubscriberTest extends \PHPUnit_Framework_TestCase
+class WeeklyquizUserSubscriberTest extends FitbaseTestAbstract
 {
     protected $mailer;
     protected $templating;
@@ -38,17 +41,27 @@ class WeeklyquizUserSubscriberTest extends \PHPUnit_Framework_TestCase
             ->method('flush')
             ->will($this->returnValue('true'));
 
-        $this->templating = $this->getMock('Templating', array('render'));
-        $this->templating->expects($this->any())
-            ->method('render')
-            ->will($this->returnValue('html content'));
-
-
-        $this->translator = $this->getMock('Translator', array('trans'));
-        $this->translator->expects($this->any())
-            ->method('trans')
-            ->will($this->returnValue('translation'));
+        $this->templating = $this->container()->get('templating');
+        $this->translator = $this->container()->get('translator');
     }
+
+
+    /**
+     * Get user object for this test
+     * @return User
+     */
+    protected function getUser()
+    {
+        return (new User())
+            ->setCompany(
+                (new Company())
+            )
+            ->setEmail('test@test.com')
+            ->setFocus(
+                (new UserFocus())
+            );
+    }
+
 
     /**
      * Check that method send email to user
@@ -70,17 +83,16 @@ class WeeklyquizUserSubscriberTest extends \PHPUnit_Framework_TestCase
 
 
         (new WeeklyquizUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
-            ->onWeeklyquizUserSendEvent(new WeeklyquizUserEvent(
-                (new WeeklyquizUser())
-                    ->setUser(
-                        (new User())
-                            ->setEmail('test@test.com')
-                    )
-            ));
+            ->onWeeklyquizUserSendEvent(
+                new WeeklyquizUserEvent(
+                    (new WeeklyquizUser())
+                        ->setUser($this->getUser())
+                )
+            );
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
-        $this->assertEquals($title, $this->translator->trans());
-        $this->assertEquals($content, $this->templating->render());
+        $this->assertNotEmpty($title);
+        $this->assertNotEmpty($content);
     }
 
     /**
@@ -92,10 +104,7 @@ class WeeklyquizUserSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $event = new WeeklyquizUserEvent(
             (new WeeklyquizUser())
-                ->setUser(
-                    (new User())
-                        ->setEmail('test@test.com')
-                )
+                ->setUser($this->getUser())
         );
 
         (new WeeklyquizUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))

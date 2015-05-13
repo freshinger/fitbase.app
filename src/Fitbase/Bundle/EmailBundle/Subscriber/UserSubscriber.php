@@ -42,6 +42,7 @@ class UserSubscriber implements EventSubscriberInterface
             $title = $this->translator->trans('Willkommen bei fitbase');
             $content = $this->templating->render('Email/Subscriber/UserCreate.html.twig', array(
                 'user' => $user,
+                'company' => $user->getCompany(),
             ));
 
             $this->mailer->mail($user, $title, $content);

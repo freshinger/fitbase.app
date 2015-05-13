@@ -45,34 +45,54 @@ class ExerciseUserSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * Get main focus category
+     *
+     * @param $user
+     * @return null
+     */
+    protected function getFocusCategoryMain($user)
+    {
+        if (($focus = $user->getFocus())) {
+            if (($categoryFocus = $focus->getFirstCategory())) {
+                return $categoryFocus->getCategory();
+            }
+        }
+        return NULL;
+    }
+
+    /**
+     * @param $user
+     * @return \Doctrine\Common\Collections\Collection|static
+     */
+    protected function getFocusCategories($user)
+    {
+        // TODO: refactor this crazy category chooser
+        return (new ArrayCollection($this->chooserCategory->choose($user->getFocus())))
+            ->filter(function ($element) {
+                return !$element->getParent() ? true : false;
+            });
+    }
+
+    /**
      *
      * @param ExerciseUserEvent $event
      */
     public function onExerciseUserSendEvent(ExerciseUserEvent $event)
     {
-        if (($exerciseUser = $event->getEntity()) and ($user = $exerciseUser->getUser())) {
+        if (($exerciseUser = $event->getEntity())) {
+            if (($user = $exerciseUser->getUser())) {
 
-            $category = null;
-            if (($focus = $user->getFocus())) {
-                if (($categoryFocus = $focus->getFirstCategory())) {
-                    $categoryFocus = $categoryFocus->getCategory();
-                }
+                $title = $this->translator->trans('Ihre fitbase Erinnerung');
+                $content = $this->templating->render('Email/Subscriber/UserExercise.html.twig', array(
+                    'user' => $user,
+                    'company' => $user->getCompany(),
+                    'categoryFocus' => $this->getFocusCategoryMain($user),
+                    'categories' => $this->getFocusCategories($user),
+                    'exerciseUser' => $exerciseUser,
+                ));
+
+                $this->mailer->mail($user, $title, $content);
             }
-
-            $categories = (new ArrayCollection($this->chooserCategory->choose($user->getFocus())))
-                ->filter(function ($element) {
-                    return !$element->getParent() ? true : false;
-                });
-
-            $title = $this->translator->trans('Ihre fitbase Erinnerung');
-            $content = $this->templating->render('Email/Subscriber/UserExercise.html.twig', array(
-                'user' => $exerciseUser->getUser(),
-                'categoryFocus' => $categoryFocus,
-                'categories' => $categories,
-                'exerciseUser' => $exerciseUser,
-            ));
-
-            $this->mailer->mail($user, $title, $content);
         }
 
         $exerciseUser->setProcessed(1);

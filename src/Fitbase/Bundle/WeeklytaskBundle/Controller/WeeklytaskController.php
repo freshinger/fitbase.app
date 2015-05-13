@@ -15,6 +15,37 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class WeeklytaskController extends Controller
 {
     /**
+     * Render weeklytask dashboard
+     * @param Request $request
+     * @param null $unique
+     * @return Response
+     */
+    public function dashboardAction(Request $request)
+    {
+        $user = $this->get('user')->current();
+
+        $countWeeklytaskDone = 0;
+        $countWeeklytaskPointDone = 0;
+
+        $entityManager = $this->get('entity_manager');
+        $weeklytaskUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        $weeklyquizUserRepository = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+
+        $countWeeklytaskDone += $weeklytaskUserRepository->findCountByUserAndDone($user);
+        $countWeeklytaskPointDone += $weeklytaskUserRepository->findSumPointByUserAndDone($user);
+        $countWeeklytaskPointDone += $weeklyquizUserRepository->findSumPointByUserAndDone($user);
+
+        $collection = $weeklytaskUserRepository->findAllByUser($user);
+
+        return $this->render('Weeklytask/Dashboard.html.twig', array(
+            'countDone' => $countWeeklytaskDone,
+            'countDonePoints' => $countWeeklytaskPointDone,
+            'collection' => $collection,
+        ));
+    }
+
+
+    /**
      * Display user weeklytask
      * @param Request $request
      * @param null $unique

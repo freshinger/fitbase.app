@@ -9,14 +9,16 @@
 namespace Fitbase\Bundle\EmailBundle\Tests\Subscriber;
 
 
-use Application\Sonata\ClassificationBundle\Document\Category;
+use Application\Sonata\ClassificationBundle\Entity\Category;
 use Application\Sonata\UserBundle\Entity\User;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 
-class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
+class ExerciseUserSubscriberTest extends FitbaseTestAbstract
 {
     protected $mailer;
     protected $objectManager;
@@ -47,20 +49,27 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
         $this->chooserCategory->expects($this->any())
             ->method('choose')
             ->will($this->returnValue(array(
-                new Category(), new Category()
+                (new Category()), (new Category())
             )));
 
+        $this->templating = $this->container()->get('templating');
+        $this->translator = $this->container()->get('translator');
+    }
 
-        $this->templating = $this->getMock('Templating', array('render'));
-        $this->templating->expects($this->any())
-            ->method('render')
-            ->will($this->returnValue('html content'));
-
-
-        $this->translator = $this->getMock('Translator', array('trans'));
-        $this->translator->expects($this->any())
-            ->method('trans')
-            ->will($this->returnValue('translation'));
+    /**
+     * Get user object for this test
+     * @return User
+     */
+    protected function getUser()
+    {
+        return (new User())
+            ->setCompany(
+                (new Company())
+            )
+            ->setEmail('test@test.com')
+            ->setFocus(
+                (new UserFocus())
+            );
     }
 
 
@@ -88,18 +97,14 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $event = new ExerciseUserEvent(
             (new ExerciseUser())
-                ->setUser(
-                    (new User())
-                        ->setEmail('test@test.com')
-                        ->setFocus((new UserFocus()))
-                )
+                ->setUser($this->getUser())
         );
 
         $subscriber->onExerciseUserSendEvent($event);
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
-        $this->assertEquals($title, $this->translator->trans());
-        $this->assertEquals($content, $this->templating->render());
+        $this->assertNotEmpty($title);
+        $this->assertNotEmpty($content);
     }
 
     /**
@@ -114,11 +119,7 @@ class ExerciseUserSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $event = new ExerciseUserEvent(
             (new ExerciseUser())
-                ->setUser(
-                    (new User())
-                        ->setEmail('test@test.com')
-                        ->setFocus((new UserFocus()))
-                )
+                ->setUser($this->getUser())
         );
 
         $subscriber->onExerciseUserSendEvent($event);

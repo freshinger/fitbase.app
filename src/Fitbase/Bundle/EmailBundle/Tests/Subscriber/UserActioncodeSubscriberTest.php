@@ -10,13 +10,15 @@ namespace Fitbase\Bundle\EmailBundle\Tests\Subscriber;
 
 
 use Application\Sonata\UserBundle\Entity\User;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\EmailBundle\Subscriber\UserActioncodeSubscriber;
 use Fitbase\Bundle\EmailBundle\Subscriber\UserSubscriber;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\UserBundle\Event\UserActioncodeEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 
-class UserActioncodeSubscriberTest extends \PHPUnit_Framework_TestCase
+class UserActioncodeSubscriberTest extends FitbaseTestAbstract
 {
     protected $mailer;
     protected $templating;
@@ -29,17 +31,21 @@ class UserActioncodeSubscriberTest extends \PHPUnit_Framework_TestCase
             ->method('mail')
             ->will($this->returnValue(true));
 
+        $this->templating = $this->container()->get('templating');
+        $this->translator = $this->container()->get('translator');
+    }
 
-        $this->templating = $this->getMock('Templating', array('render'));
-        $this->templating->expects($this->any())
-            ->method('render')
-            ->will($this->returnValue('html content'));
-
-
-        $this->translator = $this->getMock('Translator', array('trans'));
-        $this->translator->expects($this->any())
-            ->method('trans')
-            ->will($this->returnValue('translation'));
+    /**
+     * Setup user actioncode object
+     * @return UserActioncode
+     */
+    protected function getUserActioncode()
+    {
+        return (new UserActioncode())
+            ->setEmail('test@test.com')
+            ->setCompany(
+                (new Company())
+            );
     }
 
     /**
@@ -62,14 +68,13 @@ class UserActioncodeSubscriberTest extends \PHPUnit_Framework_TestCase
 
 
         (new UserActioncodeSubscriber($this->mailer, $this->templating, $this->translator))
-            ->onUserActioncodeInviteEvent((new UserActioncodeEvent(
-                (new UserActioncode())
-                    ->setEmail('test@test.com')
-            )));
+            ->onUserActioncodeInviteEvent(
+                new UserActioncodeEvent($this->getUserActioncode())
+            );
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
-        $this->assertEquals($title, $this->translator->trans());
-        $this->assertEquals($content, $this->templating->render());
+        $this->assertNotEmpty($title);
+        $this->assertNotEmpty($content);
     }
 
 } 

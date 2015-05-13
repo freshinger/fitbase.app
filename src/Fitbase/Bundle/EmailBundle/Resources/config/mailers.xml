@@ -4,18 +4,15 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-
     <services>
 
-        <service id="mailer.patcher.link_code" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherLinkCode">
-            <argument>%fitbase.project.scheme%</argument>
-            <argument>%fitbase.project.host%</argument>
+        <service id="mailer.patcher.link_code" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherUserCompanyLinkCode">
+            <argument type="service" id="company"/>
             <argument type="service" id="fitbase_helper.email.signon"/>
         </service>
 
-        <service id="mailer.patcher.image_attach" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherImageAttach">
-            <argument>%fitbase.project.scheme%</argument>
-            <argument>%fitbase.project.host%</argument>
+        <service id="mailer.patcher.image_attach" class="Fitbase\Bundle\EmailBundle\Mailer\Patcher\PatcherUserCompanyImageAttach">
+            <argument type="service" id="company"/>
             <argument type="service" id="logger"/>
         </service>
 
