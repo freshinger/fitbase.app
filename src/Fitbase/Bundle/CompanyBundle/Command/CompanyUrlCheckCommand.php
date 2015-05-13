@@ -38,6 +38,6 @@ class CompanyUrlCheckCommand extends ContainerAwareCommand
         $user = $repositoryUser->find(1);
 
 
-        $output->writeln($router->getUrl('dashboard', array(), UrlGeneratorInterface::ABSOLUTE_PATH, $user->getCompany()));
+        $output->writeln($router->getUrlCompany($user->getCompany(), 'dashboard'));
     }
 }
