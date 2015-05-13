@@ -86,13 +86,11 @@ class ServiceUser extends ContainerAware
 
         if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
 
-            // TODO: switch without sites
             $token = new UsernamePasswordToken($user, $password, "main", $user->getRoles());
             $securityContext = $this->container->get('security.context');
             $securityContext->setToken($token);
 
-            $company = $this->container->get('company')->current($user);
-            return $this->container->get('twig.extension.routing')->getUrlCompany($company, 'dashboard', array());
+            return $this->container->get('router')->generate('dashboard');
         }
 
         return false;

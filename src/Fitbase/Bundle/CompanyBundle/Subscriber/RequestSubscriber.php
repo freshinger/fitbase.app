@@ -2,18 +2,12 @@
 
 namespace Fitbase\Bundle\CompanyBundle\Subscriber;
 
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
-use Fitbase\Bundle\ExerciseBundle\Event\CategoryEvent;
-use Sonata\PageBundle\Exception\InternalErrorException;
-use Sonata\PageBundle\Exception\PageNotFoundException;
 use Sonata\PageBundle\Model\SiteInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Sonata\PageBundle\Exception\PageNotFoundException;
 
 class RequestSubscriber extends ContainerAware implements EventSubscriberInterface
 {
