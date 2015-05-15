@@ -104,7 +104,6 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
             }
         }
 
-
         $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
         $collection = $repositoryReminderItem->findAllByReminderAndType($reminder, 'weeklytask');
 

@@ -5,3 +5,33 @@
     {% set vars =  { 'attr': { 'class': 'btn btn-default' }} %}
     {{- form_widget(form, vars) -}}
 {%- endblock button_row %}
+
+
+{% block weeklytask_reminder_item_widget %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-xs-12">
+                {% if form.parent is empty %}
+                    {{ form_errors(form) }}
+                {% endif %}
+                {{- form_errors(form.day) -}}
+                {{- form_errors(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                {{- form_widget(form.day) -}}
+            </div>
+            <div class="col-xs-8">
+                {{- form_widget(form.time) -}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                {{ form_rest(form) }}
+                {{ form_row(form.save) }}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock weeklytask_reminder_item_widget %}
