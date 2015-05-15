@@ -74,7 +74,9 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
             $reminder = $repositoryReminder->findOneByUser($user);
         }
 
-        $form = $this->container->get('form.factory')->create(new ReminderUserItemForm(), new ReminderUserItem());
+        $form = $this->container->get('form.factory')->create(
+            new ReminderUserItemForm('weeklytask_reminder_item'), new ReminderUserItem());
+
         if ($this->container->get('request')->get($form->getName())) {
             $form->handleRequest($this->container->get('request'));
             if ($form->isValid()) {

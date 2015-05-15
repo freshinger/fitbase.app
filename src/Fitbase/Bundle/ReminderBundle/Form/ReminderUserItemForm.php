@@ -15,6 +15,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ReminderUserItemForm extends AbstractType
 {
+    protected $name;
+
+    public function __construct($name = 'reminder_item')
+    {
+        $this->name = $name;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -58,8 +66,12 @@ class ReminderUserItemForm extends AbstractType
         return 'form';
     }
 
+    /**
+     * Get form name
+     * @return string
+     */
     public function getName()
     {
-        return 'reminder_item';
+        return $this->name;
     }
 } 
