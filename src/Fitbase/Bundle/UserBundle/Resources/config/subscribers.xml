@@ -70,11 +70,10 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="fitbase.subscriber.user"
-                 class="Fitbase\Bundle\UserBundle\Subscriber\UserSubscriber">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
+        <service id="fitbase.subscriber.user" class="Fitbase\Bundle\UserBundle\Subscriber\UserSubscriber">
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="datetime"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

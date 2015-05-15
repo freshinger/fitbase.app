@@ -51,7 +51,9 @@ abstract class FitbaseTestAbstract extends WebTestCase
     protected function getEntityManager()
     {
         if (empty($this->entityManager)) {
-            $this->objectManager = $this->getMock('EntityManager', array('persist', 'flush'));
+            $this->objectManager = $this->getMock('Doctrine\Common\Persistence\ObjectManager',
+                array('merge', 'persist', 'flush', 'find', 'clear', 'detach', 'refresh', 'getRepository', 'getClassMetadata',
+                    'getMetadataFactory', 'initializeObject', 'contains','remove'));
             $this->objectManager->expects($this->any())
                 ->method('persist')
                 ->will($this->returnValue('true'));
@@ -67,7 +69,8 @@ abstract class FitbaseTestAbstract extends WebTestCase
     protected function getEventDispatcher()
     {
         if (empty($this->eventDispatcher)) {
-            $this->eventDispatcher = $this->getMock('EventDispatcher', array('dispatch'));
+            $this->eventDispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface',
+                array('dispatch', 'addListener', 'addSubscriber', 'removeListener', 'removeSubscriber', 'getListeners', 'hasListeners'));
             $this->eventDispatcher->expects($this->any())
                 ->method('dispatch')
                 ->will($this->returnValue(true));

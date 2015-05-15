@@ -40,8 +40,22 @@ class ExerciseUserRepository extends EntityRepository
     protected function getExprDateTimeLt($queryBuilder, $datetime)
     {
         if (!empty($datetime)) {
-            $queryBuilder->setParameter('datetime', $datetime);
-            return $queryBuilder->expr()->lt('ExerciseUser.date', ':datetime');
+            $queryBuilder->setParameter('datetimelt', $datetime);
+            return $queryBuilder->expr()->lt('ExerciseUser.date', ':datetimelt');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeGt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetimegt', $datetime);
+            return $queryBuilder->expr()->gt('ExerciseUser.date', ':datetimegt');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
@@ -142,9 +156,15 @@ class ExerciseUserRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('ExerciseUser');
 
+        $datetimeGt = $datetime->setTime(0, 0);
+        $datetimeLt = $datetime->setTime(23, 59);
+
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
-            $this->getExprDateTime($queryBuilder, $datetime)
+            $queryBuilder->expr()->andX(
+                $this->getExprDateTimeGt($queryBuilder, $datetimeGt),
+                $this->getExprDateTimeLt($queryBuilder, $datetimeLt)
+            )
         ));
 
         $queryBuilder->setMaxResults(1);
