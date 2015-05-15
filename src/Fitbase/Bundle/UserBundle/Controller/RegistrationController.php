@@ -154,7 +154,6 @@ class RegistrationController extends Controller
         ));
     }
 
-
     /**
      * Register user
      * @param UserRegistration $registration
@@ -168,71 +167,10 @@ class RegistrationController extends Controller
         $user->setFirstname($registration->getFirstName());
         $user->setLastname($registration->getLastName());
         $user->setPlainPassword($this->get('codegenerator')->password(10));
-        $user->setCompany($actioncode->getCompany());
         $user->setActioncode($actioncode);
-        $user->setExpired(false);
-        $user->setEnabled(true);
 
-        $entityManager = $this->get('entity_manager');
-        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
-
-        $username = (new Slugify())->slugify("{$user->getFirstname()}_{$user->getLastName()}");
-        while (($collection = $repositoryUser->findByUsername($username))) {
-            $username = $username . count($collection);
-        }
-
-        $user->setUsername($username);
-
-
-        $createEvent = new UserEvent($user);
-        $this->get('event_dispatcher')
-            ->dispatch('user_create', $createEvent);
-
-        $entityManager->persist($user);
-        $entityManager->flush($user);
-
-        $actioncode->setUser($user);
-        $actioncode->setProcessed(true);
-        $actioncode->setProcessedDate($this->get('datetime')->getDateTime('now'));
-
-        $entityManager->persist($actioncode);
-        $entityManager->flush($actioncode);
-
-        $registeredEvent = new UserEvent($user);
-        $this->container->get('event_dispatcher')
-            ->dispatch('user_registered', $registeredEvent);
+        $this->get('event_dispatcher')->dispatch('user_register', new UserEvent($user));
 
         return $user;
     }
-
-
-    /**
-     * Create user focus category
-     * @param $userFocus
-     * @param $category
-     */
-    protected function doCreateUserFocusCategory($userFocus, $category)
-    {
-        $focusCategory = new UserFocusCategory();
-        $focusCategory->setFocus($userFocus);
-        $focusCategory->setCategory($category);
-        $focusCategory->setPriority(count($userFocus->getCategories()));
-
-        $this->container->get('entity_manager')->persist($focusCategory);
-        $this->container->get('entity_manager')->flush($focusCategory);
-
-        $userFocus->addCategory($focusCategory);
-
-        $this->container->get('entity_manager')->persist($userFocus);
-        $this->container->get('entity_manager')->flush($userFocus);
-        $this->container->get('entity_manager')->refresh($userFocus);
-
-        if (count(($children = $category->getChildren()))) {
-            foreach ($children as $child) {
-                $this->doCreateUserFocusCategory($userFocus, $child);
-            }
-        }
-    }
-
-
 }
