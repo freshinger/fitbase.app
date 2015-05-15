@@ -54,13 +54,6 @@ class UserForestBlock extends BaseBlockService implements ContainerAwareInterfac
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        $managerEntity = $this->container->get('entity_manager');
-        $repositoryGamificationUser = $managerEntity->getRepository('Fitbase\Bundle\GamificationBundle\Entity\GamificationUser');
-
-        if (!($gamification = $repositoryGamificationUser->findOneByUser($user))) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
         $points = 0;
         if (($company = $user->getCompany())) {
             if (($users = $company->getUsers())) {
