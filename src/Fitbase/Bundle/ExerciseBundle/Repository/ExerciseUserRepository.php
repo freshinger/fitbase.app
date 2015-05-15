@@ -156,8 +156,10 @@ class ExerciseUserRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('ExerciseUser');
 
-        $datetimeGt = $datetime->setTime(0, 0);
-        $datetimeLt = $datetime->setTime(23, 59);
+        $datetimeGt = clone $datetime;
+        $datetimeGt->setTime(0, 0);
+        $datetimeLt = clone  $datetime;
+        $datetimeLt->setTime(23, 59);
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
