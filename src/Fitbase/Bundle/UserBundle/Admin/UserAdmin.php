@@ -146,7 +146,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
             ))
             ->add('plainPassword', 'text', array(
                 'required' => false,
-                'read_only' => true,
+//                'read_only' => true,
             ))
             ->end()
             ->with('Profile', array('class' => 'col-md-6'))

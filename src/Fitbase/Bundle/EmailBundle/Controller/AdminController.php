@@ -25,8 +25,10 @@ class AdminController extends CoreController
             $entityManager = $this->get('entity_manager');
             $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
 
+            $user = $repositoryUser->find($unique);
             return $this->render('FitbaseEmailBundle:Admin:EmailRegistration.html.twig', array(
-                'user' => $repositoryUser->find($unique),
+                'user' => $user,
+                'company' => $this->get('company')->current($user),
             ));
         }
     }

@@ -21,8 +21,7 @@
 
         <field name="label" type="string" column="label" length="255"/>
 
-        <many-to-many field="exercises" mapped-by="categories"
-                      target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
+        <many-to-many field="exercises" mapped-by="categories" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
             <order-by>
                 <order-by-field name="priority" direction="ASC"/>
             </order-by>

@@ -296,4 +296,18 @@ class QuestionnaireUser
     {
         return $this->questionnaire;
     }
+
+    /**
+     * Convert object to string
+     * @return mixed|string
+     */
+    public function __toString()
+    {
+        if (($companyQuestionnaire = $this->getQuestionnaire())) {
+            if (($questionnaire = $companyQuestionnaire->getQuestionnaire())) {
+                return $questionnaire->getName();
+            }
+        }
+        return null;
+    }
 }

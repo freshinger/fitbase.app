@@ -13,7 +13,6 @@ use Fitbase\Bundle\UserBundle\Model\DocumentUserInvite;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\Null;
 
 
 class AdminUserController extends CoreController

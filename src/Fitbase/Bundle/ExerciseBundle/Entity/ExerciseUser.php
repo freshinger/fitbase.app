@@ -277,4 +277,16 @@ class ExerciseUser
     {
         return $this->exercise2;
     }
+
+    /**
+     * Convert exercise to string
+     * @return null|string
+     */
+    public function __toString()
+    {
+        if (($exercise = $this->getExercise0())) {
+            return $exercise->getName();
+        }
+        return null;
+    }
 }
