@@ -6,12 +6,10 @@
 
 
     <imports>
-        <import resource="http_kernel.xml"/>
         <import resource="admin.xml"/>
         <import resource="blocks.xml"/>
-        <import resource="subscribers.xml"/>
         <import resource="types.xml"/>
-
+        <import resource="subscribers.xml"/>
     </imports>
 
     <services>
@@ -46,17 +44,30 @@
 
 
         <service id="twig" class="Fitbase\Bundle\FitbaseBundle\Library\Templating\Environment\FitbaseTwigEnvironment">
-            <argument type="service" id="twig.loader" />
+            <argument type="service" id="twig.loader"/>
             <argument>%twig.options%</argument>
             <argument type="service" id="detector.device"/>
             <call method="addGlobal">
                 <argument>app</argument>
-                <argument type="service" id="templating.globals" />
+                <argument type="service" id="templating.globals"/>
             </call>
         </service>
 
         <service id="twig.extension.routing" class="Fitbase\Bundle\FitbaseBundle\Library\Templating\Extension\FitbaseRoutingExtension">
-            <argument type="service" id="router" />
+            <argument type="service" id="router"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.entry_point.login" class="Fitbase\Bundle\FitbaseBundle\Service\ServiceLoginEntryPoint">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase.handler.authentication" class="Fitbase\Bundle\FitbaseBundle\Service\ServiceAuthentication">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

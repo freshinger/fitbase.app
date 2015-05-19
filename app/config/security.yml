@@ -73,13 +73,12 @@ security:
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
-                failure_path:   null
+                failure_handler: fitbase.handler.authentication
             logout:
                 path: /logout
                 # We set invalidate_session to false because we want basket
                 # to be fully persisted even when user logout and login again
                 invalidate_session: false
-                handlers: ['sonata.page.cms_manager_selector', 'sonata.basket.factory']
             anonymous:    true
 
 

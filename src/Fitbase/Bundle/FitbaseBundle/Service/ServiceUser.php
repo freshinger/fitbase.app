@@ -10,6 +10,8 @@ namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 
 use Cocur\Slugify\Slugify;
+use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Spy\Timeline\Model\ComponentInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -29,8 +31,52 @@ class ServiceUser extends ContainerAware
         return null;
     }
 
+
+    /**
+     * Get admin group
+     * @return mixed
+     */
+    protected function getAdminGroup()
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryGroup = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\Group');
+        $queryBuilderGroup = $repositoryGroup->createQueryBuilder('g');
+
+        $queryBuilderGroup->where($queryBuilderGroup->expr()->like('g.roles', ':roles'))
+            ->setParameter('roles', '%ADMIN%');
+
+        $queryBuilderGroup->setMaxResults(1);
+
+        return $queryBuilderGroup->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Returns corresponding users
+     *
+     * @return \Doctrine\ORM\Internal\Hydration\IterableResult
+     */
+    public function getAdmins()
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+        $queryBuilder = $repositoryUser->createQueryBuilder('User');
+
+        $queryBuilder->select('User')->where(
+            $queryBuilder->expr()->orX(
+                $queryBuilder->expr()->like("User.roles", ':roles'),
+                ':groups MEMBER OF User.groups'
+            )
+        )
+            ->setParameter('roles', '%"ADMIN"%')
+            ->setParameter('groups', $this->getAdminGroup());
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     /**
      * Get unique username
+     * @TODO: check usage
      * @param $user
      * @return string
      */
@@ -64,7 +110,7 @@ class ServiceUser extends ContainerAware
     /**
      * Method to check is password and email correct
      * return a sinle sign-on link
-     *
+     * @TODO remove this method
      * @param $login
      * @param $password
      * @return bool

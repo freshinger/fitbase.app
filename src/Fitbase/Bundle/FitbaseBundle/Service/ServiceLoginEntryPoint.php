@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\FitbaseBundle\Listener;
+namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 use Sonata\PageBundle\CmsManager\CmsManagerSelectorInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -36,7 +36,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class LoginEntryPointListener extends ContainerAware implements AuthenticationEntryPointInterface
+class ServiceLoginEntryPoint extends ContainerAware implements AuthenticationEntryPointInterface
 {
     /**
      * @param Request $request

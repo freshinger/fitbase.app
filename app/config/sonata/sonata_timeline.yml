@@ -1,4 +1,5 @@
 spy_timeline:
+    paginator: spy_timeline.paginator.knp
     drivers:
         orm:
             object_manager: doctrine.orm.entity_manager
