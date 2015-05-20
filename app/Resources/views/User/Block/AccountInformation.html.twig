@@ -1,6 +1,6 @@
 {% if user is defined and user %}
     {% if user.removeRequest %}
-        <div class="row">
+        <div class="row text-right">
             <div class="col-md-12">
                 {{ 'Ihr Profil wird am date gelöscht. '|trans({ "date": user.removeRequestAt|date('d.m.Y') }, 'FitbaseUserBundle') }}
             </div>
