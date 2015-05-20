@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
@@ -53,6 +54,8 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
         } catch (\Exception $ex) {
             $logger->crit("User not found: {$ex->getMessage()}");
         }
+
+        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
 
         return new RedirectResponse($this->container
             ->get('router')->generate('dashboard'));

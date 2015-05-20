@@ -28,6 +28,11 @@
                             sich
                             mit Ihren Zugangsdaten ein. </p>
 
+                        {% if error %}
+                            <div class="alert alert-danger alert-error">
+                                {{ 'Benutzername oder Passwort ungültig'|trans({}, 'FOSUserBundle') }}
+                            </div>
+                        {% endif %}
 
                         <form action="{{ path("fos_user_security_check") }}" method="post" role="form"
                               class="form-horizontal">
