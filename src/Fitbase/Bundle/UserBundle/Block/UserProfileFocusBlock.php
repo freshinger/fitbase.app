@@ -54,39 +54,77 @@ class UserProfileFocusBlock extends BaseFitbaseBlock implements ContainerAwareIn
             'template' => 'User/Block/UserProfileFocus.html.twig',
         ));
     }
+//
+//    /**
+//     * Draw a block
+//     * {@inheritdoc}
+//     */
+//    public function execute(BlockContextInterface $blockContext, Response $response = null)
+//    {
+//        if (!($user = $this->container->get('user')->current())) {
+//            throw new AccessDeniedException('This user does not have access to this section.');
+//        }
+//
+//        if (($focus = $user->getFocus())) {
+//
+//            $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
+//            if ($this->container->get('request')->get($form->getName())) {
+//                $form->handleRequest($this->container->get('request'));
+//                if ($form->isValid()) {
+//
+//                    $event = new UserFocusEvent($focus);
+//                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
+//
+//                    $this->container->get('entity_manager')->refresh($focus);
+//
+//                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
+//                }
+//            }
+//
+//            return $this->renderResponse($blockContext->getSetting('template'), array(
+//                'user' => $user,
+//                'form' => $form->createView(),
+//            ));
+//        }
+//    }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Returns a Response object than can be cacheable
+     *
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     *
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+            throw new \LogicException('User object can not be empty');
+        }
+        if (!($focus = $user->getFocus())) {
+            throw new \LogicException('Focus object can not be empty');
         }
 
-        if (($focus = $user->getFocus())) {
+        $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
+        if ($this->container->get('request')->get($form->getName())) {
+            $form->handleRequest($this->container->get('request'));
+            if ($form->isValid()) {
 
-            $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-            if ($this->container->get('request')->get($form->getName())) {
-                $form->handleRequest($this->container->get('request'));
-                if ($form->isValid()) {
+                $event = new UserFocusEvent($focus);
+                $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
 
-                    $event = new UserFocusEvent($focus);
-                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
+                $this->container->get('entity_manager')->refresh($focus);
 
-                    $this->container->get('entity_manager')->refresh($focus);
-
-                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-                }
+                $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
             }
-
-            return $this->renderResponse($blockContext->getSetting('template'), array(
-                'user' => $user,
-                'form' => $form->createView(),
-            ));
         }
+        return $this->getTemplating()->renderResponse($view, array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ), $response);
     }
+
 
     /**
      * {@inheritdoc}
@@ -95,4 +133,4 @@ class UserProfileFocusBlock extends BaseFitbaseBlock implements ContainerAwareIn
     {
         return 'Focus (Profile)';
     }
-} 
+}
