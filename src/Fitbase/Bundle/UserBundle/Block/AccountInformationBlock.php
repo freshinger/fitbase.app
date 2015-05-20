@@ -9,13 +9,13 @@ namespace Fitbase\Bundle\UserBundle\Block;
 
 use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
-use Sonata\BlockBundle\Block\BlockContextInterface;
+use Sonata\BlockBundle\Block\BaseBlockService;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AccountInformationBlock extends BaseFitbaseBlock implements ContainerAwareInterface
+class AccountInformationBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -30,16 +30,6 @@ class AccountInformationBlock extends BaseFitbaseBlock implements ContainerAware
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRoles()
-    {
-        return array(
-            'ROLE_FITBASE_USER'
-        );
     }
 
     /**
