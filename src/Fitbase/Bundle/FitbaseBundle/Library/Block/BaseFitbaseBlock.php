@@ -8,6 +8,7 @@
 namespace Fitbase\Bundle\FitbaseBundle\Library\Block;
 
 
+use Fitbase\Bundle\FitbaseBundle\Library\Interfaces\ServiceUserInterface;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
@@ -25,11 +26,12 @@ abstract class BaseFitbaseBlock extends BaseBlockService
      * @param $serviceUser
      * @return $this
      */
-    public function setServiceUser($serviceUser)
+    public function setServiceUser(ServiceUserInterface $serviceUser)
     {
         $this->serviceUser = $serviceUser;
         return $this;
     }
+
 
     /**
      * Get array with roles, for this block
@@ -45,6 +47,10 @@ abstract class BaseFitbaseBlock extends BaseBlockService
     {
         if (!($roles = $this->getRoles())) {
             throw new \LogicException('You have to define roles for each fitbase-block');
+        }
+
+        if (!$this->serviceUser instanceof ServiceUserInterface) {
+            throw new \LogicException('Fitbase block needs a service user interface');
         }
 
         if (($user = $this->serviceUser->current())) {

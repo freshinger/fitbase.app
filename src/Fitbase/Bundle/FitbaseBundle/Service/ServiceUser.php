@@ -10,12 +10,13 @@ namespace Fitbase\Bundle\FitbaseBundle\Service;
 
 
 use Cocur\Slugify\Slugify;
+use Fitbase\Bundle\FitbaseBundle\Library\Interfaces\ServiceUserInterface;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Spy\Timeline\Model\ComponentInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-class ServiceUser extends ContainerAware
+class ServiceUser extends ContainerAware implements ServiceUserInterface
 {
     /**
      * Get current user
