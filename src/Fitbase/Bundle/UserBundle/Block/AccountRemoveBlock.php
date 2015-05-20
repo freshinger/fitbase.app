@@ -7,6 +7,7 @@
  */
 namespace Fitbase\Bundle\UserBundle\Block;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
@@ -34,7 +35,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AccountRemoveBlock extends BaseBlockService implements ContainerAwareInterface
+class AccountRemoveBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -54,7 +55,7 @@ class AccountRemoveBlock extends BaseBlockService implements ContainerAwareInter
     /**
      * @return array
      */
-    protected function getRole()
+    public function getRoles()
     {
         return array(
             'ROLE_FITBASE_USER'
@@ -68,36 +69,38 @@ class AccountRemoveBlock extends BaseBlockService implements ContainerAwareInter
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template_remove' => 'User/Block/AccountRemove.html.twig',
-            'template_recover' => 'User/Block/AccountRecover.html.twig',
+            'template' => 'User/Block/AccountRemove.html.twig',
         ));
     }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Render block response
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         if (!($user = $this->container->get('user')->current())) {
             throw new \LogicException('User object can not be empty');
         }
 
         if ($user->getRemoveRequest()) {
-            return $this->executeRecover($user, $blockContext, $response);
+            return $this->renderRecoverResponse($user, $view, $parameters, $response);
         }
 
-        return $this->executeRemove($user, $blockContext, $response);
+        return $this->renderRemoveResponse($user, $view, $parameters, $response);
     }
 
     /**
-     *
      * @param UserInterface $user
-     * @param BlockContextInterface $blockContext
+     * @param $view
+     * @param array $parameters
      * @param Response $response
      * @return Response
      */
-    protected function executeRecover(UserInterface $user, BlockContextInterface $blockContext, Response $response = null)
+    protected function renderRecoverResponse(UserInterface $user, $view, array $parameters = array(), Response $response = null)
     {
         $form = $this->container->get('form.factory')->create(new UserRecoverForm(), new UserRemove());
         if ($this->container->get('request')->get($form->getName())) {
@@ -107,24 +110,24 @@ class AccountRemoveBlock extends BaseBlockService implements ContainerAwareInter
                 $this->container->get('event_dispatcher')->dispatch(
                     'fitbase.user_remove_recover', new UserEvent($user));
 
-                return $this->executeRemove($user, $blockContext, $response);
+                return $this->renderRemoveResponse($user, $view, $parameters, $response);
             }
         }
 
-        return $this->renderResponse($blockContext->getSetting('template_recover'), array(
+        return $this->getTemplating()->renderResponse('User/Block/AccountRecover.html.twig', array(
             'form' => $form->createView()
-        ));
+        ), $response);
     }
 
 
     /**
-     * Display remove form
      * @param UserInterface $user
-     * @param BlockContextInterface $blockContext
+     * @param $view
+     * @param array $parameters
      * @param Response $response
      * @return Response
      */
-    protected function executeRemove(UserInterface $user, BlockContextInterface $blockContext, Response $response = null)
+    protected function renderRemoveResponse(UserInterface $user, $view, array $parameters = array(), Response $response = null)
     {
         $form = $this->container->get('form.factory')->create(new UserRemoveForm(), new UserRemove());
         if ($this->container->get('request')->get($form->getName())) {
@@ -134,13 +137,13 @@ class AccountRemoveBlock extends BaseBlockService implements ContainerAwareInter
                 $this->container->get('event_dispatcher')->dispatch(
                     'fitbase.user_remove_prepare', new UserEvent($user));
 
-                return $this->executeRecover($user, $blockContext, $response);
+                return $this->renderRecoverResponse($user, $view, $parameters, $response);
             }
         }
 
-        return $this->renderResponse($blockContext->getSetting('template_remove'), array(
+        return $this->getTemplating()->renderResponse($view, array(
             'form' => $form->createView()
-        ));
+        ), $response);
     }
 
     /**

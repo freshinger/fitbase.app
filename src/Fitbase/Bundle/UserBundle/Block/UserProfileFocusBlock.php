@@ -7,29 +7,17 @@
  */
 namespace Fitbase\Bundle\UserBundle\Block;
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
 use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareInterface
+class UserProfileFocusBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -49,7 +37,7 @@ class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareIn
     /**
      * @return array
      */
-    protected function getRole()
+    public function getRoles()
     {
         return array(
             'ROLE_FITBASE_USER'

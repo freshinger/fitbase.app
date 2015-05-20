@@ -7,34 +7,15 @@
  */
 namespace Fitbase\Bundle\UserBundle\Block;
 
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
-use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
-use Fitbase\Bundle\UserBundle\Form\UserRecoverForm;
-use Fitbase\Bundle\UserBundle\Form\UserRemoveForm;
-use Fitbase\Bundle\UserBundle\Model\UserRemove;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\UserBundle\Model\UserInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AccountInformationBlock extends BaseBlockService implements ContainerAwareInterface
+class AccountInformationBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -54,7 +35,7 @@ class AccountInformationBlock extends BaseBlockService implements ContainerAware
     /**
      * @return array
      */
-    protected function getRole()
+    public function getRoles()
     {
         return array(
             'ROLE_FITBASE_USER'
@@ -73,10 +54,13 @@ class AccountInformationBlock extends BaseBlockService implements ContainerAware
     }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Render response
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         $user = null;
         if (($user = $this->container->get('user')->current())) {
@@ -85,9 +69,9 @@ class AccountInformationBlock extends BaseBlockService implements ContainerAware
             }
         }
 
-        return $this->renderResponse($blockContext->getSetting('template'), array(
+        return $this->getTemplating()->renderResponse($view, array(
             'user' => $user
-        ));
+        ), $response);
     }
 
     /**

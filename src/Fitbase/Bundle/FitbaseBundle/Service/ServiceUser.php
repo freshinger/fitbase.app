@@ -120,14 +120,23 @@ class ServiceUser extends ContainerAware
     /**
      * Check is user has a role
      * @param $user
-     * @param $role
+     * @param $roles
      * @return bool
      */
-    public function isGranted($user, $role = null)
+    public function isGranted($user, $roles = null)
     {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if (!$this->isGranted($user, $role)) {
+                    continue;
+                }
+                return true;
+            }
+        }
+
         $securityContext = $this->container->get('security.context');
         $securityContext->setToken(new UsernamePasswordToken($user, null, 'main', $user->getRoles()));
 
-        return $securityContext->isGranted($role, $user);
+        return $securityContext->isGranted($roles, $user);
     }
 }

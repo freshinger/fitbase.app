@@ -7,16 +7,16 @@
  */
 namespace Fitbase\Bundle\UserBundle\Block\Focus;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
 use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusCategoryForm;
-use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryBackSettingsBlock extends BaseBlockService
+class CategoryBackSettingsBlock extends BaseFitbaseBlock
 {
     /**
      * Store container here
@@ -35,6 +35,15 @@ class CategoryBackSettingsBlock extends BaseBlockService
         $this->formFactory = $formFactory;
     }
 
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return array(
+            'ROLE_FITBASE_USER'
+        );
+    }
 
     /**
      * Set defaults
