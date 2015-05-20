@@ -3,67 +3,68 @@
 namespace Fitbase\Bundle\ReminderBundle\Tests\Subscriber;
 
 use Application\Sonata\UserBundle\Entity\User;
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
+use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
 use Fitbase\Bundle\ReminderBundle\Subscriber\UserSubscriber;
+use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class UserSubscriberTest extends WebTestCase
+class UserSubscriberTest extends FitbaseTestAbstract
 {
-    protected $datetime;
-    protected $objectManager;
 
-    public function setUp()
+    /**
+     * get user object for this test
+     * @return User
+     */
+    protected function getUser()
     {
-        $this->datetime = $this->getMock('Datetime', array('getDateTime'));
-        $this->datetime->expects($this->any())->method('getDateTime')
-            ->will($this->returnValue(new \DateTime('now')));
-
-        $this->objectManager = $this->getMock('EntityManager', array('persist', 'flush'));
+        return (new User())
+            ->addReminder(
+                (new ReminderUser())
+            )
+            ->setActioncode(
+                (new UserActioncode())
+                    ->setCompany(
+                        (new Company())
+                    )
+            );
     }
 
-
-    public function testSubscriberShouldCreateUserReminderObject()
+    public function testOnUserRemovePrepareEventShouldPauseFitbase()
     {
-        $userReminder = null;
+        $subscriber = new UserSubscriber(
+            $this->getEntityManager(),
+            $this->container()->get('datetime')
+        );
 
-        $this->objectManager->expects($this->any())
-            ->method('persist')
-            ->will($this->returnCallback(function ($entity) use (&$userReminder) {
-                if ($userReminder == null) {
-                    $userReminder = $entity;
-                }
-            }));
+        $event = new UserEvent($this->getUser());
+        $subscriber->onUserRemovePrepareEvent($event);
 
+        $this->assertTrue(true);
 
-        (new UserSubscriber($this->objectManager, $this->datetime))
-            ->onUserRegisteredEvent(new UserEvent(
-                (new User())
-            ));
-
-        $this->assertTrue($userReminder instanceof ReminderUser);
+        $this->assertEquals($event->getEntity()->getReminder()->getPause(), 2);
+        $this->assertFalse($event->getEntity()->getReminder()->getUpdate());
+        $this->assertNotEmpty($event->getEntity()->getReminder()->getPauseStart());
     }
 
-
-    public function testSubscriberShouldCreateUserReminderItemObjects()
+    public function testOnUserRemoveRecoverEventShouldEnableFitbase()
     {
-        $userReminderItems = array();
+        $subscriber = new UserSubscriber(
+            $this->getEntityManager(),
+            $this->container()->get('datetime')
+        );
 
-        $this->objectManager->expects($this->any())
-            ->method('persist')
-            ->will($this->returnCallback(function ($entity) use (&$userReminderItems) {
-                if (!$entity instanceof ReminderUser) {
-                    array_push($userReminderItems, $entity);
-                }
-            }));
+        $event = new UserEvent($this->getUser());
+        $subscriber->onUserRemoveRecoverEvent($event);
 
+        $this->assertTrue(true);
 
-        (new UserSubscriber($this->objectManager, $this->datetime))
-            ->onUserRegisteredEvent(new UserEvent(
-                (new User())
-            ));
-
-        $this->assertEquals(count($userReminderItems), 6);
+        $this->assertEmpty($event->getEntity()->getReminder()->getPause());
+        $this->assertEmpty($event->getEntity()->getReminder()->getUpdate());
+        $this->assertEmpty($event->getEntity()->getReminder()->getPauseStart());
     }
-} 
+
+}

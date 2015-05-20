@@ -83,7 +83,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         ));
 
         $createEvent = new UserEvent($user);
-        $this->eventDispatcher->dispatch('user_create', $createEvent);
+        $this->eventDispatcher->dispatch('fitbase.user_create', $createEvent);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);

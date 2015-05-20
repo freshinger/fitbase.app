@@ -29,7 +29,53 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
     {
         return array(
             'fitbase.user_registered' => array('onUserRegisteredEvent'),
+            'fitbase.user_remove_prepare' => array('onUserRemovePrepareEvent'),
+            'fitbase.user_remove_recover' => array('onUserRemoveRecoverEvent'),
         );
+    }
+
+    /**
+     * Set fitbase to pause if user want to remove an account
+     * @param UserEvent $event
+     */
+    public function onUserRemovePrepareEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        if (!($userReminder = $user->getReminder())) {
+            throw new \LogicException("User reminder object can not be empty");
+        }
+
+        $userReminder->setPause(2);
+        $userReminder->setPauseStart($this->datetime->getDateTime('now'));
+        $userReminder->setUpdate(false);
+
+        $this->objectManager->persist($userReminder);
+        $this->objectManager->flush($userReminder);
+    }
+
+    /**
+     * Activate fitbase reminder
+     * @param UserEvent $event
+     */
+    public function onUserRemoveRecoverEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        if (!($userReminder = $user->getReminder())) {
+            throw new \LogicException("User reminder object can not be empty");
+        }
+
+        $userReminder->setPause(null);
+        $userReminder->setPauseStart(null);
+        $userReminder->setUpdate(null);
+
+        $this->objectManager->persist($userReminder);
+        $this->objectManager->flush($userReminder);
     }
 
     /**

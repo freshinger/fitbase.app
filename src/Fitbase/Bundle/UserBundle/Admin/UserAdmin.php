@@ -43,7 +43,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     public function prePersist($object)
     {
         $this->container->get('event_dispatcher')
-            ->dispatch('user_create', new UserEvent($object));
+            ->dispatch('fitbase.user_create', new UserEvent($object));
     }
 
     /**

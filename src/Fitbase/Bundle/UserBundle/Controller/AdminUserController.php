@@ -52,7 +52,7 @@ class AdminUserController extends CoreController
                                     $user->setEnabled(true);
 
                                     $event = new UserEvent($user);
-                                    $this->container->get('event_dispatcher')->dispatch('user_create', $event);
+                                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_create', $event);
 
 
                                     $entityManager->persist($user);

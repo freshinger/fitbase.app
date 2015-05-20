@@ -262,6 +262,15 @@ class User extends BaseUser
     }
 
     /**
+     * Get default reminder object
+     * @return mixed
+     */
+    public function getReminder()
+    {
+        return $this->getReminders()->first();
+    }
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $questionnaires;

@@ -27,7 +27,7 @@ class UserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_create' => array('onUserCreateEvent', -128),
+            'fitbase.user_create' => array('onUserCreateEvent', -128),
         );
     }
 
