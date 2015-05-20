@@ -45,21 +45,11 @@ class AdminUserController extends CoreController
                                     $user->setEmail($email);
                                     $user->setFirstname($firstName);
                                     $user->setLastname($lastName);
-                                    $user->setCompany($document->getCompany());
-                                    $user->setUsername($this->get('user')->getUniqueUsername($user));
                                     $user->setPlainPassword($this->get('codegenerator')->password(10));
-                                    $user->setExpired(false);
-                                    $user->setEnabled(true);
+                                    $user->setCompany($document->getCompany());
 
-                                    $event = new UserEvent($user);
-                                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_create', $event);
-
-
-                                    $entityManager->persist($user);
-                                    $entityManager->flush($user);
-
-                                    $event = new UserEvent($user);
-                                    $this->get('event_dispatcher')->dispatch('fitbase.user_registered', $event);
+                                    $this->get('event_dispatcher')->dispatch(
+                                        'fitbase.user_register', new UserEvent($user));
 
                                 } catch (\Exception $ex) {
                                     $form->addError(new FormError($ex->getMessage()));

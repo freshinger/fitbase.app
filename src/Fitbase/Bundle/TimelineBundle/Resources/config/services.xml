@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="blocks.xml"/>
+    </imports>
+
+    <services>
+
+        <service id="fitbase.timeline_spread.signin" class="Fitbase\Bundle\TimelineBundle\Spread\SigninSpread">
+            <tag name="spy_timeline.spread"/>
+            <argument>%sonata.user.admin.user.entity%</argument>
+            <argument type="service" id="user"/>
+        </service>
+
+        <service id="fitbase.timeline_spread.admin" class="Fitbase\Bundle\TimelineBundle\Spread\AdminSpread">
+            <tag name="spy_timeline.spread"/>
+            <argument>%sonata.user.admin.user.entity%</argument>
+            <argument type="service" id="user"/>
+        </service>
+
+    </services>
+</container>

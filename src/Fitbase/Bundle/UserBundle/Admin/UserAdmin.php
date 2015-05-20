@@ -135,7 +135,6 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
         $formMapper
             ->tab('General')
             ->with('General', array('class' => 'col-md-6'))
