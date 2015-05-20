@@ -45,7 +45,9 @@
 {% block sonata_admin_content %}
 
 
-    {% include "FitbaseWeeklytaskBundle:Weeklytask:view_quiz.html.twig" with { "form": form, "weeklyquiz": weeklyquiz, "notices": notices  } %}
-
+    {% if form is defined and form %}
+        {% form_theme form "Weeklytask/WeeklyquizForm.html.twig" %}
+        {{ form(form) }}
+    {% endif %}
 
 {% endblock sonata_admin_content %}

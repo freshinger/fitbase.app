@@ -49,6 +49,7 @@ class AdminController extends CoreController
 
             return $this->render('FitbaseEmailBundle:Admin:EmailWeeklytask.html.twig', array(
                 'user' => $this->container->get('user')->current(),
+                'company' => $this->container->get('company')->current(),
                 'userTask' => new WeeklytaskUser(),
                 'task' => $repositoryWeeklytask->find($unique)
             ));
@@ -70,6 +71,7 @@ class AdminController extends CoreController
 
             return $this->render('FitbaseEmailBundle:Admin:EmailWeeklyquiz.html.twig', array(
                 'user' => $this->container->get('user')->current(),
+                'company' => $this->container->get('company')->current(),
                 'task' => new Weeklytask(),
                 'quiz' => $repositoryWeeklyquiz->find($unique),
                 'userQuiz' => new WeeklyquizUser(),
