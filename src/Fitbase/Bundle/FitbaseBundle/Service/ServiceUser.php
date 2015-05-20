@@ -64,14 +64,38 @@ class ServiceUser extends ContainerAware
 
         $queryBuilder->select('User')->where(
             $queryBuilder->expr()->orX(
-                $queryBuilder->expr()->like("User.roles", ':roles'),
                 ':groups MEMBER OF User.groups'
             )
         )
-            ->setParameter('roles', '%"ADMIN"%')
             ->setParameter('groups', $this->getAdminGroup());
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get users, that wants to remove their accounts
+     * @return mixed
+     */
+    public function getUsersToRemove()
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+        $queryBuilder = $repositoryUser->createQueryBuilder('User');
+
+        $datetime = $this->container->get('datetime');
+        $date = $datetime->getDateTime('now');
+        $date->modify('-2 week');
+
+        $queryBuilder->where(
+            $queryBuilder->expr()->eq("User.removeRequest", ':removeRequest'),
+            $queryBuilder->expr()->lte("User.removeRequestAt", ':removeRequestAt')
+        )
+            ->setParameter('removeRequest', true)
+            ->setParameter('removeRequestAt', $date);
+
+        return $queryBuilder->getQuery()->getResult();
+
     }
 
     /**
@@ -105,40 +129,5 @@ class ServiceUser extends ContainerAware
         $securityContext->setToken(new UsernamePasswordToken($user, null, 'main', $user->getRoles()));
 
         return $securityContext->isGranted($role, $user);
-    }
-
-    /**
-     * Method to check is password and email correct
-     * return a sinle sign-on link
-     * @TODO remove this method
-     * @param $login
-     * @param $password
-     * @return bool
-     */
-    public function login($login = null, $password = null)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
-
-        if (!($user = $repositoryUser->findOneByEmail($login))) {
-            if (!($user = $repositoryUser->findOneByUsername($login))) {
-                return false;
-            }
-        }
-
-        // Get the encoder for the users password
-        $encoder_service = $this->container->get('security.encoder_factory');
-        $encoder = $encoder_service->getEncoder($user);
-
-        if ($encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
-
-            $token = new UsernamePasswordToken($user, $password, "main", $user->getRoles());
-            $securityContext = $this->container->get('security.context');
-            $securityContext->setToken($token);
-
-            return $this->container->get('router')->generate('dashboard');
-        }
-
-        return false;
     }
 }

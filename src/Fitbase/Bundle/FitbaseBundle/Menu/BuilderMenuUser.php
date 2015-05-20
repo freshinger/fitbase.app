@@ -54,7 +54,7 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
         ));
 
         $menu->addChild('Profil', array(
-            'route' => 'sonata_user_profile_show',
+            'route' => 'profile',
         ));
 
         $menu->addChild('Abmelden', array(

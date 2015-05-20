@@ -22,7 +22,7 @@
             </call>
             <call method="setTemplate">
                 <argument>list</argument>
-                <argument>FitbaseUserBundle:Admin:UserList.html.twig</argument>
+                <argument>FitbaseUserBundle:Admin:User/List.html.twig</argument>
             </call>
         </service>
 
@@ -57,7 +57,7 @@
             <argument/>
             <call method="setTemplate">
                 <argument>list</argument>
-                <argument>FitbaseUserBundle:Admin:UserActioncodeList.html.twig</argument>
+                <argument>FitbaseUserBundle:Admin:UserActioncode/List.html.twig</argument>
             </call>
         </service>
 

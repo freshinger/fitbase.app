@@ -14,13 +14,18 @@ use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
+use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserFocusEvent;
 use Fitbase\Bundle\UserBundle\Form\UserFocusPriorityForm;
+use Fitbase\Bundle\UserBundle\Form\UserRecoverForm;
+use Fitbase\Bundle\UserBundle\Form\UserRemoveForm;
+use Fitbase\Bundle\UserBundle\Model\UserRemove;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -29,7 +34,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareInterface
+class AccountInformationBlock extends BaseBlockService implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -63,7 +68,7 @@ class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareIn
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'User/Block/UserProfileFocus.html.twig',
+            'template' => 'User/Block/AccountInformation.html.twig',
         ));
     }
 
@@ -73,31 +78,16 @@ class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareIn
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
-
-        if (($focus = $user->getFocus())) {
-
-            $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-            if ($this->container->get('request')->get($form->getName())) {
-                $form->handleRequest($this->container->get('request'));
-                if ($form->isValid()) {
-
-                    $event = new UserFocusEvent($focus);
-                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
-
-                    $this->container->get('entity_manager')->refresh($focus);
-
-                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-                }
+        $user = null;
+        if (($user = $this->container->get('user')->current())) {
+            if (!is_null($user->getRemoveRequestAt())) {
+                $user->getRemoveRequestAt()->modify('+2 week');
             }
-
-            return $this->renderResponse($blockContext->getSetting('template'), array(
-                'user' => $user,
-                'form' => $form->createView(),
-            ));
         }
+
+        return $this->renderResponse($blockContext->getSetting('template'), array(
+            'user' => $user
+        ));
     }
 
     /**
@@ -105,6 +95,6 @@ class UserProfileFocusBlock extends BaseBlockService implements ContainerAwareIn
      */
     public function getName()
     {
-        return 'Focus (Profile)';
+        return 'Account info (Header)';
     }
 } 

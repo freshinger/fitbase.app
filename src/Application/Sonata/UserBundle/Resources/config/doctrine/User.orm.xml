@@ -13,7 +13,8 @@
         <field name="titel" type="string" column="titel" nullable="true"/>
         <field name="format" type="string" column="format" nullable="true"/>
         <field name="wizard" type="boolean" column="wizard" nullable="true"/>
-
+        <field name="removeRequest" type="boolean" column="remove_request" nullable="true"/>
+        <field name="removeRequestAt" type="datetime" column="remove_request_at" nullable="true"/>
 
         <one-to-one field="focus" target-entity="Fitbase\Bundle\UserBundle\Entity\UserFocus" inversed-by="user">
             <join-column name="focus_id" referenced-column-name="id" on-delete="CASCADE"/>

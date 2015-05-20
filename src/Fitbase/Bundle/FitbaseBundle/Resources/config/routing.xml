@@ -17,5 +17,7 @@
         <default key="_controller">FitbaseFitbaseBundle:Dashboard:dashboard</default>
     </route>
 
-
+    <route id="profile" pattern="/profile/user">
+        <default key="_controller">FitbaseFitbaseBundle:Profile:profile</default>
+    </route>
 </routes>

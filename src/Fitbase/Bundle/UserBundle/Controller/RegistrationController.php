@@ -169,7 +169,7 @@ class RegistrationController extends Controller
         $user->setPlainPassword($this->get('codegenerator')->password(10));
         $user->setActioncode($actioncode);
 
-        $this->get('event_dispatcher')->dispatch('user_register', new UserEvent($user));
+        $this->get('event_dispatcher')->dispatch('fitbase.user_register', new UserEvent($user));
 
         return $user;
     }

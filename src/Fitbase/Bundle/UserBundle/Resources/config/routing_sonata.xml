@@ -9,11 +9,6 @@
         <default key="_controller">FitbaseUserBundle:Admin:weeklytasks</default>
     </route>
 
-
-    <route id="sonata_admin_import_code" pattern="/import/code">
-        <default key="_controller">FitbaseUserBundle:Admin:importCode</default>
-    </route>
-
     <route id="sonata_admin_import_user" pattern="/import/user">
         <default key="_controller">FitbaseUserBundle:AdminUser:import</default>
     </route>
@@ -21,6 +16,10 @@
 
     <route id="sonata_admin_invite_user" pattern="/invite/user">
         <default key="_controller">FitbaseUserBundle:AdminUser:invite</default>
+    </route>
+
+    <route id="sonata_admin_import_code" pattern="/import/code">
+        <default key="_controller">FitbaseUserBundle:AdminUserActioncode:import</default>
     </route>
 
 </routes>

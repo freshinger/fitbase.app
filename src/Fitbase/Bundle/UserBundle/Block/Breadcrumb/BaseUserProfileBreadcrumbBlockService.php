@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\UserBundle\Block\Breadcrumb;
+namespace Fitbase\Bundle\UserBundle\Block\Breadcrumb;
 
 use Fitbase\Bundle\FitbaseBundle\Block\Breadcrumb\FitbaseBreadcrumbBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
@@ -29,8 +29,8 @@ abstract class BaseUserProfileBreadcrumbBlockService extends FitbaseBreadcrumbBl
     {
         $menu = parent::getRootMenu($blockContext);
 
-        $menu->addChild('sonata_user_profile_breadcrumb_index', array(
-            'route' => 'sonata_user_profile_show',
+        $menu->addChild('Profil', array(
+            'route' => 'profile',
             'extras' => array('translation_domain' => 'SonataUserBundle')
         ));
 

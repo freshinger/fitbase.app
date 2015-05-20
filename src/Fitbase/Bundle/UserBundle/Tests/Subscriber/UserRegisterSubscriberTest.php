@@ -97,7 +97,7 @@ class UserRegisterSubscriberTest extends FitbaseTestAbstract
         $subscriber->onUserRegisterEvent(new UserEvent($this->getUser()));
 
         $this->assertEquals(count($events), 2);
-        $this->assertNotNull(array_search('user_create', $events));
-        $this->assertNotNull(array_search('user_registered', $events));
+        $this->assertNotNull(array_search('fitbase.user_create', $events));
+        $this->assertNotNull(array_search('fitbase.user_registered', $events));
     }
 }

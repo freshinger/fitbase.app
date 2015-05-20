@@ -5,8 +5,6 @@ namespace Fitbase\Bundle\UserBundle\Subscriber;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Persistence\ObjectManager;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
@@ -35,8 +33,11 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_register' => array('onUserRegisterEvent'),
-            'user_registered' => array('onUserRegisteredEvent'),
+            'fitbase.user_register' => array('onUserRegisterEvent'),
+            'fitbase.user_registered' => array('onUserRegisteredEvent'),
+            'fitbase.user_remove' => array('onUserRemoveEvent'),
+            'fitbase.user_remove_prepare' => array('onUserRemovePrepareEvent'),
+            'fitbase.user_remove_recover' => array('onUserRemoveRecoverEvent'),
         );
     }
 
@@ -98,7 +99,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         }
 
         $registeredEvent = new UserEvent($user);
-        $this->eventDispatcher->dispatch('user_registered', $registeredEvent);
+        $this->eventDispatcher->dispatch('fitbase.user_registered', $registeredEvent);
     }
 
     /**
@@ -171,6 +172,56 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         if (($group = $repositoryGroup->findOneByName('User'))) {
             $user->addGroup($group);
         }
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
+    }
+
+    /**
+     * Remove user from database
+     *
+     * @param UserEvent $event
+     */
+    public function onUserRemoveEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush($user);
+    }
+
+    /**
+     * Prepare user to remove in 2 weeks
+     * @param UserEvent $event
+     */
+    public function onUserRemovePrepareEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        $user->setRemoveRequest(true);
+        $user->setRemoveRequestAt($this->datetime->getDateTime('now'));
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
+    }
+
+    /**
+     *  Undone remove request
+     *
+     * @param UserEvent $event
+     */
+    public function onUserRemoveRecoverEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        $user->setRemoveRequest(null);
+        $user->setRemoveRequestAt(null);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);

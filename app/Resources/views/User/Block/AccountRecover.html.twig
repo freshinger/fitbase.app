@@ -1,0 +1,25 @@
+<p>
+    Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern, indem Sie einen
+    Bereich
+    mit der linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button
+    „Speichern und Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.
+</p>
+
+<div class="row">
+    <div class="col-xs-10">
+
+        {% if form is defined and form %}
+            {% if form.vars is defined %}
+                {% if form.vars.submitted %}
+
+                    <div class="opened"></div>
+                {% endif %}
+            {% endif %}
+
+            {% form_theme form "User/Block/AccountRecoverForm.html.twig" %}
+
+            {{ form(form) }}
+        {% endif %}
+
+    </div>
+</div>

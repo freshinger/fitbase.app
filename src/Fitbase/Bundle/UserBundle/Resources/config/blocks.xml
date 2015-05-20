@@ -5,7 +5,7 @@
 
     <services>
 
-        <service id="fitbase.block.profile_focus" class="Fitbase\Bundle\UserBundle\Block\UserProfileFocusBlock" >
+        <service id="fitbase.block.profile_focus" class="Fitbase\Bundle\UserBundle\Block\UserProfileFocusBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.profile_focus</argument>
             <argument type="service" id="templating"/>
@@ -22,6 +22,25 @@
             <argument type="service" id="request"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="form.factory"/>
+        </service>
+
+
+        <service id="fitbase.block.account.remove" class="Fitbase\Bundle\UserBundle\Block\AccountRemoveBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.account.remove</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.account.info" class="Fitbase\Bundle\UserBundle\Block\AccountInformationBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.account.info</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
 
     </services>

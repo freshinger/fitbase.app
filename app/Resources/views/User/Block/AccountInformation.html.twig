@@ -1,0 +1,17 @@
+{% if user is defined and user %}
+    {% if user.removeRequest %}
+        <div class="row">
+            <div class="col-md-12">
+                {{ 'Ihr Profil wird am date gelöscht. '|trans({ "date": user.removeRequestAt|date('d.m.Y') }, 'FitbaseUserBundle') }}
+            </div>
+            <div class="col-md-12">
+                {{ 'Um das zu vermeiden clicken Sie bitte '|trans({ }, 'FitbaseUserBundle') }}
+                <a href="{{ path('user_remove') }}">
+                    {{ 'hier'|trans({}, 'FitbaseUserBundle') }}
+                </a>
+                .
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+

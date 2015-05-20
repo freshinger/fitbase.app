@@ -59,7 +59,7 @@ class AdminUserController extends CoreController
                                     $entityManager->flush($user);
 
                                     $event = new UserEvent($user);
-                                    $this->get('event_dispatcher')->dispatch('user_registered', $event);
+                                    $this->get('event_dispatcher')->dispatch('fitbase.user_registered', $event);
 
                                 } catch (\Exception $ex) {
                                     $form->addError(new FormError($ex->getMessage()));
@@ -76,7 +76,7 @@ class AdminUserController extends CoreController
         }
 
 
-        return $this->render('FitbaseUserBundle:Admin:UserImport.html.twig', array(
+        return $this->render('FitbaseUserBundle:Admin:User/Import.html.twig', array(
             'form' => $form->createView(),
             'base_template' => $this->getBaseTemplate(),
             'admin_pool' => $this->container->get('sonata.admin.pool'),
@@ -155,7 +155,7 @@ class AdminUserController extends CoreController
             }
         }
 
-        return $this->render('FitbaseUserBundle:Admin:UserInvite.html.twig', array(
+        return $this->render('FitbaseUserBundle:Admin:User/Invite.html.twig', array(
             'form' => $form->createView(),
             'base_template' => $this->getBaseTemplate(),
             'admin_pool' => $this->container->get('sonata.admin.pool'),

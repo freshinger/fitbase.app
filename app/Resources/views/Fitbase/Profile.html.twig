@@ -1,0 +1,15 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Profil'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'profile', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    {{ sonata_block_render({ 'type': 'fitbase.block.user.profile' }) }}
+{% endblock content %}
+
+

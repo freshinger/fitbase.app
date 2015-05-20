@@ -20,6 +20,7 @@ use Sonata\UserBundle\Admin\Model\UserAdmin as BaseUserAdmin;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Knp\Menu\ItemInterface as MenuItemInterface;
+
 class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
 {
     protected $container;
@@ -51,7 +52,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
     public function postPersist($object)
     {
         $this->container->get('event_dispatcher')
-            ->dispatch('user_registered', new UserEvent($object));
+            ->dispatch('fitbase.user_registered', new UserEvent($object));
     }
 
 
@@ -108,7 +109,8 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
 //        }
         $listMapper->add('_action', 'actions', array(
             'actions' => array(
-                'show' => array('template' => 'FitbaseUserBundle:Admin:list_action_email.html.twig'),
+                'show' => array('template' => 'FitbaseUserBundle:Admin:Action/EmailPreview.html.twig'),
+                'infoeinheit' => array('template' => 'FitbaseUserBundle:Admin:/Action/WeeklytaskActivate.html.twig'),
                 'edit' => array(),
                 'delete' => array(),
             )

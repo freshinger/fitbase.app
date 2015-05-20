@@ -2,6 +2,7 @@
 
 namespace Fitbase\Bundle\PageBundle\Listener;
 
+use Sonata\PageBundle\Exception\InternalErrorException;
 use Sonata\PageBundle\Listener\ResponseListener as ResponseListenerBase;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;

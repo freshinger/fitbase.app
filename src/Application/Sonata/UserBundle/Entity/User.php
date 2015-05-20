@@ -349,6 +349,7 @@ class User extends BaseUser
 
         return null;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -380,10 +381,63 @@ class User extends BaseUser
     /**
      * Get gamifications
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGamifications()
     {
         return $this->gamifications;
+    }
+
+    /**
+     * @var boolean
+     */
+    protected $removeRequest;
+
+
+    /**
+     * @var \DateTime
+     */
+    protected $removeRequestAt;
+
+    /**
+     * @return boolean
+     */
+    public function getRemoveRequest()
+    {
+        return $this->removeRequest;
+    }
+
+    /**
+     * @param $removeRequest
+     * @return $this
+     */
+    public function setRemoveRequest($removeRequest)
+    {
+        $this->removeRequest = $removeRequest;
+
+        return $this;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return ExerciseUser
+     */
+    public function setRemoveRequestAt($removeRequestAt)
+    {
+        $this->removeRequestAt = $removeRequestAt;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getRemoveRequestAt()
+    {
+        return $this->removeRequestAt;
     }
 }

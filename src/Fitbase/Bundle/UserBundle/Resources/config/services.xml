@@ -89,6 +89,19 @@
         </service>
 
 
+        <service id="fitbase.profile.block.breadcrumb"
+                 class="Fitbase\Bundle\UserBundle\Block\Breadcrumb\UserProfileBreadcrumbBlockService">
+            <tag name="sonata.block"/>
+            <tag name="sonata.breadcrumb"/>
+
+            <argument>profile</argument>
+            <argument>fitbase.profile.block.breadcrumb</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="knp_menu.menu_provider"/>
+            <argument type="service" id="knp_menu.factory"/>
+        </service>
+
+
 
     </services>
 

@@ -17,7 +17,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_registered' => array('onUserRegisteredEvent'),
+            'fitbase.user_registered' => array('onUserRegisteredEvent'),
         );
     }
 
