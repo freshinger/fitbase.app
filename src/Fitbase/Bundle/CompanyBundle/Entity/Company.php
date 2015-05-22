@@ -788,4 +788,32 @@ class Company
     {
         return $this->attributes;
     }
+    /**
+     * @var string
+     */
+    private $css;
+
+
+    /**
+     * Set css
+     *
+     * @param string $css
+     * @return Company
+     */
+    public function setCss($css)
+    {
+        $this->css = $css;
+
+        return $this;
+    }
+
+    /**
+     * Get css
+     *
+     * @return string 
+     */
+    public function getCss()
+    {
+        return $this->css;
+    }
 }

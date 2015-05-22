@@ -143,6 +143,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->tab('Style')
             ->with('Logo', array('class' => 'col-md-4'))
             ->add('image', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array('context' => 'company')))
+            ->add('css', 'textarea', array('required' => false))
             ->end()
 //            ->with('Header/Footer', array('class' => 'col-md-4'))
 //            ->add('header', 'genemu_jquerycolor', array('required' => false))
