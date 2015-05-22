@@ -20,4 +20,11 @@
     <route id="profile" pattern="/profile/user">
         <default key="_controller">FitbaseFitbaseBundle:Profile:profile</default>
     </route>
+
+    <!--Fix this hack-->
+    <route id="fos_user_profile_show" pattern="/profile/user">
+        <default key="_controller">FitbaseFitbaseBundle:Profile:profile</default>
+    </route>
+
+
 </routes>

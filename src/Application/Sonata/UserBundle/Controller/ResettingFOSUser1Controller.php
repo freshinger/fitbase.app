@@ -10,8 +10,7 @@
 namespace Application\Sonata\UserBundle\Controller;
 
 
-use FOS\UserBundle\Controller\ResettingController;
-use Sonata\UserBundle\Model\UserInterface;
+use FOS\UserBundle\Model\UserInterface;
 
 
 /**
@@ -21,7 +20,7 @@ use Sonata\UserBundle\Model\UserInterface;
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class ResettingFOSUser1Controller extends ResettingController
+class ResettingFOSUser1Controller extends \Sonata\UserBundle\Controller\ResettingFOSUser1Controller
 {
     /**
      * Generate the redirection url when the resetting is completed.
