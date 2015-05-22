@@ -20,7 +20,7 @@ class UserRecoverForm extends AbstractType
                 )
             ))
             ->add('save', 'submit', array(
-                'label' => 'Profil wieder aktivieren',
+                'label' => 'Profil aktivieren',
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 ),
