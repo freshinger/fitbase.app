@@ -29,23 +29,27 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
+
+        var_dump(get_class($this->container->get('router')));
+
         if (($company = $this->container->get('company')->current())) {
             if (($site = $company->getSite())) {
-                if (!$this->siteMatch($company->getSite())) {
+//                if (!$this->siteMatch($company->getSite())) {
 
-                    var_dump($site->getHost());
+                var_dump($site->getHost());
 
-                    $context = $this->container->get('router')->getContext();
-                    $context->setHost($site->getHost());
-                    $context->setScheme($site->getScheme());
-                    $context->setPathInfo($site->getRelativePath());
+                $context = $this->container->get('router')->getContext();
+                $context->setHost($site->getHost());
+                $context->setScheme($site->getScheme());
+                $context->setPathInfo($site->getRelativePath());
 
-                    var_dump($this->container->get('router')->generate('dashboard', [], UrlGeneratorInterface::ABSOLUTE_URL));
+                $this->container->get('router')->setContext($context);
+                var_dump($this->container->get('router')->generate('dashboard', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
 
 //                    throw new PageNotFoundException('Requested site not available for current user: ' .
 //                        htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
-                }
+//                }
             }
         }
     }
