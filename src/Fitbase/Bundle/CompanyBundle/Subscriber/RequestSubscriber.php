@@ -8,6 +8,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Sonata\PageBundle\Exception\PageNotFoundException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RequestSubscriber extends ContainerAware implements EventSubscriberInterface
 {
@@ -31,8 +32,17 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
         if (($company = $this->container->get('company')->current())) {
             if (($site = $company->getSite())) {
                 if (!$this->siteMatch($company->getSite())) {
-                    throw new PageNotFoundException('Requested site not available for current user: ' .
-                        htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
+
+                    $context = $this->container->get('router')->getContext();
+                    $context->setHost($site->getHost());
+                    $context->setScheme($site->getScheme());
+                    $context->setPathInfo($site->getRelativePath());
+
+                    var_dump($this->container->get('router')->generate('dashboard', [], UrlGeneratorInterface::ABSOLUTE_URL));
+
+
+//                    throw new PageNotFoundException('Requested site not available for current user: ' .
+//                        htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
                 }
             }
         }
