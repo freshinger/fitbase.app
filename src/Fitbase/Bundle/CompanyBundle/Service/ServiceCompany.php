@@ -112,15 +112,9 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
                 $context->setHost($site->getHost());
                 $context->setScheme($site->getScheme());
                 $context->setPathInfo($site->getRelativePath());
-
-                var_dump($site->getName());
-                var_dump($site->getHost());
-                var_dump($this->container->get('router')->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL));
-
             }
         }
 
         return $this->container->get('router')->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL);
     }
-
 }
