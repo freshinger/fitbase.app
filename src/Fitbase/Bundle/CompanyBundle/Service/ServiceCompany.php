@@ -95,6 +95,7 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
         if (($site = $company->getSite())) {
 
             var_dump($site->getName());
+            var_dump($site->getHost());
 
             if (($context = $this->container->get('router')->getContext())) {
                 // Base url have to be already defined
