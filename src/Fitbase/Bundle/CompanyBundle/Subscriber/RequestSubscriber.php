@@ -33,6 +33,8 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
             if (($site = $company->getSite())) {
                 if (!$this->siteMatch($company->getSite())) {
 
+                    var_dump($site->getHost());
+
                     $context = $this->container->get('router')->getContext();
                     $context->setHost($site->getHost());
                     $context->setScheme($site->getScheme());
