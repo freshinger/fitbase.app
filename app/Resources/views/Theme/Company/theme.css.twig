@@ -7,6 +7,13 @@
             {% set color="##{company.background1}" %}
         {% endif %}
     {% endif %}
+
+    {#/*------- company-specified styles ----------------------------------------*/#}
+    {% if company.css is defined %}
+        {{ company.css|raw }}
+    {% endif %}
+    {#/*------- company-specified styles ----------------------------------------*/#}
+
 {% endif %}
 
 
@@ -24,8 +31,8 @@ margin-bottom: 0px;
 }
 
 .sortable_item .post-item {
-    padding-bottom: 10px;
-    margin-bottom: 5px;
+padding-bottom: 10px;
+margin-bottom: 5px;
 }
 
 .logo img {
@@ -79,15 +86,15 @@ white-space: nowrap;
 }
 
 .header-2 .is-sticky .mainmenu .flexnav {
-    max-width: 1170px;
-    margin: 0 auto;
+max-width: 1170px;
+margin: 0 auto;
 }
 
 
 ul.flexnav, .flexnav ul{
-    text-align: center !important;
-    background-color: #ffffff;
-    box-shadow: 0 1px 10px rgba(0,0,0,0.3);
+text-align: center !important;
+background-color: #ffffff;
+box-shadow: 0 1px 10px rgba(0,0,0,0.3);
 }
 
 .flexnav li {

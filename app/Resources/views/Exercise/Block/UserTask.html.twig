@@ -17,7 +17,7 @@
     {% if (mp4 or webm) or  medias %}
         <div class="col-md-7">
 
-            <div class="panel-box">
+            <div class="panel-box exercise">
                 <div class="titles">
                     <h4>
                         {% if exercise is defined %}
@@ -157,7 +157,7 @@
     <div class="{% if (mp4 or webm) or  medias %}col-md-5{% else %}col-md-9{% endif %}">
 
         {% block exercise_text %}
-            <div class="panel-box" style="min-height: 410px;">
+            <div class="panel-box exercise" style="min-height: 410px;">
                 <div class="titles">
                     <h4>
                         {{ "Übungsbeschreibung" | trans({}, 'FitbaseExerciseBundle') }}
