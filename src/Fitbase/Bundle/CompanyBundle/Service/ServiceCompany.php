@@ -93,10 +93,6 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
     public function getCompanyUrl(Company $company, $name, $parameters = array())
     {
         if (($site = $company->getSite())) {
-
-            var_dump($site->getName());
-            var_dump($site->getHost());
-
             if (($context = $this->container->get('router')->getContext())) {
                 // Base url have to be already defined
                 // if not - console application, override
@@ -116,6 +112,9 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
                 $context->setHost($site->getHost());
                 $context->setScheme($site->getScheme());
                 $context->setPathInfo($site->getRelativePath());
+
+                var_dump($site->getName());
+                var_dump($site->getHost());
             }
         }
 
