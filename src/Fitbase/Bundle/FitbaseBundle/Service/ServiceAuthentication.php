@@ -91,6 +91,8 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
             $company = $user->getCompany();
         }
 
+        var_dump(empty($company));
+
         if (!empty($company)) {
             return $this->container->get('company')->getCompanyUrl($company, 'dashboard');
         }
