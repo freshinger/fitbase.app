@@ -89,7 +89,6 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
                 return $this->container->get('company')->getCompanyUrl($company, 'dashboard');
             }
         }
-
         return $this->container->get('router')->generate('dashboard');
     }
 }
