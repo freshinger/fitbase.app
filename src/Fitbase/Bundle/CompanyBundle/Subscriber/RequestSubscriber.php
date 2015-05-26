@@ -36,6 +36,7 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
                     var_dump($site->getHost());
 
                     var_dump($this->container->get('twig.extension.routing')->getUrlCompany($company, 'dashboard'));
+                    var_dump($this->container->get('router')->generate('dashboard', [], true));
 
 
 //                    throw new PageNotFoundException('Requested site not available for current user: ' .
