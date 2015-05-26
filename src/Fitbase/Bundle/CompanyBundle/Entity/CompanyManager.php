@@ -47,4 +47,14 @@ class CompanyManager implements CompanyManagerInterface
     {
         return $this->repository->findOneBySlug($slug);
     }
+
+    /**
+     * Find company by site
+     * @param $site
+     * @return mixed
+     */
+    public function findOneBySite($site)
+    {
+        return $this->repository->findOneBySite($site);
+    }
 }

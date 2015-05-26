@@ -10,8 +10,9 @@ namespace Fitbase\Bundle\CompanyBundle\Service;
 
 
 use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
-class ServiceCompany implements ServiceCompanyInterface
+class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
 {
     protected $serviceUser;
     protected $companyManager;
@@ -26,6 +27,34 @@ class ServiceCompany implements ServiceCompanyInterface
         $this->serviceUser = $serviceUser;
         $this->companyManager = $companyManager;
         $this->session = $session;
+    }
+
+    /**
+     * Get focus for current user
+     * @return null
+     */
+    public function current(UserInterface $user = null)
+    {
+        if (($user = is_null($user) ? $this->serviceUser->current() : $user)) {
+            if (($company = $user->getCompany())) {
+                $this->setCompanySlugCache($company);
+                return $company;
+            }
+        }
+
+        if (strlen(($slug = $this->getCompanySlugCache()))) {
+            if (($company = $this->companyManager->findOneBySlug($slug))) {
+                return $company;
+            }
+        }
+
+        if (($site = $this->container->get('sonata.page.site.selector')->retrieve())) {
+            if (($company = $this->companyManager->findOneBySite($site))) {
+                return $company;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -51,26 +80,4 @@ class ServiceCompany implements ServiceCompanyInterface
         return $this->session->get('company');
     }
 
-
-    /**
-     * Get focus for current user
-     * @return null
-     */
-    public function current(UserInterface $user = null)
-    {
-        if (($user = is_null($user) ? $this->serviceUser->current() : $user)) {
-            if (($company = $user->getCompany())) {
-                $this->setCompanySlugCache($company);
-                return $company;
-            }
-        }
-
-        if (strlen(($slug = $this->getCompanySlugCache()))) {
-            if (($company = $this->companyManager->findOneBySlug($slug))) {
-                return $company;
-            }
-        }
-
-        return null;
-    }
 }
