@@ -36,7 +36,7 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        return new RedirectResponse($this->getDashboardUrl());
+        return new RedirectResponse($this->getDashboardUrl($token));
     }
 
     /**
@@ -79,13 +79,22 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
     }
 
     /**
+     * Get current company url
      * @return mixed
      */
-    protected function getDashboardUrl()
+    protected function getDashboardUrl(TokenInterface $token = null)
     {
-        if (($company = $this->container->get('company')->current())) {
+        $company = null;
+        if (!($company = $this->container->get('company')->current())) {
+            if (!empty($token) and ($user = $token->getUser())) {
+                $company = $user->getCompany();
+            }
+        }
+
+        if (!empty($company)) {
             return $this->container->get('company')->getCompanyUrl($company, 'dashboard');
         }
+
         return $this->container->get('router')->generate('dashboard');
     }
 }
