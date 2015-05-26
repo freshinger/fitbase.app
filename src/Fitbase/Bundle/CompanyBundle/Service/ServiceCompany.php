@@ -9,8 +9,10 @@
 namespace Fitbase\Bundle\CompanyBundle\Service;
 
 
+use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
 {
@@ -78,6 +80,45 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
     protected function getCompanySlugCache()
     {
         return $this->session->get('company');
+    }
+
+    /**
+     * Get url for current company
+     * @param Company $company
+     * @param $name
+     * @param array $parameters
+     * @return mixed
+     * @throws \Twig_Error_Runtime
+     */
+    public function getCompanyUrl(Company $company, $name, $parameters = array())
+    {
+        if (($site = $company->getSite())) {
+            if (($context = $this->container->get('router')->getContext())) {
+                // Base url have to be already defined
+                // if not - console application, override
+                // host, base url and other things
+                if (!strlen($context->getBaseUrl())) {
+
+                    if (!strlen($site->getScheme())) {
+                        throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
+                    }
+
+                    if (!strlen($site->getHost())) {
+                        throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
+                    }
+
+                    if (!strlen($site->getRelativePath())) {
+                        throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
+                    }
+
+                    $context->setHost($site->getHost());
+                    $context->setScheme($site->getScheme());
+                    $context->setBaseUrl($site->getRelativePath());
+                }
+            }
+        }
+
+        return $this->container->get('router')->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
 }

@@ -15,13 +15,30 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
-class ServiceAuthentication extends ContainerAware implements AuthenticationFailureHandlerInterface
+class ServiceAuthentication extends ContainerAware implements AuthenticationFailureHandlerInterface, AuthenticationSuccessHandlerInterface
 {
+    /**
+     * This is called when an interactive authentication attempt succeeds. This
+     * is called by authentication listeners inheriting from
+     * AbstractAuthenticationListener.
+     *
+     * @param Request $request
+     * @param TokenInterface $token
+     *
+     * @return Response never null
+     */
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token)
+    {
+        return new RedirectResponse($this->getDashboardUrl());
+    }
+
     /**
      * On authentication failure handler
      * @param Request $request
@@ -57,7 +74,18 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
 
         $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
 
-        return new RedirectResponse($this->container
-            ->get('router')->generate('dashboard'));
+
+        return new RedirectResponse($this->getDashboardUrl());
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getDashboardUrl()
+    {
+        if (($company = $this->container->get('company')->current())) {
+            return $this->container->get('company')->getCompanyUrl($company, 'dashboard');
+        }
+        return $this->container->get('router')->generate('dashboard');
     }
 }

@@ -66,6 +66,9 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
      */
     public function getUrlCompany(Company $company, $name, $parameters = array())
     {
+        // TODO: replace content to this string
+        //$this->container->get('company')->getCompanyUrl($company, $name, $parameters);
+
         if (($site = $company->getSite())) {
             if (($context = $this->generator->getContext())) {
                 // Base url have to be already defined
