@@ -86,12 +86,12 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
      */
     protected function getDashboardUrl(TokenInterface $token = null)
     {
-        $company = $company = $this->container->get('company')->current();
         if (!empty($token) and ($user = $token->getUser())) {
             $company = $user->getCompany();
+        } else {
+            $company = $company = $this->container->get('company')->current();
         }
 
-        var_dump(empty($company));
 
         if (!empty($company)) {
             return $this->container->get('company')->getCompanyUrl($company, 'dashboard');
