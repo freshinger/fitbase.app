@@ -48,11 +48,11 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
             }
         }
 
-//        if (($site = $this->container->get('sonata.page.site.selector')->retrieve())) {
-//            if (($company = $this->companyManager->findOneBySite($site))) {
-//                return $company;
-//            }
-//        }
+        if (($site = $this->container->get('sonata.page.site.selector')->retrieve())) {
+            if (($company = $this->companyManager->findOneBySite($site))) {
+                return $company;
+            }
+        }
 
         return null;
     }
