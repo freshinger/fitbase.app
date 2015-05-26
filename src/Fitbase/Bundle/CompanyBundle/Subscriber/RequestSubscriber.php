@@ -8,7 +8,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Sonata\PageBundle\Exception\PageNotFoundException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class RequestSubscriber extends ContainerAware implements EventSubscriberInterface
 {
@@ -32,15 +31,8 @@ class RequestSubscriber extends ContainerAware implements EventSubscriberInterfa
         if (($company = $this->container->get('company')->current())) {
             if (($site = $company->getSite())) {
                 if (!$this->siteMatch($company->getSite())) {
-
-                    var_dump($site->getHost());
-
-                    var_dump($this->container->get('twig.extension.routing')->getUrlCompany($company, 'dashboard'));
-                    var_dump($this->container->get('router')->generate('dashboard', [], true));
-
-
-//                    throw new PageNotFoundException('Requested site not available for current user: ' .
-//                        htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
+                    throw new PageNotFoundException('Requested site not available for current user: ' .
+                        htmlspecialchars($this->container->get('request')->getUri(), ENT_QUOTES));
                 }
             }
         }
