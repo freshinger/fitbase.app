@@ -36,6 +36,8 @@ class ServiceAuthentication extends ContainerAware implements AuthenticationFail
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
+        exit($this->getDashboardUrl($token));
+
         return new RedirectResponse($this->getDashboardUrl($token));
     }
 
