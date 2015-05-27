@@ -66,32 +66,6 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
      */
     public function getUrlCompany(Company $company, $name, $parameters = array())
     {
-        // TODO: replace content to this string
-        //$this->container->get('company')->getCompanyUrl($company, $name, $parameters);
-
-        if (($site = $company->getSite())) {
-            if (($context = $this->generator->getContext())) {
-                // Base url have to be already defined
-                // if not - console application, override
-                // host, base url and other things
-                if (!strlen($site->getScheme())) {
-                    throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
-                }
-
-                if (!strlen($site->getHost())) {
-                    throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
-                }
-
-                if (!strlen($site->getRelativePath())) {
-                    throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
-                }
-
-                $context->setHost($site->getHost());
-                $context->setScheme($site->getScheme());
-                $context->setPathInfo($site->getRelativePath());
-            }
-        }
-
-        return $this->generator->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL);
+        return $this->container->get('company')->getCompanyUrl($company, $name, $parameters);
     }
 }

@@ -97,24 +97,28 @@ class ServiceCompany extends ContainerAware implements ServiceCompanyInterface
                 // Base url have to be already defined
                 // if not - console application, override
                 // host, base url and other things
-                if (!strlen($site->getScheme())) {
-                    throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
-                }
+                if (!strlen($context->getBaseUrl())) {
 
-                if (!strlen($site->getHost())) {
-                    throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
-                }
+                    if (!strlen($site->getScheme())) {
+                        throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
+                    }
 
-                if (!strlen($site->getRelativePath())) {
-                    throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
-                }
+                    if (!strlen($site->getHost())) {
+                        throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
+                    }
 
-                $context->setHost($site->getHost());
-                $context->setScheme($site->getScheme());
-                $context->setPathInfo($site->getRelativePath());
+                    if (!strlen($site->getRelativePath())) {
+                        throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
+                    }
+
+                    $context->setHost($site->getHost());
+                    $context->setScheme($site->getScheme());
+                    $context->setBaseUrl($site->getRelativePath());
+                }
             }
         }
 
         return $this->container->get('router')->generate($name, $parameters, UrlGeneratorInterface::ABSOLUTE_URL);
     }
+
 }
