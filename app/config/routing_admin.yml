@@ -28,3 +28,7 @@ fitbase_email:
 fitbase_weeklytask:
     resource: "@FitbaseWeeklytaskBundle/Resources/config/routing_sonata.xml"
     prefix:   /infoeinheit
+
+Wellbeing:
+    prefix:       /wellbeing
+    resource:     "@WellbeingApiBundle/Resources/config/routing.xml"

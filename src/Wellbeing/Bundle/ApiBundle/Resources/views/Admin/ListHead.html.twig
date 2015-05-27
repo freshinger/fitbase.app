@@ -1,4 +1,16 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 {% block field %}
-    <img src="{{ path('wellbeing_user_state_picture', { 'unique': object.id }) }}">
+
+    <div class="row">
+        <div class="col-md-3">
+            <h4>{{ object.date|date('d, M Y') }}</h4>
+            <h4>{{ object.date|date('H:i:s') }}</h4>
+        </div>
+        <div class="col-md-9">
+            <img src="{{ path('wellbeing_userstate_xy_picture', { 'unique': object.id }) }}">
+            <img src="{{ path('wellbeing_userstate_xz_picture', { 'unique': object.id }) }}">
+            <img src="{{ path('wellbeing_userstate_yz_picture', { 'unique': object.id }) }}">
+        </div>
+    </div>
+
 {% endblock field %}

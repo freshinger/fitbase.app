@@ -3,111 +3,87 @@
 namespace Wellbeing\Bundle\ApiBundle\Imagick;
 
 
-use Wellbeing\Bundle\ApiBundle\Entity\UserState;
-
-class ProjectionBuilderYZ extends ProjectionBuilderAbstract
+class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements ProjectionBuilderInterface
 {
-    protected $width;
-    protected $height;
-    protected $userState;
-
-    protected $yMin;
-    protected $zMin;
-    protected $yMax;
-    protected $zMax;
-
-    public function __construct($width, $height, UserState $userState)
+    public function build()
     {
-        parent::__construct();
+        if (($head = $this->userState->getHead())) {
 
-        $this->width = $width;
-        $this->height = $height;
-        $this->userState = $userState;
+            if (($shoulderC = $this->userState->getShoulderCenter())) {
 
-        $this->yMin = $userState->getMinYCoordinate();
-        $this->zMin = $userState->getMinZCoordinate();
+                if (($spine = $this->userState->getSpine())) {
 
-        $this->yMax = $userState->getMaxYCoordinate();
-        $this->zMax = $userState->getMaxZCoordinate();
+                    if (($hipL = $this->userState->getHipLeft())) {
 
+                        if (($kneeL = $this->userState->getKneeLeft())) {
 
-        if (($head = $userState->getHead())) {
-
-            if (($shoulderC = $userState->getShoulderCenter())) {
-
-                if (($spine = $userState->getSpine())) {
-
-                    if (($hipL = $userState->getHipLeft())) {
-
-                        if (($kneeL = $userState->getKneeLeft())) {
-
-                            $this->setColor('grey');
+                            $this->setColor($this->getColor('knee'));
                             $this->node($kneeL->getY(), $kneeL->getZ());
                             $this->edge($kneeL->getY(), $kneeL->getZ(), $hipL->getY(), $hipL->getZ());
 
-                            if (($footL = $userState->getFootLeft())) {
+                            if (($footL = $this->userState->getFootLeft())) {
 
                                 $this->node($footL->getY(), $footL->getZ());
                                 $this->edge($kneeL->getY(), $kneeL->getZ(), $footL->getY(), $footL->getZ());
                             }
                         }
 
-                        $this->setColor('blue');
+                        $this->setColor($this->getColor('hip'));
                         $this->node($hipL->getY(), $hipL->getZ());
                         $this->edge($spine->getY(), $spine->getZ(), $hipL->getY(), $hipL->getZ());
                     }
 
-                    if (($hipR = $userState->getHipRight())) {
+                    if (($hipR = $this->userState->getHipRight())) {
 
-                        if (($kneeR = $userState->getKneeRight())) {
+                        if (($kneeR = $this->userState->getKneeRight())) {
 
-                            $this->setColor('grey');
+                            $this->setColor($this->getColor('knee'));
                             $this->node($kneeR->getY(), $kneeR->getZ());
                             $this->edge($kneeR->getY(), $kneeR->getZ(), $hipR->getY(), $hipR->getZ());
 
-                            if (($footR = $userState->getFootRight())) {
+                            if (($footR = $this->userState->getFootRight())) {
 
                                 $this->node($footR->getY(), $footR->getZ());
                                 $this->edge($kneeR->getY(), $kneeR->getZ(), $footR->getY(), $footR->getZ());
                             }
                         }
 
-                        $this->setColor('blue');
+                        $this->setColor($this->getColor('hip'));
                         $this->node($hipR->getY(), $hipR->getZ());
                         $this->edge($spine->getY(), $spine->getZ(), $hipR->getY(), $hipR->getZ());
 
-                        if (($hipL = $userState->getHipLeft())) {
+                        if (($hipL = $this->userState->getHipLeft())) {
                             $this->edge($hipL->getY(), $hipL->getZ(), $hipR->getY(), $hipR->getZ());
                         }
                     }
 
-                    $this->setColor('blue');
+                    $this->setColor($this->getColor('spine'));
                     $this->node($spine->getY(), $spine->getZ());
 
-                    if (($shoulderL = $userState->getShoulderLeft())) {
+                    if (($shoulderL = $this->userState->getShoulderLeft())) {
                         $this->edge($shoulderL->getY(), $shoulderL->getZ(), $spine->getY(), $spine->getZ());
                     }
 
-                    if (($shoulderR = $userState->getShoulderRight())) {
+                    if (($shoulderR = $this->userState->getShoulderRight())) {
                         $this->edge($shoulderR->getY(), $shoulderR->getZ(), $spine->getY(), $spine->getZ());
                     }
                 }
 
 
-                if (($shoulderR = $userState->getShoulderRight())) {
+                if (($shoulderR = $this->userState->getShoulderRight())) {
 
-                    $this->setColor('green');
+                    $this->setColor($this->getColor('edge'));
                     $this->edge($shoulderC->getY(), $shoulderC->getZ(), $shoulderR->getY(), $shoulderR->getZ());
 
-                    $this->setColor('red');
+                    $this->setColor($this->getColor('shoulder'));
                     $this->node($shoulderR->getY(), $shoulderR->getZ());
 
-                    if (($elbowR = $userState->getElbowRight())) {
+                    if (($elbowR = $this->userState->getElbowRight())) {
 
                         $this->node($elbowR->getY(), $elbowR->getZ());
                         $this->edge($shoulderR->getY(), $shoulderR->getZ(), $elbowR->getY(), $elbowR->getZ());
 
-                        if (($handR = $userState->getHandRight())) {
+                        if (($handR = $this->userState->getHandRight())) {
 
                             $this->node($handR->getY(), $handR->getZ());
                             $this->edge($elbowR->getY(), $elbowR->getZ(), $handR->getY(), $handR->getZ());
@@ -116,34 +92,38 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract
                     }
                 }
 
-                if (($shoulderL = $userState->getShoulderLeft())) {
+                if (($shoulderL = $this->userState->getShoulderLeft())) {
 
-                    $this->setColor('green');
+                    $this->setColor($this->getColor('edge'));
                     $this->edge($shoulderC->getY(), $shoulderC->getZ(), $shoulderL->getY(), $shoulderL->getZ());
 
-                    $this->setColor('red');
+                    $this->setColor($this->getColor('shoulder'));
                     $this->node($shoulderL->getY(), $shoulderL->getZ());
 
-                    if (($elbowL = $userState->getElbowLeft())) {
+                    if (($elbowL = $this->userState->getElbowLeft())) {
 
                         $this->node($elbowL->getY(), $elbowL->getZ());
                         $this->edge($shoulderL->getY(), $shoulderL->getZ(), $elbowL->getY(), $elbowL->getZ());
 
-                        if (($handL = $userState->getHandLeft())) {
+                        if (($handL = $this->userState->getHandLeft())) {
                             $this->node($handL->getY(), $handL->getZ());
                             $this->edge($elbowL->getY(), $elbowL->getZ(), $handL->getY(), $handL->getZ());
                         }
                     }
                 }
 
-                $this->setColor('green');
+                $this->setColor($this->getColor('edge'));
                 $this->node($shoulderC->getY(), $shoulderC->getZ());
                 $this->edge($head->getY(), $head->getZ(), $shoulderC->getY(), $shoulderC->getZ());
             }
 
-            $this->setColor('green');
+            $this->setColor($this->getColor('head'));
             $this->nodeHead($head->getY(), $head->getZ());
         }
+
+        parent::build();
+
+        return $this;
     }
 
     /**

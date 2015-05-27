@@ -5,10 +5,4 @@
 
     <import type="rest" resource="wellbeing.controller.api.user" name-prefix="wellbeing_api_user_"/>
 
-
-    <route id="wellbeing_user_state_picture" path="/user/state/{unique}/picture.png">
-        <default key="_controller">WellbeingApiBundle:Picture:state</default>
-        <default key="_format">png</default>
-    </route>
-
 </routes>

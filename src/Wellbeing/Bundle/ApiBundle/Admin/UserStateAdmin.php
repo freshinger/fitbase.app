@@ -57,7 +57,6 @@ class UserStateAdmin extends Admin
     {
         $listMapper
             ->add('user')
-            ->add('date')
             ->add('head', null, array(
                 'template' => 'WellbeingApiBundle:Admin:ListHead.html.twig'
             ))

@@ -1,0 +1,128 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+
+{#{% block sonata_page_content_nav %}#}
+    {#<nav class="navbar navbar-default" role="navigation">#}
+        {#<div class="navbar-header">#}
+            {#<span class="navbar-brand">#}
+                {#{{ "Benutzer importieren"|trans({}, 'FitbaseUserBundle') }}#}
+            {#</span>#}
+        {#</div>#}
+        {#<div class="container-fluid">#}
+            {#<ul class="nav navbar-nav navbar-right">#}
+                {#<li class="dropdown sonata-actions">#}
+                    {#<a href="#" class="dropdown-toggle"#}
+                       {#data-toggle="dropdown">{{ 'link_actions'|trans({}, 'SonataAdminBundle') }} <b class="caret"></b></a>#}
+                    {#<ul class="dropdown-menu" role="menu">#}
+                        {#<li>#}
+                            {#<a class="sonata-action-element" href="{{ path('admin_sonata_user_user_list') }}">#}
+                                {#<i class="fa fa-list"></i>#}
+                                {#{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}#}
+                            {#</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a class="sonata-action-element" href="{{ path('admin_sonata_user_user_create') }}">#}
+                                {#<i class="fa fa-plus-circle"></i>#}
+                                {#{{ 'link_action_create'|trans({}, 'SonataAdminBundle') }}#}
+                            {#</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</nav>#}
+{#{% endblock sonata_page_content_nav %}#}
+
+
+{% block sonata_admin_content %}
+    <script type="text/javascript">
+        $(function () {
+
+            window.setInterval(function () {
+                var path = '{{ path('wellbeing_userstate_live_picture') }}?refresh=';
+                $('#state-image').attr('src', path + new Date().getTime());
+            }, 1000);
+
+        });
+    </script>
+
+    <div class="row nav-tabs-custom" style="padding: 30px 20px 30px 20px; margin: 5px;">
+        <div class="col-md-8">
+            <img id="state-image" src="{{ path('wellbeing_userstate_live_picture') }}">
+        </div>
+        <div id="state-data" class="col-md-4">
+
+            <div class="row">
+                <div class="col-md-5">
+                    <h4>Time</h4>
+                </div>
+                <div class="col-md-7">
+                    <h4>{{ state.date|date('H:i:s') }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Head</div>
+                <div class="col-md-7">{{ state.head }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder l.</div>
+                <div class="col-md-7">{{ state.shoulderLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder c.</div>
+                <div class="col-md-7">{{ state.shoulderCenter }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder r.</div>
+                <div class="col-md-7">{{ state.shoulderRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Elbow l.</div>
+                <div class="col-md-7">{{ state.elbowLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Elbow r.</div>
+                <div class="col-md-7">{{ state.elbowRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hand l</div>
+                <div class="col-md-7">{{ state.handLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hand r.</div>
+                <div class="col-md-7">{{ state.handRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Spine</div>
+                <div class="col-md-7">{{ state.spine }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hip l.</div>
+                <div class="col-md-7">{{ state.hipLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hip r.</div>
+                <div class="col-md-7">{{ state.hipRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Knee l.</div>
+                <div class="col-md-7">{{ state.kneeLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Knee r.</div>
+                <div class="col-md-7">{{ state.kneeRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Foot l.</div>
+                <div class="col-md-7">{{ state.footLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Foot r.</div>
+                <div class="col-md-7">{{ state.footRight }}</div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock sonata_admin_content %}

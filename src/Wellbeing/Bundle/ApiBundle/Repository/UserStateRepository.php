@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserStateRepository extends EntityRepository
 {
+    /**
+     * Find last user state
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLast()
+    {
+        $queryBuilder = $this->createQueryBuilder('UserState');
+
+        $queryBuilder->addOrderBy('UserState.id', 'DESC');
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 }
