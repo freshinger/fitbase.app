@@ -104,6 +104,7 @@ class UserTaskController extends Controller
 
                             return $this->render('Exercise/UserTask/UserTask.html.twig', array(
                                 'user' => $focus->getUser(),
+	                        'exercise' => $exerciseUser->getExercise0(),
                                 'exerciseUser' => $exerciseUser,
                             ));
                         }
