@@ -10,11 +10,11 @@
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <li>
 
-                    {% if knowledge is defined %}
+                    {% if knowledge is defined and knowledge %}
                         <div class="text-over-image">
-                        <span>
-                            {{ knowledge.content }}
-                        </span>
+                            <span>
+                                {{ knowledge.content }}
+                            </span>
 
                             <div class="crumbs pointer" style="padding: 0px;"></div>
                         </div>
