@@ -5,19 +5,20 @@
     </div>
 
 
-
-
     <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <li>
 
-                    <div class="text-over-image">
+                    {% if knowledge is defined %}
+                        <div class="text-over-image">
                         <span>
                             {{ knowledge.content }}
                         </span>
-                        <div class="crumbs pointer" style="padding: 0px;"></div>
-                    </div>
+
+                            <div class="crumbs pointer" style="padding: 0px;"></div>
+                        </div>
+                    {% endif %}
 
                     <img class="img-responsive" src="{{ path('fitbase_knowledge_picture') }}">
 
