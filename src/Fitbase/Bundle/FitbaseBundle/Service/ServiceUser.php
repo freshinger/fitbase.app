@@ -24,7 +24,8 @@ class ServiceUser extends ContainerAware implements ServiceUserInterface
      */
     public function current()
     {
-        if (($token = $this->container->get('security.context')->getToken())) {
+        $securityContext = $this->container->get('security.context');
+        if (($token = $securityContext->getToken())) {
             if (is_object(($user = $token->getUser()))) {
                 return $user;
             }
