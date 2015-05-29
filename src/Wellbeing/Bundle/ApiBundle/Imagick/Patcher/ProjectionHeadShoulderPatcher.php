@@ -14,11 +14,6 @@ use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderInterface;
 
 class ProjectionHeadShoulderPatcher implements ProjectionBuilderPatcherInterface
 {
-    public function __construct()
-    {
-
-    }
-
     /**
      * @param ProjectionBuilderInterface $builder
      * @param UserState $userState
