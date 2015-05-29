@@ -12,12 +12,11 @@ namespace Wellbeing\Bundle\ApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Wellbeing\Bundle\ApiBundle\Entity\UserState;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXY;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXZ;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderYZ;
-use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
 
 class PictureController extends Controller
 {

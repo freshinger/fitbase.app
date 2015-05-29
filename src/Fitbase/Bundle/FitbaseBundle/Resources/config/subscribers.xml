@@ -18,6 +18,14 @@
         </service>
 
 
+        <service id="fitbase.subscriber.exception" class="Fitbase\Bundle\FitbaseBundle\Subscriber\ExceptionSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
         <service id="fitbase.subscriber.timeline.user" class="Fitbase\Bundle\FitbaseBundle\Subscriber\Timeline\UserSubscriber">
             <argument type="service" id="user"/>
             <argument type="service" id="spy_timeline.action_manager"/>
