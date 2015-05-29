@@ -4,27 +4,27 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
 
-    <route id="wellbeing_userstate_picture" path="/user/state/{unique}/picture">
+    <route id="wellbeing_userstate_picture" path="/user/state/{unique}/picture.png">
         <default key="_controller">WellbeingApiBundle:Picture:state</default>
         <default key="_format">png</default>
     </route>
 
-    <route id="wellbeing_userstate_xy_picture" path="/user/state/xy/{unique}/picture">
+    <route id="wellbeing_userstate_xy_picture" path="/user/state/xy/{unique}/picture.png">
         <default key="_controller">WellbeingApiBundle:Picture:stateXY</default>
         <default key="_format">png</default>
     </route>
 
-    <route id="wellbeing_userstate_xz_picture" path="/user/state/xz/{unique}/picture">
+    <route id="wellbeing_userstate_xz_picture" path="/user/state/xz/{unique}/picture.png">
         <default key="_controller">WellbeingApiBundle:Picture:stateXZ</default>
         <default key="_format">png</default>
     </route>
 
-    <route id="wellbeing_userstate_yz_picture" path="/user/state/yz/{unique}/picture">
+    <route id="wellbeing_userstate_yz_picture" path="/user/state/yz/{unique}/picture.png">
         <default key="_controller">WellbeingApiBundle:Picture:stateYZ</default>
         <default key="_format">png</default>
     </route>
 
-    <route id="wellbeing_userstate_live_picture" path="/user/live/state/picture">
+    <route id="wellbeing_userstate_live_picture" path="/user/live/state/picture.png">
         <default key="_controller">WellbeingApiBundle:Picture:stateLive</default>
         <default key="_format">png</default>
     </route>
