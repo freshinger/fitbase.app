@@ -10,6 +10,10 @@
             <argument/>
             <argument>Wellbeing\Bundle\ApiBundle\Entity\UserState</argument>
             <argument/>
+            <call method="setTemplate">
+                <argument>list</argument>
+                <argument>WellbeingApiBundle:Admin:UserState/List.html.twig</argument>
+            </call>
         </service>
     </services>
 

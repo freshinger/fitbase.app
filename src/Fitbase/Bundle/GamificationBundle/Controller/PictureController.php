@@ -136,6 +136,13 @@ class PictureController extends Controller
                     }
                 }
 
+            } else {
+              $cache = [];
+              $cache[0] = array(
+                "date" => (new \DateTime('now'))->setTime(0, 0, 0),
+                "points" => 0,
+              );
+            }
 
                 ksort($cache);
 
@@ -197,7 +204,6 @@ class PictureController extends Controller
                 ob_end_clean();
 
                 $imagick->readImageBlob($image);
-            }
         }
 
         $imagick->adaptiveResizeImage(718, 718);

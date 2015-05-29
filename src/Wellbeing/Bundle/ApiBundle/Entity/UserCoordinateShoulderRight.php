@@ -141,6 +141,6 @@ class UserCoordinateShoulderRight
      */
     public function __toString()
     {
-        return "{$this->getX()}; {$this->getY()}; {$this->getZ()}";
+        return "{$this->getX()};{$this->getY()};{$this->getZ()}";
     }
 }

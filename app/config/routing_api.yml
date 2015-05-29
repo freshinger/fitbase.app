@@ -2,10 +2,10 @@ NelmioApiDocBundle:
     resource:     "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:       /doc
 
-wellbeing_api_user:
+WellbeingApiBundle:
     type:         rest
     prefix:       /user
-    resource:     "@WellbeingApiBundle/Resources/config/routing_api.xml"
+    resource:     "@WellbeingApiBundle/Resources/config/routing/api.xml"
 
 #sonata_api_classification:
 #    type:         rest
