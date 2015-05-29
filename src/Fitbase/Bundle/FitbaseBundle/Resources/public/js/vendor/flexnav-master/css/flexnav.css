@@ -21,7 +21,7 @@
     -webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -ms-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;cs
 }
 
 .flexnav.one-page {
@@ -299,54 +299,3 @@
 .oldie.ie7 .flexnav li {
     width: 19.9%;
 }
-
-/* fitbase fixes*/
-.header-2 .is-sticky .mainmenu .flexnav {
-    max-width: 1170px;
-    margin: 0 auto;
-}
-
-ul.flexnav, .flexnav ul {
-    text-align: center !important;
-    background-color: #ffffff;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-}
-
-.flexnav li {
-    width: auto;
-    border: none;
-    background-color: #ffffff;
-}
-
-.flexnav li a {
-    width: auto;
-    border-color: #ffffff;
-    background-color: #ffffff;
-}
-
-.flexnav li > ul {
-    top: 100%;
-}
-
-.flexnav li ul {
-    width: auto;
-    z-index: 9999;
-}
-
-.flexnav li ul li a {
-    background-color: #ffffff;
-    width: 100%;
-}
-
-.flexnav span.touch-button {
-    display: none;
-}
-
-.flexnav li a.touch-button {
-    width: auto;
-    height: auto;
-    position: initial;
-    background-color: #ffffff;
-}
-
-/* fitbase fixes*/
