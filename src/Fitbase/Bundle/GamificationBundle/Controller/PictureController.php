@@ -108,6 +108,13 @@ class PictureController extends Controller
         $imagick->readImageBlob($this->renderView('Gamification/Picture/Avatar.html.twig', array()));
 
         if (($user = $this->container->get('user')->current())) {
+
+            $cache = [];
+            $cache[0] = array(
+                "date" => (new \DateTime('now'))->setTime(0, 0, 0),
+                "points" => 0,
+            );
+
             if (($statistics = $this->container->get('statistic')->statistic($user))) {
 
                 $datetime = $this->container->get('datetime');
@@ -136,74 +143,67 @@ class PictureController extends Controller
                     }
                 }
 
-            } else {
-              $cache = [];
-              $cache[0] = array(
-                "date" => (new \DateTime('now'))->setTime(0, 0, 0),
-                "points" => 0,
-              );
             }
 
-                ksort($cache);
+            ksort($cache);
 
-                $summ = 0;
-                $labels = array();
-                $values = array();
+            $summ = 0;
+            $labels = array();
+            $values = array();
 
-                $translator = $this->container->get('translator');
-                foreach ($cache as $cacheEntity) {
-                    if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null) !== null) {
-                        if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null) !== null) {
-                            array_push($values, $summ);
+            $translator = $this->container->get('translator');
+            foreach ($cache as $cacheEntity) {
+                if (($data = isset($cacheEntity['date']) ? $cacheEntity['date'] : null) !== null) {
+                    if (($summ += isset($cacheEntity['points']) ? $cacheEntity['points'] : null) !== null) {
+                        array_push($values, $summ);
 
-                            $label = $translator->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
-                            array_push($labels, $label);
-                        }
+                        $label = $translator->trans(strtolower($data->format("F")), array(), 'FitbaseGamificationBundle');
+                        array_push($labels, $label);
                     }
                 }
+            }
 
-                JpGraph::load();
-                JpGraph::module('line');
-                JpGraph::module('bar');
-
-
-                $graph = new Graph(660, 654, 'auto');
-                $graph->SetScale("textlin");
-
-                $graph->SetTheme(new UniversalTheme);
-                $graph->SetMargin(70, 0, 20, 50);
-                $graph->img->SetAngle(0);
-
-                $graph->SetBox(false);
-
-                $graph->ygrid->Show(false);
-                $graph->ygrid->SetFill(false);
-
-                $graph->xaxis->SetFont(FF_VERDANA, FS_NORMAL, 20);
-                $graph->xaxis->SetTickLabels($labels);
+            JpGraph::load();
+            JpGraph::module('line');
+            JpGraph::module('bar');
 
 
+            $graph = new Graph(660, 654, 'auto');
+            $graph->SetScale("textlin");
 
-                $graph->yaxis->SetFont(FF_VERDANA, FS_NORMAL, 20);
-                $graph->yaxis->HideLine(false);
-                $graph->yaxis->HideTicks(false, false);
+            $graph->SetTheme(new UniversalTheme);
+            $graph->SetMargin(70, 0, 20, 50);
+            $graph->img->SetAngle(0);
 
-                $graph->SetBackgroundGradient('#FFFFFF', '#FFFFFF', GRAD_HOR, BGRAD_PLOT);
+            $graph->SetBox(false);
 
-                $b1plot = new \BarPlot($values);
-                $b1plot->SetFillGradient("#c0e3e8", "#c0e3e8", GRAD_HOR);
-                $b1plot->SetWidth(120);
-                $b1plot->SetWeight(0);
-                $graph->Add($b1plot);
-                $graph->Stroke(_IMG_HANDLER);
+            $graph->ygrid->Show(false);
+            $graph->ygrid->SetFill(false);
 
-                //Start buffering
-                ob_start();
-                $graph->img->Stream();
-                $image = ob_get_contents();
-                ob_end_clean();
+            $graph->xaxis->SetFont(FF_VERDANA, FS_NORMAL, 20);
+            $graph->xaxis->SetTickLabels($labels);
 
-                $imagick->readImageBlob($image);
+
+            $graph->yaxis->SetFont(FF_VERDANA, FS_NORMAL, 20);
+            $graph->yaxis->HideLine(false);
+            $graph->yaxis->HideTicks(false, false);
+
+            $graph->SetBackgroundGradient('#FFFFFF', '#FFFFFF', GRAD_HOR, BGRAD_PLOT);
+
+            $b1plot = new \BarPlot($values);
+            $b1plot->SetFillGradient("#c0e3e8", "#c0e3e8", GRAD_HOR);
+            $b1plot->SetWidth(120);
+            $b1plot->SetWeight(0);
+            $graph->Add($b1plot);
+            $graph->Stroke(_IMG_HANDLER);
+
+            //Start buffering
+            ob_start();
+            $graph->img->Stream();
+            $image = ob_get_contents();
+            ob_end_clean();
+
+            $imagick->readImageBlob($image);
         }
 
         $imagick->adaptiveResizeImage(718, 718);

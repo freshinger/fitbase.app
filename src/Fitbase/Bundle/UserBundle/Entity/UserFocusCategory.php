@@ -9,6 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserFocusCategory
 {
+
+    const TYPE_MOBILISATION = 0;
+    const TYPE_POWER = 1;
+    const TYPE_FLEX = 2;
+
+
     /**
      * @var integer
      */
@@ -215,12 +221,13 @@ class UserFocusCategory
     /**
      * Get type
      *
-     * @return integer 
+     * @return integer
      */
     public function getType()
     {
         return $this->type;
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -253,12 +260,13 @@ class UserFocusCategory
     /**
      * Get primaries
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPrimaries()
     {
         return $this->primaries;
     }
+
     /**
      * @var \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory
      */
@@ -281,12 +289,13 @@ class UserFocusCategory
     /**
      * Get primary
      *
-     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory 
+     * @return \Fitbase\Bundle\UserBundle\Entity\UserFocusCategory
      */
     public function getPrimary()
     {
         return $this->primary;
     }
+
     /**
      * @var boolean
      */
@@ -309,7 +318,7 @@ class UserFocusCategory
     /**
      * Get update
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getUpdate()
     {

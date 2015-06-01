@@ -19,7 +19,7 @@ class ExerciseManager implements ExerciseManagerInterface
     protected $objectManager;
     protected $repository;
 
-    public function __construct(ObjectManager $om, $class)
+    public function __construct(ObjectManager $om = null, $class = null)
     {
         $this->objectManager = $om;
         $this->repository = $om->getRepository($class);
@@ -80,17 +80,11 @@ class ExerciseManager implements ExerciseManagerInterface
     public function findTypeByFocusCategoryTypeAndStep($type, $step = 0)
     {
         switch ($step) {
-            // Get type priority
-            // for step 0
-            case 0:
+            case 0: // types from focus-category settings
                 return $this->findTypeByFocusCategoryTypeAndStep0($type);
-            // Get type priority
-            // for step 1
-            case 1:
+            case 1: // types from focus-category settings
                 return $this->findTypeByFocusCategoryTypeAndStep1($type);
-            // Get type priority
-            // for step 2
-            case 2:
+            case 2: // types from focus-category settings
                 return $this->findTypeByFocusCategoryTypeAndStep2($type);
         }
     }
@@ -105,11 +99,11 @@ class ExerciseManager implements ExerciseManagerInterface
     protected function findTypeByFocusCategoryTypeAndStep0($type)
     {
         switch ($type) {
-            case 0:
+            case 0: // types from focus-category settings
                 return array(Exercise::MOBILISATION, Exercise::KRAEFTIGUNG, null);
-            case 1:
+            case 1: // types from focus-category settings
                 return array(Exercise::MOBILISATION, null);
-            case 2:
+            case 2: // types from focus-category settings
                 return array(Exercise::KRAEFTIGUNG, null);
         }
     }
@@ -123,12 +117,16 @@ class ExerciseManager implements ExerciseManagerInterface
      */
     protected function findTypeByFocusCategoryTypeAndStep1($type)
     {
+        if ($type === null) {
+            return array(Exercise::KRAEFTIGUNG, Exercise::DAEHNUNG, null);
+        }
+
         switch ($type) {
-            case 0:
+            case 0: // types from focus-category settings
                 return array(Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null);
-            case 1:
+            case 1: // types from focus-category settings
                 return array(Exercise::MOBILISATION, null);
-            case 2:
+            case 2: // types from focus-category settings
                 return array(Exercise::KRAEFTIGUNG, null);
         }
     }
@@ -143,11 +141,12 @@ class ExerciseManager implements ExerciseManagerInterface
     protected function findTypeByFocusCategoryTypeAndStep2($type)
     {
         switch ($type) {
-            case 0:
+            case null:
+            case 0: // types from focus-category settings
                 return array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, Exercise::MOBILISATION, null);
-            case 1:
+            case 1: // types from focus-category settings
                 return array(Exercise::DAEHNUNG, Exercise::KRAEFTIGUNG, null);
-            case 2:
+            case 2: // types from focus-category settings
                 return array(Exercise::DAEHNUNG, Exercise::MOBILISATION, null);
         }
     }

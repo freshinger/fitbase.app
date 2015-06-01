@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\UserBundle\Service;
 
 
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
@@ -18,7 +19,7 @@ class ServiceFocus extends ContainerAware
      * Get focus for current user
      * @return null
      */
-    public function current()
+    public function current(User $user = null)
     {
         if (($user = $this->container->get('user')->current())) {
             if (($focus = $user->getFocus())) {

@@ -3,6 +3,7 @@
 namespace Fitbase\Bundle\UserBundle\Subscriber;
 
 
+use Application\Sonata\UserBundle\Entity\User;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Persistence\ObjectManager;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
@@ -103,11 +104,121 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
     }
 
     /**
+     * Process created user
+     * todo: add cover with tests
+     * @param UserEvent $event
+     */
+    public function onUserRegisteredEvent(UserEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException("User object can not be empty");
+        }
+
+        $userFocus = new UserFocus();
+        $userFocus->setUser($user);
+        $userFocus->setUpdate(true);
+        $this->entityManager->persist($userFocus);
+        $this->entityManager->flush($userFocus);
+
+        if (($actioncode = $user->getActioncode())) {
+            $this->doAppendFocusCategoriesFromActioncode($userFocus, $actioncode);
+        } else if (($company = $user->getCompany())) {
+            $this->doAppendFocusCategoriesFromCompany($userFocus, $company);
+        }
+
+        if (($userFocusCategory = $userFocus->getFirstCategory())) {
+            $this->doAppendFocusSettingsDefault($userFocus, $userFocusCategory);
+        }
+
+        $user->setFocus($userFocus);
+
+
+        $this->doAppendUserGroupDefault($user);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
+    }
+
+    /**
+     * Append default user group
+     * @param User $user
+     */
+    protected function doAppendUserGroupDefault(User $user)
+    {
+        $repositoryGroup = $this->entityManager->getRepository('Application\Sonata\UserBundle\Entity\Group');
+        if (($group = $repositoryGroup->findOneByName('User'))) {
+            $user->addGroup($group);
+        }
+    }
+
+    /**
+     * Append focus sub-categories by default
+     *
+     * @param $userFocus
+     */
+    protected function doAppendFocusSettingsDefault($userFocus, $userFocusCategory)
+    {
+        if (($category = $userFocusCategory->getCategory())) {
+            if (in_array($category->getSlug(), array('ruecken', 'rucken', 'rcken'))) {
+                if (!$userFocusCategory->getPrimary()) {
+
+                    $userFocusCategory->setType(0); // Mobilisation,  Kraeftigung, Daehnung
+
+                    $obererRuecken = $userFocus->getCategoryBySlug('oberer-ruecken');
+                    $userFocusCategory->addPrimary($obererRuecken);
+
+                    $untererRuecken = $userFocus->getCategoryBySlug('unterer-ruecken');
+                    $userFocusCategory->addPrimary($untererRuecken);
+
+                    $mittlererRuecken = $userFocus->getCategoryBySlug('mittlerer-ruecken');
+                    $userFocusCategory->addPrimary($mittlererRuecken);
+
+                    $this->entityManager->persist($userFocusCategory);
+                    $this->entityManager->flush($userFocusCategory);
+                }
+            }
+        }
+    }
+
+    /**
+     * Get categories from company
+     * and add to user focus
+     *
+     * @param $userFocus
+     * @param $company
+     */
+    protected function doAppendFocusCategoriesFromCompany($userFocus, $company)
+    {
+        if (($companyCategories = $company->getCategories())) {
+            foreach ($companyCategories as $companyCategory) {
+                if (($category = $companyCategory->getCategory())) {
+                    $this->doCreateUserFocusCategory($userFocus, $category);
+                }
+            }
+        }
+    }
+
+    /**
+     * Get categories from actioncode
+     * and add to user focus
+     *
+     * @param $userFocus
+     * @param $actioncode
+     */
+    protected function doAppendFocusCategoriesFromActioncode($userFocus, $actioncode)
+    {
+        if (($categories = $actioncode->getCategories())) {
+            foreach ($categories as $category) {
+                $this->doCreateUserFocusCategory($userFocus, $category);
+            }
+        }
+    }
+
+    /**
      * Create user focus category recursive
      * @param $userFocus
      * @param $category
      */
-    protected function createUserFocusCategory($userFocus, $category)
+    protected function doCreateUserFocusCategory($userFocus, $category)
     {
         $focusCategory = new UserFocusCategory();
         $focusCategory->setFocus($userFocus);
@@ -126,55 +237,9 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
 
         if (count(($children = $category->getChildren()))) {
             foreach ($children as $child) {
-                $this->createUserFocusCategory($userFocus, $child);
+                $this->doCreateUserFocusCategory($userFocus, $child);
             }
         }
-    }
-
-    /**
-     * Process created user
-     * todo: add cover with tests
-     * @param UserEvent $event
-     */
-    public function onUserRegisteredEvent(UserEvent $event)
-    {
-        if (!($user = $event->getEntity())) {
-            throw new \LogicException("User object can not be empty");
-        }
-
-        $userFocus = new UserFocus();
-        $userFocus->setUser($user);
-        $userFocus->setUpdate(true);
-        $this->entityManager->persist($userFocus);
-        $this->entityManager->flush($userFocus);
-
-        if (($actioncode = $user->getActioncode())) {
-            if (($categories = $actioncode->getCategories())) {
-                foreach ($categories as $category) {
-                    $this->createUserFocusCategory($userFocus, $category);
-                }
-            }
-        } else {
-            if (($company = $user->getCompany())) {
-                if (($companyCategories = $company->getCategories())) {
-                    foreach ($companyCategories as $companyCategory) {
-                        if (($category = $companyCategory->getCategory())) {
-                            $this->createUserFocusCategory($userFocus, $category);
-                        }
-                    }
-                }
-            }
-        }
-
-        $user->setFocus($userFocus);
-
-        $repositoryGroup = $this->entityManager->getRepository('Application\Sonata\UserBundle\Entity\Group');
-        if (($group = $repositoryGroup->findOneByName('User'))) {
-            $user->addGroup($group);
-        }
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush($user);
     }
 
     /**
