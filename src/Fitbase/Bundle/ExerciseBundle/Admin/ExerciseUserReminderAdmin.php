@@ -58,8 +58,8 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
             ->add('user')
             ->add('date')
             ->add('processed')
-            ->add('processedDate')
-            ->add('error')
+            ->add('processedDate', null, array('label' => 'Gesendet'))
+            ->add('error', null, array('label' => 'Failure'))
             ->add('errorMessage')
             ->add('_action', 'actions', array(
                 'actions' => array(
