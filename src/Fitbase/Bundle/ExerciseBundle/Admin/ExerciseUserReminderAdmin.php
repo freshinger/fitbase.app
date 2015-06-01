@@ -88,7 +88,7 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')
-            ->add('date')
+            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
             ->end();
     }
 }
