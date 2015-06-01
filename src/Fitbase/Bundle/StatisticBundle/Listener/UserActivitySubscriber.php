@@ -117,7 +117,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
      */
     public function onExerciseUserDone(Event $event)
     {
-        if (($user = $this->container->get('user')->current())) {
+        if (!($user = $this->container->get('user')->current())) {
             throw new \LogicException('Exercise user object can not be empty');
         }
 
