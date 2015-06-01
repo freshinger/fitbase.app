@@ -25,6 +25,7 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         return array(
             'exercise_done' => array('onExerciseDone', -128),
             'exercise_user_done' => array('onExerciseUserDone', -128),
+            'fitbase.exercise_task_done' => array('onExerciseUserTaskDone', -128),
             'feeding_user_create' => array('onFeedingUserCreate', -128),
             'weeklytask_user_done' => array('onWeeklytaskUserDone', -128),
             'weeklyquiz_user_done' => array('onWeeklyquizUserDone', -128),
@@ -91,26 +92,44 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
     }
 
     /**
+     * @param Event $event
+     */
+    public function onExerciseUserTaskDone(Event $event)
+    {
+        if (!($user = $this->container->get('user')->current())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+
+        $activity = new UserActivity();
+        $activity->setUser($user);
+        $activity->setCountPoint(1);
+        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
+        $activity->setText('Eine Aufgabe (3 Videos) wurde bearbeitei');
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
+    /**
      * Store activity on video done
      * @param Event $event
      */
     public function onExerciseUserDone(Event $event)
     {
         if (($user = $this->container->get('user')->current())) {
-
-            $managerEntity = $this->container->get('entity_manager');
-            $repositoryUserActivity = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
-
-            $activity = new UserActivity();
-            $activity->setUser($user);
-            $activity->setCountPoint(1);
-            $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-            $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-            $activity->setText('Eine Aufgabe (3 Videos) wurde bearbeitei');
-
-            $this->container->get('entity_manager')->persist($activity);
-            $this->container->get('entity_manager')->flush($activity);
+            throw new \LogicException('Exercise user object can not be empty');
         }
+
+        $activity = new UserActivity();
+        $activity->setUser($user);
+        $activity->setCountPoint(1);
+        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
+        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
+        $activity->setText('Eine Aufgabe (1 Video) wurde bearbeitei');
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
     }
 
     /**

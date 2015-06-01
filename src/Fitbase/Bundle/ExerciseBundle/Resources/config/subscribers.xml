@@ -13,6 +13,14 @@
             </call>
         </service>
 
+
+        <service id="fitbase.subscriber.ExerciseUserTask" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserTaskSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
         <service id="fitbase.subscriber.ExerciseUserReminder"
                  class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserReminderSubscriber">
             <argument type="service" id="entity_manager"/>

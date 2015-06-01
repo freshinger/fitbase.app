@@ -7,6 +7,7 @@ use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryCompanyChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\CategoryFocusChooser;
 use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ExerciseChooser;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
+use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,13 +33,14 @@ class UserTaskController extends Controller
             throw new \LogicException('User focus first category object can not be empty');
         }
 
-        $exerciseUser = new ExerciseUser();
+        $exerciseUser = new ExerciseUserTask();
         $exerciseUser->setDone(0);
-        $exerciseUser->setUser($focus->getUser());
         $exerciseUser->setProcessed(1);
+        $exerciseUser->setUser($focus->getUser());
 
         $datetime = $this->get('datetime');
         $exerciseUser->setDate($datetime->getDateTime('now'));
+        $exerciseUser->setProcessedDate($datetime->getDateTime('now'));
 
         $exerciseManager = $this->get('fitbase.orm.exercise_manager');
         $types = $exerciseManager->findTypeByFocusCategoryTypeAndStep($focusCategoryFirst->getType(), 0);
@@ -56,7 +58,7 @@ class UserTaskController extends Controller
         )));
 
         $event = new ExerciseUserEvent($exerciseUser);
-        $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+        $this->get('event_dispatcher')->dispatch('fitbase.exercise_task_create', $event);
 
         return $this->render('Exercise/UserTask/UserTask.html.twig', array(
             'user' => $focus->getUser(),
@@ -94,13 +96,14 @@ class UserTaskController extends Controller
             throw new \LogicException('Category object not found');
         }
 
-        $exerciseUser = new ExerciseUser();
+        $exerciseUser = new ExerciseUserTask();
         $exerciseUser->setDone(0);
-        $exerciseUser->setUser($focus->getUser());
         $exerciseUser->setProcessed(1);
+        $exerciseUser->setUser($focus->getUser());
 
         $datetime = $this->get('datetime');
         $exerciseUser->setDate($datetime->getDateTime('now'));
+        $exerciseUser->setProcessedDate($datetime->getDateTime('now'));
 
         $exerciseUser->setExercise0($exercise);
 
@@ -117,7 +120,7 @@ class UserTaskController extends Controller
         )));
 
         $event = new ExerciseUserEvent($exerciseUser);
-        $this->get('event_dispatcher')->dispatch('exercise_user_create', $event);
+        $this->get('event_dispatcher')->dispatch('fitbase.exercise_task_create', $event);
 
         return $this->render('Exercise/UserTask/UserTask.html.twig', array(
             'user' => $focus->getUser(),
@@ -141,8 +144,8 @@ class UserTaskController extends Controller
         }
 
         $entityManager = $this->get('entity_manager');
-        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-        if (!($exerciseUser = $repositoryExerciseUser->findOneByUserAndId($user, $unique))) {
+        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask');
+        if (!($exerciseUser = $repositoryExerciseUser->findOneByUserAndUnique($user, $unique))) {
             throw new \LogicException('Exercise user object not found');
         }
 
@@ -153,7 +156,7 @@ class UserTaskController extends Controller
 
             if ($exercise == $exerciseUser->getExercise2()) {
                 $event = new ExerciseUserEvent($exerciseUser);
-                $this->get('event_dispatcher')->dispatch('exercise_user_done', $event);
+                $this->get('event_dispatcher')->dispatch('fitbase.exercise_task_done', $event);
             }
         }
 
