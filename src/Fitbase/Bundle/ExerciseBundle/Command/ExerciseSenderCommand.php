@@ -11,6 +11,7 @@ namespace Fitbase\Bundle\ExerciseBundle\Command;
 
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserReminderEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,6 +25,18 @@ class ExerciseSenderCommand extends ContainerAwareCommand
     }
 
     /**
+     * Get allowed roles for current task
+     * @return array
+     */
+    protected function getRoles()
+    {
+        return [
+            'ROLE_FITBASE_USER',
+        ];
+    }
+
+
+    /**
      * Execute task
      * @param InputInterface $input
      * @param OutputInterface $output
@@ -31,16 +44,63 @@ class ExerciseSenderCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $datetime = $this->get('datetime');
         $serviceUser = $this->get('user');
-        $datetime = $this->get('datetime')->getDateTime('now');
-        if (($collection = $this->get('exercise')->send($datetime))) {
-            foreach ($collection as $exerciseUser) {
-                if ($serviceUser->isGranted($exerciseUser->getUser(), 'ROLE_FITBASE_USER')) {
-                    $event = new ExerciseUserEvent($exerciseUser);
-                    $this->get('event_dispatcher')->dispatch('exercise_reminder_send', $event);
+        $entityManager = $this->get('entity_manager');
+        $repository = $entityManager->getrepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
+
+        $date = $datetime->getDateTime('now');
+        if (($collection = $repository->findNotProcessed($date))) {
+            foreach ($collection as $exerciseUserReminder) {
+
+                $user = $exerciseUserReminder->getUser();
+                if ($serviceUser->isGranted($user, $this->getRoles())) {
+
+                    try {
+
+                        $exerciseUserReminder->setProcessed(true);
+                        $exerciseUserReminder->setProcessedDate($date);
+                        $this->doProcessExerciseUserReminder($user, $exerciseUserReminder);
+
+                    } catch (\Exception $ex) {
+
+                        $exerciseUserReminder->setError(true);
+                        $exerciseUserReminder->setErrorMessage($ex->getMessage());
+                        $this->doExceptionExerciseUserReminder($user, $exerciseUserReminder);
+
+                        $this->get('logger')->err($ex->getMessage());
+
+                        continue;
+                    }
                 }
             }
         }
+    }
+
+    /**
+     * Process exercise user reminder
+     * @param $user
+     * @param $exerciseUserReminder
+     */
+    protected function doProcessExerciseUserReminder($user, $exerciseUserReminder)
+    {
+        $this->get('event_dispatcher')
+            ->dispatch('fitbase.exercise_reminder_process',
+                new ExerciseUserReminderEvent($exerciseUserReminder));
+    }
+
+    /**
+     * Remove reminders with errors from list,
+     * store information about error for admin and dev-team
+     *
+     * @param $user
+     * @param $exerciseUserReminder
+     */
+    protected function doExceptionExerciseUserReminder($user, $exerciseUserReminder)
+    {
+        $this->get('event_dispatcher')
+            ->dispatch('fitbase.exercise_reminder_exception',
+                new ExerciseUserReminderEvent($exerciseUserReminder));
     }
 
     /**

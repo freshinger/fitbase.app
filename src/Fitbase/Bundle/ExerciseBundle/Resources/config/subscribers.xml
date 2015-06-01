@@ -20,6 +20,13 @@
             </call>
         </service>
 
+        <service id="fitbase.subscriber.ExerciseUserReminder"
+                 class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserReminderSubscriber">
+            <argument type="service" id="entity_manager"/>
+            <argument type="service" id="datetime"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="fitbase.subscriber.FeedingUser" class="Fitbase\Bundle\ExerciseBundle\Subscriber\FeedingUserSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">

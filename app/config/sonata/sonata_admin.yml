@@ -153,13 +153,15 @@ sonata_admin:
                 icon:  '<i class="fa fa-users"></i>'
                 items:
                     - fitbase.admin.user
-                    - fitbase.admin.exercise_user
-                    - fitbase.admin.questionnaire_user
+                    - fitbase.admin.exercise_user_reminder
                     - fitbase.admin.weeklytask_user
                     - fitbase.admin.weeklyquiz_user
+                    - fitbase.admin.exercise_user
+                    - fitbase.admin.questionnaire_user
                     - fitbase.admin.user_activity
                     - fitbase.admin.reminder_user_item
                     - fitbase.admin.user_focus_category
+
 
             fitbase.admin.group.company:
                 label: Fitbase Unternehmer

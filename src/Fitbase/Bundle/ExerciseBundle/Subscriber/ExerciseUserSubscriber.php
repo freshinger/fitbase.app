@@ -44,7 +44,6 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
         }
     }
 
-
     /**
      * On Create exercise user event
      * @param ExerciseUserEvent $event

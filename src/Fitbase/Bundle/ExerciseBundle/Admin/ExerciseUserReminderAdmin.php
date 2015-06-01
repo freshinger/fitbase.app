@@ -9,12 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Fitbase\Bundle\CompanyBundle\Admin;
+namespace Fitbase\Bundle\ExerciseBundle\Admin;
 
-use Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory;
-use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
+class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -39,41 +36,16 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
-    public function postPersist($object)
-    {
-        $this->container->get('event_dispatcher')->dispatch(
-            'fitbase.company_category_create', new CompanyCategoryEvent($object));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function preRemove($object)
-    {
-        $this->container->get('event_dispatcher')->dispatch(
-            'fitbase.company_category_remove', new CompanyCategoryEvent($object));
-    }
-
-    /**
-     * @param string $actionName
-     * @param ProxyQueryInterface $query
-     * @param array $idx
-     * @param bool $allElements
-     */
-    public function preBatchAction($actionName, ProxyQueryInterface $query, array & $idx, $allElements)
-    {
-    }
-
-
-    /**
-     * {@inheritdoc}
-     */
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('company')
-            ->add('category')
+            ->add('user')
+            ->add('date')
+            ->add('processed')
+            ->add('processedDate')
+            ->add('error')
+            ->add('errorMessage')
             ->end();
     }
 
@@ -83,13 +55,16 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('company')
-            ->add('category', null, array(
-                'template' => 'FitbaseCompanyBundle:Admin:question_list_categories.html.twig'
-            ))
+            ->add('user')
+            ->add('date')
+            ->add('processed')
+            ->add('processedDate')
+            ->add('error')
+            ->add('errorMessage')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
+                    'edit' => array(),
                     'delete' => array(),
                 )
             ));
@@ -101,8 +76,8 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('company')
-            ->add('category');
+            ->add('user')
+            ->add('processed');
     }
 
     /**
@@ -112,14 +87,8 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
     {
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('company')
-            ->add('category', null, array(
-                'query_builder' => function ($repository) {
-                    $queryBuilder = $repository->createQueryBuilder('Category');
-                    $queryBuilder->where($queryBuilder->expr()->isNull('Category.parent'));
-                    return $queryBuilder;
-                }
-            ))
+            ->add('user')
+            ->add('date')
             ->end();
     }
 }
