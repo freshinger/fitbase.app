@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Exercise
  */
-class ExerciseUser
+class ExerciseUserTask
 {
     /**
      * @var \DateTime
@@ -299,7 +299,7 @@ class ExerciseUser
      * Set processedDate
      *
      * @param \DateTime $processedDate
-     * @return ExerciseUser
+     * @return ExerciseUserTask
      */
     public function setProcessedDate($processedDate)
     {

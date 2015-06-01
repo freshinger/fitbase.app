@@ -2,8 +2,8 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser" table="fitbase_exercise_user"
-            repository-class="Fitbase\Bundle\ExerciseBundle\Repository\ExerciseUserRepository">
+    <entity name="Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask" table="fitbase_exercise_user_task"
+            repository-class="Fitbase\Bundle\ExerciseBundle\Repository\ExerciseUserTaskRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
