@@ -72,7 +72,6 @@ class UserSubscriberTest extends FitbaseTestAbstract
         $subscriber->onUserRegisteredEvent(new UserEvent($this->getUser()));
 
         $exercise = array_shift($flushed);
-        $this->assertEquals($exercise->getDone(), true);
         $this->assertEquals($exercise->getProcessed(), true);
 
     }
