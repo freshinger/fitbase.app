@@ -16,6 +16,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    protected $entityManager;
+    protected $datetime;
+
+    public function __construct($entityManager, $datetime)
+    {
+        $this->datetime = $datetime;
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -32,16 +41,16 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
      */
     public function onExerciseUserProcessEvent(ExerciseUserEvent $event)
     {
-        $datetime = $this->container->get('datetime');
-        $entityManager = $this->container->get('entity_manager');
         if (!($exerciseUser = $event->getEntity())) {
             throw new \LogicException('Exercise user object can not be empty');
         }
 
         $exerciseUser->setDone(true);
-        $exerciseUser->setDoneDate($datetime->getDateTime('now'));
+        $exerciseUser->setDoneDate(
+            $this->datetime->getDateTime('now')
+        );
 
-        $entityManager->persist($exerciseUser);
-        $entityManager->flush($exerciseUser);
+        $this->entityManager->persist($exerciseUser);
+        $this->entityManager->flush($exerciseUser);
     }
 }

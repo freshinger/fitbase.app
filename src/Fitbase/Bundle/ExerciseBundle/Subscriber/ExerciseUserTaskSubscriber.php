@@ -17,6 +17,16 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseUserTaskSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    protected $entityManager;
+    protected $datetime;
+
+    public function __construct($entityManager, $datetime)
+    {
+        $this->datetime = $datetime;
+        $this->entityManager = $entityManager;
+    }
+
+
     /**
      * Get subscribers
      * @return array
@@ -38,17 +48,18 @@ class ExerciseUserTaskSubscriber extends ContainerAware implements EventSubscrib
             throw new \LogicException("Exercise user task not found");
         }
 
-        $datetime = $this->container->get('datetime');
         if ($exerciseUserTask->getExercise0Done() and
             $exerciseUserTask->getExercise1Done() and
             $exerciseUserTask->getExercise2Done()) {
 
             $exerciseUserTask->setDone(true);
-            $exerciseUserTask->setDoneDate($datetime->getDateTime('now'));
+            $exerciseUserTask->setDoneDate(
+                $this->datetime->getDateTime('now')
+            );
         }
 
-        $this->container->get('entity_manager')->persist($exerciseUserTask);
-        $this->container->get('entity_manager')->flush($exerciseUserTask);
+        $this->entityManager->persist($exerciseUserTask);
+        $this->entityManager->flush($exerciseUserTask);
     }
 
     /**
@@ -60,8 +71,7 @@ class ExerciseUserTaskSubscriber extends ContainerAware implements EventSubscrib
             throw new \LogicException("Exercise user task not found");
         }
 
-        $this->container->get('entity_manager')->persist($exerciseUserTask);
-        $this->container->get('entity_manager')->flush($exerciseUserTask);
-
+        $this->entityManager->persist($exerciseUserTask);
+        $this->entityManager->flush($exerciseUserTask);
     }
 }

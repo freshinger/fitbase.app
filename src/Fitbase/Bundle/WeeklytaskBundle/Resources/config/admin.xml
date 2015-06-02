@@ -77,7 +77,6 @@
             <argument/>
         </service>
 
-
         <service id="fitbase.admin.weeklytask_plan" class="Fitbase\Bundle\WeeklytaskBundle\Admin\WeeklytaskPlanAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>

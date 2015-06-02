@@ -30,7 +30,7 @@ class UserSubscriberTest extends FitbaseTestAbstract
         return (new User());
     }
 
-    public function testMethodOnUserRegisteredEventShouldStoreExerciseObject()
+    public function testMethodOnUserRegisteredEventShouldStoreExerciseUserObject()
     {
         $entityManager = $this->getEntityManager();
 
