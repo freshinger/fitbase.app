@@ -17,6 +17,17 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    protected $datetime;
+    protected $eventDispatcher;
+    protected $serviceUser;
+
+    public function __construct($eventDispatcher, $serviceUser, $datetime)
+    {
+        $this->datetime = $datetime;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->serviceUser = $serviceUser;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -33,11 +44,10 @@ class ExerciseSubscriber extends ContainerAware implements EventSubscriberInterf
      */
     public function onExerciseProcessEvent(ExerciseEvent $event)
     {
-        if (!($user = $this->container->get('user')->current())) {
+        if (!($user = $this->serviceUser->current())) {
             throw new \LogicException("User object can not be empty");
         }
 
-        $datetime = $this->container->get('datetime');
         if (!($exercise = $event->getEntity())) {
             throw new \LogicException("Exercise object can not be empty");
         }
@@ -47,11 +57,11 @@ class ExerciseSubscriber extends ContainerAware implements EventSubscriberInterf
         $exerciseUser->setExercise($exercise);
         $exerciseUser->setDone(true);
         $exerciseUser->setProcessed(true);
-        $exerciseUser->setDate($datetime->getDateTime('now'));
-        $exerciseUser->setDoneDate($datetime->getDateTime('now'));
-        $exerciseUser->setProcessedDate($datetime->getDateTime('now'));
+        $exerciseUser->setDate($this->datetime->getDateTime('now'));
+        $exerciseUser->setDoneDate($this->datetime->getDateTime('now'));
+        $exerciseUser->setProcessedDate($this->datetime->getDateTime('now'));
 
         $event = new ExerciseUserEvent($exerciseUser);
-        $this->container->get('event_dispatcher')->dispatch('fitbase.exercise_user_process', $event);
+        $this->eventDispatcher->dispatch('fitbase.exercise_user_process', $event);
     }
 }
