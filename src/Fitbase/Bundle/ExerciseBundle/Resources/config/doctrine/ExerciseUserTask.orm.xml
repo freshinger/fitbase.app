@@ -17,13 +17,22 @@
             <join-column name="exercise0_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
+        <field name="exercise0Done" type="boolean" column="exercise0_done" nullable="true"/>
+        <field name="exercise0DoneDate" type="datetime" column="exercise0_done_date" nullable="true"/>
+
         <many-to-one field="exercise1" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
             <join-column name="exercise1_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
+        <field name="exercise1Done" type="boolean" column="exercise1_done" nullable="true"/>
+        <field name="exercise1DoneDate" type="datetime" column="exercise1_done_date" nullable="true"/>
+
         <many-to-one field="exercise2" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
             <join-column name="exercise2_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
+
+        <field name="exercise2Done" type="boolean" column="exercise2_done" nullable="true"/>
+        <field name="exercise2DoneDate" type="datetime" column="exercise2_done_date" nullable="true"/>
 
         <field name="date" type="datetime" column="date" nullable="true"/>
 

@@ -54,11 +54,15 @@ class UserActivityAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('user')
             ->add('date')
-            ->add('text')
-            ->add('countPoint', null, array( 'label' => 'Punkte'))
-            ->add('countPointTotal', null, array( 'label' => 'Punkte (Total)'));
+            ->add('user')
+            ->add('countPoint', null, array('label' => 'Punkte'))
+            ->add('exerciseUser')
+            ->add('exerciseUserTask')
+            ->add('weeklytaskUser')
+            ->add('weeklyquizUser')
+            ->add('weeklyquizUserAnswer')
+            ->add('countPointTotal', null, array('label' => 'Punkte (Total)'));
     }
 
     /**

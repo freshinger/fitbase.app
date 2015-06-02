@@ -7,19 +7,15 @@
  */
 namespace Fitbase\Bundle\ExerciseBundle\Block;
 
-
-use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
-use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
-use Fitbase\Bundle\GamificationBundle\Form\GamificationUserForm;
-use Sonata\BlockBundle\Block\BaseBlockService;
-use Sonata\BlockBundle\Block\BlockContextInterface;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseEvent;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserTaskEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class UserTaskBlock extends BaseBlockService implements ContainerAwareInterface
+class UserTaskBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     /**
      * Store container here
@@ -36,6 +32,23 @@ class UserTaskBlock extends BaseBlockService implements ContainerAwareInterface
         $this->container = $container;
     }
 
+
+    /**
+     * Get array with roles, for this block
+     * @return mixed
+     */
+    function getRoles()
+    {
+        return array(
+            'ROLE_FITBASE_USER'
+        );
+    }
+
+
+    /**
+     *
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -47,22 +60,39 @@ class UserTaskBlock extends BaseBlockService implements ContainerAwareInterface
     }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Render response
+     *
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
-        if (!($exercise = $blockContext->getSetting('exercise'))) {
-            if (($task = $blockContext->getSetting('task'))) {
-                $exercise = $task->getExercise0();
+        if (!($exerciseUserTask = $parameters['block_context']->getSetting('task'))) {
+            throw new \LogicException("Exercise user task object can not be empty");
+        }
+
+        $eventDispatcher = $this->container->get('event_dispatcher');
+        if (!($exercise = $parameters['block_context']->getSetting('exercise'))) {
+            if (!($exercise = $exerciseUserTask->getExercise0())) {
+                throw new \LogicException("Exercise object can not be empty");
             }
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'step' => $blockContext->getSetting('step'),
-            'task' => $blockContext->getSetting('task'),
+        if ($exerciseUserTask->getDone()) {
+            $event = new ExerciseEvent($exercise);
+            $eventDispatcher->dispatch('fitbase.exercise_process', $event);
+        } else {
+            $event = new ExerciseUserTaskEvent($exerciseUserTask);
+            $eventDispatcher->dispatch('fitbase.exercise_user_task_process', $event);
+        }
+
+        return $this->getTemplating()->renderResponse($view, array(
+            'step' => $parameters['block_context']->getSetting('step'),
+            'task' => $exerciseUserTask,
             'exercise' => $exercise,
-        ));
+        ), $response);
     }
 
     /**
@@ -72,4 +102,5 @@ class UserTaskBlock extends BaseBlockService implements ContainerAwareInterface
     {
         return 'User task (Exercise)';
     }
-} 
+
+}

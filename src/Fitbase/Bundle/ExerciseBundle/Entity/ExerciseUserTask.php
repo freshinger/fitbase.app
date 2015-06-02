@@ -317,4 +317,172 @@ class ExerciseUserTask
     {
         return $this->processedDate;
     }
+    /**
+     * @var boolean
+     */
+    private $exercise0Done;
+
+    /**
+     * @var \DateTime
+     */
+    private $exercise0DoneDate;
+
+    /**
+     * @var boolean
+     */
+    private $exercise1Done;
+
+    /**
+     * @var \DateTime
+     */
+    private $exercise1DoneDate;
+
+    /**
+     * @var boolean
+     */
+    private $exercise2Done;
+
+    /**
+     * @var \DateTime
+     */
+    private $exercise2DoneDate;
+
+
+    /**
+     * Set exercise0Done
+     *
+     * @param boolean $exercise0Done
+     * @return ExerciseUserTask
+     */
+    public function setExercise0Done($exercise0Done)
+    {
+        $this->exercise0Done = $exercise0Done;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise0Done
+     *
+     * @return boolean 
+     */
+    public function getExercise0Done()
+    {
+        return $this->exercise0Done;
+    }
+
+    /**
+     * Set exercise0DoneDate
+     *
+     * @param \DateTime $exercise0DoneDate
+     * @return ExerciseUserTask
+     */
+    public function setExercise0DoneDate($exercise0DoneDate)
+    {
+        $this->exercise0DoneDate = $exercise0DoneDate;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise0DoneDate
+     *
+     * @return \DateTime 
+     */
+    public function getExercise0DoneDate()
+    {
+        return $this->exercise0DoneDate;
+    }
+
+    /**
+     * Set exercise1Done
+     *
+     * @param boolean $exercise1Done
+     * @return ExerciseUserTask
+     */
+    public function setExercise1Done($exercise1Done)
+    {
+        $this->exercise1Done = $exercise1Done;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise1Done
+     *
+     * @return boolean 
+     */
+    public function getExercise1Done()
+    {
+        return $this->exercise1Done;
+    }
+
+    /**
+     * Set exercise1DoneDate
+     *
+     * @param \DateTime $exercise1DoneDate
+     * @return ExerciseUserTask
+     */
+    public function setExercise1DoneDate($exercise1DoneDate)
+    {
+        $this->exercise1DoneDate = $exercise1DoneDate;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise1DoneDate
+     *
+     * @return \DateTime 
+     */
+    public function getExercise1DoneDate()
+    {
+        return $this->exercise1DoneDate;
+    }
+
+    /**
+     * Set exercise2Done
+     *
+     * @param boolean $exercise2Done
+     * @return ExerciseUserTask
+     */
+    public function setExercise2Done($exercise2Done)
+    {
+        $this->exercise2Done = $exercise2Done;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise2Done
+     *
+     * @return boolean 
+     */
+    public function getExercise2Done()
+    {
+        return $this->exercise2Done;
+    }
+
+    /**
+     * Set exercise2DoneDate
+     *
+     * @param \DateTime $exercise2DoneDate
+     * @return ExerciseUserTask
+     */
+    public function setExercise2DoneDate($exercise2DoneDate)
+    {
+        $this->exercise2DoneDate = $exercise2DoneDate;
+
+        return $this;
+    }
+
+    /**
+     * Get exercise2DoneDate
+     *
+     * @return \DateTime 
+     */
+    public function getExercise2DoneDate()
+    {
+        return $this->exercise2DoneDate;
+    }
 }

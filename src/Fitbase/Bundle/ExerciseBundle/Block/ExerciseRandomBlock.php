@@ -8,15 +8,43 @@
 namespace Fitbase\Bundle\ExerciseBundle\Block;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Application\Sonata\ClassificationBundle\Entity\Category;
 use Doctrine\Common\Collections\Collection;
-use Sonata\BlockBundle\Block\BaseBlockService;
-use Sonata\BlockBundle\Block\BlockContextInterface;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ExerciseRandomBlock extends BaseBlockService
+class ExerciseRandomBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
+    /**
+     * Store container here
+     * @var
+     */
+    protected $container;
+
+    /**
+     * Set container
+     * @param ContainerInterface $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Get array with roles, for this block
+     * @return mixed
+     */
+    function getRoles()
+    {
+        return array(
+            'ROLE_FITBASE_USER'
+        );
+    }
+
     /**
      * Define
      * @param OptionsResolverInterface $resolver
@@ -30,36 +58,55 @@ class ExerciseRandomBlock extends BaseBlockService
     }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Render block response
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         $exercise = null;
-        if (($category = $blockContext->getSetting('category'))) {
-            if (($exercises = $category->getExercises())) {
-
-                if ($exercises instanceof Collection) {
-                    $exercises = $exercises->toArray();
-                }
-
-                if (count($exercises)) {
-                    foreach ($exercises as $id => $exerciseCache) {
-                        if ($exerciseCache->getWebm() or $exerciseCache->getMp4()) {
-                            unset($exercises[$id]);
-                        }
-                    }
-                }
-
-                if (shuffle($exercises)) {
-                    $exercise = array_shift($exercises);
-                }
+        if (($category = $parameters['block_context']->getSetting('category'))) {
+            if (!($exercise = $this->doSelectExerciseRandom($category))) {
+                throw new \LogicException("Exercise object can not be empty");
             }
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
+        $event = new ExerciseEvent($exercise);
+        $this->container->get('event_dispatcher')->dispatch('fitbase.exercise_process', $event);
+
+        return $this->getTemplating()->renderResponse($view, array(
             'exercise' => $exercise
-        ));
+        ), $response);
+    }
+
+    /**
+     * Select random exercise from category
+     * @param Category $category
+     * @return mixed|null
+     */
+    protected function doSelectExerciseRandom(Category $category)
+    {
+        if (($exercises = $category->getExercises())) {
+
+            if ($exercises instanceof Collection) {
+                $exercises = $exercises->toArray();
+            }
+
+            if (count($exercises)) {
+                foreach ($exercises as $id => $exerciseCache) {
+                    if ($exerciseCache->getWebm() or $exerciseCache->getMp4()) {
+                        unset($exercises[$id]);
+                    }
+                }
+            }
+
+            if (shuffle($exercises)) {
+                return array_shift($exercises);
+            }
+        }
+        return null;
     }
 
     /**
@@ -69,4 +116,4 @@ class ExerciseRandomBlock extends BaseBlockService
     {
         return 'Random exercise page (Exercise)';
     }
-} 
+}

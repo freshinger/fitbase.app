@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
+class ExerciseUserTaskAdmin extends Admin implements ContainerAwareInterface
 {
     protected $container;
 
@@ -42,9 +42,10 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')
             ->add('date')
-            ->add('done')
+            ->add('exercise0')
+            ->add('exercise1')
+            ->add('exercise2')
             ->add('doneDate')
-            ->add('processed')
             ->end();
     }
 
@@ -56,7 +57,9 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('user')
             ->add('date')
-            ->add('exercise')
+            ->add('exercise0')
+            ->add('exercise1')
+            ->add('exercise2')
             ->add('doneDate')
             ->add('_action', 'actions', array(
                 'actions' => array(

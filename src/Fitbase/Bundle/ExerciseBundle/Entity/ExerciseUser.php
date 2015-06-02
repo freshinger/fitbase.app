@@ -194,101 +194,17 @@ class ExerciseUser
     }
 
     /**
-     * @var \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    private $exercise0;
-
-    /**
-     * @var \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    private $exercise1;
-
-    /**
-     * @var \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    private $exercise2;
-
-
-    /**
-     * Set exercise0
-     *
-     * @param \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise0
-     * @return ExerciseUser
-     */
-    public function setExercise0(\Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise0 = null)
-    {
-        $this->exercise0 = $exercise0;
-
-        return $this;
-    }
-
-    /**
-     * Get exercise0
-     *
-     * @return \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    public function getExercise0()
-    {
-        return $this->exercise0;
-    }
-
-    /**
-     * Set exercise1
-     *
-     * @param \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise1
-     * @return ExerciseUser
-     */
-    public function setExercise1(\Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise1 = null)
-    {
-        $this->exercise1 = $exercise1;
-
-        return $this;
-    }
-
-    /**
-     * Get exercise1
-     *
-     * @return \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    public function getExercise1()
-    {
-        return $this->exercise1;
-    }
-
-    /**
-     * Set exercise2
-     *
-     * @param \Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise2
-     * @return ExerciseUser
-     */
-    public function setExercise2(\Fitbase\Bundle\ExerciseBundle\Entity\Exercise $exercise2 = null)
-    {
-        $this->exercise2 = $exercise2;
-
-        return $this;
-    }
-
-    /**
-     * Get exercise2
-     *
-     * @return \Fitbase\Bundle\ExerciseBundle\Entity\Exercise
-     */
-    public function getExercise2()
-    {
-        return $this->exercise2;
-    }
-
-    /**
      * Convert exercise to string
      * @return null|string
      */
     public function __toString()
     {
-        if (($exercise = $this->getExercise0())) {
+        if (($exercise = $this->getExercise())) {
             return $exercise->getName();
         }
         return null;
     }
+
     /**
      * @var \DateTime
      */
@@ -311,7 +227,7 @@ class ExerciseUser
     /**
      * Get processedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getProcessedDate()
     {

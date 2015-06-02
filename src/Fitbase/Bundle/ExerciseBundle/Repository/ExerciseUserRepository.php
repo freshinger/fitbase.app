@@ -192,19 +192,31 @@ class ExerciseUserRepository extends EntityRepository
     }
 
     /**
+     * TODO: remove this method
+     * @deprecated
+     * @param $user
+     * @param $unique
+     * @return mixed
+     */
+    public function findOneByUserAndId($user, $unique)
+    {
+        return $this->findOneByUserAndUnique($user, $unique);
+    }
+
+    /**
      *
      * @param $user
-     * @param $id
+     * @param $unique
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByUserAndId($user, $id)
+    public function findOneByUserAndUnique($user, $unique)
     {
         $queryBuilder = $this->createQueryBuilder('ExerciseUser');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
-            $this->getExprId($queryBuilder, $id)
+            $this->getExprId($queryBuilder, $unique)
         ));
 
         $queryBuilder->setMaxResults(1);

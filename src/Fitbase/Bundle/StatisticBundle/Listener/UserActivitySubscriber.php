@@ -23,33 +23,177 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
     public static function getSubscribedEvents()
     {
         return array(
-            'exercise_done' => array('onExerciseDone', -128),
-            'exercise_user_done' => array('onExerciseUserDone', -128),
-            'fitbase.exercise_task_done' => array('onExerciseUserTaskDone', -128),
+            'fitbase.exercise_user_process' => array('onExerciseUserProcessEvent', -128),
+            'fitbase.exercise_user_task_process' => array('onExerciseUserTaskProcessEvent', -128),
+
+            'fitbase.weeklytask_user_done' => array('onWeeklytaskUserDoneEvent', -128),
+            'fitbase.weeklyquiz_user_done' => array('onWeeklyquizUserDoneEvent', -128),
+            'fitbase.weeklyquiz_user_answer_done' => array('onWeeklyquizUserAnswerDoneEvent', -128),
+
+
             'feeding_user_create' => array('onFeedingUserCreate', -128),
-            'weeklytask_user_done' => array('onWeeklytaskUserDone', -128),
-            'weeklyquiz_user_done' => array('onWeeklyquizUserDone', -128),
-            'weeklyquiz_user_answer_done' => array('onWeeklyquizUserAnswerDone', -128),
+
             'gamification_user_emotion_done' => array('onGamificationUserEmotionDone', -128),
             'gamification_dialog_user_answer_done' => array('onGamificationUserAnswerDone', -128),
-//            'questionnaire_user_done' => array('onQuestionnaireUserDoneEvent', -128),
         );
     }
 
+
     /**
-     * Get points count
-     * @param $user
-     * @return int
+     * Add user activity point for processed
+     * exercise, store exercise too
+     *
+     * @param Event $event
      */
-    protected function getCountPointTotal($user)
+    public function onExerciseUserProcessEvent(Event $event)
     {
-        $managerEntity = $this->container->get('entity_manager');
-        $repositoryUserActivity = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
-        if (($activityPrevious = $repositoryUserActivity->findOneLastByUser($user))) {
-            return $activityPrevious->getCountPointTotal();
+        $datetime = $this->container->get('datetime');
+        if (!($exerciseUser = $event->getEntity())) {
+            throw new \LogicException('Exercise user object can not be empty');
         }
-        return 0;
+
+        if (!($user = $exerciseUser->getUser())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
+        $activity = (new UserActivity())
+            ->setUser($user)
+            ->setCountPoint(1)
+            ->setExerciseUser($exerciseUser)
+            ->setDate($datetime->getDateTime('now'));
+
+        $activity->setCountPointTotal(
+            $activity->getCountPoint() +
+            $this->getCountPointTotal($user)
+        );
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
     }
+
+    /**
+     * Add user activity points fro processed task
+     * (3 videos), store user task too
+     * @param Event $event
+     */
+    public function onExerciseUserTaskProcessEvent(Event $event)
+    {
+        $datetime = $this->container->get('datetime');
+        if (!($exerciseUserTask = $event->getEntity())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+        if (!($user = $exerciseUserTask->getUser())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+
+        $activity = (new UserActivity())
+            ->setUser($user)
+            ->setCountPoint(1)
+            ->setDate($datetime->getDateTime('now'))
+            ->setExerciseUserTask($exerciseUserTask);
+
+        $activity->setCountPointTotal(
+            $activity->getCountPoint() +
+            $this->getCountPointTotal($user)
+        );
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
+    /**
+     * Add user activity points fro processed weekly task
+     *
+     * @param Event $event
+     */
+    public function onWeeklytaskUserDoneEvent(Event $event)
+    {
+        $datetime = $this->container->get('datetime');
+        if (!($weeklytaskUser = $event->getEntity())) {
+            throw new \LogicException('Weeklytask user object can not be empty');
+        }
+
+        if (!($user = $weeklytaskUser->getUser())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+
+        $activity = (new UserActivity())
+            ->setUser($user)
+            ->setDate($datetime->getDateTime('now'))
+            ->setWeeklytaskUser($weeklytaskUser)
+            ->setCountPoint($weeklytaskUser->getTask()->getCountPoint());
+
+        $activity->setCountPointTotal(
+            $activity->getCountPoint() +
+            $this->getCountPointTotal($user)
+        );
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
+    /**
+     * Add user activity points fro processed weekly quiz
+     *
+     * @param Event $event
+     */
+    public function onWeeklyquizUserDoneEvent(Event $event)
+    {
+        $datetime = $this->container->get('datetime');
+        if (!($weeklyquizUser = $event->getEntity())) {
+            throw new \LogicException('Weeklyquiz user object can not be empty');
+        }
+
+        if (!($user = $weeklyquizUser->getUser())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+
+        $activity = (new UserActivity())
+            ->setUser($user)
+            ->setDate($datetime->getDateTime('now'))
+            ->setWeeklyquizUser($weeklyquizUser)
+            ->setCountPoint($weeklyquizUser->getQuiz()->getCountPoint());
+
+        $activity->setCountPointTotal(
+            $activity->getCountPoint() +
+            $this->getCountPointTotal($user)
+        );
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
+    /**
+     * Add user activity points fro processed weekly quiz answer
+     *
+     * @param Event $event
+     */
+    public function onWeeklyquizUserAnswerDoneEvent(Event $event)
+    {
+        $datetime = $this->container->get('datetime');
+        if (!($weeklyquizUserAnswer = $event->getEntity())) {
+            throw new \LogicException('Weeklyquiz user object can not be empty');
+        }
+        if (!($weeklyquizUser = $weeklyquizUserAnswer->getUserQuiz())) {
+            throw new \LogicException('Weeklyquiz user object can not be empty');
+        }
+
+        if (!($user = $weeklyquizUser->getUser())) {
+            throw new \LogicException('Exercise user task object can not be empty');
+        }
+
+        $activity = (new UserActivity())
+            ->setUser($user)
+            ->setCountPoint(0)
+            ->setCountPointTotal($this->getCountPointTotal($user))
+            ->setDate($datetime->getDateTime('now'))
+            ->setWeeklyquizUser($weeklyquizUser)
+            ->setWeeklyquizUserAnswer($weeklyquizUserAnswer);
+
+        $this->container->get('entity_manager')->persist($activity);
+        $this->container->get('entity_manager')->flush($activity);
+    }
+
 
     /**
      * @param Event $event
@@ -68,125 +212,6 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
             $this->container->get('entity_manager')->persist($activity);
             $this->container->get('entity_manager')->flush($activity);
         }
-    }
-
-
-    /**
-     * Store exercise statistic
-     * @param Event $event
-     */
-    public function onExerciseDone(Event $event)
-    {
-        if (($user = $this->container->get('user')->current())) {
-
-            $activity = new UserActivity();
-            $activity->setUser($user);
-            $activity->setCountPoint(1);
-            $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-            $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-            $activity->setText('Eine Übung wurde bearbeitet');
-
-            $this->container->get('entity_manager')->persist($activity);
-            $this->container->get('entity_manager')->flush($activity);
-        }
-    }
-
-    /**
-     * @param Event $event
-     */
-    public function onExerciseUserTaskDone(Event $event)
-    {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new \LogicException('Exercise user task object can not be empty');
-        }
-
-        $activity = new UserActivity();
-        $activity->setUser($user);
-        $activity->setCountPoint(1);
-        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-        $activity->setText('Eine Aufgabe (3 Videos) wurde bearbeitei');
-
-        $this->container->get('entity_manager')->persist($activity);
-        $this->container->get('entity_manager')->flush($activity);
-    }
-
-    /**
-     * Store activity on video done
-     * @param Event $event
-     */
-    public function onExerciseUserDone(Event $event)
-    {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new \LogicException('Exercise user object can not be empty');
-        }
-
-        $activity = new UserActivity();
-        $activity->setUser($user);
-        $activity->setCountPoint(1);
-        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($user));
-        $activity->setText('Eine Aufgabe (1 Video) wurde bearbeitei');
-
-        $this->container->get('entity_manager')->persist($activity);
-        $this->container->get('entity_manager')->flush($activity);
-    }
-
-    /**
-     * Store activity for weeklytask
-     * @param Event $event
-     */
-    public function onWeeklytaskUserDone(Event $event)
-    {
-        assert(($weeklytaskUser = $event->getEntity()));
-
-        $activity = new UserActivity();
-        $activity->setUser($weeklytaskUser->getUser());
-        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-        $activity->setCountPoint($weeklytaskUser->getTask()->getCountPoint());
-        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($weeklytaskUser->getUser()));
-        $activity->setText('Eine Infoeinheit wurde bearbeitet');
-
-        $this->container->get('entity_manager')->persist($activity);
-        $this->container->get('entity_manager')->flush($activity);
-    }
-
-    /**
-     * Store activity for quiz
-     * @param Event $event
-     */
-    public function onWeeklyquizUserDone(Event $event)
-    {
-        assert(($weeklyquizUser = $event->getEntity()));
-
-        $activity = new UserActivity();
-        $activity->setUser($weeklyquizUser->getUser());
-        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-        $activity->setCountPoint($weeklyquizUser->getQuiz()->getCountPoint());
-        $activity->setCountPointTotal($activity->getCountPoint() + $this->getCountPointTotal($weeklyquizUser->getUser()));
-        $activity->setText('Das Quiz wurde beantwortet');
-
-        $this->container->get('entity_manager')->persist($activity);
-        $this->container->get('entity_manager')->flush($activity);
-    }
-
-    /**
-     * Store activity for weeklyquiz user answer
-     * @param Event $event
-     */
-    public function onWeeklyquizUserAnswerDone(Event $event)
-    {
-        assert(($weeklyquizUserAnswer = $event->getEntity()));
-
-        $activity = new UserActivity();
-        $activity->setUser($weeklyquizUserAnswer->getUser());
-        $activity->setDate($this->container->get('datetime')->getDateTime('now'));
-        $activity->setCountPoint($weeklyquizUserAnswer->getCountPoint());
-        $activity->setCountPointTotal($weeklyquizUserAnswer->getCountPoint() + $this->getCountPointTotal($weeklyquizUserAnswer->getUser()));
-        $activity->setText('Eine Frage des Quizes wurde beantwortet');
-
-        $this->container->get('entity_manager')->persist($activity);
-        $this->container->get('entity_manager')->flush($activity);
     }
 
     /**
@@ -268,5 +293,19 @@ class UserActivitySubscriber extends ContainerAware implements EventSubscriberIn
         $this->container->get('entity_manager')->flush($activity);
     }
 
+    /**
+     * Get points count
+     * @param $user
+     * @return int
+     */
+    protected function getCountPointTotal($user)
+    {
+        $managerEntity = $this->container->get('entity_manager');
+        $repositoryUserActivity = $managerEntity->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
+        if (($activityPrevious = $repositoryUserActivity->findOneLastByUser($user))) {
+            return $activityPrevious->getCountPointTotal();
+        }
+        return 0;
+    }
 
 }

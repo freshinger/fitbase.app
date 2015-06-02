@@ -6,13 +6,20 @@
 
     <services>
 
-        <service id="fitbase.subscriber.ExerciseUser" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserSubscriber">
+
+        <service id="fitbase.subscriber.Exercise" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
         </service>
 
+        <service id="fitbase.subscriber.ExerciseUser" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
 
         <service id="fitbase.subscriber.ExerciseUserTask" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserTaskSubscriber">
             <tag name="kernel.event_subscriber"/>
@@ -21,8 +28,7 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.ExerciseUserReminder"
-                 class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserReminderSubscriber">
+        <service id="fitbase.subscriber.ExerciseUserReminder" class="Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserReminderSubscriber">
             <argument type="service" id="entity_manager"/>
             <argument type="service" id="datetime"/>
             <tag name="kernel.event_subscriber"/>

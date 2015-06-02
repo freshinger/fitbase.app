@@ -62,8 +62,9 @@ class ServiceWeeklytask extends ContainerAware
                 $this->container->get('entity_manager')->flush($weeklytaskUser);
             }
 
-            $this->container->get('event_dispatcher')->dispatch('weeklytask_user_done',
-                new WeeklytaskUserEvent($weeklytaskUser));
+            $this->container->get('event_dispatcher')
+                ->dispatch('fitbase.weeklytask_user_done',
+                    new WeeklytaskUserEvent($weeklytaskUser));
 
             return true;
         }

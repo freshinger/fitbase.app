@@ -137,7 +137,7 @@ class WeeklytaskController extends Controller
                             $weeklytaskUserAnswer->setCountPoint(($weeklytaskUserAnswer->getCorrect() ? $question->getCountPoint() : 0));
 
                             $eventUserAnswer = new WeeklyquizUserAnswerEvent($weeklytaskUserAnswer);
-                            $this->get('event_dispatcher')->dispatch('weeklyquiz_user_answer_done', $eventUserAnswer);
+                            $this->get('event_dispatcher')->dispatch('fitbase.weeklyquiz_user_answer_done', $eventUserAnswer);
                         }
 
                         if ($answers instanceof WeeklyquizAnswer) {
@@ -156,7 +156,7 @@ class WeeklytaskController extends Controller
 
 
                 $weeklytaskUserQuizEvent = new WeeklyquizUserEvent($weeklyquizUser);
-                $this->get('event_dispatcher')->dispatch('weeklyquiz_user_done', $weeklytaskUserQuizEvent);
+                $this->get('event_dispatcher')->dispatch('fitbase.weeklyquiz_user_done', $weeklytaskUserQuizEvent);
             }
         }
 

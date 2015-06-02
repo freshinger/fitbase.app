@@ -23,37 +23,25 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
     public static function getSubscribedEvents()
     {
         return array(
-            'exercise_user_done' => array('onExerciseUserDoneEvent'),
-            'exercise_user_create' => array('onExerciseUserCreateEvent'),
+            'fitbase.exercise_user_process' => array('onExerciseUserProcessEvent'),
         );
     }
 
     /**
-     * Process exercise done event
      * @param ExerciseUserEvent $event
      */
-    public function onExerciseUserDoneEvent(ExerciseUserEvent $event)
+    public function onExerciseUserProcessEvent(ExerciseUserEvent $event)
     {
-        if (($exerciseUser = $event->getEntity())) {
-
-            $exerciseUser->setDone(1);
-            $exerciseUser->setDoneDate($this->container->get('datetime')->getDateTime('now'));
-
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
+        $datetime = $this->container->get('datetime');
+        $entityManager = $this->container->get('entity_manager');
+        if (!($exerciseUser = $event->getEntity())) {
+            throw new \LogicException('Exercise user object can not be empty');
         }
-    }
 
-    /**
-     * On Create exercise user event
-     * @param ExerciseUserEvent $event
-     */
-    public function onExerciseUserCreateEvent(ExerciseUserEvent $event)
-    {
-        if (($exerciseUser = $event->getEntity())) {
+        $exerciseUser->setDone(true);
+        $exerciseUser->setDoneDate($datetime->getDateTime('now'));
 
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
-        }
+        $entityManager->persist($exerciseUser);
+        $entityManager->flush($exerciseUser);
     }
 }

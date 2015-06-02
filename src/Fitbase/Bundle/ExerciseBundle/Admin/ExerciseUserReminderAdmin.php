@@ -57,7 +57,6 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('user')
             ->add('date')
-            ->add('processed')
             ->add('processedDate', null, array('label' => 'Gesendet'))
             ->add('error', null, array('label' => 'Failure'))
             ->add('errorMessage')

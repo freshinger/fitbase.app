@@ -8,7 +8,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklyquiz_user_done" method="onWeeklyquizUserDoneEvent"/>
+            <tag name="kernel.event_listener" event="fitbase.weeklyquiz_user_done" method="onWeeklyquizUserDoneEvent"/>
         </service>
 
 
@@ -16,7 +16,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="kernel.event_listener" event="weeklyquiz_user_answer_done" method="onWeeklyquizUserAnswerCreateEvent"/>
+            <tag name="kernel.event_listener" event="fitbase.weeklyquiz_user_answer_done" method="onWeeklyquizUserAnswerCreateEvent"/>
         </service>
 
 

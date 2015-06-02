@@ -122,7 +122,7 @@ class WeeklytaskBlockServiceTest extends WebTestCase
 //            'template' => 'FitbaseWeeklytaskBundle:Block:weeklytask.html.twig',
 //        )), new Response());
 //
-//        $this->assertEquals($codeCheck, 'weeklytask_user_done');
+//        $this->assertEquals($codeCheck, 'fitbase.weeklytask_user_done');
 //        $this->assertTrue($eventCheck instanceof WeeklytaskUserEvent);
 //    }
 //

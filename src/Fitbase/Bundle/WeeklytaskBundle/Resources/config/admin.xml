@@ -19,7 +19,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Reminder - Quizze"/>
+            <tag name="sonata.admin" manager_type="orm" group="Wochenquizze" label="Quizze (Reminder)"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser</argument>
             <argument/>
@@ -71,7 +71,7 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Infoeinheiten" label="Reminder - Infoeinheiten"/>
+            <tag name="sonata.admin" manager_type="orm" group="Infoeinheiten" label="Infoeinheiten (Reminder)"/>
             <argument/>
             <argument>Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser</argument>
             <argument/>

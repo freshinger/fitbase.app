@@ -6,6 +6,7 @@ namespace Fitbase\Bundle\ExerciseBundle\Subscriber;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserTaskEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
@@ -23,37 +24,44 @@ class ExerciseUserTaskSubscriber extends ContainerAware implements EventSubscrib
     public static function getSubscribedEvents()
     {
         return array(
-            'fitbase.exercise_task_done' => array('onExerciseUserTaskDoneEvent'),
-            'fitbase.exercise_task_create' => array('onExerciseUserTaskCreateEvent'),
+            'fitbase.exercise_user_task_process' => array('onExerciseUserTaskProcessEvent'),
+            'fitbase.exercise_user_task_create' => array('onExerciseUserTaskCreateEvent'),
         );
     }
 
     /**
-     * Process exercise done event
-     * @param ExerciseUserEvent $event
+     * @param ExerciseUserTaskEvent $event
      */
-    public function onExerciseUserTaskDoneEvent(ExerciseUserEvent $event)
+    public function onExerciseUserTaskProcessEvent(ExerciseUserTaskEvent $event)
     {
-        if (($exerciseUser = $event->getEntity())) {
-
-            $exerciseUser->setDone(1);
-            $exerciseUser->setDoneDate($this->container->get('datetime')->getDateTime('now'));
-
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
+        if (!($exerciseUserTask = $event->getEntity())) {
+            throw new \LogicException("Exercise user task not found");
         }
+
+        $datetime = $this->container->get('datetime');
+        if ($exerciseUserTask->getExercise0Done() and
+            $exerciseUserTask->getExercise1Done() and
+            $exerciseUserTask->getExercise2Done()) {
+
+            $exerciseUserTask->setDone(true);
+            $exerciseUserTask->setDoneDate($datetime->getDateTime('now'));
+        }
+
+        $this->container->get('entity_manager')->persist($exerciseUserTask);
+        $this->container->get('entity_manager')->flush($exerciseUserTask);
     }
 
     /**
-     * On Create exercise user event
-     * @param ExerciseUserEvent $event
+     * @param ExerciseUserTaskEvent $event
      */
-    public function onExerciseUserTaskCreateEvent(ExerciseUserEvent $event)
+    public function onExerciseUserTaskCreateEvent(ExerciseUserTaskEvent $event)
     {
-        if (($exerciseUser = $event->getEntity())) {
-
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
+        if (!($exerciseUserTask = $event->getEntity())) {
+            throw new \LogicException("Exercise user task not found");
         }
+
+        $this->container->get('entity_manager')->persist($exerciseUserTask);
+        $this->container->get('entity_manager')->flush($exerciseUserTask);
+
     }
 }
