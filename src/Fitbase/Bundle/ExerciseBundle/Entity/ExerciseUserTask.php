@@ -284,11 +284,20 @@ class ExerciseUserTask
      */
     public function __toString()
     {
+        $exercises = [];
         if (($exercise = $this->getExercise0())) {
-            return $exercise->getName();
+            array_push($exercises, $exercise->getName());
         }
-        return null;
+        if (($exercise = $this->getExercise1())) {
+            array_push($exercises, $exercise->getName());
+        }
+        if (($exercise = $this->getExercise2())) {
+            array_push($exercises, $exercise->getName());
+        }
+
+        return implode(', ', $exercises);
     }
+
     /**
      * @var \DateTime
      */
@@ -311,12 +320,13 @@ class ExerciseUserTask
     /**
      * Get processedDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getProcessedDate()
     {
         return $this->processedDate;
     }
+
     /**
      * @var boolean
      */
@@ -364,7 +374,7 @@ class ExerciseUserTask
     /**
      * Get exercise0Done
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExercise0Done()
     {
@@ -387,7 +397,7 @@ class ExerciseUserTask
     /**
      * Get exercise0DoneDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExercise0DoneDate()
     {
@@ -410,7 +420,7 @@ class ExerciseUserTask
     /**
      * Get exercise1Done
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExercise1Done()
     {
@@ -433,7 +443,7 @@ class ExerciseUserTask
     /**
      * Get exercise1DoneDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExercise1DoneDate()
     {
@@ -456,7 +466,7 @@ class ExerciseUserTask
     /**
      * Get exercise2Done
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getExercise2Done()
     {
@@ -479,7 +489,7 @@ class ExerciseUserTask
     /**
      * Get exercise2DoneDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExercise2DoneDate()
     {
