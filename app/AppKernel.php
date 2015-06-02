@@ -141,10 +141,14 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\UserBundle\FitbaseUserBundle(),
             new Fitbase\Bundle\EmailBundle\FitbaseEmailBundle(),
             new Fitbase\Bundle\ScheduleBundle\FitbaseScheduleBundle(),
-            new Wellbeing\Bundle\ApiBundle\WellbeingApiBundle(),
             new Fitbase\Bundle\KnowledgeBundle\FitbaseKnowledgeBundle(),
             new Fitbase\Bundle\PageBundle\FitbasePageBundle(),
             new Fitbase\Bundle\TimelineBundle\FitbaseTimelineBundle(),
+
+            new Wellbeing\Bundle\ApiBundle\WellbeingApiBundle(),
+            new Wellbeing\Bundle\ErgonomicsBundle\WellbeingErgonomicsBundle(),
+            new Wellbeing\Bundle\StressBundle\WellbeingStressBundle(),
+            new Wellbeing\Bundle\ExerciseBundle\WellbeingExerciseBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
