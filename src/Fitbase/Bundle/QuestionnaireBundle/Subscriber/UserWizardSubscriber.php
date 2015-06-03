@@ -32,7 +32,7 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
      */
     public function onUserWizardEvent(UserWizardEvent $event)
     {
-        if (($user = $event->getEntity())) {
+        if (!($user = $event->getEntity())) {
             throw new \LogicException('User object can not be empty');
         }
 
