@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 use Fitbase\Bundle\UserBundle\Entity\UserFocusCategory;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
+use Fitbase\Bundle\UserBundle\Event\UserFocusCategoryEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -155,26 +156,25 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
      *
      * @param $userFocus
      */
-    protected function doAppendFocusSettingsDefault($userFocus, $userFocusCategory)
+    protected function doAppendFocusSettingsDefault(UserFocus $userFocus, UserFocusCategory $userFocusCategory)
     {
         if (($category = $userFocusCategory->getCategory())) {
             if (in_array($category->getSlug(), array('ruecken', 'rucken', 'rcken'))) {
-                if (!$userFocusCategory->getPrimary()) {
 
-                    $userFocusCategory->setType(0); // Mobilisation,  Kraeftigung, Daehnung
+                $userFocusCategory->setType(0); // Mobilisation,  Kraeftigung, Daehnung
 
-                    $obererRuecken = $userFocus->getCategoryBySlug('oberer-ruecken');
-                    $userFocusCategory->addPrimary($obererRuecken);
+                $obererRuecken = $userFocus->getCategoryBySlug('oberer-ruecken');
+                $userFocusCategory->addPrimary($obererRuecken);
 
-                    $untererRuecken = $userFocus->getCategoryBySlug('unterer-ruecken');
-                    $userFocusCategory->addPrimary($untererRuecken);
+                $untererRuecken = $userFocus->getCategoryBySlug('unterer-ruecken');
+                $userFocusCategory->addPrimary($untererRuecken);
 
-                    $mittlererRuecken = $userFocus->getCategoryBySlug('mittlerer-ruecken');
-                    $userFocusCategory->addPrimary($mittlererRuecken);
+                $mittlererRuecken = $userFocus->getCategoryBySlug('mittlerer-ruecken');
+                $userFocusCategory->addPrimary($mittlererRuecken);
 
-                    $this->entityManager->persist($userFocusCategory);
-                    $this->entityManager->flush($userFocusCategory);
-                }
+
+                $event = new UserFocusCategoryEvent($userFocusCategory);
+                $this->eventDispatcher->dispatch('fitbase.user_focus_category_update', $event);
             }
         }
     }

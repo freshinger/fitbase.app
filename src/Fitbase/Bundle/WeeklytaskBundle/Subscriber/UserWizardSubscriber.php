@@ -29,7 +29,7 @@ class UserWizardSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'user_wizard' => array('onUserWizardEvent', 88),
+            'fitbase.user_wizard' => array('onUserWizardEvent', 88),
         );
     }
 

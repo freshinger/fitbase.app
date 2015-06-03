@@ -14,9 +14,10 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class KernelResponseSubscriber extends UserPageResponseSubscriber
+class UserWizardSubscriber extends UserPageResponseSubscriber implements EventSubscriberInterface
 {
     protected $serviceUser;
     protected $eventDispatcher;
@@ -28,22 +29,33 @@ class KernelResponseSubscriber extends UserPageResponseSubscriber
     }
 
     /**
-     * @param FilterResponseEvent $event
+     * Get subscribers
+     * @return array
+     */
+    public static function getSubscribedEvents()
+    {
+        return parent::getSubscribedEvents();
+    }
+
+    /**
+     * @param GetResponseEvent $event
      * @return mixed|void
      */
-    public function onUserPageResponse(FilterResponseEvent $event)
+    public function onUserPageResponse(GetResponseEvent $event)
     {
         if (($user = $this->serviceUser->current())) {
-            if (!$user->getWizard()) {
 
-                $eventWizard = new UserWizardEvent($user);
-                $this->eventDispatcher->dispatch('user_wizard', $eventWizard);
+            // Wizard already done
+            if ($user->getWizard()) {
+                return;
+            }
 
-                if (($response = $eventWizard->getResponse())) {
+            $eventWizard = new UserWizardEvent($user);
+            $this->eventDispatcher->dispatch('fitbase.user_wizard', $eventWizard);
 
-                    $event->setResponse($eventWizard->getResponse());
-                    $event->stopPropagation();
-                }
+            if (($response = $eventWizard->getResponse())) {
+                $event->setResponse($eventWizard->getResponse());
+                $event->stopPropagation();
             }
         }
     }

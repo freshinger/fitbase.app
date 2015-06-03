@@ -21,9 +21,9 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            'user_wizard' => array('onUserWizardEvent', -117),
-        );
+        return [
+            'fitbase.user_wizard' => ['onUserWizardEvent', -117],
+        ];
     }
 
     /**
@@ -33,15 +33,16 @@ class UserWizardSubscriber extends ContainerAware implements EventSubscriberInte
     public function onUserWizardEvent(UserWizardEvent $event)
     {
         if (($user = $event->getEntity())) {
+            throw new \LogicException('User object can not be empty');
+        }
 
-            $controller = new UserWizardController();
-            $controller->setContainer($this->container);
+        $controller = new UserWizardController();
+        $controller->setContainer($this->container);
 
-            $request = $this->container->get('request');
-            if (($response = $controller->userWizardAction($request)) !== null) {
-                $event->setResponse($response);
-                $event->stopPropagation();
-            }
+        $request = $this->container->get('request');
+        if (($response = $controller->userWizardAction($request)) !== null) {
+            $event->setResponse($response);
+            $event->stopPropagation();
         }
     }
 }

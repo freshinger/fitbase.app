@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 abstract class UserPageResponseSubscriber extends ContainerAware implements EventSubscriberInterface
@@ -25,8 +26,17 @@ abstract class UserPageResponseSubscriber extends ContainerAware implements Even
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::RESPONSE => array('onKernelResponse', -20),
+            KernelEvents::REQUEST => array('onKernelRequest'),
         );
+    }
+
+    public function onKernelRequest(GetResponseEvent $event)
+    {
+        if ($event->isMasterRequest() and !$event->getRequest()->isXmlHttpRequest()) {
+            if (strpos($event->getRequest()->get('_route'), 'theme') == NULL) {
+                return $this->onUserPageResponse($event);
+            }
+        }
     }
 
     /**
@@ -50,6 +60,6 @@ abstract class UserPageResponseSubscriber extends ContainerAware implements Even
      * @param FilterResponseEvent $event
      * @return mixed
      */
-    abstract function onUserPageResponse(FilterResponseEvent $event);
+    abstract function onUserPageResponse(GetResponseEvent $event);
 
 }

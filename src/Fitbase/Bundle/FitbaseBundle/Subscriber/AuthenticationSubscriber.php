@@ -30,7 +30,11 @@ class AuthenticationSubscriber extends ContainerAware implements EventSubscriber
      */
     public function onLoginSuccessEvent(InteractiveLoginEvent $event)
     {
-        $eventUser = new UserEvent($event->getAuthenticationToken()->getUser());
+        if (!($user = $event->getAuthenticationToken()->getUser())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
+        $eventUser = new UserEvent($user);
         $this->container->get('event_dispatcher')->dispatch('fitbase.user.signin', $eventUser);
     }
 }
