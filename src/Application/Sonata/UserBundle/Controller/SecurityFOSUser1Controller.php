@@ -26,6 +26,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class SecurityFOSUser1Controller extends SecurityController
 {
+
+    protected function renderLogin(array $data)
+    {
+        $template = sprintf('FOSUserBundle:Security:login.html.%s', $this->container->getParameter('fos_user.template.engine'));
+
+        return $this->container->get('templating')->renderResponse($template, array_merge($data, [
+            'csrf_token' => false,
+        ]));
+    }
+
     /**
      * Create login for fitbase alt and neu
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response

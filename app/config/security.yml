@@ -75,6 +75,7 @@ security:
                 check_path:     /login_check
                 success_handler: fitbase.handler.authentication
                 failure_handler: fitbase.handler.authentication
+                require_previous_session: false
             logout:
                 path: /logout
                 # We set invalidate_session to false because we want basket
