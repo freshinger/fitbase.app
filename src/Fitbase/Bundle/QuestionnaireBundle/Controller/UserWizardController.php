@@ -199,6 +199,6 @@ class UserWizardController extends Controller
             }
         }
 
-        return $this->redirectToRoute('page_slug', array('path' => '/'));
+        return $this->redirectToRoute('dashboard');
     }
 }
