@@ -34,25 +34,6 @@ class ProjectionHeadShoulderPatcher extends ProjectionShoulderSpinePatcher imple
         list($x1, $x2, $x3) = call_user_func($this->getX, $userState);
         list($y1, $y2, $y3) = call_user_func($this->getY, $userState);
 
-
-//        $x1 = ($userState->getShoulderCenter()->getX());
-//        $x2 = ($userState->getShoulderLeft()->getX());
-//        $x3 = ($userState->getShoulderRight()->getX());
-//
-//        $y1 = ($userState->getShoulderCenter()->getY());
-//        $y2 = ($userState->getShoulderLeft()->getY());
-//        $y3 = ($userState->getShoulderRight()->getY());
-//
-//        $a = sqrt(pow(($x2 - $x1), 2) + pow(($y2 - $y1), 2));
-//        $b = sqrt(pow(($x3 - $x2), 2) + pow(($y3 - $y2), 2));
-//        $c = sqrt(pow(($x1 - $x3), 2) + pow(($y1 - $y3), 2));
-//
-//        $p = ($a + $b + $c) / 2;
-//
-//        $s = ceil(sqrt($p * ($p - $a) * ($p - $b) * ($p - $c)) * 1000);
-//
-////        $builder->setColor(($s <= 7 or $s > 12) ? 'red' : 'green');
-
         $this->colorize($builder,
             $userState->getSquareXYShoulder(),
             $userState->getSquareXZShoulder(),

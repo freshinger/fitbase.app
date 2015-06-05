@@ -265,7 +265,7 @@ class PictureController extends Controller
             throw new \LogicException('User state object can not be empty');
         }
 
-        if (!($media = $userState->getPreview2())) {
+        if (!($media = $userState->getPreview1())) {
             throw new \LogicException('Media object can not be empty');
         }
 

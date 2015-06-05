@@ -173,7 +173,6 @@ class RestApiController extends WsdlApiController
                 'Wellbeing/UserState/background.jpg', 'r')
         );
 
-        $imagick->scaleImage(400, 0);
         $imagick->setImageFormat("png");
 
         $width = $imagick->getImageWidth();
@@ -266,7 +265,6 @@ class RestApiController extends WsdlApiController
                 'Wellbeing/UserState/background.jpg', 'r')
         );
 
-        $imagick->scaleImage(400, 0);
         $imagick->setImageFormat("png");
 
 
@@ -358,7 +356,6 @@ class RestApiController extends WsdlApiController
                 'Wellbeing/UserState/background.jpg', 'r')
         );
 
-        $imagick->scaleImage(400, 0);
         $imagick->setImageFormat("png");
 
 
@@ -372,7 +369,7 @@ class RestApiController extends WsdlApiController
                     return [
                         $userState->getShoulderCenter()->getY(),
                         $userState->getShoulderLeft()->getY(),
-                        $userState->getSpine()->getX(),
+                        $userState->getSpine()->getY(),
                     ];
                 })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
                     return [
@@ -386,7 +383,7 @@ class RestApiController extends WsdlApiController
                     return [
                         $userState->getShoulderCenter()->getY(),
                         $userState->getShoulderRight()->getY(),
-                        $userState->getSpine()->getX(),
+                        $userState->getSpine()->getY(),
                     ];
                 })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
                     return [
