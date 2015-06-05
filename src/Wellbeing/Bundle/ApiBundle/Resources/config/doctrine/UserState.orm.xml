@@ -10,122 +10,139 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <many-to-one field="media" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <join-column name="media_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+
+        <many-to-one field="preview1" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <join-column name="preview1_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="preview2" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <join-column name="preview2_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="preview3" target-entity="Application\Sonata\MediaBundle\Entity\Media">
+            <join-column name="preview3_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
         <field name="date" type="datetime" column="date" nullable="true"/>
 
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
             <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
-        <one-to-one field="head" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead" >
-            <join-column name="head_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="head" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead">
+            <join-column name="head_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
         <one-to-one field="shoulderLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft"
-                    >
-            <join-column name="shoulder_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+                >
+            <join-column name="shoulder_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
         <one-to-one field="shoulderCenter" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter"
-                    >
-            <join-column name="shoulder_center_id" referenced-column-name="id" on-delete="SET NULL"/>
+                >
+            <join-column name="shoulder_center_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
         <one-to-one field="shoulderRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight"
-                    >
-            <join-column name="shoulder_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+                >
+            <join-column name="shoulder_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="elbowLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft" >
-            <join-column name="elbow_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="elbowLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft">
+            <join-column name="elbow_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="elbowRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight" >
-            <join-column name="elbow_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="elbowRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight">
+            <join-column name="elbow_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="handLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft" >
-            <join-column name="hand_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="handLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft">
+            <join-column name="hand_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="handRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight" >
-            <join-column name="hand_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="handRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight">
+            <join-column name="hand_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="com" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom" >
-            <join-column name="com_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="com" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom">
+            <join-column name="com_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="spine" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine" >
-            <join-column name="spine_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="spine" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine">
+            <join-column name="spine_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="hipLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft" >
-            <join-column name="hip_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="hipLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft">
+            <join-column name="hip_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="hipRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight" >
-            <join-column name="hip_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="hipRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight">
+            <join-column name="hip_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="kneeLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft" >
-            <join-column name="knee_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="kneeLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft">
+            <join-column name="knee_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="kneeRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight" >
-            <join-column name="knee_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="kneeRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight">
+            <join-column name="knee_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="footLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft" >
-            <join-column name="foot_left_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="footLeft" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft">
+            <join-column name="foot_left_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
         </one-to-one>
 
-        <one-to-one field="footRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight" >
-            <join-column name="foot_right_id" referenced-column-name="id" on-delete="SET NULL"/>
+        <one-to-one field="footRight" target-entity="Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight">
+            <join-column name="foot_right_id" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>

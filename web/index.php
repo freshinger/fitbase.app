@@ -1,5 +1,9 @@
 <?php
 
+if (preg_match('/\.(?:css|js|ico|png)$/', $_SERVER["REQUEST_URI"])) {
+    return false;    // сервер возвращает файлы напрямую.
+}
+
 /*
  * This file is part of the Sonata package.
  *

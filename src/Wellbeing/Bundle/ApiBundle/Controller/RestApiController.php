@@ -6,12 +6,19 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 use Wellbeing\Bundle\ApiBundle\Form\UserState;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXY;
+use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXZ;
+use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderYZ;
 
 
 class RestApiController extends WsdlApiController
@@ -123,16 +130,15 @@ class RestApiController extends WsdlApiController
 
                 if (($userState = $form->getData())) {
 
-                    $repositoryUser = $this->get('entity_manager')->getRepository('Application\Sonata\UserBundle\Entity\User');
+                    $entityManager = $this->get('entity_manager');
+                    $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
                     $userState->setUser($repositoryUser->find(1));
 
+                    $userState->setPreview1($this->preview1($userState));
+                    $userState->setPreview2($this->preview2($userState));
+                    $userState->setPreview3($this->preview3($userState));
 
                     $this->get('entity_manager')->persist($userState);
-
-
-//                                        $this->get('entity_manager')->persist($form->getData());
-//                        $this->get('entity_manager')->flush($form->getData());
-
                 }
 
                 $this->get('entity_manager')->flush();
@@ -149,5 +155,170 @@ class RestApiController extends WsdlApiController
         }
 
         return new JsonResponse('Authentication code not found', 404);
+    }
+
+
+    /**
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserState $userState
+     * @return mixed
+     */
+    protected function preview1(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
+    {
+        $imagick = new \Imagick();
+        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
+                '/Resources/views/' .
+                'Wellbeing/UserState/background.jpg', 'r')
+        );
+
+        $imagick->scaleImage(400, 0);
+        $imagick->setImageFormat("png");
+
+
+        $width = $imagick->getImageWidth();
+        $height = $imagick->getImageHeight();
+
+        $projectionBuilder = new ProjectionBuilderXY($width, $height, $userState, false);
+        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
+            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projection = new \Imagick();
+        $projection->newImage($width, $height, new \ImagickPixel('transparent'));
+        $projection->setImageFormat('png');
+        $projection->drawImage($projectionBuilder->build());
+        $projection->rotateImage(new \ImagickPixel(), 180);
+        $projection->adaptiveResizeImage($width, $height, true);
+        $projection->flopImage();
+
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+        $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
+
+
+        $name = $this->filename();
+        file_put_contents($name, $imagick);
+
+        $file = new File($name);
+
+        $mediaManager = $this->get('sonata.media.manager.media');
+        $media = $mediaManager->create();
+        $media->setBinaryContent($file);
+        $media->setEnabled(true);
+        $media->setName($file->getFilename());
+        $media->setDescription($file->getFilename());
+        $media->setAuthorName('Wellbeing');
+        $media->setCopyright('Wellbeing');
+        $mediaManager->save($media, 'wellbeing', 'sonata.media.provider.image');
+
+        (new Filesystem())->remove([$file]);
+
+        return $media;
+    }
+
+
+    protected function preview2(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
+    {
+        $imagick = new \Imagick();
+        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
+                '/Resources/views/' .
+                'Wellbeing/UserState/background.jpg', 'r')
+        );
+
+        $imagick->scaleImage(400, 0);
+        $imagick->setImageFormat("png");
+
+
+        $width = $imagick->getImageWidth();
+        $height = $imagick->getImageHeight();
+
+        $projectionBuilder = new ProjectionBuilderXZ($width, $height, $userState, false);
+        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
+            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projection = new \Imagick();
+        $projection->newImage($width, $height, new \ImagickPixel('transparent'));
+        $projection->setImageFormat('png');
+        $projection->drawImage($projectionBuilder->build());
+        $projection->rotateImage(new \ImagickPixel(), 180);
+        $projection->adaptiveResizeImage($width, $height, true);
+        $projection->flopImage();
+
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+        $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
+
+        $name = $this->filename();
+        file_put_contents($name, $imagick);
+
+        $file = new File($name);
+
+        $mediaManager = $this->get('sonata.media.manager.media');
+        $media = $mediaManager->create();
+        $media->setBinaryContent($file);
+        $media->setEnabled(true);
+        $media->setName($file->getFilename());
+        $media->setDescription($file->getFilename());
+        $media->setAuthorName('Wellbeing');
+        $media->setCopyright('Wellbeing');
+        $mediaManager->save($media, 'wellbeing', 'sonata.media.provider.image');
+
+        (new Filesystem())->remove([$file]);
+
+        return $media;
+    }
+
+    protected function preview3(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
+    {
+        $imagick = new \Imagick();
+        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
+        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
+                '/Resources/views/' .
+                'Wellbeing/UserState/background.jpg', 'r')
+        );
+
+        $imagick->scaleImage(400, 0);
+        $imagick->setImageFormat("png");
+
+
+        $width = $imagick->getImageWidth();
+        $height = $imagick->getImageHeight();
+
+        $projectionBuilder = new ProjectionBuilderYZ($width, $height, $userState, false);
+        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
+            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projection = new \Imagick();
+        $projection->newImage($width, $height, new \ImagickPixel('transparent'));
+        $projection->setImageFormat('png');
+        $projection->drawImage($projectionBuilder->build());
+        $projection->rotateImage(new \ImagickPixel(), 180);
+        $projection->adaptiveResizeImage($width, $height, true);
+        $projection->flopImage();
+
+        $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+        $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
+
+        $name = $this->filename();
+        file_put_contents($name, $imagick);
+
+        $file = new File($name);
+
+        $mediaManager = $this->get('sonata.media.manager.media');
+        $media = $mediaManager->create();
+        $media->setBinaryContent($file);
+        $media->setEnabled(true);
+        $media->setName($file->getFilename());
+        $media->setDescription($file->getFilename());
+        $media->setAuthorName('Wellbeing');
+        $media->setCopyright('Wellbeing');
+        $mediaManager->save($media, 'wellbeing', 'sonata.media.provider.image');
+
+        (new Filesystem())->remove([$file]);
+
+        return $media;
+    }
+
+    protected function filename()
+    {
+        return "/tmp/" . md5(rand(0, 999999)) . ".png";
     }
 }

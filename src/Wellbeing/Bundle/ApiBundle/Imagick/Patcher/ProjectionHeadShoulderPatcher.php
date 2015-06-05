@@ -40,10 +40,9 @@ class ProjectionHeadShoulderPatcher implements ProjectionBuilderPatcherInterface
         $builder->setColor(($s <= 7 or $s > 12) ? 'red' : 'green');
 
         $builder->polyline([
-            ['x' => $builder->x($userState->getShoulderCenter()->getX()), 'y' => $builder->y($userState->getShoulderCenter()->getY())],
-            ['x' => $builder->x($userState->getShoulderLeft()->getX()), 'y' => $builder->y($userState->getShoulderLeft()->getY())],
-            ['x' => $builder->x($userState->getShoulderRight()->getX()), 'y' => $builder->y($userState->getShoulderRight()->getY())],
+            ['x' => $builder->x($x1), 'y' => $builder->y($y1)],
+            ['x' => $builder->x($x2), 'y' => $builder->y($y2)],
+            ['x' => $builder->x($x3), 'y' => $builder->y($y3)],
         ]);
-
     }
 }

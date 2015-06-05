@@ -14,80 +14,82 @@
 
     <div class="row nav-tabs-custom" style="padding: 30px 20px 30px 20px; margin: 5px;">
         <div class="col-md-8">
-            <img id="state-image" src="{{ path('wellbeing_userstate_live_picture') }}">
+
+            {% thumbnail state.preview1, 'original'  with { 'width': '400px', 'id': 'state-image'} %}
+
         </div>
         <div id="state-data" class="col-md-4">
 
             {% if state is defined and state %}
-                <div class="row">
-                    <div class="col-md-5">
-                        <h4>Time</h4>
-                    </div>
-                    <div class="col-md-7">
-                        <h4>{{ state.date|date('H:i:s') }}</h4>
-                    </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <h4>Time</h4>
                 </div>
-                <div class="row">
-                    <div class="col-md-5">Head</div>
-                    <div class="col-md-7">{{ state.head }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Shoulder l.</div>
-                    <div class="col-md-7">{{ state.shoulderLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Shoulder c.</div>
-                    <div class="col-md-7">{{ state.shoulderCenter }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Shoulder r.</div>
-                    <div class="col-md-7">{{ state.shoulderRight }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Elbow l.</div>
-                    <div class="col-md-7">{{ state.elbowLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Elbow r.</div>
-                    <div class="col-md-7">{{ state.elbowRight }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Hand l</div>
-                    <div class="col-md-7">{{ state.handLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Hand r.</div>
-                    <div class="col-md-7">{{ state.handRight }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Spine</div>
-                    <div class="col-md-7">{{ state.spine }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Hip l.</div>
-                    <div class="col-md-7">{{ state.hipLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Hip r.</div>
-                    <div class="col-md-7">{{ state.hipRight }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Knee l.</div>
-                    <div class="col-md-7">{{ state.kneeLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Knee r.</div>
-                    <div class="col-md-7">{{ state.kneeRight }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Foot l.</div>
-                    <div class="col-md-7">{{ state.footLeft }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5">Foot r.</div>
-                    <div class="col-md-7">{{ state.footRight }}</div>
+                <div class="col-md-7">
+                    <h4>{{ state.date|date('H:i:s') }}</h4>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-5">Head</div>
+                <div class="col-md-7">{{ state.head }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder l.</div>
+                <div class="col-md-7">{{ state.shoulderLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder c.</div>
+                <div class="col-md-7">{{ state.shoulderCenter }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Shoulder r.</div>
+                <div class="col-md-7">{{ state.shoulderRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Elbow l.</div>
+                <div class="col-md-7">{{ state.elbowLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Elbow r.</div>
+                <div class="col-md-7">{{ state.elbowRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hand l</div>
+                <div class="col-md-7">{{ state.handLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hand r.</div>
+                <div class="col-md-7">{{ state.handRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Spine</div>
+                <div class="col-md-7">{{ state.spine }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hip l.</div>
+                <div class="col-md-7">{{ state.hipLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Hip r.</div>
+                <div class="col-md-7">{{ state.hipRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Knee l.</div>
+                <div class="col-md-7">{{ state.kneeLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Knee r.</div>
+                <div class="col-md-7">{{ state.kneeRight }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Foot l.</div>
+                <div class="col-md-7">{{ state.footLeft }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">Foot r.</div>
+                <div class="col-md-7">{{ state.footRight }}</div>
+            </div>
+        </div>
         {% endif %}
 
 

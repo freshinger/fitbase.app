@@ -1,0 +1,52 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% block field %}
+    {% set parent = object %}
+
+
+    {% if object.preview1 is defined and object.preview1 %}
+
+        {% set object = object.preview1 %}
+        {% if admin.isGranted('EDIT', parent) and admin.hasRoute('edit') %}
+            <a href="{{ admin.generateUrl('edit', {'id' : parent|sonata_urlsafeid }) }}"
+               style="float: left; margin-right: 6px;">{% thumbnail object, 'admin' with {'width': 90} %}</a>
+        {% else %}
+            {% thumbnail object, 'admin' with {'height': 100} %}
+        {% endif %}
+        </div>
+
+        <br/>
+        {% if object.width %} {{ object.width }}{% if object.height %}x{{ object.height }}{% endif %}px{% endif %}
+        {% if object.length > 0 %}
+            ({{ object.length }})
+        {% endif %}
+
+        <br/>
+
+        {% if object.authorname is not empty %}
+            {{ object.authorname }}
+        {% endif %}
+
+        {% if object.copyright is not empty and object.authorname is not empty %}
+            ~
+        {% endif %}
+
+        {% if object.copyright is not empty %}
+            &copy; {{ object.copyright }}
+        {% endif %}
+
+    {% endif %}
+
+
+{% endblock %}

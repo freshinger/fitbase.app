@@ -41,13 +41,18 @@ sonata_media:
             providers:
                 - sonata.media.provider.file
                 - sonata.media.provider.image
-
             formats:
                 icon: { width: 100, quality: 100}
                 thumbnail: { width: 150, quality: 100}
                 preview: { width: 300, quality: 100}
                 original: { width: 800, quality: 100}
 
+        wellbeing:
+            providers:
+                - sonata.media.provider.file
+                - sonata.media.provider.image
+            formats:
+                original: { width: 800, quality: 100}
 #        news:
 #            providers:
 #                - sonata.media.provider.image

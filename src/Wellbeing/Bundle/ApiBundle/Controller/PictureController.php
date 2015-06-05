@@ -10,6 +10,8 @@ namespace Wellbeing\Bundle\ApiBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
@@ -257,42 +259,23 @@ class PictureController extends Controller
      */
     public function stateLiveAction(Request $request)
     {
-        $imagick = new \Imagick();
-        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
-                '/Resources/views/' .
-                'Wellbeing/UserState/background.jpg', 'r')
-        );
-
-        $imagick->scaleImage(600, 0);
-        $imagick->setImageFormat("png");
-
-
         $entityManager = $this->get('entity_manager');
         $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
-        if (($userState = $repositoryUserState->findLast())) {
-
-            $width = $imagick->getImageWidth();
-            $height = $imagick->getImageHeight();
-
-            $projectionBuilder = new ProjectionBuilderXY($width, $height, $userState, false);
-            $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
-                ->addPatcher(new ProjectionHeadShoulderPatcher());
-
-            $projection = new \Imagick();
-            $projection->newImage($width, $height, new \ImagickPixel('transparent'));
-            $projection->setImageFormat('png');
-            $projection->drawImage($projectionBuilder->build());
-            $projection->rotateImage(new \ImagickPixel(), 180);
-            $projection->adaptiveResizeImage($width, $height, true);
-            $projection->flopImage();
-
-            $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-            $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
+        if (!(($userState = $repositoryUserState->findLast()))) {
+            throw new \LogicException('User state object can not be empty');
         }
 
+        if (!($media = $userState->getPreview1())) {
+            throw new \LogicException('Media object can not be empty');
+        }
 
-        return new Response($imagick, 200, array(
+        $provider = $this->container->get($media->getProviderName());
+
+        $root = $this->get('kernel')->getRootDir();
+        $path = $provider->generatePublicUrl($media, 'wellbeing_original');
+
+
+        return new Response(file_get_contents("$root/../web$path"), 200, array(
             'Content-Type' => 'image/png',
             'Content-Disposition' => 'inline; filename="state.png"'
         ));
