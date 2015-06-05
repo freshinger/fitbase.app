@@ -10,14 +10,34 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
-        <field name="countPointTotal" type="integer" column="count_point_total" nullable="true"/>
-        <field name="date" type="datetime" column="date" nullable="true"/>
-        <field name="text" type="text" column="text" nullable="true"/>
-
         <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
             <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
+
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
+        <field name="countPointTotal" type="integer" column="count_point_total" nullable="true"/>
+        <field name="date" type="datetime" column="date" nullable="true"/>
+
+        <many-to-one field="exerciseUser" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser">
+            <join-column name="exercise_user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="exerciseUserTask" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask">
+            <join-column name="exercise_user_task_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="weeklytaskUser" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser">
+            <join-column name="weeklytask_user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="weeklyquizUser" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser">
+            <join-column name="weeklyquiz_user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="weeklyquizUserAnswer" target-entity="Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer">
+            <join-column name="weeklyquiz_user_answer_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
 
     </entity>
 </doctrine-mapping>

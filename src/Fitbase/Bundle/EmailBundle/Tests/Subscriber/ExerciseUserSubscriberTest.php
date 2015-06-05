@@ -14,7 +14,9 @@ use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
+use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserReminderEvent;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
 
@@ -72,10 +74,6 @@ class ExerciseUserSubscriberTest extends FitbaseTestAbstract
             );
     }
 
-
-    /**
-     *
-     */
     public function testMethodOnExerciseUserSendEventShouldSendEmail()
     {
         $user = null;
@@ -95,36 +93,15 @@ class ExerciseUserSubscriberTest extends FitbaseTestAbstract
             $this->translator, $this->objectManager, $this->chooserCategory);
 
 
-        $event = new ExerciseUserEvent(
-            (new ExerciseUser())
+        $event = new ExerciseUserReminderEvent(
+            (new ExerciseUserReminder())
                 ->setUser($this->getUser())
         );
 
-        $subscriber->onExerciseUserSendEvent($event);
+        $subscriber->onExerciseUserReminderProcessEvent($event);
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
         $this->assertNotEmpty($title);
         $this->assertNotEmpty($content);
     }
-
-    /**
-     * Test that method should
-     * change processed status for ExerciseUser
-     *
-     */
-    public function testMethodOnExerciseUserSendEventShouldMarkExerciseAsProcessed()
-    {
-        $subscriber = new ExerciseUserSubscriber($this->mailer, $this->templating,
-            $this->translator, $this->objectManager, $this->chooserCategory);
-
-        $event = new ExerciseUserEvent(
-            (new ExerciseUser())
-                ->setUser($this->getUser())
-        );
-
-        $subscriber->onExerciseUserSendEvent($event);
-
-        $this->assertEquals($event->getEntity()->getProcessed(), 1);
-    }
-
-} 
+}

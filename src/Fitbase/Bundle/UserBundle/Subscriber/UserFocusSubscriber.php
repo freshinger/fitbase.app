@@ -44,16 +44,27 @@ class UserFocusSubscriber extends ContainerAware implements EventSubscriberInter
     {
         if (($entity = $event->getEntity())) {
 
-            if ($entity->getCategories()->count()) {
-                foreach ($entity->getCategories() as $category) {
-                    $category->setUpdate(true);
-                    $this->container->get('entity_manager')->persist($category);
-                }
+            if (($categories = $entity->getCategories()) and count($categories)) {
+                $this->doMarkFocusCategoriesForUpdate($entity, $categories);
             }
 
             $entity->setUpdate(false);
             $this->container->get('entity_manager')->persist($entity);
-            $this->container->get('entity_manager')->flush();
+            $this->container->get('entity_manager')->flush($entity);
+        }
+    }
+
+    /**
+     *
+     * @param $focus
+     * @param $categories
+     */
+    protected function doMarkFocusCategoriesForUpdate($focus, $categories = array())
+    {
+        foreach ($categories as $category) {
+            $category->setUpdate(true);
+            $this->container->get('entity_manager')->persist($category);
+            $this->container->get('entity_manager')->flush($category);
         }
     }
 }

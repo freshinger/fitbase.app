@@ -1,0 +1,36 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <table>
+        <tbody>
+        <tr>
+            <td colspan="2">
+                {% thumbnail object.preview1, 'admin' with {'height': 100} %}
+            </td>
+        </tr>
+        <tr>
+            <th>Sh:</th>
+            <td>{{ object.squareXYShoulder }}</td>
+        </tr>
+        <tr>
+            <th>L.Sh./Sp:</th>
+            <td>{{ object.squareXYShoulderLeftSpine }}</td>
+        </tr>
+        <tr>
+            <th>R.Sh./Sp:</th>
+            <td>{{ object.squareXYShoulderRightSpine }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

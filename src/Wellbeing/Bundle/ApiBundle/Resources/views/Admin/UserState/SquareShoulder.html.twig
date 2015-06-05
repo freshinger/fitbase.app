@@ -1,0 +1,20 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <table>
+        <tbody>
+        <tr>
+            <th>XY:</th>
+            <td>{{ object.squareXYShoulder }}</td>
+        </tr>
+        <tr>
+            <th>XZ:</th>
+            <td>{{ object.squareXZShoulder }}</td>
+        </tr>
+        <tr>
+            <th>YZ:</th>
+            <td>{{ object.squareYZShoulder }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

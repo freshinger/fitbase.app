@@ -65,11 +65,6 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="fitbase.subscriber.user_wizard_done" class="Fitbase\Bundle\UserBundle\Subscriber\UserWizardDoneSubscriber">
-            <argument type="service" id="entity_manager"/>
-            <tag name="kernel.event_subscriber"/>
-        </service>
-
         <service id="fitbase.subscriber.user" class="Fitbase\Bundle\UserBundle\Subscriber\UserSubscriber">
             <argument type="service" id="entity_manager"/>
             <argument type="service" id="event_dispatcher"/>

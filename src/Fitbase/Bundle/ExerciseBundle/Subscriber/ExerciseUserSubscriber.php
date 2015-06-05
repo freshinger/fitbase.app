@@ -16,6 +16,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    protected $entityManager;
+    protected $datetime;
+
+    public function __construct($entityManager, $datetime)
+    {
+        $this->datetime = $datetime;
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * Get subscribers
      * @return array
@@ -23,38 +32,25 @@ class ExerciseUserSubscriber extends ContainerAware implements EventSubscriberIn
     public static function getSubscribedEvents()
     {
         return array(
-            'exercise_user_done' => array('onExerciseUserDoneEvent'),
-            'exercise_user_create' => array('onExerciseUserCreateEvent'),
+            'fitbase.exercise_user_process' => array('onExerciseUserProcessEvent'),
         );
     }
 
     /**
-     * Process exercise done event
      * @param ExerciseUserEvent $event
      */
-    public function onExerciseUserDoneEvent(ExerciseUserEvent $event)
+    public function onExerciseUserProcessEvent(ExerciseUserEvent $event)
     {
-        if (($exerciseUser = $event->getEntity())) {
-
-            $exerciseUser->setDone(1);
-            $exerciseUser->setDoneDate($this->container->get('datetime')->getDateTime('now'));
-
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
+        if (!($exerciseUser = $event->getEntity())) {
+            throw new \LogicException('Exercise user object can not be empty');
         }
-    }
 
+        $exerciseUser->setDone(true);
+        $exerciseUser->setDoneDate(
+            $this->datetime->getDateTime('now')
+        );
 
-    /**
-     * On Create exercise user event
-     * @param ExerciseUserEvent $event
-     */
-    public function onExerciseUserCreateEvent(ExerciseUserEvent $event)
-    {
-        if (($exerciseUser = $event->getEntity())) {
-
-            $this->container->get('entity_manager')->persist($exerciseUser);
-            $this->container->get('entity_manager')->flush($exerciseUser);
-        }
+        $this->entityManager->persist($exerciseUser);
+        $this->entityManager->flush($exerciseUser);
     }
 }

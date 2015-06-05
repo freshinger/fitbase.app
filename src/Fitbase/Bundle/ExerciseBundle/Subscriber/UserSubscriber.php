@@ -4,6 +4,7 @@ namespace Fitbase\Bundle\ExerciseBundle\Subscriber;
 
 
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
+use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
@@ -48,14 +49,12 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
             throw new \LogicException("User object can not be empty");
         }
 
-        $exercise = new ExerciseUser();
-        $exercise->setDone(true);
-        $exercise->setDoneDate($this->datetime->getDateTime('now'));
-        $exercise->setUser($user);
-        $exercise->setProcessed(true);
-        $exercise->setDate($this->datetime->getDateTime('now'));
+        $exerciseUserReminder = new ExerciseUserReminder();
+        $exerciseUserReminder->setUser($user);
+        $exerciseUserReminder->setProcessed(true);
+        $exerciseUserReminder->setDate($this->datetime->getDateTime('now'));
 
-        $this->entityManager->persist($exercise);
-        $this->entityManager->flush($exercise);
+        $this->entityManager->persist($exerciseUserReminder);
+        $this->entityManager->flush($exerciseUserReminder);
     }
 }

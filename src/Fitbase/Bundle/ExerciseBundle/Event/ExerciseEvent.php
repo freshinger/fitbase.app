@@ -9,13 +9,14 @@
 namespace Fitbase\Bundle\ExerciseBundle\Event;
 
 
+use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 use Symfony\Component\EventDispatcher\Event;
 
 class ExerciseEvent extends Event
 {
     protected $entity;
 
-    public function __constructor($entity = null)
+    public function __construct(Exercise $entity = null)
     {
         $this->entity = $entity;
     }
@@ -34,5 +35,6 @@ class ExerciseEvent extends Event
     public function setEntity($entity)
     {
         $this->entity = $entity;
+        return $this;
     }
 }

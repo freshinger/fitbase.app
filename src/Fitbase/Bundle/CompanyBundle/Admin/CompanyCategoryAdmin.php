@@ -41,6 +41,8 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function postPersist($object)
     {
+        $this->container->get('event_dispatcher')->dispatch(
+            'fitbase.company_category_create', new CompanyCategoryEvent($object));
     }
 
     /**
@@ -48,6 +50,8 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
      */
     public function preRemove($object)
     {
+        $this->container->get('event_dispatcher')->dispatch(
+            'fitbase.company_category_remove', new CompanyCategoryEvent($object));
     }
 
     /**

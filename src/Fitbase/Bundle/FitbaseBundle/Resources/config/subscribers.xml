@@ -4,7 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="fitbase.subscriber.kernel_response" class="Fitbase\Bundle\FitbaseBundle\Subscriber\KernelResponseSubscriber">
+        <service id="fitbase.subscriber.kernel_response" class="Fitbase\Bundle\FitbaseBundle\Subscriber\UserWizardSubscriber">
             <argument type="service" id="user"/>
             <argument type="service" id="event_dispatcher"/>
             <tag name="kernel.event_subscriber"/>

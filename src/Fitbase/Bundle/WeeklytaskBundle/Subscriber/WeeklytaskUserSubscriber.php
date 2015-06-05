@@ -29,7 +29,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'weeklytask_user_done' => array('onWeeklytaskUserDoneEvent'),
+            'fitbase.weeklytask_user_done' => array('onWeeklytaskUserDoneEvent'),
         );
     }
 

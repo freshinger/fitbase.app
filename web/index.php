@@ -1,5 +1,9 @@
 <?php
 
+if (preg_match('/\.(?:css|js|ico|png)$/', $_SERVER["REQUEST_URI"])) {
+    return false;    // сервер возвращает файлы напрямую.
+}
+
 /*
  * This file is part of the Sonata package.
  *
@@ -25,7 +29,7 @@ require_once __DIR__ . '/../app/AppKernel.php';
 
 $request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
 
-$kernel = new AppKernel('prod', true);
+$kernel = new AppKernel('prod', false);
 
 $response = $kernel->handle($request);
 $response->send();

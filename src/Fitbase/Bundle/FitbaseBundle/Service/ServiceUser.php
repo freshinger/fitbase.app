@@ -129,11 +129,11 @@ class ServiceUser extends ContainerAware implements ServiceUserInterface
     {
         if (is_array($roles)) {
             foreach ($roles as $role) {
-                if (!$this->isGranted($user, $role)) {
-                    continue;
+                if ($this->isGranted($user, $role)) {
+                    return true;
                 }
-                return true;
             }
+            return false;
         }
 
         $securityContext = $this->container->get('security.context');

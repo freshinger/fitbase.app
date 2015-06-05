@@ -24,15 +24,21 @@ class ExerciseController extends Controller
      */
     public function exerciseAction(Request $request, $unique = null)
     {
-        if (($user = $this->get('user')->current())) {
-            if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
-
-                return $this->render('Exercise/Exercise.html.twig', array(
-                    'user' => $user,
-                    'exercise' => $exercise,
-                ));
-            }
+        if (!($user = $this->get('user')->current())) {
+            throw new \LogicException("User object can not be empty");
         }
+
+        if (!($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
+            throw new \LogicException("Exercise object can not be empty");
+        }
+
+        $event = new ExerciseEvent($exercise);
+        $this->get('event_dispatcher')->dispatch('fitbase.exercise_process', $event);
+
+        return $this->render('Exercise/Exercise.html.twig', array(
+            'user' => $user,
+            'exercise' => $exercise,
+        ));
     }
 
     /**
@@ -44,15 +50,7 @@ class ExerciseController extends Controller
      */
     public function doneAction(Request $request, $unique = null)
     {
-        if (($user = $this->get('user')->current())) {
-            if (($exercise = $this->get('fitbase.orm.exercise_manager')->findOneById($user, $unique))) {
-
-                $event = new ExerciseEvent($exercise);
-                $this->get('event_dispatcher')->dispatch('exercise_done', $event);
-
-                return new Response(null, 200);
-            }
-        }
+        return new Response(null, 200);
     }
 
     /**

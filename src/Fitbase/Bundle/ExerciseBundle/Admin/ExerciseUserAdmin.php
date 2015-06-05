@@ -55,19 +55,12 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
     {
         $listMapper
             ->add('user')
-            ->add('exercise0')
-            ->add('exercise1')
-            ->add('exercise2')
             ->add('date')
-            ->add('done')
+            ->add('exercise')
             ->add('doneDate')
-            ->add('processed')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
-                    'show_email' => array(
-                        'template' => 'FitbaseExerciseBundle:Admin:button_show_email.html.twig'
-                    ),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -94,11 +87,7 @@ class ExerciseUserAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')
             ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
-            ->end()
-            ->with('Exercises', array('class' => 'col-md-6'))
-            ->add('exercise0')
-            ->add('exercise1')
-            ->add('exercise2')
+            ->add('exercise')
             ->end();
     }
 }

@@ -51,9 +51,12 @@ class UserWizardSubscriber implements EventSubscriberInterface, ContainerAwareIn
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            'user_wizard' => array('onUserWizardEvent', 98),
-        );
+        return [
+            'fitbase.user_wizard' => [
+                ['onUserWizardEvent', 98],
+                ['onUserWizardDoneEvent', -128],
+            ]
+        ];
     }
 
     /**
@@ -62,21 +65,38 @@ class UserWizardSubscriber implements EventSubscriberInterface, ContainerAwareIn
      */
     public function onUserWizardEvent(UserWizardEvent $event)
     {
-        if (($user = $event->getEntity())) {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException('User object can not be empty');
+        }
 
-            $controller = new UserWizardController();
-            $controller->setContainer($this->container);
+        $controller = new UserWizardController();
+        $controller->setContainer($this->container);
 
-            if (!($response = $controller->focusAction($this->container->get('request')))) {
-                $response = $controller->focusSettingsAction($this->container->get('request'));
-            }
+        if (!($response = $controller->focusAction($this->container->get('request')))) {
+            $response = $controller->focusSettingsAction($this->container->get('request'));
+        }
 
-            if ($response instanceof Response) {
-                $event->setResponse($response);
-                $event->stopPropagation();
-            }
+        if ($response instanceof Response) {
+            $event->setResponse($response);
+            $event->stopPropagation();
         }
     }
 
+    /**
+     * Set wizart as done
+     * @param UserWizardEvent $event
+     */
+    public function onUserWizardDoneEvent(UserWizardEvent $event)
+    {
+        if (!($user = $event->getEntity())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
+        if (!$user->getWizard()) {
+            $user->setWizard(true);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush($user);
+        }
+    }
 
 }

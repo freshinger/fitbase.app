@@ -36,6 +36,7 @@ class UserFocusController extends Controller
                 $category = $this->getFocusCategory($focusCategory);
 
                 switch ($focusCategory->getCategory()->getSlug()) {
+                    case 'rsi':
                     case 'ruecken':
                         return $this->focusBackAction($request, $category, $type);
                     default:

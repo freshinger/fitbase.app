@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class KernelResponseSubscriber extends UserPageResponseSubscriber
@@ -27,7 +28,7 @@ class KernelResponseSubscriber extends UserPageResponseSubscriber
      * @param FilterResponseEvent $event
      * @return mixed|void
      */
-    public function onUserPageResponse(FilterResponseEvent $event)
+    public function onUserPageResponse(GetResponseEvent $event)
     {
         if (($user = $this->container->get('user')->current())) {
 

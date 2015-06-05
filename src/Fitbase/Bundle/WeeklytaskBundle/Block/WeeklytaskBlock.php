@@ -61,7 +61,7 @@ class WeeklytaskBlock extends BaseBlockService
         if (($weeklytaskUser = $blockContext->getSetting('weeklytaskUser'))) {
             if (!$weeklytaskUser->getDone()) {
                 $event = new WeeklytaskUserEvent($weeklytaskUser);
-                $this->eventDispatcher->dispatch('weeklytask_user_done', $event);
+                $this->eventDispatcher->dispatch('fitbase.weeklytask_user_done', $event);
             }
         }
 

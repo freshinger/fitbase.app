@@ -166,4 +166,144 @@ class UserActivity
     {
         return $this->user;
     }
+    /**
+     * @var \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser
+     */
+    private $exerciseUser;
+
+    /**
+     * @var \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask
+     */
+    private $exerciseUserTask;
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser
+     */
+    private $weeklytaskUser;
+
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser
+     */
+    private $weeklyquizUser;
+
+
+    /**
+     * Set exerciseUser
+     *
+     * @param \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser $exerciseUser
+     * @return UserActivity
+     */
+    public function setExerciseUser(\Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser $exerciseUser = null)
+    {
+        $this->exerciseUser = $exerciseUser;
+
+        return $this;
+    }
+
+    /**
+     * Get exerciseUser
+     *
+     * @return \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser 
+     */
+    public function getExerciseUser()
+    {
+        return $this->exerciseUser;
+    }
+
+    /**
+     * Set exerciseUserTask
+     *
+     * @param \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask $exerciseUserTask
+     * @return UserActivity
+     */
+    public function setExerciseUserTask(\Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask $exerciseUserTask = null)
+    {
+        $this->exerciseUserTask = $exerciseUserTask;
+
+        return $this;
+    }
+
+    /**
+     * Get exerciseUserTask
+     *
+     * @return \Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask 
+     */
+    public function getExerciseUserTask()
+    {
+        return $this->exerciseUserTask;
+    }
+
+    /**
+     * Set weeklytaskUser
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $weeklytaskUser
+     * @return UserActivity
+     */
+    public function setWeeklytaskUser(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser $weeklytaskUser = null)
+    {
+        $this->weeklytaskUser = $weeklytaskUser;
+
+        return $this;
+    }
+
+    /**
+     * Get weeklytaskUser
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser 
+     */
+    public function getWeeklytaskUser()
+    {
+        return $this->weeklytaskUser;
+    }
+
+    /**
+     * Set weeklyquizUser
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $weeklyquizUser
+     * @return UserActivity
+     */
+    public function setWeeklyquizUser(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser $weeklyquizUser = null)
+    {
+        $this->weeklyquizUser = $weeklyquizUser;
+
+        return $this;
+    }
+
+    /**
+     * Get weeklyquizUser
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser 
+     */
+    public function getWeeklyquizUser()
+    {
+        return $this->weeklyquizUser;
+    }
+    /**
+     * @var \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer
+     */
+    private $weeklyquizUserAnswer;
+
+
+    /**
+     * Set weeklyquizUserAnswer
+     *
+     * @param \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer $weeklyquizUserAnswer
+     * @return UserActivity
+     */
+    public function setWeeklyquizUserAnswer(\Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer $weeklyquizUserAnswer = null)
+    {
+        $this->weeklyquizUserAnswer = $weeklyquizUserAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get weeklyquizUserAnswer
+     *
+     * @return \Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUserAnswer 
+     */
+    public function getWeeklyquizUserAnswer()
+    {
+        return $this->weeklyquizUserAnswer;
+    }
 }

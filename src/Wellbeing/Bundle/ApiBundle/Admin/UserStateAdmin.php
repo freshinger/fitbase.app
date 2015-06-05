@@ -29,10 +29,11 @@ class UserStateAdmin extends Admin
     {
         $showMapper
             ->add('user')
-            ->add('date')
-            ->add('head', null, array(
-                'template' => 'WellbeingApiBundle:Admin:ShowHead.html.twig'
+            ->add('media', 'sonata_media_type', array(
+                'template' => 'WellbeingApiBundle:Admin:UserState/Preview.html.twig'
             ))
+            ->add('date')
+            ->add('head')
             ->add('shoulderLeft')
             ->add('shoulderCenter')
             ->add('shoulderRight')
@@ -56,25 +57,15 @@ class UserStateAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('user')
-            ->add('head', null, array(
-                'template' => 'WellbeingApiBundle:Admin:ListHead.html.twig'
+            ->add('preview1', null, array(
+                'template' => 'WellbeingApiBundle:Admin:UserState/Preview1.html.twig'
             ))
-//            ->add('shoulderLeft')
-//            ->add('shoulderCenter')
-//            ->add('shoulderRight')
-//            ->add('elbowLeft')
-//            ->add('elbowRight')
-//            ->add('handLeft')
-//            ->add('handRight')
-//            ->add('com')
-//            ->add('spine')
-//            ->add('hipLeft')
-//            ->add('hipRight')
-//            ->add('kneeLeft')
-//            ->add('kneeRight')
-//            ->add('footLeft')
-//            ->add('footRight')
+            ->add('preview2', null, array(
+                'template' => 'WellbeingApiBundle:Admin:UserState/Preview2.html.twig'
+            ))
+            ->add('preview3', null, array(
+                'template' => 'WellbeingApiBundle:Admin:UserState/Preview3.html.twig'
+            ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

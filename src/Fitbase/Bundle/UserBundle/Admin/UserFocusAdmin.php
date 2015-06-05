@@ -32,6 +32,11 @@ class UserFocusAdmin extends Admin implements ContainerAwareInterface
         $this->container = $container;
     }
 
+    public function postPersist($object)
+    {
+
+    }
+
     /**
      * {@inheritdoc}
      */

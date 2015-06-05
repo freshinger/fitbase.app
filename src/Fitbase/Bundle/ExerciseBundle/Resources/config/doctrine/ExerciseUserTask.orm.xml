@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask" table="fitbase_exercise_user_task"
+            repository-class="Fitbase\Bundle\ExerciseBundle\Repository\ExerciseUserTaskRepository">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <many-to-one field="exercise0" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
+            <join-column name="exercise0_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="exercise0Done" type="boolean" column="exercise0_done" nullable="true"/>
+        <field name="exercise0DoneDate" type="datetime" column="exercise0_done_date" nullable="true"/>
+
+        <many-to-one field="exercise1" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
+            <join-column name="exercise1_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="exercise1Done" type="boolean" column="exercise1_done" nullable="true"/>
+        <field name="exercise1DoneDate" type="datetime" column="exercise1_done_date" nullable="true"/>
+
+        <many-to-one field="exercise2" target-entity="Fitbase\Bundle\ExerciseBundle\Entity\Exercise">
+            <join-column name="exercise2_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="exercise2Done" type="boolean" column="exercise2_done" nullable="true"/>
+        <field name="exercise2DoneDate" type="datetime" column="exercise2_done_date" nullable="true"/>
+
+        <field name="date" type="datetime" column="date" nullable="true"/>
+
+        <field name="done" type="boolean" column="done" nullable="true"/>
+        <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
+
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>
+
+    </entity>
+</doctrine-mapping>

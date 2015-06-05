@@ -290,4 +290,19 @@ class WeeklyquizUserAnswer
     {
         $this->answerRight->removeElement($answerRight);
     }
+
+    /**
+     * Convert object to string
+     * @return string
+     */
+    public function __toString()
+    {
+        $strings = [];
+        if (($answers = $this->getAnswerUser())) {
+            foreach ($answers as $answer) {
+                array_push($strings, $answer->__toString());
+            }
+        }
+        return implode(', ', $strings);
+    }
 }

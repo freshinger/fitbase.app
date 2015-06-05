@@ -756,4 +756,284 @@ class UserState
         }
         return $coordinates;
     }
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $media;
+
+
+    /**
+     * Set media
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $media
+     * @return UserState
+     */
+    public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Get media
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $preview1;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $preview2;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $preview3;
+
+
+    /**
+     * Set preview1
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $preview1
+     * @return UserState
+     */
+    public function setPreview1(\Application\Sonata\MediaBundle\Entity\Media $preview1 = null)
+    {
+        $this->preview1 = $preview1;
+
+        return $this;
+    }
+
+    /**
+     * Get preview1
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getPreview1()
+    {
+        return $this->preview1;
+    }
+
+    /**
+     * Set preview2
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $preview2
+     * @return UserState
+     */
+    public function setPreview2(\Application\Sonata\MediaBundle\Entity\Media $preview2 = null)
+    {
+        $this->preview2 = $preview2;
+
+        return $this;
+    }
+
+    /**
+     * Get preview2
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getPreview2()
+    {
+        return $this->preview2;
+    }
+
+    /**
+     * Set preview3
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $preview3
+     * @return UserState
+     */
+    public function setPreview3(\Application\Sonata\MediaBundle\Entity\Media $preview3 = null)
+    {
+        $this->preview3 = $preview3;
+
+        return $this;
+    }
+
+    /**
+     * Get preview3
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getPreview3()
+    {
+        return $this->preview3;
+    }
+
+    /**
+     * Get square ShoulderSpine XZ
+     *
+     * @return float
+     */
+    public function getSquareXYShoulderRightSpine()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderRight()->getX());
+        $x3 = ($this->getSpine()->getX());
+
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderRight()->getY());
+        $y3 = ($this->getSpine()->getY());
+
+        return $this->square($x1, $x2, $x3, $y1, $y2, $y3);
+    }
+
+    /**
+     * Get square ShoulderSpine XZ
+     * @return float
+     */
+    public function getSquareXZShoulderRightSpine()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderRight()->getX());
+        $x3 = ($this->getSpine()->getX());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderRight()->getZ());
+        $z3 = ($this->getSpine()->getZ());
+
+        return $this->square($x1, $x2, $x3, $z1, $z2, $z3);
+    }
+
+    /**
+     * Get square ShoulderSpine YZ
+     *
+     * @return float
+     */
+    public function getSquareYZShoulderRightSpine()
+    {
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderRight()->getY());
+        $y3 = ($this->getSpine()->getY());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderRight()->getZ());
+        $z3 = ($this->getSpine()->getZ());
+
+        return $this->square($y1, $y2, $y3, $z1, $z2, $z3);
+    }
+
+    /**
+     * Get square ShoulderSpine XZ
+     *
+     * @return float
+     */
+    public function getSquareXYShoulderLeftSpine()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderLeft()->getX());
+        $x3 = ($this->getSpine()->getX());
+
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderLeft()->getY());
+        $y3 = ($this->getSpine()->getY());
+
+        return $this->square($x1, $x2, $x3, $y1, $y2, $y3);
+    }
+
+    /**
+     * Get square ShoulderSpine XZ
+     * @return float
+     */
+    public function getSquareXZShoulderLeftSpine()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderLeft()->getX());
+        $x3 = ($this->getSpine()->getX());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderLeft()->getZ());
+        $z3 = ($this->getSpine()->getZ());
+
+        return $this->square($x1, $x2, $x3, $z1, $z2, $z3);
+    }
+
+    /**
+     * Get square ShoulderSpine YZ
+     *
+     * @return float
+     */
+    public function getSquareYZShoulderLeftSpine()
+    {
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderLeft()->getY());
+        $y3 = ($this->getSpine()->getY());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderLeft()->getZ());
+        $z3 = ($this->getSpine()->getZ());
+
+        return $this->square($y1, $y2, $y3, $z1, $z2, $z3);
+    }
+
+    public function getSquareXYShoulder()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderLeft()->getX());
+        $x3 = ($this->getShoulderRight()->getX());
+
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderLeft()->getY());
+        $y3 = ($this->getShoulderRight()->getY());
+
+        return $this->square($x1, $x2, $x3, $y1, $y2, $y3);
+    }
+
+    public function getSquareXZShoulder()
+    {
+        $x1 = ($this->getShoulderCenter()->getX());
+        $x2 = ($this->getShoulderLeft()->getX());
+        $x3 = ($this->getShoulderRight()->getX());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderLeft()->getZ());
+        $z3 = ($this->getShoulderRight()->getZ());
+
+        return $this->square($x1, $x2, $x3, $z1, $z2, $z3);
+    }
+
+    public function getSquareYZShoulder()
+    {
+        $y1 = ($this->getShoulderCenter()->getY());
+        $y2 = ($this->getShoulderLeft()->getY());
+        $y3 = ($this->getShoulderRight()->getY());
+
+        $z1 = ($this->getShoulderCenter()->getZ());
+        $z2 = ($this->getShoulderLeft()->getZ());
+        $z3 = ($this->getShoulderRight()->getZ());
+
+        return $this->square($y1, $y2, $y3, $z1, $z2, $z3);
+    }
+
+    /**
+     * Calculate triangle square
+     * @param $x1
+     * @param $x2
+     * @param $x3
+     * @param $y1
+     * @param $y2
+     * @param $y3
+     * @return float
+     */
+    protected function square($x1, $x2, $x3, $y1, $y2, $y3)
+    {
+        $a = sqrt(pow(($x2 - $x1), 2) + pow(($y2 - $y1), 2));
+        $b = sqrt(pow(($x3 - $x2), 2) + pow(($y3 - $y2), 2));
+        $c = sqrt(pow(($x1 - $x3), 2) + pow(($y1 - $y3), 2));
+
+        $p = ($a + $b + $c) / 2;
+
+        return number_format(sqrt($p * ($p - $a) * ($p - $b) * ($p - $c)), 6) * 1000;
+    }
 }

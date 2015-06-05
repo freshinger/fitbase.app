@@ -8,16 +8,13 @@
 namespace Fitbase\Bundle\ExerciseBundle\Block;
 
 
-use Fitbase\Bundle\GamificationBundle\Entity\GamificationUser;
-use Fitbase\Bundle\GamificationBundle\Event\GamificationUserEvent;
-use Fitbase\Bundle\GamificationBundle\Form\GamificationUserForm;
+use Fitbase\Bundle\ExerciseBundle\Event\ExerciseEvent;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ExerciseBlock extends BaseBlockService implements ContainerAwareInterface
 {
@@ -55,13 +52,19 @@ class ExerciseBlock extends BaseBlockService implements ContainerAwareInterface
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $exercise = null;
-        if (($user = $this->container->get('user')->current())) {
-
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
-
-            $exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique'));
+        if (!($user = $this->container->get('user')->current())) {
+            throw new \LogicException('User object can not be empty');
         }
+
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryExercise = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\Exercise');
+
+        if (!($exercise = $repositoryExercise->findOneById($blockContext->getSetting('unique')))) {
+            throw new \LogicException('Exercise object can not be empty');
+        }
+
+        $event = new ExerciseEvent($exercise);
+        $this->container->get('event_dispatcher')->dispatch('fitbase.exercise_process', $event);
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'exercise' => $exercise

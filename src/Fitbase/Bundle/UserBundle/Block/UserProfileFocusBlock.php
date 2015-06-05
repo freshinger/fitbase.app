@@ -54,39 +54,6 @@ class UserProfileFocusBlock extends BaseFitbaseBlock implements ContainerAwareIn
             'template' => 'User/Block/UserProfileFocus.html.twig',
         ));
     }
-//
-//    /**
-//     * Draw a block
-//     * {@inheritdoc}
-//     */
-//    public function execute(BlockContextInterface $blockContext, Response $response = null)
-//    {
-//        if (!($user = $this->container->get('user')->current())) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
-//
-//        if (($focus = $user->getFocus())) {
-//
-//            $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-//            if ($this->container->get('request')->get($form->getName())) {
-//                $form->handleRequest($this->container->get('request'));
-//                if ($form->isValid()) {
-//
-//                    $event = new UserFocusEvent($focus);
-//                    $this->container->get('event_dispatcher')->dispatch('fitbase.user_focus_update', $event);
-//
-//                    $this->container->get('entity_manager')->refresh($focus);
-//
-//                    $form = $this->container->get('form.factory')->create(new UserFocusPriorityForm($user), $focus);
-//                }
-//            }
-//
-//            return $this->renderResponse($blockContext->getSetting('template'), array(
-//                'user' => $user,
-//                'form' => $form->createView(),
-//            ));
-//        }
-//    }
 
     /**
      * Returns a Response object than can be cacheable

@@ -19,9 +19,29 @@
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
-            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Übungen"/>
+            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Übungen (Video/Text)"/>
             <argument/>
             <argument>Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.exercise_user_task" class="Fitbase\Bundle\ExerciseBundle\Admin\ExerciseUserTaskAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Übungen (3 Videos)"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask</argument>
+            <argument/>
+        </service>
+
+        <service id="fitbase.admin.exercise_user_reminder" class="Fitbase\Bundle\ExerciseBundle\Admin\ExerciseUserReminderAdmin">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="sonata.admin" manager_type="orm" group="Übungen" label="Übungen (Reminder)"/>
+            <argument/>
+            <argument>Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder</argument>
             <argument/>
         </service>
 
