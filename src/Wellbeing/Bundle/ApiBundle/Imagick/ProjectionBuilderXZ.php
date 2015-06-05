@@ -174,4 +174,20 @@ class ProjectionBuilderXZ extends ProjectionBuilderAbstract implements Projectio
         $this->line($x1, $y1, $x2, $y2);
     }
 
+
+    /**
+     * Calculate z coordinate
+     * @param $zRaw
+     * @param float $scale
+     * @return mixed
+     */
+    public function y($zRaw, $scale = 0.015)
+    {
+        $yMax = (($this->zMax - $this->zMin) * $this->height);
+        $scaleY = $this->height / $yMax;
+
+        return (($zRaw - $this->zMin) * $this->height * $scaleY);
+    }
+
+
 }

@@ -7,6 +7,8 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements Projectio
 {
     public function build()
     {
+        parent::build();
+
         if (($head = $this->userState->getHead())) {
 
             if (($shoulderC = $this->userState->getShoulderCenter())) {
@@ -121,7 +123,6 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements Projectio
             $this->nodeHead($head->getY(), $head->getZ());
         }
 
-        parent::build();
 
         return $this;
     }
@@ -167,6 +168,35 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements Projectio
         $y2 = (($z2Raw - $this->zMin) * $this->height * $scaleY);
 
         $this->line($x1, $y1, $x2, $y2);
+    }
+
+
+    /**
+     * Calculate y coordinate
+     * @param $yRaw
+     * @param float $scale
+     * @return mixed
+     */
+    public function x($yRaw, $scale = 0.015)
+    {
+        $yMax = (($this->yMax - $this->yMin) * $this->height);
+        $scaleY = $this->height / $yMax;
+
+        return (($yRaw - $this->yMin) * $this->height * $scaleY);
+    }
+
+    /**
+     * Calculate z coordinate
+     * @param $zRaw
+     * @param float $scale
+     * @return mixed
+     */
+    public function y($zRaw, $scale = 0.015)
+    {
+        $yMax = (($this->zMax - $this->zMin) * $this->height);
+        $scaleY = $this->height / $yMax;
+
+        return (($zRaw - $this->zMin) * $this->height * $scaleY);
     }
 
 }

@@ -15,6 +15,8 @@ use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 use Wellbeing\Bundle\ApiBundle\Form\UserState;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderLeftSpinePatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderRightSpinePatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXY;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXZ;
@@ -174,13 +176,53 @@ class RestApiController extends WsdlApiController
         $imagick->scaleImage(400, 0);
         $imagick->setImageFormat("png");
 
-
         $width = $imagick->getImageWidth();
         $height = $imagick->getImageHeight();
 
-        $projectionBuilder = new ProjectionBuilderXY($width, $height, $userState, false);
-        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
-            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projectionBuilder = (new ProjectionBuilderXY($width, $height, $userState, false))
+            ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderLeft()->getX(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderLeft()->getY(),
+                        $userState->getSpine()->getY(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionShoulderRightSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderRight()->getX(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderRight()->getY(),
+                        $userState->getSpine()->getY(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionHeadShoulderPatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderLeft()->getX(),
+                        $userState->getShoulderRight()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderLeft()->getY(),
+                        $userState->getShoulderRight()->getY(),
+                    ];
+                }));
 
         $projection = new \Imagick();
         $projection->newImage($width, $height, new \ImagickPixel('transparent'));
@@ -231,9 +273,50 @@ class RestApiController extends WsdlApiController
         $width = $imagick->getImageWidth();
         $height = $imagick->getImageHeight();
 
-        $projectionBuilder = new ProjectionBuilderXZ($width, $height, $userState, false);
-        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
-            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projectionBuilder = (new ProjectionBuilderXZ($width, $height, $userState, false))
+            ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderLeft()->getX(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderLeft()->getZ(),
+                        $userState->getSpine()->getZ(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionShoulderRightSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderRight()->getX(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderRight()->getZ(),
+                        $userState->getSpine()->getZ(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionHeadShoulderPatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getX(),
+                        $userState->getShoulderLeft()->getX(),
+                        $userState->getShoulderRight()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderLeft()->getZ(),
+                        $userState->getShoulderRight()->getZ(),
+                    ];
+                }));
 
         $projection = new \Imagick();
         $projection->newImage($width, $height, new \ImagickPixel('transparent'));
@@ -282,9 +365,50 @@ class RestApiController extends WsdlApiController
         $width = $imagick->getImageWidth();
         $height = $imagick->getImageHeight();
 
-        $projectionBuilder = new ProjectionBuilderYZ($width, $height, $userState, false);
-        $projectionBuilder->addPatcher(new ProjectionSpineShoulderPatcher())
-            ->addPatcher(new ProjectionHeadShoulderPatcher());
+
+        $projectionBuilder = (new ProjectionBuilderYZ($width, $height, $userState, false))
+            ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderLeft()->getY(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderLeft()->getZ(),
+                        $userState->getSpine()->getZ(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionShoulderRightSpinePatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderRight()->getY(),
+                        $userState->getSpine()->getX(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderRight()->getZ(),
+                        $userState->getSpine()->getZ(),
+                    ];
+                }))
+            ->addPatcher((new ProjectionHeadShoulderPatcher())
+                ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getY(),
+                        $userState->getShoulderLeft()->getY(),
+                        $userState->getShoulderRight()->getY(),
+                    ];
+                })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                    return [
+                        $userState->getShoulderCenter()->getZ(),
+                        $userState->getShoulderLeft()->getZ(),
+                        $userState->getShoulderRight()->getZ(),
+                    ];
+                }));
 
         $projection = new \Imagick();
         $projection->newImage($width, $height, new \ImagickPixel('transparent'));
