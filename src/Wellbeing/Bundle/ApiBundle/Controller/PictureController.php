@@ -121,7 +121,6 @@ class PictureController extends Controller
                 'Wellbeing/UserState/background.jpg', 'r')
         );
 
-
         $entityManager = $this->get('entity_manager');
         $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
         if (!(($userState = $repositoryUserState->findLast()))) {
@@ -294,119 +293,122 @@ class PictureController extends Controller
 
     /**
      * Display last actual state of user
+     *
+     * @todo just a dev-version to demonstrate
      * @param Request $request
      * @return Response
      */
     public function stateLiveAction(Request $request)
     {
-        $entityManager = $this->get('entity_manager');
+        $boundary = "userState";
 
-// Used to separate multipart
-        $boundary = "spiderman";
-// We start with the standard headers. PHP allows us this much
-        header("Cache-Control: no-cache");
-        header("Cache-Control: private");
-        header("Pragma: no-cache");
-        header("Content-type: multipart/x-mixed-replace; boundary=$boundary");
-// Set this so PHP doesn't timeout during a long stream
         set_time_limit(0);
-        $rand = rand(1, 10000);
-        $i = rand(1, 10000);
-        while (true) {
-            $i++;
+        return new StreamedResponse(function () use ($boundary) {
+
+            $i = 0;
+            $cache = null;
+            while (true and $i < 30) { // try to refresh image for 30 same states, then break
+                $i++;
+
+                $imagick = new \Imagick();
+                $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
+                        '/Resources/views/' .
+                        'Wellbeing/UserState/background.jpg', 'r')
+                );
+
+                $imagick->setImageFormat("jpeg");
+                $imagick->setImageCompressionQuality(90);
+
+                $entityManager = $this->get('entity_manager');
+                $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
+                if (!(($userState = $repositoryUserState->findLast()))) {
+                    throw new \LogicException('User state object can not be empty');
+                }
 
 
-            // Per-image header, note the two new-lines
-//            $im = imagecreatetruecolor(400, 400);
-//            $fill_color = imagecolorallocate($im, (128 * sin($i / 30)) + 128, (128 * sin($i / 25)) + 128, (128 * sin($i / 20)) + 128);
-//            imagefill($im, 1, 1, $fill_color);
-//            $text_color = imagecolorallocate($im, 255, 255, 255);
-//            imagestring($im, 7, 5, 5, $rand . ' || ' . date('c'), $text_color);
+                $logger = $this->get('logger');
+                $logger->err("UserState: {$userState->getId()}, I: {$i}");
+                if (is_null($cache)) {
+                    $cache = $userState;
+                } else if ($userState->getId() != $cache->getId()) {
+                    $cache = $userState;
+                    $i = 0;
+                }
 
 
-//            ob_start();
+                $width = $imagick->getImageWidth();
+                $height = $imagick->getImageHeight();
 
-            $imagick = new \Imagick();
-            $imagick->newImage(400, 400, new \ImagickPixel('white'));
-            $imagick->setImageFormat("jpeg");
-            $imagick->setImageCompressionQuality(90);
-            $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
-                    '/Resources/views/' .
-                    'Wellbeing/UserState/background.jpg', 'r')
-            );
+                $projectionBuilder = (new ProjectionBuilderXY($width, $height, $userState, false))
+                    ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
+                        ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getX(),
+                                $userState->getShoulderLeft()->getX(),
+                                $userState->getSpine()->getX(),
+                            ];
+                        })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getY(),
+                                $userState->getShoulderLeft()->getY(),
+                                $userState->getSpine()->getY(),
+                            ];
+                        }))
+                    ->addPatcher((new ProjectionShoulderRightSpinePatcher())
+                        ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getX(),
+                                $userState->getShoulderRight()->getX(),
+                                $userState->getSpine()->getX(),
+                            ];
+                        })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getY(),
+                                $userState->getShoulderRight()->getY(),
+                                $userState->getSpine()->getY(),
+                            ];
+                        }))
+                    ->addPatcher((new ProjectionHeadShoulderPatcher())
+                        ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getX(),
+                                $userState->getShoulderLeft()->getX(),
+                                $userState->getShoulderRight()->getX(),
+                            ];
+                        })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                            return [
+                                $userState->getShoulderCenter()->getY(),
+                                $userState->getShoulderLeft()->getY(),
+                                $userState->getShoulderRight()->getY(),
+                            ];
+                        }));
+
+                $projection = new \Imagick();
+                $projection->newImage($width, $height, new \ImagickPixel('transparent'));
+                $projection->setImageFormat('png');
+                $projection->drawImage($projectionBuilder->build());
+                $projection->rotateImage(new \ImagickPixel(), 180);
+                $projection->adaptiveResizeImage($width, $height, true);
+
+                $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+                $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
 
 
-            $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
-            if (!(($userState = $repositoryUserState->findLast()))) {
-                throw new \LogicException('User state object can not be empty');
+                print $imagick->getImageBlob();
+                $imagick->destroy();
+
+                sleep(1);
+                print "--$boundary\n";
+                print "Content-type: image/jpeg\n\n";
             }
 
+        }, 200, array(
+            'Cache-Control' => 'no-cache',
+            'Cache-Control' => 'private',
+            'Pragma' => 'no-cache',
+            'Content-type' => "multipart/x-mixed-replace; boundary=$boundary"
+        ));
 
-            $width = $imagick->getImageWidth();
-            $height = $imagick->getImageHeight();
-
-            $projectionBuilder = (new ProjectionBuilderXY($width, $height, $userState, false))
-                ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
-                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getX(),
-                            $userState->getShoulderLeft()->getX(),
-                            $userState->getSpine()->getX(),
-                        ];
-                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getY(),
-                            $userState->getShoulderLeft()->getY(),
-                            $userState->getSpine()->getY(),
-                        ];
-                    }))
-                ->addPatcher((new ProjectionShoulderRightSpinePatcher())
-                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getX(),
-                            $userState->getShoulderRight()->getX(),
-                            $userState->getSpine()->getX(),
-                        ];
-                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getY(),
-                            $userState->getShoulderRight()->getY(),
-                            $userState->getSpine()->getY(),
-                        ];
-                    }))
-                ->addPatcher((new ProjectionHeadShoulderPatcher())
-                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getX(),
-                            $userState->getShoulderLeft()->getX(),
-                            $userState->getShoulderRight()->getX(),
-                        ];
-                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
-                        return [
-                            $userState->getShoulderCenter()->getY(),
-                            $userState->getShoulderLeft()->getY(),
-                            $userState->getShoulderRight()->getY(),
-                        ];
-                    }));
-
-            $projection = new \Imagick();
-            $projection->newImage($width, $height, new \ImagickPixel('transparent'));
-            $projection->setImageFormat('png');
-            $projection->drawImage($projectionBuilder->build());
-            $projection->rotateImage(new \ImagickPixel(), 180);
-            $projection->adaptiveResizeImage($width, $height, true);
-
-            $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
-            $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
-
-
-            echo $imagick->getImageBlob();
-            $imagick->destroy();
-
-            usleep(300);
-            echo "--$boundary\n";
-            echo "Content-type: image/jpeg\n\n";
-        }
     }
 
 }
