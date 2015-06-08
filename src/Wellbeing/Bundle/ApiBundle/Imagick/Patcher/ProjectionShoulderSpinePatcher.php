@@ -16,7 +16,7 @@ abstract class ProjectionShoulderSpinePatcher implements ProjectionBuilderPatche
 {
 
     const SQUARE_XY_MIN = 16;
-    const SQUARE_XY_MAX = 20;
+    const SQUARE_XY_MAX = 22;
 
     const SQUARE_XZ_MIN = 0;
     const SQUARE_XZ_MAX = 5;

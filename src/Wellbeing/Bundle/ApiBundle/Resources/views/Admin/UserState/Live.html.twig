@@ -1,21 +1,21 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
 {% block sonata_admin_content %}
-    <script type="text/javascript">
-        $(function () {
+    {#<script type="text/javascript">#}
+        {#$(function () {#}
 
-            window.setInterval(function () {
-                var path = '{{ path('wellbeing_userstate_live_picture') }}?refresh=';
-                $('#state-image').attr('src', path + new Date().getTime());
-            }, 1000);
+            {#window.setInterval(function () {#}
+                {#var path = '{{ path('wellbeing_userstate_live_picture') }}?refresh=';#}
+                {#$('#state-image').attr('src', path + new Date().getTime());#}
+            {#}, 1000);#}
 
-        });
-    </script>
+        {#});#}
+    {#</script>#}
 
     <div class="row nav-tabs-custom" style="padding: 30px 20px 30px 20px; margin: 5px;">
         <div class="col-md-8">
 
-            {% thumbnail state.preview1, 'original'  with { 'width': null, 'id': 'state-image'} %}
+            <img id="state-image" src="{{ path('wellbeing_userstate_live_picture') }}">
 
         </div>
         <div id="state-data" class="col-md-4">

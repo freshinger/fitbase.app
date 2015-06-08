@@ -13,6 +13,21 @@ use Doctrine\ORM\EntityRepository;
 class UserStateRepository extends EntityRepository
 {
     /**
+     * Get expression by user id
+     * @param $queryBuilder
+     * @param $user
+     * @return mixed
+     */
+    protected function getExprUser($queryBuilder, $user = null)
+    {
+        if (!empty($user)) {
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('UserState.user', ':user');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
      * Find last user state
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
@@ -25,5 +40,20 @@ class UserStateRepository extends EntityRepository
         $queryBuilder->setMaxResults(1);
 
         return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+
+    public function findByUser($user, $limit = 100)
+    {
+        $queryBuilder = $this->createQueryBuilder('UserState');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user)
+        ));
+
+        $queryBuilder->addOrderBy('UserState.id', 'DESC');
+        $queryBuilder->setMaxResults($limit);
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

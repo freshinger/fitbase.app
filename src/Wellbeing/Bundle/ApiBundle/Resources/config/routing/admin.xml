@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+
+
+    <route id="wellbeing_userstate_picture" path="/user/state/{unique}/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:state</default>
+        <default key="_format">png</default>
+    </route>
+
+    <route id="wellbeing_userstate_xy_picture" path="/user/state/xy/{unique}/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:stateXY</default>
+        <default key="_format">png</default>
+    </route>
+
+    <route id="wellbeing_userstate_xz_picture" path="/user/state/xz/{unique}/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:stateXZ</default>
+        <default key="_format">png</default>
+    </route>
+
+    <route id="wellbeing_userstate_yz_picture" path="/user/state/yz/{unique}/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:stateYZ</default>
+        <default key="_format">png</default>
+    </route>
+
+    <route id="wellbeing_userstate_live_picture" path="/user/live/state/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:stateLive</default>
+        <default key="_format">png</default>
+    </route>
+
+    <route id="wellbeing_userstate_live" path="/user/state/live">
+        <default key="_controller">WellbeingApiBundle:AdminUserState:stateLive</default>
+        <default key="_format">png</default>
+    </route>
+
+</routes>

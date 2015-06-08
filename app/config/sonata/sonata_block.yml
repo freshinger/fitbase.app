@@ -160,3 +160,6 @@ sonata_block:
         sonata.formatter.block.formatter:
 
         sonata.seo.block.breadcrumb.homepage:
+
+        # Wellbeing
+        wellbeing.dashboard.user_state.live:

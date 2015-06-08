@@ -1,0 +1,31 @@
+<!-- Content Text-->
+<div class="panel-box" style="min-height: 490px;">
+    <div class="titles title-image-bottom">
+        <h4>{{ 'Haltungsanalyse'|trans({}, 'WellbeingApiBundle') }}</h4>
+    </div>
+
+    <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
+        <div class="owl-wrapper-outer autoHeight">
+            <div class="owl-wrapper" style="left: 0px; display: block;">
+                <li>
+                    <img id="state-image" src="{{ path('wellbeing_userstate_live_picture') }}">
+                </li>
+            </div>
+        </div>
+    </ul>
+
+
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-12">
+
+
+                <a href="{{ path('wellbeing_userstate_history') }}" class="btn btn-default btn-block">
+                    {{ 'Letzte 100 Positionen'|trans({}, 'FitbaseGamificationBundle') }}
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</div>

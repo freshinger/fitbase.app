@@ -14,7 +14,10 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderLeftSpinePatcher;
+use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderRightSpinePatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXY;
 use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXZ;
@@ -260,25 +263,113 @@ class PictureController extends Controller
     public function stateLiveAction(Request $request)
     {
         $entityManager = $this->get('entity_manager');
-        $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
-        if (!(($userState = $repositoryUserState->findLast()))) {
-            throw new \LogicException('User state object can not be empty');
+
+// Used to separate multipart
+        $boundary = "spiderman";
+// We start with the standard headers. PHP allows us this much
+        header("Cache-Control: no-cache");
+        header("Cache-Control: private");
+        header("Pragma: no-cache");
+        header("Content-type: multipart/x-mixed-replace; boundary=$boundary");
+// Set this so PHP doesn't timeout during a long stream
+        set_time_limit(0);
+        $rand = rand(1, 10000);
+        $i = rand(1, 10000);
+        while (true) {
+            $i++;
+
+
+            // Per-image header, note the two new-lines
+//            $im = imagecreatetruecolor(400, 400);
+//            $fill_color = imagecolorallocate($im, (128 * sin($i / 30)) + 128, (128 * sin($i / 25)) + 128, (128 * sin($i / 20)) + 128);
+//            imagefill($im, 1, 1, $fill_color);
+//            $text_color = imagecolorallocate($im, 255, 255, 255);
+//            imagestring($im, 7, 5, 5, $rand . ' || ' . date('c'), $text_color);
+
+
+//            ob_start();
+
+            $imagick = new \Imagick();
+            $imagick->newImage(400, 400, new \ImagickPixel('white'));
+            $imagick->setImageFormat("jpeg");
+            $imagick->setImageCompressionQuality(90);
+            $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
+                    '/Resources/views/' .
+                    'Wellbeing/UserState/background.jpg', 'r')
+            );
+
+
+            $repositoryUserState = $entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserState');
+            if (!(($userState = $repositoryUserState->findLast()))) {
+                throw new \LogicException('User state object can not be empty');
+            }
+
+
+            $width = $imagick->getImageWidth();
+            $height = $imagick->getImageHeight();
+
+            $projectionBuilder = (new ProjectionBuilderXY($width, $height, $userState, false))
+                ->addPatcher((new ProjectionShoulderLeftSpinePatcher())
+                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getX(),
+                            $userState->getShoulderLeft()->getX(),
+                            $userState->getSpine()->getX(),
+                        ];
+                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getY(),
+                            $userState->getShoulderLeft()->getY(),
+                            $userState->getSpine()->getY(),
+                        ];
+                    }))
+                ->addPatcher((new ProjectionShoulderRightSpinePatcher())
+                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getX(),
+                            $userState->getShoulderRight()->getX(),
+                            $userState->getSpine()->getX(),
+                        ];
+                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getY(),
+                            $userState->getShoulderRight()->getY(),
+                            $userState->getSpine()->getY(),
+                        ];
+                    }))
+                ->addPatcher((new ProjectionHeadShoulderPatcher())
+                    ->setGetX(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getX(),
+                            $userState->getShoulderLeft()->getX(),
+                            $userState->getShoulderRight()->getX(),
+                        ];
+                    })->setGetY(function (\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState) {
+                        return [
+                            $userState->getShoulderCenter()->getY(),
+                            $userState->getShoulderLeft()->getY(),
+                            $userState->getShoulderRight()->getY(),
+                        ];
+                    }));
+
+            $projection = new \Imagick();
+            $projection->newImage($width, $height, new \ImagickPixel('transparent'));
+            $projection->setImageFormat('png');
+            $projection->drawImage($projectionBuilder->build());
+            $projection->rotateImage(new \ImagickPixel(), 180);
+            $projection->adaptiveResizeImage($width, $height, true);
+
+            $imagick->setImageVirtualPixelMethod(\Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);
+            $imagick->compositeImage($projection, \Imagick::COMPOSITE_DEFAULT, 0, 0);
+
+
+            echo $imagick->getImageBlob();
+            $imagick->destroy();
+
+            usleep(300);
+            echo "--$boundary\n";
+            echo "Content-type: image/jpeg\n\n";
         }
-
-        if (!($media = $userState->getPreview1())) {
-            throw new \LogicException('Media object can not be empty');
-        }
-
-        $provider = $this->container->get($media->getProviderName());
-
-        $root = $this->get('kernel')->getRootDir();
-        $path = $provider->generatePublicUrl($media, 'wellbeing_original');
-
-
-        return new Response(file_get_contents("$root/../web$path"), 200, array(
-            'Content-Type' => 'image/png',
-            'Content-Disposition' => 'inline; filename="state.png"'
-        ));
     }
 
 }

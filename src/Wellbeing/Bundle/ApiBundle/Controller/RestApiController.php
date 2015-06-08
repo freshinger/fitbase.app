@@ -132,6 +132,8 @@ class RestApiController extends WsdlApiController
 
                 if (($userState = $form->getData())) {
 
+                    $this->get('logger')->err("UserState received: {$userState->getId()}");
+
                     $entityManager = $this->get('entity_manager');
                     $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
                     $userState->setUser($repositoryUser->find(1));
@@ -141,9 +143,13 @@ class RestApiController extends WsdlApiController
                     $userState->setPreview3($this->preview3($userState));
 
                     $this->get('entity_manager')->persist($userState);
+                    $this->get('entity_manager')->flush($userState);
+
+                    $this->get('logger')->err("UserState inserted: {$userState->getId()}");
+
                 }
 
-                $this->get('entity_manager')->flush();
+
 
 
                 return new JsonResponse(["user_position" => [
@@ -161,18 +167,15 @@ class RestApiController extends WsdlApiController
 
 
     /**
+     * Generate projection 1
+     *
      * @param \Wellbeing\Bundle\ApiBundle\Entity\UserState $userState
      * @return mixed
      */
     protected function preview1(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
     {
         $imagick = new \Imagick();
-        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
-                '/Resources/views/' .
-                'Wellbeing/UserState/background.jpg', 'r')
-        );
-
+        $imagick->newImage(400, 400, new \ImagickPixel('transparent'));
         $imagick->setImageFormat("png");
 
         $width = $imagick->getImageWidth();
@@ -256,15 +259,15 @@ class RestApiController extends WsdlApiController
     }
 
 
+    /**
+     * Generate projection 2
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserState $userState
+     * @return mixed
+     */
     protected function preview2(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
     {
         $imagick = new \Imagick();
-        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
-                '/Resources/views/' .
-                'Wellbeing/UserState/background.jpg', 'r')
-        );
-
+        $imagick->newImage(200, 200, new \ImagickPixel('transparent'));
         $imagick->setImageFormat("png");
 
 
@@ -347,15 +350,15 @@ class RestApiController extends WsdlApiController
         return $media;
     }
 
+    /**
+     * Generate projection 3
+     * @param \Wellbeing\Bundle\ApiBundle\Entity\UserState $userState
+     * @return mixed
+     */
     protected function preview3(\Wellbeing\Bundle\ApiBundle\Entity\UserState $userState)
     {
         $imagick = new \Imagick();
-        $imagick->setBackgroundColor(new \ImagickPixel('transparent'));
-        $imagick->readImageFile(fopen($this->get('kernel')->getRootDir() .
-                '/Resources/views/' .
-                'Wellbeing/UserState/background.jpg', 'r')
-        );
-
+        $imagick->newImage(200, 200, new \ImagickPixel('transparent'));
         $imagick->setImageFormat("png");
 
 

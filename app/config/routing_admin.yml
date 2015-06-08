@@ -31,4 +31,4 @@ fitbase_weeklytask:
 
 Wellbeing:
     prefix:       /wellbeing
-    resource:     "@WellbeingApiBundle/Resources/config/routing.xml"
+    resource:     "@WellbeingApiBundle/Resources/config/routing/admin.xml"

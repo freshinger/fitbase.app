@@ -1,0 +1,41 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Haltungsanalyse'|trans({}, 'WellbeingApiBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    <div class="panel-box">
+        <div class="titles title-image-bottom">
+            <h4>
+                {{ 'Letzte Positionen'|trans({}, 'WellbeingApiBundle') }}
+            </h4>
+        </div>
+        <br/>
+        {% for userState in collection %}
+            <div class="post-item">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{ userState.date|date("M d Y H:i:s") }}</h4>
+                    </div>
+
+                    <div class="col-md-4">
+                        {% thumbnail userState.preview1, 'original'  with { 'width': '200px', 'title': null, 'class': 'img-responsive' } %}
+                    </div>
+                    <div class="col-md-4">
+                        {% thumbnail userState.preview2, 'original'  with { 'width': '200px', 'title': null, 'class': 'img-responsive' } %}
+                    </div>
+                    <div class="col-md-4">
+                        {% thumbnail userState.preview3, 'original'  with { 'width': '200px', 'title': null, 'class': 'img-responsive' } %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

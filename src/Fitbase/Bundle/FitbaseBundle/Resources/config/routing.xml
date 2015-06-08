@@ -12,7 +12,6 @@
     <import resource="@FitbaseKnowledgeBundle/Resources/config/routing.xml" prefix="/knowledge"/>
     <import resource="@WellbeingApiBundle/Resources/config/routing.xml" prefix="/wellbeing"/>
 
-
     <route id="dashboard" pattern="/dashboard">
         <default key="_controller">FitbaseFitbaseBundle:Dashboard:dashboard</default>
     </route>

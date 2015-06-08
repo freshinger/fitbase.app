@@ -20,13 +20,13 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements Projectio
                         if (($kneeL = $this->userState->getKneeLeft())) {
 
                             $this->setColor($this->getColor('knee'));
-                            $this->node($kneeL->getY(), $kneeL->getZ());
-                            $this->edge($kneeL->getY(), $kneeL->getZ(), $hipL->getY(), $hipL->getZ());
+//                            $this->node($kneeL->getY(), $kneeL->getZ());
+//                            $this->edge($kneeL->getY(), $kneeL->getZ(), $hipL->getY(), $hipL->getZ());
 
                             if (($footL = $this->userState->getFootLeft())) {
 
-                                $this->node($footL->getY(), $footL->getZ());
-                                $this->edge($kneeL->getY(), $kneeL->getZ(), $footL->getY(), $footL->getZ());
+//                                $this->node($footL->getY(), $footL->getZ());
+//                                $this->edge($kneeL->getY(), $kneeL->getZ(), $footL->getY(), $footL->getZ());
                             }
                         }
 
@@ -40,13 +40,13 @@ class ProjectionBuilderYZ extends ProjectionBuilderAbstract implements Projectio
                         if (($kneeR = $this->userState->getKneeRight())) {
 
                             $this->setColor($this->getColor('knee'));
-                            $this->node($kneeR->getY(), $kneeR->getZ());
-                            $this->edge($kneeR->getY(), $kneeR->getZ(), $hipR->getY(), $hipR->getZ());
+//                            $this->node($kneeR->getY(), $kneeR->getZ());
+//                            $this->edge($kneeR->getY(), $kneeR->getZ(), $hipR->getY(), $hipR->getZ());
 
                             if (($footR = $this->userState->getFootRight())) {
 
-                                $this->node($footR->getY(), $footR->getZ());
-                                $this->edge($kneeR->getY(), $kneeR->getZ(), $footR->getY(), $footR->getZ());
+//                                $this->node($footR->getY(), $footR->getZ());
+//                                $this->edge($kneeR->getY(), $kneeR->getZ(), $footR->getY(), $footR->getZ());
                             }
                         }
 
