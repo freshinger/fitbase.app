@@ -3,6 +3,10 @@
 <routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="wellbeing_userstate_last_picture" path="/user/last/state/picture">
+        <default key="_controller">WellbeingApiBundle:Picture:stateXY</default>
+    </route>
+
 
     <route id="wellbeing_userstate_live_picture" path="/user/live/state/picture">
         <default key="_controller">WellbeingApiBundle:Picture:stateLive</default>
