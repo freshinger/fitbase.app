@@ -5,8 +5,8 @@
         <format property="DATE" pattern="%Y.%m.%d"/>
     </tstamp>
 
-    <property name="backup.root" value="../backup/${DATE}"/>
-    <property name="deploy.root" value="../deploy/${DATE}"/>
+    <property name="backup.root" value="../backup/${phing.project.name}/${DATE}"/>
+    <property name="deploy.root" value="../deploy/${phing.project.name}/${DATE}"/>
 
     <property name="mysql.user" value=""/>
     <property name="mysql.database" value=""/>
