@@ -1,0 +1,75 @@
+<project name="fitbase" default="deploy" basedir="." description="Deploy fitbase project.">
+
+
+    <tstamp>
+        <format property="DATE" pattern="%Y.%m.%d"/>
+    </tstamp>
+
+    <property name="backup.root" value="../backup/${DATE}"/>
+    <property name="deploy.root" value="../deploy/${DATE}"/>
+
+    <property name="mysql.user" value=""/>
+    <property name="mysql.database" value=""/>
+    <property name="mysql.password" value=""/>
+
+
+    <target name="enable">
+        <echo msg="Enable Fitbase-Project"/>
+        <echo msg="Remove under-construction screen"/>
+    </target>
+
+
+    <target name="disable">
+        <echo msg="Disable Fitbase-Project"/>
+        <echo msg="Generate under-construction screen"/>
+    </target>
+
+
+    <target name="backup">
+        <echo msg="Backup ${phing.project.name}-project"/>
+
+        <delete dir="${backup.root}" verbose="true"/>
+        <mkdir dir="${backup.root}"/>
+
+        <tar destfile="${backup.root}/uploads.tar" compression="gzip">
+            <fileset dir="./web/uploads">
+                <include name="**/*.*"/>
+            </fileset>
+        </tar>
+
+        <exec command="/usr/bin/mysqldump --quick --password=${mysql.password} --user=${mysql.user} ${mysql.database} > ${mysql.database}.sql"
+              dir="${backup.root}"
+              escape="false"/>
+
+    </target>
+
+    <target name="deploy" depends="backup, disable">
+        <echo msg="Deploy Fitbase-Project"/>
+        <delete dir="${deploy.root}" verbose="true"/>
+        <mkdir dir="${deploy.root}"/>
+
+
+        <echo msg="Pull changes from repository"/>
+        <exec command="git pull" dir="." escape="true" output="${deploy.root}/git-status.log"/>
+        <echo msg="Create database migration"/>
+        <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
+        <echo msg="Apply database migration"/>
+        <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
+        <echo msg="Delete cache and logs"/>
+        <delete verbose="true">
+            <fileset dir="./app/cache">
+                <include name="**/*.*"/>
+            </fileset>
+            <fileset dir="./app/logs">
+                <include name="**/*.*"/>
+            </fileset>
+        </delete>
+        <echo msg="Dump an assets"/>
+        <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
+        <echo msg="Generate assetic files"/>
+        <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
+        <phingcall target="enable"/>
+    </target>
+
+
+</project>
