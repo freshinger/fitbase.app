@@ -48,14 +48,6 @@
         <echo msg="Deploy Fitbase-Project"/>
         <delete dir="${deploy.root}" verbose="true"/>
         <mkdir dir="${deploy.root}"/>
-
-
-        <echo msg="Pull changes from repository"/>
-        <exec command="git pull" dir="." escape="true" output="${deploy.root}/git-status.log"/>
-        <echo msg="Create database migration"/>
-        <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
-        <echo msg="Apply database migration"/>
-        <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
         <echo msg="Delete cache and logs"/>
         <delete verbose="false">
             <fileset dir="./app/cache">
@@ -65,10 +57,25 @@
                 <include name="**/*.*"/>
             </fileset>
         </delete>
+        <echo msg="Pull changes from repository"/>
+        <exec command="git pull" dir="." escape="true" output="${deploy.root}/git-status.log"/>
+        <echo msg="Create database migration"/>
+        <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
+        <echo msg="Apply database migration"/>
+        <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
         <echo msg="Dump an assets"/>
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>
         <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
+        <echo msg="Delete cache and logs"/>
+        <delete verbose="false">
+            <fileset dir="./app/cache">
+                <include name="**/*.*"/>
+            </fileset>
+            <fileset dir="./app/logs">
+                <include name="**/*.*"/>
+            </fileset>
+        </delete>
         <chown file="${deploy.web}" user="wwwrun" group="users" failonerror="false"/>
     </target>
 
