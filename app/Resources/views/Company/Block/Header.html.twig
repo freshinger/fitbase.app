@@ -7,7 +7,7 @@
             {% if company is defined and company %}
                 {% if company.image is defined and company.image %}
                     {% set logo = null %}
-                    {% thumbnail company.image, 'thumbnail' with {'class': 'img-responsive', 'title': null} %}
+                    {% thumbnail company.image, 'preview' with {'class': 'img-responsive', 'width':'none', 'title': null} %}
                 {% endif %}
             {% endif %}
 
