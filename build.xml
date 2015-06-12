@@ -57,7 +57,7 @@
         <echo msg="Apply database migration"/>
         <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
         <echo msg="Delete cache and logs"/>
-        <delete verbose="true">
+        <delete verbose="false">
             <fileset dir="./app/cache">
                 <include name="**/*.*"/>
             </fileset>
