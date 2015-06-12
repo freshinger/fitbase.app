@@ -30,6 +30,24 @@
 
         </aside>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $.controller('a.post-items-trigger', function (element) {
+                element.on('click', function (event) {
+
+                    var text_show = '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}';
+                    var text_hide = '{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}';
+
+                    element.toggleText(text_hide, text_show);
+                    element.closest('.post-item').prev().toggle();
+                    
+                    return false;
+                });
+
+            });
+        });
+    </script>
 {% endblock content %}
 
 

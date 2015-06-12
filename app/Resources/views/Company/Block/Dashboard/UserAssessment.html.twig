@@ -5,73 +5,74 @@
     </div>
 
 
-    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
-        <div class="owl-wrapper-outer autoHeight">
-            <div class="owl-wrapper" style="left: 0px; display: block;">
-
-
-                <div id="statistic_user_assessment">
-                    <svg id="pieChartSVG" class="img-responsive">
-                        <defs>
-                            <filter id='pieChartInsetShadow'>
-                                <feOffset dx='0' dy='0'/>
-                                <feGaussianBlur stdDeviation='3' result='offset-blur'/>
-                                <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
-                                <feFlood flood-color='black' flood-opacity='1' result='color'/>
-                                <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
-                                <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
-                            </filter>
-                            <filter id="pieChartDropShadow">
-                                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                                <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
-                                <feMerge>
-                                    <feMergeNode/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                    </svg>
-                </div>
-
+    <div class="row">
+        <div class="col-md-12" id="assessment">
+            <div class="text-over-image">
+                {{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}
             </div>
+            <svg>
+                <defs>
+                    <filter id='pieChartInsetShadow'>
+                        <feOffset dx='0' dy='0'/>
+                        <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                        <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                        <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                        <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                        <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                    </filter>
+                    <filter id="pieChartDropShadow">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                        <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                        <feMerge>
+                            <feMergeNode/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
         </div>
-    </ul>
+    </div>
 
-    <div class="panel-footer" style="min-height: 110px;">
-        {% if questionnaire is defined and questionnaire %}
-            <br/>
-            <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
-               class="btn btn-default btn-block" style="margin-top: 5px">
-                {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
-            </a>
-        {% endif %}
+    <div class="panel-footer" style="padding: 25px">
+        <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
+           class="btn btn-default btn-block" style="margin-top: 5px">
+            {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
+        </a>
     </div>
 </div>
 <!-- End Content Text-->
-
-
 <script type="text/javascript">
-    (function () {
+    $(function () {
+        $.controller('#assessment', function (element) {
 
-        var container = $('#statistic_user_assessment');
-        if (container.is('div')) {
-            container.waterfall([
-                        {
-                            label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
-                            value: parseFloat('{{ percent }}'),
-                            color: '#fce14b'
-                        },
-                        {
-                            label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
-                            value: 100 - parseFloat('{{ percent }}'),
-                            color: '#a2d049'
-                        }
-                    ],
-                    {title: "{{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}"}
-            );
-        }
+            var data = [
+                {
+                    label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                    value: parseFloat('{{ percent }}'),
+                    color: '#fce14b'
+                },
+                {
+                    label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                    value: 100 - parseFloat('{{ percent }}'),
+                    color: '#a2d049'
+                }
+            ];
 
+            var settings = {
+                width: 300,
+                height: 310
+            };
 
-    })();
+            element.waterfall(data, settings);
+        });
+
+        $.controller('#assessment>.text-over-image', function (element) {
+            element.animate({
+                top: "80px",
+                left: "40px",
+                width: "80px"
+            }, 100);
+        });
+
+    });
 </script>
-

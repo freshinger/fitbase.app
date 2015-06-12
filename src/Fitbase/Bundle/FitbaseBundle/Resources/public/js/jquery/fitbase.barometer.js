@@ -201,19 +201,6 @@
          */
         __drawBarometerText: function (self, container, data, config) {
 
-            console.info(data);
-
-            var barometerText = container.append('g')
-                .attr('class', 'barometer-text');
-
-            barometerText.append('foreignObject')
-                .attr('x', config.width * 0.25)
-                .attr('y', config.width * 0.03)
-                .attr('width', config.width * 0.7)
-                .attr('height', config.height)
-                .append('xhtml:body')
-                .style('font-size', '0.9em')
-                .html(data.description);
         }
     });
 

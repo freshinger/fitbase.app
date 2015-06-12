@@ -225,22 +225,7 @@
          */
         __drawWaterfallBackgroundTitle: function (self, container, data, config) {
 
-            var waterfallColumnLabelText = container.append('g')
-                .attr('class', 'waterfall-column-label-text')
-                .attr('transform', function (d) {
-                    var index = (data.length + 3);
-                    return 'translate(' + 5 + ',' + (config.height - (index * 25)) + ')';
-                });
 
-            waterfallColumnLabelText
-                .append('foreignObject')
-                .attr('x', 5)
-                .attr('y', 5)
-                .attr('width', config.width / 3)
-                .attr('height', config.height / 5)
-                .append('xhtml:body')
-                .style('font-size', '0.9em')
-                .html(config.title);
         }
 
     });

@@ -1,4 +1,4 @@
-<project name="fitbase" default="deploy" basedir="." description="Deploy fitbase project.">
+<project name="fitbase" default="update" basedir="." description="Deploy fitbase project.">
 
 
     <tstamp>
@@ -43,7 +43,7 @@
 
     </target>
 
-    <target name="deploy" depends="backup, disable">
+    <target name="deploy">
         <echo msg="Deploy Fitbase-Project"/>
         <delete dir="${deploy.root}" verbose="true"/>
         <mkdir dir="${deploy.root}"/>
@@ -68,6 +68,9 @@
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>
         <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
+    </target>
+
+    <target name="update" depends="backup, disable, deploy">
         <phingcall target="enable"/>
     </target>
 

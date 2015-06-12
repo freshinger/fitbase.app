@@ -4,65 +4,68 @@
         <h4>{{ 'Aktivität'|trans({}, 'FitbaseUserBundle') }}</h4>
     </div>
 
-    <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
-        <div class="owl-wrapper-outer autoHeight">
-            <div class="owl-wrapper" style="left: 0px; display: block;">
-
-                <div id="statistic_user_focus">
-
-                    <svg id="pieChartSVG" class="img-responsive">
-                        <defs>
-                            <filter id='pieChartInsetShadow'>
-                                <feOffset dx='0' dy='0'/>
-                                <feGaussianBlur stdDeviation='3' result='offset-blur'/>
-                                <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
-                                <feFlood flood-color='black' flood-opacity='1' result='color'/>
-                                <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
-                                <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
-                            </filter>
-                            <filter id="pieChartDropShadow">
-                                <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                                <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
-                                <feMerge>
-                                    <feMergeNode/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                    </svg>
-                </div>
-
-
-                <script type="text/javascript">
-                    $(function () {
-
-                        function color(index) {
-                            var colors = ["#a2d049", "#d7ecaf", "#397bc9", "#7eaae0", "#bfd6f3", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"];
-                            return colors[index];
-                        }
-
-                        var data = [];
-                        {% if categories is defined and categories %}
-                        {% for category in categories %}
-                        data.push({
-                            'index': {{ loop.index }},
-                            'color': color({{ loop.index }}-1),
-                            'label': '{{ category }} ({{ category.countUser }})',
-                            'value': '{{ category.countUser }}'
-                        });
-                        {% endfor %}
-                        var statisticUserFocusPie = $('#statistic_user_focus');
-                        if (statisticUserFocusPie.length) {
-                            statisticUserFocusPie.pie(data, {});
-                        }
-                        {% endif %}
-
-                    });
-                </script>
-            </div>
+    <div class="row">
+        <div class="col-md-12" id="focus">
+            <svg>
+                <defs>
+                    <filter id='pieChartInsetShadow'>
+                        <feOffset dx='0' dy='0'/>
+                        <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                        <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                        <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                        <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                        <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                    </filter>
+                    <filter id="pieChartDropShadow">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                        <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                        <feMerge>
+                            <feMergeNode/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
         </div>
-    </ul>
-
+    </div>
 
 </div>
 <!-- End Content Text-->
+<script type="text/javascript">
+    $(function () {
+        $.controller('#focus', function (element) {
+
+            function color(index) {
+                var colors = [
+                    "#a2d049", "#d7ecaf", "#397bc9",
+                    "#7eaae0", "#bfd6f3", "#7b6888",
+                    "#6b486b", "#a05d56", "#d0743c",
+                    "#ff8c00"
+                ];
+                return colors[index];
+            }
+
+            var data = [];
+            {% if categories is defined and categories %}
+                {% for category in categories %}
+                data.push({
+                    'index': {{ loop.index }},
+                    'color': color({{ loop.index }}-1),
+                    'label': '{{ category }} ({{ category.countUser }})',
+                    'value': '{{ category.countUser }}'
+                });
+                {% endfor %}
+            {% endif %}
+
+
+            var settings = {
+                width: 600,
+                height: 400
+            };
+
+
+            element.pie(data, settings);
+
+        });
+    });
+</script>
