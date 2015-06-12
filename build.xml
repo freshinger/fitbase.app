@@ -7,6 +7,7 @@
 
     <property name="backup.root" value="../backup/${phing.project.name}/${DATE}"/>
     <property name="deploy.root" value="../deploy/${phing.project.name}/${DATE}"/>
+    <property name="deploy.web" value="./web"/>
 
     <property name="mysql.user" value=""/>
     <property name="mysql.database" value=""/>
@@ -68,6 +69,7 @@
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>
         <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
+        <chown file="${deploy.web}" user="wwwrun" group="users"/>
     </target>
 
     <target name="update" depends="backup, disable, deploy">
