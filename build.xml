@@ -69,7 +69,7 @@
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>
         <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
-        <chown file="${deploy.web}" user="wwwrun" group="users"/>
+        <chown file="${deploy.web}" user="wwwrun" group="users" failonerror="false"/>
     </target>
 
     <target name="update" depends="backup, disable, deploy">
