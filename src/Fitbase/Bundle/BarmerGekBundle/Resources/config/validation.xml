@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+
+    <class name="Fitbase\Bundle\BarmerGekBundle\Model\RegistrationUser">
+        <constraint name="Fitbase\Bundle\UserBundle\Form\Constraints\UserEmailUnique">
+            <option name="message">Ein Benutzer mit dieser Email-Adresse wurde bereits registriert</option>
+        </constraint>
+        <constraint name="Fitbase\Bundle\BarmerGekBundle\Form\Constraints\UserSession">
+            <option name="message">Ein Benutzer mit diesen Daten wurde bei Barmer GEK nich gefunden</option>
+        </constraint>
+        <property name="email">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+            <constraint name="Email">
+                <option name="message">Die Email-Adresse wurde falsch geschrieben</option>
+            </constraint>
+        </property>
+        <property name="firstName">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="lastName">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+        <property name="terms">
+            <constraint name="NotBlank">
+                <option name="message">Dieses Feld darf nich leer sein</option>
+            </constraint>
+        </property>
+    </class>
+
+</constraint-mapping>

@@ -63,6 +63,10 @@
         <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
         <echo msg="Apply database migration"/>
         <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
+        <echo msg="Update core routes"/>
+        <exec command="php app/console sonata:page:update-core-routes --site=all" output="${deploy.root}/routes-status.log"/>
+        <echo msg="Update page snapshots"/>
+        <exec command="php app/console sonata:page:create-snapshots --site=all" output="${deploy.root}/snapshots-status.log"/>
         <echo msg="Dump an assets"/>
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>

@@ -6,9 +6,10 @@
  * Time: 13:58
  */
 
-namespace Fitbase\Bundle\FitbaseBundle\Subscriber;
+namespace Fitbase\Bundle\BarmerGekBundle\Subscriber;
 
-use Fitbase\Bundle\FitbaseBundle\Exception\FitbaseUserRegistrationException;
+use Fitbase\Bundle\BarmerGekBundle\Controller\RegistrationController;
+use Fitbase\Bundle\BarmerGekBundle\Exception\FitbaseUserRegistrationException;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -50,6 +51,19 @@ class ExceptionSubscriber extends ContainerAware implements EventSubscriberInter
      */
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
+        if ($event->getException() instanceof FitbaseUserRegistrationException) {
 
+            $controller = new RegistrationController();
+            $controller->setContainer($this->container);
+
+            $event->setResponse(new RedirectResponse(
+                $this->container->get('router')->generate('barmer_gek_registration', [
+                    'unique' => $event->getRequest()->get('userId'),
+                    'session' => $event->getRequest()->get('sessionKey'),
+                ])
+            ));
+
+            $event->stopPropagation();
+        }
     }
 }

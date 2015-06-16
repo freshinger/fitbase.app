@@ -73,6 +73,13 @@
             </call>
         </service>
 
+        <service id="fitbase.authenticator.fitbase_events" class="Fitbase\Bundle\FitbaseBundle\Security\AuthenticatorFitbaseEvents">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
 
     </services>
 </container>

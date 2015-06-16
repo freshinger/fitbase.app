@@ -64,7 +64,7 @@ security:
         # This part is handled by the FOS User Bundle
         main:
             simple_preauth:
-                authenticator: authenticator_singlesignon
+                authenticator: fitbase.authenticator.fitbase_events
             entry_point: fitbase.entry_point.login
             pattern:      .*
             context:        user
