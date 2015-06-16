@@ -67,10 +67,11 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
-            ->add('categories')
             ->add('site')
-            ->add('questionnaire')
+            ->add('name')
+            ->add('usersCount', null, ['label' => 'Benutzer'])
+            ->add('questionnaire', null, ['label' => 'Bedarfsermittlung'])
+            ->add('categories')
             ->add('gamification')
             ->add('_action', 'actions', array(
                 'actions' => array(

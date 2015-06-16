@@ -46,22 +46,17 @@ class UserActivityBlock extends SecureBlockServiceAbstract
     {
         $countUser = 0;
         $countField = 0;
-        $countQuiz = 0;
 
         if (($company = $blockContext->getSetting('company'))) {
             $countUser = count($company->getUsers());
 
             $repositoryUserActivity = $this->entityManager->getRepository('Fitbase\Bundle\StatisticBundle\Entity\UserActivity');
             $countField = $repositoryUserActivity->findCountPointByCompany($company);
-
-            $repositoryUserActivity = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
-            $countQuiz = $repositoryUserActivity->findCountDoneByCompany($company);
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'countUser' => $countUser,
             'countField' => $countField,
-            'countQuiz' => $countQuiz,
         ));
     }
 

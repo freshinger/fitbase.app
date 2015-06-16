@@ -411,6 +411,14 @@ class Company
     }
 
     /**
+     * @return int
+     */
+    public function getUsersCount()
+    {
+        return count($this->getUsers());
+    }
+
+    /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      */
     private $image;
@@ -676,6 +684,7 @@ class Company
     {
         return $this->questionnaire;
     }
+
     /**
      * @var integer
      */
@@ -698,12 +707,13 @@ class Company
     /**
      * Get userLimit
      *
-     * @return integer 
+     * @return integer
      */
     public function getUserLimit()
     {
         return $this->userLimit;
     }
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Gallery
      */
@@ -726,12 +736,13 @@ class Company
     /**
      * Get gallery
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
      */
     public function getGallery()
     {
         return $this->gallery;
     }
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Gallery
      */
@@ -759,7 +770,7 @@ class Company
     /**
      * Get avatars
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
      */
     public function getAvatars()
     {
@@ -782,12 +793,13 @@ class Company
     /**
      * Get attributes
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery 
+     * @return \Application\Sonata\MediaBundle\Entity\Gallery
      */
     public function getAttributes()
     {
         return $this->attributes;
     }
+
     /**
      * @var string
      */
@@ -810,7 +822,7 @@ class Company
     /**
      * Get css
      *
-     * @return string 
+     * @return string
      */
     public function getCss()
     {

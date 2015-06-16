@@ -33,74 +33,31 @@ class UserAssessmentBlock extends SecureBlockServiceAbstract
      */
     public function render(BlockContextInterface $blockContext, Response $response = null)
     {
-        $statistic = array('done' => 0, 'pause' => 1);
+        $done = 0;
+        $total = 0;
+
+        if (!($company = $blockContext->getSetting('company'))) {
+            throw new \LogicException('Company object can not be empty');
+        }
 
         $questionnaire = null;
-        if (($company = $blockContext->getSetting('company'))) {
-            if (($questionnaire = $company->getQuestionnaire())) {
-                if (($users = $company->getUsers()) and ($codes = $company->getActioncodes())) {
-                    $statistic = $this->getStatistics($questionnaire, $company->getUsers(), $company->getActioncodes());
+        if (($questionnaire = $company->getQuestionnaire())) {
+            if (($users = $company->getUsers())) {
+                $total = count($users);
+                foreach ($users as $user) {
+                    if (($questionnaireUser = $user->getAssessment($questionnaire))) {
+                        if ($questionnaireUser->getDone()) {
+                            $done++;
+                        }
+                    }
                 }
             }
         }
-
-
-        $done = isset($statistic['done']) ? $statistic['done'] : 0;
-        $total = (isset($statistic['pause']) ? $statistic['pause'] : 0) + $done;
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'percent' => (float)($done / $total * 100),
             'questionnaire' => $questionnaire
         ));
-    }
-
-    /**
-     * Get statistical data
-     *
-     * @param null $questionnaire
-     * @param null $users
-     * @param null $actioncodes
-     * @return array
-     */
-    protected function getStatistics($questionnaire, $users = null, $actioncodes = null)
-    {
-        $statistic = array(
-            'done' => 0,
-            'pause' => 0,
-        );
-
-        if (count($users)) {
-            foreach ($users as $user) {
-                // Get assessment questionnaire for user from company
-                if (($questionnaireUser = $user->getAssessment($questionnaire))) {
-                    if ($questionnaireUser->getDone()) {
-                        $statistic['done']++;
-                        continue;
-                    }
-                }
-                $statistic['pause']++;
-            }
-        }
-
-        // Potential users
-        // mark not registered users as a
-        // not processed questionnaire
-        if (count($actioncodes)) {
-            foreach ($actioncodes as $actioncode) {
-                if (!$actioncode->getProcessed()) {
-                    $statistic['pause']++;
-                }
-            }
-        }
-
-        if (array_sum($statistic) <= 0) {
-            $statistic = array(
-                'done' => 0,
-                'pause' => 1,
-            );
-        }
-
-        return $statistic;
     }
 
     /**
