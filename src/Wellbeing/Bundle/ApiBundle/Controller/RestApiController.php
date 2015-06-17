@@ -30,7 +30,7 @@ class RestApiController extends WsdlApiController
      *
      * @ApiDoc(
      *  input="Wellbeing\Bundle\ApiBundle\Form\UserLogin",
-     *  output="Wellbeing\Bundle\ApiBundle\Form\UserAuth",
+     *  output="Wellbeing\Bundle\ApiBundle\Form\User",
      *  statusCodes={
      *      200="Returned when successful",
      *      400="Returned when an error has occurred while authentication",
