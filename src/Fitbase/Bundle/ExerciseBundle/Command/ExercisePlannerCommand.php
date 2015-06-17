@@ -66,8 +66,6 @@ class ExercisePlannerCommand extends ContainerAwareCommand
                         (new ExerciseUserReminder())
                             ->setUser($user)
                             ->setDate($date)
-                            ->setProcessed(null)
-                            ->setProcessedDate(null)
                     );
 
                 }

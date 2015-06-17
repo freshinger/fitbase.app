@@ -28,20 +28,20 @@
                                             align="left" valign="top">
 
 
-                                            {#{% set logo = '/image/logo.png' %}#}
+                                            {% set logo = '/image/logo.png' %}
 
-                                            {#{% if company is defined and company %}#}
-                                                {#{% if company.image is defined and company.image %}#}
-                                                    {#{% set logo = null %}#}
-                                                    {#{% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;'} %}#}
-                                                {#{% endif %}#}
-                                            {#{% endif %}#}
+                                            {% if company is defined and company %}
+                                                {% if company.image is defined and company.image %}
+                                                    {% set logo = null %}
+                                                    {% thumbnail company.image, 'icon' with { 'style': 'outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;'} %}
+                                                {% endif %}
+                                            {% endif %}
 
-                                            {#{% if logo is defined and logo %}#}
-                                                {#<img src="{{ logo }}"#}
-                                                     {#style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both;"#}
-                                                     {#align="left"/>#}
-                                            {#{% endif %}#}
+                                            {% if logo is defined and logo %}
+                                                <img src="{{ logo }}"
+                                                     style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both;"
+                                                     align="left"/>
+                                            {% endif %}
 
                                         </td>
                                     </tr>

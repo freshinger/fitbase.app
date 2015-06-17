@@ -35,7 +35,6 @@ class ExerciseSenderCommand extends ContainerAwareCommand
         ];
     }
 
-
     /**
      * Execute task
      * @param InputInterface $input
