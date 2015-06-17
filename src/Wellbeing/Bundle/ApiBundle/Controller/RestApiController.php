@@ -54,7 +54,10 @@ class RestApiController extends WsdlApiController
 
                 return new JsonResponse([
                     "user_auth" => [
-                        "authkey" => $this->get('codegenerator')->code(20)]
+                        "authkey" => $this->get('codegenerator')->code(20),
+                        "first_name" => "Wellbeing",
+                        "last_name" => "Test user",
+                    ]
                 ]);
 
             }
@@ -148,8 +151,6 @@ class RestApiController extends WsdlApiController
                     $this->get('logger')->err("UserState inserted: {$userState->getId()}");
 
                 }
-
-
 
 
                 return new JsonResponse(["user_position" => [
