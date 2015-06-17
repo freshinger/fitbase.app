@@ -48,19 +48,16 @@ class ExercisePlannerCommand extends ContainerAwareCommand
         $datetime = $this->get('datetime');
         $serviceUser = $this->get('user');
 
-        $date = $datetime->getDateTime('now');
-
-        $day = $date->format('N');
+        $day = $datetime->getDateTime('now')->format('N');
         if (($collection = $this->get('reminder')->getItemsExercise($day))) {
             foreach ($collection as $reminderUserItem) {
 
-                $user = $reminderUserItem->getUser();
-                if ($serviceUser->isGranted($user, $this->getRoles())) {
+                if (($user = $reminderUserItem->getUser()) and
+                    $serviceUser->isGranted($user, $this->getRoles())) {
 
-                    $date->setTime(
-                        $reminderUserItem->getTime()->format('H'),
-                        $reminderUserItem->getTime()->format('i')
-                    );
+                    $date = $datetime->getDateTime('now');
+                    $date->setTime($reminderUserItem->getTime()->format('H'),
+                        $reminderUserItem->getTime()->format('i'));
 
                     $this->doProcessEntity(
                         (new ExerciseUserReminder())
