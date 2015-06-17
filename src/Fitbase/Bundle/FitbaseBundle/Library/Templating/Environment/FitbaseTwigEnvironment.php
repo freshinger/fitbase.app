@@ -68,6 +68,10 @@ class FitbaseTwigEnvironment extends \Twig_Environment
             }
         }
 
+        if ($this->deviceDetector->isOld()) {
+            $prefix = "Old/";
+        }
+
         if ($prefix !== null) {
             $pos1 = 0;
             if (($pos1 = strrpos($name, ":")) or ($pos1 = strrpos($name, "/"))) {

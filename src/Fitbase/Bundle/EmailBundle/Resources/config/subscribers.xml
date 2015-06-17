@@ -22,7 +22,7 @@
         </service>
 
 
-        <service id="fitbase.subscriber.email.exercise_user" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserSubscriber">
+        <service id="fitbase.subscriber.email.exercise_user" class="Fitbase\Bundle\EmailBundle\Subscriber\ExerciseUserReminderSubscriber">
             <argument type="service" id="mail"/>
             <argument type="service" id="templating"/>
             <argument type="service" id="translator"/>

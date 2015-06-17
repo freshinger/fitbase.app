@@ -206,6 +206,7 @@ class CategoryController extends Controller
             $categories = $chooserCategory->choose($focus);
         }
 
+
         return $this->render('Exercise/Category/CategoryBack.html.twig', array(
             'focus' => $focus,
             'categories' => $categories,

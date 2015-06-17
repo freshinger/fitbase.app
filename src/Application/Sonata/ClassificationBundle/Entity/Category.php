@@ -219,4 +219,31 @@ class Category extends BaseCategory
 
         return $this->label;
     }
+    /**
+     * @var \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire
+     */
+    private $questionnaire;
+
+    /**
+     * Set questionnaire
+     *
+     * @param \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire
+     * @return Category
+     */
+    public function setQuestionnaire(\Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire $questionnaire = null)
+    {
+        $this->questionnaire = $questionnaire;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaire
+     *
+     * @return \Fitbase\Bundle\QuestionnaireBundle\Entity\Questionnaire 
+     */
+    public function getQuestionnaire()
+    {
+        return $this->questionnaire;
+    }
 }

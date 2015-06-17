@@ -68,6 +68,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
             ->addIdentifier('name', null, array(
                 'template' => 'FitbaseExerciseBundle:Admin:category_image.html.twig'
             ))
+            ->add('questionnaire')
             ->add('parent')
             ->add('slug')
             ->add('description')
@@ -98,6 +99,7 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
             ->with('Options', array('class' => 'col-md-6'))
             ->add('enabled')
             ->add('position', 'integer', array('required' => false))
+            ->add('questionnaire')
             ->add('parent', 'sonata_category_selector', array(
                 'category' => $this->getSubject() ?: null,
                 'model_manager' => $this->getModelManager(),

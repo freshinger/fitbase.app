@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+
+{% use "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Die Seite wurde nicht gefunden'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'exercise', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-9">
+            <h1>{{ '404'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
+
+            <p>Diese Seite existiert nicht</p>
+        </div>
+    </div>
+{% endblock content %}

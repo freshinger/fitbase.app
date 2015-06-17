@@ -449,4 +449,32 @@ class User extends BaseUser
     {
         return $this->removeRequestAt;
     }
+
+    /**
+     * @var string
+     */
+    protected $externalId;
+
+    /**
+     * Set externalId
+     *
+     * @param string $externalId
+     * @return User
+     */
+    public function setExternalId($externalId)
+    {
+        $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    /**
+     * Get externalId
+     *
+     * @return string 
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
 }

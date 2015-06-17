@@ -68,6 +68,19 @@ class DeviceDetector extends ContainerAware implements DeviceDetectorInterface
     }
 
     /**
+     * Check is browser is old
+     * for now check only old IE version
+     * @return bool
+     */
+    public function isOld()
+    {
+        return (
+            $this->browserDetector->isBrowser(BrowserDetector::BROWSER_IE) and
+            $this->browserDetector->getVersion() < 10
+        );
+    }
+
+    /**
      * Check is a desktop computer
      * @return bool
      */

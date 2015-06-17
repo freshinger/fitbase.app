@@ -149,6 +149,7 @@ class AppKernel extends Kernel
             new Wellbeing\Bundle\ErgonomicsBundle\WellbeingErgonomicsBundle(),
             new Wellbeing\Bundle\StressBundle\WellbeingStressBundle(),
             new Wellbeing\Bundle\ExerciseBundle\WellbeingExerciseBundle(),
+            new Fitbase\Bundle\BarmerGekBundle\FitbaseBarmerGekBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

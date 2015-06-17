@@ -8,6 +8,15 @@ use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder;
 
 class ExerciseUserReminderRepository extends EntityRepository
 {
+    protected function getExprNotId($queryBuilder, $entity = null)
+    {
+        if (!empty($entity)) {
+            $queryBuilder->setParameter('not_id', $entity->getId());
+            return $queryBuilder->expr()->neq('ExerciseUserReminder.id', ':not_id');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
     /**
      * Get expression by user
      * @param $queryBuilder
@@ -66,6 +75,17 @@ class ExerciseUserReminderRepository extends EntityRepository
     }
 
     /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', true);
+        return $queryBuilder->expr()->eq('ExerciseUserReminder.processed', ':processed');
+    }
+
+    /**
      * Try to found object for given date
      *
      * @param ExerciseUserReminder $entity
@@ -79,6 +99,28 @@ class ExerciseUserReminderRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $entity->getUser()),
             $this->getExprDateTime($queryBuilder, $entity->getDate())
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Check is exercise reminder with this data already processed
+     * @param ExerciseUserReminder $entity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function processed(ExerciseUserReminder $entity)
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUserReminder');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprNotId($queryBuilder, $entity),
+            $this->getExprUser($queryBuilder, $entity->getUser()),
+            $this->getExprDateTime($queryBuilder, $entity->getDate()),
+            $this->getExprProcessed($queryBuilder)
         ));
 
         $queryBuilder->setMaxResults(1);
@@ -100,6 +142,8 @@ class ExerciseUserReminderRepository extends EntityRepository
             $this->getExprDateTimeLt($queryBuilder, $datetime),
             $this->getExprNotProcessed($queryBuilder)
         ));
+
+        $queryBuilder->orderBy('ExerciseUserReminder.id', 'ASC');
 
         return $queryBuilder->getQuery()->getResult();
     }

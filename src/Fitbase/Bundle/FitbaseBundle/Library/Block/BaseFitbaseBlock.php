@@ -13,6 +13,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 abstract class BaseFitbaseBlock extends BaseBlockService
 {
@@ -39,6 +40,13 @@ abstract class BaseFitbaseBlock extends BaseBlockService
      */
     abstract function getRoles();
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        throw new \LogicException('You have to define default settings here');
+    }
 
     /**
      * {@inheritdoc}

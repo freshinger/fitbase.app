@@ -11,6 +11,13 @@
 {% block content %}
     <div class="row">
         <div class="col-md-9">
+
+            <p>
+                Hier finden Sie eine Übersicht Ihrer Lieblingsübungen. Über den Button "Gefällt mir" können Sie jede
+                Übung markieren und so eine Liste Ihrer persönlichen Lieblingsübungen erstellen. Diese Übungen können
+                Sie dann gesammelt per Schnellzugriff hier abrufen.
+            </p>
+
             {% if collection is defined and collection %}
                 {% for focusCategory in collection %}
                     {% set category = focusCategory.category %}
@@ -30,6 +37,24 @@
 
         </aside>
     </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $.controller('a.post-items-trigger', function (element) {
+                element.on('click', function (event) {
+
+                    var text_show = '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}';
+                    var text_hide = '{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}';
+
+                    element.toggleText(text_hide, text_show);
+                    element.closest('.post-item').prev().toggle();
+
+                    return false;
+                });
+
+            });
+        });
+    </script>
 {% endblock content %}
 
 

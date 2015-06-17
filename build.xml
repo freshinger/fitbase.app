@@ -1,4 +1,4 @@
-<project name="fitbase" default="deploy" basedir="." description="Deploy fitbase project.">
+<project name="fitbase" default="update" basedir="." description="Deploy fitbase project.">
 
 
     <tstamp>
@@ -7,6 +7,7 @@
 
     <property name="backup.root" value="../backup/${phing.project.name}/${DATE}"/>
     <property name="deploy.root" value="../deploy/${phing.project.name}/${DATE}"/>
+    <property name="deploy.web" value="./web"/>
 
     <property name="mysql.user" value=""/>
     <property name="mysql.database" value=""/>
@@ -43,20 +44,12 @@
 
     </target>
 
-    <target name="deploy" depends="backup, disable">
+    <target name="deploy">
         <echo msg="Deploy Fitbase-Project"/>
         <delete dir="${deploy.root}" verbose="true"/>
         <mkdir dir="${deploy.root}"/>
-
-
-        <echo msg="Pull changes from repository"/>
-        <exec command="git pull" dir="." escape="true" output="${deploy.root}/git-status.log"/>
-        <echo msg="Create database migration"/>
-        <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
-        <echo msg="Apply database migration"/>
-        <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
         <echo msg="Delete cache and logs"/>
-        <delete verbose="true">
+        <delete verbose="false">
             <fileset dir="./app/cache">
                 <include name="**/*.*"/>
             </fileset>
@@ -64,10 +57,33 @@
                 <include name="**/*.*"/>
             </fileset>
         </delete>
+        <echo msg="Pull changes from repository"/>
+        <exec command="git pull" dir="." escape="true" output="${deploy.root}/git-status.log"/>
+        <echo msg="Create database migration"/>
+        <exec command="php app/console doctrine:migrations:diff" output="${deploy.root}/diff-status.log"/>
+        <echo msg="Apply database migration"/>
+        <exec command="php app/console doctrine:migrations:migrate --no-interaction" output="${deploy.root}/migrate-status.log"/>
+        <echo msg="Update core routes"/>
+        <exec command="php app/console sonata:page:update-core-routes --site=all" output="${deploy.root}/routes-status.log"/>
+        <echo msg="Update page snapshots"/>
+        <exec command="php app/console sonata:page:create-snapshots --site=all" output="${deploy.root}/snapshots-status.log"/>
         <echo msg="Dump an assets"/>
         <exec command="php app/console assets:install web" output="${deploy.root}/assets-status.log"/>
         <echo msg="Generate assetic files"/>
         <exec command="php app/console assetic:dump" output="${deploy.root}/assetic-status.log"/>
+        <echo msg="Delete cache and logs"/>
+        <delete verbose="false">
+            <fileset dir="./app/cache">
+                <include name="**/*.*"/>
+            </fileset>
+            <fileset dir="./app/logs">
+                <include name="**/*.*"/>
+            </fileset>
+        </delete>
+        <chown file="${deploy.web}" user="wwwrun" group="users" failonerror="false"/>
+    </target>
+
+    <target name="update" depends="backup, disable, deploy">
         <phingcall target="enable"/>
     </target>
 

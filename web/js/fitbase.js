@@ -12026,19 +12026,6 @@ return i.size=function(n){return arguments.length?(l=n,i):l},i.padding=function(
          */
         __drawBarometerText: function (self, container, data, config) {
 
-            console.info(data);
-
-            var barometerText = container.append('g')
-                .attr('class', 'barometer-text');
-
-            barometerText.append('foreignObject')
-                .attr('x', config.width * 0.25)
-                .attr('y', config.width * 0.03)
-                .attr('width', config.width * 0.7)
-                .attr('height', config.height)
-                .append('xhtml:body')
-                .style('font-size', '0.9em')
-                .html(data.description);
         }
     });
 
@@ -12303,22 +12290,7 @@ return i.size=function(n){return arguments.length?(l=n,i):l},i.padding=function(
          */
         __drawWaterfallBackgroundTitle: function (self, container, data, config) {
 
-            var waterfallColumnLabelText = container.append('g')
-                .attr('class', 'waterfall-column-label-text')
-                .attr('transform', function (d) {
-                    var index = (data.length + 3);
-                    return 'translate(' + 5 + ',' + (config.height - (index * 25)) + ')';
-                });
 
-            waterfallColumnLabelText
-                .append('foreignObject')
-                .attr('x', 5)
-                .attr('y', 5)
-                .attr('width', config.width / 3)
-                .attr('height', config.height / 5)
-                .append('xhtml:body')
-                .style('font-size', '0.9em')
-                .html(config.title);
         }
 
     });
@@ -12334,6 +12306,16 @@ return i.size=function(n){return arguments.length?(l=n,i):l},i.padding=function(
     }
 
 
+})(jQuery);
+(function () {
+    $.extend($, {
+        controller: function (selector, callback) {
+            var container = $(selector);
+            if (container.length) {
+                callback(container);
+            }
+        }
+    });
 })(jQuery);
 $(function () {
 

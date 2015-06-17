@@ -11,6 +11,7 @@
 
     {% if collection|length > 0 %}
         {% for exerciseChoice in collection | slice(0,limit) %}
+            {#override exercuse for current block#}
             {% set exercise = exerciseChoice.exercise %}
 
             {% block exercise_list_item %}
@@ -34,7 +35,7 @@
                             <p>
 
                                 {% autoescape false %}
-                                    {{ exercise.description|raw|striptags|slice(0,310) }}...
+                                {{ exercise.description|raw|striptags|slice(0,310) }}...
                                 {% endautoescape %}
 
                                 <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
@@ -45,12 +46,11 @@
                     </div>
                 </div>
             {% endblock exercise_list_item %}
-
         {% endfor %}
 
+
+
         {% if collection|length > limit %}
-
-
             <div class="post-items-content" style="display: none;">
                 {% for exerciseChoice in collection | slice(limit,null) %}
                     {% set exercise = exerciseChoice.exercise %}
@@ -75,7 +75,7 @@
 
                                 <p>
                                     {% autoescape false %}
-                                        {{ exercise.description|raw|striptags|slice(0,310) }}...
+                                    {{ exercise.description|raw|striptags|slice(0,310) }}...
                                     {% endautoescape %}
                                     <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
                                         {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
@@ -101,8 +101,6 @@
 
 
 
-
-
     {% else %}
 
         {% block exercise_list_empty %}
@@ -120,19 +118,3 @@
     {% endif %}
 </div>
 <!-- End Content Text-->
-
-<script type="text/javascript">
-    $(function () {
-        var $trigger = $('.post-items-trigger');
-        var $content = $('.post-items-content');
-
-        $trigger.click(function (event) {
-            var $element = $(this);
-            $element.toggleText('{{ "Weniger Übungen..." | trans({}, 'FitbaseExerciseBundle') }}', '{{ "Mehr Übungen..." | trans({}, 'FitbaseExerciseBundle') }}');
-            $element.closest('div.post-item').prev().toggle();
-            event.preventDefault();
-        });
-
-
-    });
-</script>

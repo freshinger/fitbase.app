@@ -80,29 +80,28 @@ class QuestionnaireUserAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-//
-//        if (($questionnaireUser = $this->getRoot()->getSubject())) {
-//            if (($user = $questionnaireUser->getUser())) {
-//                if (($company = $user->getCompany())) {
-//                    $formMapper->add('questionnaire', null, array(
-//                        'query_builder' => function ($repository) use ($company) {
-//                            $queryBuilder = $repository->createQueryBuilder('UserActioncode');
-//                            $queryBuilder->where($queryBuilder->expr()->eq('UserActioncode.company', ':company'));
-//                            $queryBuilder->setParameter(':company', $company->getId());
-//
-//                            return $queryBuilder;
-//                        }
-//                    ));
-//                }
-//            }
-//        }
-//
 
         $formMapper
             ->with('General', array('class' => 'col-md-6'))
-            ->add('user')
-            ->add('questionnaire')
-            ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
+            ->add('user');
+
+        $formMapper->add('questionnaire');
+        if (($questionnaireUser = $this->getRoot()->getSubject()) and
+            ($user = $questionnaireUser->getUser()) and
+            ($company = $user->getCompany())
+        ) {
+            $formMapper->add('questionnaire', null, array(
+                'query_builder' => function ($repository) use ($company) {
+                    $queryBuilder = $repository->createQueryBuilder('UserActioncode');
+                    $queryBuilder->where($queryBuilder->expr()->eq('UserActioncode.company', ':company'));
+                    $queryBuilder->setParameter(':company', $company->getId());
+
+                    return $queryBuilder;
+                }
+            ));
+        }
+
+        $formMapper->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
             ->add('pause', null, array(
                 'required' => false,
             ))

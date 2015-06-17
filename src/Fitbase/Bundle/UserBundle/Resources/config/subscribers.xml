@@ -80,6 +80,15 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="fitbase.subscriber.authenticator"
+                 class="Fitbase\Bundle\UserBundle\Subscriber\AuthenticatorSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
     </services>
 
 </container>

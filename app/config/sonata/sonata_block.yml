@@ -151,8 +151,12 @@ sonata_block:
         fitbase.block.dashboard.questionnaire_question_last:
 
         fitbase.block.focus.settings_back:
+        fitbase.block.focus.category_questionnaire:
+
         fitbase.block.account.remove:
         fitbase.block.account.info:
+
+
 
 
 

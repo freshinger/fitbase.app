@@ -9,19 +9,12 @@
 namespace Fitbase\Bundle\ExerciseBundle\Tests\Subscriber;
 
 
-use Application\Sonata\ClassificationBundle\Entity\Category;
 use Application\Sonata\UserBundle\Entity\User;
-use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
-use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
-use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserTaskEvent;
 use Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserSubscriber;
-use Fitbase\Bundle\ExerciseBundle\Subscriber\ExerciseUserTaskSubscriber;
-use Fitbase\Bundle\ExerciseBundle\Subscriber\UserSubscriber;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
 
 class ExerciseUserSubscriberTest extends FitbaseTestAbstract
 {
@@ -52,14 +45,25 @@ class ExerciseUserSubscriberTest extends FitbaseTestAbstract
      */
     public function testOnExerciseUserTaskProcessEventShouldMarkAsDone()
     {
+        $repository = $this->getMock('Repository', ['exists']);
+        $repository->expects($this->any())
+            ->method('exists')
+            ->will($this->returnValue(null));
+
         $datetime = $this->container()->get('datetime');
         $entityManager = $this->getEntityManager();
+
+        $entityManager->expects($this->any())
+            ->method('getRepository')
+            ->will($this->returnValue($repository));
+
         $persisted = array();
         $entityManager->expects($this->any())
             ->method('persist')
             ->will($this->returnCallback(function ($entity) use (&$persisted) {
                 array_push($persisted, $entity);
             }));
+
 
         $subscriber = new ExerciseUserSubscriber($entityManager, $datetime);
         $subscriber->onExerciseUserProcessEvent(

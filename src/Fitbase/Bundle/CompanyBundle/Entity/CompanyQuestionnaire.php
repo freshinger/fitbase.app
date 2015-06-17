@@ -136,15 +136,17 @@ class CompanyQuestionnaire
      */
     public function __toString()
     {
-        $string = "";
+        $result = [];
 
         if (($company = $this->getCompany())) {
+
+            array_push($result, $company->getName());
             if (($questionnaire = $this->getQuestionnaire())) {
-                $string .= (string)$questionnaire->getName();
+                array_push($result, $questionnaire->getName());
             }
         }
 
-        return $string;
+        return implode(' - ', $result);
     }
 
     /**

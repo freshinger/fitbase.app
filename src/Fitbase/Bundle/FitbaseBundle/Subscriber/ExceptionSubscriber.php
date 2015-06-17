@@ -8,9 +8,14 @@
 
 namespace Fitbase\Bundle\FitbaseBundle\Subscriber;
 
+use Fitbase\Bundle\FitbaseBundle\Controller\ExceptionController;
+use Fitbase\Bundle\FitbaseBundle\Exception\FitbaseUserRegistrationException;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ExceptionSubscriber extends ContainerAware implements EventSubscriberInterface
 {
@@ -48,6 +53,15 @@ class ExceptionSubscriber extends ContainerAware implements EventSubscriberInter
      */
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
+        $controller = new ExceptionController();
+        $controller->setContainer($this->container);
+
+        if ($event->getException() instanceof NotFoundHttpException) {
+
+            $event->setResponse($controller->exception404Action($event->getRequest(), $event->getException()));
+            $event->stopPropagation();
+        }
 
     }
+
 }
