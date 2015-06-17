@@ -23,7 +23,7 @@ class FitbaseTwigEnvironmentTest extends FitbaseTestAbstract
     {
         $loader = $this->getMock('\Twig_LoaderInterface', array());
         $this->deviceDetector = $this->getMock('Fitbase\Bundle\FitbaseBundle\Library\Detector\DeviceDetectorInterface',
-            array('isDesktop', 'isTablet', 'isMobile'));
+            array('isDesktop', 'isTablet', 'isMobile', 'isOld'));
 
         $this->engine = new FitbaseTwigEnvironment($loader, array(), $this->deviceDetector);
     }
@@ -40,6 +40,10 @@ class FitbaseTwigEnvironmentTest extends FitbaseTestAbstract
 
         $this->deviceDetector->expects($this->any())
             ->method('isDesktop')
+            ->will($this->returnValue(false));
+
+        $this->deviceDetector->expects($this->any())
+            ->method('isOld')
             ->will($this->returnValue(false));
 
         $this->assertEquals($this->engine->patch("layout.html.twig"), "Mobile/layout.html.twig");

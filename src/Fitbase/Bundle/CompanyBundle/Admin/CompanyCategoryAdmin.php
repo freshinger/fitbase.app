@@ -74,6 +74,7 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('company')
             ->add('category')
+            ->add('questionnaire')
             ->end();
     }
 
@@ -87,6 +88,7 @@ class CompanyCategoryAdmin extends Admin implements ContainerAwareInterface
             ->add('category', null, array(
                 'template' => 'FitbaseCompanyBundle:Admin:question_list_categories.html.twig'
             ))
+            ->add('questionnaire')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),

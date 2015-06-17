@@ -8,9 +8,15 @@
             <tag name="kernel.event_subscriber"/>
             <argument type="service" id="company"/>
             <argument type="service" id="sonata.page.site.selector"/>
-            <argument type="service" id="request" strict='false' />
+            <argument type="service" id="request" strict='false'/>
         </service>
 
+        <service id="fitbase.subscriber.company_category" class="Fitbase\Bundle\CompanyBundle\Subscriber\CompanyCategorySubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
 
     </services>
 </container>

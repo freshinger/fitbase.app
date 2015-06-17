@@ -37,7 +37,6 @@ class ExercisePlannerCommand extends ContainerAwareCommand
         ];
     }
 
-
     /**
      * Execute task
      * @param InputInterface $input
@@ -46,46 +45,56 @@ class ExercisePlannerCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $datetime = $this->get('datetime');
         $serviceUser = $this->get('user');
-        $datetime = $this->get('datetime')->getDateTime('now');
 
-        $day = $datetime->format('N');
+        $date = $datetime->getDateTime('now');
 
+        $day = $date->format('N');
         if (($collection = $this->get('reminder')->getItemsExercise($day))) {
             foreach ($collection as $reminderUserItem) {
 
                 $user = $reminderUserItem->getUser();
                 if ($serviceUser->isGranted($user, $this->getRoles())) {
 
-                    $this->doCreateExerciseUserReminder($user, $reminderUserItem);
+                    $date->setTime(
+                        $reminderUserItem->getTime()->format('H'),
+                        $reminderUserItem->getTime()->format('i')
+                    );
+
+                    $this->doProcessEntity(
+                        (new ExerciseUserReminder())
+                            ->setUser($user)
+                            ->setDate($date)
+                            ->setProcessed(null)
+                            ->setProcessedDate(null)
+                    );
+
                 }
             }
         }
     }
 
     /**
-     * Create exercise reminder
-     * @param $reminderUserItem
+     * Process current entity
+     *
+     * @param $exerciseUserReminder
      */
-    protected function doCreateExerciseUserReminder(User $user, ReminderUserItem $reminderUserItem)
+    protected function doProcessEntity($exerciseUserReminder)
     {
-        $date = $this->get('datetime')->getDateTime('now');
+        try {
 
-        $date->setTime(
-            $reminderUserItem->getTime()->format('H'),
-            $reminderUserItem->getTime()->format('i')
-        );
+            $this->get('event_dispatcher')->dispatch('fitbase.exercise_reminder_create',
+                new ExerciseUserReminderEvent($exerciseUserReminder));
 
-        $this->get('event_dispatcher')
-            ->dispatch('fitbase.exercise_reminder_create',
-                new ExerciseUserReminderEvent(
-                    (new ExerciseUserReminder())
-                        ->setUser($user)
-                        ->setDate($date)
-                        ->setProcessed(null)
-                        ->setProcessedDate(null)
-                ));
+        } catch (\Exception $ex) {
+            $this->get('logger')->err($ex->getMessage(), [
+                $exerciseUserReminder->getUser()->getId(),
+                $exerciseUserReminder->getDate()
+            ]);
+        }
     }
+
 
     /**
      * Get service from container

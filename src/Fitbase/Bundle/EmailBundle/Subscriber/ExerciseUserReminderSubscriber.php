@@ -16,22 +16,22 @@ use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ExerciseUserSubscriber implements EventSubscriberInterface
+class ExerciseUserReminderSubscriber implements EventSubscriberInterface
 {
     protected $mailer;
     protected $translator;
     protected $templating;
     protected $chooserCategory;
-    protected $objectManager;
+    protected $entityManager;
 
 
-    public function __construct($mailer, $templating, $translator, $objectManager, $chooserCategory)
+    public function __construct($mailer, $templating, $translator, $entityManager, $chooserCategory)
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->templating = $templating;
         $this->chooserCategory = $chooserCategory;
-        $this->objectManager = $objectManager;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -43,6 +43,36 @@ class ExerciseUserSubscriber implements EventSubscriberInterface
         return array(
             'fitbase.exercise_reminder_process' => array('onExerciseUserReminderProcessEvent'),
         );
+    }
+
+    /**
+     *
+     * @param ExerciseUserReminderEvent $event
+     */
+    public function onExerciseUserReminderProcessEvent(ExerciseUserReminderEvent $event)
+    {
+        if (!($exerciseUserReminder = $event->getEntity())) {
+            throw new \LogicException('Exercise user reminder object can not be empty');
+        }
+
+        if (!($user = $exerciseUserReminder->getUser())) {
+            throw new \LogicException('Exercise user object can not be empty');
+        }
+
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
+        if (($exerciseUserReminderExisted = $repository->processed($exerciseUserReminder))) {
+            throw new \LogicException('Reminder with this date was already sent');
+        }
+
+        $title = $this->translator->trans('Ihre fitbase Erinnerung');
+        $content = $this->templating->render('Email/Subscriber/UserExercise.html.twig', array(
+            'user' => $user,
+            'company' => $user->getCompany(),
+            'categoryFocus' => $this->getFocusCategoryMain($user),
+            'categories' => $this->getFocusCategories($user),
+        ));
+
+        $this->mailer->mail($user, $title, $content);
     }
 
     /**
@@ -77,28 +107,5 @@ class ExerciseUserSubscriber implements EventSubscriberInterface
         }
     }
 
-    /**
-     *
-     * @param ExerciseUserReminderEvent $event
-     */
-    public function onExerciseUserReminderProcessEvent(ExerciseUserReminderEvent $event)
-    {
-        if (!($exerciseUserReminder = $event->getEntity())) {
-            throw new \LogicException('Exercise user reminder object can not be empty');
-        }
 
-        if (!($user = $exerciseUserReminder->getUser())) {
-            throw new \LogicException('Exercise user object can not be empty');
-        }
-
-        $title = $this->translator->trans('Ihre fitbase Erinnerung');
-        $content = $this->templating->render('Email/Subscriber/UserExercise.html.twig', array(
-            'user' => $user,
-            'company' => $user->getCompany(),
-            'categoryFocus' => $this->getFocusCategoryMain($user),
-            'categories' => $this->getFocusCategories($user),
-        ));
-
-        $this->mailer->mail($user, $title, $content);
-    }
 }

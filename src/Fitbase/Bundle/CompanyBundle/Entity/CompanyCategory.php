@@ -188,4 +188,32 @@ class CompanyCategory
         }
         return $count;
     }
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire
+     */
+    private $questionnaire;
+
+
+    /**
+     * Set questionnaire
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire
+     * @return CompanyCategory
+     */
+    public function setQuestionnaire(\Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire $questionnaire = null)
+    {
+        $this->questionnaire = $questionnaire;
+
+        return $this;
+    }
+
+    /**
+     * Get questionnaire
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\CompanyQuestionnaire 
+     */
+    public function getQuestionnaire()
+    {
+        return $this->questionnaire;
+    }
 }

@@ -40,6 +40,7 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
     }
 
     /**
+     * Create a new Reminder Event
      *
      * @param ExerciseUserReminderEvent $event
      */
@@ -49,19 +50,21 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
             throw new \LogicException('User reminder object can not be empty');
         }
 
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
+        if (($exerciseUserReminderExisted = $repository->exists($exerciseUserReminder))) {
+            throw new \LogicException('Reminder for this date was already exists');
+        }
+
         $exerciseUserReminder->setProcessed(null);
         $exerciseUserReminder->setProcessedDate(null);
 
-        $repository = $this->entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
-        if (!($exerciseUserReminderExisted = $repository->exists($exerciseUserReminder))) {
-
-            $this->entityManager->persist($exerciseUserReminder);
-            $this->entityManager->flush($exerciseUserReminder);
-        }
+        $this->entityManager->persist($exerciseUserReminder);
+        $this->entityManager->flush($exerciseUserReminder);
     }
 
     /**
      * Mark user exercise reminder as processed
+     *
      * @param ExerciseUserReminderEvent $event
      */
     public function onExerciseUserReminderProcessEvent(ExerciseUserReminderEvent $event)
@@ -71,6 +74,10 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
         }
 
         $exerciseUserReminder->setProcessed(true);
+        $exerciseUserReminder->setProcessedDate(
+            $this->datetime->getDateTime('now')
+        );
+
         $this->entityManager->persist($exerciseUserReminder);
         $this->entityManager->flush($exerciseUserReminder);
     }
