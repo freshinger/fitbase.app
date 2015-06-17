@@ -52,7 +52,7 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
 
         $repository = $this->entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
         if (($exerciseUserReminderExisted = $repository->exists($exerciseUserReminder))) {
-            throw new \LogicException('Reminder for this date was already exists');
+            throw new \LogicException('Reminder for this date already exists');
         }
 
         $exerciseUserReminder->setProcessed(null);
