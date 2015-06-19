@@ -13,6 +13,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class WeeklyquizUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
     /**
+     * Date time generator object
+     *
+     * @var
+     */
+    protected $datetime;
+
+    /**
+     * EntityManager object
+     *
+     * @var
+     */
+    protected $entityManager;
+
+    /**
+     * Class constructor
+     *
+     * @param $datetime
+     * @param $entityManager
+     */
+    public function __construct($datetime, $entityManager)
+    {
+        $this->datetime = $datetime;
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * Get subscribers
      * @return array
      */
@@ -25,14 +51,22 @@ class WeeklyquizUserSubscriber extends ContainerAware implements EventSubscriber
     }
 
     /**
+     * Try to process current object,
+     * deliver to user or something like that
+     *
      * @param WeeklyquizUserEvent $event
      */
     public function onWeeklyquizReminderProcessEvent(WeeklyquizUserEvent $event)
     {
-        $datetime = $this->container->get('datetime');
-        $entityManager = $this->container->get('entity_manager');
+        $datetime = $this->datetime;
+        $entityManager = $this->entityManager;
         if (!($weeklyquizUser = $event->getEntity())) {
             throw new \LogicException('Weeklytask object can not be empty');
+        }
+
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+        if (($weeklyquizUserExisted = $repository->processed($weeklyquizUser))) {
+            throw new \LogicException('Weeklyquiz for this date already exists');
         }
 
         $weeklyquizUser->setProcessed(true);
@@ -43,12 +77,15 @@ class WeeklyquizUserSubscriber extends ContainerAware implements EventSubscriber
     }
 
     /**
+     * Process exception with current object,
+     * store info about exception
+     *
      * @param WeeklyquizUserEvent $event
      */
     public function onWeeklyquizReminderExceptionEvent(WeeklyquizUserEvent $event)
     {
-        $datetime = $this->container->get('datetime');
-        $entityManager = $this->container->get('entity_manager');
+        $datetime = $this->datetime;
+        $entityManager = $this->entityManager;
         if (!($weeklyquizUser = $event->getEntity())) {
             throw new \LogicException('Weeklytask object can not be empty');
         }

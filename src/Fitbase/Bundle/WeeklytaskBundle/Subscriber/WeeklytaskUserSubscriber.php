@@ -11,21 +11,52 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
-    protected $entityManager;
+    /**
+     * Date time generator
+     * @var
+     */
     protected $datetime;
-    protected $eventDispatcher;
+
+    /**
+     * Weeklytask service
+     *
+     * @var
+     */
     protected $weeklytask;
 
-    public function __construct($entityManager, $eventDispatcher, $datetime, $weeklytask)
+
+    /**
+     * Codegenerator service
+     *
+     * @var
+     */
+    protected $codegenerator;
+
+    /**
+     * Entty manager object
+     *
+     * @var
+     */
+    protected $entityManager;
+
+    /**
+     * Class constructor
+     *
+     * @param $datetime
+     * @param $weeklytask
+     * @param $entityManager
+     */
+    public function __construct($datetime, $weeklytask, $codegenerator, $entityManager)
     {
-        $this->entityManager = $entityManager;
         $this->datetime = $datetime;
-        $this->eventDispatcher = $eventDispatcher;
         $this->weeklytask = $weeklytask;
+        $this->codegenerator = $codegenerator;
+        $this->entityManager = $entityManager;
     }
 
     /**
      * Get subscribers
+     *
      * @return array
      */
     public static function getSubscribedEvents()
@@ -43,6 +74,7 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
 
     /**
      * Mark weekly task as completed
+     *
      * @param WeeklytaskUserEvent $event
      */
     public function onWeeklytaskUserDoneEvent(WeeklytaskUserEvent $event)
@@ -62,12 +94,13 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
     }
 
     /**
+     * Create a new reminder object
      *
      * @param WeeklytaskUserEvent $event
      */
     public function onWeeklytaskReminderCreateEvent(WeeklytaskUserEvent $event)
     {
-        $codegenerator = $this->container->get('codegenerator');
+        $codegenerator = $this->codegenerator;
         if (!($weeklytaskUser = $event->getEntity())) {
             throw new \LogicException('Weeklytask user object can not be empty');
         }
@@ -77,52 +110,68 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
             throw new \LogicException('Weeklytask for this date already exists');
         }
 
-        if (!($weeklytask = $this->weeklytask->choose($weeklytaskUser->getUser()))) {
-            throw new WeeklytaskLastException('No available weeklytasks more');
+        if (!$weeklytaskUser->getTask()) {
+            if (!($weeklytask = $this->weeklytask->choose($weeklytaskUser->getUser()))) {
+                throw new WeeklytaskLastException('No available weeklytasks more');
+            }
+            $weeklytaskUser->setTask($weeklytask);
         }
 
         $weeklytaskUser->setDone(0);
         $weeklytaskUser->setDoneDate(null);
         $weeklytaskUser->setError(0);
         $weeklytaskUser->setErrorDate(null);
-        $weeklytaskUser->setTask($weeklytask);
         $weeklytaskUser->setCountPoint(0);
         $weeklytaskUser->setCode($codegenerator->password(10));
 
         $this->entityManager->persist($weeklytaskUser);
         $this->entityManager->flush($weeklytaskUser);
 
-        if (!($quiz = $weeklytask->getQuiz())) {
+        $dateQuiz = clone $weeklytaskUser->getDate();
+        if ( ($weeklytask = $weeklytaskUser->getTask())
+            and !($quiz = $weeklytask->getQuiz())) {
             return;
         }
 
         $weeklyquizUser = new WeeklyquizUser();
         $weeklyquizUser->setDone(0);
+        $weeklyquizUser->setDoneDate(null);
+        $weeklyquizUser->setError(0);
+        $weeklyquizUser->setErrorDate(null);
         $weeklyquizUser->setProcessed($weeklytaskUser->getProcessed());
+        $weeklyquizUser->setProcessedDate($weeklytaskUser->getProcessedDate());
         $weeklyquizUser->setQuiz($quiz);
         $weeklyquizUser->setUser($weeklytaskUser->getUser());
         $weeklyquizUser->setCountPoint(0);
         $weeklyquizUser->setCode($codegenerator->password(10));
         $weeklyquizUser->setTask($weeklytask);
-        $weeklyquizUser->setDate($weeklytaskUser->getDate()->modify('+1 day'));
+        $weeklyquizUser->setDate($dateQuiz->modify('+1 day'));
         $weeklyquizUser->setUserTask($weeklytaskUser);
 
-        $this->container->get('entity_manager')->persist($weeklyquizUser);
-        $this->container->get('entity_manager')->flush($weeklyquizUser);
+        $this->entityManager->persist($weeklyquizUser);
+        $this->entityManager->flush($weeklyquizUser);
 
         $weeklytaskUser->setUserQuiz($weeklyquizUser);
-        $this->container->get('entity_manager')->persist($weeklytaskUser);
-        $this->container->get('entity_manager')->flush($weeklytaskUser);
+        $this->entityManager->persist($weeklytaskUser);
+        $this->entityManager->flush($weeklytaskUser);
     }
 
 
     /**
+     * Do something with this object and mark as processed
+     * something - send an email, or any other notification
+     *
      * @param WeeklytaskUserEvent $event
      */
     public function onWeeklytaskReminderProcessEvent(WeeklytaskUserEvent $event)
     {
         if (!($weeklytaskUser = $event->getEntity())) {
             throw new \LogicException('Weeklytask object can not be empty');
+        }
+
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        if (($weeklytaskUserExisted = $repository->processed($weeklytaskUser))) {
+            throw new \LogicException('Weeklytask for this date already exists');
         }
 
         $weeklytaskUser->setProcessed(true);
@@ -135,6 +184,8 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
     }
 
     /**
+     * Process exception with current object,
+     * store information about this exception
      *
      * @param WeeklytaskUserEvent $event
      */
