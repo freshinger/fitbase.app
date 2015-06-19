@@ -17,9 +17,24 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubscriberInterface
 {
+    /**
+     * DateTime generator
+     * @var
+     */
     protected $datetime;
+
+    /**
+     * Entity manager object
+     * @var
+     */
     protected $entityManager;
 
+    /**
+     * Class cosntructor
+     *
+     * @param $entityManager
+     * @param $datetime
+     */
     public function __construct($entityManager, $datetime)
     {
         $this->datetime = $datetime;
@@ -73,6 +88,11 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
             throw new \LogicException('User reminder object can not be empty');
         }
 
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
+        if (($exerciseUserReminderExisted = $repository->processed($exerciseUserReminder))) {
+            throw new \LogicException('Reminder with this date was already sent');
+        }
+
         $exerciseUserReminder->setProcessed(true);
         $exerciseUserReminder->setProcessedDate(
             $this->datetime->getDateTime('now')
@@ -94,6 +114,7 @@ class ExerciseUserReminderSubscriber extends ContainerAware implements EventSubs
 
         $exerciseUserReminder->setError(true);
         $exerciseUserReminder->setProcessed(true);
+
         $this->entityManager->persist($exerciseUserReminder);
         $this->entityManager->flush($exerciseUserReminder);
     }

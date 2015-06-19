@@ -47,7 +47,6 @@ class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
     {
         return (new WeeklytaskUser())
             ->setDate(new \DateTime())
-            ->setTask(new Weeklytask())
             ->setUser($this->getUser());
     }
 

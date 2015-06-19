@@ -110,7 +110,7 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
             throw new \LogicException('Weeklytask for this date already exists');
         }
 
-        if (!$weeklytaskUser->getTask()) {
+        if (is_null($weeklytaskUser->getTask())) {
             if (!($weeklytask = $this->weeklytask->choose($weeklytaskUser->getUser()))) {
                 throw new WeeklytaskLastException('No available weeklytasks more');
             }
@@ -128,8 +128,9 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
         $this->entityManager->flush($weeklytaskUser);
 
         $dateQuiz = clone $weeklytaskUser->getDate();
-        if ( ($weeklytask = $weeklytaskUser->getTask())
-            and !($quiz = $weeklytask->getQuiz())) {
+        if (($weeklytask = $weeklytaskUser->getTask())
+            and !($quiz = $weeklytask->getQuiz())
+        ) {
             return;
         }
 
