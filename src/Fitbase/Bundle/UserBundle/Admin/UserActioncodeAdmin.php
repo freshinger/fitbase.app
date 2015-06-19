@@ -174,7 +174,8 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         }
 
 
-        $formMapper->add('categories', null, array(
+        $formMapper
+            ->add('categories', null, array(
             'required' => true,
             'query_builder' => function ($repository) {
                 $queryBuilder = $repository->createQueryBuilder('Category');
@@ -184,6 +185,9 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         ))
             ->end()
             ->with('Lock', array('class' => 'col-md-6'))
+            ->add('user', null, array(
+                'required' => false,
+            ))
             ->add('expire', 'checkbox', array(
                 'required' => false,
                 'label' => 'Zugang blockieren, wenn alle Infoeinheiten fertig sind'

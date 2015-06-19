@@ -49,7 +49,6 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
         $day = $datetime->format('N');
         if (($collection = $this->get('reminder')->getItemsWeeklytask($day))) {
             foreach ($collection as $reminderUserItem) {
-
                 if ((($user = $reminderUserItem->getUser())) and
                     $serviceUser->isGranted($user, $this->getRoles())) {
 
