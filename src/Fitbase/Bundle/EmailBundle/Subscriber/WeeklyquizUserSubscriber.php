@@ -3,12 +3,7 @@
 namespace Fitbase\Bundle\EmailBundle\Subscriber;
 
 
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
-use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class WeeklyquizUserSubscriber implements EventSubscriberInterface
@@ -16,14 +11,14 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
     protected $mailer;
     protected $translator;
     protected $templating;
-    protected $objectManager;
+    protected $entityManager;
 
-    public function __construct($mailer, $templating, $translator, $objectManager)
+    public function __construct($mailer, $templating, $translator, $entityManager)
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->templating = $templating;
-        $this->objectManager = $objectManager;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -33,7 +28,7 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'weeklyquiz_reminder_send' => array('onWeeklyquizUserSendEvent'),
+            'fitbase.weeklyquiz_reminder_process' => array('onWeeklyquizUserSendEvent'),
         );
     }
 
@@ -43,26 +38,28 @@ class WeeklyquizUserSubscriber implements EventSubscriberInterface
      */
     public function onWeeklyquizUserSendEvent(WeeklyquizUserEvent $event)
     {
-        if (($weeklyquizUser = $event->getEntity())) {
-
-            if (($user = $weeklyquizUser->getUser())) {
-
-                $title = $this->translator->trans('Ihr fitbase Quiz');
-                $content = $this->templating->render('Email/Subscriber/UserWeeklyquiz.html.twig', array(
-                    'user' => $weeklyquizUser->getUser(),
-                    'company' => $weeklyquizUser->getUser()->getCompany(),
-                    'task' => $weeklyquizUser->getTask(),
-                    'quiz' => $weeklyquizUser->getQuiz(),
-                    'userQuiz' => $weeklyquizUser,
-                ));
-
-                $this->mailer->mail($user, $title, $content);
-            }
-
-            $weeklyquizUser->setProcessed(1);
-
-            $this->objectManager->persist($weeklyquizUser);
-            $this->objectManager->flush($weeklyquizUser);
+        if (!($weeklyquizUser = $event->getEntity())) {
+            throw new \LogicException('Weeklyquiz object can not be empty');
         }
+
+        if (!($user = $weeklyquizUser->getUser())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser');
+        if (($weeklyquizUserExisted = $repository->processed($weeklyquizUser))) {
+            throw new \LogicException('Weeklyquiz for this date already exists');
+        }
+
+        $title = $this->translator->trans('Ihr fitbase Quiz');
+        $content = $this->templating->render('Email/Subscriber/UserWeeklyquiz.html.twig', array(
+            'user' => $user,
+            'company' => $user->getCompany(),
+            'task' => $weeklyquizUser->getTask(),
+            'quiz' => $weeklyquizUser->getQuiz(),
+            'userQuiz' => $weeklyquizUser,
+        ));
+
+        $this->mailer->mail($user, $title, $content);
     }
 }

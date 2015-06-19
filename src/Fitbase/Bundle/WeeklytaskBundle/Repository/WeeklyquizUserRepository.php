@@ -5,6 +5,7 @@ namespace Fitbase\Bundle\WeeklytaskBundle\Repository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
 class WeeklyquizUserRepository extends EntityRepository
@@ -14,6 +15,21 @@ class WeeklyquizUserRepository extends EntityRepository
         if (!empty($unique)) {
             $queryBuilder->setParameter('unique', $unique);
             return $queryBuilder->expr()->eq('WeeklyquizUser.id', ':unique');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
+     * @param $queryBuilder
+     * @param null $unique
+     * @return mixed
+     */
+    protected function getExprNotUnique($queryBuilder, $unique = null)
+    {
+        if (!is_null($unique)) {
+            $queryBuilder->setParameter('not_unique', $unique);
+            return $queryBuilder->expr()->neq('WeeklyquizUser.id', ':not_unique');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
@@ -30,6 +46,17 @@ class WeeklyquizUserRepository extends EntityRepository
             return $queryBuilder->expr()->lt('WeeklyquizUser.date', ':datetime');
         }
         return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', true);
+        return $queryBuilder->expr()->eq('WeeklyquizUser.processed', ':processed');
     }
 
     /**
@@ -397,5 +424,25 @@ class WeeklyquizUserRepository extends EntityRepository
         ));
 
         return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * @param WeeklytaskUser $entity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function processed(WeeklyquizUser $entity)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklyquizUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprNotUnique($queryBuilder, $entity->getId()),
+            $this->getExprUser($queryBuilder, $entity->getUser()),
+            $this->getExprProcessed($queryBuilder)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 }

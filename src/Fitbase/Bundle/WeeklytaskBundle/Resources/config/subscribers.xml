@@ -12,9 +12,20 @@
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="datetime"/>
             <argument type="service" id="weeklytask"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
             <tag name="kernel.event_subscriber"/>
         </service>
 
+
+        <service id="fitbase.subscriber.infoeinheit.weeklyquiz_user"
+                 class="Fitbase\Bundle\WeeklytaskBundle\Subscriber\WeeklyquizUserSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
 
         <service id="fitbase.subscriber.infoeinheit.user_wizard"
                  class="Fitbase\Bundle\WeeklytaskBundle\Subscriber\UserWizardSubscriber">
