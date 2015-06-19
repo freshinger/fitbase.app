@@ -185,9 +185,6 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         ))
             ->end()
             ->with('Lock', array('class' => 'col-md-6'))
-            ->add('user', null, array(
-                'required' => false,
-            ))
             ->add('expire', 'checkbox', array(
                 'required' => false,
                 'label' => 'Zugang blockieren, wenn alle Infoeinheiten fertig sind'

@@ -100,17 +100,15 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
      */
     public function onWeeklytaskReminderCreateEvent(WeeklytaskUserEvent $event)
     {
-
-
         $codegenerator = $this->codegenerator;
         if (!($weeklytaskUser = $event->getEntity())) {
             throw new \LogicException('Weeklytask user object can not be empty');
         }
 
-//        $repository = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
-//        if (($weeklytaskUserExisted = $repository->exists($weeklytaskUser))) {
-//            throw new \LogicException('Weeklytask for this date already exists');
-//        }
+        $repository = $this->entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        if (($weeklytaskUserExisted = $repository->exists($weeklytaskUser))) {
+            throw new \LogicException('Weeklytask for this date already exists');
+        }
 
         if (is_null($weeklytaskUser->getTask())) {
             if (!($weeklytask = $this->weeklytask->choose($weeklytaskUser->getUser()))) {
