@@ -25,7 +25,6 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
-
     /**
      * Date time generator
      *
@@ -98,7 +97,8 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
             }
 
             if (($interval = $date->diff($weeklytaskUser->getDate()))) {
-                if (((int)$interval->format('%a')) >= 7) {
+                if (($date > $weeklytaskUser->getDate()) and
+                    ((int)$interval->format('%a')) >= 7) {
 
                     $user->setExpired(true);
 

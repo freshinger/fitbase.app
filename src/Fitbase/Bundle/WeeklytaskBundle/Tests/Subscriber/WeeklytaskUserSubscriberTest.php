@@ -10,19 +10,13 @@ namespace Fitbase\Bundle\UserBundle\Test\Subscriber;
 use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\CompanyBundle\Entity\Company;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
-use Fitbase\Bundle\UserBundle\Entity\UserActioncode;
 use Fitbase\Bundle\UserBundle\Entity\UserFocus;
-use Fitbase\Bundle\WeeklytaskBundle\Consumer\WeeklytaskPlannerConsumer;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklyquiz;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Subscriber\WeeklytaskUserSubscriber;
-use Sonata\NotificationBundle\Consumer\ConsumerEvent;
-use Sonata\NotificationBundle\Model\Message;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
 {

@@ -129,8 +129,7 @@ class WeeklytaskUserSubscriber extends ContainerAware implements EventSubscriber
 
         $dateQuiz = clone $weeklytaskUser->getDate();
         if (($weeklytask = $weeklytaskUser->getTask())
-            and !($quiz = $weeklytask->getQuiz())
-        ) {
+            and !($quiz = $weeklytask->getQuiz())) {
             return;
         }
 
