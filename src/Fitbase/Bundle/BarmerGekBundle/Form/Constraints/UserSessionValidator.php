@@ -32,6 +32,11 @@ class UserSessionValidator extends ConstraintValidator implements ContainerAware
      */
     public function validate($entity, Constraint $constraint)
     {
+        $serviceBarmerApi = $this->container->get('barmer_gek_api');
+        if ($serviceBarmerApi->sessionStatus($entity->getUnique(), $entity->getSession())) {
+            return true;
+        }
+
         $this->context->addViolation($constraint->message, array());
         return false;
     }

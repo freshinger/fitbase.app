@@ -50,7 +50,8 @@ class AuthenticatorSubscriber extends ContainerAware implements EventSubscriberI
         if (($request = $event->getRequest())) {
 
             if (($userId = $request->get('userId')) and
-                ($sessionKey = $request->get('sessionKey'))) {
+                ($sessionKey = $request->get('sessionKey'))
+            ) {
 
                 $token = new PreAuthenticatedToken(
                     'anon.', (new SessionKey())
@@ -77,15 +78,24 @@ class AuthenticatorSubscriber extends ContainerAware implements EventSubscriberI
                 return;
             }
 
-            //TODO: check use authentication using barmer api
-            //TODO: try to find an existed user in out database
+            $serviceBarmerApi = $this->container->get('barmer_gek_api');
+            if ($serviceBarmerApi->sessionStatus($credentials->getUserId(), $credentials->getSessionKey())) {
 
-//                $token = new PreAuthenticatedToken(
-//                    $user, $sign, $event->getProviderKey(), $user->getRoles()
-//                );
-//
-//                $event->setToken($token)
-//                    ->stopPropagation();
+                $entityManager = $this->container->get('entity_manager');
+                $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+
+                if (($user = $repositoryUser->findOneByExternalId($credentials->getUserId()))) {
+
+                    $token = new PreAuthenticatedToken(
+                        $user, $credentials, $event->getProviderKey(), $user->getRoles()
+                    );
+
+                    $event->setToken($token)
+                        ->stopPropagation();
+
+                    return;
+                }
+            }
 
             throw new FitbaseUserRegistrationException('User has to be registered on fitbase.de');
         }

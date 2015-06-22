@@ -20,6 +20,9 @@ imports:
 
     #- { resource: bazinga/bazinga_hateos.yml }
 
+    # Sonata Client API Bundles
+    - { resource: sonata/sonata_client.yml }
+
     # Sonata Core Bundles
     - { resource: sonata/sonata_block.yml }
     - { resource: sonata/sonata_formatter.yml }

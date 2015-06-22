@@ -13,6 +13,7 @@ use Fitbase\Bundle\BarmerGekBundle\Form\RegistrationUserForm;
 use Fitbase\Bundle\BarmerGekBundle\Model\RegistrationUser;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends Controller
@@ -52,19 +53,25 @@ class RegistrationController extends Controller
 
             if ($form->isValid()) {
 
-                $user = new User();
-                $user->setEmail($entity->getEmail());
-                $user->setCompany($company);
-                $user->setFirstname($entity->getFirstName());
-                $user->setLastname($entity->getLastName());
-                $user->setPlainPassword($this->get('codegenerator')->password(10));
+                $serviceBarmerApi = $this->get('barmer_gek_api');
+                if ($serviceBarmerApi->user($entity->getUnique())) {
 
-                $this->get('event_dispatcher')->dispatch('fitbase.user_register', new UserEvent($user));
+                    $user = new User();
+                    $user->setEmail($entity->getEmail());
+                    $user->setCompany($company);
+                    $user->setFirstname($entity->getFirstName());
+                    $user->setLastname($entity->getLastName());
+                    $user->setPlainPassword($this->get('codegenerator')->password(10));
 
-                return $this->redirect($this->generateUrl('dashboard', array(
-                    'userId' => $entity->getUnique(),
-                    'sessionKey' => $entity->getSession(),
-                )));
+                    $this->get('event_dispatcher')->dispatch('fitbase.user_register', new UserEvent($user));
+
+                    return $this->redirect($this->generateUrl('dashboard', array(
+                        'userId' => $entity->getUnique(),
+                        'sessionKey' => $entity->getSession(),
+                    )));
+                }
+
+                $form->addError(new FormError('Es gibt keine Verbindung mit dem BarmerGEK Server.'));
             }
         }
 

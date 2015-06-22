@@ -82,7 +82,8 @@
         "bariew/phpquery": "1.0.2",
         "cocur/slugify": "1.0.x-dev",
         "besimple/soap": "0.2.x-dev",
-        "jmose/command-scheduler-bundle": "~1.0"
+        "jmose/command-scheduler-bundle": "~1.0",
+        "ci/restclientbundle": "0.2.*"
     },
 
     "require-dev": {
