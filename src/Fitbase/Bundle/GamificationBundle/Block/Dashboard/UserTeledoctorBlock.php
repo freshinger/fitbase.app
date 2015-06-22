@@ -8,29 +8,38 @@
 namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
 
 
-use Sonata\BlockBundle\Block\BaseBlockService;
-use Sonata\BlockBundle\Block\BlockContextInterface;
+use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class UserStatisticBlock extends BaseBlockService implements ContainerAwareInterface
+class UserTeledoctorBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     /**
-     * Store container here
+     * store container here
      * @var
      */
     protected $container;
 
     /**
-     * Set container
+     * set container
      * @param ContainerInterface $container
      */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    /**
+     * Get array with roles, for this block
+     * @return mixed
+     */
+    function getRoles()
+    {
+        return [
+            'ROLE_FITBASE_USER'
+        ];
     }
 
     /**
@@ -40,24 +49,25 @@ class UserStatisticBlock extends BaseBlockService implements ContainerAwareInter
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/UserStatistic.html.twig',
+            'template' => 'Gamification/Dashboard/UserTeledoctor.html.twig',
         ));
     }
 
     /**
-     * Draw a block
-     * {@inheritdoc}
+     * Render block response
+     *
+     * @param string $view
+     * @param array $parameters
+     * @param Response $response
+     * @return Response
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
         if (!($user = $this->container->get('user')->current())) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+            throw new \LogicException('User object can not be empty');
         }
 
-        return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'user' => $user,
-            'statistic' => $this->container->get('statistic')->statistic($user),
-        ));
+        return $this->getTemplating()->renderResponse($view, $parameters, $response);
     }
 
     /**
@@ -65,6 +75,6 @@ class UserStatisticBlock extends BaseBlockService implements ContainerAwareInter
      */
     public function getName()
     {
-        return 'User statistic (Gamification dashboard)';
+        return 'User teledoctor (Gamification dashboard)';
     }
-} 
+}

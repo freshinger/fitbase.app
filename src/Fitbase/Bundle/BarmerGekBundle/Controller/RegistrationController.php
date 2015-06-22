@@ -57,6 +57,7 @@ class RegistrationController extends Controller
                 if ($serviceBarmerApi->user($entity->getUnique())) {
 
                     $user = new User();
+                    $user->setPrivatePerson(true);
                     $user->setEmail($entity->getEmail());
                     $user->setCompany($company);
                     $user->setFirstname($entity->getFirstName());

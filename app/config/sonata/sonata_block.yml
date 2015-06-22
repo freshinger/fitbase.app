@@ -114,7 +114,8 @@ sonata_block:
         fitbase.block.gamification.dashboard_activity:
         fitbase.block.gamification.dashboard_statistic:
         fitbase.block.gamification.dashboard_dialog:
-
+        fitbase.block.gamification.dashboard_teledoctor:
+        fitbase.block.gamification.dashboard_docs:
 
 
         fitbase.block.gamification.dashboard_weeklytask:
