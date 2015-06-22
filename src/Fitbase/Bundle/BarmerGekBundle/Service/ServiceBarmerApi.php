@@ -51,7 +51,7 @@ class ServiceBarmerApi extends ContainerAware
         $resource = "{$this->getServer()}/sessionkey-sso/session-status?userId={$id}&sessionkey={$key}";
 
         if (($result = $this->process($resource))) {
-            return $result->valid;
+            return ($result->valid == 'true' ? true : false);
         }
 
         return false;
@@ -67,8 +67,8 @@ class ServiceBarmerApi extends ContainerAware
     {
         $resource = "{$this->getServer()}/sessionkey-sso/user?userId={$id}&userStatus=REGISTERED";
 
-        if (($result = $this->process($resource))) {
-            return $result->success;
+        if (($result = $this->process($resource, 'post'))) {
+            return ($result->success == 'true' ? true : false);
         }
 
         return false;
@@ -80,11 +80,11 @@ class ServiceBarmerApi extends ContainerAware
      * @param $resource
      * @return mixed|null
      */
-    protected function process($resource)
+    protected function process($resource, $method = 'get')
     {
         try {
 
-            if (($response = $this->client->get($resource))) {
+            if (($response = call_user_func_array([$this->client, $method], [$resource]))) {
 
                 if ($response->getStatusCode() == 200) {
                     return json_decode($response->getContent());
@@ -93,7 +93,8 @@ class ServiceBarmerApi extends ContainerAware
                 $this->logger->err("BarmerGEK API response status: " . $response->getStatusCode());
             }
 
-        } catch (Ci\RestClientBundle\Exceptions\CurlException $exception) {
+        } catch (\Ci\RestClientBundle\Exceptions\CurlException $exception) {
+
             $this->logger->err($exception->getMessage());
         }
 
