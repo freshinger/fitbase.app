@@ -828,4 +828,32 @@ class Company
     {
         return $this->css;
     }
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\Company
+     */
+    private $parent;
+
+
+    /**
+     * Set parent
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\Company $parent
+     * @return Company
+     */
+    public function setParent(\Fitbase\Bundle\CompanyBundle\Entity\Company $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\Company 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
 }
