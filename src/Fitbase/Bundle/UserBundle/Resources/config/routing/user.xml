@@ -7,4 +7,10 @@
     <route id="user_remove" pattern="/account/remove">
         <default key="_controller">FitbaseUserBundle:User:remove</default>
     </route>
+
+
+    <route id="user_focus_category_questionnaire" pattern="/questionnaire/focus/category/{unique}">
+        <default key="_controller">FitbaseUserBundle:UserFocusCategory:questionnaire</default>
+    </route>
+
 </routes>

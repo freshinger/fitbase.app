@@ -9,12 +9,13 @@ namespace Fitbase\Bundle\UserBundle\Block\Focus;
 
 
 use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
+use Fitbase\Bundle\QuestionnaireBundle\Form\QuestionnaireUserForm;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryCompanyQuestionnaireBlock extends BaseFitbaseBlock implements ContainerAwareInterface
+class CategoryQuestionnaireBlock extends BaseFitbaseBlock implements ContainerAwareInterface
 {
     protected $container;
 
@@ -48,8 +49,8 @@ class CategoryCompanyQuestionnaireBlock extends BaseFitbaseBlock implements Cont
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'focusCategory' => null,
-            'template' => 'Company/Block/CompanyCategoryQuestionnaire.html.twig',
+            'category' => null,
+            'template' => 'User/Focus/Block/CategoryQuestionnaire.html.twig',
         ));
     }
 
@@ -71,13 +72,13 @@ class CategoryCompanyQuestionnaireBlock extends BaseFitbaseBlock implements Cont
             throw new \LogicException('Company category object can not be empty');
         }
 
-        
-        if (($companyQuestionnaire = $companyCategory->getQuestionnaire())) {
-
+        if (!($companyQuestionnaire = $companyCategory->getQuestionnaire())) {
+            throw new \LogicException('Questionnaire object can not be empty');
         }
 
-
-        return $this->getTemplating()->renderResponse($view, array(), $response);
+        return $this->getTemplating()->renderResponse($view, [
+            'questionnaire' => $companyQuestionnaire
+        ], $response);
     }
 
     /**

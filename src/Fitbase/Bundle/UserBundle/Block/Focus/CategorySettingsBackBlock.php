@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class CategoryBackSettingsBlock extends BaseFitbaseBlock
+class CategorySettingsBackBlock extends BaseFitbaseBlock
 {
     /**
      * Store container here
@@ -53,7 +53,7 @@ class CategoryBackSettingsBlock extends BaseFitbaseBlock
     {
         $resolver->setDefaults(array(
             'focus' => null,
-            'template' => 'User/Block/FocusSettingsBack.html.twig',
+            'template' => 'User/Focus/Block/CategorySettingsBack.html.twig',
         ));
     }
 
