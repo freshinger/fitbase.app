@@ -34,8 +34,7 @@
         </many-to-one>
 
 
-        <one-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer"
-                     mapped-by="questionnaireUser">
+        <one-to-many field="answers" target-entity="Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireUserAnswer" mapped-by="questionnaireUser">
             <cascade>
                 <cascade-all/>
             </cascade>

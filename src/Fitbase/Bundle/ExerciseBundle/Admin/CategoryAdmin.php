@@ -11,6 +11,7 @@
 
 namespace Fitbase\Bundle\ExerciseBundle\Admin;
 
+use Fitbase\Bundle\CompanyBundle\Event\CompanyCategoryEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\CategoryEvent;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -39,6 +40,21 @@ class CategoryAdmin extends BaseCategoryAdmin implements ContainerAwareInterface
     {
         $event = new CategoryEvent($object);
         $this->container->get('event_dispatcher')->dispatch('category_created', $event);
+    }
+
+    public function preUpdate($object)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\CompanyCategory');
+        $eventDispatcher = $this->container->get('event_dispatcher');
+        if (($collection = $repository->findByCategory($object))) {
+            foreach ($collection as $companyCategory) {
+
+                $event = new CompanyCategoryEvent($companyCategory);
+                $eventDispatcher->dispatch('fitbase.company_category_update', $event);
+            }
+        }
+
     }
 
     /**
