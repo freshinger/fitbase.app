@@ -79,20 +79,6 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
 
 
             $this->doCreateCompanyQuestionnaire($company, $questionnaire, $companyCategory);
-
-//            $entity = (new CompanyQuestionnaire())
-//                ->setCompany($company)
-//                ->setQuestionnaire($questionnaire)
-//                ->setPause(0);
-//
-//            $entityManager = $this->container->get('entity_manager');
-//            $entityManager->persist($entity);
-//            $entityManager->flush($entity);
-//            $entityManager->refresh($entity);
-//
-//            $companyCategory->setQuestionnaire($entity);
-//            $entityManager->persist($entity);
-//            $entityManager->flush($entity);
         }
     }
 
