@@ -41,18 +41,23 @@ class UserFocusCategoryQuestionnaireResults
         $categories = [];
         if (count($this->results)) {
             foreach ($this->results as $result) {
-                if ($result['points'] > $max) {
-                    $max = $result['points'];
-                    $winners = [$result];
-                } else if ($result['points'] == $max) {
+                if (isset($result['category']) and ($category = $result['category'])) {
+                    array_push($categories, $category->getId());
+                    if (isset($result['points']) and ($points = $result['points'])) {
 
-                    if (isset($result['category']) and ($category = $result['category'])) {
-                        if (!in_array($category->getId(), $categories)) {
-                            array_push($winners, $result);
-                            array_push($categories, $result['category']->getId());
+                        if ($points > $max) {
+                            $max = $points;
+                            $winners = [$result];
+                        } else if ($points == $max) {
+                            if (!in_array($category->getId(), $categories)) {
+                                array_push($winners, $result);
+                            }
                         }
                     }
+
                 }
+
+
             }
         }
 
