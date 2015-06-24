@@ -2,7 +2,6 @@
 namespace Fitbase\Bundle\BarmerGekBundle\Tests\Service;
 
 
-use Ci\RestClientBundle\Exceptions\CurlException;
 use Fitbase\Bundle\BarmerGekBundle\Service\ServiceBarmerApi;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Symfony\Component\HttpFoundation\Response;
