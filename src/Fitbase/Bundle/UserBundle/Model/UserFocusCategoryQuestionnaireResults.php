@@ -44,7 +44,7 @@ class UserFocusCategoryQuestionnaireResults
                 if (isset($result['category']) and ($category = $result['category'])) {
                     if (isset($result['points']) and ($points = $result['points'])) {
 
-                        if ($points > $max) {
+                        if ($points >= $max) {
                             $max = $points;
                             $winners = [$result];
                             array_push($categories, $category->getId());
