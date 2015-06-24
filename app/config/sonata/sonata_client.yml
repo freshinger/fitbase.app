@@ -1,5 +1,5 @@
 ci_rest_client:
     curl:
       defaults:
-        CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json', 'Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==' ]
+        CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json', 'Authorization: Basic Zml0YmFzZV92ZXJpZmllcjpEMTg4Z0NjYQ==' ]
         CURLOPT_FOLLOWLOCATION: true
