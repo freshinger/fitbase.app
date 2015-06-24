@@ -1,13 +1,13 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class WeeklytaskSenderCommand extends ContainerAwareCommand
+class WeeklytaskSenderCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -32,7 +32,7 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
@@ -42,6 +42,7 @@ class WeeklytaskSenderCommand extends ContainerAwareCommand
 
                 if (($user = $weeklytaskUser->getUser()) and
                     $serviceUser->isGranted($user, $this->getRoles())) {
+
                     $this->doProcessEntity($weeklytaskUser);
                 }
             }

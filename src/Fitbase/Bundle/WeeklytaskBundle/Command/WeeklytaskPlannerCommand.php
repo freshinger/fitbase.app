@@ -1,19 +1,16 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeLockCommand;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskReminderEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklytaskUserEvent;
 use Fitbase\Bundle\WeeklytaskBundle\Exception\WeeklytaskLastException;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\EventDispatcher\Event;
 
 
-class WeeklytaskPlannerCommand extends ContainerAwareCommand
+class WeeklytaskPlannerCommand extends SafeCommand
 {
     /**
      * Configure current console task
@@ -41,16 +38,18 @@ class WeeklytaskPlannerCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $serviceUser = $this->get('user');
         $datetime = $this->get('datetime');
 
         $day = $datetime->format('N');
+
         if (($collection = $this->get('reminder')->getItemsWeeklytask($day))) {
             foreach ($collection as $reminderUserItem) {
                 if ((($user = $reminderUserItem->getUser())) and
-                    $serviceUser->isGranted($user, $this->getRoles())) {
+                    $serviceUser->isGranted($user, $this->getRoles())
+                ) {
 
                     $hour = $reminderUserItem->getTime()->format('H');
                     $minute = $reminderUserItem->getTime()->format('i');

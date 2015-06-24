@@ -1,13 +1,12 @@
 <?php
 namespace Fitbase\Bundle\UserBundle\Command;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-
-class UserRemoveCommand extends ContainerAwareCommand
+class UserRemoveCommand extends SafeCommand
 {
     /**
      * Configure current console task
@@ -24,7 +23,7 @@ class UserRemoveCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         if (($collection = $this->getContainer()->get('user')->getUsersToRemove())) {
             foreach ($collection as $user) {

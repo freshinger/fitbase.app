@@ -1,15 +1,13 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class WeeklyquizSenderCommand extends ContainerAwareCommand
+class WeeklyquizSenderCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -29,12 +27,11 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
     }
 
     /**
-     * Create weekly tasks planning for all users
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|null|void
+     * @return mixed|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
@@ -43,12 +40,15 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
             foreach ($collection as $weeklyquizUser) {
 
                 if (($user = $weeklyquizUser->getUser()) and
-                    $serviceUser->isGranted($user, $this->getRoles())) {
+                    $serviceUser->isGranted($user, $this->getRoles())
+                ) {
+
                     $this->doProcessEntity($weeklyquizUser);
                 }
             }
         }
     }
+
 
     /**
      * Process current element
