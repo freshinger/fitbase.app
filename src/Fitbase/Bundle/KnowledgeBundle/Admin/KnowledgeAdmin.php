@@ -66,9 +66,6 @@ class KnowledgeAdmin extends Admin implements ContainerAwareInterface
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-//        $datagridMapper
-//            ->add('name')
-//            ->add('description');
     }
 
     /**
