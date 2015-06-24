@@ -57,10 +57,7 @@ class UserFocusCategoryQuestionnaireResults
                             }
                         }
                     }
-
                 }
-
-
             }
         }
 
