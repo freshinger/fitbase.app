@@ -39,6 +39,14 @@
             </call>
         </service>
 
+        <service id="fitbase.subscriber.gamification.widget"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\WidgetSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
     </services>
 
 </container>

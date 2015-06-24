@@ -5,27 +5,27 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
+namespace Fitbase\Bundle\FitbaseBundle\Block;
 
 
 use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
-use Sonata\BlockBundle\Block\BlockContextInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Fitbase\Bundle\GamificationBundle\Event\WidgetEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserDocsBlock extends BaseFitbaseBlock implements containerawareinterface
+
+class DashboardForestBlock extends BaseFitbaseBlock
 {
-    /**
-     * store container here
-     * @var
-     */
+
     protected $container;
 
     /**
-     * set container
-     * @param containerinterface $container
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -39,24 +39,23 @@ class UserDocsBlock extends BaseFitbaseBlock implements containerawareinterface
     function getRoles()
     {
         return [
-            'ROLE_FITBASE_USER'
+            'ROLE_FITBASE_USER',
         ];
     }
 
-
     /**
-     * Set defaults
+     * Define
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/UserDocs.html.twig',
+            'template' => 'Fitbase/User/Dashboard/Forest.html.twig',
         ));
     }
 
     /**
-     * Render block response
+     *  Render response
      *
      * @param string $view
      * @param array $parameters
@@ -65,18 +64,22 @@ class UserDocsBlock extends BaseFitbaseBlock implements containerawareinterface
      */
     public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new \LogicException('User object can not be empty');
+        $event = new WidgetEvent($parameters);
+        $this->container->get('event_dispatcher')->dispatch('fitbase_widget.dashboard_forest', $event);
+
+        if (($response = $event->getResponse())) {
+            return $response;
         }
 
         return $this->getTemplating()->renderResponse($view, $parameters, $response);
     }
+
 
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'User documentation (Gamification dashboard)';
+        return 'User forest (Dashboard)';
     }
-} 
+}

@@ -5,26 +5,27 @@
  * Date: 15/10/14
  * Time: 11:14
  */
-namespace Fitbase\Bundle\GamificationBundle\Block\Dashboard;
+namespace Fitbase\Bundle\FitbaseBundle\Block;
 
 
 use Fitbase\Bundle\FitbaseBundle\Library\Block\BaseFitbaseBlock;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Fitbase\Bundle\GamificationBundle\Event\WidgetEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserTeledoctorBlock extends BaseFitbaseBlock implements ContainerAwareInterface
+
+class DashboardStatisticsBlock extends BaseFitbaseBlock
 {
-    /**
-     * store container here
-     * @var
-     */
+
     protected $container;
 
     /**
-     * set container
-     * @param ContainerInterface $container
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -38,23 +39,23 @@ class UserTeledoctorBlock extends BaseFitbaseBlock implements ContainerAwareInte
     function getRoles()
     {
         return [
-            'ROLE_FITBASE_USER'
+            'ROLE_FITBASE_USER',
         ];
     }
 
     /**
-     * Set defaults
+     * Define
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'Gamification/Dashboard/UserTeledoctor.html.twig',
+            'template' => 'Fitbase/User/Dashboard/Statistics.html.twig',
         ));
     }
 
     /**
-     * Render block response
+     *  Render response
      *
      * @param string $view
      * @param array $parameters
@@ -63,18 +64,22 @@ class UserTeledoctorBlock extends BaseFitbaseBlock implements ContainerAwareInte
      */
     public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
-        if (!($user = $this->container->get('user')->current())) {
-            throw new \LogicException('User object can not be empty');
+        $event = new WidgetEvent($parameters);
+        $this->container->get('event_dispatcher')->dispatch('fitbase_widget.dashboard_statistics', $event);
+
+        if (($response = $event->getResponse())) {
+            return $response;
         }
 
         return $this->getTemplating()->renderResponse($view, $parameters, $response);
     }
+
 
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
-        return 'User teledoctor (Gamification dashboard)';
+        return 'User statistics (Dashboard)';
     }
 }
