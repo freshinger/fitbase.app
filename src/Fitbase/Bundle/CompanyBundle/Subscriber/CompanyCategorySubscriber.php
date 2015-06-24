@@ -82,6 +82,13 @@ class CompanyCategorySubscriber extends ContainerAware implements EventSubscribe
         }
     }
 
+    /**
+     * Common function to create a new questionnaire
+     *
+     * @param $company
+     * @param $questionnaire
+     * @param $companyCategory
+     */
     protected function doCreateCompanyQuestionnaire($company, $questionnaire, $companyCategory)
     {
         $entityManager = $this->container->get('entity_manager');

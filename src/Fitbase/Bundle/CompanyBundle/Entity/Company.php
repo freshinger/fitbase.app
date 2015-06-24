@@ -258,6 +258,12 @@ class Company
      */
     public function getSite()
     {
+        if (($parent = $this->getParent())) {
+            if (($site = $parent->getSite())) {
+                return $site;
+            }
+        }
+
         return $this->site;
     }
 
@@ -828,6 +834,7 @@ class Company
     {
         return $this->css;
     }
+
     /**
      * @var \Fitbase\Bundle\CompanyBundle\Entity\Company
      */
@@ -850,7 +857,7 @@ class Company
     /**
      * Get parent
      *
-     * @return \Fitbase\Bundle\CompanyBundle\Entity\Company 
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\Company
      */
     public function getParent()
     {

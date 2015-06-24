@@ -52,9 +52,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
      */
     public function preUpdate($object)
     {
-        if (($parent = $object->getParent())) {
-            $object->setSite($parent->getSite());
-        }
+
     }
 
 
