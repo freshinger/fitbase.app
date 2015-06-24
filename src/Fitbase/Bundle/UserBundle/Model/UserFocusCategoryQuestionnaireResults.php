@@ -23,7 +23,7 @@ class UserFocusCategoryQuestionnaireResults
     public function addResult($points, Category $category)
     {
         array_push($this->results, [
-            'points' => $points,
+            'points' => abs($points),
             'category' => $category,
         ]);
 
