@@ -20,7 +20,7 @@ class UserFocusCategoryQuestionnaireResults
      * @param $category
      * @return $this
      */
-    public function addResult($points, $category)
+    public function addResult($points, Category $category)
     {
         array_push($this->results, [
             'points' => $points,
@@ -41,23 +41,30 @@ class UserFocusCategoryQuestionnaireResults
         $categories = [];
         if (count($this->results)) {
             foreach ($this->results as $result) {
-                if (isset($result['category'])) {
-                    $category = $result['category'];
-                    if (isset($result['points'])) {
-                        $points = $result['points'];
 
-                        if ($points > $max) {
-                            $max = $points;
-                            $winners = [$result];
-                            array_push($categories, $category->getId());
-                        } else if ($points == $max) {
-                            if (!in_array($category->getId(), $categories)) {
-                                array_push($winners, $result);
-                                array_push($categories, $category->getId());
-                            }
-                        }
+                if (!isset($result['category'])) {
+                    throw new \LogicException('Category object can not be empty');
+                }
+
+                if (!isset($result['points'])) {
+                    throw new \LogicException('Count of points should be defined');
+                }
+
+                $points = $result['points'];
+                $category = $result['category'];
+
+                if ($points > $max) {
+                    $max = $points;
+                    $winners = [$result];
+                    array_push($categories, $category->getId());
+                } else if ($points == $max) {
+                    if (!in_array($category->getId(), $categories)) {
+                        array_push($winners, $result);
+                        array_push($categories, $category->getId());
                     }
                 }
+
+
             }
         }
 
@@ -74,6 +81,11 @@ class UserFocusCategoryQuestionnaireResults
         $categories = [];
         if (($winners = $this->getWinners())) {
             foreach ($winners as $winner) {
+
+                if (!isset($winner['category'])) {
+                    throw new \LogicException('Category object can not be empty');
+                }
+
                 array_push($categories, $winner['category']);
             }
         }
@@ -177,6 +189,8 @@ class UserFocusCategoryQuestionnaireResults
                 array_push($slugs, $winner['category']->getSlug());
             }
 
+            // Sort array with strings, needs to ignore
+            // a given position of  each category
             asort($slugs, SORT_NATURAL | SORT_FLAG_CASE);
 
             return $this->getDescription(implode('-', $slugs));
