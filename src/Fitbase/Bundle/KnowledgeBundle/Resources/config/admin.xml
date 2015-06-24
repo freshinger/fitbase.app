@@ -4,17 +4,19 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <imports>
-        <import resource="admin.xml"/>
-        <import resource="blocks.xml"/>
-    </imports>
-
     <services>
-        <service id="knowledge" class="Fitbase\Bundle\KnowledgeBundle\Service\ServiceKnowledge">
+
+        <service id="fitbase.admin.knowledge"
+                 class="Fitbase\Bundle\KnowledgeBundle\Admin\KnowledgeAdmin">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <tag name="sonata.admin" manager_type="orm" group="Knowledge" label="Wussten Sie schon"/>
+            <argument/>
+            <argument>Fitbase\Bundle\KnowledgeBundle\Entity\Knowledge</argument>
+            <argument/>
         </service>
+
     </services>
 
 </container>
