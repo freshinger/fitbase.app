@@ -23,10 +23,7 @@
                 </p>
             </div>
         </div>
-
-
         <div class="row">
-
             {% if categories|length == 1 %}
                 <div class="col-md-4">
                     <div class="row">
@@ -113,56 +110,6 @@
                     </div>
                 </div>
             {% endif %}
-
-
-            {#<div class="col-md-3">#}
-            {#<div class="row">#}
-            {#{% for category in categories %}#}
-            {#<div class="col-md-12">#}
-            {#<div class="panel-box">#}
-            {#<div class="titles title-image-bottom">#}
-            {#<h4 class="text-cut">{{ category.name }}</h4>#}
-            {#</div>#}
-            {#<ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">#}
-            {#<div class="owl-wrapper-outer autoHeight">#}
-            {#<div class="owl-wrapper" style="left: 0px; display: block;">#}
-            {#<li>#}
-            {#<a href="{{ path('category_exercises', {'slug': category.slug}) }}">#}
-            {#{% thumbnail category.media, 'preview' with { 'title': null } %}#}
-            {#</a>#}
-            {#</li>#}
-            {#</div>#}
-            {#</div>#}
-            {#</ul>#}
-            {#<div class="panel-footer">#}
-            {#<a href="{{ path('category_exercises', {'slug': category.slug}) }}"#}
-            {#class="btn btn-primary btn-block">#}
-            {#{{ 'Übung starten'|trans({'category': category}, 'FitbaseWeeklytaskBundle') }}#}
-            {#</a>#}
-            {#</div>#}
-            {#</div>#}
-            {#</div>#}
-            {#{% endfor %}#}
-            {#</div>#}
-            {#</div>#}
-            {#<div class="col-md-9">#}
-            {#<h3>{{ 'Ihr Übungsschwerpunkt'|trans({}, 'FitbaseWeeklytaskBundle') }}</h3>#}
-
-            {#<p>{{ description|raw }}</p>#}
-
-            {#<div class="row">#}
-            {#{% for category in categories %}#}
-            {#<div class="col-md-9 col-md-offset-3">#}
-            {#<a href="{{ path('category_exercises', {'slug': category.slug}) }}" class="btn btn-primary">#}
-            {#{{ 'Jetzt category - Übung starten'|trans({'category': category}, 'FitbaseWeeklytaskBundle') }}#}
-            {#</a>#}
-            {#<br/>#}
-            {#<br/>#}
-            {#</div>#}
-            {#{% endfor %}#}
-            {#</div>#}
-
-            {#</div>#}
         </div>
 
     </div>
