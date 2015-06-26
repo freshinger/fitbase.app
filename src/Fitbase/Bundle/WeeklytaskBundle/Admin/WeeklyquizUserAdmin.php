@@ -43,8 +43,13 @@ class WeeklyquizUserAdmin extends Admin implements ContainerAwareInterface
             ->add('user')
             ->add('quiz')
             ->add('date')
+            ->add('done')
+            ->add('doneDate')
             ->add('processed')
             ->add('processedDate')
+            ->add('error')
+            ->add('errorDate')
+            ->add('errorMessage')
             ->end();
     }
 
