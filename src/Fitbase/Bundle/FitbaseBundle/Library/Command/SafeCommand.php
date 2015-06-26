@@ -31,14 +31,14 @@ abstract class SafeCommand extends LockCommand
 
         } catch (CommandLockedException $ex) {
 
-            $this->get('logger')->err($ex->getMessage());
+            $this->getContainer()->get('logger')->err($ex->getMessage());
             $output->writeln($ex->getMessage());
 
             return;
 
         } catch (\Exception $ex) {
             $output->writeln($ex->getMessage());
-            $this->get('logger')->crit($ex->getMessage());
+            $this->getContainer()->get('logger')->crit($ex->getMessage());
         }
 
         $this->unlockTask();
