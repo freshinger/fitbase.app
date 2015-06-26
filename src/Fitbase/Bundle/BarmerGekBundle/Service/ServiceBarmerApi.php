@@ -37,7 +37,8 @@ class ServiceBarmerApi extends ContainerAware
      */
     protected function getServer()
     {
-        return 'https://api.barmer-gek.de/cas-web/verifier/v1';
+        return 'https://dev-api.barmer-gek.de/cas-web/verifier/v1';
+//        return 'https://api.barmer-gek.de/cas-web/verifier/v1';
     }
 
     /**
