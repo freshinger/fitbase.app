@@ -184,6 +184,7 @@ class UserAdmin extends BaseUserAdmin implements ContainerAwareInterface
                     ->add('twoStepVerificationCode', null, array('required' => false))
                     ->end()
                     ->with('Flags', array('class' => 'col-md-6'))
+                    ->add('privatePerson', null, array('required' => false))
                     ->add('locked', null, array('required' => false))
                     ->add('expired', null, array('required' => false))
                     ->add('enabled', null, array('required' => false))
