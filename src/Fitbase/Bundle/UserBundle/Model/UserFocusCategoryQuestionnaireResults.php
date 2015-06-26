@@ -105,34 +105,34 @@ class UserFocusCategoryQuestionnaireResults
 
             case 'oberer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren oberen Rücken, den
-                Schulter-Nacken Bereich empfehlen. Bitte setzen Sie den entsprechenden Haken, so dass die Übungsauswahl
-                individuell auf Sie zugeschnitten werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link
-                „Meine heutige Übung starten“ klicken, werden Ihnen vor allem Übungen für diesen Bereich vorgeschlagen.
-                Schauen Sie sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken.
-                Hier finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich
-                auch speziell für den oberen Rücken.';
+                Schulter-Nacken Bereich empfehlen. Die Haken wurden entsprechend platziert, so dass die Übungsauswahl
+                nun individuell auf Sie zugeschnitten werden kann. Wenn Sie künftig in der Erinnerungsemail auf
+                den Link „Meine heutige Übung starten“ klicken, werden Ihnen vor allem Übungen für diesen Bereich
+                vorgeschlagen.Schauen Sie sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den
+                entsprechenden Haken. Hier finden Sie weitere, vielfältige Übungen für alle Bereiche des
+                Rückens - natürlich auch speziell für den oberen Rücken.';
 
             case 'mittlerer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren mittleren Rücken
-                empfehlen. Bitte setzen Sie den entsprechenden Haken, so dass die Übungsauswahl individuell auf Sie
+                empfehlen. Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun individuell auf Sie
                 zugeschnitten werden kann. Wenn Sie künftig auf den Link „Meine heutige Übung starten“ in der
-                Erinnerungsemail klicken, werden Ihnen vor allem Übungen für diesen Bereich vorgeschlagen. Schauen Sie
-                sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken.
-                Hier finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich
-                auch speziell für den mittleren Rücken.';
+                Erinnerungsemail klicken, werden Ihnen vor allem Übungen für diesen Bereich vorgeschlagen.
+                Schauen Sie sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden
+                Haken. Hier finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich auch
+                speziell für den mittleren Rücken.';
 
             case 'unterer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren unteren Rücken
-                empfehlen. Bitte setzen Sie den entsprechenden Haken, so dass die Übungsauswahl individuell auf Sie
+                empfehlen. Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun individuell auf Sie
                 zugeschnitten werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link „Meine heutige Übung
                 starten“ klicken, werden Ihnen vor allem Übungen für diesen Bereich vorgeschlagen. Schauen Sie sich
                 doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken. Hier
-                finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens -
-                natürlich auch speziell für den unteren Rücken.';
+                finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich auch speziell für den
+                unteren Rücken.';
 
             case 'mittlerer-ruecken-unterer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren mittleren und
-                unteren Rücken empfehlen. Bitte setzen Sie die entsprechenden Haken, so dass die Übungsauswahl
+                unteren Rücken empfehlen. Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun
                 individuell auf Sie zugeschnitten werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link
                 „Meine heutige Übung starten“ klicken, werden Ihnen vor allem Übungen für diese Bereiche vorgeschlagen.
                 Schauen Sie sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden
@@ -141,7 +141,7 @@ class UserFocusCategoryQuestionnaireResults
 
             case 'oberer-ruecken-unterer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren oberen und unteren
-                Rücken empfehlen. Bitte setzen Sie die entsprechenden Haken, so dass die Übungsauswahl individuell auf
+                Rücken empfehlen. Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun individuell auf
                 Sie zugeschnitten werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link „Meine heutige
                 Übung starten“ klicken, werden Ihnen vor allem Übungen für diese Bereiche vorgeschlagen. Schauen Sie
                 sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken.
@@ -151,21 +151,21 @@ class UserFocusCategoryQuestionnaireResults
             case 'mittlerer-ruecken-oberer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen vor allem Übungen für Ihren oberen und
                 mittleren Rücken empfehlen - dies betrifft in erster Linie den Schulter-Nacken-Bereich.
-                Bitte setzen Sie die entsprechenden Haken, so dass die Übungsauswahl individuell auf Sie zugeschnitten
+                Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun individuell auf Sie zugeschnitten
                 werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link „Meine heutige Übung starten“
                 klicken, werden Ihnen vor allem Übungen für diese Bereiche vorgeschlagen. Schauen Sie sich doch auch
                 gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken. Hier finden Sie
-                weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich auch speziell
-                für den oberen und mittleren Rücken.';
+                weitere, vielfältige Übungen für alle Bereiche des Rückens - natürlich auch speziell für den oberen
+                und mittleren Rücken.';
 
             case 'mittlerer-ruecken-oberer-ruecken-unterer-ruecken':
                 return 'Vielen Dank für Ihre Teilnahme. Wir möchten Ihnen Übungen für Ihren gesamten Rücken empfehlen.
-                Bitte setzen Sie die entsprechenden Haken, so dass die Übungsauswahl individuell auf Sie zugeschnitten
+                Die Haken wurden entsprechend platziert, so dass die Übungsauswahl nun individuell auf Sie zugeschnitten
                 werden kann. Wenn Sie künftig in der Erinnerungsemail auf den Link „Meine heutige Übung starten“
                 klicken, werden Ihnen Übungen für alle Bereiche des Rückens vorgeschlagen. Sie können die Übungsauswahl
-                jederzeit durch Klicken eines Hakens entsprechend auf einen Bereich fokussieren. Schauen
-                Sie sich doch auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken.
-                Hier finden Sie weitere, vielfältige Übungen für alle Bereiche des Rückens. ';
+                jederzeit durch Klicken eines Hakens entsprechend auf einen Bereich fokussieren. Schauen Sie sich doch
+                auch gerne einmal unsere Thera-Band Übungen an und setzen dazu den entsprechenden Haken. Hier finden Sie
+                weitere, vielfältige Übungen für alle Bereiche des Rückens. ';
         }
 
         return '';
