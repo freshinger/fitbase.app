@@ -9,7 +9,7 @@ parameters:
     mailer_host:        localhost
     mailer_user:
     mailer_password:
-
+    fitbase.barmer_gek.api:
     locale:             en
 
     secret:             ThisTokenIsNotSoSecretChangeIt
