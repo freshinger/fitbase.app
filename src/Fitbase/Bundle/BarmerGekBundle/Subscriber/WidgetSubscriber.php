@@ -32,7 +32,12 @@ class WidgetSubscriber extends ContainerAware implements EventSubscriberInterfac
             throw new LogicException('Company object can not be empty');
         }
 
-        if (!in_array($company->getSlug(), ['barmer_gek', 'barmergek', 'barmer'])) {
+        if (!in_array($company->getSlug(), [
+            'barmer_gek',
+            'barmer_gek_private',
+            'barmergek', 'barmer
+            '])
+        ) {
             return;
         }
 
