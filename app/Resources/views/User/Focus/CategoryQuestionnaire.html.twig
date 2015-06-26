@@ -1,0 +1,35 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Übungsschwerpunkt ermitteln'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'questionnaire', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+    <!-- Content Text-->
+    <div class="panel-box quetionnaire">
+        <div class="titles">
+            <h4>{{ 'Übungsschwerpunkt ermitteln'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
+        </div>
+
+        {% if questionnaire is defined and questionnaire %}
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <p class="modal-description">
+                        {{ questionnaire.description|raw }}
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+
+        {% form_theme form "User/Focus/CategoryQuestionnaireForm.html.twig" %}
+
+        {{ form(form) }}
+
+    </div>
+{% endblock %}

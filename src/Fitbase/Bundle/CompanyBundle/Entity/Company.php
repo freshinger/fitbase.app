@@ -258,6 +258,12 @@ class Company
      */
     public function getSite()
     {
+        if (($parent = $this->getParent())) {
+            if (($site = $parent->getSite())) {
+                return $site;
+            }
+        }
+
         return $this->site;
     }
 
@@ -826,6 +832,41 @@ class Company
      */
     public function getCss()
     {
+        if (($parent = $this->getParent())) {
+            if (strlen(($css = $parent->getCss()))) {
+                return $css;
+            }
+        }
+
         return $this->css;
+    }
+
+    /**
+     * @var \Fitbase\Bundle\CompanyBundle\Entity\Company
+     */
+    private $parent;
+
+
+    /**
+     * Set parent
+     *
+     * @param \Fitbase\Bundle\CompanyBundle\Entity\Company $parent
+     * @return Company
+     */
+    public function setParent(\Fitbase\Bundle\CompanyBundle\Entity\Company $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Fitbase\Bundle\CompanyBundle\Entity\Company
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

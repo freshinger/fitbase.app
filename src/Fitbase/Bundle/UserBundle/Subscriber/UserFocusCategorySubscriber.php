@@ -38,8 +38,8 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
                     $child->setParent(null);
                     $child->setType(null);
                     $entityManager->persist($child);
+                    $entityManager->flush($child);
                 }
-                $entityManager->flush();
             }
 
             if (($priorities = $entity->getPrimaries())) {
@@ -47,12 +47,15 @@ class UserFocusCategorySubscriber extends ContainerAware implements EventSubscri
                     $primary->setParent($entity);
                     $primary->setType($entity->getType());
                     $entityManager->persist($primary);
+                    $entityManager->flush($primary);
+
                 }
             }
 
             $entity->setUpdate(false);
             $entityManager->persist($entity);
-            $entityManager->flush();
+            $entityManager->flush($entity);
+
         }
     }
 }

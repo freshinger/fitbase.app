@@ -34,6 +34,29 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
     }
 
     /**
+     * Pre create action
+     *
+     * @param mixed $object
+     * @return mixed|void
+     */
+    public function prePersist($object)
+    {
+        $this->preUpdate($object);
+    }
+
+    /**
+     * On object update action
+     *
+     * @param mixed $object
+     * @return mixed|void
+     */
+    public function preUpdate($object)
+    {
+
+    }
+
+
+    /**
      * {@inheritdoc}
      */
     protected function configureShowFields(ShowMapper $showMapper)
@@ -69,6 +92,7 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
         $listMapper
             ->add('site')
             ->add('name')
+            ->add('parent')
             ->add('usersCount', null, ['label' => 'Benutzer'])
             ->add('questionnaire', null, ['label' => 'Bedarfsermittlung'])
             ->add('categories')
@@ -101,10 +125,17 @@ class CompanyAdmin extends Admin implements ContainerAwareInterface
             ->tab('General')
             ->with('General', array('class' => 'col-md-4'))
             ->add('name', null, array('required' => true))
-            ->Add('slug')
-            ->add('site', null, array('required' => true))
-            ->add('description', null, array('required' => false))
-            ->end();
+            ->Add('slug');
+
+        $formMapper->add('parent', null, array('required' => false));
+        if (($company = $this->getRoot()->getSubject())) {
+            if (!($parent = $company->getParent())) {
+                $formMapper->add('site', null, array('required' => true));
+            }
+        }
+
+        $formMapper->add('description', null, array('required' => false));
+        $formMapper->end();
 
         if (($company = $this->getRoot()->getSubject())) {
             $formMapper->with('Bedarfsermittlung', array('class' => 'col-md-4'))

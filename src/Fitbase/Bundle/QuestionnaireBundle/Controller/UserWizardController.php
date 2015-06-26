@@ -116,10 +116,9 @@ class UserWizardController extends Controller
         // for heals and strain parameters
         $total = 0;
 
+        $entityManager = $this->get('entity_manager');
+        $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
         foreach ($answers as $questionId => $answerId) {
-
-            $entityManager = $this->get('entity_manager');
-            $repositoryQuestionnaireQuestion = $entityManager->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireQuestion');
             if (($questionnaireQuestion = $repositoryQuestionnaireQuestion->find($questionId))) {
 
                 $questionnaireUserAnswer = new QuestionnaireUserAnswer();

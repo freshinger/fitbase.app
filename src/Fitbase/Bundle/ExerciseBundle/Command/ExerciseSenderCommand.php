@@ -12,11 +12,12 @@ namespace Fitbase\Bundle\ExerciseBundle\Command;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserReminderEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
-class ExerciseSenderCommand extends ContainerAwareCommand
+class ExerciseSenderCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -41,7 +42,7 @@ class ExerciseSenderCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $datetime = $this->get('datetime');
         $serviceUser = $this->get('user');

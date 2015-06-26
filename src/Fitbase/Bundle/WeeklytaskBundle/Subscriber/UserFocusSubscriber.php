@@ -64,7 +64,7 @@ class UserFocusSubscriber implements EventSubscriberInterface
                         // Get last category, check if
                         // current weeklytask have a different
                         // categories, than create a new weeklytask
-                        if (($weeklytaskUser = $this->weeklytask->getLast($user))) {
+                        if (($weeklytaskUser = $this->weeklytask->last($user))) {
                             if (($weeklytask = $weeklytaskUser->getTask())) {
                                 if ($weeklytask->hasCategory($category)) {
                                     return;

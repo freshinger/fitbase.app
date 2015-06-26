@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="fitbase.subscriber.UserEmailSubscriber"
+        <service id="fitbase_user.subscriber.UserEmailSubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserEmailSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -14,7 +14,7 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.UserSingleSignOnSubscriber"
+        <service id="fitbase_user.subscriber.UserSingleSignOnSubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserSingleSignOnSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -22,7 +22,7 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.UserFocusSubscriber"
+        <service id="fitbase_user.subscriber.UserFocusSubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserFocusSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -31,7 +31,7 @@
         </service>
 
 
-        <service id="fitbase.subscriber.UserFocusCategorySubscriber"
+        <service id="fitbase_user.subscriber.UserFocusCategorySubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserFocusCategorySubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -40,7 +40,7 @@
         </service>
 
 
-        <service id="fitbase.subscriber.QuestionnaireUserSubscriber"
+        <service id="fitbase_user.subscriber.QuestionnaireUserSubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\QuestionnaireUserSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -48,7 +48,7 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.UserProfileControllerSubscriber"
+        <service id="fitbase_user.subscriber.UserProfileControllerSubscriber"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserProfileControllerSubscriber">
             <tag name="kernel.event_subscriber"/>
             <call method="setContainer">
@@ -56,7 +56,7 @@
             </call>
         </service>
 
-        <service id="fitbase.subscriber.user_wizard"
+        <service id="fitbase_user.subscriber.user_wizard"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserWizardSubscriber">
             <argument type="service" id="entity_manager"/>
             <call method="setContainer">
@@ -65,14 +65,14 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="fitbase.subscriber.user" class="Fitbase\Bundle\UserBundle\Subscriber\UserSubscriber">
+        <service id="fitbase_user.subscriber.user" class="Fitbase\Bundle\UserBundle\Subscriber\UserSubscriber">
             <argument type="service" id="entity_manager"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="datetime"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="fitbase.subscriber.user_actioncode"
+        <service id="fitbase_user.subscriber.user_actioncode"
                  class="Fitbase\Bundle\UserBundle\Subscriber\UserActioncodeSubscriber">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
@@ -80,11 +80,19 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
-        <service id="fitbase.subscriber.authenticator"
+        <service id="fitbase_user.subscriber.authenticator"
                  class="Fitbase\Bundle\UserBundle\Subscriber\AuthenticatorSubscriber">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="fitbase_user.subscriber.weeklytask_user"
+                 class="Fitbase\Bundle\UserBundle\Subscriber\WeeklytaskUserSubscriber">
+            <argument type="service" id="datetime"/>
+            <argument type="service" id="weeklytask"/>
+            <argument type="service" id="entity_manager"/>
             <tag name="kernel.event_subscriber"/>
         </service>
 

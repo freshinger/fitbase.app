@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-8">
+        <h3>{{ 'Übungsschwerpunkt ermitteln'|trans({}, 'FitbaseUserBundle') }}</h3>
+
+
+        <p>
+            Hier können Sie den Übungsschwerpunkt für Ihre Rückengesundheit ermitteln. Gemäß Ihrer Antworten schlagen
+            wir Ihnen einen oder mehrere Übungsschwerpunkte vor. Die entsprechenden Häkchen werden dann automatisch neu
+            gesetzt und zeigen Ihnen so stets den aktuellen Übungsschwerpunkt an.
+        </p>
+
+        <a href="{{ path('user_focus_category_questionnaire', { 'unique': questionnaire.id }) }}"
+           class="btn btn-primary">
+            {{ 'Fragebogen starten'|trans({}, 'FitbaseUserBundle') }}
+        </a>
+
+    </div>
+</div>

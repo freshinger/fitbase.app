@@ -20,6 +20,9 @@
             <directory>../src/Fitbase/Bundle/UserBundle/Tests</directory>
             <directory>../src/Fitbase/Bundle/ExerciseBundle/Tests</directory>
             <directory>../src/Fitbase/Bundle/ReminderBundle/Tests</directory>
+            <directory>../src/Fitbase/Bundle/WeeklytaskBundle/Tests</directory>
+            <directory>../src/Fitbase/Bundle/BarmerGekBundle/Tests</directory>
+            <directory>../src/Fitbase/Bundle/CompanyBundle/Tests</directory>
 
             <!--<directory>../src/Fitbase/*/*Bundle/Tests</directory>-->
             <!--<directory>../src/Fitbase/*/Bundle/*Bundle/Tests</directory>-->

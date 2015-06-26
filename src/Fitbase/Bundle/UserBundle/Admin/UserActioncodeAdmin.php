@@ -174,7 +174,8 @@ class UserActioncodeAdmin extends Admin implements ContainerAwareInterface
         }
 
 
-        $formMapper->add('categories', null, array(
+        $formMapper
+            ->add('categories', null, array(
             'required' => true,
             'query_builder' => function ($repository) {
                 $queryBuilder = $repository->createQueryBuilder('Category');

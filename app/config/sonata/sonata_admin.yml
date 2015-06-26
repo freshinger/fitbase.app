@@ -60,6 +60,7 @@ sonata_admin:
                 items:
                     - fitbase.admin.user_actioncode
                     - sonata.user.admin.group
+                    - fitbase.admin.knowledge
 
             fitbase.admin.group.gamification:
                 label:           "Fitbase Gamification"

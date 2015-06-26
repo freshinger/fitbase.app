@@ -17,7 +17,7 @@
             </call>
         </service>
 
-        <service id="fitbase.block.focus.settings_back" class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryBackSettingsBlock"
+        <service id="fitbase.block.focus.settings_back" class="Fitbase\Bundle\UserBundle\Block\Focus\CategorySettingsBackBlock"
                  scope="request">
             <tag name="sonata.block"/>
             <argument>fitbase.block.focus.settings_back</argument>
@@ -53,7 +53,7 @@
         </service>
 
         <service id="fitbase.block.focus.category_questionnaire"
-                 class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryCompanyQuestionnaireBlock">
+                 class="Fitbase\Bundle\UserBundle\Block\Focus\CategoryQuestionnaireBlock">
             <tag name="sonata.block"/>
             <argument>fitbase.block.focus.category_questionnaire</argument>
             <argument type="service" id="templating"/>

@@ -84,7 +84,7 @@ class AuthenticatorSubscriber extends ContainerAware implements EventSubscriberI
                 }
 
                 $token = new PreAuthenticatedToken(
-                    $user, $sign, $event->getProviderKey(), $user->getRoles()
+                    $user, $credentials, $event->getProviderKey(), $user->getRoles()
                 );
 
                 $event->setToken($token)
