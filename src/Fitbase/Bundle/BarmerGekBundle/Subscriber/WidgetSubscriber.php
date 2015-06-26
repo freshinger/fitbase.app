@@ -29,10 +29,18 @@ class WidgetSubscriber extends ContainerAware implements EventSubscriberInterfac
     public function onDashboardForestEvent(WidgetEvent $event)
     {
         if (!($company = $this->container->get('company')->current())) {
-            throw new LogicException('User object can not be empty');
+            throw new LogicException('Company object can not be empty');
         }
 
         if (!in_array($company->getSlug(), ['barmer_gek', 'barmergek', 'barmer'])) {
+            return;
+        }
+
+        if (!($user = $this->container->get('user')->current())) {
+            throw new LogicException('User object can not be empty');
+        }
+
+        if (!$user->getPrivatePerson()) {
             return;
         }
 
