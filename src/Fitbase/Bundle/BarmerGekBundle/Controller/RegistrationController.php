@@ -33,7 +33,7 @@ class RegistrationController extends Controller
         $entityManager = $this->get('entity_manager');
         $repository = $entityManager->getRepository('Fitbase\Bundle\CompanyBundle\Entity\Company');
 
-        if (!($company = $repository->findOneBySlug('barmer_gek'))) {
+        if (!($company = $repository->findOneBySlug('barmer_gek_private'))) {
             throw new \LogicException('Barmer GEK company not found in database');
         }
 

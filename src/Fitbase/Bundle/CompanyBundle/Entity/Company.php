@@ -832,6 +832,12 @@ class Company
      */
     public function getCss()
     {
+        if (($parent = $this->getParent())) {
+            if (strlen(($css = $parent->getCss()))) {
+                return $css;
+            }
+        }
+
         return $this->css;
     }
 
