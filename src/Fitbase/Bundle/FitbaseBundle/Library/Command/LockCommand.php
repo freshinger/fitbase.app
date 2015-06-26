@@ -111,7 +111,7 @@ abstract class LockCommand extends BaseCommand
      */
     protected function getLockDir()
     {
-        return '/tmp/fitbase';
+        return $this->getContainer()->get('kernel')->getRootDir() . '/locks/';
     }
 
     /**

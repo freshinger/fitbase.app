@@ -9,7 +9,7 @@
             <option name="message">Ein Benutzer mit dieser Email-Adresse wurde bereits registriert</option>
         </constraint>
         <constraint name="Fitbase\Bundle\BarmerGekBundle\Form\Constraints\UserSession">
-            <option name="message">Ein Benutzer mit diesen Daten wurde bei Barmer GEK nich gefunden</option>
+            <option name="message">Ein Benutzer mit diesen Daten wurde bei Barmer GEK nicht gefunden</option>
         </constraint>
         <property name="email">
             <constraint name="NotBlank">
