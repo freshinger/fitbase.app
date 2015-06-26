@@ -58,6 +58,7 @@ class RegistrationController extends Controller
 
                     $user = new User();
                     $user->setPrivatePerson(true);
+                    $user->setExternalId($entity->getUnique());
                     $user->setEmail($entity->getEmail());
                     $user->setCompany($company);
                     $user->setFirstname($entity->getFirstName());

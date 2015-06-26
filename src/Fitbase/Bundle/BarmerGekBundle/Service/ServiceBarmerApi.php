@@ -59,7 +59,7 @@ class ServiceBarmerApi extends ContainerAware
         $resource = "{$this->getUrl()}/sessionkey-sso/session-status?userId={$id}&sessionKey={$key}";
 
         if (($result = $this->process($resource))) {
-            return $result->valid;
+            return $this->doConvertToBoolean($result->valid);
         }
 
         return false;
@@ -76,7 +76,25 @@ class ServiceBarmerApi extends ContainerAware
         $resource = "{$this->getUrl()}/sessionkey-sso/user?userId={$id}&userStatus=REGISTERED";
 
         if (($result = $this->process($resource, 'post'))) {
-            return $result->success;
+            return $this->doConvertToBoolean($result->success);
+        }
+
+        return false;
+    }
+
+    /**
+     * Convert something to boolean
+     * @param $value
+     * @return bool
+     */
+    protected function doConvertToBoolean($value)
+    {
+        if (is_bool($value) || is_numeric($value)) {
+            return (bool)$value;
+        }
+
+        if (is_string($value)) {
+            return strtolower($value) == 'true' ? true : false;
         }
 
         return false;
@@ -88,11 +106,16 @@ class ServiceBarmerApi extends ContainerAware
      * @param $resource
      * @return mixed|null
      */
-    protected function process($resource, $method = 'GET')
+    protected function process($resource, $method = 'get')
     {
         try {
 
-            if (($response = call_user_func_array([$this->client, $method], [$resource]))) {
+            $parameters = [$resource, 'payload'];
+            if (in_array($method, ['get', 'delete'])) {
+                $parameters = [$resource];
+            }
+
+            if (($response = call_user_func_array([$this->client, $method], $parameters))) {
                 if ($response->getStatusCode() == 200) {
 
                     $this->logger->info($resource);
