@@ -43,7 +43,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 throw new \Ci\RestClientBundle\Exceptions\CurlException('Just a test exception');
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertFalse($service->sessionStatus('some_id', 'some_session_key'));
     }
@@ -57,7 +57,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 return new Response('{"valid": true}', 401);
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertFalse($service->sessionStatus('some_id', 'some_session_key'));
     }
@@ -71,7 +71,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 return new Response('{"valid": true}', 403);
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertFalse($service->sessionStatus('some_id', 'some_session_key'));
     }
@@ -85,7 +85,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 return new Response('{"valid": true}', 404);
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertFalse($service->sessionStatus('some_id', 'some_session_key'));
     }
@@ -99,7 +99,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 return new Response('{"valid": true}', 500);
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertFalse($service->sessionStatus('some_id', 'some_session_key'));
     }
@@ -113,7 +113,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
                 return new Response('{"valid": true}', 200);
             }));
 
-        $service = new ServiceBarmerApi($client, $logger);
+        $service = new ServiceBarmerApi('http://api.barmer-gek.de', $client, $logger);
 
         $this->assertTrue($service->sessionStatus('some_id', 'some_session_key'));
     }
