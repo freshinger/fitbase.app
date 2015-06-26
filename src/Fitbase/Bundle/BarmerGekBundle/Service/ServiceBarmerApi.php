@@ -95,8 +95,8 @@ class ServiceBarmerApi extends ContainerAware
             if (($response = call_user_func_array([$this->client, $method], [$resource]))) {
                 if ($response->getStatusCode() == 200) {
 
-                    $this->logger->err($resource);
-                    $this->logger->err($response->getContent());
+                    $this->logger->info($resource);
+                    $this->logger->info($response->getContent());
 
                     return json_decode($response->getContent());
                 }
