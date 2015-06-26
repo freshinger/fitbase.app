@@ -6,6 +6,13 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class ServiceBarmerApi extends ContainerAware
 {
     /**
+     * Store api url here
+     *
+     * @var
+     */
+    protected $url;
+
+    /**
      * Object to create a http requests
      *
      * @var
@@ -24,8 +31,9 @@ class ServiceBarmerApi extends ContainerAware
      *
      * @param $client
      */
-    public function __construct($client, $logger)
+    public function __construct($url, $client, $logger)
     {
+        $this->url = $url;
         $this->client = $client;
         $this->logger = $logger;
     }
@@ -35,10 +43,9 @@ class ServiceBarmerApi extends ContainerAware
      *
      * @return string
      */
-    protected function getServer()
+    protected function getUrl()
     {
-        return 'https://dev-api.barmer-gek.de/cas-web/verifier/v1';
-//        return 'https://api.barmer-gek.de/cas-web/verifier/v1';
+        return $this->url;
     }
 
     /**
@@ -49,10 +56,10 @@ class ServiceBarmerApi extends ContainerAware
      */
     public function sessionStatus($id = null, $key = null)
     {
-        $resource = "{$this->getServer()}/sessionkey-sso/session-status?userId={$id}&sessionkey={$key}";
+        $resource = "{$this->getUrl()}/sessionkey-sso/session-status?userId={$id}&sessionKey={$key}";
 
         if (($result = $this->process($resource))) {
-            return ($result->valid == 'true' ? true : false);
+            return $result->valid;
         }
 
         return false;
@@ -66,10 +73,10 @@ class ServiceBarmerApi extends ContainerAware
      */
     public function user($id = null)
     {
-        $resource = "{$this->getServer()}/sessionkey-sso/user?userId={$id}&userStatus=REGISTERED";
+        $resource = "{$this->getUrl()}/sessionkey-sso/user?userId={$id}&userStatus=REGISTERED";
 
         if (($result = $this->process($resource, 'post'))) {
-            return ($result->success == 'true' ? true : false);
+            return $result->success;
         }
 
         return false;
@@ -81,17 +88,21 @@ class ServiceBarmerApi extends ContainerAware
      * @param $resource
      * @return mixed|null
      */
-    protected function process($resource, $method = 'get')
+    protected function process($resource, $method = 'GET')
     {
         try {
 
             if (($response = call_user_func_array([$this->client, $method], [$resource]))) {
-
                 if ($response->getStatusCode() == 200) {
+
+                    $this->logger->err($resource);
+                    $this->logger->err($response->getContent());
+
                     return json_decode($response->getContent());
                 }
 
-                $this->logger->err("BarmerGEK API response status: " . $response->getStatusCode());
+                $this->logger->err($resource);
+                $this->logger->err($response->getContent());
             }
 
         } catch (\Ci\RestClientBundle\Exceptions\CurlException $exception) {

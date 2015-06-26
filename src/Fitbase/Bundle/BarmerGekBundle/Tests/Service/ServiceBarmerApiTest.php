@@ -29,7 +29,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
      */
     public function getServiceLogger()
     {
-        $client = $this->getMock('ServiceLogger', ['err']);
+        $client = $this->getMock('ServiceLogger', ['err', 'info']);
 
         return $client;
     }
@@ -54,7 +54,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
         $client = $this->getServiceClient();
         $client->expects($this->any())
             ->method('get')->will($this->returnCallback(function () {
-                return new Response('{"valid": "true"}', 401);
+                return new Response('{"valid": true}', 401);
             }));
 
         $service = new ServiceBarmerApi($client, $logger);
@@ -68,7 +68,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
         $client = $this->getServiceClient();
         $client->expects($this->any())
             ->method('get')->will($this->returnCallback(function () {
-                return new Response('{"valid": "true"}', 403);
+                return new Response('{"valid": true}', 403);
             }));
 
         $service = new ServiceBarmerApi($client, $logger);
@@ -82,7 +82,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
         $client = $this->getServiceClient();
         $client->expects($this->any())
             ->method('get')->will($this->returnCallback(function () {
-                return new Response('{"valid": "true"}', 404);
+                return new Response('{"valid": true}', 404);
             }));
 
         $service = new ServiceBarmerApi($client, $logger);
@@ -96,7 +96,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
         $client = $this->getServiceClient();
         $client->expects($this->any())
             ->method('get')->will($this->returnCallback(function () {
-                return new Response('{"valid": "true"}', 500);
+                return new Response('{"valid": true}', 500);
             }));
 
         $service = new ServiceBarmerApi($client, $logger);
@@ -110,7 +110,7 @@ class ServiceBarmerApiTest extends FitbaseTestAbstract
         $client = $this->getServiceClient();
         $client->expects($this->any())
             ->method('get')->will($this->returnCallback(function () {
-                return new Response('{"valid": "true"}', 200);
+                return new Response('{"valid": true}', 200);
             }));
 
         $service = new ServiceBarmerApi($client, $logger);

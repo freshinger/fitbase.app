@@ -10,6 +10,7 @@
 
     <services>
         <service id="barmer_gek_api" class="Fitbase\Bundle\BarmerGekBundle\Service\ServiceBarmerApi">
+            <argument type="string">%fitbase.barmer_gek.api%</argument>
             <argument type="service" id="ci.restclient"/>
             <argument type="service" id="logger"/>
         </service>
