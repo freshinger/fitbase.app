@@ -49,6 +49,24 @@ class WeeklyquizUserRepository extends EntityRepository
     }
 
     /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTime($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetime', $datetime);
+            return $queryBuilder->expr()->eq('WeeklyquizUser.date', ':datetime');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+
+
+
+    /**
      * Get all not processed tasks
      * @param $queryBuilder
      * @return mixed
@@ -438,6 +456,7 @@ class WeeklyquizUserRepository extends EntityRepository
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprNotUnique($queryBuilder, $entity->getId()),
             $this->getExprUser($queryBuilder, $entity->getUser()),
+            $this->getExprDateTime($queryBuilder, $entity->getDate()),
             $this->getExprProcessed($queryBuilder)
         ));
 
