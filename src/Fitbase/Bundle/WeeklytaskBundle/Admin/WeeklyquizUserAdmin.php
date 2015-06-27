@@ -80,7 +80,9 @@ class WeeklyquizUserAdmin extends Admin implements ContainerAwareInterface
     {
         $datagridMapper
             ->add('user')
-            ->add('quiz');
+            ->add('quiz')
+            ->add('processed')
+            ->add('error');
     }
 
     /**
