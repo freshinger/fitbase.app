@@ -24,11 +24,6 @@
         <default key="_format">png</default>
     </route>
 
-    <route id="wellbeing_userstate_live_picture" path="/user/live/state/picture">
-        <default key="_controller">WellbeingApiBundle:Picture:stateLive</default>
-        <default key="_format">png</default>
-    </route>
-
     <route id="wellbeing_userstate_live" path="/user/state/live">
         <default key="_controller">WellbeingApiBundle:AdminUserState:stateLive</default>
         <default key="_format">png</default>
