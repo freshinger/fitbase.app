@@ -101,6 +101,8 @@ sonata_block:
         fitbase.block.reminder.weeklytask:
 
         fitbase.block.dashboard:
+        fitbase.block.dashboard_forest:
+        fitbase.block.dashboard_statistics:
 
         fitbase.block.weeklytask.dashboard:
         fitbase.block.weeklytask.weeklytask:
@@ -109,12 +111,9 @@ sonata_block:
         fitbase.block.gamification.dashboard:
         fitbase.block.gamification.dashboard_focus:
         fitbase.block.gamification.dashboard_tree:
-        fitbase.block.gamification.dashboard_forest:
         fitbase.block.gamification.dashboard_avatar:
         fitbase.block.gamification.dashboard_activity:
-        fitbase.block.gamification.dashboard_statistic:
         fitbase.block.gamification.dashboard_dialog:
-
 
 
         fitbase.block.gamification.dashboard_weeklytask:

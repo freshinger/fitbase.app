@@ -129,6 +129,7 @@ class AppKernel extends Kernel
 
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
+            new Ci\RestClientBundle\CiRestClientBundle(),
 
             new Fitbase\Bundle\WeeklytaskBundle\FitbaseWeeklytaskBundle(),
             new Fitbase\Bundle\FitbaseBundle\FitbaseFitbaseBundle(),

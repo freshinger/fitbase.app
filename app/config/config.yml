@@ -20,6 +20,9 @@ imports:
 
     #- { resource: bazinga/bazinga_hateos.yml }
 
+    # Sonata Client API Bundles
+    - { resource: sonata/sonata_client.yml }
+
     # Sonata Core Bundles
     - { resource: sonata/sonata_block.yml }
     - { resource: sonata/sonata_formatter.yml }
@@ -123,6 +126,9 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+    spool:
+        type: file
+        path: "%kernel.root_dir%/spool"
 
 jms_security_extra:
     secure_all_services: false

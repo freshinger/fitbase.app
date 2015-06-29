@@ -13,12 +13,13 @@ use Application\Sonata\UserBundle\Entity\User;
 use Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseReminderEvent;
 use Fitbase\Bundle\ExerciseBundle\Event\ExerciseUserReminderEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
-class ExercisePlannerCommand extends ContainerAwareCommand
+class ExercisePlannerCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -43,24 +44,21 @@ class ExercisePlannerCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $datetime = $this->get('datetime');
         $serviceUser = $this->get('user');
 
-        $date = $datetime->getDateTime('now');
-
-        $day = $date->format('N');
+        $day = $datetime->getDateTime('now')->format('N');
         if (($collection = $this->get('reminder')->getItemsExercise($day))) {
             foreach ($collection as $reminderUserItem) {
 
-                $user = $reminderUserItem->getUser();
-                if ($serviceUser->isGranted($user, $this->getRoles())) {
+                if (($user = $reminderUserItem->getUser()) and
+                    $serviceUser->isGranted($user, $this->getRoles())) {
 
-                    $date->setTime(
-                        $reminderUserItem->getTime()->format('H'),
-                        $reminderUserItem->getTime()->format('i')
-                    );
+                    $date = $datetime->getDateTime('now');
+                    $date->setTime($reminderUserItem->getTime()->format('H'),
+                        $reminderUserItem->getTime()->format('i'));
 
                     $this->doProcessEntity(
                         (new ExerciseUserReminder())

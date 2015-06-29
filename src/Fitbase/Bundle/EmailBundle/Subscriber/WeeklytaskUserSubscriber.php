@@ -33,7 +33,7 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'weeklytask_reminder_send' => array('onWeeklytaskUserSendEvent'),
+            'fitbase.weeklytask_reminder_process' => array('onWeeklytaskUserSendEvent'),
         );
     }
 
@@ -43,26 +43,27 @@ class WeeklytaskUserSubscriber implements EventSubscriberInterface
      */
     public function onWeeklytaskUserSendEvent(WeeklytaskUserEvent $event)
     {
-        if (($weeklytaskUser = $event->getEntity())) {
-
-            if (($user = $weeklytaskUser->getUser())) {
-
-                $title = $this->translator->trans('Ihre fitbase Infoeinheit');
-                $content = $this->templating->render('Email/Subscriber/UserWeeklytask.html.twig', array(
-                    'user' => $weeklytaskUser->getUser(),
-                    'company' => $weeklytaskUser->getUser()->getCompany(),
-                    'task' => $weeklytaskUser->getTask(),
-                    'userTask' => $weeklytaskUser,
-
-                ));
-
-                $this->mailer->mail($user, $title, $content);
-            }
-
-            $weeklytaskUser->setProcessed(1);
-
-            $this->objectManager->persist($weeklytaskUser);
-            $this->objectManager->flush($weeklytaskUser);
+        if (!($weeklytaskUser = $event->getEntity())) {
+            throw new \LogicException('Weeklytask user can not be empty');
         }
+
+        if (!($user = $weeklytaskUser->getUser())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
+        $repository = $this->objectManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');
+        if (($weeklytaskUserExisted = $repository->processed($weeklytaskUser))) {
+            throw new \LogicException('Weeklytask for this date already exists');
+        }
+
+        $title = $this->translator->trans('Ihre fitbase Infoeinheit');
+        $content = $this->templating->render('Email/Subscriber/UserWeeklytask.html.twig', array(
+            'user' => $user,
+            'company' => $user->getCompany(),
+            'task' => $weeklytaskUser->getTask(),
+            'userTask' => $weeklytaskUser,
+        ));
+
+        $this->mailer->mail($user, $title, $content);
     }
 }

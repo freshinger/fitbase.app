@@ -10,6 +10,16 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 
 class WeeklytaskUserRepository extends EntityRepository
 {
+
+    protected function getExprNotId($queryBuilder, $not_id = null)
+    {
+        if (!is_null($not_id)) {
+            $queryBuilder->setParameter('not_id', $not_id);
+            return $queryBuilder->expr()->neq('WeeklytaskUser.id', ':not_id');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
     /**
      * Get all not done tasks
      * @param $queryBuilder
@@ -29,7 +39,18 @@ class WeeklytaskUserRepository extends EntityRepository
      * @param $queryBuilder
      * @return mixed
      */
-    protected function  getExprNotProcessed($queryBuilder)
+    protected function getExprProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', true);
+        return $queryBuilder->expr()->eq('WeeklytaskUser.processed', ':processed');
+    }
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprNotProcessed($queryBuilder)
     {
         $queryBuilder->setParameter(':processed', 0);
         return $queryBuilder->expr()->orX(
@@ -546,5 +567,47 @@ class WeeklytaskUserRepository extends EntityRepository
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
+    /**
+     * Try to found object for given date
+     *
+     * @param ExerciseUserReminder $entity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function exists(WeeklytaskUser $entity)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $entity->getUser()),
+            $this->getExprDateTime($queryBuilder, $entity->getDate())
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * Check is exercise reminder with this data already processed
+     * @param ExerciseUserReminder $entity
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function processed(WeeklytaskUser $entity)
+    {
+        $queryBuilder = $this->createQueryBuilder('WeeklytaskUser');
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprNotId($queryBuilder, $entity),
+            $this->getExprUser($queryBuilder, $entity->getUser()),
+            $this->getExprDateTime($queryBuilder, $entity->getDate()),
+            $this->getExprProcessed($queryBuilder)
+        ));
+
+        $queryBuilder->setMaxResults(1);
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
 
 }

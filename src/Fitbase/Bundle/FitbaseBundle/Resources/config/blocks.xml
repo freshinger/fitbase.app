@@ -28,6 +28,30 @@
         </service>
 
 
+        <service id="fitbase.block.dashboard_forest" class="Fitbase\Bundle\FitbaseBundle\Block\DashboardForestBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_forest</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setServiceUser">
+                <argument type="service" id="user"/>
+            </call>
+        </service>
+
+        <service id="fitbase.block.dashboard_statistics" class="Fitbase\Bundle\FitbaseBundle\Block\DashboardStatisticsBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.dashboard_statistics</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setServiceUser">
+                <argument type="service" id="user"/>
+            </call>
+        </service>
+
     </services>
 
 

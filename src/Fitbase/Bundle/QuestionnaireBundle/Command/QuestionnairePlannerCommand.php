@@ -2,13 +2,14 @@
 namespace Fitbase\Bundle\QuestionnaireBundle\Command;
 
 use Fitbase\Bundle\AufgabeBundle\Event\WeeklyTaskEvent;
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\EventDispatcher\Event;
 
-class QuestionnairePlannerCommand extends ContainerAwareCommand
+class QuestionnairePlannerCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -22,7 +23,7 @@ class QuestionnairePlannerCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $managerEntity = $this->getContainer()->get('entity_manager');
         $repositoryQuestionnaireCompany = $managerEntity->getRepository('Fitbase\Bundle\QuestionnaireBundle\Entity\QuestionnaireCompany');

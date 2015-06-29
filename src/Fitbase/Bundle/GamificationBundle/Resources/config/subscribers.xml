@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <services>
+
+        <service id="fitbase.subscriber.GamificationUser"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.GamificationUserEmotion"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserEmotionSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.GamificationUserDialogAnswer"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserDialogAnswerSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.GamificationUserDialogFeedback"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\GamificationUserDialogFeedbackSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="fitbase.subscriber.gamification.widget"
+                 class="Fitbase\Bundle\GamificationBundle\Subscriber\WidgetSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+    </services>
+
+</container>

@@ -30,24 +30,6 @@ class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
     protected $translator;
     protected $objectManager;
 
-    public function setUp()
-    {
-        $this->mailer = $this->getMock('Mail', array('mail'));
-        $this->mailer->expects($this->any())
-            ->method('mail')
-            ->will($this->returnValue(true));
-
-        $this->objectManager = $this->getMock('EntityManager', array('persist', 'flush'));
-        $this->objectManager->expects($this->any())
-            ->method('persist')
-            ->will($this->returnValue('true'));
-        $this->objectManager->expects($this->any())
-            ->method('flush')
-            ->will($this->returnValue('true'));
-
-        $this->templating = $this->container()->get('templating');
-        $this->translator = $this->container()->get('translator');
-    }
 
     /**
      * Get user object for this test
@@ -56,13 +38,64 @@ class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
     protected function getUser()
     {
         return (new User())
-            ->setCompany(
-                (new Company())
-            )
+            ->setCompany(new Company())
             ->setEmail('test@test.com')
-            ->setFocus(
-                (new UserFocus())
-            );
+            ->setFocus(new UserFocus());
+    }
+
+    /**
+     * Get weeklyquiz user object, predefined for current test
+     *
+     * @return WeeklyquizUser
+     */
+    protected function getWeeklytaskUser()
+    {
+        return (new WeeklytaskUser())
+            ->setTask(new Weeklytask())
+            ->setUser($this->getUser());
+    }
+
+    /**
+     * Get exercise user reminder repository
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getWeeklytaskUserRepository()
+    {
+        return $this->getMock('WeeklytaskUserRepository', array('exists', 'processed'));
+    }
+
+    /**
+     * Get mailer object for current test
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getMailer()
+    {
+        $mailer = $this->getMock('Mail', array('mail'));
+
+        $mailer->expects($this->any())
+            ->method('mail')->will($this->returnValue(true));
+
+        return $mailer;
+    }
+
+    /**
+     * Redefine entity manager object for current test
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getEntityManager()
+    {
+        $entityManager = parent::getEntityManager();
+
+        $entityManager->expects($this->any())
+            ->method('persist')->will($this->returnValue(true));
+
+        $entityManager->expects($this->any())
+            ->method('flush')->will($this->returnValue(true));
+
+        return $entityManager;
     }
 
 
@@ -71,26 +104,39 @@ class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
      */
     public function testMethod_onWeeklytaskUserSendEvent_ShouldSendEmail()
     {
+
+        $repository = $this->getWeeklytaskUserRepository();
+        $repository->expects($this->any())->method('processed')
+            ->will($this->returnValue(null));
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->expects($this->any())
+            ->method('getRepository')->will($this->returnValue($repository));
+
+
         $user = null;
         $title = null;
         $content = null;
 
-        // Configure the stub.
-        $this->mailer->expects($this->any())
-            ->method('mail')
-            ->will($this->returnCallback(function ($u, $t, $c) use (&$user, &$title, &$content) {
+        $mailer = $this->getMailer();
+        $mailer->expects($this->any())
+            ->method('mail')->will($this->returnCallback(function ($u, $t, $c) use (&$user, &$title, &$content) {
                 $user = $u;
                 $title = $t;
                 $content = $c;
             }));
 
+        $translator = $this->container()->get('translator');
+        $templating = $this->container()->get('templating');
 
-        (new WeeklytaskUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
-            ->onWeeklytaskUserSendEvent(new WeeklytaskUserEvent(
-                (new WeeklytaskUser())
-                    ->setTask(new Weeklytask())
-                    ->setUser($this->getUser())
-            ));
+        $subscriber = new WeeklytaskUserSubscriber(
+            $mailer, $templating,
+            $translator, $entityManager
+        );
+
+        $subscriber->onWeeklytaskUserSendEvent(
+            new WeeklytaskUserEvent($this->getWeeklytaskUser())
+        );
 
         $this->assertEquals($user->getEmail(), 'test@test.com');
         $this->assertNotEmpty($title);
@@ -102,17 +148,39 @@ class WeeklytaskUserSubscriberTest extends FitbaseTestAbstract
      * was changed after email-sending
      *
      */
-    public function testMethod_onWeeklytaskUserSendEvent_ShouldChangeProcessed()
+    public function testMethod_onWeeklytaskUserSendEvent_ShouldThrowException()
     {
-        $event = new WeeklytaskUserEvent(
-            (new WeeklytaskUser())
-                ->setTask(new Weeklytask())
-                ->setUser($this->getUser())
+
+        $repository = $this->getWeeklytaskUserRepository();
+        $repository->expects($this->any())->method('processed')
+            ->will($this->returnValue(
+                $this->getWeeklytaskUser()
+            ));
+
+        $mailer = $this->getMailer();
+        $translator = $this->container()->get('translator');
+        $templating = $this->container()->get('templating');
+        $entityManager = $this->getEntityManager();
+        $entityManager->expects($this->any())
+            ->method('getRepository')->will($this->returnValue($repository));
+
+        $subscriber = new WeeklytaskUserSubscriber(
+            $mailer, $templating,
+            $translator, $entityManager
         );
 
-        (new WeeklytaskUserSubscriber($this->mailer, $this->templating, $this->translator, $this->objectManager))
-            ->onWeeklytaskUserSendEvent($event);
+        $exception = null;
 
-        $this->assertEquals($event->getEntity()->getProcessed(), 1);
+        try {
+
+            $subscriber->onWeeklytaskUserSendEvent(
+                new WeeklytaskUserEvent($this->getWeeklytaskUser())
+            );
+
+        } catch (\Exception $exception) {
+
+        }
+
+        $this->assertTrue($exception instanceof \LogicException);
     }
 }

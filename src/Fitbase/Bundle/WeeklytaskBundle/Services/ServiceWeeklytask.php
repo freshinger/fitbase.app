@@ -76,7 +76,7 @@ class ServiceWeeklytask extends ContainerAware
      * @param $user
      * @return mixed
      */
-    public function getLast($user)
+    public function last($user)
     {
         $entityManager = $this->container->get('entity_manager');
         $repositoryWeeklytaskUser = $entityManager->getRepository('Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser');

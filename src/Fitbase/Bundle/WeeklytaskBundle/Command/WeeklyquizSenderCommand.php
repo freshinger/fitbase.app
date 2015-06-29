@@ -1,14 +1,13 @@
 <?php
 namespace Fitbase\Bundle\WeeklytaskBundle\Command;
 
+use Fitbase\Bundle\FitbaseBundle\Library\Command\SafeCommand;
+use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklyquizUser;
 use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyquizUserEvent;
-use Fitbase\Bundle\WeeklytaskBundle\Event\WeeklyTaskEvent;
-use Fitbase\Bundle\UserBundle\Event\UserEvent;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class WeeklyquizSenderCommand extends ContainerAwareCommand
+class WeeklyquizSenderCommand extends SafeCommand
 {
     protected function configure()
     {
@@ -17,22 +16,62 @@ class WeeklyquizSenderCommand extends ContainerAwareCommand
     }
 
     /**
-     * Create weekly tasks planning for all users
+     * Get allowed roles for current task
+     * @return array
+     */
+    protected function getRoles()
+    {
+        return [
+            'ROLE_FITBASE_USER',
+        ];
+    }
+
+    /**
      * @param InputInterface $input
      * @param OutputInterface $output
-     * @return int|null|void
+     * @return mixed|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function doExecuteSafe(InputInterface $input, OutputInterface $output)
     {
         $serviceUser = $this->get('user');
         $datetime = $this->get('datetime')->getDateTime('now');
+
         if (($collection = $this->get('weeklyquiz')->toSend($datetime))) {
             foreach ($collection as $weeklyquizUser) {
-                if ($serviceUser->isGranted($weeklyquizUser->getUser(), 'ROLE_FITBASE_USER')) {
-                    $event = new WeeklyquizUserEvent($weeklyquizUser);
-                    $this->get('event_dispatcher')->dispatch('weeklyquiz_reminder_send', $event);
+
+                if (($user = $weeklyquizUser->getUser()) and
+                    $serviceUser->isGranted($user, $this->getRoles())
+                ) {
+
+                    $this->doProcessEntity($weeklyquizUser);
                 }
             }
+        }
+    }
+
+
+    /**
+     * Process current element
+     *
+     * @param WeeklyquizUser $weeklytaskUser
+     */
+    protected function doProcessEntity(WeeklyquizUser $weeklytaskUser)
+    {
+        try {
+
+            $this->get('event_dispatcher')->dispatch('fitbase.weeklyquiz_reminder_process',
+                new WeeklyquizUserEvent($weeklytaskUser));
+
+        } catch (\Exception $ex) {
+
+            $weeklytaskUser->setErrorMessage($ex->getMessage());
+            $this->get('event_dispatcher')->dispatch('fitbase.weeklyquiz_reminder_exception',
+                new WeeklyquizUserEvent($weeklytaskUser));
+
+            $this->get('logger')->err($ex->getMessage(), [
+                $weeklytaskUser->getUser()->getId(),
+                $weeklytaskUser->getDate()
+            ]);
         }
     }
 

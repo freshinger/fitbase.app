@@ -24,10 +24,16 @@
         <field name="code" type="string" column="code" nullable="true"/>
         <field name="date" type="datetime" column="date" nullable="true"/>
         <field name="done" type="boolean" column="done" nullable="true"/>
-        <field name="processed" type="boolean" column="processed" nullable="true"/>
         <field name="doneDate" type="datetime" column="done_date" nullable="true"/>
-        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processed_date" nullable="true"/>
+
+        <field name="error" type="boolean" column="error" nullable="true"/>
+        <field name="errorDate" type="datetime" column="error_date" nullable="true"/>
+        <field name="errorMessage" type="text" column="error_message" nullable="true"/>
+
+        <field name="countPoint" type="integer" column="count_point" nullable="true"/>
 
     </entity>
 </doctrine-mapping>

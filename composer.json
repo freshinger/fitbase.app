@@ -64,7 +64,7 @@
 
         "friendsofsymfony/comment-bundle": "~2.0@dev",
 
-        "dflydev/markdown": "~1.0",
+        "michelf/php-markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
         "willdurand/faker-bundle": "~1.0",
 
@@ -82,7 +82,8 @@
         "bariew/phpquery": "1.0.2",
         "cocur/slugify": "1.0.x-dev",
         "besimple/soap": "0.2.x-dev",
-        "jmose/command-scheduler-bundle": "~1.0"
+        "jmose/command-scheduler-bundle": "~1.0",
+        "ci/restclientbundle": "0.2.*"
     },
 
     "require-dev": {

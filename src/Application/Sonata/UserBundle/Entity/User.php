@@ -477,4 +477,31 @@ class User extends BaseUser
     {
         return $this->externalId;
     }
+    /**
+     * @var boolean
+     */
+    private $privatePerson;
+
+    /**
+     * Set privatePerson
+     *
+     * @param boolean $privatePerson
+     * @return User
+     */
+    public function setPrivatePerson($privatePerson)
+    {
+        $this->privatePerson = $privatePerson;
+
+        return $this;
+    }
+
+    /**
+     * Get privatePerson
+     *
+     * @return boolean 
+     */
+    public function getPrivatePerson()
+    {
+        return $this->privatePerson;
+    }
 }

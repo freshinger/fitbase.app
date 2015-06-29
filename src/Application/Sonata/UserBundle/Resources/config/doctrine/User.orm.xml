@@ -13,6 +13,7 @@
         <field name="titel" type="string" column="titel" nullable="true"/>
         <field name="format" type="string" column="format" nullable="true"/>
         <field name="externalId" type="string" column="external_id" nullable="true"/>
+        <field name="privatePerson" type="boolean" column="private_person" nullable="true"/>
         <field name="wizard" type="boolean" column="wizard" nullable="true"/>
         <field name="removeRequest" type="boolean" column="remove_request" nullable="true"/>
         <field name="removeRequestAt" type="datetime" column="remove_request_at" nullable="true"/>

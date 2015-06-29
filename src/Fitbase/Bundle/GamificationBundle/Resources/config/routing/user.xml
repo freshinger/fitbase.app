@@ -4,6 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
+    <route id="gamification_documentation_manual" path="/documentation/manual.pdf">
+        <default key="_controller">FitbaseGamificationBundle:Documentation:manual</default>
+    </route>
+
     <route id="gamification_picture_avatar" path="/picture/avatar">
         <default key="_controller">FitbaseGamificationBundle:Picture:avatar</default>
     </route>

@@ -252,4 +252,116 @@ class WeeklyquizUser
         }
         return null;
     }
+    /**
+     * @var \DateTime
+     */
+    private $processedDate;
+
+    /**
+     * @var boolean
+     */
+    private $error;
+
+    /**
+     * @var \DateTime
+     */
+    private $errorDate;
+
+    /**
+     * @var string
+     */
+    private $errorMessage;
+
+
+    /**
+     * Set processedDate
+     *
+     * @param \DateTime $processedDate
+     * @return WeeklyquizUser
+     */
+    public function setProcessedDate($processedDate)
+    {
+        $this->processedDate = $processedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get processedDate
+     *
+     * @return \DateTime 
+     */
+    public function getProcessedDate()
+    {
+        return $this->processedDate;
+    }
+
+    /**
+     * Set error
+     *
+     * @param boolean $error
+     * @return WeeklyquizUser
+     */
+    public function setError($error)
+    {
+        $this->error = $error;
+
+        return $this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return boolean 
+     */
+    public function getError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * Set errorDate
+     *
+     * @param \DateTime $errorDate
+     * @return WeeklyquizUser
+     */
+    public function setErrorDate($errorDate)
+    {
+        $this->errorDate = $errorDate;
+
+        return $this;
+    }
+
+    /**
+     * Get errorDate
+     *
+     * @return \DateTime 
+     */
+    public function getErrorDate()
+    {
+        return $this->errorDate;
+    }
+
+    /**
+     * Set errorMessage
+     *
+     * @param string $errorMessage
+     * @return WeeklyquizUser
+     */
+    public function setErrorMessage($errorMessage)
+    {
+        $this->errorMessage = $errorMessage;
+
+        return $this;
+    }
+
+    /**
+     * Get errorMessage
+     *
+     * @return string 
+     */
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
 }

@@ -32,6 +32,10 @@
         <field name="userLimit" type="integer" column="user_limit" nullable="true"/>
 
 
+        <many-to-one field="parent" target-entity="Fitbase\Bundle\CompanyBundle\Entity\Company">
+            <join-column name="parent_id" referenced-column-name="id" on-delete="SET NULL"/>
+        </many-to-one>
+
         <many-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media">
             <join-column name="image_id" referenced-column-name="id" on-delete="SET NULL"/>
         </many-to-one>

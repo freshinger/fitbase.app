@@ -65,15 +65,6 @@
             </call>
         </service>
 
-        <service id="fitbase.block.gamification.dashboard_forest"
-                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserForestBlock">
-            <tag name="sonata.block"/>
-            <argument>fitbase.block.gamification.dashboard_forest</argument>
-            <argument type="service" id="templating"/>
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
 
         <service id="fitbase.block.gamification.dashboard_avatar"
                  class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserAvatarBlock">
@@ -112,6 +103,20 @@
             <argument type="service" id="templating"/>
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="fitbase.block.gamification.dashboard_docs"
+                 class="Fitbase\Bundle\GamificationBundle\Block\Dashboard\UserDocsBlock">
+            <tag name="sonata.block"/>
+            <argument>fitbase.block.gamification.dashboard_docs</argument>
+            <argument type="service" id="templating"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setServiceUser">
+                <argument type="service" id="user"/>
             </call>
         </service>
 

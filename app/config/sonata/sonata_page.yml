@@ -24,6 +24,7 @@ sonata_page:
         - ^/picture/(.*)
         - ^/style/(.*)
 
+
     ignore_route_patterns:
         - (.*)media_download(.*)     # ignore admin route, ie route containing 'admin'
         - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
