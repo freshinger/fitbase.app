@@ -24,6 +24,11 @@
             <directory>../src/Fitbase/Bundle/BarmerGekBundle/Tests</directory>
             <directory>../src/Fitbase/Bundle/CompanyBundle/Tests</directory>
 
+            <directory>../src/Wellbeing/Bundle/ApiBundle/Tests</directory>
+            <directory>../src/Wellbeing/Bundle/ErgonomicsBundle/Tests</directory>
+            <directory>../src/Wellbeing/Bundle/ExerciseBundle/Tests</directory>
+            <directory>../src/Wellbeing/Bundle/StressBundle/Tests</directory>
+
             <!--<directory>../src/Fitbase/*/*Bundle/Tests</directory>-->
             <!--<directory>../src/Fitbase/*/Bundle/*Bundle/Tests</directory>-->
             <!--<directory>../src/Wellbeing/*/*Bundle/Tests</directory>-->

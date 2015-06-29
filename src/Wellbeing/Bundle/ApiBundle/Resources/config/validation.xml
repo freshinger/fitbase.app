@@ -3,7 +3,7 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="Wellbeing\Bundle\ApiBundle\Entity\UserState">
+    <class name="Wellbeing\Bundle\ApiBundle\Model\UserState">
         <property name="authKey">
             <constraint name="NotBlank"/>
             <constraint name="Type">
@@ -11,106 +11,315 @@
                 <option name="message">authKey</option>
             </constraint>
         </property>
-        <property name="date">
-            <constraint name="NotBlank"/>
-            <constraint name="DateTime"/>
-        </property>
-        <property name="head">
+        <property name="timestamp">
             <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHead</option>
+                <option name="type">string</option>
+                <option name="message">timestamp</option>
+            </constraint>
+        </property>
+        <property name="ticketType">
+            <constraint name="NotBlank"/>
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">ticketType</option>
+            </constraint>
+        </property>
+        <property name="head">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">head</option>
             </constraint>
         </property>
         <property name="shoulderCenter">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderCenter</option>
+                <option name="type">string</option>
+                <option name="message">shoulderCenter</option>
             </constraint>
         </property>
         <property name="shoulderLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderLeft</option>
+                <option name="type">string</option>
+                <option name="message">shoulderLeft</option>
             </constraint>
         </property>
         <property name="shoulderRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateShoulderRight</option>
+                <option name="type">string</option>
+                <option name="message">shoulderRight</option>
             </constraint>
         </property>
         <property name="elbowLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowLeft</option>
+                <option name="type">string</option>
+                <option name="message">elbowLeft</option>
             </constraint>
         </property>
         <property name="elbowRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateElbowRight</option>
+                <option name="type">string</option>
+                <option name="message">elbowRight</option>
             </constraint>
         </property>
         <property name="handLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandLeft</option>
+                <option name="type">string</option>
+                <option name="message">handLeft</option>
             </constraint>
         </property>
         <property name="handRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHandRight</option>
+                <option name="type">string</option>
+                <option name="message">handRight</option>
             </constraint>
         </property>
-        <property name="com">
-            <constraint name="NotBlank"/>
+        <property name="spineMid">
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateCom</option>
+                <option name="type">string</option>
+                <option name="message">spineMid</option>
             </constraint>
         </property>
-        <property name="spine">
-            <constraint name="NotBlank"/>
+        <property name="leanAmount">
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateSpine</option>
+                <option name="type">string</option>
+                <option name="message">leanAmount</option>
+            </constraint>
+        </property>
+        <property name="headRotation">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">headRotation</option>
+            </constraint>
+        </property>
+        <property name="neck">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">neck</option>
+            </constraint>
+        </property>
+        <property name="wristLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">wristLeft</option>
+            </constraint>
+        </property>
+        <property name="wristRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">wristRight</option>
+            </constraint>
+        </property>
+        <property name="thumbLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">thumbLeft</option>
+            </constraint>
+        </property>
+        <property name="thumbRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">thumbRight</option>
+            </constraint>
+        </property>
+        <property name="handTipLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">handTipLeft</option>
+            </constraint>
+        </property>
+        <property name="handTipRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">handTipRight</option>
+            </constraint>
+        </property>
+        <property name="spineBase">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">spineBase</option>
             </constraint>
         </property>
         <property name="hipLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipLeft</option>
+                <option name="type">string</option>
+                <option name="message">hipLeft</option>
             </constraint>
         </property>
         <property name="hipRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateHipRight</option>
+                <option name="type">string</option>
+                <option name="message">hipRight</option>
             </constraint>
         </property>
         <property name="kneeLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeLeft</option>
+                <option name="type">string</option>
+                <option name="message">kneeLeft</option>
             </constraint>
         </property>
         <property name="kneeRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateKneeRight</option>
+                <option name="type">string</option>
+                <option name="message">kneeRight</option>
+            </constraint>
+        </property>
+        <property name="ankleLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">ankleLeft</option>
+            </constraint>
+        </property>
+        <property name="ankleRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">ankleRight</option>
             </constraint>
         </property>
         <property name="footLeft">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootLeft</option>
+                <option name="type">string</option>
+                <option name="message">footLeft</option>
             </constraint>
         </property>
         <property name="footRight">
-            <constraint name="NotBlank"/>
             <constraint name="Type">
-                <option name="type">\Wellbeing\Bundle\ApiBundle\Entity\UserCoordinateFootRight</option>
+                <option name="type">string</option>
+                <option name="message">footRight</option>
             </constraint>
         </property>
+        <property name="leftHandState">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">leftHandState</option>
+            </constraint>
+        </property>
+        <property name="rightHandState">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">rightHandState</option>
+            </constraint>
+        </property>
+        <property name="jawOpen">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">jawOpen</option>
+            </constraint>
+        </property>
+        <property name="lipPucker">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipPucker</option>
+            </constraint>
+        </property>
+        <property name="jawSlideRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">jawSlideRight</option>
+            </constraint>
+        </property>
+        <property name="lipStretcherRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipStretcherRight</option>
+            </constraint>
+        </property>
+        <property name="lipStretcherLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipStretcherLeft</option>
+            </constraint>
+        </property>
+        <property name="lipCornerPullerLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipCornerPullerLeft</option>
+            </constraint>
+        </property>
+        <property name="lipStretcherLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipStretcherLeft</option>
+            </constraint>
+        </property>
+        <property name="lipCornerPullerRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipCornerPullerRight</option>
+            </constraint>
+        </property>
+        <property name="lipCornerDepressorLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipCornerDepressorLeft</option>
+            </constraint>
+        </property>
+        <property name="lipCornerDepressorRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lipCornerDepressorRight</option>
+            </constraint>
+        </property>
+        <property name="leftCheekPuff">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">leftCheekPuff</option>
+            </constraint>
+        </property>
+        <property name="rightCheekPuff">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">rightCheekPuff</option>
+            </constraint>
+        </property>
+        <property name="leftEyeClosed">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">leftEyeClosed</option>
+            </constraint>
+        </property>
+        <property name="rightEyeClosed">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">rightEyeClosed</option>
+            </constraint>
+        </property>
+        <property name="rightEyeBrowLowerer">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">rightEyeBrowLowerer</option>
+            </constraint>
+        </property>
+        <property name="leftEyeBrowLowerer">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">leftEyeBrowLowerer</option>
+            </constraint>
+        </property>
+        <property name="lowerLipDepressorLeft">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lowerLipDepressorLeft</option>
+            </constraint>
+        </property>
+        <property name="lowerLipDepressorRight">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">lowerLipDepressorRight</option>
+            </constraint>
+        </property>
+        <property name="happy">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">happy</option>
+            </constraint>
+        </property>
+        <property name="heartRate">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">heartRate</option>
+            </constraint>
+        </property>
+
     </class>
 
 </constraint-mapping>
