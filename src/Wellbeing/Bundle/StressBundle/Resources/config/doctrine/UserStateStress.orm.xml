@@ -5,5 +5,11 @@
       <generator strategy="AUTO"/>
     </id>
     <field name="date" type="datetime" column="date"/>
+
+    <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+      <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+    </many-to-one>
+
+
   </entity>
 </doctrine-mapping>

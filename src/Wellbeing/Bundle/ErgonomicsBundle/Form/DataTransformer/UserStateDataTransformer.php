@@ -110,6 +110,9 @@ class UserStateDataTransformer implements DataTransformerInterface
             throw new \LogicException('Value should be an instance of UserState');
         }
 
+
+
+
         return (new UserStateErgonomics());
 
 
