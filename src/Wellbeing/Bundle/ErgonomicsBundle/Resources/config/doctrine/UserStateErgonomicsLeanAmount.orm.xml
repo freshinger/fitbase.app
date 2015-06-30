@@ -5,6 +5,10 @@
       <generator strategy="AUTO"/>
     </id>
 
+      <one-to-one field="userState" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics">
+          <join-column name="userStateId" referenced-column-name="id" on-delete="CASCADE"/>
+      </one-to-one>
+
       <field name="lr" type="integer" column="lr"/>
       <field name="fb" type="integer" column="fb"/>
 

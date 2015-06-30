@@ -1,15 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Wellbeing\Bundle\StressBundle\Entity\UserStateStress">
-    <id name="id" type="integer" column="id">
-      <generator strategy="AUTO"/>
-    </id>
-    <field name="date" type="datetime" column="date"/>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Wellbeing\Bundle\StressBundle\Entity\UserStateStress">
 
-    <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
-      <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
-    </many-to-one>
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="date" type="datetime" column="date"/>
 
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
-  </entity>
+        <one-to-one field="jawOpen" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawOpen">
+            <join-column name="jawOpenId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipPucker" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipPucker">
+            <join-column name="lipPuckerId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="jawSlideRight" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawSlideRight">
+            <join-column name="jawSlideRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipStretcherRight"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherRight">
+            <join-column name="lipStretcherRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipStretcherLeft" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherLeft">
+            <join-column name="lipStretcherLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipCornerPullerLeft"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerLeft">
+            <join-column name="lipCornerPullerLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipCornerPullerRight"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerRight">
+            <join-column name="lipCornerPullerRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipCornerDepressorLeft"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorLeft">
+            <join-column name="lipCornerDepressorLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lipCornerDepressorRight"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorRight">
+            <join-column name="lipCornerDepressorRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leftCheekPuff" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftCheekPuff">
+            <join-column name="leftCheekPuffId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="rightCheekPuff" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightCheekPuff">
+            <join-column name="rightCheekPuffId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leftEyeClosed" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeClosed">
+            <join-column name="leftEyeClosedId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="rightEyeClosed" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeClosed">
+            <join-column name="rightEyeClosedId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="rightEyeBrowLowerer"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeBrowLowerer">
+            <join-column name="rightEyeBrowLowererId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leftEyeBrowLowerer"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeBrowLowerer">
+            <join-column name="leftEyeBrowLowererId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lowerLipDepressorLeft"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorLeft">
+            <join-column name="lowerLipDepressorLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="lowerLipDepressorRight"
+                    target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorRight">
+            <join-column name="lowerLipDepressorRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="happy" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHappy">
+            <join-column name="happyId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="head" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHead">
+            <join-column name="headId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderCenter" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderCenter">
+            <join-column name="shoulderCenterId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderLeft" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderLeft">
+            <join-column name="shoulderLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderRight" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderRight">
+            <join-column name="shoulderRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handLeft" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandLeft">
+            <join-column name="handLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handRight" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandRight">
+            <join-column name="handRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leanAmount" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeanAmount">
+            <join-column name="leanAmountId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="headRotation" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeadRotation">
+            <join-column name="headRotationId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="heartRate" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeartRate">
+            <join-column name="heartRateId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+    </entity>
 </doctrine-mapping>

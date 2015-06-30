@@ -5,6 +5,13 @@
       <generator strategy="AUTO"/>
     </id>
 
+      <one-to-one field="userState" target-entity="Wellbeing\Bundle\StressBundle\Entity\UserStateStress">
+          <join-column name="userStateId" referenced-column-name="id" on-delete="CASCADE"/>
+      </one-to-one>
+
+      <field name="x" type="float" column="x"/>
+      <field name="y" type="float" column="y"/>
+      <field name="z" type="float" column="z"/>
 
   </entity>
 </doctrine-mapping>

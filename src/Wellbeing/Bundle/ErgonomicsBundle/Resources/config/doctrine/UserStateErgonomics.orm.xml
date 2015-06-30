@@ -6,83 +6,82 @@
     </id>
     <field name="date" type="datetime" column="date"/>
 
-
       <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
-          <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
       </many-to-one>
 
       <one-to-one field="head" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead">
-          <join-column name="head_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="headId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="shoulderCenter" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter">
-          <join-column name="shoulder_center_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="shoulderCenterId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="shoulderLeft" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderLeft">
-          <join-column name="shoulder_left_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="shoulderLeftId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="shoulderRight" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderRight">
-          <join-column name="shoulder_right_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="shoulderRightId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="elbowLeft" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowLeft">
-          <join-column name="elbow_left_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="elbowLeftId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="elbowRight" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowRight">
-          <join-column name="elbow_right_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="elbowRightId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="handLeft" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandLeft">
-          <join-column name="hand_left_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="handLeftId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="handRight" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandRight">
-          <join-column name="hand_right_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="handRightId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="spineMid" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid">
-          <join-column name="spine_mid_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="spineMidId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="leanAmount" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsLeanAmount">
-          <join-column name="lean_amount_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="leanAmountId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>
       </one-to-one>
 
       <one-to-one field="headRotation" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHeadRotation">
-          <join-column name="head_rotation_id" referenced-column-name="id" on-delete="CASCADE"/>
+          <join-column name="headRotationId" referenced-column-name="id" on-delete="CASCADE"/>
           <cascade>
               <cascade-all/>
           </cascade>

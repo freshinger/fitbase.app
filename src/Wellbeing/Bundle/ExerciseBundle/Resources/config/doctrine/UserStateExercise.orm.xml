@@ -1,15 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise">
-    <id name="id" type="integer" column="id">
-      <generator strategy="AUTO"/>
-    </id>
-    <field name="date" type="datetime" column="date"/>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="date" type="datetime" column="date"/>
 
-    <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
-      <join-column name="user_id" referenced-column-name="id" on-delete="CASCADE"/>
-    </many-to-one>
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
 
+        <one-to-one field="head" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHead">
+            <join-column name="headId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
 
-  </entity>
+        <one-to-one field="neck" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseNeck">
+            <join-column name="neckId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderCenter" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderCenter">
+            <join-column name="shoulderCenterId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderLeft">
+            <join-column name="shoulderLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="shoulderRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderRight">
+            <join-column name="shoulderRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="elbowLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowLeft">
+            <join-column name="elbowLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="elbowRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowRight">
+            <join-column name="elbowRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="wristLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft">
+            <join-column name="wristLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="wristRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight">
+            <join-column name="wristRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandLeft">
+            <join-column name="handLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandRight">
+            <join-column name="handRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="thumbLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbLeft">
+            <join-column name="thumbLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="thumbRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbRight">
+            <join-column name="thumbRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handTipLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipLeft">
+            <join-column name="handTipLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="handTipRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipRight">
+            <join-column name="handTipRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="spineMid" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineMid">
+            <join-column name="spineMidId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="spineBase" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineBase">
+            <join-column name="spineBaseId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="hipLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipLeft">
+            <join-column name="hipLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="hipRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipRight">
+            <join-column name="hipRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="kneeLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeLeft">
+            <join-column name="kneeLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="kneeRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeRight">
+            <join-column name="kneeRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="ankleLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleLeft">
+            <join-column name="ankleLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="ankleRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleRight">
+            <join-column name="ankleRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="footLeft" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootLeft">
+            <join-column name="footLeftId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="footRight" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootRight">
+            <join-column name="footRightId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leftHandState" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeftHandState">
+            <join-column name="leftHandStateId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="rightHandState" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseRightHandState">
+            <join-column name="rightHandStateId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="leanAmount" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeanAmount">
+            <join-column name="leanAmountId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="headRotation" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHeadRotation">
+            <join-column name="headRotationId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+    </entity>
 </doctrine-mapping>
