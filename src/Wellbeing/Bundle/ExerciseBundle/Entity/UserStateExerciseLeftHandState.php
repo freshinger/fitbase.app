@@ -1,0 +1,83 @@
+<?php
+
+namespace Wellbeing\Bundle\ExerciseBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UserStateExerciseLeftHandState
+ */
+class UserStateExerciseLeftHandState
+{
+    /**
+     * @var integer
+     */
+    private $value;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise
+     */
+    private $userState;
+
+
+    /**
+     * Set value
+     *
+     * @param integer $value
+     * @return UserStateExerciseLeftHandState
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return integer 
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set userState
+     *
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise $userState
+     * @return UserStateExerciseLeftHandState
+     */
+    public function setUserState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise $userState = null)
+    {
+        $this->userState = $userState;
+
+        return $this;
+    }
+
+    /**
+     * Get userState
+     *
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise 
+     */
+    public function getUserState()
+    {
+        return $this->userState;
+    }
+}

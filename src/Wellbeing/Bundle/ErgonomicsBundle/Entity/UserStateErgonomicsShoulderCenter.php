@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStateErgonomicsShoulderCenter
 {
-
     /**
      * @var float
      */
@@ -29,6 +28,11 @@ class UserStateErgonomicsShoulderCenter
      * @var integer
      */
     private $id;
+
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
+     */
+    private $userState;
 
 
     /**
@@ -108,5 +112,28 @@ class UserStateErgonomicsShoulderCenter
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set userState
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState
+     * @return UserStateErgonomicsShoulderCenter
+     */
+    public function setUserState(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState = null)
+    {
+        $this->userState = $userState;
+
+        return $this;
+    }
+
+    /**
+     * Get userState
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     */
+    public function getUserState()
+    {
+        return $this->userState;
     }
 }

@@ -5,11 +5,10 @@ namespace Wellbeing\Bundle\ErgonomicsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserStateErgonomicsShoulderLeft
+ * UserStateErgonomicsShoulderRight
  */
 class UserStateErgonomicsShoulderRight
 {
-
     /**
      * @var float
      */
@@ -29,6 +28,11 @@ class UserStateErgonomicsShoulderRight
      * @var integer
      */
     private $id;
+
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
+     */
+    private $userState;
 
 
     /**
@@ -108,5 +112,28 @@ class UserStateErgonomicsShoulderRight
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set userState
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState
+     * @return UserStateErgonomicsShoulderRight
+     */
+    public function setUserState(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState = null)
+    {
+        $this->userState = $userState;
+
+        return $this;
+    }
+
+    /**
+     * Get userState
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     */
+    public function getUserState()
+    {
+        return $this->userState;
     }
 }

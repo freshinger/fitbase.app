@@ -1,26 +1,26 @@
 <?php
 
-namespace Wellbeing\Bundle\ErgonomicsBundle\Entity;
+namespace Wellbeing\Bundle\StressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserStateErgonomicsHandLeft
+ * UserStateStressHeadRotation
  */
-class UserStateErgonomicsHandLeft
+class UserStateStressHeadRotation
 {
     /**
-     * @var float
+     * @var integer
      */
     private $x;
 
     /**
-     * @var float
+     * @var integer
      */
     private $y;
 
     /**
-     * @var float
+     * @var integer
      */
     private $z;
 
@@ -30,7 +30,7 @@ class UserStateErgonomicsHandLeft
     private $id;
 
     /**
-     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
+     * @var \Wellbeing\Bundle\StressBundle\Entity\UserStateStress
      */
     private $userState;
 
@@ -38,8 +38,8 @@ class UserStateErgonomicsHandLeft
     /**
      * Set x
      *
-     * @param float $x
-     * @return UserStateErgonomicsHandLeft
+     * @param integer $x
+     * @return UserStateStressHeadRotation
      */
     public function setX($x)
     {
@@ -51,7 +51,7 @@ class UserStateErgonomicsHandLeft
     /**
      * Get x
      *
-     * @return float 
+     * @return integer 
      */
     public function getX()
     {
@@ -61,8 +61,8 @@ class UserStateErgonomicsHandLeft
     /**
      * Set y
      *
-     * @param float $y
-     * @return UserStateErgonomicsHandLeft
+     * @param integer $y
+     * @return UserStateStressHeadRotation
      */
     public function setY($y)
     {
@@ -74,7 +74,7 @@ class UserStateErgonomicsHandLeft
     /**
      * Get y
      *
-     * @return float 
+     * @return integer 
      */
     public function getY()
     {
@@ -84,8 +84,8 @@ class UserStateErgonomicsHandLeft
     /**
      * Set z
      *
-     * @param float $z
-     * @return UserStateErgonomicsHandLeft
+     * @param integer $z
+     * @return UserStateStressHeadRotation
      */
     public function setZ($z)
     {
@@ -97,7 +97,7 @@ class UserStateErgonomicsHandLeft
     /**
      * Get z
      *
-     * @return float 
+     * @return integer 
      */
     public function getZ()
     {
@@ -117,10 +117,10 @@ class UserStateErgonomicsHandLeft
     /**
      * Set userState
      *
-     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState
-     * @return UserStateErgonomicsHandLeft
+     * @param \Wellbeing\Bundle\StressBundle\Entity\UserStateStress $userState
+     * @return UserStateStressHeadRotation
      */
-    public function setUserState(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState = null)
+    public function setUserState(\Wellbeing\Bundle\StressBundle\Entity\UserStateStress $userState = null)
     {
         $this->userState = $userState;
 
@@ -130,7 +130,7 @@ class UserStateErgonomicsHandLeft
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStress 
      */
     public function getUserState()
     {

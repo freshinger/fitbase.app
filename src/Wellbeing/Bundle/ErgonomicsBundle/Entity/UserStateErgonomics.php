@@ -10,48 +10,15 @@ use Doctrine\ORM\Mapping as ORM;
 class UserStateErgonomics
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
      * @var \DateTime
      */
     private $date;
 
-
     /**
-     * Get id
-     *
-     * @return integer 
+     * @var integer
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return UserStateErgonomics
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
     /**
      * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead
      */
@@ -107,6 +74,44 @@ class UserStateErgonomics
      */
     private $headRotation;
 
+    /**
+     * @var \Application\Sonata\UserBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return UserStateErgonomics
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set head
@@ -360,11 +365,6 @@ class UserStateErgonomics
     {
         return $this->headRotation;
     }
-    /**
-     * @var \Application\Sonata\UserBundle\Entity\User
-     */
-    private $user;
-
 
     /**
      * Set user

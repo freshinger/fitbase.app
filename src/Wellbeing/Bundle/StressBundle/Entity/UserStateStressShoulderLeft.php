@@ -1,13 +1,13 @@
 <?php
 
-namespace Wellbeing\Bundle\ErgonomicsBundle\Entity;
+namespace Wellbeing\Bundle\StressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserStateErgonomicsHandLeft
+ * UserStateStressShoulderLeft
  */
-class UserStateErgonomicsHandLeft
+class UserStateStressShoulderLeft
 {
     /**
      * @var float
@@ -30,7 +30,7 @@ class UserStateErgonomicsHandLeft
     private $id;
 
     /**
-     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
+     * @var \Wellbeing\Bundle\StressBundle\Entity\UserStateStress
      */
     private $userState;
 
@@ -39,7 +39,7 @@ class UserStateErgonomicsHandLeft
      * Set x
      *
      * @param float $x
-     * @return UserStateErgonomicsHandLeft
+     * @return UserStateStressShoulderLeft
      */
     public function setX($x)
     {
@@ -62,7 +62,7 @@ class UserStateErgonomicsHandLeft
      * Set y
      *
      * @param float $y
-     * @return UserStateErgonomicsHandLeft
+     * @return UserStateStressShoulderLeft
      */
     public function setY($y)
     {
@@ -85,7 +85,7 @@ class UserStateErgonomicsHandLeft
      * Set z
      *
      * @param float $z
-     * @return UserStateErgonomicsHandLeft
+     * @return UserStateStressShoulderLeft
      */
     public function setZ($z)
     {
@@ -117,10 +117,10 @@ class UserStateErgonomicsHandLeft
     /**
      * Set userState
      *
-     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState
-     * @return UserStateErgonomicsHandLeft
+     * @param \Wellbeing\Bundle\StressBundle\Entity\UserStateStress $userState
+     * @return UserStateStressShoulderLeft
      */
-    public function setUserState(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState = null)
+    public function setUserState(\Wellbeing\Bundle\StressBundle\Entity\UserStateStress $userState = null)
     {
         $this->userState = $userState;
 
@@ -130,7 +130,7 @@ class UserStateErgonomicsHandLeft
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStress 
      */
     public function getUserState()
     {

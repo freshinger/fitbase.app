@@ -1,13 +1,13 @@
 <?php
 
-namespace Wellbeing\Bundle\ErgonomicsBundle\Entity;
+namespace Wellbeing\Bundle\ExerciseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserStateErgonomicsLeanAmount
+ * UserStateExerciseLeanAmount
  */
-class UserStateErgonomicsLeanAmount
+class UserStateExerciseLeanAmount
 {
     /**
      * @var integer
@@ -25,7 +25,7 @@ class UserStateErgonomicsLeanAmount
     private $id;
 
     /**
-     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise
      */
     private $userState;
 
@@ -34,7 +34,7 @@ class UserStateErgonomicsLeanAmount
      * Set lr
      *
      * @param integer $lr
-     * @return UserStateErgonomicsLeanAmount
+     * @return UserStateExerciseLeanAmount
      */
     public function setLr($lr)
     {
@@ -57,7 +57,7 @@ class UserStateErgonomicsLeanAmount
      * Set fb
      *
      * @param integer $fb
-     * @return UserStateErgonomicsLeanAmount
+     * @return UserStateExerciseLeanAmount
      */
     public function setFb($fb)
     {
@@ -89,10 +89,10 @@ class UserStateErgonomicsLeanAmount
     /**
      * Set userState
      *
-     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState
-     * @return UserStateErgonomicsLeanAmount
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise $userState
+     * @return UserStateExerciseLeanAmount
      */
-    public function setUserState(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics $userState = null)
+    public function setUserState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise $userState = null)
     {
         $this->userState = $userState;
 
@@ -102,7 +102,7 @@ class UserStateErgonomicsLeanAmount
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise 
      */
     public function getUserState()
     {
