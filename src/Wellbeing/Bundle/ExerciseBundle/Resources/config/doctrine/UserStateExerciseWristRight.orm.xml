@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-    <entity name="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft">
+    <entity name="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
@@ -10,6 +10,10 @@
         <one-to-one field="userState" target-entity="Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise">
             <join-column name="userStateId" referenced-column-name="id" on-delete="CASCADE"/>
         </one-to-one>
+
+        <field name="x" type="float" column="x"/>
+        <field name="y" type="float" column="y"/>
+        <field name="z" type="float" column="z"/>
 
     </entity>
 </doctrine-mapping>
