@@ -24,7 +24,15 @@ class UserStateStressJawSlideRight
      */
     private $userState;
 
-
+    /**
+     * Class constructor
+     *
+     * @param $value
+     */
+    public function __construct($value)
+    {
+        $this->setValue($value);
+    }
     /**
      * Set value
      *

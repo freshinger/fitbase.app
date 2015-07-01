@@ -24,6 +24,15 @@ class UserStateExerciseRightHandState
      */
     private $userState;
 
+    /**
+     * Class constructor
+     *
+     * @param $value
+     */
+    public function __construct($value)
+    {
+        $this->setValue($value);
+    }
 
     /**
      * Set value
@@ -41,7 +50,7 @@ class UserStateExerciseRightHandState
     /**
      * Get value
      *
-     * @return integer 
+     * @return integer
      */
     public function getValue()
     {
@@ -51,7 +60,7 @@ class UserStateExerciseRightHandState
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,7 +83,7 @@ class UserStateExerciseRightHandState
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise
      */
     public function getUserState()
     {

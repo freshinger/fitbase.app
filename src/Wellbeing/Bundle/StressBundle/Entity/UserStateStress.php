@@ -176,7 +176,7 @@ class UserStateStress
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -186,7 +186,7 @@ class UserStateStress
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -209,7 +209,7 @@ class UserStateStress
     /**
      * Get jawOpen
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawOpen 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawOpen
      */
     public function getJawOpen()
     {
@@ -232,7 +232,7 @@ class UserStateStress
     /**
      * Get lipPucker
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipPucker 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipPucker
      */
     public function getLipPucker()
     {
@@ -255,7 +255,7 @@ class UserStateStress
     /**
      * Get jawSlideRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawSlideRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressJawSlideRight
      */
     public function getJawSlideRight()
     {
@@ -278,7 +278,7 @@ class UserStateStress
     /**
      * Get lipStretcherRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherRight
      */
     public function getLipStretcherRight()
     {
@@ -301,7 +301,7 @@ class UserStateStress
     /**
      * Get lipStretcherLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipStretcherLeft
      */
     public function getLipStretcherLeft()
     {
@@ -324,7 +324,7 @@ class UserStateStress
     /**
      * Get lipCornerPullerLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerLeft
      */
     public function getLipCornerPullerLeft()
     {
@@ -347,7 +347,7 @@ class UserStateStress
     /**
      * Get lipCornerPullerRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerPullerRight
      */
     public function getLipCornerPullerRight()
     {
@@ -370,7 +370,7 @@ class UserStateStress
     /**
      * Get lipCornerDepressorLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorLeft
      */
     public function getLipCornerDepressorLeft()
     {
@@ -393,7 +393,7 @@ class UserStateStress
     /**
      * Get lipCornerDepressorRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLipCornerDepressorRight
      */
     public function getLipCornerDepressorRight()
     {
@@ -416,7 +416,7 @@ class UserStateStress
     /**
      * Get leftCheekPuff
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftCheekPuff 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftCheekPuff
      */
     public function getLeftCheekPuff()
     {
@@ -439,7 +439,7 @@ class UserStateStress
     /**
      * Get rightCheekPuff
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightCheekPuff 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightCheekPuff
      */
     public function getRightCheekPuff()
     {
@@ -462,7 +462,7 @@ class UserStateStress
     /**
      * Get leftEyeClosed
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeClosed 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeClosed
      */
     public function getLeftEyeClosed()
     {
@@ -485,7 +485,7 @@ class UserStateStress
     /**
      * Get rightEyeClosed
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeClosed 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeClosed
      */
     public function getRightEyeClosed()
     {
@@ -508,7 +508,7 @@ class UserStateStress
     /**
      * Get rightEyeBrowLowerer
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeBrowLowerer 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressRightEyeBrowLowerer
      */
     public function getRightEyeBrowLowerer()
     {
@@ -531,7 +531,7 @@ class UserStateStress
     /**
      * Get leftEyeBrowLowerer
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeBrowLowerer 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeftEyeBrowLowerer
      */
     public function getLeftEyeBrowLowerer()
     {
@@ -554,7 +554,7 @@ class UserStateStress
     /**
      * Get lowerLipDepressorLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorLeft
      */
     public function getLowerLipDepressorLeft()
     {
@@ -577,7 +577,7 @@ class UserStateStress
     /**
      * Get lowerLipDepressorRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLowerLipDepressorRight
      */
     public function getLowerLipDepressorRight()
     {
@@ -600,7 +600,7 @@ class UserStateStress
     /**
      * Get happy
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHappy 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHappy
      */
     public function getHappy()
     {
@@ -623,7 +623,7 @@ class UserStateStress
     /**
      * Get head
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHead 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHead
      */
     public function getHead()
     {
@@ -646,7 +646,7 @@ class UserStateStress
     /**
      * Get shoulderCenter
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderCenter 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderCenter
      */
     public function getShoulderCenter()
     {
@@ -669,7 +669,7 @@ class UserStateStress
     /**
      * Get shoulderLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderLeft
      */
     public function getShoulderLeft()
     {
@@ -692,7 +692,7 @@ class UserStateStress
     /**
      * Get shoulderRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressShoulderRight
      */
     public function getShoulderRight()
     {
@@ -715,7 +715,7 @@ class UserStateStress
     /**
      * Get handLeft
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandLeft 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandLeft
      */
     public function getHandLeft()
     {
@@ -738,7 +738,7 @@ class UserStateStress
     /**
      * Get handRight
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandRight 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHandRight
      */
     public function getHandRight()
     {
@@ -761,7 +761,7 @@ class UserStateStress
     /**
      * Get leanAmount
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeanAmount 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressLeanAmount
      */
     public function getLeanAmount()
     {
@@ -784,7 +784,7 @@ class UserStateStress
     /**
      * Get headRotation
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeadRotation 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeadRotation
      */
     public function getHeadRotation()
     {
@@ -807,7 +807,7 @@ class UserStateStress
     /**
      * Get heartRate
      *
-     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeartRate 
+     * @return \Wellbeing\Bundle\StressBundle\Entity\UserStateStressHeartRate
      */
     public function getHeartRate()
     {
@@ -830,10 +830,41 @@ class UserStateStress
     /**
      * Get user
      *
-     * @return \Application\Sonata\UserBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function onPrePersist()
+    {
+        $this->getJawOpen()->setUserState($this);
+        $this->getLipPucker()->setUserState($this);
+        $this->getJawSlideRight()->setUserState($this);
+        $this->getLipStretcherLeft()->setUserState($this);
+        $this->getLipStretcherRight()->setUserState($this);
+        $this->getLipCornerPullerLeft()->setUserState($this);
+        $this->getLipCornerPullerRight()->setUserState($this);
+        $this->getLipCornerDepressorLeft()->setUserState($this);
+        $this->getLipCornerDepressorRight()->setUserState($this);
+        $this->getLeftCheekPuff()->setUserState($this);
+        $this->getRightCheekPuff()->setUserState($this);
+        $this->getLeftEyeClosed()->setUserState($this);
+        $this->getRightEyeClosed()->setUserState($this);
+        $this->getRightEyeBrowLowerer()->setUserState($this);
+        $this->getLeftEyeBrowLowerer()->setUserState($this);
+        $this->getLowerLipDepressorLeft()->setUserState($this);
+        $this->getLowerLipDepressorRight()->setUserState($this);
+        $this->getHappy()->setUserState($this);
+        $this->getHead()->setUserState($this);
+        $this->getShoulderCenter()->setUserState($this);
+        $this->getShoulderLeft()->setUserState($this);
+        $this->getShoulderRight()->setUserState($this);
+        $this->getHandLeft()->setUserState($this);
+        $this->getHandRight()->setUserState($this);
+        $this->getLeanAmount()->setUserState($this);
+        $this->getHeadRotation()->setUserState($this);
+        $this->getHeartRate()->setUserState($this);
     }
 }

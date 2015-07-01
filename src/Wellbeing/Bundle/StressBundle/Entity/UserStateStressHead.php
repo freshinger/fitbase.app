@@ -34,7 +34,19 @@ class UserStateStressHead
      */
     private $userState;
 
-
+    /**
+     * Class constructor
+     *
+     * @param $x
+     * @param $y
+     * @param $z
+     */
+    public function __construct($x, $y, $z)
+    {
+        $this->setX($x);
+        $this->setY($y);
+        $this->setZ($z);
+    }
     /**
      * Set x
      *

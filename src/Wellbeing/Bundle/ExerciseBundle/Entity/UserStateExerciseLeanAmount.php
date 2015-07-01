@@ -12,16 +12,6 @@ class UserStateExerciseLeanAmount
     /**
      * @var integer
      */
-    private $lr;
-
-    /**
-     * @var integer
-     */
-    private $fb;
-
-    /**
-     * @var integer
-     */
     private $id;
 
     /**
@@ -31,55 +21,22 @@ class UserStateExerciseLeanAmount
 
 
     /**
-     * Set lr
+     * Class constructor
      *
-     * @param integer $lr
-     * @return UserStateExerciseLeanAmount
+     * @param $x
+     * @param $y
+     * @param $z
      */
-    public function setLr($lr)
+    public function __construct($x, $y)
     {
-        $this->lr = $lr;
-
-        return $this;
-    }
-
-    /**
-     * Get lr
-     *
-     * @return integer 
-     */
-    public function getLr()
-    {
-        return $this->lr;
-    }
-
-    /**
-     * Set fb
-     *
-     * @param integer $fb
-     * @return UserStateExerciseLeanAmount
-     */
-    public function setFb($fb)
-    {
-        $this->fb = $fb;
-
-        return $this;
-    }
-
-    /**
-     * Get fb
-     *
-     * @return integer 
-     */
-    public function getFb()
-    {
-        return $this->fb;
+        $this->setX($x);
+        $this->setY($y);
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,10 +59,67 @@ class UserStateExerciseLeanAmount
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExercise
      */
     public function getUserState()
     {
         return $this->userState;
+    }
+
+    /**
+     * @var integer
+     */
+    private $x;
+
+    /**
+     * @var integer
+     */
+    private $y;
+
+
+    /**
+     * Set x
+     *
+     * @param integer $x
+     * @return UserStateExerciseLeanAmount
+     */
+    public function setX($x)
+    {
+        $this->x = $x;
+
+        return $this;
+    }
+
+    /**
+     * Get x
+     *
+     * @return integer
+     */
+    public function getX()
+    {
+        return $this->x;
+    }
+
+    /**
+     * Set y
+     *
+     * @param integer $y
+     * @return UserStateExerciseLeanAmount
+     */
+    public function setY($y)
+    {
+        $this->y = $y;
+
+        return $this;
+    }
+
+    /**
+     * Get y
+     *
+     * @return integer
+     */
+    public function getY()
+    {
+        return $this->y;
     }
 }

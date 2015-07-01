@@ -20,147 +20,147 @@ class UserStateExercise
     private $id;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHead
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHead
      */
     private $head;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressNeck
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseNeck
      */
     private $neck;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderCenter
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderCenter
      */
     private $shoulderCenter;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderLeft
      */
     private $shoulderLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderRight
      */
     private $shoulderRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowLeft
      */
     private $elbowLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowRight
      */
     private $elbowRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft
      */
     private $wristLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight
      */
     private $wristRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandLeft
      */
     private $handLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandRight
      */
     private $handRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbLeft
      */
     private $thumbLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbRight
      */
     private $thumbRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipLeft
      */
     private $handTipLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipRight
      */
     private $handTipRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineMid
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineMid
      */
     private $spineMid;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineBase
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineBase
      */
     private $spineBase;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipLeft
      */
     private $hipLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipRight
      */
     private $hipRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeLeft
      */
     private $kneeLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeRight
      */
     private $kneeRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleLeft
      */
     private $ankleLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleRight
      */
     private $ankleRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootLeft
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootLeft
      */
     private $footLeft;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootRight
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootRight
      */
     private $footRight;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeftHandState
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeftHandState
      */
     private $leftHandState;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressRightHandState
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseRightHandState
      */
     private $rightHandState;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeanAmount
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeanAmount
      */
     private $leanAmount;
 
     /**
-     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHeadRotation
+     * @var \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHeadRotation
      */
     private $headRotation;
 
@@ -186,7 +186,7 @@ class UserStateExercise
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -196,7 +196,7 @@ class UserStateExercise
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -206,10 +206,10 @@ class UserStateExercise
     /**
      * Set head
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHead $head
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHead $head
      * @return UserStateExercise
      */
-    public function setHead(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHead $head = null)
+    public function setHead(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHead $head = null)
     {
         $this->head = $head;
 
@@ -219,7 +219,7 @@ class UserStateExercise
     /**
      * Get head
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHead 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHead
      */
     public function getHead()
     {
@@ -229,10 +229,10 @@ class UserStateExercise
     /**
      * Set neck
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressNeck $neck
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseNeck $neck
      * @return UserStateExercise
      */
-    public function setNeck(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressNeck $neck = null)
+    public function setNeck(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseNeck $neck = null)
     {
         $this->neck = $neck;
 
@@ -242,7 +242,7 @@ class UserStateExercise
     /**
      * Get neck
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressNeck 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseNeck
      */
     public function getNeck()
     {
@@ -252,10 +252,10 @@ class UserStateExercise
     /**
      * Set shoulderCenter
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderCenter $shoulderCenter
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderCenter $shoulderCenter
      * @return UserStateExercise
      */
-    public function setShoulderCenter(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderCenter $shoulderCenter = null)
+    public function setShoulderCenter(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderCenter $shoulderCenter = null)
     {
         $this->shoulderCenter = $shoulderCenter;
 
@@ -265,7 +265,7 @@ class UserStateExercise
     /**
      * Get shoulderCenter
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderCenter 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderCenter
      */
     public function getShoulderCenter()
     {
@@ -275,10 +275,10 @@ class UserStateExercise
     /**
      * Set shoulderLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderLeft $shoulderLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderLeft $shoulderLeft
      * @return UserStateExercise
      */
-    public function setShoulderLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderLeft $shoulderLeft = null)
+    public function setShoulderLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderLeft $shoulderLeft = null)
     {
         $this->shoulderLeft = $shoulderLeft;
 
@@ -288,7 +288,7 @@ class UserStateExercise
     /**
      * Get shoulderLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderLeft
      */
     public function getShoulderLeft()
     {
@@ -298,10 +298,10 @@ class UserStateExercise
     /**
      * Set shoulderRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderRight $shoulderRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderRight $shoulderRight
      * @return UserStateExercise
      */
-    public function setShoulderRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderRight $shoulderRight = null)
+    public function setShoulderRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderRight $shoulderRight = null)
     {
         $this->shoulderRight = $shoulderRight;
 
@@ -311,7 +311,7 @@ class UserStateExercise
     /**
      * Get shoulderRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressShoulderRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseShoulderRight
      */
     public function getShoulderRight()
     {
@@ -321,10 +321,10 @@ class UserStateExercise
     /**
      * Set elbowLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowLeft $elbowLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowLeft $elbowLeft
      * @return UserStateExercise
      */
-    public function setElbowLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowLeft $elbowLeft = null)
+    public function setElbowLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowLeft $elbowLeft = null)
     {
         $this->elbowLeft = $elbowLeft;
 
@@ -334,7 +334,7 @@ class UserStateExercise
     /**
      * Get elbowLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowLeft
      */
     public function getElbowLeft()
     {
@@ -344,10 +344,10 @@ class UserStateExercise
     /**
      * Set elbowRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowRight $elbowRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowRight $elbowRight
      * @return UserStateExercise
      */
-    public function setElbowRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowRight $elbowRight = null)
+    public function setElbowRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowRight $elbowRight = null)
     {
         $this->elbowRight = $elbowRight;
 
@@ -357,7 +357,7 @@ class UserStateExercise
     /**
      * Get elbowRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressElbowRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseElbowRight
      */
     public function getElbowRight()
     {
@@ -367,10 +367,10 @@ class UserStateExercise
     /**
      * Set wristLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristLeft $wristLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft $wristLeft
      * @return UserStateExercise
      */
-    public function setWristLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristLeft $wristLeft = null)
+    public function setWristLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft $wristLeft = null)
     {
         $this->wristLeft = $wristLeft;
 
@@ -380,7 +380,7 @@ class UserStateExercise
     /**
      * Get wristLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristLeft
      */
     public function getWristLeft()
     {
@@ -390,10 +390,10 @@ class UserStateExercise
     /**
      * Set wristRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristRight $wristRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight $wristRight
      * @return UserStateExercise
      */
-    public function setWristRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristRight $wristRight = null)
+    public function setWristRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight $wristRight = null)
     {
         $this->wristRight = $wristRight;
 
@@ -403,7 +403,7 @@ class UserStateExercise
     /**
      * Get wristRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressWristRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseWristRight
      */
     public function getWristRight()
     {
@@ -413,10 +413,10 @@ class UserStateExercise
     /**
      * Set handLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandLeft $handLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandLeft $handLeft
      * @return UserStateExercise
      */
-    public function setHandLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandLeft $handLeft = null)
+    public function setHandLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandLeft $handLeft = null)
     {
         $this->handLeft = $handLeft;
 
@@ -426,7 +426,7 @@ class UserStateExercise
     /**
      * Get handLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandLeft
      */
     public function getHandLeft()
     {
@@ -436,10 +436,10 @@ class UserStateExercise
     /**
      * Set handRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandRight $handRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandRight $handRight
      * @return UserStateExercise
      */
-    public function setHandRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandRight $handRight = null)
+    public function setHandRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandRight $handRight = null)
     {
         $this->handRight = $handRight;
 
@@ -449,7 +449,7 @@ class UserStateExercise
     /**
      * Get handRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandRight
      */
     public function getHandRight()
     {
@@ -459,10 +459,10 @@ class UserStateExercise
     /**
      * Set thumbLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbLeft $thumbLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbLeft $thumbLeft
      * @return UserStateExercise
      */
-    public function setThumbLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbLeft $thumbLeft = null)
+    public function setThumbLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbLeft $thumbLeft = null)
     {
         $this->thumbLeft = $thumbLeft;
 
@@ -472,7 +472,7 @@ class UserStateExercise
     /**
      * Get thumbLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbLeft
      */
     public function getThumbLeft()
     {
@@ -482,10 +482,10 @@ class UserStateExercise
     /**
      * Set thumbRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbRight $thumbRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbRight $thumbRight
      * @return UserStateExercise
      */
-    public function setThumbRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbRight $thumbRight = null)
+    public function setThumbRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbRight $thumbRight = null)
     {
         $this->thumbRight = $thumbRight;
 
@@ -495,7 +495,7 @@ class UserStateExercise
     /**
      * Get thumbRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressThumbRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseThumbRight
      */
     public function getThumbRight()
     {
@@ -505,10 +505,10 @@ class UserStateExercise
     /**
      * Set handTipLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipLeft $handTipLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipLeft $handTipLeft
      * @return UserStateExercise
      */
-    public function setHandTipLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipLeft $handTipLeft = null)
+    public function setHandTipLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipLeft $handTipLeft = null)
     {
         $this->handTipLeft = $handTipLeft;
 
@@ -518,7 +518,7 @@ class UserStateExercise
     /**
      * Get handTipLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipLeft
      */
     public function getHandTipLeft()
     {
@@ -528,10 +528,10 @@ class UserStateExercise
     /**
      * Set handTipRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipRight $handTipRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipRight $handTipRight
      * @return UserStateExercise
      */
-    public function setHandTipRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipRight $handTipRight = null)
+    public function setHandTipRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipRight $handTipRight = null)
     {
         $this->handTipRight = $handTipRight;
 
@@ -541,7 +541,7 @@ class UserStateExercise
     /**
      * Get handTipRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHandTipRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHandTipRight
      */
     public function getHandTipRight()
     {
@@ -551,10 +551,10 @@ class UserStateExercise
     /**
      * Set spineMid
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineMid $spineMid
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineMid $spineMid
      * @return UserStateExercise
      */
-    public function setSpineMid(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineMid $spineMid = null)
+    public function setSpineMid(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineMid $spineMid = null)
     {
         $this->spineMid = $spineMid;
 
@@ -564,7 +564,7 @@ class UserStateExercise
     /**
      * Get spineMid
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineMid 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineMid
      */
     public function getSpineMid()
     {
@@ -574,10 +574,10 @@ class UserStateExercise
     /**
      * Set spineBase
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineBase $spineBase
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineBase $spineBase
      * @return UserStateExercise
      */
-    public function setSpineBase(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineBase $spineBase = null)
+    public function setSpineBase(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineBase $spineBase = null)
     {
         $this->spineBase = $spineBase;
 
@@ -587,7 +587,7 @@ class UserStateExercise
     /**
      * Get spineBase
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressSpineBase 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseSpineBase
      */
     public function getSpineBase()
     {
@@ -597,10 +597,10 @@ class UserStateExercise
     /**
      * Set hipLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipLeft $hipLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipLeft $hipLeft
      * @return UserStateExercise
      */
-    public function setHipLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipLeft $hipLeft = null)
+    public function setHipLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipLeft $hipLeft = null)
     {
         $this->hipLeft = $hipLeft;
 
@@ -610,7 +610,7 @@ class UserStateExercise
     /**
      * Get hipLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipLeft
      */
     public function getHipLeft()
     {
@@ -620,10 +620,10 @@ class UserStateExercise
     /**
      * Set hipRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipRight $hipRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipRight $hipRight
      * @return UserStateExercise
      */
-    public function setHipRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipRight $hipRight = null)
+    public function setHipRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipRight $hipRight = null)
     {
         $this->hipRight = $hipRight;
 
@@ -633,7 +633,7 @@ class UserStateExercise
     /**
      * Get hipRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHipRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHipRight
      */
     public function getHipRight()
     {
@@ -643,10 +643,10 @@ class UserStateExercise
     /**
      * Set kneeLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeLeft $kneeLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeLeft $kneeLeft
      * @return UserStateExercise
      */
-    public function setKneeLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeLeft $kneeLeft = null)
+    public function setKneeLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeLeft $kneeLeft = null)
     {
         $this->kneeLeft = $kneeLeft;
 
@@ -656,7 +656,7 @@ class UserStateExercise
     /**
      * Get kneeLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeLeft
      */
     public function getKneeLeft()
     {
@@ -666,10 +666,10 @@ class UserStateExercise
     /**
      * Set kneeRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeRight $kneeRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeRight $kneeRight
      * @return UserStateExercise
      */
-    public function setKneeRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeRight $kneeRight = null)
+    public function setKneeRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeRight $kneeRight = null)
     {
         $this->kneeRight = $kneeRight;
 
@@ -679,7 +679,7 @@ class UserStateExercise
     /**
      * Get kneeRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressKneeRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseKneeRight
      */
     public function getKneeRight()
     {
@@ -689,10 +689,10 @@ class UserStateExercise
     /**
      * Set ankleLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleLeft $ankleLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleLeft $ankleLeft
      * @return UserStateExercise
      */
-    public function setAnkleLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleLeft $ankleLeft = null)
+    public function setAnkleLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleLeft $ankleLeft = null)
     {
         $this->ankleLeft = $ankleLeft;
 
@@ -702,7 +702,7 @@ class UserStateExercise
     /**
      * Get ankleLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleLeft
      */
     public function getAnkleLeft()
     {
@@ -712,10 +712,10 @@ class UserStateExercise
     /**
      * Set ankleRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleRight $ankleRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleRight $ankleRight
      * @return UserStateExercise
      */
-    public function setAnkleRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleRight $ankleRight = null)
+    public function setAnkleRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleRight $ankleRight = null)
     {
         $this->ankleRight = $ankleRight;
 
@@ -725,7 +725,7 @@ class UserStateExercise
     /**
      * Get ankleRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressAnkleRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseAnkleRight
      */
     public function getAnkleRight()
     {
@@ -735,10 +735,10 @@ class UserStateExercise
     /**
      * Set footLeft
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootLeft $footLeft
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootLeft $footLeft
      * @return UserStateExercise
      */
-    public function setFootLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootLeft $footLeft = null)
+    public function setFootLeft(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootLeft $footLeft = null)
     {
         $this->footLeft = $footLeft;
 
@@ -748,7 +748,7 @@ class UserStateExercise
     /**
      * Get footLeft
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootLeft 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootLeft
      */
     public function getFootLeft()
     {
@@ -758,10 +758,10 @@ class UserStateExercise
     /**
      * Set footRight
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootRight $footRight
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootRight $footRight
      * @return UserStateExercise
      */
-    public function setFootRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootRight $footRight = null)
+    public function setFootRight(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootRight $footRight = null)
     {
         $this->footRight = $footRight;
 
@@ -771,7 +771,7 @@ class UserStateExercise
     /**
      * Get footRight
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressFootRight 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseFootRight
      */
     public function getFootRight()
     {
@@ -781,10 +781,10 @@ class UserStateExercise
     /**
      * Set leftHandState
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeftHandState $leftHandState
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeftHandState $leftHandState
      * @return UserStateExercise
      */
-    public function setLeftHandState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeftHandState $leftHandState = null)
+    public function setLeftHandState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeftHandState $leftHandState = null)
     {
         $this->leftHandState = $leftHandState;
 
@@ -794,7 +794,7 @@ class UserStateExercise
     /**
      * Get leftHandState
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeftHandState 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeftHandState
      */
     public function getLeftHandState()
     {
@@ -804,10 +804,10 @@ class UserStateExercise
     /**
      * Set rightHandState
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressRightHandState $rightHandState
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseRightHandState $rightHandState
      * @return UserStateExercise
      */
-    public function setRightHandState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressRightHandState $rightHandState = null)
+    public function setRightHandState(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseRightHandState $rightHandState = null)
     {
         $this->rightHandState = $rightHandState;
 
@@ -817,7 +817,7 @@ class UserStateExercise
     /**
      * Get rightHandState
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressRightHandState 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseRightHandState
      */
     public function getRightHandState()
     {
@@ -827,10 +827,10 @@ class UserStateExercise
     /**
      * Set leanAmount
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeanAmount $leanAmount
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeanAmount $leanAmount
      * @return UserStateExercise
      */
-    public function setLeanAmount(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeanAmount $leanAmount = null)
+    public function setLeanAmount(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeanAmount $leanAmount = null)
     {
         $this->leanAmount = $leanAmount;
 
@@ -840,7 +840,7 @@ class UserStateExercise
     /**
      * Get leanAmount
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressLeanAmount 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseLeanAmount
      */
     public function getLeanAmount()
     {
@@ -850,10 +850,10 @@ class UserStateExercise
     /**
      * Set headRotation
      *
-     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHeadRotation $headRotation
+     * @param \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHeadRotation $headRotation
      * @return UserStateExercise
      */
-    public function setHeadRotation(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHeadRotation $headRotation = null)
+    public function setHeadRotation(\Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHeadRotation $headRotation = null)
     {
         $this->headRotation = $headRotation;
 
@@ -863,7 +863,7 @@ class UserStateExercise
     /**
      * Get headRotation
      *
-     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateStressHeadRotation 
+     * @return \Wellbeing\Bundle\ExerciseBundle\Entity\UserStateExerciseHeadRotation
      */
     public function getHeadRotation()
     {
@@ -886,10 +886,43 @@ class UserStateExercise
     /**
      * Get user
      *
-     * @return \Application\Sonata\UserBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function onPrePersist()
+    {
+        $this->getHead()->setUserState($this);
+        $this->getNeck()->setUserState($this);
+        $this->getShoulderCenter()->setUserState($this);
+        $this->getShoulderLeft()->setUserState($this);
+        $this->getShoulderRight()->setUserState($this);
+        $this->getElbowLeft()->setUserState($this);
+        $this->getElbowRight()->setUserState($this);
+        $this->getWristLeft()->setUserState($this);
+        $this->getWristRight()->setUserState($this);
+        $this->getHandLeft()->setUserState($this);
+        $this->getHandRight()->setUserState($this);
+        $this->getThumbLeft()->setUserState($this);
+        $this->getThumbRight()->setUserState($this);
+        $this->getHandTipLeft()->setUserState($this);
+        $this->getHandTipRight()->setUserState($this);
+        $this->getSpineMid()->setUserState($this);
+        $this->getSpineBase()->setUserState($this);
+        $this->getHipLeft()->setUserState($this);
+        $this->getHipRight()->setUserState($this);
+        $this->getKneeLeft()->setUserState($this);
+        $this->getKneeRight()->setUserState($this);
+        $this->getAnkleLeft()->setUserState($this);
+        $this->getAnkleRight()->setUserState($this);
+        $this->getFootLeft()->setUserState($this);
+        $this->getFootRight()->setUserState($this);
+        $this->getLeftHandState()->setUserState($this);
+        $this->getRightHandState()->setUserState($this);
+        $this->getLeanAmount()->setUserState($this);
+        $this->getHeadRotation()->setUserState($this);
     }
 }

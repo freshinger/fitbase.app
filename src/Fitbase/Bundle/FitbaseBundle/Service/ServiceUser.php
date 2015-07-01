@@ -33,6 +33,19 @@ class ServiceUser extends ContainerAware implements ServiceUserInterface
         return null;
     }
 
+    /**
+     * Find existed user by opened session
+     *
+     * @todo: add session structure
+     * @param null $authKey
+     * @return mixed
+     */
+    public function byAuthKey($authKey = null)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
+        return $repositoryUser->find(1);
+    }
 
     /**
      * Get admin group

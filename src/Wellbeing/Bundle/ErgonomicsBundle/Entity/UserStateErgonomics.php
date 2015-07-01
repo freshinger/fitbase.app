@@ -96,7 +96,7 @@ class UserStateErgonomics
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -106,7 +106,7 @@ class UserStateErgonomics
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -129,7 +129,7 @@ class UserStateErgonomics
     /**
      * Get head
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead
      */
     public function getHead()
     {
@@ -152,7 +152,7 @@ class UserStateErgonomics
     /**
      * Get shoulderCenter
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter
      */
     public function getShoulderCenter()
     {
@@ -175,7 +175,7 @@ class UserStateErgonomics
     /**
      * Get shoulderLeft
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderLeft 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderLeft
      */
     public function getShoulderLeft()
     {
@@ -198,7 +198,7 @@ class UserStateErgonomics
     /**
      * Get shoulderRight
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderRight 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderRight
      */
     public function getShoulderRight()
     {
@@ -221,7 +221,7 @@ class UserStateErgonomics
     /**
      * Get elbowLeft
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowLeft 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowLeft
      */
     public function getElbowLeft()
     {
@@ -244,7 +244,7 @@ class UserStateErgonomics
     /**
      * Get elbowRight
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowRight 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsElbowRight
      */
     public function getElbowRight()
     {
@@ -267,7 +267,7 @@ class UserStateErgonomics
     /**
      * Get handLeft
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandLeft 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandLeft
      */
     public function getHandLeft()
     {
@@ -290,7 +290,7 @@ class UserStateErgonomics
     /**
      * Get handRight
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandRight 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandRight
      */
     public function getHandRight()
     {
@@ -313,7 +313,7 @@ class UserStateErgonomics
     /**
      * Get spineMid
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid
      */
     public function getSpineMid()
     {
@@ -336,7 +336,7 @@ class UserStateErgonomics
     /**
      * Get leanAmount
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsLeanAmount 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsLeanAmount
      */
     public function getLeanAmount()
     {
@@ -359,7 +359,7 @@ class UserStateErgonomics
     /**
      * Get headRotation
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHeadRotation 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHeadRotation
      */
     public function getHeadRotation()
     {
@@ -382,10 +382,26 @@ class UserStateErgonomics
     /**
      * Get user
      *
-     * @return \Application\Sonata\UserBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+
+    public function onPrePersist()
+    {
+        $this->getHead()->setUserState($this);
+        $this->getShoulderCenter()->setUserState($this);
+        $this->getShoulderLeft()->setUserState($this);
+        $this->getShoulderRight()->setUserState($this);
+        $this->getElbowLeft()->setUserState($this);
+        $this->getElbowRight()->setUserState($this);
+        $this->getHandLeft()->setUserState($this);
+        $this->getHandRight()->setUserState($this);
+        $this->getSpineMid()->setUserState($this);
+        $this->getLeanAmount()->setUserState($this);
+        $this->getHeadRotation()->setUserState($this);
     }
 }

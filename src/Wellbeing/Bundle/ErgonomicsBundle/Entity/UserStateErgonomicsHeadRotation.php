@@ -34,6 +34,19 @@ class UserStateErgonomicsHeadRotation
      */
     private $userState;
 
+    /**
+     * Class cosntructor
+     *
+     * @param $x
+     * @param $y
+     * @param $z
+     */
+    public function __construct($x, $y, $z)
+    {
+        $this->setX($x);
+        $this->setY($y);
+        $this->setZ($z);
+    }
 
     /**
      * Set x

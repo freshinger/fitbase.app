@@ -34,6 +34,19 @@ class UserStateErgonomicsHead
      */
     private $userState;
 
+    /**
+     * Class cosntructor
+     *
+     * @param $x
+     * @param $y
+     * @param $z
+     */
+    public function __construct($x, $y, $z)
+    {
+        $this->setX($x);
+        $this->setY($y);
+        $this->setZ($z);
+    }
 
     /**
      * Set x
@@ -51,7 +64,7 @@ class UserStateErgonomicsHead
     /**
      * Get x
      *
-     * @return float 
+     * @return float
      */
     public function getX()
     {
@@ -74,7 +87,7 @@ class UserStateErgonomicsHead
     /**
      * Get y
      *
-     * @return float 
+     * @return float
      */
     public function getY()
     {
@@ -97,7 +110,7 @@ class UserStateErgonomicsHead
     /**
      * Get z
      *
-     * @return float 
+     * @return float
      */
     public function getZ()
     {
@@ -107,7 +120,7 @@ class UserStateErgonomicsHead
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -130,7 +143,7 @@ class UserStateErgonomicsHead
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
      */
     public function getUserState()
     {

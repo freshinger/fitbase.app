@@ -2,25 +2,12 @@
 
 namespace Wellbeing\Bundle\ApiBundle\Controller;
 
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Controller\Annotations\View;
-use FOS\RestBundle\Request\ParamFetcherInterface;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 use Wellbeing\Bundle\ApiBundle\Form\UserState;
-use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionHeadShoulderPatcher;
-use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderLeftSpinePatcher;
-use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionShoulderRightSpinePatcher;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
-use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXY;
-use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderXZ;
-use Wellbeing\Bundle\ApiBundle\Imagick\ProjectionBuilderYZ;
 
 
 class RestApiController extends WsdlApiController
@@ -122,49 +109,68 @@ class RestApiController extends WsdlApiController
      */
     public function putStateAction(Request $request)
     {
-        $form = $this->createForm(new UserState(),
-            (new \Wellbeing\Bundle\ApiBundle\Entity\UserState())
-                ->setDate($this->get('datetime')->getDateTime('now'))
-            , array('csrf_protection' => false));
+        $entity = new \Wellbeing\Bundle\ApiBundle\Model\UserState();
+
+        $form = $this->createForm(new UserState(), $entity, ['csrf_protection' => false]);
+
 
         if ($request->request->get($form->getName())) {
             $form->submit($request->request->get($form->getName()));
             if ($form->isValid()) {
 
+                try {
 
+                    return new JsonResponse(["user_position" => [
+                        "correct" => $this->doProcessUserState($entity)
+                    ]], 200);
 
-//                // TODO: replace to correct user from auth key
-//                if (($userState = $form->getData())) {
-//
-//                    $this->get('logger')->err("UserState received: {$userState->getId()}");
-//
-//                    $entityManager = $this->get('entity_manager');
-//                    $repositoryUser = $entityManager->getRepository('Application\Sonata\UserBundle\Entity\User');
-//                    $userState->setUser($repositoryUser->find(1));
-//
-////                    $userState->setPreview1($this->preview1($userState));
-////                    $userState->setPreview2($this->preview2($userState));
-////                    $userState->setPreview3($this->preview3($userState));
-//
-//                    $this->get('entity_manager')->persist($userState);
-//                    $this->get('entity_manager')->flush($userState);
-//
-//                    $this->get('logger')->err("UserState inserted: {$userState->getId()}");
-//
-//                }
-
-
-                return new JsonResponse(["user_position" => [
-                    "correct" => true
-                ]], 500);
-
+                } catch (\Exception $ex) {
+                    return new JsonResponse([
+                        "error" => "{$ex->getMessage()}",
+                        "user_position" => ["correct" => null],
+                    ], 400);
+                }
             }
 
-
-            return new JsonResponse('Validation failure. Check format of your fields.', 400);
+            return new JsonResponse([
+                "error" => "{$form->getErrors()}",
+                "user_position" => ["correct" => null],
+            ], 400);
         }
 
-        return new JsonResponse('Authentication code not found', 404);
+        return new JsonResponse([
+            "error" => 'Wrong JSON Format',
+            "user_position" => ["correct" => null],
+        ], 404);
+    }
+
+    /**
+     * Process user state
+     * @param $entity
+     * @return bool
+     */
+    protected function doProcessUserState($entity)
+    {
+        if (!($user = $this->get('user')->byAuthKey($entity->getAuthKey()))) {
+            throw new \LogicException('User not found, Auth-Key does not exists');
+        }
+
+        if ($entity->getTicketType() == 'T1') {
+            return $this->get('wellbeing.ergonomics')
+                ->state($user, $entity);
+        }
+
+        if ($entity->getTicketType() == 'T2') {
+            return $this->get('wellbeing.stress')
+                ->state($user, $entity);
+        }
+
+        if ($entity->getTicketType() == 'T3') {
+            return $this->get('wellbeing.exercise')
+                ->state($user, $entity);
+        }
+
+        return false;
     }
 
 //

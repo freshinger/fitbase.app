@@ -11,8 +11,8 @@
             <join-column name="userStateId" referenced-column-name="id" on-delete="CASCADE"/>
         </one-to-one>
 
-        <field name="lr" type="integer" column="lr"/>
-        <field name="fb" type="integer" column="fb"/>
+        <field name="x" type="integer" column="x"/>
+        <field name="y" type="integer" column="y"/>
 
     </entity>
 </doctrine-mapping>

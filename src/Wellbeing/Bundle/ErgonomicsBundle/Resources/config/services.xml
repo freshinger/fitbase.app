@@ -9,13 +9,11 @@
         <import resource="blocks.xml"/>
     </imports>
 
-    <!--
     <services>
-        <service id="wellbeing_ergonomics.example" class="Wellbeing\Bundle\ErgonomicsBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="wellbeing.ergonomics" class="Wellbeing\Bundle\ErgonomicsBundle\Service\ServiceErgonomics">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
     </services>
-    -->
 </container>
