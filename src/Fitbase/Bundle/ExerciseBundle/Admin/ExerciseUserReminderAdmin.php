@@ -76,7 +76,8 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
     {
         $datagridMapper
             ->add('user')
-            ->add('processed');
+            ->add('processed')
+            ->add('error');
     }
 
     /**

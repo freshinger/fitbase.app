@@ -86,7 +86,8 @@ class WeeklytaskUserAdmin extends Admin implements ContainerAwareInterface
         $datagridMapper
             ->add('user')
             ->add('task')
-            ->add('processed');
+            ->add('processed')
+            ->add('error');
     }
 
     /**
