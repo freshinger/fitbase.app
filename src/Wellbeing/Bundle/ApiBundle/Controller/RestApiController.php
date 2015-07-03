@@ -2,13 +2,13 @@
 
 namespace Wellbeing\Bundle\ApiBundle\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Wellbeing\Bundle\ApiBundle\Form\UserAuth;
 use Wellbeing\Bundle\ApiBundle\Form\UserLogin;
 use Wellbeing\Bundle\ApiBundle\Form\UserState;
 use Wellbeing\Bundle\ApiBundle\Imagick\Patcher\ProjectionSpineShoulderPatcher;
-
 
 class RestApiController extends WsdlApiController
 {
@@ -32,6 +32,7 @@ class RestApiController extends WsdlApiController
      */
     public function postLogonAction(Request $request)
     {
+
         $login = null;
         $password = null;
         $form = $this->createForm(new UserLogin(), array());
