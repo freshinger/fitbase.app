@@ -9,6 +9,7 @@
 namespace Fitbase\Bundle\ReminderBundle\Repository;
 
 
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class ReminderUserItemRepository extends ReminderUserRepositoryAbstract
@@ -191,13 +192,12 @@ class ReminderUserItemRepository extends ReminderUserRepositoryAbstract
         return $queryBuilder->getQuery()->getResult();
     }
 
-
     /**
      * Find all item-records for not paused reminders
      * @param $day
      * @return array
      */
-    public function findAllNotPausedByDayAndType($day = null, $type = null)
+    public function findAllNotPausedByDayAndType($day = null, $type = null, $user = null)
     {
         $queryBuilder = $this->createQueryBuilder('ReminderUserItem');
         $queryBuilder->join('ReminderUserItem.user', 'User');
@@ -209,6 +209,11 @@ class ReminderUserItemRepository extends ReminderUserRepositoryAbstract
             $this->getExprNotPaused($queryBuilder),
             $this->getExprUserNotEmpty($queryBuilder)
         ));
+
+        if ($user instanceof User) {
+            $queryBuilder->setParameter('userId', $user->getId());
+            $queryBuilder->andWhere($queryBuilder->expr()->eq('User.id', ':userId'));
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }
