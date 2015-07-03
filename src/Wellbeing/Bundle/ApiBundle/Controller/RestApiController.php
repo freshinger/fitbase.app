@@ -125,12 +125,17 @@ class RestApiController extends WsdlApiController
                     ]], 200);
 
                 } catch (\Exception $ex) {
+
+                    $this->get('logger')->crit("{$ex->getMessage()}");
+
                     return new JsonResponse([
                         "error" => "{$ex->getMessage()}",
                         "user_position" => ["correct" => null],
                     ], 400);
                 }
             }
+
+            $this->get('logger')->err("{$form->getErrors()}");
 
             return new JsonResponse([
                 "error" => "{$form->getErrors()}",
