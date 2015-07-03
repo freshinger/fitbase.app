@@ -33,9 +33,9 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            'fitbase.user_registered' => array('onUserRegisteredEvent'),
-        );
+        return [
+            'fitbase.user_registered' => ['onUserRegisteredEvent', -127]
+        ];
     }
 
     /**
@@ -49,12 +49,24 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
             throw new \LogicException("User object can not be empty");
         }
 
-        $exerciseUserReminder = new ExerciseUserReminder();
-        $exerciseUserReminder->setUser($user);
-        $exerciseUserReminder->setProcessed(true);
-        $exerciseUserReminder->setDate($this->datetime->getDateTime('now'));
+        $day = $this->datetime->getDateTime('now')->format('N');
+        if (($collection = $this->container->get('reminder')->getItemsExercise($day, $user))) {
+            foreach ($collection as $reminderUserItem) {
 
-        $this->entityManager->persist($exerciseUserReminder);
-        $this->entityManager->flush($exerciseUserReminder);
+                $date = $this->datetime->getDateTime('now');
+                $date->setTime($reminderUserItem->getTime()->format('H'),
+                    $reminderUserItem->getTime()->format('i'));
+
+                $exerciseUserReminder = new ExerciseUserReminder();
+                $exerciseUserReminder->setUser($user);
+                $exerciseUserReminder->setDate($date);
+                $exerciseUserReminder->setProcessed(true);
+                $exerciseUserReminder->setProcessedDate($date);
+                $exerciseUserReminder->setError(false);
+
+                $this->entityManager->persist($exerciseUserReminder);
+                $this->entityManager->flush($exerciseUserReminder);
+            }
+        }
     }
 }
