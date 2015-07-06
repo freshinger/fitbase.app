@@ -1,0 +1,40 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'Registrieren'|trans({}, 'FitbaseBudniBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'registration', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <!-- Content Text-->
+            <div class="panel-box">
+
+
+                <div class="titles">
+                    <h4>{{ 'Registrieren'|trans({}, 'FitbaseBudniBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
+                            abzuschließen
+                        </p>
+
+                        {% form_theme form 'Budni/RegistrationForm.html.twig' %}
+                        {{ form(form) }}
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- End Content Text-->
+        </div>
+    </div>
+{% endblock %}

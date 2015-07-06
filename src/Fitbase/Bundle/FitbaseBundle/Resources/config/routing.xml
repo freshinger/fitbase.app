@@ -10,6 +10,7 @@
     <import resource="@FitbaseQuestionnaireBundle/Resources/config/routing.xml" prefix="/questionnaire"/>
     <import resource="@FitbaseGamificationBundle/Resources/config/routing.xml" prefix="/gamification"/>
     <import resource="@FitbaseKnowledgeBundle/Resources/config/routing.xml" prefix="/knowledge"/>
+    <import resource="@FitbaseBudniBundle/Resources/config/routing.xml" prefix="/budni"/>
     <import resource="@FitbaseBarmerGekBundle/Resources/config/routing.xml" prefix="/barmer-gek"/>
     <import resource="@WellbeingApiBundle/Resources/config/routing.xml" prefix="/wellbeing"/>
 
