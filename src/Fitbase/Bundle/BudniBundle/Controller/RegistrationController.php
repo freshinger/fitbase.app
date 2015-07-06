@@ -34,7 +34,6 @@ class RegistrationController extends Controller
 
         if ($request->get($form->getName())) {
             $form->handleRequest($request);
-
             if ($form->isValid()) {
 
                 $user = new User();
