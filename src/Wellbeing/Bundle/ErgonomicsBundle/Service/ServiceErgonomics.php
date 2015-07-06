@@ -4,6 +4,7 @@ namespace Wellbeing\Bundle\ErgonomicsBundle\Service;
 use Application\Sonata\UserBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Wellbeing\Bundle\ApiBundle\Model\UserState;
+use Wellbeing\Bundle\ErgonomicsBundle\Event\UserStateErgonomicsEvent;
 use Wellbeing\Bundle\ErgonomicsBundle\Form\DataTransformer\UserStateDataTransformer;
 
 class ServiceErgonomics extends ContainerAware
@@ -22,8 +23,8 @@ class ServiceErgonomics extends ContainerAware
             ->reverseTransform($model)
             ->setUser($user);
 
-        $this->container->get('entity_manager')->persist($entity);
-        $this->container->get('entity_manager')->flush($entity);
+        $this->container->get('event_dispatcher')->dispatch(
+            'wellbeing.user_state_ergonomics_create', new UserStateErgonomicsEvent($entity));
 
         return true;
     }

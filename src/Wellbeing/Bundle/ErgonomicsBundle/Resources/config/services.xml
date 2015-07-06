@@ -15,5 +15,12 @@
                 <argument type="service" id="service_container"/>
             </call>
         </service>
+
+        <service id="wellbeing.subscriber.user_state_ergonomics" class="Wellbeing\Bundle\ErgonomicsBundle\Subscriber\UserStateErgonomicsSubscriber">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
     </services>
 </container>
