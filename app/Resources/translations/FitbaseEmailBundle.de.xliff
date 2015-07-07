@@ -57,7 +57,25 @@
                 <target><![CDATA[Passwort:]]></target>
             </trans-unit>
 
+            <trans-unit id="email.exercise">
+                <source>email.exercise</source>
+                <target><![CDATA[hiermit möchten wir Sie an Ihre Übung]]></target>
+            </trans-unit>
 
+            <trans-unit id="email.exercise_category">
+                <source>email.exercise_category</source>
+                <target><![CDATA[aus dem Bereich category]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_remind">
+                <source>email.exercise_remind</source>
+                <target><![CDATA[erinnern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_click">
+                <source>email.exercise_click</source>
+                <target><![CDATA[Bitte klicken Sie auf den Link, um direkt zur heutigen Übung zu gelangen.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
