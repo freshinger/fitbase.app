@@ -1,14 +1,14 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Startseite'|trans({}, 'FitbaseGamificationBundle') }}</h1>
+    <h1>{{ 'company.dashboard'|trans({}, 'FitbaseCompanyBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
     <div class="crumbs">
         <div class="container">
             <ul>
-                <li>{{ 'Startseite'|trans({}, 'SonataUserBundle') }}</li>
+                <li>{{ 'company.dashboard'|trans({}, 'FitbaseCompanyBundle') }}</li>
             </ul>
         </div>
     </div>
@@ -17,15 +17,8 @@
 {% block content %}
     <div class="container">
         <div class="container" style="font-size: 1.1em; padding-bottom: 5px;">
-            <p>
-                Willkommen auf dem Dashboard
-                {% if company is defined %}
-                    für Ihr Unternehmen: {{ company.name }}
-                {% endif %}
-            </p>
-
-            <p>Mit diesem Online Reporting Tool erhalten Sie verschiedene Auswertungsmöglichkeiten und können
-                Fragebögen automatisch an alle Ihre Mitarbeiter, die fitbase nutzen, senden.</p>
+            <p>{{ 'company.dashboard_hello'|trans({ 'company': company.name }, 'FitbaseCompanyBundle') }}</p>
+            <p>{{ 'company.dashboard_description'|trans({}, 'FitbaseCompanyBundle') }}</p>
         </div>
     </div>
 

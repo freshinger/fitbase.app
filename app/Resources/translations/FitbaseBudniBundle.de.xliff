@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="budni.register">
+                <source>budni.register</source>
+                <target><![CDATA[Registrieren]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.register_description">
+                <source>budni.register_description</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
+                            abzuschließen]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.welcome">
+                <source>budni.login.welcome</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                    Bitte loggen Sie sich mit Ihren Zugangsdaten ein.]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.username">
+                <source>budni.login.username</source>
+                <target><![CDATA[Benutzername oder E-Mail]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.password">
+                <source>budni.login.password</source>
+                <target><![CDATA[Passwort]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.remember_me">
+                <source>budni.login.remember_me</source>
+                <target><![CDATA[An mich erinnern]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.forgotten_password">
+                <source>budni.login.forgotten_password</source>
+                <target><![CDATA[Ich habe das Passwort vergessen]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.submit">
+                <source>budni.login.submit</source>
+                <target><![CDATA[Anmelden]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.login.title">
+                <source>budni.login.title</source>
+                <target><![CDATA[Einloggen für Mitglieder]]></target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -128,8 +128,8 @@ class AppKernel extends Kernel
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
-            new JMose\CommandSchedulerBundle\JMoseCommandSchedulerBundle(),
-            new Ci\RestClientBundle\CiRestClientBundle(),
+            new Ci\RestClientBundle\CiRestClientBundle(), // Rest API client bundle
+            new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(), // Bundle to maa
 
             new Fitbase\Bundle\WeeklytaskBundle\FitbaseWeeklytaskBundle(),
             new Fitbase\Bundle\FitbaseBundle\FitbaseFitbaseBundle(),
@@ -141,7 +141,6 @@ class AppKernel extends Kernel
             new Fitbase\Bundle\ExerciseBundle\FitbaseExerciseBundle(),
             new Fitbase\Bundle\UserBundle\FitbaseUserBundle(),
             new Fitbase\Bundle\EmailBundle\FitbaseEmailBundle(),
-            new Fitbase\Bundle\ScheduleBundle\FitbaseScheduleBundle(),
             new Fitbase\Bundle\KnowledgeBundle\FitbaseKnowledgeBundle(),
             new Fitbase\Bundle\PageBundle\FitbasePageBundle(),
             new Fitbase\Bundle\TimelineBundle\FitbaseTimelineBundle(),

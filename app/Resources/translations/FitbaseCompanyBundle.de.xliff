@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="company.dashboard">
+                <source>company.dashboard</source>
+                <target><![CDATA[Startseite]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard_hello">
+                <source>company.dashboard_hello</source>
+                <target><![CDATA[Willkommen auf dem Dashboard für Ihr Unternehmen: company]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard_description">
+                <source>company.dashboard_description</source>
+                <target><![CDATA[Mit diesem Online Reporting Tool erhalten Sie verschiedene Auswertungsmöglichkeiten und können
+                Fragebögen automatisch an alle Ihre Mitarbeiter, die fitbase nutzen, senden.]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.footer_copyright">
+                <source>company.footer_copyright</source>
+                <target><![CDATA[© fitbase.de 2011 - date]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.header.link_home">
+                <source>company.header.link_home</source>
+                <target><![CDATA[Return Home]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.create">
+                <source>company.questionnaire.create</source>
+                <target><![CDATA[Neuen Fragebogen anlegen]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.create_description">
+                <source>company.questionnaire.create_description</source>
+                <target><![CDATA[ Über das Dropdown Menü können Sie einen passenden Fragebogen auswählen, ein Versand-Datum bestimmen und mit dem
+                    Button „Umfrage anlegen“ die Umfrage aktivieren. Jeder Teilnehmer erhält beim nächsten Login die Aufforderung, an der Umfrage teilzunehmen.
+                    So erhalten Sie weitere Informationen zur Stimmung und zum Gesundheitszustand in Ihrem Unternehmen. Sie können die Umfragen so
+                    häufig durchführen wie Sie möchten. Nicht das passende dabei? Sprechen Sie uns gerne an.]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done">
+                <source>company.questionnaire.done</source>
+                <target><![CDATA[Durchgeführte Befragungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done_interviews">
+                <source>company.questionnaire.done_interviews</source>
+                <target><![CDATA[Befragungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done_date">
+                <source>company.questionnaire.done_date</source>
+                <target><![CDATA[Datum]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done_users">
+                <source>company.questionnaire.done_users</source>
+                <target><![CDATA[Teilnehmer]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done_evaluation">
+                <source>company.questionnaire.done_evaluation</source>
+                <target><![CDATA[Auswertung]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.done_users_to_questionnaire">
+                <source>company.questionnaire.done_users_to_questionnaire</source>
+                <target><![CDATA[Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.more">
+                <source>company.questionnaire.more</source>
+                <target><![CDATA[mehr...]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.interviews">
+                <source>company.questionnaire.interviews</source>
+                <target><![CDATA[Befragungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire.preview">
+                <source>company.questionnaire.preview</source>
+                <target><![CDATA[Befragungen]]></target>
+            </trans-unit>
+
+
+
+            <!--<trans-unit id="company.questionnaire.preview">-->
+                <!--<source>company.questionnaire.preview</source>-->
+                <!--<target><![CDATA[Befragungen]]></target>-->
+            <!--</trans-unit>-->
+
+        </body>
+    </file>
+</xliff>
