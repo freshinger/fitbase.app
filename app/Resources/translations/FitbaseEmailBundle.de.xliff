@@ -3,10 +3,60 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
-            <!--<trans-unit id="">-->
-            <!--<source></source>-->
-            <!--<target><![CDATA[]]></target>-->
-            <!--</trans-unit>-->
+            <trans-unit id="email.hallo">
+                <source>email.hallo</source>
+                <target><![CDATA[Guten Tag firstname lastname,]]></target>
+            </trans-unit>
+
+
+            <trans-unit id="email.copyright">
+                <source>email.copyright</source>
+                <target><![CDATA[Sie erhalten diese Mail als Teilnehmer des fitbase
+                            Online-Coachings. © fitbase.de 2011 - 2015
+                            Fitbase Institut für Online Prävention GmbH, Litzowstr. 13,
+                            22041 Hamburg, info@fitbase.de]]></target>
+            </trans-unit>
+
+
+            <trans-unit id="email.welcome">
+                <source>email.welcome</source>
+                <target><![CDATA[willkommen bei fitbase! In dieser Email erhalten Sie Ihre Zugangsdaten, die Sie bei
+                                    Ihrem nächsten
+                                    Besuch auf fitbase.de nutzen können. Bei Fragen besuchen Sie bitte unsere FAQs oder
+                                    kontaktieren uns
+                                    unter]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access">
+                <source>email.access</source>
+                <target><![CDATA[Ihre Zugangsdaten:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_signin">
+                <source>email.access_signin</source>
+                <target><![CDATA[einloggen]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_signin.title">
+                <source>email.access_signin.title</source>
+                <target><![CDATA[Mit den folgenden Zugangsdaten können Sie sich auf Fitbase]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.email">
+                <source>email.email</source>
+                <target><![CDATA[E-Mail-Adresse:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_username">
+                <source>email.access_username</source>
+                <target><![CDATA[Benutzername:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_password">
+                <source>email.access_password</source>
+                <target><![CDATA[Passwort:]]></target>
+            </trans-unit>
+
 
         </body>
     </file>
