@@ -4,11 +4,31 @@
         <body>
 
 
-            <!--<trans-unit id="">-->
-            <!--<source></source>-->
-            <!--<target><![CDATA[]]></target>-->
-            <!--</trans-unit>-->
-            
+            <trans-unit id="user.registration.i_agree_with">
+                <source>user.registration.i_agree_with</source>
+                <target><![CDATA[Ich stimme den]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.privacy">
+                <source>user.registration.privacy</source>
+                <target><![CDATA[Datenschutz-]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.and">
+                <source>user.registration.and</source>
+                <target><![CDATA[und]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.terms_and_conditions">
+                <source>user.registration.terms_and_conditions</source>
+                <target><![CDATA[Teilnahmebedingungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.end">
+                <source>user.registration.end</source>
+                <target><![CDATA[zu.]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

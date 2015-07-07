@@ -39,7 +39,15 @@
             <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
         </div>
         <div class="col-xs-11" style="padding-top: 10px;">
-            Ich stimme den <a href="https://fitbase.de/datenschutz-fitbase-nutzer/">Datenschutz-</a> und <a href="https://fitbase.de/teilnahmebedingungen/">Teilnahmebedingungen</a> zu.
+            {{ 'barmer_gek.registration.i_agree_with'|trans({}, 'FitbaseBarmerGekBundle') }}
+            <a href="https://fitbase.de/datenschutz-fitbase-nutzer/">
+                {{ 'barmer_gek.registration.privacy'|trans({}, 'FitbaseBarmerGekBundle') }}
+            </a>
+            {{ 'barmer_gek.registration.and'|trans({}, 'FitbaseBarmerGekBundle') }}
+            <a href="https://fitbase.de/teilnahmebedingungen/">
+                {{ 'barmer_gek.registration.terms_and_conditions'|trans({}, 'FitbaseBarmerGekBundle') }}
+            </a>
+            {{ 'barmer_gek.registration.end'|trans({}, 'FitbaseBarmerGekBundle') }}
         </div>
     </div>
 {%- endblock checkbox_widget %}

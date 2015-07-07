@@ -15,6 +15,31 @@
                             abzuschließen]]></target>
             </trans-unit>
 
+            <trans-unit id="barmer_gek.registration.i_agree_with">
+                <source>barmer_gek.registration.i_agree_with</source>
+                <target><![CDATA[Ich stimme den]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.privacy">
+                <source>barmer_gek.registration.privacy</source>
+                <target><![CDATA[Datenschutz-]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.and">
+                <source>barmer_gek.registration.and</source>
+                <target><![CDATA[und]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.end">
+                <source>barmer_gek.registration.end</source>
+                <target><![CDATA[zu.]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.terms_and_conditions">
+                <source>barmer_gek.registration.terms_and_conditions</source>
+                <target><![CDATA[Teilnahmebedingungen]]></target>
+            </trans-unit>
+
             <trans-unit id="barmer_gek.teledoctor">
                 <source>barmer_gek.teledoctor</source>
                 <target><![CDATA[Medizinische Beratung]]></target>
@@ -51,6 +76,7 @@
                 <source>barmer_gek.teledoctor.site</source>
                 <target><![CDATA[www.barmer-gek.de/101646]]></target>
             </trans-unit>
+
 
         </body>
     </file>

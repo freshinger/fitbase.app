@@ -15,6 +15,31 @@
                             abzuschließen]]></target>
             </trans-unit>
 
+            <trans-unit id="budni.registration.i_agree_with">
+                <source>budni.registration.i_agree_with</source>
+                <target><![CDATA[Ich stimme den]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.registration.privacy">
+                <source>budni.registration.privacy</source>
+                <target><![CDATA[Datenschutz-]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.registration.and">
+                <source>budni.registration.and</source>
+                <target><![CDATA[und]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.registration.end">
+                <source>budni.registration.end</source>
+                <target><![CDATA[zu.]]></target>
+            </trans-unit>
+
+            <trans-unit id="budni.registration.terms_and_conditions">
+                <source>budni.registration.terms_and_conditions</source>
+                <target><![CDATA[Teilnahmebedingungen]]></target>
+            </trans-unit>
+
             <trans-unit id="budni.login.welcome">
                 <source>budni.login.welcome</source>
                 <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.

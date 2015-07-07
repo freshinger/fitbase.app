@@ -39,7 +39,20 @@
             <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
         </div>
         <div class="col-xs-11" style="padding-top: 10px;">
-            Ich stimme den <a href="https://www.fitbase.de/datenschutz/">Datenschutz- und Teilnahmebedingungen</a> zu.
+
+            {{ 'budni.registration.i_agree_with'|trans({}, 'FitbaseBudniBundle') }}
+
+            <a href="https://fitbase.de/datenschutz-fitbase-nutzer/">
+                {{ 'budni.registration.privacy'|trans({}, 'FitbaseBudniBundle') }}
+            </a>
+
+            {{ 'budni.registration.and'|trans({}, 'FitbaseBudniBundle') }}
+
+            <a href="https://fitbase.de/teilnahmebedingungen/">
+                {{ 'budni.registration.terms_and_conditions'|trans({}, 'FitbaseBudniBundle') }}
+            </a>
+
+            {{ 'budni.registration.end'|trans({}, 'FitbaseBudniBundle') }}
         </div>
     </div>
 {%- endblock checkbox_widget %}
