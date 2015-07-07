@@ -21,11 +21,7 @@
 
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
                                    align="left">
-                                    wir haben ein kleines Quiz für Sie vorbereitet, mit dem Sie Ihr Wissen zur letzten
-                                    Info-Einheit
-                                    überprüfen und damit Blätter für Ihren Gesundheitsbaum sammeln können. Viel Spaß und
-                                    einen schönen
-                                    Tag wünscht Ihnen fitbase!
+                                    {{ 'email.quiz'|trans({}, 'FitbaseEmailBundle') }}
                                 </p>
                             </td>
                         </tr>
@@ -55,7 +51,7 @@
                                 align="center" bgcolor="#a2d049" valign="top">
                                 <a href="{{ company_url(company, 'weeklyquiz_user_view', {'unique': userQuiz.id}) }}"
                                    style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 20px;">
-                                    Quiz starten
+                                    {{ 'email.quiz_start'|trans({}, 'FitbaseEmailBundle') }}
                                 </a>
                             </td>
                         </tr>

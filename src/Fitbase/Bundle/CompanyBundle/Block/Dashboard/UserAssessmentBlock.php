@@ -55,7 +55,7 @@ class UserAssessmentBlock extends SecureBlockServiceAbstract
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
-            'percent' => (float)($done / $total * 100),
+            'percent' => (float)($done / ($total > 0 ? $total : 1) * 100),
             'questionnaire' => $questionnaire
         ));
     }

@@ -1,0 +1,107 @@
+{% extends "content.html.twig" %}
+
+{% block title %}
+    <h1>{{ 'budni.register'|trans({}, 'FitbaseBudniBundle') }}</h1>
+{% endblock title %}
+
+{% block breadcrumbs %}
+    {{ sonata_block_render_event('breadcrumb', { 'context': 'registration', 'current_uri': app.request.requestUri }) }}
+{% endblock breadcrumbs %}
+
+{% block content %}
+    <div class="row">
+
+        <div class="col-md-6">
+            <!-- Content Text-->
+            <div class="panel-box">
+                <div class="titles">
+                    <h4>{{ 'budni.login.title'|trans({}, 'FitbaseBudniBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-theme">
+                        <p>{{ 'budni.login.welcome'|trans({}, 'FitbaseBudniBundle') }}</p>
+
+                        <form action="{{ path("fos_user_security_check") }}" method="post" role="form"
+                              class="form-horizontal">
+                            <input type="hidden" name="_csrf_token" value=""/>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="username" class="control-label">
+                                        {{ 'budni.login.username'|trans({}, 'FitbaseBudniBundle') }}
+                                    </label>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <input type="text" class="form-control" id="username"
+                                           name="_username" value=""
+                                           required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="password" class="control-label">
+                                        {{ 'budni.login.password'|trans({}, 'FitbaseBudniBundle') }}
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="password" class="form-control" id="password" name="_password"
+                                           required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="row text-left">
+                                <div class="col-md-1">
+                                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"
+                                           style="height: auto;"/>
+                                </div>
+                                <div class="col-md-11">
+                                    {{ 'budni.login.remember_me'|trans({}, 'FitbaseBudniBundle') }}
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{{ path('fos_user_resetting_request') }}">
+                                        {{ 'budni.login.forgotten_password'|trans({}, 'FitbaseBudniBundle') }}
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary"
+                                           value="{{ 'budni.login.submit'|trans({}, 'FitbaseBudniBundle') }}"/>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Content Text-->
+        </div>
+        <div class="col-md-6">
+            <!-- Content Text-->
+            <div class="panel-box">
+
+                <div class="titles">
+                    <h4>{{ 'budni.register'|trans({}, 'FitbaseBudniBundle') }}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>{{ 'budni.register_description'|trans({}, 'FitbaseBudniBundle') }}</p>
+
+                        {% form_theme form 'Budni/RegistrationForm.html.twig' %}
+                        {{ form(form) }}
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- End Content Text-->
+        </div>
+    </div>
+{% endblock %}

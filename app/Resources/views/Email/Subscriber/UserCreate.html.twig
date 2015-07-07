@@ -20,11 +20,7 @@
                                 align="left" valign="top">
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
                                    align="left">
-                                    willkommen bei fitbase! In dieser Email erhalten Sie Ihre Zugangsdaten, die Sie bei
-                                    Ihrem nächsten
-                                    Besuch auf fitbase.de nutzen können. Bei Fragen besuchen Sie bitte unsere FAQs oder
-                                    kontaktieren uns
-                                    unter <a href="mailto:info@fitbase.de">info@fitbase.de</a>.
+                                    {{ 'email.welcome'|trans({}, 'FitbaseEmailBundle') }} <a href="mailto:info@fitbase.de">info@fitbase.de</a>.
                                 </p>
 
                             </td>
@@ -57,7 +53,7 @@
 
                                 <h3 style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-break: normal; font-size: 25px; margin: 0; padding: 0;"
                                     align="left">
-                                    Ihre Zugangsdaten:
+                                    {{ 'email.access'|trans({}, 'FitbaseEmailBundle') }}
                                 </h3>
                             </td>
                         </tr>
@@ -90,10 +86,10 @@
 
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
                                    align="left">
-                                    Mit den folgenden Zugangsdaten können Sie sich auf Fitbase
+                                    {{ 'email.access_signin.title'|trans({}, 'FitbaseEmailBundle') }}
                                     <a href="{{ company_url(company, 'sonata_user_security_login') }}"
                                        style="color: #2ba6cb; text-decoration: none;">
-                                        einloggen
+                                        {{ 'email.access_login'|trans({}, 'FitbaseEmailBundle') }}
                                     </a>
                                     .
                                 </p>
@@ -135,9 +131,7 @@
                                         align="left">
                                         <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
                                             align="left" valign="top">
-
-                                            E-Mail-Adresse:
-
+                                            {{ 'email.access_email'|trans({}, 'FitbaseEmailBundle') }}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -154,10 +148,7 @@
                                     <tr style="vertical-align: top; text-align: left; padding: 0;"
                                         align="left">
                                         <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
-                                            align="left" valign="top">
-                                            {{ user.email }}
-
-                                        </td>
+                                            align="left" valign="top">{{ user.email }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -179,9 +170,7 @@
                                         align="left">
                                         <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
                                             align="left" valign="top">
-
-                                            Benutzername:
-
+                                            {{ 'email.access_username'|trans({}, 'FitbaseEmailBundle') }}
                                         </td>
                                     </tr>
                                     </tbody>
@@ -198,9 +187,7 @@
                                     <tr style="vertical-align: top; text-align: left; padding: 0;"
                                         align="left">
                                         <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
-                                            align="left" valign="top">
-                                            {{ user.username }}
-                                        </td>
+                                            align="left" valign="top">{{ user.username }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -222,9 +209,7 @@
                                         align="left">
                                         <td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 0px 0px 10px;"
                                             align="left" valign="top">
-
-                                            Passwort:
-
+                                            {{ 'email.access_password'|trans({}, 'FitbaseEmailBundle') }}
                                         </td>
                                     </tr>
                                     </tbody>

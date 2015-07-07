@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Kurzumfragen'|trans({}, 'FitbaseCompanyBundle') }}</h1>
+    <h1>{{ 'company.questionnaire'|trans({}, 'FitbaseCompanyBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -10,10 +10,7 @@
 
 
 {% block content %}
-    <p>
-        Mit diesem Umfrage-Tool erhalten Sie die Möglichkeit, weitere Fragebögen an die fitbase Teilnehmer in Ihrem
-        Hause zu versenden. Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen.
-    </p>
+    <p>{{ 'company.questionnaire_description'|trans({}, 'FitbaseCompanyBundle') }}</p>
 
     <div class="row">
         <div class="col-md-7">

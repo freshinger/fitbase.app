@@ -1,14 +1,14 @@
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles title-image-bottom">
-        <h4>{{ 'Bedarfsanalyse'|trans({}, 'FitbaseQuestionnaireBundle') }}</h4>
+        <h4>{{ 'company.dashboard.assessment'|trans({}, 'FitbaseCompanyBundle') }}</h4>
     </div>
 
 
     <div class="row">
         <div class="col-md-12" id="assessment">
             <div class="text-over-image">
-                {{ 'Bedarfsanalyse durchgeführt'|trans({}, 'FitbaseQuestionnaireBundle') }}
+                {{ 'company.dashboard.assessment_done'|trans({}, 'FitbaseCompanyBundle') }}
             </div>
             <svg>
                 <defs>
@@ -33,11 +33,13 @@
         </div>
     </div>
 
-    <div class="panel-footer" style="padding: 25px">
-        <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
-           class="btn btn-default btn-block" style="margin-top: 5px">
-            {{ 'Detaillierte Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}
-        </a>
+    <div class="panel-footer" style="min-height: 87px;">
+        {% if questionnaire is defined and questionnaire %}
+            <a href="{{ path("questionnaire_statistic", { 'unique': questionnaire.id }) }}"
+               class="btn btn-default btn-block" style="margin-top: 5px">
+                {{ 'company.dashboard.assessment_details'|trans({}, 'FitbaseCompanyBundle') }}
+            </a>
+        {% endif %}
     </div>
 </div>
 <!-- End Content Text-->
@@ -47,12 +49,12 @@
 
             var data = [
                 {
-                    label: "{{ 'Ja'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                    label: "{{ 'company.dashboard.assessment_yes'|trans({}, 'FitbaseCompanyBundle') }}",
                     value: parseFloat('{{ percent }}'),
                     color: '#fce14b'
                 },
                 {
-                    label: "{{ 'Nein'|trans({}, 'FitbaseQuestionnaireBundle') }}",
+                    label: "{{ 'company.dashboard.assessment_no'|trans({}, 'FitbaseCompanyBundle') }}",
                     value: 100 - parseFloat('{{ percent }}'),
                     color: '#a2d049'
                 }

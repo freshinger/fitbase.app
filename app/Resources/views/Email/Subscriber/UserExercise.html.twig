@@ -20,13 +20,12 @@
                                 align="left" valign="top">
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
                                    align="left">
-                                    hiermit möchten wir Sie an Ihre Übung
+                                    {{ 'email.exercise'|trans({}, 'FitbaseEmailBundle') }}
                                     {% if categoryFocus is defined and categoryFocus %}
-                                        aus dem Bereich {{ categoryFocus.name }}
+                                        {{ 'email.exercise_category'|trans({'category': categoryFocus.name }, 'FitbaseEmailBundle') }}
                                     {% endif %}
-
-                                    erinnern.
-                                    Bitte klicken Sie auf den Link, um direkt zur heutigen Übung zu gelangen.
+                                    {{ 'email.exercise_remind'|trans({}, 'FitbaseEmailBundle') }}
+                                    {{ 'email.exercise_click'|trans({}, 'FitbaseEmailBundle') }}
                                 </p>
 
                             </td>
@@ -65,7 +64,7 @@
 
                                             <a href="{{ company_url(company, 'focus') }}"
                                                style="color: #ffffff; text-decoration: none; font-weight: bold; font-family: Helvetica, Arial, sans-serif; font-size: 20px;">
-                                                {{ 'Meine heutige Übung'|trans({}, 'FitbaseEmailBundle') }}
+                                                {{ 'email.exercise_today'|trans({}, 'FitbaseEmailBundle') }}
                                             </a>
 
                                         </td>
@@ -178,7 +177,7 @@
                                 align="left" valign="top">
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 14px; margin: 0 0 10px; padding: 0;"
                                    align="left">
-                                    {{ 'Viel Spaß und einen schönen Tag wünscht Ihnen Ihr fitbase Team!'|trans({}, 'FitbaseEmailBundle') }}
+                                    {{ 'email.exercise_have_a_nice_day'|trans({}, 'FitbaseEmailBundle') }}
                                 </p>
 
                             </td>

@@ -1,7 +1,7 @@
 <!-- Content Text-->
 <div class="panel-box" style="min-height: 525px;">
     <div class="titles">
-        <h4>{{ 'Medizinische Beratung'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'barmer_gek.teledoctor'|trans({}, 'FitbaseBarmerGekBundle') }}</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -11,7 +11,7 @@
                     <img src="{{ asset('bundles/fitbasegamification/img/teledoc.png') }}">
                 </div>
                 <div class="col-md-8">
-                    <h4>{{ 'Qualifizierte medizinische Beratung am Telefon oder per E-Mail'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+                    <h4>{{ 'barmer_gek.teledoctor.description'|trans({}, 'FitbaseBarmerGekBundle') }}</h4>
                 </div>
             </div>
 
@@ -19,27 +19,24 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <p>{{ 'Unsere medizinischen Fachteams mit erfahrenen Fach- und Allgemeinärzten beantworten schnell und kompetent Ihre Fragen.'|trans({}, 'FitbaseGamificationBundle') }}</p>
+                    <p>{{ 'barmer_gek.teledoctor.help'|trans({}, 'FitbaseBarmerGekBundle') }}</p>
                 </div>
                 <div class="col-md-12">
-                    <a href="callto:0800 333 1010" class="btn btn-primary btn-block">
-                        {{ 'Kostenfreie Telefonnummer'|trans({}, 'FitbaseGamificationBundle') }}
+                    <a href="callto:{{ 'barmer_gek.teledoctor.telefon_nummer'|trans({}, 'FitbaseBarmerGekBundle') }}" class="btn btn-primary btn-block">
+                        {{ 'barmer_gek.teledoctor.telefon'|trans({}, 'FitbaseBarmerGekBundle') }}
                         <br/>
-                        <b>
-                            {{ '0800 333 1010'|trans({}, 'FitbaseGamificationBundle') }}
-                        </b>
+                        <b>{{ 'barmer_gek.teledoctor.telefon_nummer'|trans({}, 'FitbaseBarmerGekBundle') }}</b>
                     </a>
                     <br/>
                 </div>
                 <div class="col-md-12">
                     <p>
-                        Der Barmer GEK Teledoktor hat immer Sprechstunde und keine Wartezeiten. 7 Tage die Woche, rund
-                        um die Uhr. Mehr können Sie erfahren unter
+                        {{ 'barmer_gek.teledoctor.info'|trans({}, 'FitbaseBarmerGekBundle') }}
                     </p>
 
                     <p>
                         <a href="https://www.barmer-gek.de/barmer/web/Portale/Versicherte/Rundum-gutversichert/Beratung/Persoenliche-Beratung/Teledoktor/Teledoktor__.html">
-                            {{ 'www.barmer-gek.de/101646'|trans({}, 'FitbaseGamificationBundle') }}
+                            {{ 'barmer_gek.teledoctor.site'|trans({}, 'FitbaseBarmerGekBundle') }}
                         </a>
                     </p>
                 </div>
