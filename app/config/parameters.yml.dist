@@ -10,6 +10,7 @@ parameters:
     mailer_user:
     mailer_password:
     fitbase.barmer_gek.api:
+    fitbase.barmer_gek.auth:
     locale:             en
 
     secret:             ThisTokenIsNotSoSecretChangeIt
