@@ -4,9 +4,9 @@
         <h4>
             {% if category is defined and category %}
                 {% if category.slug == "stress" %}
-                    {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
+                    {{ 'company.dashboard.category_stress'|trans({}, 'FitbaseCompanyBundle') }}
                 {% elseif category.slug == "ruecken" %}
-                    {{ 'Rücken Barometer'|trans({}, 'FitbaseUserBundle') }}
+                    {{ 'company.dashboard.category_back'|trans({}, 'FitbaseCompanyBundle') }}
                 {% else %}
                     {{ category.name }}
                 {% endif %}
@@ -35,9 +35,9 @@
     <div class="panel-footer">
         {% if category is defined and category %}
             {% if category.slug == "stress" %}
-                {{ 'Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus.'|trans({}, 'FitbaseUserBundle') }}
+                <p>{{ 'company.dashboard.category_stress.info'|trans({}, 'FitbaseCompanyBundle') }}</p>
             {% elseif category.slug == "ruecken" %}
-                {{ 'Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus.'|trans({}, 'FitbaseUserBundle') }}
+                <p>{{ 'company.dashboard.category_back.info'|trans({}, 'FitbaseCompanyBundle') }}</p>
             {% endif %}
         {% endif %}
     </div>

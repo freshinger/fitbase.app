@@ -13,6 +13,71 @@
                 <target><![CDATA[Willkommen auf dem Dashboard für Ihr Unternehmen: company]]></target>
             </trans-unit>
 
+            <trans-unit id="company.dashboard.activity">
+                <source>company.dashboard.activity</source>
+                <target><![CDATA[Aktivität]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.activity_users">
+                <source>company.dashboard.activity_users</source>
+                <target><![CDATA[Anzahl der Teilnehmer:]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.activity_fields">
+                <source>company.dashboard.activity_fields</source>
+                <target><![CDATA[Anzahl der Blätter:]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.assessment">
+                <source>company.dashboard.assessment</source>
+                <target><![CDATA[Bedarfsanalyse]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.assessment_done">
+                <source>company.dashboard.assessment_done</source>
+                <target><![CDATA[Bedarfsanalyse durchgeführt]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.assessment_details">
+                <source>company.dashboard.assessment_details</source>
+                <target><![CDATA[Detaillierte Auswertung]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.assessment_yes">
+                <source>company.dashboard.assessment_yes</source>
+                <target><![CDATA[Ja]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.assessment_no">
+                <source>company.dashboard.assessment_no</source>
+                <target><![CDATA[Nein]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.category_back">
+                <source>company.dashboard.category_back</source>
+                <target><![CDATA[Rücken Barometer]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.category_back.info">
+                <source>company.dashboard.category_back.info</source>
+                <target><![CDATA[Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus.]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.category_stress">
+                <source>company.dashboard.category_stress</source>
+                <target><![CDATA[Stress Barometer]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.category_stress.info">
+                <source>company.dashboard.category_stress.info</source>
+                <target><![CDATA[Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus.]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.dashboard.focus">
+                <source>company.dashboard.focus</source>
+                <target><![CDATA[Aktivierter Fokus]]></target>
+            </trans-unit>
+
             <trans-unit id="company.dashboard_description">
                 <source>company.dashboard_description</source>
                 <target><![CDATA[Mit diesem Online Reporting Tool erhalten Sie verschiedene Auswertungsmöglichkeiten und können
@@ -27,6 +92,17 @@
             <trans-unit id="company.header.link_home">
                 <source>company.header.link_home</source>
                 <target><![CDATA[Return Home]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire">
+                <source>company.questionnaire</source>
+                <target><![CDATA[Kurzumfragen]]></target>
+            </trans-unit>
+
+            <trans-unit id="company.questionnaire_description">
+                <source>company.questionnaire_description</source>
+                <target><![CDATA[Mit diesem Umfrage-Tool erhalten Sie die Möglichkeit, weitere Fragebögen an die fitbase Teilnehmer in Ihrem
+        Hause zu versenden. Durch Anklicken der hinterlegten Fragebögen können Sie die Inhalte vorab einsehen.]]></target>
             </trans-unit>
 
             <trans-unit id="company.questionnaire.create">
@@ -82,17 +158,15 @@
                 <target><![CDATA[Befragungen]]></target>
             </trans-unit>
 
+            <trans-unit id="company.questionnaire.preview_title">
+                <source>company.questionnaire.preview_title</source>
+                <target><![CDATA[Vorlagen für Kurzumfragen]]></target>
+            </trans-unit>
+
             <trans-unit id="company.questionnaire.preview">
                 <source>company.questionnaire.preview</source>
                 <target><![CDATA[Befragungen]]></target>
             </trans-unit>
-
-
-
-            <!--<trans-unit id="company.questionnaire.preview">-->
-                <!--<source>company.questionnaire.preview</source>-->
-                <!--<target><![CDATA[Befragungen]]></target>-->
-            <!--</trans-unit>-->
 
         </body>
     </file>

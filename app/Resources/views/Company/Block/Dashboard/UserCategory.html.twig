@@ -2,48 +2,54 @@
 <div class="panel-box">
     <div class="titles title-image-bottom">
         <h4 class="short hue">
-            {% if category.slug == "stress" %}
-                {{ 'Stress Barometer'|trans({}, 'FitbaseUserBundle') }}
-            {% elseif category.slug == "ruecken" %}
-                {{ 'Rücken Barometer'|trans({}, 'FitbaseUserBundle') }}
-            {% else %}
-                {{ category.name }}
+            {% if category is defined and category %}
+                {% if category.slug == "stress" %}
+                    {{ 'company.dashboard.category_stress'|trans({}, 'FitbaseCompanyBundle') }}
+                {% elseif category.slug == "ruecken" %}
+                    {{ 'company.dashboard.category_back'|trans({}, 'FitbaseCompanyBundle') }}
+                {% else %}
+                    {{ category.name }}
+                {% endif %}
             {% endif %}
         </h4>
     </div>
     <div class="row">
-        <div class="col-md-12" id="{{ category.slug }}">
-            <div class="text-over-image">
-                {{ description }}
+        {% if category is defined and category %}
+            <div class="col-md-12" id="{{ category.slug }}">
+                <div class="text-over-image">
+                    {{ description }}
+                </div>
+                <svg>
+                    <defs>
+                        <filter id='pieChartInsetShadow'>
+                            <feOffset dx='0' dy='0'/>
+                            <feGaussianBlur stdDeviation='3' result='offset-blur'/>
+                            <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
+                            <feFlood flood-color='black' flood-opacity='1' result='color'/>
+                            <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
+                            <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
+                        </filter>
+                        <filter id="pieChartDropShadow">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+                            <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
+                            <feMerge>
+                                <feMergeNode/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                </svg>
             </div>
-            <svg>
-                <defs>
-                    <filter id='pieChartInsetShadow'>
-                        <feOffset dx='0' dy='0'/>
-                        <feGaussianBlur stdDeviation='3' result='offset-blur'/>
-                        <feComposite operator='out' in='SourceGraphic' in2='offset-blur' result='inverse'/>
-                        <feFlood flood-color='black' flood-opacity='1' result='color'/>
-                        <feComposite operator='in' in='color' in2='inverse' result='shadow'/>
-                        <feComposite operator='over' in='shadow' in2='SourceGraphic'/>
-                    </filter>
-                    <filter id="pieChartDropShadow">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-                        <feOffset in="blur" dx="0" dy="3" result="offsetBlur"/>
-                        <feMerge>
-                            <feMergeNode/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-            </svg>
-        </div>
+        {% endif %}
     </div>
 
-    <div class="panel-footer">
-        {% if category.slug == "stress" %}
-            <p>Das Stress Barometer wertet die Stress-bezogenen Fragen in der Bedarfsanalyse aus.</p>
-        {% elseif category.slug == "ruecken" %}
-            <p>Das Rücken Barometer wertet die Rücken-bezogenen Fragen in der Bedarfsanalyse aus.</p>
+    <div class="panel-footer" style="min-heigh: 87px;">
+        {% if category is defined and category %}
+            {% if category.slug == "stress" %}
+                <p>{{ 'company.dashboard.category_stress.info'|trans({}, 'FitbaseCompanyBundle') }}</p>
+            {% elseif category.slug == "ruecken" %}
+                <p>{{ 'company.dashboard.category_back.info'|trans({}, 'FitbaseCompanyBundle') }}</p>
+            {% endif %}
         {% endif %}
     </div>
 </div>
@@ -65,12 +71,14 @@
             element.barometer(data, settings);
         });
 
-        $.controller('#{{ category.slug }}>.text-over-image', function (element) {
-            element.animate({
-                left: "80px",
-                width: "250px"
-            }, 100);
-        });
+        {% if category is defined and category %}
+            $.controller('#{{ category.slug }}>.text-over-image', function (element) {
+                element.animate({
+                    left: "80px",
+                    width: "250px"
+                }, 100);
+            });
+        {% endif %}
     });
 </script>
 
