@@ -3,8 +3,8 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
-            <trans-unit id="email.hallo">
-                <source>email.hallo</source>
+            <trans-unit id="email.hello">
+                <source>email.hello</source>
                 <target><![CDATA[Guten Tag firstname lastname,]]></target>
             </trans-unit>
 
@@ -76,6 +76,46 @@
                 <source>email.exercise_click</source>
                 <target><![CDATA[Bitte klicken Sie auf den Link, um direkt zur heutigen Übung zu gelangen.]]></target>
             </trans-unit>
+
+            <trans-unit id="email.exercise_today">
+                <source>email.exercise_today</source>
+                <target><![CDATA[Meine heutige Übung]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_have_a_nice_day">
+                <source>email.exercise_have_a_nice_day</source>
+                <target><![CDATA[Viel Spaß und einen schönen Tag wünscht Ihnen Ihr fitbase Team!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.invite">
+                <source>email.invite</source>
+                <target><![CDATA[Jetzt teilnehmen!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.quiz">
+                <source>email.quiz</source>
+                <target><![CDATA[wir haben ein kleines Quiz für Sie vorbereitet, mit dem Sie Ihr Wissen zur letzten
+                                    Info-Einheit
+                                    überprüfen und damit Blätter für Ihren Gesundheitsbaum sammeln können. Viel Spaß und
+                                    einen schönen
+                                    Tag wünscht Ihnen fitbase!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.quiz_start">
+                <source>email.quiz_start</source>
+                <target><![CDATA[Quiz starten]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.view_false">
+                <source>email.view_false</source>
+                <target><![CDATA[Wenn die E-Mail nicht richtig angezeigt wird, klicken Sie]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.here">
+                <source>email.here</source>
+                <target><![CDATA[hier]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

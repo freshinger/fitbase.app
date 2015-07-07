@@ -22,10 +22,10 @@
 
                                 <p style="color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; font-size: 12px; margin: 3px 3px 3px; padding: 0;"
                                    align="left">
-                                    Wenn die E-Mail nicht richtig angezeigt wird, klicken Sie
+                                    {{ 'email.view_false'|trans({}, 'FitbaseEmailBundle') }}
                                     <a href="{{ company_url(company, 'weeklytask_user_view', {'unique': userTask.id}) }}"
                                        style="color: #2ba6cb; text-decoration: none;">
-                                        hier
+                                        {{ 'email.here'|trans({}, 'FitbaseEmailBundle') }}
                                     </a>
                                     .
                                 </p>
