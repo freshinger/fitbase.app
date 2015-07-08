@@ -4,7 +4,7 @@
 
             <!-- section 1 -->
             <span class="acc-trigger">
-                <a href="#">{{ 'Fokus ändern'|trans({}, 'FitbaseFitbaseBundle') }}</a>
+                <a href="#">{{ 'exception.profile_change_focus'|trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
@@ -16,12 +16,11 @@
 
             <!-- section 2 -->
             <span class="acc-trigger">
-                <a href="#">{{ "title_user_account" | trans({}, 'SonataUserBundle') }}</a>
+                <a href="#">{{ "exception.profile_change_personal_info" | trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
                 <div class="content">
-
 
                     {% if form is defined and form %}
                         {% if form.vars is defined %}
@@ -45,10 +44,7 @@
 
             <div class="acc-container">
                 <div class="content">
-
                     <form action="" method="POST" class="form-theme">
-
-
                         {% if formPassword is defined %}
                             {% if formPassword.vars is defined %}
                                 {% if formPassword.vars.submitted %}
@@ -64,28 +60,25 @@
                             <div class="col-md-12">
                                 <button type="submit" name="submit"
                                         class="btn btn-default">
-                                    {{ 'Speichern'|trans({}, 'FitbaseFitbaseBundle') }}
+                                    {{ 'exception.profile_save'|trans({}, 'FitbaseFitbaseBundle') }}
                                 </button>
                             </div>
                         </div>
-
                     </form>
-
                 </div>
             </div>
             <!-- end section 3 -->
 
             <!-- section 4 -->
             <span class="acc-trigger">
-                <a href="#">{{ "Infoeinheiten" | trans({}, 'FitbaseFitbaseBundle') }}</a>
+                <a href="#">{{ "exception.profile_change_weeklytask" | trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
                 <div class="content">
-                    <p>Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.</p>
+                    <p>{{ "exception.profile_change_weeklytask_info" | trans({}, 'FitbaseFitbaseBundle') }}</p>
 
-                    {{ sonata_block_render(
-                    { 'type': 'fitbase.block.reminder.weeklytask' }) }}
+                    {{ sonata_block_render( { 'type': 'fitbase.block.reminder.weeklytask' }) }}
                 </div>
             </div>
             <!-- end section 4 -->
@@ -93,25 +86,15 @@
 
             <!-- section 5 -->
             <span class="acc-trigger">
-                <a href="#">{{ "Erinnerungsfunktion" | trans({}, 'FitbaseFitbaseBundle') }}</a>
+                <a href="#">{{ "exception.profile_change_reminder" | trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
                 <div class="content">
-                    <p>
-                        Nutzen Sie die Erinnerungsfunktion, um zur gewählten Zeit per E-Mail auf Ihre Übung aufmerksam
-                        gemacht
-                        zu
-                        werden – am besten jeden Tag. Sie können die Emailadresse in Ihrem Profil jederzeit ändern. Alle
-                        Übungen
-                        sind speziell auf die Durchführung im Büro abgestimmt. Wir empfehlen, die Übungen täglich
-                        durchzuführen,
-                        z.B. um 10 Uhr.
-                    </p>
+                    <p>{{ "exception.profile_change_reminder_info" | trans({}, 'FitbaseFitbaseBundle') }}</p>
 
                     <div class="panel-body">
-                        {{ sonata_block_render(
-                        { 'type': 'fitbase.block.reminder.exercise' }) }}
+                        {{ sonata_block_render({ 'type': 'fitbase.block.reminder.exercise' }) }}
                     </div>
                 </div>
             </div>
@@ -120,13 +103,12 @@
 
             <!-- section 6 -->
             <span class="acc-trigger">
-                <a href="#">{{ "Fitbase pausieren" | trans({}, 'FitbaseFitbaseBundle') }}</a>
+                <a href="#">{{ "exception.profile_pause_reminder" | trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
                 <div class="content">
-                    {{ sonata_block_render(
-                    { 'type': 'fitbase.block.reminder.pause' }) }}
+                    {{ sonata_block_render({ 'type': 'fitbase.block.reminder.pause' }) }}
                 </div>
             </div>
             <!-- end section 6 -->
@@ -134,12 +116,12 @@
 
             <!-- section 7 -->
             <span class="acc-trigger">
-                <a href="#">{{ "Fitbase Profil löschen" | trans({}, 'FitbaseFitbaseBundle') }}</a>
+                <a href="#">{{ "exception.profile_remove_user" | trans({}, 'FitbaseFitbaseBundle') }}</a>
             </span>
 
             <div class="acc-container">
                 <div class="content">
-                    {{ sonata_block_render( { 'type': 'fitbase.block.account.remove' }) }}
+                    {{ sonata_block_render({ 'type': 'fitbase.block.account.remove' }) }}
                 </div>
             </div>
             <!-- end section 7 -->

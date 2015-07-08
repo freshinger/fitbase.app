@@ -18,6 +18,61 @@
                 <target><![CDATA[404]]></target>
             </trans-unit>
 
+            <trans-unit id="exception.profile">
+                <source>exception.profile</source>
+                <target><![CDATA[Profil]]></target>
+            </trans-unit>
+
+
+            <trans-unit id="exception.profile_change_focus">
+                <source>exception.profile_change_focus</source>
+                <target><![CDATA[Fokus ändern]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_change_personal_info">
+                <source>exception.profile_change_personal_info</source>
+                <target><![CDATA[Persönliche Information]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_save">
+                <source>exception.profile_save</source>
+                <target><![CDATA[Speichern]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_change_weeklytask">
+                <source>exception.profile_change_weeklytask</source>
+                <target><![CDATA[Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_change_weeklytask_info">
+                <source>exception.profile_change_weeklytask_info</source>
+                <target><![CDATA[Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten wollen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_change_reminder">
+                <source>exception.profile_change_reminder</source>
+                <target><![CDATA[Erinnerungsfunktion]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_change_reminder_info">
+                <source>exception.profile_change_reminder_info</source>
+                <target><![CDATA[Nutzen Sie die Erinnerungsfunktion, um zur gewählten Zeit per E-Mail auf Ihre Übung aufmerksam
+                        gemacht zu werden – am besten jeden Tag. Sie können die Emailadresse in Ihrem Profil jederzeit ändern. Alle
+                        Übungen sind speziell auf die Durchführung im Büro abgestimmt. Wir empfehlen, die Übungen täglich
+                        durchzuführen,
+                        z.B. um 10 Uhr.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_pause_reminder">
+                <source>exception.profile_pause_reminder</source>
+                <target><![CDATA[Fitbase pausieren]]></target>
+            </trans-unit>
+
+            <trans-unit id="exception.profile_remove_user">
+                <source>exception.profile_remove_user</source>
+                <target><![CDATA[Fitbase Profil löschen]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
