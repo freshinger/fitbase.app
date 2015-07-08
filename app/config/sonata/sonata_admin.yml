@@ -39,7 +39,7 @@ sonata_admin:
         blocks:
 #            - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
-            - { position: left, type: sonata.block.service.text, settings: { content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Translation are here!</h3></div><div class='panel-body'>To start with translations click <a href='/admin/lexik/grid'>here</a> </div></div>"} }
+            - { position: left, type: sonata.block.service.text, settings: { content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Translations are here!</h3></div><div class='panel-body'>To start with translations click <a target='_blank' href='/admin/lexik/grid'>here</a> </div></div>"} }
             # This block is disabled for now as the bundle generates an exception with composite key
 #            - { position: left, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
 #            - { position: left, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
