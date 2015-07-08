@@ -6,15 +6,15 @@
             {% if reminder.pause is defined and reminder.pause %}
                 <div class="row">
                     <div class="col-xs-10 alert alert-info">
-                        Die Erinnerungfunktion wurde am {{ reminder.pauseStart|date('d.m.Y') }} für
-                        {{ reminder.pause }} Wochen pausiert.
-                        Um die Pause zu beenden klicken sie <a href="?stoppause=true">hier</a>
+                        {{ "reminder.paused" | trans({ 'date':reminder.pauseStart|date('d.m.Y'), 'interval':reminder.pause }, 'FitbaseReminderBundle') }}
+                        {{ "reminder.pause_undone" | trans({ }, 'FitbaseReminderBundle') }}
+                        <a href="?stoppause=true">
+                            {{ "reminder.pause_undone_here" | trans({ }, 'FitbaseReminderBundle') }}
+                        </a>
                     </div>
                 </div>
             {% endif %}
         {% endif %}
-
-
 
         {% if form is defined and form %}
             {% if form.vars is defined %}

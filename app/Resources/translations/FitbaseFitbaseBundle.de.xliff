@@ -73,6 +73,11 @@
                 <target><![CDATA[Fitbase Profil löschen]]></target>
             </trans-unit>
 
+            <trans-unit id="menu.button">
+                <source>menu.button</source>
+                <target><![CDATA[Menu]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

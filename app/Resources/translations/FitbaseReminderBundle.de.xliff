@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+    <file source-language="en" datatype="plaintext" original="">
         <body>
             <trans-unit id="Sunday">
                 <source>Sunday</source>
@@ -30,6 +30,44 @@
                 <source>Saturday</source>
                 <target>Samstag</target>
             </trans-unit>
+            <trans-unit id="reminder.day">
+                <source>reminder.day</source>
+                <target>Tag</target>
+            </trans-unit>
+            <trans-unit id="reminder.time">
+                <source>reminder.time</source>
+                <target>Zeit</target>
+            </trans-unit>
+            <trans-unit id="reminder.total">
+                <source>reminder.total</source>
+                <target>Insgesamt</target>
+            </trans-unit>
+            <trans-unit id="reminder.list_empty">
+                <source>reminder.list_empty</source>
+                <target>Keine Erinnerungen gefunden</target>
+            </trans-unit>
+            <trans-unit id="reminder.form_info">
+                <source>reminder.form_info</source>
+                <target>Klicken Sie auf speichern, wenn Sie Änderungen vorgenommen haben</target>
+            </trans-unit>
+            <trans-unit id="reminder.paused">
+                <source>reminder.paused</source>
+                <target>Die Erinnerungfunktion wurde am date für interval Wochen pausiert.</target>
+            </trans-unit>
+            <trans-unit id="reminder.pause_undone">
+                <source>reminder.pause_undone</source>
+                <target>Um die Pause zu beenden klicken sie</target>
+            </trans-unit>
+            <trans-unit id="reminder.pause_undone_here">
+                <source>reminder.pause_undone_here</source>
+                <target>hier</target>
+            </trans-unit>
+            <trans-unit id="reminder.remove_element">
+                <source>reminder.remove_element</source>
+                <target>löschen</target>
+            </trans-unit>
+
+
         </body>
     </file>
 </xliff>
