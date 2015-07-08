@@ -1,7 +1,7 @@
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles">
-        <h4>{{ 'Ihr Fokus'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'gamification.dashboard_focus'|trans({}, 'FitbaseGamificationBundle') }}</h4>
     </div>
     <div class="row" style="min-height: 400px;">
         <div class="col-md-12">
@@ -9,28 +9,30 @@
             <div class="row">
                 {% if category is defined and category %}
                     <div class="col-md-4" align="center" style="margin-top: 10px; margin-bottom: 15px">
-                        <a href="{{ path('focus', {'slug': category.slug}) }}">
-                            {% if category.media is defined %}
-                                {% thumbnail category.media, 'preview' with {'width': 75, 'title': null } %}
-                            {% endif %}
-                        </a>
+                        {% if category is defined and category %}
+                            <a href="{{ path('focus', {'slug': category.slug}) }}">
+                                {% if category.media is defined %}
+                                    {% thumbnail category.media, 'preview' with {'width': 75, 'title': null } %}
+                                {% endif %}
+                            </a>
+                        {% endif %}
                     </div>
                 {% endif %}
 
                 <div class="col-md-8">
                     {% if category is defined and category %}
-                        <p>Momentan haben Sie den Fokus {{ category.name }}  gewählt.</p>
+                        <p>{{ 'gamification.dashboard_focus_info'|trans({ 'name': category.name }, 'FitbaseGamificationBundle') }}</p>
                     {% endif %}
 
                     {% if nextWeeklytask is defined and nextWeeklytask %}
-                        <p>Ihre nächste Infoeinheit erhalten Sie in {{ nextWeeklytask }} Tag(en).</p>
+                        <p>{{ 'gamification.dashboard_focus_weeklytask'|trans({ 'next_date': nextWeeklytask }, 'FitbaseGamificationBundle') }}</p>
                     {% endif %}
 
                     {% if nextExercise is defined and nextExercise %}
-                        <p>Ihre nächste Aktivität ist geplant in {{ nextExercise }} Stunden.</p>
+                        <p>{{ 'gamification.dashboard_focus_exercise'|trans({ 'next_exercise': nextExercise }, 'FitbaseGamificationBundle') }}</p>
                     {% endif %}
-
                 </div>
+
                 {% if collection is defined and collection %}
                     <div class="col-md-12">
                         <h4>{{ 'Letzte Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}</h4>
@@ -44,7 +46,7 @@
                                         </td>
                                         <td class="shade">
                                             <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
-                                                {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                                {{ 'gamification.dashboard_focus_more'|trans({}, 'FitbaseGamificationBundle') }}
                                             </a>
                                         </td>
                                     </tr>

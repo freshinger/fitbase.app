@@ -1,28 +1,25 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <h4 class="short hue">
-            {{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}
+            {{ 'gamification.dashboard_tree'|trans({}, 'FitbaseGamificationBundle') }}
         </h4>
-
         <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
             <div class="owl-wrapper-outer autoHeight">
                 <div class="owl-wrapper" style="left: 0px; display: block;">
                     <li>
-
-                        <img title="{{ 'Ihr Gesundheitsbaum'|trans({}, 'FitbaseGamificationBundle') }}"
+                        <img title="{{ 'gamification.dashboard_tree'|trans({}, 'FitbaseGamificationBundle') }}"
                              src="{{ path('gamification_picture_tree') }}">
                     </li>
                 </div>
             </div>
         </ul>
-
     </div>
     <div class="panel-footer">
         <p>
             {% if points is defined and points %}
-                Sie haben {{ points }} Blätter gesammelt
+                {{ 'gamification.dashboard_tree_info'|trans({ 'points': points }, 'FitbaseGamificationBundle') }}
             {% else %}
-                Sie haben noch keine Blätter gesammelt
+                {{ 'gamification.dashboard_tree_info_empty'|trans({}, 'FitbaseGamificationBundle') }}
             {% endif %}
         </p>
     </div>

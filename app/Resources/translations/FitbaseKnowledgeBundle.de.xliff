@@ -3,10 +3,18 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
-            <!--<trans-unit id="">-->
-            <!--<source></source>-->
-            <!--<target><![CDATA[]]></target>-->
-            <!--</trans-unit>-->
+            <trans-unit id="knowledge.dashboard_knowledge">
+                <source>gamification.dashboard_statistics</source>
+                <target><![CDATA[Wussten Sie schon, dass...]]></target>
+            </trans-unit>
+
+            <trans-unit id="knowledge.dashboard_coming_soon">
+                <source>knowledge.dashboard_coming_soon</source>
+                <target><![CDATA[coming soon... Rezept der Woche]]></target>
+            </trans-unit>
+
+
+
 
         </body>
     </file>

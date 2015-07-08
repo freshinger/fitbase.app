@@ -1,13 +1,13 @@
 <div class="panel-box">
     <div class="titles title-image-bottom">
-        <h4>{{ 'Ihr Charakter'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'gamification.dashboard_avatar'|trans({}, 'FitbaseGamificationBundle') }}</h4>
     </div>
 
     <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <li>
-                    <img class="img-responsive" title="{{ 'Ihr Charakter'|trans({}, 'FitbaseGamificationBundle') }}"
+                    <img class="img-responsive" title="{{ 'gamification.dashboard_avatar'|trans({}, 'FitbaseGamificationBundle') }}"
                          src="{{ path('gamification_picture_avatar') }}">
                 </li>
             </div>
@@ -19,13 +19,10 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <p>
-                        Hallo! Ich begleite Sie durch das Online-Coaching. Für jede Übung, jede Infoeinheit und jedes
-                        Quiz sammeln Sie Punkte in Form von Blättern und begrünen so Ihren Gesundheitsbaum.
-                    </p>
+                    <p>{{ 'gamification.dashboard_avatar_info'|trans({}, 'FitbaseGamificationBundle') }}</p>
 
                     {% if activity is defined and activity %}
-                        <p>{{ 'Aktuelle Anzahl Blätter: points'|trans({'points': activity.countPointTotal|number_format(0, '.', ' ') }, 'FitbaseGamificationBundle') }}</p>
+                        <p>{{ 'gamification.dashboard_avatar_activity'|trans({'points': activity.countPointTotal|number_format(0, '.', ' ') }, 'FitbaseGamificationBundle') }}</p>
                     {% endif %}
                 </div>
             </div>

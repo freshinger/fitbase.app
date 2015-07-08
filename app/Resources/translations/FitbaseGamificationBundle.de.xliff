@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="" >
+    <file source-language="en" datatype="plaintext" original="">
         <body>
             <trans-unit id="january">
                 <source>january</source>
@@ -50,6 +50,197 @@
                 <source>december</source>
                 <target>Dezember</target>
             </trans-unit>
+
+            <trans-unit id="gamification.start_page">
+                <source>gamification.start_page</source>
+                <target><![CDATA[Startseite]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.avatar_change">
+                <source>gamification.avatar_change</source>
+                <target><![CDATA[Charakter Auswahl]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.avatar_change_info">
+                <source>gamification.avatar_change_info</source>
+                <target><![CDATA[Hallo! Wählen Sie nun Ihren Charakter für die Fitbase.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.avatar_change_description">
+                <source>gamification.avatar_change_description</source>
+                <target><![CDATA[Die Charaktere werden Sie durch die Fitbase begleiten und sind aus dem Qi Gong
+                        abgeleitet. Wählen Sie nun einen Charakter Ihrer Wahl. Mit jeder durchgeführten Aktivität auf
+                        der Fitbase sammeln Sie Punkte für Ihren Charakter, damit wächst sein Baum, er entwickelt sich weiter und Sie stärken Ihre Gesundheit.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity">
+                <source>gamification.dashboard_activity</source>
+                <target><![CDATA[Aktivitäten und Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_exercises">
+                <source>gamification.dashboard_activity_exercises</source>
+                <target><![CDATA[Führen Sie heute Ihre Übungen durch!]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_exercises_info">
+                <source>gamification.dashboard_activity_exercises_info</source>
+                <target><![CDATA[Durch einen Klick auf den Button gelangen Sie direkt zur heutigen Übung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_exercises_start">
+                <source>gamification.dashboard_activity_exercises_start</source>
+                <target><![CDATA[Heutige Übung starten]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_weeklytask">
+                <source>gamification.dashboard_activity_weeklytask</source>
+                <target><![CDATA[Zu den Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_weeklytask_info">
+                <source>gamification.dashboard_activity_weeklytask_info</source>
+                <target><![CDATA[Durch einen Klick auf den Button gelangen Sie direkt zu den Infoeinheiten und Quizzen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_focus_change">
+                <source>gamification.dashboard_activity_focus_change</source>
+                <target><![CDATA[Fokus ändern]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_feeding">
+                <source>gamification.dashboard_activity_feeding</source>
+                <target><![CDATA[Zum Ernährungstagebuch]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_feeding_info">
+                <source>gamification.dashboard_activity_feeding_info</source>
+                <target><![CDATA[Durch einen Klick auf den Button gelangen Sie direkt zur heutigen Übung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_stress">
+                <source>gamification.dashboard_activity_stress</source>
+                <target><![CDATA[Entspannungsübung durchführen]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_activity_stress_info">
+                <source>gamification.dashboard_activity_stress_info</source>
+                <target><![CDATA[Durch einen Klick auf den Button gelangen Sie direkt zur heutigen Übung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_avatar">
+                <source>gamification.dashboard_avatar</source>
+                <target><![CDATA[Ihr Charakter]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_avatar_info">
+                <source>gamification.dashboard_avatar_info</source>
+                <target><![CDATA[Hallo! Ich begleite Sie durch das Online-Coaching. Für jede Übung, jede Infoeinheit und jedes
+                Quiz sammeln Sie Punkte in Form von Blättern und begrünen so Ihren Gesundheitsbaum.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_avatar_activity">
+                <source>gamification.dashboard_avatar_activity</source>
+                <target><![CDATA[Aktuelle Anzahl Blätter: points]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_focus">
+                <source>gamification.dashboard_focus</source>
+                <target><![CDATA[Ihr Fokus]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_focus_info">
+                <source>gamification.dashboard_focus_info</source>
+                <target><![CDATA[Momentan haben Sie den Fokus name gewählt.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_focus_weeklytask">
+                <source>gamification.dashboard_focus_weeklytask</source>
+                <target><![CDATA[Ihre nächste Infoeinheit erhalten Sie in next_date Tag(en).]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_focus_exercise">
+                <source>gamification.dashboard_focus_exercise</source>
+                <target><![CDATA[Ihre nächste Aktivität ist geplant in next_exercise Stunden.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_focus_more">
+                <source>gamification.dashboard_focus_more</source>
+                <target><![CDATA[mehr...]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_tree">
+                <source>gamification.dashboard_tree</source>
+                <target><![CDATA[Ihr Gesundheitsbaum]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_tree_info">
+                <source>gamification.dashboard_tree_info</source>
+                <target><![CDATA[Sie haben points Blätter gesammelt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_tree_info_empty">
+                <source>gamification.dashboard_tree_info_empty</source>
+                <target><![CDATA[Sie haben noch keine Blätter gesammelt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_weeklytask">
+                <source>gamification.dashboard_weeklytask</source>
+                <target><![CDATA[Ihre letzte Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_weeklytask_more">
+                <source>gamification.dashboard_weeklytask_more</source>
+                <target><![CDATA[mehr...]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_documentation">
+                <source>gamification.dashboard_documentation</source>
+                <target><![CDATA[Fitbase kurz erklärt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_documentation_quetions">
+                <source>gamification.dashboard_documentation_quetions</source>
+                <target><![CDATA[Fragen?]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_documentation_info">
+                <source>gamification.dashboard_documentation_info</source>
+                <target><![CDATA[Sie möchten erfahren, welche Infos Sie über Ihr persönliches Dashboard abrufen können und wie
+                Ihr Online Coaching genau funktioniert?]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_documentation_link">
+                <source>gamification.dashboard_documentation_link</source>
+                <target><![CDATA[Fitbase kurz erklärt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_documentation_description">
+                <source>gamification.dashboard_documentation_description</source>
+                <target><![CDATA[Hier sind die wichtigsten Punkte zu fitbase in Kürze erklärt. Sollten Sie weitere Fragen oder
+                        Anmerkungen haben, so kontaktieren Sie uns jederzeit über unser Kontaktformular.]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_forest">
+                <source>gamification.dashboard_forest</source>
+                <target><![CDATA[Der Unternehmenswald]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_forest_info">
+                <source>gamification.dashboard_forest_info</source>
+                <target><![CDATA[Der Unternehmenswald ist bisher mit points Blättern begrünt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_forest_info_empty">
+                <source>gamification.dashboard_forest_info_empty</source>
+                <target><![CDATA[Sie haben noch keine Blätter gesammelt]]></target>
+            </trans-unit>
+
+            <trans-unit id="gamification.dashboard_statistics">
+                <source>gamification.dashboard_statistics</source>
+                <target><![CDATA[Ihre Aktivität]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
