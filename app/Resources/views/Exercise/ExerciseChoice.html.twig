@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Meine Lieblingsübungen'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+    <h1>{{ 'exercise.exercise_choice_description_title'|trans({}, 'FitbaseExerciseBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -12,11 +12,7 @@
     <div class="row">
         <div class="col-md-9">
 
-            <p>
-                Hier finden Sie eine Übersicht Ihrer Lieblingsübungen. Über den Button "Gefällt mir" können Sie jede
-                Übung markieren und so eine Liste Ihrer persönlichen Lieblingsübungen erstellen. Diese Übungen können
-                Sie dann gesammelt per Schnellzugriff hier abrufen.
-            </p>
+            <p>{{ 'exercise.exercise_choice_description'|trans({}, 'FitbaseExerciseBundle') }}</p>
 
             {% if collection is defined and collection %}
                 {% for focusCategory in collection %}
@@ -30,7 +26,7 @@
         <aside class="col-md-3">
 
             <aside>
-                <h4>{{ "Empfehlungen" | trans({}, 'FitbaseExerciseBundle') }}</h4>
+                <h4>{{ "exercise.exercise_recommendation" | trans({}, 'FitbaseExerciseBundle') }}</h4>
             </aside>
 
             {{ sonata_block_render({ 'type': 'fitbase.block.exercise.user_choice_social' }) }}

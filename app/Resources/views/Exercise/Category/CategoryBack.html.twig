@@ -1,7 +1,7 @@
 {% extends 'Exercise/Category/Category.html.twig' %}
 
 {% block title %}
-    <h1>{{ 'Rückengesundheit'|trans({}, 'FitbaseExerciseBundle') }}</h1>
+    <h1>{{ 'exercise.exercise_feeding_back'|trans({}, 'FitbaseExerciseBundle') }}</h1>
 {% endblock title %}
 
 
@@ -28,15 +28,20 @@
                                             <div class="owl-item" style="width: 25%;">
                                                 <li>
                                                     <div class="header-post info-post">
-                                                        <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                            {% thumbnail category.media, 'original' with { 'title': null } %}
-                                                        </a>
+
+                                                        {% if category is defined and category %}
+                                                            <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
+                                                                {% thumbnail category.media, 'original' with { 'title': null } %}
+                                                            </a>
+                                                        {% endif %}
 
                                                         <div class="padding-top">
                                                             <h4>
-                                                                <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                                    {{ category.name }}
-                                                                </a>
+                                                                {% if category is defined and category %}
+                                                                    <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
+                                                                        {{ category.name }}
+                                                                    </a>
+                                                                {% endif %}
                                                             </h4>
                                                         </div>
                                                     </div>
@@ -70,6 +75,7 @@
             </div>
             <br/>
             <br/>
+
             <div class="container">
                 {{ sonata_block_render({ 'type': 'fitbase.block.focus.category_questionnaire' }) }}
             </div>

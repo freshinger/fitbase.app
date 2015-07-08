@@ -1,7 +1,7 @@
 {% extends 'Exercise/Category/Category.html.twig' %}
 
 {% block title %}
-    <h1>{{ 'Rückengesundheit'|trans({}, 'FitbaseExerciseBundle') }}</h1>
+    <h1>{{ 'exercise.exercise_feeding_back'|trans({}, 'FitbaseExerciseBundle') }}</h1>
 {% endblock title %}
 
 
@@ -13,15 +13,19 @@
                     <div class="col-md-3">
                         <div class="panel-box">
                             <div class="titles title-image-bottom">
-                                <h4 class="text-cut">{{ category.name }}</h4>
+                                {% if category is defined and category %}
+                                    <h4 class="text-cut">{{ category.name }}</h4>
+                                {% endif %}
                             </div>
                             <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                                 <div class="owl-wrapper-outer autoHeight">
                                     <div class="owl-wrapper" style="left: 0px; display: block;">
                                         <li>
-                                            <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
-                                                {% thumbnail category.media, 'original' with { 'title': null, 'class': 'img-responsive'  } %}
-                                            </a>
+                                            {% if category is defined and category %}
+                                                <a href="{{ path('category_exercises', {'slug': category.slug}) }}">
+                                                    {% thumbnail category.media, 'original' with { 'title': null, 'class': 'img-responsive'  } %}
+                                                </a>
+                                            {% endif %}
                                         </li>
                                     </div>
                                 </div>

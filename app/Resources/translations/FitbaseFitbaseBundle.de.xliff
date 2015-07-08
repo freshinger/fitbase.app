@@ -3,12 +3,20 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="exception.page_not_found">
+                <source>exception.page_not_found</source>
+                <target><![CDATA[Diese Seite existiert nicht]]></target>
+            </trans-unit>
 
-            <!--<trans-unit id="">-->
-            <!--<source></source>-->
-            <!--<target><![CDATA[]]></target>-->
-            <!--</trans-unit>-->
+            <trans-unit id="exception.page_not_found_title">
+                <source>exception.page_not_found_title</source>
+                <target><![CDATA[Die Seite wurde nicht gefunden]]></target>
+            </trans-unit>
 
+            <trans-unit id="exception.page_not_found_code">
+                <source>exception.page_not_found_code</source>
+                <target><![CDATA[404]]></target>
+            </trans-unit>
 
         </body>
     </file>

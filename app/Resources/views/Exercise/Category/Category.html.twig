@@ -16,15 +16,19 @@
                     <div class="col-md-4">
                         <div class="panel-box">
                             <div class="titles title-image-bottom">
-                                <h4 class="text-cut">{{ exercise.name }}</h4>
+                                {% if exercise is defined and exercise %}
+                                    <h4 class="text-cut">{{ exercise.name }}</h4>
+                                {% endif %}
                             </div>
                             <ul class="single-carousel owl-carousel owl-theme" style="opacity: 1; display: block;">
                                 <div class="owl-wrapper-outer autoHeight">
                                     <div class="owl-wrapper" style="left: 0px; display: block;">
                                         <li>
-                                            <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
-                                            </a>
+                                            {% if exercise is defined and exercise %}
+                                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                                    {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
+                                                </a>
+                                            {% endif %}
                                         </li>
                                     </div>
                                 </div>
@@ -45,10 +49,9 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h3>{{ 'Weitere Übungen'|trans({}, 'FitbaseExerciseBundle') }}</h3>
+                    <h3>{{ 'exercise.exercises_other'|trans({}, 'FitbaseExerciseBundle') }}</h3>
                 </div>
             </div>
-
 
             {% if exercises is defined and exercises %}
                 <div class="row padding-top">
@@ -56,16 +59,20 @@
                         <div class="col-md-4">
                             <div class="panel-box">
                                 <div class="titles title-image-bottom">
-                                    <h4 class="text-cut">{{ exercise.name }}</h4>
+                                    {% if exercise is defined and exercise %}
+                                        <h4 class="text-cut">{{ exercise.name }}</h4>
+                                    {% endif %}
                                 </div>
                                 <ul class="single-carousel owl-carousel owl-theme"
                                     style="opacity: 1; display: block;">
                                     <div class="owl-wrapper-outer autoHeight">
                                         <div class="owl-wrapper" style="left: 0px; display: block;">
                                             <li>
-                                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                                    {% thumbnail exercise.image, 'original'  with { 'height': '360px', 'title': null, 'class': 'img-responsive' } %}
-                                                </a>
+                                                {% if exercise is defined and exercise %}
+                                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                                        {% thumbnail exercise.image, 'original'  with { 'height': '360px', 'title': null, 'class': 'img-responsive' } %}
+                                                    </a>
+                                                {% endif %}
                                             </li>
                                         </div>
                                     </div>
