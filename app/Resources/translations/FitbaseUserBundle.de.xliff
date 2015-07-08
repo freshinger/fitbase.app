@@ -119,7 +119,79 @@
                 <target><![CDATA[Fitbase Profil löschen]]></target>
             </trans-unit>
 
+            <trans-unit id="user.wizard_hello">
+                <source>user.wizard_hello</source>
+                <target><![CDATA[Herzlich willkommen]]></target>
+            </trans-unit>
 
+            <trans-unit id="user.wizard_focus_change">
+                <source>user.focus_change</source>
+                <target><![CDATA[Fokus ändern]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_settings">
+                <source>user.focus_settings</source>
+                <target><![CDATA[Fokus einstellungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_change_info">
+                <source>user.focus_change_info</source>
+                <target><![CDATA[Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
+                linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
+                Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_priority">
+                <source>user.focus_exercise_priority</source>
+                <target><![CDATA[Übungsschwerpunkt]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_priority_info">
+                <source>user.focus_exercise_priority_info</source>
+                <target><![CDATA[Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer
+                Übungseinheit aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen,
+                erhalten Sie abwechselnd Übungen aus diesen Bereichen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_type">
+                <source>user.focus_exercise_type</source>
+                <target><![CDATA[Übungstyp]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_type_info">
+                <source>user.focus_exercise_type_info</source>
+                <target><![CDATA[Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”,
+                “Kräftigung” und “Dehnung”. Sie können diese Zusammenstellung individualisieren, indem Sie
+                folgende Auswahl treffen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_weeklytask">
+                <source>user.wizard_reminder_weeklytask</source>
+                <target><![CDATA[Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_weeklytask_info">
+                <source>user.wizard_reminder_weeklytask_info</source>
+                <target><![CDATA[Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten möchten.
+                    Unsere Empfehlung: 1-2 pro
+                    Woche. Sie können diese Angaben jederzeit im Profil ändern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder">
+                <source>user.wizard_reminder</source>
+                <target><![CDATA[Erinnerungsfunktion]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_info">
+                <source>user.wizard_reminder_info</source>
+                <target><![CDATA[Hier können Sie festlegen, wie viele Erinnerungen Sie pro Woche erhalten möchten.
+                Unsere Empfehlung: Jeden Tag. Sie können diese Angaben jederzeit im Profil ändern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_save">
+                <source>user.wizard_reminder_save</source>
+                <target><![CDATA[Klicken Sie auf weiter, um fitbase zu starten.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
