@@ -1,14 +1,10 @@
 {% extends 'Gamification/Dashboard/UserActivity.html.twig' %}
 
 {% block content %}
-    <p>
-        Durch einen Klick auf den Button
-        gelangen Sie direkt zur heutigen Übung.
-    </p>
+    <p>{{ 'gamification.dashboard_activity_feeding_info'|trans({}, 'FitbaseGamificationBundle') }}</p>
     <a href="{{ path('focus') }}" class="btn btn-primary btn-block">
-        Zum Ernährungstagebuch
+        {{ 'gamification.dashboard_activity_feeding'|trans({}, 'FitbaseGamificationBundle') }}
     </a>
-
     <br/>
 {% endblock %}
 

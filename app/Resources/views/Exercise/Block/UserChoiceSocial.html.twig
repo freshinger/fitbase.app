@@ -13,19 +13,23 @@
                     <div class="owl-wrapper-outer autoHeight">
                         <div class="owl-wrapper" style="left: 0px; display: block;">
                             <li>
-                                <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                    {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
-                                </a>
+                                {% if exercise is defined and exercise %}
+                                    <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                        {% thumbnail exercise.image, 'original'  with {'title': null, 'class': 'img-responsive' } %}
+                                    </a>
+                                {% endif %}
 
                                 <div class="info-single-carousel">
                                     <p>
-                                        {% autoescape false %}
-                                        {{ exercise.description|raw|striptags|slice(0,150) }}...
-                                        {% endautoescape %}
+                                        {% if exercise is defined and exercise %}
+                                            {% autoescape false %}
+                                            {{ exercise.description|raw|striptags|slice(0,150) }}...
+                                            {% endautoescape %}
 
-                                        <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                            {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
-                                        </a>
+                                            <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
+                                                {{ "exercise.exercise_more" | trans({}, 'FitbaseExerciseBundle') }}
+                                            </a>
+                                        {% endif %}
                                     </p>
                                 </div>
                             </li>

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="email.hello">
+                <source>email.hello</source>
+                <target><![CDATA[Guten Tag firstname lastname,]]></target>
+            </trans-unit>
+
+
+            <trans-unit id="email.copyright">
+                <source>email.copyright</source>
+                <target><![CDATA[Sie erhalten diese Mail als Teilnehmer des fitbase
+                            Online-Coachings. © fitbase.de 2011 - 2015
+                            Fitbase Institut für Online Prävention GmbH, Litzowstr. 13,
+                            22041 Hamburg, info@fitbase.de]]></target>
+            </trans-unit>
+
+
+            <trans-unit id="email.welcome">
+                <source>email.welcome</source>
+                <target><![CDATA[willkommen bei fitbase! In dieser Email erhalten Sie Ihre Zugangsdaten, die Sie bei
+                                    Ihrem nächsten
+                                    Besuch auf fitbase.de nutzen können. Bei Fragen besuchen Sie bitte unsere FAQs oder
+                                    kontaktieren uns
+                                    unter]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access">
+                <source>email.access</source>
+                <target><![CDATA[Ihre Zugangsdaten:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_signin">
+                <source>email.access_signin</source>
+                <target><![CDATA[einloggen]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_signin.title">
+                <source>email.access_signin.title</source>
+                <target><![CDATA[Mit den folgenden Zugangsdaten können Sie sich auf Fitbase]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.email">
+                <source>email.email</source>
+                <target><![CDATA[E-Mail-Adresse:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_username">
+                <source>email.access_username</source>
+                <target><![CDATA[Benutzername:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.access_password">
+                <source>email.access_password</source>
+                <target><![CDATA[Passwort:]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise">
+                <source>email.exercise</source>
+                <target><![CDATA[hiermit möchten wir Sie an Ihre Übung]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_category">
+                <source>email.exercise_category</source>
+                <target><![CDATA[aus dem Bereich category]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_remind">
+                <source>email.exercise_remind</source>
+                <target><![CDATA[erinnern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_click">
+                <source>email.exercise_click</source>
+                <target><![CDATA[Bitte klicken Sie auf den Link, um direkt zur heutigen Übung zu gelangen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_today">
+                <source>email.exercise_today</source>
+                <target><![CDATA[Meine heutige Übung]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.exercise_have_a_nice_day">
+                <source>email.exercise_have_a_nice_day</source>
+                <target><![CDATA[Viel Spaß und einen schönen Tag wünscht Ihnen Ihr fitbase Team!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.invite">
+                <source>email.invite</source>
+                <target><![CDATA[Jetzt teilnehmen!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.quiz">
+                <source>email.quiz</source>
+                <target><![CDATA[wir haben ein kleines Quiz für Sie vorbereitet, mit dem Sie Ihr Wissen zur letzten
+                                    Info-Einheit
+                                    überprüfen und damit Blätter für Ihren Gesundheitsbaum sammeln können. Viel Spaß und
+                                    einen schönen
+                                    Tag wünscht Ihnen fitbase!]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.quiz_start">
+                <source>email.quiz_start</source>
+                <target><![CDATA[Quiz starten]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.view_false">
+                <source>email.view_false</source>
+                <target><![CDATA[Wenn die E-Mail nicht richtig angezeigt wird, klicken Sie]]></target>
+            </trans-unit>
+
+            <trans-unit id="email.here">
+                <source>email.here</source>
+                <target><![CDATA[hier]]></target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

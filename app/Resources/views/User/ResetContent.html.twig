@@ -1,14 +1,14 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</h1>
+    <h1>{{ 'user.password_change'|trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
     <div class="crumbs">
         <div class="container">
             <ul>
-                <li>{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</li>
+                <li>{{ 'user.password_change'|trans({}, 'FitbaseUserBundle') }}</li>
             </ul>
         </div>
     </div>
@@ -23,7 +23,7 @@
 
             <div class="panel-box">
                 <div class="titles">
-                    <h4>{{ 'Passwort ändern'|trans({}, 'SonataUserBundle') }}</h4>
+                    <h4>{{ 'user.password_change'|trans({}, 'FitbaseUserBundle') }}</h4>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
@@ -37,10 +37,7 @@
 
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <p>
-                                                Bitte vergeben Sie hier ein neues Passwort.
-                                            </p>
-
+                                            <p>{{ 'user.password_change_info'|trans({}, 'FitbaseUserBundle') }}</p>
                                         </div>
                                     </div>
                                 </div>

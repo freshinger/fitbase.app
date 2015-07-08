@@ -71,7 +71,7 @@ class UserCategoryBlock extends CompanyUserLimitedBlockAbstract implements Compa
 
         $percent = 0;
         if ($categoryCountPointTotal > 0) {
-            $percent = (100 - ($categoryCountPointUser * 100 / $categoryCountPointTotal));
+            $percent = (100 - ($categoryCountPointUser * 100 / ($categoryCountPointTotal > 0 ? $categoryCountPointTotal : 1)));
         }
 
         return $this->renderPrivateResponse($blockContext->getSetting('template_default'), array(

@@ -14,13 +14,12 @@
 
                             <div class="info-single-carousel">
                                 <p>
-
                                     {% autoescape false %}
                                         {{ exercise.description|raw|striptags|slice(0,130) }}...
                                     {% endautoescape %}
 
                                     <a href="{{ path('exercise', { 'unique': exercise.id}) }}">
-                                        {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                        {{ "exercise.exercise_more" | trans({}, 'FitbaseExerciseBundle') }}
                                     </a>
                                 </p>
                             </div>

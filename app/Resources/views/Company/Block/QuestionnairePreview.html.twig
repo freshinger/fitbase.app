@@ -1,15 +1,15 @@
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles">
-        <h4>{{ 'Vorlagen für Kurzumfragen'|trans({}, 'FitbaseQuestionnaireBundle') }}</h4>
+        <h4>{{ 'company.questionnaire.preview_title'|trans({}, 'FitbaseCompanyBundle') }}</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
             <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <tr>
-                    <th>{{ 'Befragungen'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
-                    <th>{{ 'Vorschau'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
+                    <th>{{ 'company.questionnaire.interviews'|trans({}, 'FitbaseCompanyBundle') }}</th>
+                    <th>{{ 'company.questionnaire.preview'|trans({}, 'FitbaseCompanyBundle') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,7 +18,7 @@
                         <td>{{ questionnaire }}</td>
                         <td>
                             <a href="{{ path("questionnaire_statistic_preview", { 'unique': questionnaire.id }) }}">
-                                {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                {{ 'company.questionnaire.more'|trans({}, 'FitbaseCompanyBundle') }}
                             </a>
                         </td>
                     </tr>

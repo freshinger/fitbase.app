@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ "Herzlich willkommen" | trans({}, 'FitbaseUserBundle') }}</h1>
+    <h1>{{ "user.wizard_hello" | trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -13,14 +13,12 @@
 
     <div class="panel-box">
         <div class="titles">
-            <h4>{{ "Infoeinheiten" | trans({}, 'FitbaseReminderBundle') }}</h4>
+            <h4>{{ "user.wizard_reminder_weeklytask" | trans({}, 'FitbaseUserBundle') }}</h4>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <p>Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten möchten.
-                    Unsere Empfehlung: 1-2 pro
-                    Woche. Sie können diese Angaben jederzeit im Profil ändern.</p>
+                <p>{{ "user.wizard_reminder_weeklytask_info" | trans({}, 'FitbaseUserBundle') }}</p>
 
                 {{ sonata_block_render({ 'type': 'fitbase.block.reminder.weeklytask' }) }}
 
@@ -31,14 +29,12 @@
 
     <div class="panel-box">
         <div class="titles">
-            <h4>{{ "Erinnerungsfunktion" | trans({}, 'FitbaseReminderBundle') }}</h4>
+            <h4>{{ "user.wizard_reminder" | trans({}, 'FitbaseUserBundle') }}</h4>
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <p>Hier können Sie festlegen, wie viele Erinnerungen Sie pro Woche erhalten möchten. Unsere Empfehlung:
-                    Jeden
-                    Tag. Sie können diese Angaben jederzeit im Profil ändern.</p>
+                <p>{{ "user.wizard_reminder_info" | trans({}, 'FitbaseUserBundle') }}</p>
 
                 {{ sonata_block_render({ 'type': 'fitbase.block.reminder.exercise' }) }}
 
@@ -49,9 +45,7 @@
 
     <div class="row">
         <div class="col-md-10">
-            <p>
-                Klicken Sie auf weiter, um fitbase zu starten.
-            </p>
+            <p>{{ "user.wizard_reminder_save" | trans({}, 'FitbaseUserBundle') }}</p>
         </div>
 
         <div class="panel-body col-xs-12">

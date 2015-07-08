@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="exercise.exercise_description_title">
+                <source>exercise.exercise_description_title</source>
+                <target><![CDATA[Übungsbeschreibung]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_choice_description_title">
+                <source>exercise.exercise_choice_description_title</source>
+                <target><![CDATA[Meine Lieblingsübungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_choice_description">
+                <source>exercise.exercise_choice_description</source>
+                <target><![CDATA[Hier finden Sie eine Übersicht Ihrer Lieblingsübungen. Über den Button "Gefällt mir" können Sie jede
+                Übung markieren und so eine Liste Ihrer persönlichen Lieblingsübungen erstellen. Diese Übungen können
+                Sie dann gesammelt per Schnellzugriff hier abrufen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_recommendation">
+                <source>exercise.exercise_recommendation</source>
+                <target><![CDATA[Empfehlungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_current">
+                <source>exercise.exercise_current</source>
+                <target><![CDATA[Ihre heutige Übung - name]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_more">
+                <source>exercise.exercise_more</source>
+                <target><![CDATA[Mehr...]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_more_exercises">
+                <source>exercise.exercise_more_exercises</source>
+                <target><![CDATA[Mehr Übungen...]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_choices_empty">
+                <source>exercise.exercise_choices_empty</source>
+                <target><![CDATA[Sie haben noch keine Lieblingsübungen in diesem Bereich.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_like">
+                <source>exercise.exercise_like</source>
+                <target><![CDATA[Gefällt mir]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercises_other">
+                <source>exercise.exercises_other</source>
+                <target><![CDATA[Weitere Übungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_feeding_back">
+                <source>exercise.exercise_feeding_back</source>
+                <target><![CDATA[Rückengesundheit]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_feeding">
+                <source>exercise.exercise_feeding</source>
+                <target><![CDATA[Ihr Ernährungstagebuch]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_feeding_title">
+                <source>exercise.exercise_feeding_title</source>
+                <target><![CDATA[Ernährungstagebuch]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_feeding_empty">
+                <source>exercise.exercise_feeding_empty</source>
+                <target><![CDATA[Keine Einträge gefunden]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_feeding_info">
+                <source>exercise.exercise_feeding_info</source>
+                <target><![CDATA[Hier finden Sie Ihr Ernährungstagebuch. Bitte geben Sie einmal am Tag Ihre zu sich genommene Nahrung
+                ein. Es funktioniert ganz einfach. Die Grundeinheit ist eine „Hand voll“. Stellen Sie sich nun vor wie oft die
+                einzelnen Bestandteile (z.B. Kartoffeln, Gemüse oder Fleisch) in Ihre Hand passen und geben Sie diesen Wert unten
+                ein. Danach können Sie sehen wie sich Ihre Ernährung zur optimalen Zusammensetzung vergleicht.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_personal_beheviour">
+                <source>exercise.exercise_personal_beheviour</source>
+                <target><![CDATA[Ihr persönliches Verhältnis]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_optimal_beheviour">
+                <source>exercise.exercise_optimal_beheviour</source>
+                <target><![CDATA[Ein optimales Verhältnis]]></target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

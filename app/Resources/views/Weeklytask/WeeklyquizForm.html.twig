@@ -128,7 +128,7 @@
             {% if userQuiz is defined and userQuiz %}
                 {% if not userQuiz.done %}
                     <button class="btn btn-primary" name="save" id="weeklytask_user_quiz_answer_save" type="submit">
-                        {{ "Quiz auswerten" | trans({}, 'FitbaseWeeklytaskBundle') }}
+                        {{ "weeklytask.weeklyquiz_evaluate" | trans({}, 'FitbaseWeeklytaskBundle') }}
                     </button>
                 {% endif %}
             {% endif %}

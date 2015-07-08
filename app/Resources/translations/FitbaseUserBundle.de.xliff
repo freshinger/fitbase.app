@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+
+            <trans-unit id="user.registration.i_agree_with">
+                <source>user.registration.i_agree_with</source>
+                <target><![CDATA[Ich stimme den]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.privacy">
+                <source>user.registration.privacy</source>
+                <target><![CDATA[Datenschutz-]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.and">
+                <source>user.registration.and</source>
+                <target><![CDATA[und]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.terms_and_conditions">
+                <source>user.registration.terms_and_conditions</source>
+                <target><![CDATA[Teilnahmebedingungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.end">
+                <source>user.registration.end</source>
+                <target><![CDATA[zu.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.password_reset">
+                <source>user.password_reset</source>
+                <target><![CDATA[Passwort zurücksetzen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.password_change">
+                <source>user.password_change</source>
+                <target><![CDATA[Passwort ändern]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.password_change_info">
+                <source>user.password_change_info</source>
+                <target><![CDATA[Bitte vergeben Sie hier ein neues Passwort.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.password_reset.email_check">
+                <source>user.password_reset.email_check</source>
+                <target><![CDATA[Bitte überprüfen sie Ihre Email]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.actioncode">
+                <source>user.actioncode</source>
+                <target><![CDATA[Zugangscode einlösen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.actioncode_info">
+                <source>user.actioncode_info</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns, Sie begrüßen zu dürfen.
+                    Bitte geben Sie hier Ihren Zugangscode ein.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login">
+                <source>user.login</source>
+                <target><![CDATA[Einloggen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_now">
+                <source>user.login_now</source>
+                <target><![CDATA[Jetzt anmelden]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_now_info">
+                <source>user.login_now_info</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
+                            abzuschließen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_title">
+                <source>user.login_title</source>
+                <target><![CDATA[Einloggen oder Zugangscode einlösen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_info">
+                <source>user.login_info</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen
+                Sie sich mit Ihren Zugangsdaten ein. ]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_password">
+                <source>user.login_password</source>
+                <target><![CDATA[Passwort]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.login_password_false">
+                <source>user.login_password_false</source>
+                <target><![CDATA[Benutzername oder Passwort ungültig]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration">
+                <source>user.registration</source>
+                <target><![CDATA[Registrieren]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration_info">
+                <source>user.registration_info</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung abzuschließen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration_code">
+                <source>user.registration_code</source>
+                <target><![CDATA[Zugangscode einlösen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.remove_profile">
+                <source>user.remove_profile</source>
+                <target><![CDATA[Fitbase Profil löschen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_hello">
+                <source>user.wizard_hello</source>
+                <target><![CDATA[Herzlich willkommen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_change">
+                <source>user.focus_change</source>
+                <target><![CDATA[Fokus ändern]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_settings">
+                <source>user.focus_settings</source>
+                <target><![CDATA[Fokus einstellungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_change_info">
+                <source>user.focus_change_info</source>
+                <target><![CDATA[Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
+                linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
+                Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_priority">
+                <source>user.focus_exercise_priority</source>
+                <target><![CDATA[Übungsschwerpunkt]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_priority_info">
+                <source>user.focus_exercise_priority_info</source>
+                <target><![CDATA[Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer
+                Übungseinheit aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen,
+                erhalten Sie abwechselnd Übungen aus diesen Bereichen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_type">
+                <source>user.focus_exercise_type</source>
+                <target><![CDATA[Übungstyp]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_focus_exercise_type_info">
+                <source>user.focus_exercise_type_info</source>
+                <target><![CDATA[Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”,
+                “Kräftigung” und “Dehnung”. Sie können diese Zusammenstellung individualisieren, indem Sie
+                folgende Auswahl treffen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_weeklytask">
+                <source>user.wizard_reminder_weeklytask</source>
+                <target><![CDATA[Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_weeklytask_info">
+                <source>user.wizard_reminder_weeklytask_info</source>
+                <target><![CDATA[Hier können Sie festlegen, wie viele Infoeinheiten Sie pro Woche erhalten möchten.
+                    Unsere Empfehlung: 1-2 pro
+                    Woche. Sie können diese Angaben jederzeit im Profil ändern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder">
+                <source>user.wizard_reminder</source>
+                <target><![CDATA[Erinnerungsfunktion]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_info">
+                <source>user.wizard_reminder_info</source>
+                <target><![CDATA[Hier können Sie festlegen, wie viele Erinnerungen Sie pro Woche erhalten möchten.
+                Unsere Empfehlung: Jeden Tag. Sie können diese Angaben jederzeit im Profil ändern.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.wizard_reminder_save">
+                <source>user.wizard_reminder_save</source>
+                <target><![CDATA[Klicken Sie auf weiter, um fitbase zu starten.]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,7 +1,7 @@
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles">
-        <h4>{{ 'Durchgeführte Befragungen'|trans({}, 'FitbaseQuestionnaireBundle') }}</h4>
+        <h4>{{ 'company.questionnaire.done'|trans({}, 'FitbaseCompanyBundle') }}</h4>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -9,10 +9,10 @@
             <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <tr>
-                    <th>{{ 'Befragungen'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
-                    <th>{{ 'Datum'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
-                    <th>{{ 'Teilnehmer'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
-                    <th>{{ 'Auswertung'|trans({}, 'FitbaseQuestionnaireBundle') }}</th>
+                    <th>{{ 'company.questionnaire.done_interviews'|trans({}, 'FitbaseCompanyBundle') }}</th>
+                    <th>{{ 'company.questionnaire.done_date'|trans({}, 'FitbaseCompanyBundle') }}</th>
+                    <th>{{ 'company.questionnaire.done_users'|trans({}, 'FitbaseCompanyBundle') }}</th>
+                    <th>{{ 'company.questionnaire.done_evaluation'|trans({}, 'FitbaseCompanyBundle') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,7 @@
                         </td>
                         <td>{{ questionnaireCompany.date|date('Y/m/d') }}</td>
                         <td>
-                            <span title="Anzahl der durchgeführten Fragebögen zur Anzahl der Benutzer">
+                            <span title="{{ 'company.questionnaire.done_users_to_questionnaire'|trans({}, 'FitbaseCompanyBundle') }}">
                             {{ questionnaireCompany.questionnairesDone|length }}
                                 ({{ questionnaireCompany.company.users|length }})
                             </span>
@@ -31,7 +31,7 @@
                         <td>
                             <a class="dialog-confirm"
                                href="{{ path("questionnaire_statistic_slice", { 'unique': questionnaireCompany.id }) }}">
-                                {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                {{ 'company.questionnaire.more'|trans({}, 'FitbaseCompanyBundle') }}
                             </a>
                         </td>
                     </tr>

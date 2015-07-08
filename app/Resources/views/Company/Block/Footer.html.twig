@@ -11,10 +11,9 @@
         </div>
         <div class="col-xs-10">
             <p>
-                © fitbase.de 2011 - {{ "now"|date("Y") }}
+                {{ 'company.footer_copyright'|trans({ 'date': "now"|date("Y") }, 'FitbaseCompanyBundle') }}
             </p>
         </div>
-
 
     </div>
     <!-- End Wiguets Footer-->

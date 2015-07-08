@@ -1,9 +1,8 @@
 <!-- Content Text-->
 <div class="panel-box" style="min-height: 525px;">
     <div class="titles title-image-bottom">
-        <h4>{{ 'Wussten Sie schon, dass...'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'knowledge.dashboard_knowledge'|trans({}, 'FitbaseKnowledgeBundle') }}</h4>
     </div>
-
 
     <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
         <div class="owl-wrapper-outer autoHeight">
@@ -12,9 +11,7 @@
 
                     {% if knowledge is defined and knowledge %}
                         <div class="text-over-image">
-                            <span>
-                                {{ knowledge.content }}
-                            </span>
+                            <span>{{ knowledge.content }}</span>
 
                             <div class="crumbs pointer" style="padding: 0px;"></div>
                         </div>
@@ -29,15 +26,11 @@
 
     <div class="row">
         <div class="col-md-12">
-
             <div class="row">
                 <div class="col-xs-12">
-                    <p>
-                        {{ 'coming soon... Rezept der Woche'|trans({}, 'FitbaseGamificationBundle') }}
-                    </p>
+                    <p>{{ 'knowledge.dashboard_coming_soon'|trans({}, 'FitbaseGamificationBundle') }}</p>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

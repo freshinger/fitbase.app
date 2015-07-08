@@ -3,14 +3,14 @@
 {% use "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</h1>
+    <h1>{{ 'FitbaseUserBundle'|trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
     <div class="crumbs">
         <div class="container">
             <ul>
-                <li>{{ 'Jetzt anmelden'|trans({}, 'SonataUserBundle') }}</li>
+                <li>{{ 'user.login_now'|trans({}, 'FitbaseUserBundle') }}</li>
             </ul>
         </div>
     </div>
@@ -23,18 +23,13 @@
             <!-- Content Text-->
             <div class="panel-box">
                 <div class="titles">
-                    <h4>{{ 'Jetzt anmelden'|trans({}, 'FitbaseUserBundle') }}</h4>
+                    <h4>{{ 'user.login_now'|trans({}, 'FitbaseUserBundle') }}</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <p>
-                            Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
-                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
-                            abzuschließen
-                        </p>
+                        <p>{{ 'user.login_now_info'|trans({}, 'FitbaseUserBundle') }}</p>
                         {% form_theme form 'User/RegistrationForm.html.twig' %}
                         {{ form(form) }}
-
                     </div>
                 </div>
             </div>

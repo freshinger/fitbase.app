@@ -143,7 +143,6 @@ jms_serializer:
 assetic:
     bundle:
         - SonataAdminBundle
-        - JMoseCommandSchedulerBundle
         - FitbaseQuestionnaireBundle
         - FitbaseWeeklytaskBundle
         - FitbaseExerciseBundle
@@ -166,6 +165,10 @@ assetic:
             apply_to: "\.less$"
 
 nelmio_api_doc: ~
+
+lexik_translation:
+    fallback_locale: de      # (required) default locale to use
+    managed_locales: [de, en]    # (required) locales that the bundle have to manage
 
 sensio_framework_extra:
     view:    { annotations: false }

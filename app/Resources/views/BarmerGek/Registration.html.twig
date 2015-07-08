@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Registrieren'|trans({}, 'FitbaseBarmerGekBundle') }}</h1>
+    <h1>{{ 'barmer_gek.register'|trans({}, 'FitbaseBarmerGekBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -14,17 +14,12 @@
             <!-- Content Text-->
             <div class="panel-box">
 
-
                 <div class="titles">
-                    <h4>{{ 'Registrieren'|trans({}, 'FitbaseUserBundle') }}</h4>
+                    <h4>{{ 'barmer_gek.register'|trans({}, 'FitbaseBarmerGekBundle') }}</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <p>
-                            Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
-                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
-                            abzuschließen
-                        </p>
+                        <p>{{ 'barmer_gek.register_description'|trans({}, 'FitbaseBarmerGekBundle') }}</p>
 
                         {% form_theme form 'BarmerGek/RegistrationForm.html.twig' %}
                         {{ form(form) }}

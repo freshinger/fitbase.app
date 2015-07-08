@@ -2,7 +2,7 @@
     <div class="panel-body">
 
         <h4 class="short hue">
-            {{ 'Ihre letzte Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}
+            {{ 'gamification.dashboard_weeklytask'|trans({}, 'FitbaseGamificationBundle') }}
         </h4>
 
         <div class="row">
@@ -18,7 +18,7 @@
                                     </td>
                                     <td class="shade">
                                         <a href="{{ path('weeklytask_user_view', { 'unique': task.id } ) }}">
-                                            {{ 'mehr...'|trans({}, 'FitbaseGamificationBundle') }}
+                                            {{ 'gamification.dashboard_weeklytask_more'|trans({}, 'FitbaseGamificationBundle') }}
                                         </a>
                                     </td>
                                 </tr>

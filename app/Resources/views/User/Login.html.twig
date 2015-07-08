@@ -1,14 +1,14 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Einloggen oder Zugangscode einlösen'|trans({}, 'SonataUserBundle') }}</h1>
+    <h1>{{ 'user.login_title'|trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
     <div class="crumbs">
         <div class="container">
             <ul>
-                <li>{{ 'Einloggen'|trans({}, 'FitbaseUserBundle') }}</li>
+                <li>{{ 'user.login'|trans({}, 'FitbaseUserBundle') }}</li>
             </ul>
         </div>
     </div>
@@ -24,13 +24,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 form-theme">
-                        <p> Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen. Bitte loggen Sie
-                            sich
-                            mit Ihren Zugangsdaten ein. </p>
+                        <p>{{ 'user.login_info'|trans({}, 'FitbaseUserBundle') }}</p>
 
                         {% if error %}
                             <div class="alert alert-danger alert-error">
-                                {{ 'Benutzername oder Passwort ungültig'|trans({}, 'FOSUserBundle') }}
+                                {{ 'user.login_password_false'|trans({}, 'FitbaseUserBundle') }}
                             </div>
                         {% endif %}
 
@@ -55,7 +53,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="password" class="control-label">
-                                        {{ 'Passwort'|trans({}, 'FOSUserBundle') }}
+                                        {{ 'user.login_password'|trans({}, 'FitbaseUserBundle') }}
                                     </label>
                                 </div>
                                 <div class="col-md-12">

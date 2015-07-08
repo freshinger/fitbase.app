@@ -6,10 +6,6 @@ _sonata_admin:
     resource: .
     type:     sonata_admin
 
-jmose_command_scheduler:
-    resource: "@JMoseCommandSchedulerBundle/Resources/config/routing.yml"
-    prefix:   /
-
 fitbase_sonata_user:
     resource: "@FitbaseUserBundle/Resources/config/routing_sonata.xml"
     prefix:   /user
@@ -28,6 +24,10 @@ fitbase_email:
 fitbase_weeklytask:
     resource: "@FitbaseWeeklytaskBundle/Resources/config/routing_sonata.xml"
     prefix:   /infoeinheit
+
+lexik_translation_edition:
+    resource: "@LexikTranslationBundle/Resources/config/routing.yml"
+    prefix:   /lexik
 
 Wellbeing:
     prefix:       /wellbeing

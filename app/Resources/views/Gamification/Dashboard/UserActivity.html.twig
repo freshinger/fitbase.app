@@ -1,7 +1,7 @@
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles">
-        <h4>{{ 'Aktivitäten und Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'gamification.dashboard_activity'|trans({}, 'FitbaseGamificationBundle') }}</h4>
     </div>
     <div class="row" style="min-height: 400px;">
         <div class="col-md-12">
@@ -10,19 +10,15 @@
                 <div class="row">
                     <div class="col-xs-12">
 
-                <h5 class="short hue">
-                    {{ 'Führen Sie heute Ihre Übungen durch!'|trans({}, 'FitbaseGamificationBundle') }}
-                </h5>
+                        <h5 class="short hue">
+                            {{ 'gamification.dashboard_activity_exercises'|trans({}, 'FitbaseGamificationBundle') }}
+                        </h5>
 
-
-                        <p>
-                            Durch einen Klick auf den Button
-                            gelangen Sie direkt zur heutigen Übung.
-                        </p>
+                        <p>{{ 'gamification.dashboard_activity_exercises_info'|trans({}, 'FitbaseGamificationBundle') }}</p>
                     </div>
                     <div class="col-xs-12">
                         <a href="{{ path('focus') }}" class="btn btn-primary btn-block">
-                            {{ 'Heutige Übung starten'|trans({}, 'FitbaseGamificationBundle') }}
+                            {{ 'gamification.dashboard_activity_exercises_start'|trans({}, 'FitbaseGamificationBundle') }}
                         </a>
                     </div>
                 </div>
@@ -32,12 +28,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <p>
-                        {{ 'Durch einen Klick auf den Button gelangen Sie direkt zu den Infoeinheiten und Quizzen.'|trans({}, 'FitbaseGamificationBundle') }}
+                        {{ 'gamification.dashboard_activity_weeklytask_info'|trans({}, 'FitbaseGamificationBundle') }}
                     </p>
                 </div>
                 <div class="col-xs-12">
                     <a href="{{ path('weeklytask_dashboard') }}" class="btn btn-primary btn-block">
-                        {{ 'Zu den Infoeinheiten'|trans({}, 'FitbaseGamificationBundle') }}
+                        {{ 'gamification.dashboard_activity_weeklytask'|trans({}, 'FitbaseGamificationBundle') }}
                     </a>
                 </div>
             </div>
@@ -46,14 +42,14 @@
     </div>
     <div class="panel-footer">
         <div class="row">
-                <div class="col-xs-12">
-            
-        <a href="{{ path('profile') }}" class="btn btn-default btn-block">
-            {{ 'Fokus ändern'|trans({}, 'FitbaseGamificationBundle') }}
-        </a>
+            <div class="col-xs-12">
 
-        </div>
+                <a href="{{ path('profile') }}" class="btn btn-default btn-block">
+                    {{ 'gamification.dashboard_activity_focus_change'|trans({}, 'FitbaseGamificationBundle') }}
+                </a>
+
             </div>
+        </div>
 
     </div>
 </div>

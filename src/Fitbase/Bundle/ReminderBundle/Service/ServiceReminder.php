@@ -17,21 +17,21 @@ class ServiceReminder extends ContainerAware
      * @param null $day
      * @return mixed
      */
-    public function getItemsExercise($day = null)
+    public function getItemsExercise($day = null, $user = null)
     {
         $entityManager = $this->container->get('entity_manager');
         $repositoryReminderUserItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-        return $repositoryReminderUserItem->findAllNotPausedByDayAndType($day, 'exercise');
+        return $repositoryReminderUserItem->findAllNotPausedByDayAndType($day, 'exercise', $user);
     }
 
     /**
      * @param null $day
      * @return mixed
      */
-    public function getItemsWeeklytask($day = null)
+    public function getItemsWeeklytask($day = null, $user = null)
     {
         $entityManager = $this->container->get('entity_manager');
         $repositoryReminderUserItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
-        return $repositoryReminderUserItem->findAllNotPausedByDayAndType($day, 'weeklytask');
+        return $repositoryReminderUserItem->findAllNotPausedByDayAndType($day, 'weeklytask', $user);
     }
 }

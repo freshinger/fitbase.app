@@ -1,16 +1,15 @@
 <!-- Content Text-->
 <div class="panel-box" style="min-height: 525px;">
     <div class="titles title-image-bottom">
-        <h4>{{ 'Der Unternehmenswald'|trans({}, 'FitbaseGamificationBundle') }}</h4>
+        <h4>{{ 'gamification.dashboard_forest'|trans({}, 'FitbaseGamificationBundle') }}</h4>
     </div>
-
 
     <ul class="single-carousel owl-carousel owl-theme" style="display: block; margin-bottom: 20px;">
         <div class="owl-wrapper-outer autoHeight">
             <div class="owl-wrapper" style="left: 0px; display: block;">
                 <li>
                     <img class="img-responsive"
-                         title="{{ 'Der Unternehmenswald'|trans({}, 'FitbaseGamificationBundle') }}"
+                         title="{{ 'gamification.dashboard_forest'|trans({}, 'FitbaseGamificationBundle') }}"
                          src="{{ path('gamification_picture_forest') }}">
                 </li>
             </div>
@@ -19,17 +18,15 @@
 
     <div class="row">
         <div class="col-md-12">
-
             <div class="row">
                 <div class="col-xs-12">
                     <p>
                         {% if points is defined and points %}
-                            Der Unternehmenswald ist bisher mit {{ points|number_format(0, '.', ' ') }} Blättern begrünt
+                            {{ 'gamification.dashboard_forest_info'|trans({ 'points':points|number_format(0, '.', ' ') }, 'FitbaseGamificationBundle') }}
                         {% else %}
-                            Sie haben noch keine Blätter gesammelt
+                            {{ 'gamification.dashboard_forest_info_empty'|trans({}, 'FitbaseGamificationBundle') }}
                         {% endif %}
                     </p>
-
                 </div>
             </div>
 

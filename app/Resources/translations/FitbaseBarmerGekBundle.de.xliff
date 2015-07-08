@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="barmer_gek.register">
+                <source>barmer_gek.register</source>
+                <target><![CDATA[Registrieren]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.register_description">
+                <source>barmer_gek.register_description</source>
+                <target><![CDATA[Herzlich willkommen auf fitbase.de. Wir freuen uns Sie begrüßen zu dürfen.
+                            Bitte geben Sie nun Ihren Namen und Ihre Emailadresse an, um Ihre Registrierung
+                            abzuschließen]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.i_agree_with">
+                <source>barmer_gek.registration.i_agree_with</source>
+                <target><![CDATA[Ich stimme den]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.privacy">
+                <source>barmer_gek.registration.privacy</source>
+                <target><![CDATA[Datenschutz-]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.and">
+                <source>barmer_gek.registration.and</source>
+                <target><![CDATA[und]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.end">
+                <source>barmer_gek.registration.end</source>
+                <target><![CDATA[zu.]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.registration.terms_and_conditions">
+                <source>barmer_gek.registration.terms_and_conditions</source>
+                <target><![CDATA[Teilnahmebedingungen]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor">
+                <source>barmer_gek.teledoctor</source>
+                <target><![CDATA[Medizinische Beratung]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.description">
+                <source>barmer_gek.teledoctor.description</source>
+                <target><![CDATA[Qualifizierte medizinische Beratung am Telefon oder per E-Mail]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.help">
+                <source>barmer_gek.teledoctor.help</source>
+                <target>
+                    <![CDATA[Unsere medizinischen Fachteams mit erfahrenen Fach- und Allgemeinärzten beantworten schnell und kompetent Ihre Fragen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.telefon">
+                <source>barmer_gek.teledoctor.telefon</source>
+                <target><![CDATA[Kostenfreie Telefonnummer]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.telefon_nummer">
+                <source>barmer_gek.teledoctor.telefon_nummer</source>
+                <target><![CDATA[0800 333 1010]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.info">
+                <source>barmer_gek.teledoctor.info</source>
+                <target><![CDATA[Der Barmer GEK Teledoktor hat immer Sprechstunde und keine Wartezeiten. 7 Tage die Woche, rund
+            um die Uhr. Mehr können Sie erfahren unter]]></target>
+            </trans-unit>
+
+            <trans-unit id="barmer_gek.teledoctor.site">
+                <source>barmer_gek.teledoctor.site</source>
+                <target><![CDATA[www.barmer-gek.de/101646]]></target>
+            </trans-unit>
+
+
+        </body>
+    </file>
+</xliff>

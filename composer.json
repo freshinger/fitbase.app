@@ -83,7 +83,8 @@
         "cocur/slugify": "1.0.x-dev",
         "besimple/soap": "0.2.x-dev",
         "jmose/command-scheduler-bundle": "~1.0",
-        "ci/restclientbundle": "0.2.*"
+        "ci/restclientbundle": "0.2.*",
+        "lexik/translation-bundle": "~2.1"
     },
 
     "require-dev": {

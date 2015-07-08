@@ -1,17 +1,5 @@
-<h4 class="">
-    {{ 'Neuen Fragebogen anlegen'|trans({}, 'FitbaseQuestionnaireBundle') }}
-</h4>
-
-<p>
-    Über das Dropdown Menü können Sie einen passenden Fragebogen auswählen, ein Versand-Datum bestimmen und
-    mit dem
-    Button „Umfrage anlegen“ die Umfrage aktivieren. Jeder Teilnehmer erhält beim nächsten Login die
-    Aufforderung,
-    an der Umfrage teilzunehmen. So erhalten Sie weitere Informationen zur Stimmung und zum
-    Gesundheitszustand in
-    Ihrem Unternehmen. Sie können die Umfragen so häufig durchführen wie Sie möchten. Nicht das
-    passende dabei? Sprechen Sie uns gerne an.
-</p>
+<h4 class="">{{ 'company.questionnaire.create'|trans({}, 'FitbaseCompanyBundle') }}</h4>
+<p>{{ 'company.questionnaire.create_description'|trans({}, 'FitbaseCompanyBundle') }}</p>
 
 {% form_theme form 'Company/Block/QuestionnaireCreateForm.html.twig' %}
 

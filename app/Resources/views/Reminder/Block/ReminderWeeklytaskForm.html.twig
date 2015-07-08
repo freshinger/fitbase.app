@@ -1,37 +1,36 @@
 {% use "Reminder/Block/ReminderExerciseForm.html.twig" %}
 
 {% block button_row -%}
-    <p>{{ "Klicken Sie auf speichern, wenn Sie Änderungen vorgenommen haben" | trans({}, 'FitbaseReminderBundle') }}</p>
+    <p>{{ "reminder.form_info" | trans({}, 'FitbaseReminderBundle') }}</p>
     {% set vars =  { 'attr': { 'class': 'btn btn-default' }} %}
     {{- form_widget(form, vars) -}}
-{%- endblock button_row %}
+    {%- endblock button_row %}
 
-
-{% block weeklytask_reminder_item_widget %}
-    {% spaceless %}
-        <div class="row">
-            <div class="col-xs-12">
-                {% if form.parent is empty %}
-                    {{ form_errors(form) }}
-                {% endif %}
-                {{- form_errors(form.day) -}}
-                {{- form_errors(form.time) -}}
+    {% block weeklytask_reminder_item_widget %}
+        {% spaceless %}
+            <div class="row">
+                <div class="col-xs-12">
+                    {% if form.parent is empty %}
+                        {{ form_errors(form) }}
+                    {% endif %}
+                    {{- form_errors(form.day) -}}
+                    {{- form_errors(form.time) -}}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4">
-                {{- form_widget(form.day) -}}
+            <div class="row">
+                <div class="col-xs-4">
+                    {{- form_widget(form.day) -}}
+                </div>
+                <div class="col-xs-8">
+                    {{- form_widget(form.time) -}}
+                </div>
             </div>
-            <div class="col-xs-8">
-                {{- form_widget(form.time) -}}
+            <div class="row">
+                <div class="col-xs-12">
+                    <br>
+                    {{ form_rest(form) }}
+                    {{ form_row(form.save) }}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <br>
-                {{ form_rest(form) }}
-                {{ form_row(form.save) }}
-            </div>
-        </div>
-    {% endspaceless %}
-{% endblock weeklytask_reminder_item_widget %}
+        {% endspaceless %}
+    {% endblock weeklytask_reminder_item_widget %}

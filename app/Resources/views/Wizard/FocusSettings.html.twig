@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ "Herzlich willkommen" | trans({}, 'FitbaseUserBundle') }}</h1>
+    <h1>{{ "user.wizard_hello" | trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -12,14 +12,11 @@
 {% block content %}
     <div class="panel-box">
         <div class="titles">
-            <h4>{{ 'Fokus ändern'|trans({}, 'FitbaseUserBundle') }}</h4>
+            <h4>{{ 'user.wizard_focus_change'|trans({}, 'FitbaseUserBundle') }}</h4>
         </div>
         <div class="row">
             <div class="col-md-12">
-                Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
-                linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
-                Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.
-                </p>
+                <p>{{ 'user.wizard_focus_change_info'|trans({}, 'FitbaseUserBundle') }}</p>
                 {% form_theme form "Wizard/FocusSettingsForm.html.twig" %}
 
                 {{ form(form) }}

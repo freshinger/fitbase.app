@@ -4,7 +4,7 @@
 {% use "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Die Seite wurde nicht gefunden'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
+    <h1>{{ 'exception.page_not_found_title'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -15,9 +15,9 @@
 
     <div class="row">
         <div class="col-md-9">
-            <h1>{{ '404'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
+            <h1>{{ 'exception.page_not_found_code'|trans({}, 'FitbaseFitbaseBundle') }}</h1>
 
-            <p>Diese Seite existiert nicht</p>
+            <p>{{ 'company.questionnaire'|trans({}, 'FitbaseFitbaseBundle') }}</p>
         </div>
     </div>
 {% endblock content %}

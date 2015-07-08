@@ -76,7 +76,8 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
     {
         $datagridMapper
             ->add('user')
-            ->add('processed');
+            ->add('processed')
+            ->add('error');
     }
 
     /**
@@ -88,6 +89,7 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
             ->with('General', array('class' => 'col-md-6'))
             ->add('user')
             ->add('date', 'sonata_type_datetime_picker', array('date_format' => 'dd.MM.yyyy, HH:mm'))
+            ->add('processed')
             ->end();
     }
 }

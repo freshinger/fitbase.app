@@ -1,5 +1,5 @@
 ci_rest_client:
     curl:
       defaults:
-        CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json', 'Authorization: Basic Zml0YmFzZV92ZXJpZmllcjpEMTg4Z0NjYQ==' ]
+        CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json', 'Authorization: Basic %fitbase.barmer_gek.auth%' ]
         CURLOPT_FOLLOWLOCATION: true

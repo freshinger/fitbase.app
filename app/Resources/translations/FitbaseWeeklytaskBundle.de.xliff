@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="">
+        <body>
+
+            <trans-unit id="weeklytask.weeklytask_title">
+                <source>weeklytask.weeklytask_title</source>
+                <target><![CDATA[Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklytask_overview">
+                <source>weeklytask.weeklytask_overview</source>
+                <target><![CDATA[Übersicht Infoeinheiten]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklytask_overview_info">
+                <source>weeklytask.weeklytask_overview_info</source>
+                <target><![CDATA[Die fitbase unterstützt Sie dabei, Ihre Lebensweise aktiver, bewusster und gesünder
+                zu gestalten. Dazu schicken wir Ihnen regelmäßig kurze Infoeinheiten. Die Infoeinheiten sind thematisch
+                aufeinander aufgebaut und stellen Ihnen umfassendes Wissen zurVerfügung.]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklytask_points_total">
+                <source>weeklytask.weeklytask_points_total</source>
+                <target><![CDATA[Ihre gesammelten Punkte:]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklytasks_done_total">
+                <source>weeklytask.weeklytasks_done_total</source>
+                <target><![CDATA[Ihre erledigten Infoeinheiten:]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklytask_points">
+                <source>weeklytask.weeklytask_points</source>
+                <target><![CDATA[Gesammelte Punkte: point_count]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklyquiz_points">
+                <source>weeklytask.weeklyquiz_points</source>
+                <target><![CDATA[Gesammelte Quiz-Punkte: point_count]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklyquiz_more">
+                <source>weeklytask.weeklyquiz_more</source>
+                <target><![CDATA[Mehr...]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklyquiz_list_empty">
+                <source>weeklytask.weeklyquiz_list_empty</source>
+                <target><![CDATA[Sie haben noch keine Infoeinheiten in diesem Bereich.]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklyquiz_info">
+                <source>weeklytask.weeklyquiz_info</source>
+                <target><![CDATA[Herzlich willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten,
+                das Gelernte zu wiederholen und Blätter für Ihren Gesundheitsbaum zu sammeln.
+                Bitte beachten Sie, dass mehrere Antworten je Frage richtig sein können. Viel Spaß!]]></target>
+            </trans-unit>
+
+            <trans-unit id="weeklytask.weeklyquiz_evaluate">
+                <source>weeklytask.weeklyquiz_evaluate</source>
+                <target><![CDATA[Quiz auswerten]]></target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
