@@ -1,9 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>
-        {{ weeklyquiz }}
-    </h1>
+    <h1>{{ weeklyquiz }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -27,8 +25,6 @@
                             <div class="owl-wrapper-outer">
                                 <div class="owl-wrapper"
                                      style="left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-
-
                                     <div class="panel-box">
                                         <div class="titles">
                                         </div>
@@ -39,16 +35,10 @@
                                                 </p>
                                             </div>
                                             <div class="col-md-6">
-                                                Herzlich willkommen zu Ihrem Quiz, mit dem Sie die Möglichkeit erhalten,
-                                                das Gelernte zu wiederholen und
-                                                Blätter für Ihren Gesundheitsbaum zu sammeln. Bitte beachten Sie, dass
-                                                mehrere Antworten je Frage
-                                                richtig sein können. Viel Spaß!
+                                                {{ "weeklytask.weeklyquiz_info" | trans({}, 'FitbaseWeeklytaskBundle') }}
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </ul>

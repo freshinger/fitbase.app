@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Infoeinheiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+    <h1>{{ 'weeklytask.weeklytask_title'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -28,7 +28,7 @@
 
                                     <div class="panel-box">
                                         <div class="titles">
-                                            <h4>{{ 'Übersicht Infoeinheiten'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
+                                            <h4>{{ 'weeklytask.weeklytask_overview'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -37,27 +37,20 @@
                                                 </p>
                                             </div>
                                             <div class="col-md-6">
-                                                Die fitbase unterstützt Sie dabei, Ihre Lebensweise aktiver,
-                                                    bewusster und gesünder
-                                                zu gestalten. Dazu schicken
-                                                wir Ihnen regelmäßig kurze Infoeinheiten. Die
-                                                Infoeinheiten sind thematisch aufeinander
-                                                aufgebaut und stellen Ihnen umfassendes Wissen zur
-                                                Verfügung.
-
+                                                {{ 'weeklytask.weeklytask_overview_info'|trans({}, 'FitbaseWeeklytaskBundle') }}
                                                 <br/>
                                                 <br/>
                                                 <br/>
 
                                                 <div class="row">
                                                     <div class="col-xs-8">
-                                                        <h4>Ihre gesammelten Punkte:</h4>
+                                                        <h4>{{ 'weeklytask.weeklytask_points_total'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <h4><strong>{{ countDonePoints }}</strong></h4>
                                                     </div>
                                                     <div class="col-xs-8">
-                                                        <h4>Ihre erledigten Infoeinheiten:</h4>
+                                                        <h4>{{ 'weeklytask.weeklytasks_done_total'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <h4><strong>{{ countDone }}</strong></h4>
@@ -104,17 +97,6 @@
                 {% block exercise_list_item %}
                     <div class="post-item">
                         <div class="row">
-                            {#<div class="col-md-3">#}
-                            {#<div class="img-hover">#}
-
-                            {#<img class="img-responsive"#}
-                            {#src="{{ path('weeklytask_picture_weeklytask', { 'unique': weeklytaskUser.id }) }}">#}
-
-                            {#<div class="overlay">#}
-                            {#<a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">+</a>#}
-                            {#</div>#}
-                            {#</div>#}
-                            {#</div>#}
                             <div class="col-md-12">
                                 <h4>
                                     <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
@@ -131,7 +113,7 @@
                                     {% if task is defined and task %}
                                         {% set taskPoints = task.countPoint %}
                                         <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
-                                            Gesammelte Punkte: {{ taskPoints|number_format }}
+                                            {{ 'weeklytask.weeklytask_points'|trans({ 'point_count': taskPoints|number_format }, 'FitbaseWeeklytaskBundle') }}
                                         </a>
                                     {% endif %}
 
@@ -139,7 +121,7 @@
                                         {% set quizPoints = quiz.countPoint %}
 
                                         <a href="{{ path('weeklyquiz_user_view', { 'unique': quiz.id } ) }}">
-                                            Gesammelte Quiz-Punkte: {{ quizPoints|number_format }}
+                                            {{ 'weeklytask.weeklyquiz_points'|trans({ 'point_count': quizPoints|number_format }, 'FitbaseWeeklytaskBundle') }}
                                         </a>
                                     {% endif %}
                                 </p>
@@ -149,7 +131,7 @@
                                     {{ task.content|raw|striptags|slice(0,350) }}...
                                     {% endautoescape %}
                                     <a href="{{ path('weeklytask_user_view', { 'unique': weeklytaskUser.id } ) }}">
-                                        {{ "Mehr..." | trans({}, 'FitbaseExerciseBundle') }}
+                                        {{ "weeklytask.weeklyquiz_more" | trans({}, 'FitbaseWeeklytaskBundle') }}
                                     </a>
                                 </p>
                             </div>
@@ -165,7 +147,7 @@
                 <div class="post-item">
                     <div class="row">
                         <div class="col-md-12">
-                            {{ "Sie haben noch keine Infoeinheiten in diesem Bereich." | trans({}, 'FitbaseWeeklytaskBundle') }}
+                            {{ "weeklytask.weeklyquiz_list_empty" | trans({}, 'FitbaseWeeklytaskBundle') }}
                         </div>
                     </div>
                 </div>
