@@ -125,41 +125,41 @@
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_change">
-                <source>user.focus_change</source>
+                <source>user.wizard_focus_change</source>
                 <target><![CDATA[Fokus ändern]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_settings">
-                <source>user.focus_settings</source>
+                <source>user.wizard_focus_settings</source>
                 <target><![CDATA[Fokus einstellungen]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_change_info">
-                <source>user.focus_change_info</source>
+                <source>user.wizard_focus_change_info</source>
                 <target><![CDATA[Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
                 linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
                 Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_exercise_priority">
-                <source>user.focus_exercise_priority</source>
+                <source>user.wizard_focus_exercise_priority</source>
                 <target><![CDATA[Übungsschwerpunkt]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_exercise_priority_info">
-                <source>user.focus_exercise_priority_info</source>
+                <source>user.wizard_focus_exercise_priority_info</source>
                 <target><![CDATA[Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer
                 Übungseinheit aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen,
                 erhalten Sie abwechselnd Übungen aus diesen Bereichen.]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_exercise_type">
-                <source>user.focus_exercise_type</source>
+                <source>user.wizard_focus_exercise_type</source>
                 <target><![CDATA[Übungstyp]]></target>
             </trans-unit>
 
             <trans-unit id="user.wizard_focus_exercise_type_info">
-                <source>user.focus_exercise_type_info</source>
+                <source>user.wizard_focus_exercise_type_info</source>
                 <target><![CDATA[Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”,
                 “Kräftigung” und “Dehnung”. Sie können diese Zusammenstellung individualisieren, indem Sie
                 folgende Auswahl treffen.]]></target>
