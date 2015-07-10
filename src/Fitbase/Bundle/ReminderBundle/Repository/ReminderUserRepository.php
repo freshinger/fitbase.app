@@ -116,35 +116,21 @@ class ReminderUserRepository extends ReminderUserRepositoryAbstract
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-
     /**
-     * Get list of plans to send
-     * @param null $limit
+     * Find all paused by date
+     *
+     * @param $date
      * @return array
      */
-    public function findReminderListToPlan($limit = null)
+    public function findPausedByDate($date)
     {
-        $repositoryUser = $this->getEntityManager()
-            ->getRepository('Ekino\WordpressBundle\Entity\User');
+        $queryBuilder = $this->createQueryBuilder('ReminderUser');
+        $queryBuilder->join('ReminderUser.user', 'User');
 
-        $result = array();
-        // TODO: refactoring, to speed-up and without requests
-        foreach ($repositoryUser->findAll() as $user) {
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprPaused($queryBuilder)
+        ));
 
-            if ($user->getMetaValue('user_pause_start')) {
-                continue;
-            }
-
-            $reminder = $this->findOneBy(array(
-                'user' => $user->getId()
-            ));
-
-            if ($reminder instanceof ReminderUser) {
-                array_push($result, $reminder);
-            }
-        }
-
-        return $result;
+        return $queryBuilder->getQuery()->getResult();
     }
-
 }
