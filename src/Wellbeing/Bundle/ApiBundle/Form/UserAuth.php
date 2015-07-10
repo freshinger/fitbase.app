@@ -28,6 +28,7 @@ class UserAuth extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
+            'data_class' => 'Wellbeing\Bundle\ApiBundle\Model\UserAuth'
         ));
     }
 

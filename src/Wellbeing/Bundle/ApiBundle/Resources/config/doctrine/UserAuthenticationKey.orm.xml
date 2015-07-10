@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity repository-class="Wellbeing\Bundle\ApiBundle\Repository\UserAuthenticationKeyRepository"
+            name="Wellbeing\Bundle\ApiBundle\Entity\UserAuthenticationKey">
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="code" type="string" column="code"/>
+        <field name="startDate" type="datetime" column="start_date" nullable="true"/>
+        <field name="close" type="boolean" column="closed" nullable="true"/>
+        <field name="closeDate" type="datetime" column="close_date" nullable="true"/>
+
+    </entity>
+</doctrine-mapping>
