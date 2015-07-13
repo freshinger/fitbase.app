@@ -19,7 +19,7 @@ use Fitbase\Bundle\ExerciseBundle\Subscriber\UserSubscriber;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 
-class UserSubscriberTest extends FitbaseTestAbstract
+class ExerciseManagerTest extends FitbaseTestAbstract
 {
     /**
      * Setup user object for this

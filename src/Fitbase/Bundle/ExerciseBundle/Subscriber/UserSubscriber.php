@@ -20,11 +20,13 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
 {
     protected $datetime;
     protected $entityManager;
+    protected $reminder;
 
-    public function __construct($entityManager, $datetime)
+    public function __construct($entityManager, $datetime, $reminder)
     {
         $this->datetime = $datetime;
         $this->entityManager = $entityManager;
+        $this->reminder = $reminder;
     }
 
     /**
@@ -50,7 +52,7 @@ class UserSubscriber extends ContainerAware implements EventSubscriberInterface
         }
 
         $day = $this->datetime->getDateTime('now')->format('N');
-        if (($collection = $this->container->get('reminder')->getItemsExercise($day, $user))) {
+        if (($collection = $this->reminder->getItemsExercise($day, $user))) {
             foreach ($collection as $reminderUserItem) {
 
                 $date = $this->datetime->getDateTime('now');

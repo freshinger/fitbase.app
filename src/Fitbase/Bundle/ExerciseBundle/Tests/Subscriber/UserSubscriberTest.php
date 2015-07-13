@@ -15,6 +15,7 @@ use Fitbase\Bundle\ExerciseBundle\Component\Chooser\ChooserExerciseRandom;
 use Fitbase\Bundle\ExerciseBundle\Entity\Exercise;
 use Fitbase\Bundle\ExerciseBundle\Subscriber\UserSubscriber;
 use Fitbase\Bundle\FitbaseBundle\Tests\FitbaseTestAbstract;
+use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
 use Fitbase\Bundle\UserBundle\Event\UserEvent;
 
 class UserSubscriberTest extends FitbaseTestAbstract
@@ -29,6 +30,27 @@ class UserSubscriberTest extends FitbaseTestAbstract
     {
         return (new User());
     }
+
+    /**
+     * Get reminder service mock
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getServiceReminder()
+    {
+        $reminder = $this->getMock('ServiceReminder', ['getItemsExercise']);
+
+        $reminder->expects($this->any())
+            ->method('getItemsExercise')
+            ->will($this->returnValue([
+                (new ReminderUserItem())
+                    ->setTime(new \DateTime())
+                    ->setUser($this->getUser())
+            ]));
+
+        return $reminder;
+    }
+
 
     public function testMethodOnUserRegisteredEventShouldStoreExerciseUserObject()
     {
@@ -48,7 +70,9 @@ class UserSubscriberTest extends FitbaseTestAbstract
                 array_push($flushed, $entity);
             }));
 
-        $subscriber = new UserSubscriber($entityManager, $this->container()->get('datetime'));
+        $reminder = $this->getServiceReminder();
+
+        $subscriber = new UserSubscriber($entityManager, $this->container()->get('datetime'), $reminder);
 
         $subscriber->onUserRegisteredEvent(new UserEvent($this->getUser()));
 
@@ -67,7 +91,10 @@ class UserSubscriberTest extends FitbaseTestAbstract
                 array_push($flushed, $entity);
             }));
 
-        $subscriber = new UserSubscriber($entityManager, $this->container()->get('datetime'));
+        $reminder = $this->getServiceReminder();
+
+
+        $subscriber = new UserSubscriber($entityManager, $this->container()->get('datetime'), $reminder);
 
         $subscriber->onUserRegisteredEvent(new UserEvent($this->getUser()));
 

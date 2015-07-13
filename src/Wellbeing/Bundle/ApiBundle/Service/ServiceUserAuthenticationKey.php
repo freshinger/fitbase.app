@@ -62,7 +62,6 @@ class ServiceUserAuthenticationKey extends ContainerAware
     public function find($code)
     {
         $repositoryUserAuthenticationKey = $this->entityManager->getRepository('Wellbeing\Bundle\ApiBundle\Entity\UserAuthenticationKey');
-
         return $repositoryUserAuthenticationKey->findOneByCode($code);
     }
 
