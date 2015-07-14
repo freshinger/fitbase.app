@@ -9,6 +9,7 @@ parameters:
     mailer_host:        localhost
     mailer_user:
     mailer_password:
+    fitbase.soap_code:
     fitbase.barmer_gek.api:
     fitbase.barmer_gek.auth:
     locale:             en
