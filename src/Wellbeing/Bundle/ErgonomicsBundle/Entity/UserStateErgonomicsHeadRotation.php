@@ -64,7 +64,7 @@ class UserStateErgonomicsHeadRotation
     /**
      * Get x
      *
-     * @return integer 
+     * @return integer
      */
     public function getX()
     {
@@ -87,7 +87,7 @@ class UserStateErgonomicsHeadRotation
     /**
      * Get y
      *
-     * @return integer 
+     * @return integer
      */
     public function getY()
     {
@@ -110,7 +110,7 @@ class UserStateErgonomicsHeadRotation
     /**
      * Get z
      *
-     * @return integer 
+     * @return integer
      */
     public function getZ()
     {
@@ -120,7 +120,7 @@ class UserStateErgonomicsHeadRotation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,10 +143,20 @@ class UserStateErgonomicsHeadRotation
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
      */
     public function getUserState()
     {
         return $this->userState;
+    }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getX()}; {$this->getY()}; {$this->getZ()}";
     }
 }

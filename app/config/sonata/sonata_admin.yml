@@ -177,7 +177,8 @@ sonata_admin:
                 label: Wellbeing
                 icon:  '<i class="fa fa-globe"></i>'
                 items:
-                    - wellbeing.api.user_state
+                    - wellbeing.ergonomics.user
+                    - wellbeing.ergonomics.user_state
                     - wellbeing.ergonomics.settings
 
 

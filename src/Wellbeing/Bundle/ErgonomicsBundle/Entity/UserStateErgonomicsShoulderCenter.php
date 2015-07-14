@@ -149,4 +149,14 @@ class UserStateErgonomicsShoulderCenter
     {
         return $this->userState;
     }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getX()}; {$this->getY()}; {$this->getZ()}";
+    }
 }

@@ -41,7 +41,7 @@ class UserErgonomicsBodyUpperForward
     /**
      * Get correct
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCorrect()
     {
@@ -64,7 +64,7 @@ class UserErgonomicsBodyUpperForward
     /**
      * Get angle
      *
-     * @return float 
+     * @return float
      */
     public function getAngle()
     {
@@ -74,12 +74,13 @@ class UserErgonomicsBodyUpperForward
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
+
     /**
      * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics
      */
@@ -102,10 +103,20 @@ class UserErgonomicsBodyUpperForward
     /**
      * Get ergonomics
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics
      */
     public function getErgonomics()
     {
         return $this->ergonomics;
+    }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getAngle()}";
     }
 }

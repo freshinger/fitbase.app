@@ -64,7 +64,7 @@ class UserStateErgonomicsHandRight
     /**
      * Get x
      *
-     * @return float 
+     * @return float
      */
     public function getX()
     {
@@ -87,7 +87,7 @@ class UserStateErgonomicsHandRight
     /**
      * Get y
      *
-     * @return float 
+     * @return float
      */
     public function getY()
     {
@@ -110,7 +110,7 @@ class UserStateErgonomicsHandRight
     /**
      * Get z
      *
-     * @return float 
+     * @return float
      */
     public function getZ()
     {
@@ -120,7 +120,7 @@ class UserStateErgonomicsHandRight
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,10 +143,20 @@ class UserStateErgonomicsHandRight
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
      */
     public function getUserState()
     {
         return $this->userState;
+    }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getX()}; {$this->getY()}; {$this->getZ()}";
     }
 }

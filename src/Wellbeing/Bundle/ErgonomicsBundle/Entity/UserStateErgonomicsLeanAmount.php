@@ -121,4 +121,14 @@ class UserStateErgonomicsLeanAmount
     {
         return $this->y;
     }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getX()}; {$this->getY()}";
+    }
 }

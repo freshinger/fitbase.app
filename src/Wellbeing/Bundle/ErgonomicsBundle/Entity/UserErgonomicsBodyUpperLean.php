@@ -108,4 +108,14 @@ class UserErgonomicsBodyUpperLean
     {
         return $this->ergonomics;
     }
+
+    /**
+     * Convert object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return "{$this->getAngle()}";
+    }
 }
