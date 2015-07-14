@@ -8,14 +8,12 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-        <field name="date" type="datetime" column="date"/>
         <field name="correct" type="boolean" column="correct" nullable="true"/>
         <field name="angle" type="float" column="angle"/>
 
-        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
-            <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
-        </many-to-one>
-
+        <one-to-one field="ergonomics" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics">
+            <join-column name="ergonomicsId" referenced-column-name="id" on-delete="CASCADE"/>
+        </one-to-one>
 
     </entity>
 </doctrine-mapping>

@@ -4,10 +4,12 @@ namespace Wellbeing\Bundle\ErgonomicsBundle\Repository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 
-class UserErgonomicsNeckRepository extends EntityRepository
+class UserErgonomicsBodyUpperRotationRepository extends EntityRepository
 {
+
     /**
-     * Get expression by user id
+     * Get expression by user
+     *
      * @param $queryBuilder
      * @param $user
      * @return mixed
@@ -31,9 +33,9 @@ class UserErgonomicsNeckRepository extends EntityRepository
      */
     public function findAverage($user, $minimum = 100)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
-        $queryBuilder->select('SUM(UserErgonomicsNeck.angle)');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperRotation");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperRotation.ergonomics', 'UserErgonomics');
+        $queryBuilder->select('SUM(UserErgonomicsBodyUpperRotation.angle)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
@@ -55,9 +57,9 @@ class UserErgonomicsNeckRepository extends EntityRepository
      */
     public function findCount($user)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
-        $queryBuilder->select('COUNT(UserErgonomicsNeck.angle)');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperRotation");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperRotation.ergonomics', 'UserErgonomics');
+        $queryBuilder->select('COUNT(UserErgonomicsBodyUpperRotation.angle)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
@@ -68,20 +70,23 @@ class UserErgonomicsNeckRepository extends EntityRepository
 
     /**
      * Find all by user
+     *
      * @todo add date limit for current day
      * @param $user
      * @return array
      */
     public function findByUser($user, $datetime = null)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperRotation");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperRotation.ergonomics', 'UserErgonomics');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
         ));
 
         return $queryBuilder->getQuery()->getResult();
+
     }
+
 
 } 

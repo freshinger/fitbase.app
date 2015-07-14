@@ -4,8 +4,9 @@ namespace Wellbeing\Bundle\ErgonomicsBundle\Repository;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 
-class UserErgonomicsNeckRepository extends EntityRepository
+class UserErgonomicsBodyUpperLeanRepository extends EntityRepository
 {
+
     /**
      * Get expression by user id
      * @param $queryBuilder
@@ -31,9 +32,9 @@ class UserErgonomicsNeckRepository extends EntityRepository
      */
     public function findAverage($user, $minimum = 100)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
-        $queryBuilder->select('SUM(UserErgonomicsNeck.angle)');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperLean");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperLean.ergonomics', 'UserErgonomics');
+        $queryBuilder->select('SUM(UserErgonomicsBodyUpperLean.angle)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
@@ -55,9 +56,9 @@ class UserErgonomicsNeckRepository extends EntityRepository
      */
     public function findCount($user)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
-        $queryBuilder->select('COUNT(UserErgonomicsNeck.angle)');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperLean");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperLean.ergonomics', 'UserErgonomics');
+        $queryBuilder->select('COUNT(UserErgonomicsBodyUpperLean.angle)');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
@@ -74,14 +75,16 @@ class UserErgonomicsNeckRepository extends EntityRepository
      */
     public function findByUser($user, $datetime = null)
     {
-        $queryBuilder = $this->createQueryBuilder("UserErgonomicsNeck");
-        $queryBuilder->leftJoin('UserErgonomicsNeck.ergonomics', 'UserErgonomics');
+        $queryBuilder = $this->createQueryBuilder("UserErgonomicsBodyUpperLean");
+        $queryBuilder->leftJoin('UserErgonomicsBodyUpperLean.ergonomics', 'UserErgonomics');
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user)
         ));
 
         return $queryBuilder->getQuery()->getResult();
+
     }
+
 
 } 

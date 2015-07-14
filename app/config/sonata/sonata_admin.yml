@@ -178,6 +178,7 @@ sonata_admin:
                 icon:  '<i class="fa fa-globe"></i>'
                 items:
                     - wellbeing.api.user_state
+                    - wellbeing.ergonomics.settings
 
 
 

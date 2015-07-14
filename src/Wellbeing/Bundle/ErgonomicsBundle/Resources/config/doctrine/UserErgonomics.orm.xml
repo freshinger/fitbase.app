@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics"
+            repository-class="Wellbeing\Bundle\ErgonomicsBundle\Repository\UserErgonomicsRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="date" type="datetime" column="date"/>
+        <field name="processed" type="boolean" column="processed" nullable="true"/>
+        <field name="processedDate" type="datetime" column="processedDate" nullable="true"/>
+
+        <many-to-one field="user" target-entity="Application\Sonata\UserBundle\Entity\User">
+            <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <one-to-one field="neck" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsNeck">
+            <join-column name="neckId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="bodyUpperForward" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperForward">
+            <join-column name="bodyUpperForwardId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="bodyUpperLean" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperLean">
+            <join-column name="bodyUpperLeanId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="bodyUpperRotation" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperRotation">
+            <join-column name="bodyUpperRotationId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onPrePersist"/>
+        </lifecycle-callbacks>
+
+    </entity>
+</doctrine-mapping>
