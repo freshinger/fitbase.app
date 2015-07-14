@@ -51,7 +51,7 @@ class RestApiController extends WsdlApiController
 
                 return new JsonResponse([
                     "user_auth" => [
-                        "authkey" => null,
+                        "authkey" => "Dap7pXZCx2bX8LKdkFzw",
                         "first_name" => null,
                         "last_name" => null,
                         "error" => "User name or password is wrong",

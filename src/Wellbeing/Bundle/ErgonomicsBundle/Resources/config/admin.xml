@@ -5,18 +5,18 @@
 
 
     <services>
-        <service id="wellbeing.ergonomics.user" class="Wellbeing\Bundle\ErgonomicsBundle\Admin\UserErgonomicsAdmin">
-            <tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="Ergonomics"/>
-            <argument/>
-            <argument>Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics</argument>
-            <argument/>
-        </service>
-        <service id="wellbeing.ergonomics.user_state" class="Wellbeing\Bundle\ErgonomicsBundle\Admin\UserStateErgonomicsAdmin">
-            <tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="Ergonomics states"/>
-            <argument/>
-            <argument>Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics</argument>
-            <argument/>
-        </service>
+        <!--<service id="wellbeing.ergonomics.user" class="Wellbeing\Bundle\ErgonomicsBundle\Admin\UserErgonomicsAdmin">-->
+            <!--<tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="Ergonomics"/>-->
+            <!--<argument/>-->
+            <!--<argument>Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics</argument>-->
+            <!--<argument/>-->
+        <!--</service>-->
+        <!--<service id="wellbeing.ergonomics.user_state" class="Wellbeing\Bundle\ErgonomicsBundle\Admin\UserStateErgonomicsAdmin">-->
+            <!--<tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="Ergonomics states"/>-->
+            <!--<argument/>-->
+            <!--<argument>Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics</argument>-->
+            <!--<argument/>-->
+        <!--</service>-->
         <service id="wellbeing.ergonomics.settings" class="Wellbeing\Bundle\ErgonomicsBundle\Admin\UserErgonomicsSettingsAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Wellbeing" label="Ergonomics settings"/>
             <argument/>
