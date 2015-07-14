@@ -6,17 +6,13 @@
 
 
     <imports>
-        <import resource="blocks.xml"/>
+        <import resource="blocks.xml" />
+        <import resource="subscribers.xml" />
     </imports>
 
     <services>
-        <service id="wellbeing.ergonomics" class="Wellbeing\Bundle\ErgonomicsBundle\Service\ServiceErgonomics">
-            <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call>
-        </service>
 
-        <service id="wellbeing.subscriber.user_state_ergonomics" class="Wellbeing\Bundle\ErgonomicsBundle\Subscriber\UserStateErgonomicsSubscriber">
+        <service id="wellbeing.ergonomics" class="Wellbeing\Bundle\ErgonomicsBundle\Service\ServiceErgonomics">
             <call method="setContainer">
                 <argument type="service" id="service_container"/>
             </call>

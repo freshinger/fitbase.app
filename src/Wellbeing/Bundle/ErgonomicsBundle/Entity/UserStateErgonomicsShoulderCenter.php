@@ -64,11 +64,11 @@ class UserStateErgonomicsShoulderCenter
     /**
      * Get x
      *
-     * @return float 
+     * @return float
      */
     public function getX()
     {
-        return $this->x;
+        return (float)$this->x;
     }
 
     /**
@@ -87,11 +87,11 @@ class UserStateErgonomicsShoulderCenter
     /**
      * Get y
      *
-     * @return float 
+     * @return float
      */
     public function getY()
     {
-        return $this->y;
+        return (float)$this->y;
     }
 
     /**
@@ -110,17 +110,17 @@ class UserStateErgonomicsShoulderCenter
     /**
      * Get z
      *
-     * @return float 
+     * @return float
      */
     public function getZ()
     {
-        return $this->z;
+        return (float)$this->z;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -143,7 +143,7 @@ class UserStateErgonomicsShoulderCenter
     /**
      * Get userState
      *
-     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics 
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomics
      */
     public function getUserState()
     {

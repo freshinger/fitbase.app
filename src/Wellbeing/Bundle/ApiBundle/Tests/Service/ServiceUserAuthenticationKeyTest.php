@@ -53,6 +53,7 @@ class ServiceUserAuthenticationKeyTest extends FitbaseTestAbstract
         return $entityManager;
     }
 
+
     public function testStartShouldPersistAnObject()
     {
         $entityManager = $this->getEntityManager();
@@ -74,6 +75,7 @@ class ServiceUserAuthenticationKeyTest extends FitbaseTestAbstract
         $this->assertTrue($persisted instanceof UserAuthenticationKey);
     }
 
+
     public function testStartShouldReturnAnObject()
     {
         $entityManager = $this->getEntityManager();
@@ -86,6 +88,7 @@ class ServiceUserAuthenticationKeyTest extends FitbaseTestAbstract
         $this->assertTrue(is_object($persisted));
         $this->assertTrue($persisted instanceof UserAuthenticationKey);
     }
+
 
     public function testFindShouldReturnAnObject()
     {

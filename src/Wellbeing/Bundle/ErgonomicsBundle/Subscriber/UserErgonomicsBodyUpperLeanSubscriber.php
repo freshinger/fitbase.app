@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Wellbeing\Bundle\ErgonomicsBundle\Event\UserStateErgonomicsEvent;
 
-class UserStateErgonomicsSubscriber extends ContainerAware implements EventSubscriberInterface
+class UserErgonomicsBodyUpperLeanSubscriber extends ContainerAware implements EventSubscriberInterface
 {
     /**
      * Returns an array of event names this subscriber wants to listen to.
@@ -32,7 +32,7 @@ class UserStateErgonomicsSubscriber extends ContainerAware implements EventSubsc
     public static function getSubscribedEvents()
     {
         return [
-            'wellbeing.user_state_ergonomics_create' => ['onUserStateErgonomicsCreate']
+            'wellbeing.user_state_ergonomics_create' => ['onUserStateErgonomicsCreate', -127]
         ];
     }
 
@@ -48,7 +48,8 @@ class UserStateErgonomicsSubscriber extends ContainerAware implements EventSubsc
         }
 
 
-        $this->container->get('entity_manager')->persist($entity);
-        $this->container->get('entity_manager')->flush($entity);
+
+//        $this->container->get('entity_manager')->persist($entity);
+//        $this->container->get('entity_manager')->flush($entity);
     }
-} 
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsSettings">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="code" type="string" column="code"/>
+
+        <field name="upper" type="float" column="upper"/>
+        <field name="upperError" type="float" column="upper_error"/>
+
+        <field name="lower" type="float" column="lower"/>
+        <field name="lowerError" type="float" column="lower_error"/>
+
+        <field name="range" type="float" column="range"/>
+
+
+    </entity>
+</doctrine-mapping>

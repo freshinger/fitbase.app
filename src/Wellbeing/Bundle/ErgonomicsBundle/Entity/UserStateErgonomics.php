@@ -404,4 +404,150 @@ class UserStateErgonomics
         $this->getLeanAmount()->setUserState($this);
         $this->getHeadRotation()->setUserState($this);
     }
+
+    /**
+     * Get neck angle
+     *
+     * @return float
+     */
+    public function getAngleNeck()
+    {
+        list($x1, $y1, $z1) = $this->getVectorNeckXYZ();
+        list($x2, $y2, $z2) = $this->getVectorBodyUpperXYZ();
+
+        return $this->getAngleXYZ($x1, $y1, $z1, $x2, $y2, $z2);
+    }
+
+    /**
+     *
+     * @return int
+     */
+    public function getAngleBodyUpperLean()
+    {
+        return $this->getLeanAmount()->getX();
+    }
+
+    /**
+     *
+     * @return int
+     */
+    public function getAngleBodyUpperForward()
+    {
+        return $this->getLeanAmount()->getY();
+    }
+
+    /**
+     * Get rotation angle
+     * @return float
+     */
+    public function getAngleBodyUpperRotation()
+    {
+        list($x1, $z1) = $this->getVectorBodyUpperXZ();
+        list($x2, $z2) = $this->getVectorShoulderXZ();
+
+        return $this->getAngleXY($x1, $z1, $x2, $z2);
+    }
+
+    /**
+     * Get neck vector
+     *
+     * @return array
+     */
+    protected function getVectorNeckXYZ()
+    {
+        $x = $this->getHead()->getX() - $this->getShoulderCenter()->getX();
+        $y = $this->getHead()->getY() - $this->getShoulderCenter()->getY();
+        $z = $this->getHead()->getZ() - $this->getShoulderCenter()->getZ();
+
+        return [$x, $y, $z];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getVectorShoulderXZ()
+    {
+        $x = $this->getShoulderRight()->getX() - $this->getShoulderLeft()->getX();
+        $z = $this->getShoulderRight()->getZ() - $this->getShoulderLeft()->getZ();
+
+        return [$x, $z];
+    }
+
+
+    /**
+     * Get vector shoulder
+     *
+     * @return array
+     */
+    protected function getVectorShoulderXYZ()
+    {
+        $x = $this->getShoulderRight()->getX() - $this->getShoulderLeft()->getX();
+        $y = $this->getShoulderRight()->getY() - $this->getShoulderLeft()->getY();
+        $z = $this->getShoulderRight()->getZ() - $this->getShoulderLeft()->getZ();
+
+        return [$x, $y, $z];
+    }
+
+    /**
+     *
+     * @return array
+     */
+    protected function getVectorBodyUpperXZ()
+    {
+        $x = $this->getShoulderCenter()->getX() - $this->getSpineMid()->getX();
+        $z = $this->getShoulderCenter()->getZ() - $this->getSpineMid()->getZ();
+
+        return [$x, $z];
+    }
+
+    /**
+     * Get vector for upper body
+     *
+     * @return array
+     */
+    protected function getVectorBodyUpperXYZ()
+    {
+        $x = $this->getShoulderCenter()->getX() - $this->getSpineMid()->getX();
+        $y = $this->getShoulderCenter()->getY() - $this->getSpineMid()->getY();
+        $z = $this->getShoulderCenter()->getZ() - $this->getSpineMid()->getZ();
+
+        return [$x, $y, $z];
+    }
+
+    /**
+     * Calculate angle for 2 coordinates coordinates
+     *
+     * @param $x1
+     * @param $y1
+     * @param $x2
+     * @param $y2
+     * @return float
+     */
+    public function getAngleXY($x1, $y1, $x2, $y2)
+    {
+        $umrechungs_faktor = 180 / M_PI; // von Radiant auf Grad
+        $winkel_zaehler = ($x1 * $x2) + ($y1 * $y2); // Z‰hler der Winkelberechnung
+        $winkel_nenner = (sqrt(($x1 * $x1) + ($y1 * $y1))) * (sqrt(($x2 * $x2) + ($y2 * $y2))); // Nenner der Winkelberechnung
+        return (acos($winkel_zaehler / $winkel_nenner)) * $umrechungs_faktor; // acos vom Z‰hler und Nenner und Umrechung in Grad
+    }
+
+    /**
+     * Calculate angle
+     * code from reiner with minimal changes
+     *
+     * @param $x1
+     * @param $y1
+     * @param $z1
+     * @param $x2
+     * @param $y2
+     * @param $z2
+     * @return float
+     */
+    public function getAngleXYZ($x1, $y1, $z1, $x2, $y2, $z2)
+    {
+        $umrechungs_faktor = 180 / M_PI; // von Radiant auf Grad
+        $winkel_zaehler = ($x1 * $x2) + ($y1 * $y2) + ($z1 * $z2); // Z‰hler der Winkelberechnung
+        $winkel_nenner = (sqrt(($x1 * $x1) + ($y1 * $y1) + ($z1 * $z1))) * (sqrt(($x2 * $x2) + ($y2 * $y2) + ($z2 * $z2))); // Nenner der Winkelberechnung
+        return (acos($winkel_zaehler / $winkel_nenner)) * $umrechungs_faktor; // acos vom Z‰hler und Nenner und Umrechung in Grad
+    }
 }
