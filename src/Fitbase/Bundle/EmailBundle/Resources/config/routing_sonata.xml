@@ -3,7 +3,7 @@
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="sonata_admin_email_exercise_user" pattern="/email/exercise/user/{unique}">
-        <default key="_controller">FitbaseEmailBundle:Admin:emailExerciseUser</default>
+        <default key="_controller">FitbaseEmailBundle:Admin:emailExerciseUserReminder</default>
     </route>
 
     <route id="sonata_admin_email_weeklytask_user" pattern="/email/weeklytask/user/{unique}">

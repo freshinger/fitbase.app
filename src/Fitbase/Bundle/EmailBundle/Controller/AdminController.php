@@ -8,6 +8,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class AdminController extends CoreController
@@ -86,34 +87,44 @@ class AdminController extends CoreController
      * @param null $unique
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function emailExerciseUserAction(Request $request, $unique = null)
+    public function emailExerciseUserReminderAction(Request $request, $unique = null)
     {
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedHttpException('Access denied for non admins');
+        }
 
-            $entityManager = $this->get('entity_manager');
-            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+        $entityManager = $this->get('entity_manager');
+        $repository = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
 
-            if (($exerciseUser = $repositoryExerciseUser->find($unique))) {
+        if (!($reminder = $repository->find($unique))) {
+            throw new \LogicException('ExerciseUserReminder object not found');
+        }
 
-                $category = null;
-                if (($focus = $exerciseUser->getUser()->getFocus())) {
-                    if (($categoryFocus = $focus->getFirstCategory())) {
-                        $categoryFocus = $categoryFocus->getCategory();
-                    }
-                }
+        if (!($user = $reminder->getUser())) {
+            throw new \LogicException('ExerciseUserReminder object not found');
+        }
 
-                $categories = (new ArrayCollection($this->get('chooser_category')->choose($focus)))
-                    ->filter(function ($element) {
-                        return !$element->getParent() ? true : false;
-                    });
+        return $this->render('FitbaseEmailBundle:Admin:ExerciseUserReminder/Email.html.twig', array(
+            'user' => $user,
+            'company' => $user->getCompany(),
+            'categoryFocus' => $this->getFocusCategoryMain($user),
+            'categories' => $user->getFocus()->getFirstCategories(),
+        ));
+    }
 
-                return $this->render('FitbaseEmailBundle:Admin:EmailExercise.html.twig', array(
-                    'user' => $exerciseUser->getUser(),
-                    'categoryFocus' => $categoryFocus,
-                    'categories' => $categories,
-                    'exerciseUser' => $exerciseUser,
-                ));
+    /**
+     * Get main focus category
+     *
+     * @param $user
+     * @return null
+     */
+    protected function getFocusCategoryMain($user)
+    {
+        if (($focus = $user->getFocus())) {
+            if (($categoryFocus = $focus->getFirstCategory())) {
+                return $categoryFocus->getCategory();
             }
         }
+        return NULL;
     }
 }
