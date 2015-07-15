@@ -40,7 +40,7 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
         return array(
             new \Twig_SimpleFunction('url', array($this, 'getUrl'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
             new \Twig_SimpleFunction('path', array($this, 'getPath'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
-            new \Twig_SimpleFunction('caEF', array($this, 'getUrlCompany'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
+            new \Twig_SimpleFunction('company_url', array($this, 'getUrlCompany'), array('is_safe_callback' => array($this, 'isUrlGenerationSafe'))),
         );
     }
 
