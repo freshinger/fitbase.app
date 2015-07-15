@@ -1,24 +1,22 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    
+
     <imports>
-        <import resource="blocks.xml" />
-        <import resource="subscribers.xml" />
-        <import resource="mailers.xml" />
-        <import resource="helpers.xml" />
+        <import resource="blocks.xml"/>
+        <import resource="subscribers.xml"/>
+        <import resource="mailers.xml"/>
+        <import resource="helpers.xml"/>
     </imports>
-    
-    <!--
+
     <services>
-        <service id="fitbase_email.example" class="Fitbase\Bundle\EmailBundle\Example">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="fitbase.email_builder" class="Fitbase\Bundle\EmailBundle\Service\ServiceEmailBuilder">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
         </service>
     </services>
-    -->
 </container>
