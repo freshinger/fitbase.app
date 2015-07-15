@@ -113,7 +113,7 @@ class ServiceErgonomics extends ContainerAware
      */
     public function getDeviationBodyUpperForward(User $user)
     {
-        if (($average = $this->getAverageNeck($user))) {
+        if (($average = $this->getAverageBodyUpperForward($user))) {
             $datetime = $this->container->get('datetime');
             $entityManager = $this->container->get('entity_manager');
             $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperForward');
@@ -131,7 +131,7 @@ class ServiceErgonomics extends ContainerAware
      */
     public function getDeviationBodyUpperLean(User $user)
     {
-        if (($average = $this->getAverageNeck($user))) {
+        if (($average = $this->getAverageBodyUpperLean($user))) {
             $datetime = $this->container->get('datetime');
             $entityManager = $this->container->get('entity_manager');
             $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperLean');
@@ -149,7 +149,7 @@ class ServiceErgonomics extends ContainerAware
      */
     public function getDeviationBodyUpperRotation(User $user)
     {
-        if (($average = $this->getAverageNeck($user))) {
+        if (($average = $this->getAverageBodyUpperRotation($user))) {
             $datetime = $this->container->get('datetime');
             $entityManager = $this->container->get('entity_manager');
             $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperRotation');
@@ -255,11 +255,11 @@ class ServiceErgonomics extends ContainerAware
      */
     protected function getDeviation($average, $collection)
     {
-        $summ = 0;
         $mit2_vec = $average * $average;
         if (count($collection)) {
+            $summ = 0;
             foreach ($collection as $id => $element) {
-                $summ += $element->getAngle() * $element->getAngle();
+                $summ += ($element->getAngle() * $element->getAngle());
             }
             $mit2_vec2 = $summ / count($collection);
 
@@ -277,7 +277,7 @@ class ServiceErgonomics extends ContainerAware
      */
     public function isAngleSafe($average, $deviation, $settings)
     {
-        if (0 <= $this->lbp($average, $deviation, $settings)) {
+        if (0 <= ($lbp = $this->lbp($average, $deviation, $settings))) {
             return true;
         }
 

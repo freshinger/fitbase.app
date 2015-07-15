@@ -118,9 +118,9 @@ class UserErgonomicsSubscriber extends ContainerAware implements EventSubscriber
         if (!($settingsBodyUpperRotation = $wellbeingErgonomics->getSettingsBodyUpperRotation())) {
             throw new \LogicException('Settings object for UserErgonomicsBodyUpperLean not found');
         }
-
         $averageNeck = $wellbeingErgonomics->getAverageNeck($user);
         $deviationNeck = $wellbeingErgonomics->getDeviationNeck($user);
+
         $averageBodyUpperForward = $wellbeingErgonomics->getAverageBodyUpperForward($user);
         $deviationBodyUpperForward = $wellbeingErgonomics->getDeviationBodyUpperForward($user);
         $averageBodyUpperLean = $wellbeingErgonomics->getAverageBodyUpperForward($user);
