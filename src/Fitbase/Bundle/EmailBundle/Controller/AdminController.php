@@ -8,6 +8,7 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
@@ -104,27 +105,14 @@ class AdminController extends CoreController
             throw new \LogicException('ExerciseUserReminder object not found');
         }
 
-        return $this->render('FitbaseEmailBundle:Admin:ExerciseUserReminder/Email.html.twig', array(
-            'user' => $user,
-            'company' => $user->getCompany(),
-            'categoryFocus' => $this->getFocusCategoryMain($user),
-            'categories' => $user->getFocus()->getFirstCategories(),
-        ));
-    }
-
-    /**
-     * Get main focus category
-     *
-     * @param $user
-     * @return null
-     */
-    protected function getFocusCategoryMain($user)
-    {
-        if (($focus = $user->getFocus())) {
-            if (($categoryFocus = $focus->getFirstCategory())) {
-                return $categoryFocus->getCategory();
-            }
-        }
-        return NULL;
+        return new Response(
+            $this->get('fitbase.email_builder')
+                ->getExerciseUserReminderEmail($user, $user->getCompany(),
+                    $user->getFocus()->getFirstCategory()->getCategory(),
+                    (new ArrayCollection($this->get('chooser_category')->choose($user->getFocus())))
+                        ->filter(function ($element) {
+                            return !$element->getParent() ? true : false;
+                        })
+                ));
     }
 }
