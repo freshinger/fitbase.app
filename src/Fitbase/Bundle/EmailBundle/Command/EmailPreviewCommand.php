@@ -39,18 +39,20 @@ class EmailPreviewCommand extends ContainerAwareCommand
         $entityManager = $this->getContainer()->get('entity_manager');
         $repository = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
 
-        if (!($reminder = $repository->find($input->getArgument('unique')))) {
+        if (!($reminders = $repository->findByIdArray(explode(',', $input->getArgument('unique'))))) {
             $output->writeln('ExerciseUserReminder object not found');
             return;
         }
 
-        if (!($user = $reminder->getUser())) {
-            throw new \LogicException('ExerciseUserReminder object not found');
+        foreach ($reminders as $reminder) {
+
+            if (!($user = $reminder->getUser())) {
+                throw new \LogicException('ExerciseUserReminder object not found');
+            }
+
+            $output->writeln($this->getContainer()->get('fitbase.email_builder')
+                ->getExerciseUserReminderEmail($user, $user->getCompany(),
+                    $user->getFocus()->getFirstCategory()->getCategory(), $user->getFocus()->getFirstCategories()));
         }
-
-        $output->writeln($this->getContainer()->get('fitbase.email_builder')
-            ->getExerciseUserReminderEmail($user, $user->getCompany(),
-                $user->getFocus()->getFirstCategory()->getCategory(), $user->getFocus()->getFirstCategories()));
     }
-
 }

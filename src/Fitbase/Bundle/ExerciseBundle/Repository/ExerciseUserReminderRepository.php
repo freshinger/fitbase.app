@@ -147,4 +147,22 @@ class ExerciseUserReminderRepository extends EntityRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * Find all by id
+     *
+     * @param array $array
+     * @return array
+     */
+    public function findByIdArray($array = [])
+    {
+        $queryBuilder = $this->createQueryBuilder('ExerciseUserReminder');
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $queryBuilder->expr()->in('ExerciseUserReminder.id', ':array')
+        ));
+
+        $queryBuilder->setParameter('array', $array);
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }
