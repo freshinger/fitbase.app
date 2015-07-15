@@ -165,4 +165,5 @@ sonata_block:
         sonata.seo.block.breadcrumb.homepage:
 
         # Wellbeing
-        wellbeing.dashboard.user_state.live:
+        # Wellbeing ergonomics module
+        wellbeing.dashboard.ergonomics_message:

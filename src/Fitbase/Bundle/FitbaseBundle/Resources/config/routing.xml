@@ -13,6 +13,7 @@
     <import resource="@FitbaseBudniBundle/Resources/config/routing.xml" prefix="/budni"/>
     <import resource="@FitbaseBarmerGekBundle/Resources/config/routing.xml" prefix="/barmer-gek"/>
     <import resource="@WellbeingApiBundle/Resources/config/routing.xml" prefix="/wellbeing"/>
+    <import resource="@WellbeingErgonomicsBundle/Resources/config/routing.xml" prefix="/wellbeing/ergonomics"/>
 
     <route id="dashboard" pattern="/dashboard">
         <default key="_controller">FitbaseFitbaseBundle:Dashboard:dashboard</default>

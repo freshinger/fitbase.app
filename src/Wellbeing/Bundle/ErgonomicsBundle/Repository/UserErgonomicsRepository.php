@@ -12,4 +12,81 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserErgonomicsRepository extends EntityRepository
 {
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function getExprProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', true);
+        return $queryBuilder->expr()->eq('UserErgonomics.processed', ':processed');
+    }
+
+
+    /**
+     * Get all not processed tasks
+     * @param $queryBuilder
+     * @return mixed
+     */
+    protected function  getExprNotProcessed($queryBuilder)
+    {
+        $queryBuilder->setParameter(':processed', 0);
+        return $queryBuilder->expr()->orX(
+            $queryBuilder->expr()->eq('UserErgonomics.processed', ':processed'),
+            $queryBuilder->expr()->isNull('UserErgonomics.processed')
+        );
+    }
+
+
+    /**
+     * Get expression by user id
+     * @param $queryBuilder
+     * @param $user
+     * @return mixed
+     */
+    protected function getExprUser($queryBuilder, $user = null)
+    {
+        if (!empty($user)) {
+            $queryBuilder->setParameter('user', $user->getId());
+            return $queryBuilder->expr()->eq('UserErgonomics.user', ':user');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+    /**
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeGt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetimegt', $datetime);
+            return $queryBuilder->expr()->gt('UserErgonomics.date', ':datetimegt');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
+
+
+    /**
+     * @param $user
+     * @param $datetime
+     * @return array
+     */
+    public function findLastByUserAndDate($user, $datetime)
+    {
+        $queryBuilder = $this->createQueryBuilder("UserErgonomics");
+
+        $queryBuilder->where($queryBuilder->expr()->andX(
+            $this->getExprUser($queryBuilder, $user),
+            $this->getExprDateTimeGt($queryBuilder, $datetime),
+            $this->getExprNotProcessed($queryBuilder)
+        ));
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+
 }

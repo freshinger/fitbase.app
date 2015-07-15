@@ -277,10 +277,6 @@ class ServiceErgonomics extends ContainerAware
      */
     public function isAngleSafe($average, $deviation, $settings)
     {
-        if (0 <= ($lbp = $this->lbp($average, $deviation, $settings))) {
-            return true;
-        }
-
         if (($average < ($settings->getLower() + $settings->getLowerError()))) {
             return false;
         }
@@ -296,28 +292,61 @@ class ServiceErgonomics extends ContainerAware
         return true;
     }
 
+
     /**
-     * Calculate Low Back Pain Index, code from Rainer
      *
-     * @param $average
-     * @param $deviation
-     * @param $settings
-     * @return float
+     * @param $user
+     * @return bool
      */
-    protected function lbp($average, $deviation, $settings)
+    public function check($user, $interval = 1)
     {
-        // wenn mittel kleiner als das untere Limit, dann Gewichtungsfaktor < 1
-        if ($average < ($settings->getLower() + $settings->getLowerError())) {
-            $result = $average / ($settings->getLower() + $settings->getLowerError());
-            // wenn mittel grˆﬂer als das obere Limit, dann Gewichtungsfaktor < 1
-        } else if ($average > ($settings->getUpper() + $settings->getUpperError())) {
-            $result = ($average - 180) / ($settings->getUpper() + $settings->getUpperError() - 180);
-            // Wenn mittel im Bereich zw unterem und oberen Limit, dann Gewichtungsfaktor = 1
-        } else {
-            $result = 1;
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics');
+
+        $datetime = $this->container->get('datetime');
+        $date = $datetime->getDateTime('now');
+        $date->modify("-{$interval} min");
+
+        if (!($collection = $repository->findLastByUserAndDate($user, $date))) {
+            return true;
         }
 
-        return (($deviation * $result) / $settings->getRangeOriginal()) - 1;
+        $countNeck = 0;
+        $countBodyUpperForward = 0;
+        $countBodyUpperLean = 0;
+        $countBodyUpperRotation = 0;
+
+        foreach ($collection as $element) {
+
+            if ($element->getNeck()->getCorrect() === false) {
+                $countNeck++;
+            }
+
+            if ($element->getBodyUpperForward()->getCorrect() === false) {
+                $countBodyUpperForward++;
+            }
+
+            if ($element->getBodyUpperLean()->getCorrect() === false) {
+                $countBodyUpperLean++;
+            }
+
+            if ($element->getBodyUpperRotation()->getCorrect() === false) {
+                $countBodyUpperRotation++;
+            }
+
+            $element->setProcessed(true);
+            $element->setProcessedDate($datetime->getDateTime('now'));
+            $entityManager->persist($element);
+        }
+        $entityManager->flush();
+
+        $countTotal = count($collection);
+        return !($countNeck == $countTotal
+            or $countBodyUpperForward == $countTotal
+            or $countBodyUpperLean == $countTotal
+            or $countBodyUpperRotation == $countTotal);
+
+        return true;
     }
 
 }

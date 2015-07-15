@@ -1,0 +1,76 @@
+<!-- Content Text-->
+<div class="panel-box">
+    <div class="titles title-image-bottom">
+        <h4>{{ 'ergonomics.message_title'|trans({}, 'WellbeingErgonomicsBundle') }}</h4>
+    </div>
+
+    <div class="row" style="min-height: 420px">
+        <div class="col-md-12">
+
+
+            <div style="overflow:scroll; height:400px;">
+                <table class="table table-striped table-hover table-responsive wellbeing-ergonomics">
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-xs-12">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+        var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+
+        if (typeof(Notification) != 'undefined') {
+            Notification.requestPermission(function (permission) {
+                // console.log(permission);
+            });
+        }
+
+        $.controller('.wellbeing-ergonomics', function (element) {
+
+            setInterval(function () {
+                $.get('{{ path('wellbeing_ergonomics_status') }}', function (response) {
+
+                    var date = moment((new Date(parseInt(response.date) * 1000)).toISOString());
+
+                    var html =
+                            ("<tr>" +
+                            "<td class='shade'>%date%</td>" +
+                            "<td class='shade'>%label%<p>%message%</p></td>" +
+                            "</tr>")
+                                    .replace("%label%", response.label)
+                                    .replace("%date%", date.format('HH:mm:ss'))
+                                    .replace("%message%", response.message);
+
+                    $(html).prependTo(element);
+
+                    if (!response.correct) {
+                        var instance = new Notification(
+                                response.label, {
+                                    icon: "/image/logo.png",
+                                    body: response.message
+                                }
+                        );
+                    }
+
+
+                });
+            }, 10000);
+
+
+        });
+    });
+</script>

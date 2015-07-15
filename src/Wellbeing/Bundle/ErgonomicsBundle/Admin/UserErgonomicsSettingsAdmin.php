@@ -32,8 +32,7 @@ class UserErgonomicsSettingsAdmin extends Admin
             ->add('upper')
             ->add('upperError')
             ->add('lower')
-            ->add('lowerError')
-            ->add('range');
+            ->add('lowerError');
     }
 
     /**
@@ -47,10 +46,9 @@ class UserErgonomicsSettingsAdmin extends Admin
             ->add('upperError')
             ->add('lower')
             ->add('lowerError')
-            ->add('range')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
+                    'edit' => array(),
                 )
             ));
     }
@@ -65,8 +63,7 @@ class UserErgonomicsSettingsAdmin extends Admin
             ->add('upper')
             ->add('upperError')
             ->add('lower')
-            ->add('lowerError')
-            ->add('range');
+            ->add('lowerError');
     }
 
     /**
@@ -79,7 +76,6 @@ class UserErgonomicsSettingsAdmin extends Admin
             ->add('upper')
             ->add('upperError')
             ->add('lower')
-            ->add('lowerError')
-            ->add('range');
+            ->add('lowerError');
     }
 }
