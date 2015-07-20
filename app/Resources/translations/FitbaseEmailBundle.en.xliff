@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[email.hello]]></source>
+        <target><![CDATA[Hello firstname lastname,]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[email.copyright]]></source>
+        <target><![CDATA[You receive this mail as a participant of the fitbase Online-Coaching.  © fitbase.de 2011 - 2015                            Fitbase Institute for  Prevention Online  GmbH, Litzowstr. 13,                            22041 Hamburg, info@fitbase.de]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[email.welcome]]></source>
+        <target><![CDATA[welcome to fitbase! With this email you receive your login data that you can use when you visit fitbase.de for the next time. If you have any questions, please have a look at our FAQs or contact us at]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[email.access]]></source>
+        <target><![CDATA[Your login data:]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[email.access_signin.title]]></source>
+        <target><![CDATA[You are able to log in to fitbase with the following login data]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[email.access_signin]]></source>
+        <target><![CDATA[log in]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[email.email]]></source>
+        <target><![CDATA[email address]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[email.access_username]]></source>
+        <target><![CDATA[username]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[email.access_password]]></source>
+        <target><![CDATA[password]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[email.exercise_category]]></source>
+        <target><![CDATA[from the field of category]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[email.exercise]]></source>
+        <target><![CDATA[We would like to remind you of your exercise]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source><![CDATA[email.exercise_remind]]></source>
+        <target><![CDATA[.]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source><![CDATA[email.exercise_click]]></source>
+        <target><![CDATA[Please click on the link to go directly to today's exercise.]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source><![CDATA[email.exercise_have_a_nice_day]]></source>
+        <target><![CDATA[Have fun and a nice day! Your fitbase Team!]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source><![CDATA[email.here]]></source>
+        <target><![CDATA[here]]></target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source><![CDATA[email.exercise_today]]></source>
+        <target><![CDATA[Today's exercise]]></target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source><![CDATA[email.invite]]></source>
+        <target><![CDATA[Join now!]]></target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source><![CDATA[email.quiz]]></source>
+        <target><![CDATA[We prepared a small quiz for you, which allows you to check your knowledge about your last information item and to gain leaves for your health tree. Have fun and a nice day! Your fitbase team!]]></target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source><![CDATA[email.quiz_start]]></source>
+        <target><![CDATA[Start quiz]]></target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source><![CDATA[email.view_false]]></source>
+        <target><![CDATA[If the email isn't displayed correctly, click]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

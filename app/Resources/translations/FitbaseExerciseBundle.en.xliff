@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[exercise.exercise_description_title]]></source>
+        <target><![CDATA[Exercise description]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[exercise.exercise_choice_description_title]]></source>
+        <target><![CDATA[My favourite exercise]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[exercise.exercise_choice_description]]></source>
+        <target><![CDATA[You can see an overview of all you favourite exercises here. You can mark exercise with the button "I like" and thus create a list of your personal favourite exercises. These can by recalled here afterwards.]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[exercise.exercise_recommendation]]></source>
+        <target><![CDATA[Recommendation]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[exercise.exercise_current]]></source>
+        <target><![CDATA[Your current exercise - name]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[exercise.exercise_more]]></source>
+        <target><![CDATA[More...]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[exercise.exercise_more_exercises]]></source>
+        <target><![CDATA[More exercises...]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[exercise.exercise_choices_empty]]></source>
+        <target><![CDATA[You don't have a favourite exercise out of this category yet.]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[exercise.exercise_like]]></source>
+        <target><![CDATA[I like]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[exercise.exercises_other]]></source>
+        <target><![CDATA[Other exercises]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[exercise.exercise_feeding_back]]></source>
+        <target><![CDATA[Back health]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source><![CDATA[exercise.exercise_feeding]]></source>
+        <target><![CDATA[Your food-diary]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source><![CDATA[exercise.exercise_feeding_title]]></source>
+        <target><![CDATA[Food-diary]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source><![CDATA[exercise.exercise_feeding_empty]]></source>
+        <target><![CDATA[No entries found]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source><![CDATA[exercise.exercise_feeding_info]]></source>
+        <target><![CDATA[This is your food-diary. Please enter the food you consumed, once a day. This works quite simple. The basic unit is a "handful". Try to imagine how often the separate ingredients (potatos, vegetables, meat) fit into your hand and enter this number down below. Afterwards you can see the perfect balance of ingredients and nutrition compared to yours.]]></target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source><![CDATA[exercise.exercise_personal_beheviour]]></source>
+        <target><![CDATA[Your personal balance]]></target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source><![CDATA[exercise.exercise_optimal_beheviour]]></source>
+        <target><![CDATA[The optimum balance]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[user.registration.i_agree_with]]></source>
+        <target><![CDATA[I agree with the]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[user.registration.privacy]]></source>
+        <target><![CDATA[privacy-]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[user.registration.and]]></source>
+        <target><![CDATA[and]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[user.registration.terms_and_conditions]]></source>
+        <target><![CDATA[participation terms and conditions]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[user.registration.end]]></source>
+        <target><![CDATA[.]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[user.password_reset]]></source>
+        <target><![CDATA[Reset password]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[user.password_change]]></source>
+        <target><![CDATA[Change password]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[user.password_change_info]]></source>
+        <target><![CDATA[Please insert your new password here]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[user.password_reset.email_check]]></source>
+        <target><![CDATA[Please check your email]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[user.actioncode]]></source>
+        <target><![CDATA[Redeem your access code]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[user.actioncode_info]]></source>
+        <target><![CDATA[Welcome on fitbase.de. We're glad to welcome you. Please enter your access codes here.]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source><![CDATA[user.login]]></source>
+        <target><![CDATA[Log in]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source><![CDATA[user.login_now]]></source>
+        <target><![CDATA[Log in now]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source><![CDATA[user.login_now_info]]></source>
+        <target><![CDATA[Welcome on fitbase.de. We're glad to welcome you. Please enter your name and your email adress now, to complete your registration]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source><![CDATA[user.login_title]]></source>
+        <target><![CDATA[Log in or redeem access code]]></target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source><![CDATA[user.login_info]]></source>
+        <target><![CDATA[Welcome on fitbase.de. We're glad to welcome you. Please log in with your access code now.]]></target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source><![CDATA[user.login_password]]></source>
+        <target><![CDATA[Password]]></target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source><![CDATA[user.login_password_false]]></source>
+        <target><![CDATA[User name or password invalid]]></target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source><![CDATA[user.registration]]></source>
+        <target><![CDATA[Register]]></target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source><![CDATA[user.registration_info]]></source>
+        <target><![CDATA[Welcome on fitbase.de. We're glad to welcome you. Please enter your name and your email adress now, to complete your registration]]></target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source><![CDATA[user.registration_code]]></source>
+        <target><![CDATA[Redeem your access code]]></target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source><![CDATA[user.remove_profile]]></source>
+        <target><![CDATA[Delete fitbase profile]]></target>
+      </trans-unit>
+      <trans-unit id="23">
+        <source><![CDATA[user.wizard_hello]]></source>
+        <target><![CDATA[Welcome]]></target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source><![CDATA[user.focus_change]]></source>
+        <target><![CDATA[Change focus]]></target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source><![CDATA[user.focus_settings]]></source>
+        <target><![CDATA[Focus settings]]></target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source><![CDATA[user.focus_exercise_priority]]></source>
+        <target><![CDATA[Focus of exercise]]></target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source><![CDATA[user.focus_exercise_type]]></source>
+        <target><![CDATA[Type of exercise]]></target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source><![CDATA[user.wizard_reminder_weeklytask]]></source>
+        <target><![CDATA[Information item]]></target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source><![CDATA[user.wizard_reminder_save]]></source>
+        <target><![CDATA[Click "forward" to start fitbase]]></target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source><![CDATA[user.focus_change_info]]></source>
+        <target><![CDATA[You can change the order of your online-coachings with clicking on a category and postponing it. Click "save and activate coaching" afterwards, to start the category on first place.]]></target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source><![CDATA[user.focus_exercise_priority_info]]></source>
+        <target><![CDATA[Choose your focus of exercise here. The daily reminder will guide to an exercise out of this category in the future. If you choose more than one focus, you will receive exercises out of both categories alternating.]]></target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source><![CDATA[user.focus_exercise_type_info]]></source>
+        <target><![CDATA[Every exercise item consists of the three exercises out of the categories "mobilization", "strentghening" and "stretching". You can individualize this compilation with choosing the following selection.]]></target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source><![CDATA[user.wizard_reminder_weeklytask_info]]></source>
+        <target><![CDATA[Here you can determine, how many information items you would like to receive each week. Our recommendation: 1-2 times a week. You can change these settings any time in your profile.]]></target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source><![CDATA[user.wizard_reminder]]></source>
+        <target><![CDATA[Reminder]]></target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source><![CDATA[user.wizard_reminder_info]]></source>
+        <target><![CDATA[Here you can determine, how many reminders you would like to receive each week. Our recommendation: every day. You can change these settings anytime in your profile.]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

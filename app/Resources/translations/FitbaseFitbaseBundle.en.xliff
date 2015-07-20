@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[exception.page_not_found]]></source>
+        <target><![CDATA[This page does not exist.]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[exception.page_not_found_title]]></source>
+        <target><![CDATA[This page can not be found.]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[exception.page_not_found_code]]></source>
+        <target><![CDATA[404]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[exception.profile]]></source>
+        <target><![CDATA[Profile]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[exception.profile_change_focus]]></source>
+        <target><![CDATA[Change focus]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[exception.profile_change_personal_info]]></source>
+        <target><![CDATA[Personal information]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[exception.profile_save]]></source>
+        <target><![CDATA[Save]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[exception.profile_change_weeklytask]]></source>
+        <target><![CDATA[Information items]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[exception.profile_change_weeklytask_info]]></source>
+        <target><![CDATA[You can change here, how many information items you would like to receive.]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[exception.profile_change_reminder]]></source>
+        <target><![CDATA[Reminder]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[exception.profile_change_reminder_info]]></source>
+        <target><![CDATA[Use your reminder to receive a mail to your chosen time, which reminds you of your daily exercise - preferably every day. You can change your email adress anytime on your profile. Every exercise is especially adjusted for the execution in the office. We recommend to accomplish the exercises daily, at 10 o'clock for example.]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source><![CDATA[exception.profile_pause_reminder]]></source>
+        <target><![CDATA[Pause fitbase]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source><![CDATA[exception.profile_remove_user]]></source>
+        <target><![CDATA[Delete my fitbase profile]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source><![CDATA[menu.button]]></source>
+        <target><![CDATA[Menu]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

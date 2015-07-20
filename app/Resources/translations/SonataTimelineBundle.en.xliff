@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[actions.sonata.admin.create]]></source>
+        <target><![CDATA[%subject% has created %target%]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[actions.sonata.admin.update]]></source>
+        <target><![CDATA[%subject% has updated %target%]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[actions.sonata.admin.delete]]></source>
+        <target><![CDATA[%subject% has deleted %target%]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[actions.fitbase.signin]]></source>
+        <target><![CDATA[%subject% is logged in]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[actions.icon.sonata.admin.create]]></source>
+        <target><![CDATA[fa fa-plus-circle bg-green]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[actions.icon.sonata.admin.update]]></source>
+        <target><![CDATA[fa fa-save bg-blue]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[actions.icon.sonata.admin.delete]]></source>
+        <target><![CDATA[fa fa-minus-circle bg-red]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

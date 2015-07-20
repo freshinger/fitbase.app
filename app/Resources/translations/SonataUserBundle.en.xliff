@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[title_user_account]]></source>
+        <target><![CDATA[Personal information]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[title_user_authentication]]></source>
+        <target><![CDATA[Log in for members]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[link_register]]></source>
+        <target><![CDATA[Register]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[link_login]]></source>
+        <target><![CDATA[Log in]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[link_logout]]></source>
+        <target><![CDATA[Log out]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[forgotten_password]]></source>
+        <target><![CDATA[I forgot my password]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[sonata_user_profile_breadcrumb_index]]></source>
+        <target><![CDATA[Settings]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[sonata_change_password_link]]></source>
+        <target><![CDATA[Change password]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

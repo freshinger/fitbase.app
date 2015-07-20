@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[Sunday]]></source>
+        <target><![CDATA[Sunday]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[Monday]]></source>
+        <target><![CDATA[Monday]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[Tuesday]]></source>
+        <target><![CDATA[Tuesday]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[Wednesday]]></source>
+        <target><![CDATA[Wednesday]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[Thursday]]></source>
+        <target><![CDATA[Thursday]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[Friday]]></source>
+        <target><![CDATA[Friday]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[Saturday]]></source>
+        <target><![CDATA[Saturday]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[reminder.day]]></source>
+        <target><![CDATA[Day]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[reminder.time]]></source>
+        <target><![CDATA[Time]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[reminder.total]]></source>
+        <target><![CDATA[Total]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[reminder.list_empty]]></source>
+        <target><![CDATA[No reminder found]]></target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source><![CDATA[reminder.form_info]]></source>
+        <target><![CDATA[Click save, if you made your alternations]]></target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source><![CDATA[reminder.paused]]></source>
+        <target><![CDATA[The reminder function has been paused at date for interval weeks.]]></target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source><![CDATA[reminder.pause_undone]]></source>
+        <target><![CDATA[To end this pause click]]></target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source><![CDATA[reminder.pause_undone_here]]></source>
+        <target><![CDATA[here]]></target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source><![CDATA[reminder.remove_element]]></source>
+        <target><![CDATA[delete]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

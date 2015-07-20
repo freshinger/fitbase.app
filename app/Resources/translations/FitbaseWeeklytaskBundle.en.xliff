@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="1">
+        <source><![CDATA[weeklytask.weeklytask_title]]></source>
+        <target><![CDATA[Information item]]></target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source><![CDATA[weeklytask.weeklytask_overview]]></source>
+        <target><![CDATA[Overview information items]]></target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source><![CDATA[weeklytask.weeklytask_points_total]]></source>
+        <target><![CDATA[Your gathered points.]]></target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source><![CDATA[weeklytask.weeklytasks_done_total]]></source>
+        <target><![CDATA[Your done information items:]]></target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source><![CDATA[weeklytask.weeklytask_points]]></source>
+        <target><![CDATA[Gathered points: point_count]]></target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source><![CDATA[weeklytask.weeklyquiz_points]]></source>
+        <target><![CDATA[Gathered quiz points: point_count]]></target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source><![CDATA[weeklytask.weeklyquiz_more]]></source>
+        <target><![CDATA[More...]]></target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source><![CDATA[weeklytask.weeklyquiz_list_empty]]></source>
+        <target><![CDATA[You don't have any information items in this field yet.]]></target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source><![CDATA[weeklytask.weeklyquiz_evaluate]]></source>
+        <target><![CDATA[Evaluate quiz]]></target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source><![CDATA[weeklytask.weeklyquiz_info]]></source>
+        <target><![CDATA[Welcome to your quiz, which allows you to repeat already learned issues and to gather leaves for your health tree. Please conside, that multiple answors can be true. Have fun!]]></target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source><![CDATA[weeklytask.weeklytask_overview_info]]></source>
+        <target><![CDATA[The fitbase plattform encourages you, to shape your lifestyle in a more active, conscious and healthy way. Therefore we will send you short information items regularly. The information items are geared to each other and provide you with comprising knowledge.]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
