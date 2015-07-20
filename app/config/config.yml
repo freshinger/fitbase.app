@@ -167,7 +167,7 @@ assetic:
 nelmio_api_doc: ~
 
 lexik_translation:
-    fallback_locale: de      # (required) default locale to use
+    fallback_locale: %locale%      # (required) default locale to use
     managed_locales: [de, en]    # (required) locales that the bundle have to manage
 
 sensio_framework_extra:
