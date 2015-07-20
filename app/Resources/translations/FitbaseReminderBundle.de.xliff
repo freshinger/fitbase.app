@@ -2,6 +2,42 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="">
         <body>
+
+            <trans-unit id="reminder.profile.pause_question">
+                <source>reminder.profile.pause_question</source>
+                <target><![CDATA[Wie lange möchten Sie fitbase pausieren?!]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_make_a_choice">
+                <source>reminder.profile.pause_make_a_choice</source>
+                <target><![CDATA[Bitte wählen]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_save">
+                <source>reminder.profile.pause_save</source>
+                <target><![CDATA[Speichern]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_1_weeks">
+                <source>reminder.profile.pause_1_weeks</source>
+                <target><![CDATA[1 Woche]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_2_weeks">
+                <source>reminder.profile.pause_2_weeks</source>
+                <target><![CDATA[2 Wochen]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_3_weeks">
+                <source>reminder.profile.pause_3_weeks</source>
+                <target><![CDATA[3 Wochen]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.profile.pause_4_weeks">
+                <source>reminder.profile.pause_4_weeks</source>
+                <target><![CDATA[4 Wochen]]></target>
+            </trans-unit>
+
             <trans-unit id="Sunday">
                 <source>Sunday</source>
                 <target>Sontag</target>
