@@ -56,6 +56,7 @@ class UserWizardController extends Controller
      */
     public function focusSettingsAction(Request $request)
     {
+        $translator = $this->get('translator');
         if (($focus = $this->get('focus')->current())) {
             if (($userFocusCategory = $focus->getFirstCategory())) {
                 // Check is category
@@ -67,7 +68,7 @@ class UserWizardController extends Controller
                     if (($category = $userFocusCategory->getCategory())) {
                         if (in_array($category->getSlug(), array('ruecken'))) {
 
-                            $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
+                            $form = $this->createForm(new UserFocusCategoryForm($userFocusCategory, $translator), $userFocusCategory);
                             if ($request->get($form->getName())) {
                                 $form->handleRequest($request);
                                 if ($form->isValid()) {

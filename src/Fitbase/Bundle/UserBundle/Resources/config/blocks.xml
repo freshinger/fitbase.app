@@ -25,6 +25,7 @@
             <argument type="service" id="request"/>
             <argument type="service" id="event_dispatcher"/>
             <argument type="service" id="form.factory"/>
+            <argument type="service" id="translator"/>
             <call method="setServiceUser">
                 <argument type="service" id="user"/>
             </call>

@@ -26,13 +26,14 @@ class CategorySettingsBackBlock extends BaseFitbaseBlock
     protected $eventDispatcher;
     protected $formFactory;
 
-    public function __construct($name, EngineInterface $templating, $request, $eventDispatcher, $formFactory)
+    public function __construct($name, EngineInterface $templating, $request, $eventDispatcher, $formFactory, $translator = null)
     {
         parent::__construct($name, $templating);
 
         $this->request = $request;
         $this->eventDispatcher = $eventDispatcher;
         $this->formFactory = $formFactory;
+        $this->translator = $translator;
     }
 
     /**
@@ -66,7 +67,7 @@ class CategorySettingsBackBlock extends BaseFitbaseBlock
         if (($focus = $blockContext->getSetting('focus'))) {
             if (($userFocusCategory = $focus->getCategoryBySlug('ruecken'))) {
 
-                $form = $this->formFactory->create(new UserFocusCategoryForm($userFocusCategory), $userFocusCategory);
+                $form = $this->formFactory->create(new UserFocusCategoryForm($userFocusCategory, $this->translator), $userFocusCategory);
                 if ($this->request->get($form->getName())) {
                     $form->handleRequest($this->request);
                     if ($form->isValid()) {

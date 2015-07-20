@@ -13,9 +13,38 @@ class UserFocusCategoryForm extends AbstractType
 {
     protected $userFocusCategory;
 
-    public function __construct(UserFocusCategory $userFocusCategory)
+
+    /**
+     * Translator object
+     *
+     * @var
+     */
+    protected $translator;
+
+    /**
+     * Class constructor
+     *
+     * @param $translator
+     */
+    public function __construct(UserFocusCategory $userFocusCategory, $translator = null)
     {
         $this->userFocusCategory = $userFocusCategory;
+        $this->translator = $translator;
+    }
+
+    /**
+     * Translate code if translator object exists
+     *
+     * @param $code
+     * @return mixed
+     */
+    protected function _($code)
+    {
+        if (is_object($this->translator)) {
+            return $this->translator->trans($code, [], 'FitbaseUserBundle');
+        }
+
+        return $code;
     }
 
 
@@ -48,13 +77,13 @@ class UserFocusCategoryForm extends AbstractType
                 'expanded' => true,
                 'empty_value' => false,
                 'choices' => array(
-                    1 => 'Überwiegend Mobilisation',
-                    2 => 'Überwiegend Kräftigung',
-                    0 => 'Mobilisation, Kräftigung und Dehnung',
+                    1 => $this->_('user.focus.category_settings_type_1'),
+                    2 => $this->_('user.focus.category_settings_type_2'),
+                    0 => $this->_('user.focus.category_settings_type_0'),
                 )
             ))
             ->add('save', 'submit', array(
-                'label' => 'Speichern',
+                'label' => $this->_('user.focus.category_settings_type_save'),
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 ),
