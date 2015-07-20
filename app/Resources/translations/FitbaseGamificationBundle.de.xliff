@@ -189,6 +189,12 @@
                 <target><![CDATA[Ihre letzte Infoeinheiten]]></target>
             </trans-unit>
 
+            <trans-unit id="gamification.dashboard_weeklytask_info">
+                <source>gamification.dashboard_weeklytask_info</source>
+                <target><![CDATA[letzte Infoeinheiten]]></target>
+            </trans-unit>
+
+
             <trans-unit id="gamification.dashboard_weeklytask_more">
                 <source>gamification.dashboard_weeklytask_more</source>
                 <target><![CDATA[mehr...]]></target>
