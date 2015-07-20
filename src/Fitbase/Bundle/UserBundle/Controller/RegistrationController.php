@@ -32,7 +32,7 @@ class RegistrationController extends Controller
             return $this->inviteRegistrationAction($request, $actioncode);
         }
 
-        $form = $this->createForm(new UserActioncodeForm(), new UserActioncode(), array(
+        $form = $this->createForm(new UserActioncodeForm($this->get('translator')), new UserActioncode(), array(
             'action' => $this->generateUrl('actioncode_invite', array('code' => $code))
         ));
 
@@ -93,11 +93,11 @@ class RegistrationController extends Controller
      */
     public function codeAction(Request $request, $internal = null)
     {
-        $formActioncode = $this->createForm(new UserActioncodeForm(), new UserActioncode(), array(
+        $formActioncode = $this->createForm(new UserActioncodeForm($this->get('translator')), new UserActioncode(), array(
             'action' => $this->generateUrl('actioncode', array('company' => $request->get('company')))
         ));
 
-        $formRegistration = $this->createForm(new UserRegistrationForm(), new UserRegistration(), array(
+        $formRegistration = $this->createForm(new UserRegistrationForm($this->get('translator')), new UserRegistration(), array(
             'action' => $this->generateUrl('actioncode', array('company' => $request->get('company')))
         ));
 
