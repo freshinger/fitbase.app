@@ -3,6 +3,25 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="user.focus.category_settings_type_0">
+                <source>user.focus.category_settings_type_0</source>
+                <target><![CDATA[Mobilisation, Kräftigung und Dehnung]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.focus.category_settings_type_1">
+                <source>user.focus.category_settings_type_1</source>
+                <target><![CDATA[Überwiegend Mobilisation]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.focus.category_settings_type_2">
+                <source>user.focus.category_settings_type_2</source>
+                <target><![CDATA[Überwiegend Kräftigung]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.focus.category_settings_type_save">
+                <source>user.focus.category_settings_type_save</source>
+                <target><![CDATA[Speichern]]></target>
+            </trans-unit>
 
             <trans-unit id="user.profile.details_title">
                 <source>user.profile.details_title</source>
