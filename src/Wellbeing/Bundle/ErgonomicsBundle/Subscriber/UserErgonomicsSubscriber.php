@@ -118,14 +118,10 @@ class UserErgonomicsSubscriber extends ContainerAware implements EventSubscriber
         if (!($settingsBodyUpperRotation = $wellbeingErgonomics->getSettingsBodyUpperRotation())) {
             throw new \LogicException('Settings object for UserErgonomicsBodyUpperLean not found');
         }
-        $averageNeck = $wellbeingErgonomics->getAverageNeck($user);
-        $deviationNeck = $wellbeingErgonomics->getDeviationNeck($user);
 
-        $averageBodyUpperForward = $wellbeingErgonomics->getAverageBodyUpperForward($user);
+        $deviationNeck = $wellbeingErgonomics->getDeviationNeck($user);
         $deviationBodyUpperForward = $wellbeingErgonomics->getDeviationBodyUpperForward($user);
-        $averageBodyUpperLean = $wellbeingErgonomics->getAverageBodyUpperForward($user);
-        $deviationBodyUpperLean = $wellbeingErgonomics->getDeviationBodyUpperForward($user);
-        $averageBodyUpperRotation = $wellbeingErgonomics->getAverageBodyUpperRotation($user);
+        $deviationBodyUpperLean = $wellbeingErgonomics->getDeviationBodyUpperLean($user);
         $deviationBodyUpperRotation = $wellbeingErgonomics->getDeviationBodyUpperRotation($user);
 
         $entity = (new UserErgonomics())
@@ -157,21 +153,21 @@ class UserErgonomicsSubscriber extends ContainerAware implements EventSubscriber
                     ))
             );
 
-        $this->container->get('logger')->crit("Neck: {$entity->getNeck()->getCorrect()}, ", [
-            $entity->getNeck()->getAngle()
-        ]);
+        $this->container->get('logger')
+            ->err("Neck, BodyUpperForward, BodyUpperLean, BodyUpperRotation:", [
+                $entity->getNeck()->getCorrect(),
+                $entity->getBodyUpperForward()->getCorrect(),
+                $entity->getBodyUpperLean()->getCorrect(),
+                $entity->getBodyUpperRotation()->getCorrect()
+            ]);
+        $this->container->get('logger')
+            ->err("Neck, BodyUpperForward, BodyUpperLean, BodyUpperRotation:", [
+                $entity->getNeck()->getAngle(),
+                $entity->getBodyUpperForward()->getAngle(),
+                $entity->getBodyUpperLean()->getAngle(),
+                $entity->getBodyUpperRotation()->getAngle()
+            ]);
 
-        $this->container->get('logger')->crit("BodyUpperForward: {$entity->getBodyUpperForward()->getCorrect()}, ", [
-            $entity->getBodyUpperForward()->getAngle()
-        ]);
-
-        $this->container->get('logger')->crit("BodyUpperLean: {$entity->getBodyUpperLean()->getCorrect()}, ", [
-            $entity->getBodyUpperLean()->getAngle()
-        ]);
-
-        $this->container->get('logger')->crit("BodyUpperRotation: {$entity->getBodyUpperRotation()->getCorrect()}, ", [
-            $entity->getBodyUpperRotation()->getAngle()
-        ]);
 
         $entityManager->persist($entity);
         $entityManager->flush($entity);

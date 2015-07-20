@@ -58,15 +58,25 @@ class UserErgonomicsMessageBlock extends BaseFitbaseBlock implements ContainerAw
 
     /**
      * Render block response
+     *
      * @param string $view
      * @param array $parameters
      * @param Response $response
      * @return Response
+     * @throws LogicException
      */
     public function renderResponse($view, array $parameters = array(), Response $response = null)
     {
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage');
 
-        return $this->getTemplating()->renderResponse($view, array(), $response);
+        if (!($user = $this->container->get('user')->current())) {
+            throw new LogicException('User object can not be empty');
+        }
+
+        return $this->getTemplating()->renderResponse($view, [
+            'collection' => $repository->findProcessedByUser($user)
+        ], $response);
     }
 
 

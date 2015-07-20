@@ -1,3 +1,54 @@
+<script type="text/javascript">
+    (function ($) {
+
+
+        function WellbeingErgonomics(container, url, callback) {
+            this.init(container, url, callback);
+        }
+
+        $.extend(WellbeingErgonomics.prototype, {
+
+            url: null,
+            container: null,
+            callback: null,
+            interval: 10000,
+
+            init: function (container, url, callback) {
+
+                this.url = url;
+                this.container = container;
+                this.callback = callback;
+
+                (function (self) {
+                    setInterval(function () {
+                        $.get(self.url, function (response) {
+                            self.callback(self, response);
+                        });
+                    }, self.interval);
+                })(this);
+
+            }
+        });
+
+        $.fn.wellbeing_ergonomics = function (url, callback) {
+
+            var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+
+            if (typeof(Notification) != 'undefined') {
+                Notification.requestPermission(function (permission) {
+                    if (permission != 'granted') {
+                        throw "Notification permission should be granted";
+                    }
+                });
+            }
+
+            return new WellbeingErgonomics(this, url, callback);
+
+        }
+
+    })(jQuery);
+</script>
+
 <!-- Content Text-->
 <div class="panel-box">
     <div class="titles title-image-bottom">
@@ -10,7 +61,17 @@
 
             <div style="overflow:scroll; height:400px;">
                 <table class="table table-striped table-hover table-responsive wellbeing-ergonomics">
-
+                    {% if collection is defined and collection %}
+                        {% for message in collection %}
+                            <tr>
+                                <td class='shade'>{{ message.date|date('H:i:s') }}</td>
+                                <td class='shade'>
+                                    {{ ergonomics_message_title(message) }}
+                                    <p>{{ ergonomics_message_text(message) }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </table>
             </div>
 
@@ -29,48 +90,39 @@
 </div>
 
 <script type="text/javascript">
+
     $(function () {
-
-        var Notification = window.Notification || window.mozNotification || window.webkitNotification;
-
-        if (typeof(Notification) != 'undefined') {
-            Notification.requestPermission(function (permission) {
-                // console.log(permission);
-            });
-        }
-
         $.controller('.wellbeing-ergonomics', function (element) {
 
-            setInterval(function () {
-                $.get('{{ path('wellbeing_ergonomics_status') }}', function (response) {
+            var url = '{{ path('wellbeing_ergonomics_status') }}';
+            element.wellbeing_ergonomics(url, function (self, response) {
 
+                if (response.date && response.title && response.title) {
                     var date = moment((new Date(parseInt(response.date) * 1000)).toISOString());
-
                     var html =
                             ("<tr>" +
                             "<td class='shade'>%date%</td>" +
-                            "<td class='shade'>%label%<p>%message%</p></td>" +
+                            "<td class='shade'>%title%<p>%text%</p></td>" +
                             "</tr>")
-                                    .replace("%label%", response.label)
+                                    .replace("%title%", response.title)
                                     .replace("%date%", date.format('HH:mm:ss'))
-                                    .replace("%message%", response.message);
+                                    .replace("%text%", response.text);
 
                     $(html).prependTo(element);
 
+                    element.find("tr:nth-last-child(-n+1)").remove();
+
                     if (!response.correct) {
                         var instance = new Notification(
-                                response.label, {
+                                response.title, {
                                     icon: "/image/logo.png",
-                                    body: response.message
+                                    body: response.text
                                 }
                         );
                     }
+                }
 
-
-                });
-            }, 10000);
-
-
+            });
         });
     });
 </script>

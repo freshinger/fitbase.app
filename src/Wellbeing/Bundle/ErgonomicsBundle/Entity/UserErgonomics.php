@@ -257,4 +257,32 @@ class UserErgonomics
         $this->getBodyUpperLean()->setErgonomics($this);
         $this->getBodyUpperRotation()->setErgonomics($this);
     }
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage
+     */
+    private $message;
+
+
+    /**
+     * Set message
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage $message
+     * @return UserErgonomics
+     */
+    public function setMessage(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage $message = null)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
 }

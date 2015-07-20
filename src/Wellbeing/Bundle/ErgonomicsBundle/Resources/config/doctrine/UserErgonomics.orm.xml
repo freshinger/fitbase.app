@@ -17,6 +17,10 @@
             <join-column name="userId" referenced-column-name="id" on-delete="CASCADE"/>
         </many-to-one>
 
+        <many-to-one field="message" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsMessage">
+            <join-column name="messageId" referenced-column-name="id" on-delete="CASCADE"/>
+        </many-to-one>
+
         <one-to-one field="neck" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsNeck">
             <join-column name="neckId" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>

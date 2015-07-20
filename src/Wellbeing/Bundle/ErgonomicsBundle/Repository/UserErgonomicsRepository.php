@@ -2,6 +2,7 @@
 
 namespace Wellbeing\Bundle\ErgonomicsBundle\Repository;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -64,29 +65,57 @@ class UserErgonomicsRepository extends EntityRepository
     {
         if (!empty($datetime)) {
             $queryBuilder->setParameter('datetimegt', $datetime);
-            return $queryBuilder->expr()->gt('UserErgonomics.date', ':datetimegt');
+            return $queryBuilder->expr()->gte('UserErgonomics.date', ':datetimegt');
         }
         return $queryBuilder->expr()->eq('0', '1');
     }
 
+    /**
+     *
+     * @param $queryBuilder
+     * @param $datetime
+     * @return mixed
+     */
+    protected function getExprDateTimeLt($queryBuilder, $datetime)
+    {
+        if (!empty($datetime)) {
+            $queryBuilder->setParameter('datetimelt', $datetime);
+            return $queryBuilder->expr()->lte('UserErgonomics.date', ':datetimelt');
+        }
+        return $queryBuilder->expr()->eq('0', '1');
+    }
 
     /**
      * @param $user
-     * @param $datetime
+     * @param $date1
+     * @param $date2
      * @return array
      */
-    public function findLastByUserAndDate($user, $datetime)
+    public function findLastByUserAndDateInterval($user, $date1, $date2)
     {
         $queryBuilder = $this->createQueryBuilder("UserErgonomics");
 
         $queryBuilder->where($queryBuilder->expr()->andX(
             $this->getExprUser($queryBuilder, $user),
-            $this->getExprDateTimeGt($queryBuilder, $datetime),
+            $this->getExprDateTimeGt($queryBuilder, $date1),
+            $this->getExprDateTimeLt($queryBuilder, $date2),
             $this->getExprNotProcessed($queryBuilder)
         ));
 
         return $queryBuilder->getQuery()->getResult();
     }
 
-
+    /**
+     * Get ergonomic messages by date interval
+     *
+     * @param $user
+     * @param $date1
+     * @param $date2
+     * @return ArrayCollection
+     */
+    public function getByInterval($user, $date1, $date2)
+    {
+        $collection = $this->findLastByUserAndDateInterval($user, $date1, $date2);
+        return new ArrayCollection(count($collection) ? $collection : []);
+    }
 }

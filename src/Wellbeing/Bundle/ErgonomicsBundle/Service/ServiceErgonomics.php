@@ -160,15 +160,15 @@ class ServiceErgonomics extends ContainerAware
         return null;
     }
 
-    //<Neck>
-    //<ll_Neck>80</ll_Neck>
-    //<lu_Neck>100</lu_Neck>
-    //<ref_Neck>8</ref_Neck>
-    //<el_Neck>-11.06</el_Neck>
-    //<eu_Neck>30.22</eu_Neck>
-    //</Neck>
     /**
      * Get settings for neck
+     *    <Neck>
+     *       <ll_Neck>80</ll_Neck>
+     *       <lu_Neck>100</lu_Neck>
+     *       <ref_Neck>8</ref_Neck>
+     *       <el_Neck>-11.06</el_Neck>
+     *       <eu_Neck>30.22</eu_Neck>
+     *    </Neck>
      *
      * @return UserErgonomicsSettings
      */
@@ -179,15 +179,17 @@ class ServiceErgonomics extends ContainerAware
         return $repository->findOneByCode('neck');
     }
 
-    //<UB_forward>
-    //    <ll_UB_forward>90</ll_UB_forward>
-    //    <lu_UB_forward>120</lu_UB_forward>
-    //    <ref_UB_forward>8</ref_UB_forward>
-    //    <el_UB_forward>-11.78</el_UB_forward>
-    //    <eu_UB_forward>3.67</eu_UB_forward>
-    //</UB_forward>
     /**
      * Get settings for upper body forward angle
+     *
+     *     <UB_forward>
+     *       <ll_UB_forward>90</ll_UB_forward>
+     *       <lu_UB_forward>120</lu_UB_forward>
+     *       <ref_UB_forward>8</ref_UB_forward>
+     *       <el_UB_forward>-11.78</el_UB_forward>
+     *       <eu_UB_forward>3.67</eu_UB_forward>
+     *     </UB_forward>
+     *
      * @return mixed
      */
     public function getSettingsBodyUpperForward()
@@ -197,15 +199,17 @@ class ServiceErgonomics extends ContainerAware
         return $repository->findOneByCode('body_upper_forward');
     }
 
-    //<UB_lean>
-    //<ll_UB_lean>85</ll_UB_lean>
-    //<lu_UB_lean>95</lu_UB_lean>
-    //<ref_UB_lean>4</ref_UB_lean>
-    //<el_UB_lean>-8.10</el_UB_lean>
-    //<eu_UB_lean>3.48</eu_UB_lean>
-    //</UB_lean>
     /**
      * Get settings for upper body lean angle
+     *
+     *     <UB_lean>
+     *        <ll_UB_lean>85</ll_UB_lean>
+     *        <lu_UB_lean>95</lu_UB_lean>
+     *        <ref_UB_lean>4</ref_UB_lean>
+     *        <el_UB_lean>-8.10</el_UB_lean>
+     *        <eu_UB_lean>3.48</eu_UB_lean>
+     *     </UB_lean>
+     *
      * @return mixed
      */
     public function getSettingsBodyUpperLean()
@@ -215,15 +219,17 @@ class ServiceErgonomics extends ContainerAware
         return $repository->findOneByCode('body_upper_lean');
     }
 
-    //<LOS>
-    //<ll_LOS>0</ll_LOS>
-    //<lu_LOS>60</lu_LOS>
-    //<ref_LOS>5</ref_LOS>
-    //<el_LOS>0</el_LOS>
-    //<eu_LOS>0</eu_LOS>
-    //</LOS>
     /**
      * Get settings for upper body lean angle
+     *
+     *     <LOS>
+     *        <ll_LOS>0</ll_LOS>
+     *        <lu_LOS>60</lu_LOS>
+     *        <ref_LOS>5</ref_LOS>
+     *        <el_LOS>0</el_LOS>
+     *        <eu_LOS>0</eu_LOS>
+     *     </LOS>
+     *
      * @return mixed
      */
     public function getSettingsBodyUpperRotation()
@@ -277,44 +283,37 @@ class ServiceErgonomics extends ContainerAware
      */
     public function isAngleSafe($average, $deviation, $settings)
     {
-        if (($average < ($settings->getLower() + $settings->getLowerError()))) {
+        if (($average <= ($settings->getLower() + $settings->getLowerError()))) {
             return false;
         }
 
-        if (($average > ($settings->getUpper() + $settings->getUpperError()))) {
+        if (($average >= ($settings->getUpper() + $settings->getUpperError()))) {
             return false;
         }
 
-        if (($deviation < $settings->getRangeOriginal())) {
-            return false;
-        }
+//        if (($deviation < $settings->getRange())) {
+//            return false;
+//        }
 
         return true;
     }
 
 
     /**
+     * Check positions, try to find a
+     * wrong behaviour
      *
-     * @param $user
+     * @param $collection
      * @return bool
      */
-    public function check($user, $interval = 1)
+    public function check($collection)
     {
-        $entityManager = $this->container->get('entity_manager');
-        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics');
-
-        $datetime = $this->container->get('datetime');
-        $date = $datetime->getDateTime('now');
-        $date->modify("-{$interval} min");
-
-        if (!($collection = $repository->findLastByUserAndDate($user, $date))) {
-            return true;
-        }
-
         $countNeck = 0;
         $countBodyUpperForward = 0;
         $countBodyUpperLean = 0;
         $countBodyUpperRotation = 0;
+        $datetime = $this->container->get('datetime');
+        $entityManager = $this->container->get('entity_manager');
 
         foreach ($collection as $element) {
 
@@ -338,15 +337,20 @@ class ServiceErgonomics extends ContainerAware
             $element->setProcessedDate($datetime->getDateTime('now'));
             $entityManager->persist($element);
         }
-        $entityManager->flush();
 
-        $countTotal = count($collection);
-        return !($countNeck == $countTotal
-            or $countBodyUpperForward == $countTotal
-            or $countBodyUpperLean == $countTotal
-            or $countBodyUpperRotation == $countTotal);
+        $total = $collection->count();
 
-        return true;
+        $percentNeck = $countNeck * 100 / $total;
+        $percentBodyUpperForward = $countBodyUpperForward * 100 / $total;
+        $percentBodyUpperLean = $countBodyUpperLean * 100 / $total;
+        $percentBodyUpperRotation = $countBodyUpperRotation * 100 / $total;
+
+        $limit = 70;
+
+        return !($percentNeck >= $limit
+            or $percentBodyUpperForward == $limit
+            or $percentBodyUpperLean == $limit
+            or $percentBodyUpperRotation == $limit);
     }
 
 }

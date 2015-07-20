@@ -8,6 +8,36 @@
                 <target><![CDATA[Ergonomics]]></target>
             </trans-unit>
 
+            <trans-unit id="ergonomics.message_none_title">
+                <source>ergonomics.message_none_title</source>
+                <target><![CDATA[Ihre Position kann nicht gemessen werden]]></target>
+            </trans-unit>
+
+            <trans-unit id="ergonomics.message_none">
+                <source>ergonomics.message_none</source>
+                <target><![CDATA[Der Sensor kann nicht ihre Position erkennen]]></target>
+            </trans-unit>
+
+            <trans-unit id="ergonomics.message_correct_title">
+                <source>ergonomics.message_correct_title</source>
+                <target><![CDATA[Sie haben eine gesunde Position. Sehr gut!]]></target>
+            </trans-unit>
+
+            <trans-unit id="ergonomics.message_correct">
+                <source>ergonomics.message_correct</source>
+                <target><![CDATA[Ihre Position ist correct, es gibt nichts mehr zu sagen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="ergonomics.message_wrong_title">
+                <source>ergonomics.message_wrong_title</source>
+                <target><![CDATA[Achtung! Es ist die Zeit um ihre Position zu ändern!]]></target>
+            </trans-unit>
+
+            <trans-unit id="ergonomics.message_wrong">
+                <source>ergonomics.message_wrong</source>
+                <target><![CDATA[Sie sitzen schon relativ lang in einer Position, die für das Körper nich ganz gesund ist.]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
