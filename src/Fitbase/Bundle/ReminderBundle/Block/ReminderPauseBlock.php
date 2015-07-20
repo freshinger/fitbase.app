@@ -58,40 +58,45 @@ class ReminderPauseBlock extends BaseBlockService implements ContainerAwareInter
         ));
     }
 
-
     /**
      * Draw a block
      * {@inheritdoc}
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        $request = $this->container->get('request');
+        $datetime = $this->container->get('datetime');
+        $translator = $this->container->get('translator');
+        $formFactory = $this->container->get('form.factory');
+        $eventDispatcher = $this->container->get('event_dispatcher');
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+
+        if (!($user = $this->container->get('user')->current())) {
+            throw new \LogicException('User object can not be empty');
+        }
+
         $reminder = new ReminderUser();
-        if (($user = $this->container->get('user')->current())) {
+        if (($reminder = $repositoryReminder->findOneByUser($user))) {
+            if (($unique = $request->get('stoppause'))) {
 
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+                $reminder->setPause(false);
+                $reminder->setPauseStart(null);
 
-            if (($reminder = $repositoryReminder->findOneByUser($user))) {
-                if (($unique = $this->container->get('request')->get('stoppause'))) {
-
-                    $reminder->setPause(false);
-                    $reminder->setPauseStart(null);
-
-                    $event = new ReminderUserEvent($reminder);
-                    $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
-                }
+                $event = new ReminderUserEvent($reminder);
+                $eventDispatcher->dispatch('reminder_update', $event);
             }
         }
 
-        $form = $this->container->get('form.factory')->create(new ReminderUserPauseForm(), $reminder);
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
+        $form = $formFactory->create(new ReminderUserPauseForm($translator), $reminder);
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
             if ($form->isValid()) {
 
-                $reminder->setPauseStart($this->container->get('datetime')->getDateTime('now'));
+                $reminder->setPauseStart($datetime->getDateTime('now'));
 
                 $event = new ReminderUserEvent($reminder);
-                $this->container->get('event_dispatcher')->dispatch('reminder_update', $event);
+                $eventDispatcher->dispatch('reminder_update', $event);
             }
         }
 

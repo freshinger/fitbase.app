@@ -3,6 +3,11 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="user.profile.remove_checkbox">
+                <source>user.profile.remove_checkbox</source>
+                <target><![CDATA[Ich will das fitbase Profil löschen]]></target>
+            </trans-unit>
+
             <trans-unit id="user.questionnaire.further">
                 <source>user.questionnaire.further</source>
                 <target><![CDATA[Weiter]]></target>
