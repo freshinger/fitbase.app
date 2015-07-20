@@ -64,7 +64,7 @@ class RegistrationController extends Controller
         $entity->setFirstName($actioncode->getFirstName());
         $entity->setLastName($actioncode->getLastName());
 
-        $form = $this->createForm(new UserRegistrationForm(), $entity, array(
+        $form = $this->createForm(new UserRegistrationForm($this->get('translator')), $entity, array(
             'action' => $this->generateUrl('actioncode_invite', array('code' => $actioncode->getCode()))
         ));
 
@@ -110,7 +110,7 @@ class RegistrationController extends Controller
 
                     $entity = new UserRegistration();
                     $entity->setActioncode($formActioncode->getData()->getCode());
-                    $form = $this->createForm(new UserRegistrationForm(), $entity);
+                    $form = $this->createForm(new UserRegistrationForm($this->get('translator')), $entity);
                     return $this->render('User/Registration' . ($internal ? 'Internal' : '') . '.html.twig', array(
                         'form' => $form->createView()
                     ));
