@@ -3,6 +3,33 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="user.questionnaire.further">
+                <source>user.questionnaire.further</source>
+                <target><![CDATA[Weiter]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.questionnaire.focus_determine">
+                <source>user.questionnaire.focus_determine</source>
+                <target><![CDATA[Übungsschwerpunkt ermitteln]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.questionnaire.focus_result">
+                <source>user.questionnaire.focus_result</source>
+                <target><![CDATA[Ihr Übungsschwerpunkt]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.questionnaire.focus_determine_info">
+                <source>user.questionnaire.focus_determine_info</source>
+                <target><![CDATA[Hier können Sie den Übungsschwerpunkt für Ihre Rückengesundheit ermitteln.
+                Gemäß Ihrer Antworten schlagen wir Ihnen einen oder mehrere Übungsschwerpunkte vor.
+                Die entsprechenden Häkchen werden dann automatisch neu gesetzt und zeigen
+                Ihnen so stets den aktuellen Übungsschwerpunkt an.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.questionnaire.focus_determine_button">
+                <source>user.questionnaire.focus_determine_button</source>
+                <target><![CDATA[Fragebogen starten]]></target>
+            </trans-unit>
 
             <trans-unit id="user.registration.i_agree_with">
                 <source>user.registration.i_agree_with</source>

@@ -3,6 +3,29 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="exercise.exercise_category_back_focus">
+                <source>exercise.exercise_category_back_focus</source>
+                <target><![CDATA[Übungsschwerpunkt]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_category_back_focus_info">
+                <source>exercise.exercise_category_back_focus_info</source>
+                <target><![CDATA[Wählen Sie hier Ihren Übungsschwerpunkt. Der tägliche Reminder wird Sie künftig zu einer
+                Übungseinheit aus diesem Bereich führen. Wenn Sie mehrere Schwerpunkte festlegen, erhalten
+                Sie abwechselnd Übungen aus diesen Bereichen.]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_category_back_type">
+                <source>exercise.exercise_category_back_type</source>
+                <target><![CDATA[Übungstyp]]></target>
+            </trans-unit>
+
+            <trans-unit id="exercise.exercise_category_back_type_info">
+                <source>exercise.exercise_category_back_type_info</source>
+                <target><![CDATA[Jede Übungseinheit besteht aus drei Übungen der Kategorien “Mobilisation”, “Kräftigung” und “Dehnung”.
+                Sie können diese Zusammenstellung individualisieren, indem Sie folgende Auswahl treffen.]]></target>
+            </trans-unit>
+
             <trans-unit id="exercise.exercise_description_title">
                 <source>exercise.exercise_description_title</source>
                 <target><![CDATA[Übungsbeschreibung]]></target>
