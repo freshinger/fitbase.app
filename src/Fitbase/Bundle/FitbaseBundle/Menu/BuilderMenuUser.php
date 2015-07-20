@@ -35,6 +35,9 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $translator = $this->container->get('translator');
+        $eventDispatcher = $this->container->get('event_dispatcher');
+
         $menu = $factory->createItem('main', array_merge($options, array(
             'childrenAttributes' => array(
                 'class' => 'fitbase-menu flexnav',
@@ -42,26 +45,23 @@ class BuilderMenuUser extends ContainerAware implements BuilderMenuInterface
             ),
         )));
 
-        $menu->addChild('Startseite', array(
+        $menu->addChild($translator->trans('fitbase.dashboard', [], 'FitbaseFitbaseBundle'), [
             'route' => 'dashboard'
-        ));
+        ]);
 
-        $this->container->get('event_dispatcher')
-            ->dispatch('user_menu_main', new UserMenuEvent($menu));
+        $event = new UserMenuEvent($menu);
+        $eventDispatcher->dispatch('fitbase.user_menu', $event);
 
-        $menu->addChild('Infoeinheiten', array(
-            'route' => 'weeklytask_dashboard',
-        ));
-
-        $menu->addChild('Profil', array(
+        $menu->addChild($translator->trans('fitbase.profile', [], 'FitbaseFitbaseBundle'), [
             'route' => 'profile',
-        ));
+        ]);
 
-        $menu->addChild('Abmelden', array(
+        $menu->addChild($translator->trans('fitbase.logout', [], 'FitbaseFitbaseBundle'), [
             'route' => 'page_slug',
-            'routeParameters' => array(
+            'routeParameters' => [
                 'path' => '/logout'
-            )));
+            ]
+        ]);
 
         return $menu;
     }

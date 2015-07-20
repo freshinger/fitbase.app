@@ -67,26 +67,33 @@ class FitbaseRoutingExtension extends RoutingExtension implements ContainerAware
     public function getUrlCompany(Company $company, $name, $parameters = array())
     {
         if (($site = $company->getSite())) {
+
+            if (!strlen($site->getScheme())) {
+                throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
+            }
+
+            if (!strlen($site->getHost())) {
+                throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
+            }
+
+            if (!strlen($site->getRelativePath())) {
+                throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
+            }
+
+            // Base url have to be already defined
+            // if not - console application, override
+            // host, base url and other things
             if (($context = $this->generator->getContext())) {
-                // Base url have to be already defined
-                // if not - console application, override
-                // host, base url and other things
-                if (!strlen($context->getBaseUrl())) {
 
-                    if (!strlen($site->getScheme())) {
-                        throw new \Twig_Error_Runtime("You have to define scheme for Site: '{$site->getName()}'");
-                    }
-
-                    if (!strlen($site->getHost())) {
-                        throw new \Twig_Error_Runtime("You have to define Host for Site: '{$site->getName()}'");
-                    }
-
-                    if (!strlen($site->getRelativePath())) {
-                        throw new \Twig_Error_Runtime("You have to define Relative Path for Site: '{$site->getName()}'");
-                    }
-
+                if ($context->getHost() != $site->getHost()) {
                     $context->setHost($site->getHost());
+                }
+
+                if ($context->getScheme() != $site->getScheme()) {
                     $context->setScheme($site->getScheme());
+                }
+
+                if ($context->getBaseUrl() != $site->getRelativePath()) {
                     $context->setBaseUrl($site->getRelativePath());
                 }
             }

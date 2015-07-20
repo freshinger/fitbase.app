@@ -31,7 +31,7 @@ class TaskBreadcrumbBlockService extends FocusBreadcrumbBlockService
         $menu = parent::getRootMenu($blockContext);
 
         $entityManager = $this->container->get('entity_manager');
-        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
+        $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserTask');
 
         $request = $this->container->get('request');
         $id = $request->get('unique');

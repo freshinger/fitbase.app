@@ -18,11 +18,25 @@
                 <target><![CDATA[404]]></target>
             </trans-unit>
 
+            <trans-unit id="fitbase.dashboard">
+                <source>fitbase.dashboard</source>
+                <target><![CDATA[Startseite]]></target>
+            </trans-unit>
+
             <trans-unit id="exception.profile">
                 <source>exception.profile</source>
                 <target><![CDATA[Profil]]></target>
             </trans-unit>
 
+            <trans-unit id="fitbase.profile">
+                <source>fitbase.profile</source>
+                <target><![CDATA[Profil]]></target>
+            </trans-unit>
+
+            <trans-unit id="fitbase.logout">
+                <source>fitbase.logout</source>
+                <target><![CDATA[Abmelden]]></target>
+            </trans-unit>
 
             <trans-unit id="exception.profile_change_focus">
                 <source>exception.profile_change_focus</source>

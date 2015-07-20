@@ -62,7 +62,7 @@ class ExerciseUserReminderAdmin extends Admin implements ContainerAwareInterface
             ->add('errorMessage')
             ->add('_action', 'actions', array(
                 'actions' => array(
-                    'show' => array(),
+                    'show' => array('template' => 'FitbaseExerciseBundle:Admin:ExerciseUserReminder/Show.html.twig'),
                     'edit' => array(),
                     'delete' => array(),
                 )

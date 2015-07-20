@@ -98,7 +98,6 @@ class ExerciseUserReminderSubscriber implements EventSubscriberInterface
     protected function getFocusCategories($user)
     {
         // TODO: refactor this crazy category chooser
-
         if ($user->getFocus() != null) {
             return (new ArrayCollection($this->chooserCategory->choose($user->getFocus())))
                 ->filter(function ($element) {

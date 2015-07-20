@@ -8,6 +8,8 @@ use Fitbase\Bundle\WeeklytaskBundle\Entity\Weeklytask;
 use Fitbase\Bundle\WeeklytaskBundle\Entity\WeeklytaskUser;
 use Sonata\AdminBundle\Controller\CoreController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class AdminController extends CoreController
@@ -86,34 +88,31 @@ class AdminController extends CoreController
      * @param null $unique
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function emailExerciseUserAction(Request $request, $unique = null)
+    public function emailExerciseUserReminderAction(Request $request, $unique = null)
     {
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-
-            $entityManager = $this->get('entity_manager');
-            $repositoryExerciseUser = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUser');
-
-            if (($exerciseUser = $repositoryExerciseUser->find($unique))) {
-
-                $category = null;
-                if (($focus = $exerciseUser->getUser()->getFocus())) {
-                    if (($categoryFocus = $focus->getFirstCategory())) {
-                        $categoryFocus = $categoryFocus->getCategory();
-                    }
-                }
-
-                $categories = (new ArrayCollection($this->get('chooser_category')->choose($focus)))
-                    ->filter(function ($element) {
-                        return !$element->getParent() ? true : false;
-                    });
-
-                return $this->render('FitbaseEmailBundle:Admin:EmailExercise.html.twig', array(
-                    'user' => $exerciseUser->getUser(),
-                    'categoryFocus' => $categoryFocus,
-                    'categories' => $categories,
-                    'exerciseUser' => $exerciseUser,
-                ));
-            }
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedHttpException('Access denied for non admins');
         }
+
+        $entityManager = $this->get('entity_manager');
+        $repository = $entityManager->getRepository('Fitbase\Bundle\ExerciseBundle\Entity\ExerciseUserReminder');
+
+        if (!($reminder = $repository->find($unique))) {
+            throw new \LogicException('ExerciseUserReminder object not found');
+        }
+
+        if (!($user = $reminder->getUser())) {
+            throw new \LogicException('ExerciseUserReminder object not found');
+        }
+
+        return new Response(
+            $this->get('fitbase.email_builder')
+                ->getExerciseUserReminderEmail($user, $user->getCompany(),
+                    $user->getFocus()->getFirstCategory()->getCategory(),
+                    (new ArrayCollection($this->get('chooser_category')->choose($user->getFocus())))
+                        ->filter(function ($element) {
+                            return !$element->getParent() ? true : false;
+                        })
+                ));
     }
 }
