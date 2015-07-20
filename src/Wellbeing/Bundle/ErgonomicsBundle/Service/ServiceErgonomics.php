@@ -2,6 +2,7 @@
 namespace Wellbeing\Bundle\ErgonomicsBundle\Service;
 
 use Application\Sonata\UserBundle\Entity\User;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Wellbeing\Bundle\ApiBundle\Model\UserState;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsSettings;
@@ -10,6 +11,28 @@ use Wellbeing\Bundle\ErgonomicsBundle\Form\DataTransformer\UserStateDataTransfor
 
 class ServiceErgonomics extends ContainerAware
 {
+    protected $datetime;
+    protected $entityManager;
+    protected $eventDispatcher;
+
+    public function __construct($entityManager, $eventDispatcher, $datetime)
+    {
+        $this->datetime = $datetime;
+        $this->entityManager = $entityManager;
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    /**
+     * Percent count of false positions
+     * for some count of minutes
+     *
+     * @return int
+     */
+    protected function getThresholdPercent()
+    {
+        return 55;
+    }
+
     /**
      * Store user state for Ergonomics
      *
@@ -50,45 +73,6 @@ class ServiceErgonomics extends ContainerAware
     }
 
     /**
-     * Get average value
-     *
-     * @param User $user
-     * @return null
-     */
-    public function getAverageBodyUpperForward(User $user)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperForward');
-        return $repository->findAverage($user);
-    }
-
-    /**
-     * Get average value
-     *
-     * @param User $user
-     * @return null
-     */
-    public function getAverageBodyUpperLean(User $user)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperLean');
-        return $repository->findAverage($user);
-    }
-
-    /**
-     * Get average value
-     *
-     * @param User $user
-     * @return null
-     */
-    public function getAverageBodyUpperRotation(User $user)
-    {
-        $entityManager = $this->container->get('entity_manager');
-        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperRotation');
-        return $repository->findAverage($user);
-    }
-
-    /**
      * Calculate standard deviation for neck angle
      * @param User $user
      * @return float|null
@@ -107,6 +91,19 @@ class ServiceErgonomics extends ContainerAware
     }
 
     /**
+     * Get average value
+     *
+     * @param User $user
+     * @return null
+     */
+    public function getAverageBodyUpperForward(User $user)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperForward');
+        return $repository->findAverage($user);
+    }
+
+    /**
      * Calculate standard deviation for neck angle
      * @param User $user
      * @return float|null
@@ -122,6 +119,19 @@ class ServiceErgonomics extends ContainerAware
             }
         }
         return null;
+    }
+
+    /**
+     * Get average value
+     *
+     * @param User $user
+     * @return null
+     */
+    public function getAverageBodyUpperLean(User $user)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperLean');
+        return $repository->findAverage($user);
     }
 
     /**
@@ -158,6 +168,19 @@ class ServiceErgonomics extends ContainerAware
             }
         }
         return null;
+    }
+
+    /**
+     * Get average value
+     *
+     * @param User $user
+     * @return null
+     */
+    public function getAverageBodyUpperRotation(User $user)
+    {
+        $entityManager = $this->container->get('entity_manager');
+        $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomicsBodyUpperRotation');
+        return $repository->findAverage($user);
     }
 
     /**
@@ -291,10 +314,6 @@ class ServiceErgonomics extends ContainerAware
             return false;
         }
 
-//        if (($deviation < $settings->getRange())) {
-//            return false;
-//        }
-
         return true;
     }
 
@@ -306,14 +325,14 @@ class ServiceErgonomics extends ContainerAware
      * @param $collection
      * @return bool
      */
-    public function check($collection)
+    public function check(Collection $collection)
     {
         $countNeck = 0;
         $countBodyUpperForward = 0;
         $countBodyUpperLean = 0;
         $countBodyUpperRotation = 0;
-        $datetime = $this->container->get('datetime');
-        $entityManager = $this->container->get('entity_manager');
+        $datetime = $this->datetime;
+        $entityManager = $this->entityManager;
 
         foreach ($collection as $element) {
 
@@ -345,12 +364,12 @@ class ServiceErgonomics extends ContainerAware
         $percentBodyUpperLean = $countBodyUpperLean * 100 / $total;
         $percentBodyUpperRotation = $countBodyUpperRotation * 100 / $total;
 
-        $limit = 70;
+        $threshold = $this->getThresholdPercent();
 
-        return !($percentNeck >= $limit
-            or $percentBodyUpperForward == $limit
-            or $percentBodyUpperLean == $limit
-            or $percentBodyUpperRotation == $limit);
+        return !($percentNeck >= $threshold
+            or $percentBodyUpperForward == $threshold
+            or $percentBodyUpperLean == $threshold
+            or $percentBodyUpperRotation == $threshold);
     }
 
 }

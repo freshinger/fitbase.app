@@ -39,13 +39,23 @@ class UserErgonomicsMessageSubscriber extends ContainerAware implements EventSub
         ];
     }
 
+
+    /**
+     * Get measure interval
+     *
+     * @return int
+     */
+    protected function getMeasureIntervalInMinutes()
+    {
+        return 3;
+    }
+
     /**
      *
      * @param UserStateErgonomicsEvent $event
      */
     public function onUserStateErgonomicsCreate(UserStateErgonomicsEvent $event)
     {
-        $interval = 2;
         $datetime = $this->container->get('datetime');
         $entityManager = $this->container->get('entity_manager');
         $serviceErgonomics = $this->container->get('wellbeing.ergonomics');
@@ -59,7 +69,7 @@ class UserErgonomicsMessageSubscriber extends ContainerAware implements EventSub
         }
 
         $dateFirst = $datetime->getDateTime('now');
-        $dateFirst->modify("-{$interval} min");
+        $dateFirst->modify("-{$this->getMeasureIntervalInMinutes()} min");
         $dateLast = $datetime->getDateTime('now');
 
         $repository = $entityManager->getRepository('Wellbeing\Bundle\ErgonomicsBundle\Entity\UserErgonomics');
@@ -74,7 +84,7 @@ class UserErgonomicsMessageSubscriber extends ContainerAware implements EventSub
             );
             // Check interval between first and last positions
             // to verify that required count of positions is full
-            if ($intervalReal == $interval) {
+            if ($intervalReal == $this->getMeasureIntervalInMinutes()) {
 
                 $entity = (new UserErgonomicsMessage())
                     ->setUser($user)
