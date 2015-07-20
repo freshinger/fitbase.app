@@ -1,7 +1,7 @@
 {% extends "content.html.twig" %}
 
 {% block title %}
-    <h1>{{ 'Übungsschwerpunkt ermitteln'|trans({}, 'FitbaseWeeklytaskBundle') }}</h1>
+    <h1>{{ 'user.questionnaire.focus_determine'|trans({}, 'FitbaseUserBundle') }}</h1>
 {% endblock title %}
 
 {% block breadcrumbs %}
@@ -13,7 +13,7 @@
     <!-- Content Text-->
     <div class="panel-box quetionnaire">
         <div class="titles">
-            <h4>{{ 'Übungsschwerpunkt ermitteln'|trans({}, 'FitbaseWeeklytaskBundle') }}</h4>
+            <h4>{{ 'user.questionnaire.focus_determine'|trans({}, 'FitbaseUserBundle') }}</h4>
         </div>
 
         <div class="row">
@@ -53,7 +53,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>{{ 'Ihr Übungsschwerpunkt'|trans({}, 'FitbaseWeeklytaskBundle') }}</h3>
+                            <h3>{{ 'user.questionnaire.focus_result'|trans({}, 'FitbaseUserBundle') }}</h3>
 
                             <p>{{ description|raw }}</p>
                         </div>
@@ -65,7 +65,7 @@
                             <p>
                                 <a href="{{ path('category', {'slug': 'ruecken'}) }}"
                                    class="btn btn-primary">
-                                    {{ 'Weiter'|trans({}, 'FitbaseUserBundle') }}
+                                    {{ 'user.questionnaire.further'|trans({}, 'FitbaseUserBundle') }}
                                 </a>
                             </p>
                         </div>
@@ -78,7 +78,7 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-10">
-                            <h3>{{ 'Ihr Übungsschwerpunkt'|trans({}, 'FitbaseWeeklytaskBundle') }}</h3>
+                            <h3>{{ 'user.questionnaire.focus_result'|trans({}, 'FitbaseUserBundle') }}</h3>
 
                             <p>{{ description|raw }}</p>
 
@@ -116,7 +116,7 @@
                         <p>
                             <a href="{{ path('category', {'slug': 'ruecken'}) }}"
                                class="btn btn-primary">
-                                {{ 'Weiter'|trans({}, 'FitbaseUserBundle') }}
+                                {{ 'user.questionnaire.further'|trans({}, 'FitbaseUserBundle') }}
                             </a>
                         </p>
                     </div>

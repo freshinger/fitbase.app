@@ -61,6 +61,11 @@
                 <target><![CDATA[Charakter Auswahl]]></target>
             </trans-unit>
 
+            <trans-unit id="gamification.avatar_change_button">
+                <source>gamification.avatar_change_button</source>
+                <target><![CDATA[Charakter wechseln]]></target>
+            </trans-unit>
+
             <trans-unit id="gamification.avatar_change_info">
                 <source>gamification.avatar_change_info</source>
                 <target><![CDATA[Hallo! Wählen Sie nun Ihren Charakter für die Fitbase.]]></target>
