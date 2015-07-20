@@ -9,6 +9,39 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class UserRegistrationForm extends AbstractType
 {
     /**
+     * Translator object
+     *
+     * @var
+     */
+    protected $translator;
+
+    /**
+     * Class constructor
+     *
+     * @param $translator
+     */
+    public function __construct($translator = null)
+    {
+        $this->translator = $translator;
+    }
+
+
+    /**
+     * Translate code if translator object exists
+     *
+     * @param $code
+     * @return mixed
+     */
+    protected function _($code)
+    {
+        if (is_object($this->translator)) {
+            return $this->translator->trans($code, [], 'FitbaseUserBundle');
+        }
+
+        return $code;
+    }
+
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -17,21 +50,21 @@ class UserRegistrationForm extends AbstractType
         $builder
             ->add('actioncode', 'hidden')
             ->add('first_name', null, array(
-                'label' => 'Vorname',
+                'label' => $this->_('user.registration.first_name'),
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('last_name', null, array(
-                'label' => 'Nachname',
+                'label' => $this->_('user.registration.last_name'),
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
                 )
             ))
             ->add('email', null, array(
-                'label' => 'Email',
+                'label' => $this->_('user.registration.email'),
                 'required' => true,
                 'attr' => array(
                     'class' => 'form-control'
@@ -45,7 +78,7 @@ class UserRegistrationForm extends AbstractType
                 )
             ))
             ->add('save', 'submit', array(
-                'label' => 'Anmelden',
+                'label' => $this->_('user.registration.button'),
                 'attr' => array(
                     'class' => 'btn btn-primary',
                 ),

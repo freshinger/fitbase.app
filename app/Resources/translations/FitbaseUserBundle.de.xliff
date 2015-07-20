@@ -101,6 +101,26 @@
                 <target><![CDATA[Fragebogen starten]]></target>
             </trans-unit>
 
+            <trans-unit id="user.registration.first_name">
+                <source>user.registration.first_name</source>
+                <target><![CDATA[Vorname!]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.last_name">
+                <source>user.registration.last_name</source>
+                <target><![CDATA[Nachname]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.email">
+                <source>user.registration.email</source>
+                <target><![CDATA[Email]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.registration.button">
+                <source>user.registration.button</source>
+                <target><![CDATA[Anmelden]]></target>
+            </trans-unit>
+
             <trans-unit id="user.registration.i_agree_with">
                 <source>user.registration.i_agree_with</source>
                 <target><![CDATA[Ich stimme den]]></target>
