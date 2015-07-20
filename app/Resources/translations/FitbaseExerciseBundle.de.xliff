@@ -8,6 +8,12 @@
                 <target><![CDATA[Übungsbeschreibung]]></target>
             </trans-unit>
 
+            <trans-unit id="exercise.exercise_choice">
+                <source>exercise.exercise_choice</source>
+                <target><![CDATA[Lieblingsübungen]]></target>
+            </trans-unit>
+
+
             <trans-unit id="exercise.exercise_choice_description_title">
                 <source>exercise.exercise_choice_description_title</source>
                 <target><![CDATA[Meine Lieblingsübungen]]></target>
