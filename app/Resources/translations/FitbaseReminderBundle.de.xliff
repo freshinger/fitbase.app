@@ -3,9 +3,52 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+            <trans-unit id="reminder.weeklytask.day">
+                <source>reminder.weeklytask.day</source>
+                <target><![CDATA[Tag]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.day_1">
+                <source>reminder.weeklytask.day_1</source>
+                <target><![CDATA[Montag]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.day_2">
+                <source>reminder.weeklytask.day_2</source>
+                <target><![CDATA[Dienstag]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.day_3">
+                <source>reminder.weeklytask.day_3</source>
+                <target><![CDATA[Mittwoch]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.day_4">
+                <source>reminder.weeklytask.day_4</source>
+                <target><![CDATA[Donnerstag]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.day_5">
+                <source>reminder.weeklytask.day_5</source>
+                <target><![CDATA[Freitag]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.hour">
+                <source>reminder.weeklytask.hour</source>
+                <target><![CDATA[Stunde]]></target>
+            </trans-unit>
+
+            <trans-unit id="reminder.weeklytask.save">
+                <source>reminder.weeklytask.save</source>
+                <target><![CDATA[Speichern]]></target>
+            </trans-unit>
+
+
+
+
             <trans-unit id="reminder.profile.pause_question">
                 <source>reminder.profile.pause_question</source>
-                <target><![CDATA[Wie lange möchten Sie fitbase pausieren?!]]></target>
+                <target><![CDATA[Wie lange möchten Sie fitbase pausieren?]]></target>
             </trans-unit>
 
             <trans-unit id="reminder.profile.pause_make_a_choice">

@@ -58,16 +58,20 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
         $user = null;
         $reminder = null;
         $entityManager = $this->container->get('entity_manager');
+        $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+        $formFactory = $this->container->get('form.factory');
+        $translator = $this->container->get('translator');
+        $request = $this->container->get('request');
+        $eventDispatcher = $this->container->get('event_dispatcher');
+
         if (($user = $this->container->get('user')->current())) {
-            $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
             $reminder = $repositoryReminder->findOneByUser($user);
         }
 
-        $form = $this->container->get('form.factory')->create(
-            new ReminderUserItemForm('weeklytask_reminder_item'), new ReminderUserItem());
+        $form = $formFactory->create(new ReminderUserItemForm('weeklytask_reminder_item', $translator), new ReminderUserItem());
 
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
             if ($form->isValid()) {
                 if (($entity = $form->getData())) {
 
@@ -76,20 +80,20 @@ class ReminderWeeklytaskBlock extends BaseBlockService implements ContainerAware
                     $entity->setReminder($reminder);
 
                     $event = new ReminderUserItemEvent($form->getData());
-                    $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
+                    $eventDispatcher->dispatch('reminder_item_create', $event);
                 }
             }
         }
 
-        if (($unique = $this->container->get('request')->get('uniqueitem'))) {
+        if (($unique = $request->get('uniqueitem'))) {
             $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
             if (($item = $repositoryReminderItem->findOneByUserAndId($user, $unique))) {
 
                 $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_remove', $event);
+                $eventDispatcher->dispatch('reminder_item_remove', $event);
 
                 $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_removed', $event);
+                $eventDispatcher->dispatch('reminder_item_removed', $event);
             }
         }
 
