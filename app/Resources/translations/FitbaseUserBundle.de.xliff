@@ -129,6 +129,11 @@
                 <target><![CDATA[Fokus ändern]]></target>
             </trans-unit>
 
+            <trans-unit id="user.profile.focus_change">
+                <source>user.profile.focus_change</source>
+                <target><![CDATA[Fokus ändern]]></target>
+            </trans-unit>
+
             <trans-unit id="user.wizard_focus_settings">
                 <source>user.wizard_focus_settings</source>
                 <target><![CDATA[Fokus einstellungen]]></target>
@@ -140,6 +145,22 @@
                 linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
                 Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.]]></target>
             </trans-unit>
+
+
+            <trans-unit id="user.profile.focus_change_info">
+                <source>user.profile.focus_change_info</source>
+                <target><![CDATA[Sie können die Reihenfolge Ihres persönlichen Online-Coachings verändern indem Sie einen Bereich mit der
+                linken Maustaste gedrückt halten und verschieben. Wenn Sie anschließend auf den Button „Speichern und
+                Coaching aktivieren“ klicken, startet der auf Platz 1 genannte Bereich.]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.remove_info">
+                <source>user.profile.remove_info</source>
+                <target><![CDATA[Sie können Ihr fitbase Profil löschen, indem Sie unten auf den Button "Profil löschen" klicken.
+                Innerhalb von 2 Wochen haben Sie dann noch die Möglichkeit, Ihr Profil über die Startseite mit Ihrem Login erneut zu aktivieren.
+                Nach Ablauf der 2 Wochen wird der Lösch-Auftrag durchgeführt. Damit einhergehend werden alle Daten unwiderruflich gelöscht.]]></target>
+            </trans-unit>
+
 
             <trans-unit id="user.wizard_focus_exercise_priority">
                 <source>user.wizard_focus_exercise_priority</source>
