@@ -3,6 +3,52 @@
     <file source-language="en" datatype="plaintext" original="">
         <body>
 
+
+            <trans-unit id="user.profile.details_title">
+                <source>user.profile.details_title</source>
+                <target><![CDATA[Titel (optional)]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_salutation">
+                <source>user.profile.details_salutation</source>
+                <target><![CDATA[Anrede]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_salutation_mr">
+                <source>user.profile.details_salutation_mr</source>
+                <target><![CDATA[Herr]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_salutation_ms">
+                <source>user.profile.details_salutation_ms</source>
+                <target><![CDATA[Frau]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_salutation_make_a_choice">
+                <source>user.profile.details_salutation_make_a_choice</source>
+                <target><![CDATA[Bitte wählen]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_first_name">
+                <source>user.profile.details_first_name</source>
+                <target><![CDATA[Vorname]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_last_name">
+                <source>user.profile.details_last_name</source>
+                <target><![CDATA[Nachname]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_email">
+                <source>user.profile.details_email</source>
+                <target><![CDATA[E-Mail-Adresse]]></target>
+            </trans-unit>
+
+            <trans-unit id="user.profile.details_save">
+                <source>user.profile.details_save</source>
+                <target><![CDATA[Speichern]]></target>
+            </trans-unit>
+
             <trans-unit id="user.profile.remove_checkbox">
                 <source>user.profile.remove_checkbox</source>
                 <target><![CDATA[Ich will das fitbase Profil löschen]]></target>
