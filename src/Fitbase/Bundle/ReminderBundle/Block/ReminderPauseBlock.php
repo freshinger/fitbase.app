@@ -9,24 +9,13 @@ namespace Fitbase\Bundle\ReminderBundle\Block;
 
 
 use Fitbase\Bundle\ReminderBundle\Entity\ReminderUser;
-use Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem;
 use Fitbase\Bundle\ReminderBundle\Event\ReminderUserEvent;
-use Fitbase\Bundle\ReminderBundle\Event\ReminderUserItemEvent;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemForm;
-use Fitbase\Bundle\ReminderBundle\Form\ReminderUserItemWeeklytaskForm;
 use Fitbase\Bundle\ReminderBundle\Form\ReminderUserPauseForm;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Model\BlockInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -71,8 +60,9 @@ class ReminderPauseBlock extends BaseBlockService implements ContainerAwareInter
         $eventDispatcher = $this->container->get('event_dispatcher');
         $entityManager = $this->container->get('entity_manager');
         $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+        $serviceUser = $this->container->get('user');
 
-        if (!($user = $this->container->get('user')->current())) {
+        if (!($user = $serviceUser->current())) {
             throw new \LogicException('User object can not be empty');
         }
 

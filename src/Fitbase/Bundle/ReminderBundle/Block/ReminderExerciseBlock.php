@@ -38,18 +38,6 @@ class ReminderExerciseBlock extends BaseBlockService implements ContainerAwareIn
     }
 
     /**
-     * Set defaults
-     * @param OptionsResolverInterface $resolver
-     */
-    public function setDefaultSettings(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(array(
-            'template' => 'Reminder/Block/ReminderExercise.html.twig',
-        ));
-    }
-
-
-    /**
      * Draw a block
      * {@inheritdoc}
      */
@@ -57,17 +45,21 @@ class ReminderExerciseBlock extends BaseBlockService implements ContainerAwareIn
     {
         $user = null;
         $reminder = null;
+        $request = $this->container->get('request');
+        $translator = $this->container->get('translator');
+        $formFactory = $this->container->get('form.factory');
+        $eventDispatcher = $this->container->get('event_dispatcher');
+        $entityManager = $this->container->get('entity_manager');
+        $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
+
         if (($user = $this->container->get('user')->current())) {
-            $entityManager = $this->container->get('entity_manager');
-            $repositoryReminder = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUser');
             $reminder = $repositoryReminder->findOneByUser($user);
         }
 
-        $form = $this->container->get('form.factory')->create(
-            new ReminderUserItemForm('exercise_reminder_item'), new ReminderUserItem());
+        $form = $formFactory->create(new ReminderUserItemForm('exercise_reminder_item', $translator), new ReminderUserItem());
 
-        if ($this->container->get('request')->get($form->getName())) {
-            $form->handleRequest($this->container->get('request'));
+        if ($request->get($form->getName())) {
+            $form->handleRequest($request);
             if ($form->isValid()) {
                 if (($entity = $form->getData())) {
 
@@ -76,20 +68,20 @@ class ReminderExerciseBlock extends BaseBlockService implements ContainerAwareIn
                     $entity->setReminder($reminder);
 
                     $event = new ReminderUserItemEvent($form->getData());
-                    $this->container->get('event_dispatcher')->dispatch('reminder_item_create', $event);
+                    $eventDispatcher->dispatch('reminder_item_create', $event);
                 }
             }
         }
 
-        if (($unique = $this->container->get('request')->get('uniqueitem'))) {
+        if (($unique = $request->get('uniqueitem'))) {
             $repositoryReminderItem = $entityManager->getRepository('Fitbase\Bundle\ReminderBundle\Entity\ReminderUserItem');
             if (($item = $repositoryReminderItem->findOneByUserAndId($user, $unique))) {
 
                 $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_remove', $event);
+                $eventDispatcher->dispatch('reminder_item_remove', $event);
 
                 $event = new ReminderUserItemEvent($item);
-                $this->container->get('event_dispatcher')->dispatch('reminder_item_removed', $event);
+                $eventDispatcher->dispatch('reminder_item_removed', $event);
             }
         }
 
@@ -100,6 +92,17 @@ class ReminderExerciseBlock extends BaseBlockService implements ContainerAwareIn
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'form' => $form->createView(),
             'collection' => $collection,
+        ));
+    }
+
+    /**
+     * Set defaults
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultSettings(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'template' => 'Reminder/Block/ReminderExercise.html.twig',
         ));
     }
 

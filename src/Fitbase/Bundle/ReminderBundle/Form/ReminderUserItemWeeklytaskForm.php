@@ -15,6 +15,39 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ReminderUserItemWeeklytaskForm extends AbstractType
 {
+    /**
+     * Translator object
+     *
+     * @var
+     */
+    protected $translator;
+
+    /**
+     * Class constructor
+     *
+     * @param $translator
+     */
+    public function __construct($translator = null)
+    {
+        $this->translator = $translator;
+    }
+
+
+    /**
+     * Translate code if translator object exists
+     *
+     * @param $code
+     * @return mixed
+     */
+    protected function _($code)
+    {
+        if (is_object($this->translator)) {
+            return $this->translator->trans($code, [], 'FitbaseReminderBundle');
+        }
+
+        return $code;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -23,11 +56,11 @@ class ReminderUserItemWeeklytaskForm extends AbstractType
                 'label' => 'Tag',
                 'empty_value' => false,
                 'choices' => array(
-                    '1' => 'Montag',
-                    '2' => 'Dienstag',
-                    '3' => 'Mittwoch',
-                    '4' => 'Donnerstag',
-                    '5' => 'Freitag',
+                    '1' => $this->_('reminder.weeklytask.day_1'),
+                    '2' => $this->_('reminder.weeklytask.day_2'),
+                    '3' => $this->_('reminder.weeklytask.day_3'),
+                    '4' => $this->_('reminder.weeklytask.day_4'),
+                    '5' => $this->_('reminder.weeklytask.day_5'),
                 ),
                 'attr' => array(
                     'class' => ' form-control'
@@ -36,10 +69,10 @@ class ReminderUserItemWeeklytaskForm extends AbstractType
             ->add('time', 'time', array(
                 'empty_value' => array('hour' => 'hh', 'minute' => 'mm'),
                 'required' => false,
-                'label' => 'Stunde',
+                'label' => $this->_('reminder.weeklytask.hour'),
             ))
             ->add('save', 'submit', array(
-                'label' => 'Speichern',
+                'label' => $this->_('reminder.weeklytask.save'),
                 'attr' => array(
                     'class' => 'btn btn-primary'
                 )
