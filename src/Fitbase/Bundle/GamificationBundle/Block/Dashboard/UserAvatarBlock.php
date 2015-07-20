@@ -51,6 +51,8 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
+        $translator = $this->container->get('translator');
+        $formFactory = $this->container->get('form.factory');
         $user = $this->container->get('user')->current();
 
         $managerEntity = $this->container->get('entity_manager');
@@ -61,7 +63,7 @@ class UserAvatarBlock extends BaseBlockService implements ContainerAwareInterfac
         $gamification = $repositoryGamificationUser->findOneByUser($user);
 
 
-        $form = $this->container->get('form.factory')->create(new GamificationUserUpdateForm(), $gamification);
+        $form = $formFactory->create(new GamificationUserUpdateForm($translator), $gamification);
         return $this->renderPrivateResponse($blockContext->getSetting('template'), array(
             'activity' => $activity,
             'gamification' => $gamification,

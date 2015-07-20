@@ -10,13 +10,15 @@ namespace Fitbase\Bundle\FitbaseBundle\Block;
 
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 
-abstract class SecureBlockServiceAbstract extends BaseBlockService
+abstract class SecureBlockServiceAbstract extends BaseBlockService implements ContainerAwareInterface
 {
     protected $roles;
     protected $securityContext;
@@ -27,6 +29,25 @@ abstract class SecureBlockServiceAbstract extends BaseBlockService
 
         $this->roles = $roles;
         $this->securityContext = $securityContext;
+    }
+
+    /**
+     * Service container object
+     *
+     * @var
+     */
+    protected $container;
+
+    /**
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 
     /**

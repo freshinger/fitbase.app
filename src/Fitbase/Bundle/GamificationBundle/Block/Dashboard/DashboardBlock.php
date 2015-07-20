@@ -93,28 +93,29 @@ class DashboardBlock extends SecureBlockServiceAbstract
      */
     protected function renderAvatarForm(BlockContextInterface $blockContext, Response $response = null)
     {
-        if (($user = $this->serviceUser->current())) {
-
-            $gamificationUser = new GamificationUser();
-            $gamificationUser->setUser($user);
-
-            $form = $this->formFactory->create(new GamificationUserForm(), $gamificationUser);
-            if ($this->request->get($form->getName())) {
-                $form->handleRequest($this->request);
-                if ($form->isValid()) {
-
-                    $eventGamificationUser = new GamificationUserEvent($gamificationUser);
-                    $this->eventDispatcher->dispatch('gamification_user_create', $eventGamificationUser);
-
-                    return $this->execute($blockContext, $response);
-                }
-            }
-
-            return $this->renderPrivateResponse('Gamification/Dashboard/Avatar.html.twig', array(
-                'form' => $form->createView(),
-                'user' => $this->serviceUser->current()
-            ));
+        if (!($user = $this->serviceUser->current())) {
+            throw new \LogicException('User object can not be empty');
         }
+
+        $gamificationUser = new GamificationUser();
+        $gamificationUser->setUser($user);
+
+        $form = $this->formFactory->create(new GamificationUserForm(), $gamificationUser);
+        if ($this->request->get($form->getName())) {
+            $form->handleRequest($this->request);
+            if ($form->isValid()) {
+
+                $eventGamificationUser = new GamificationUserEvent($gamificationUser);
+                $this->eventDispatcher->dispatch('gamification_user_create', $eventGamificationUser);
+
+                return $this->execute($blockContext, $response);
+            }
+        }
+
+        return $this->renderPrivateResponse('Gamification/Dashboard/Avatar.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $this->serviceUser->current()
+        ));
     }
 
 

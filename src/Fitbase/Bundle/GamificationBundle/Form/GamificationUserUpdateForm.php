@@ -6,11 +6,41 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
-class GamificationUserUpdateForm extends GamificationDialogQuestionAbstractForm
+class GamificationUserUpdateForm extends AbstractType
 {
+    /**
+     * Translator object
+     *
+     * @var
+     */
+    protected $translator;
+
+    /**
+     * Class constructor
+     *
+     * @param $translator
+     */
+    public function __construct($translator = null)
+    {
+        $this->translator = $translator;
+    }
+
+
+    /**
+     * Translate code if translator object exists
+     *
+     * @param $code
+     * @return mixed
+     */
+    protected function _($code)
+    {
+        if (is_object($this->translator)) {
+            return $this->translator->trans($code, [], 'FitbaseGamificationBundle');
+        }
+
+        return $code;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -18,7 +48,7 @@ class GamificationUserUpdateForm extends GamificationDialogQuestionAbstractForm
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('save', 'submit', array(
-            'label' => 'Charakter wechseln',
+            'label' => $this->_('gamification.avatar_change_button'),
             'attr' => array(
                 'class' => 'btn btn-default btn-block',
             ),
@@ -40,6 +70,6 @@ class GamificationUserUpdateForm extends GamificationDialogQuestionAbstractForm
      */
     public function getName()
     {
-        return 'gamification_user_update';
+        return 'gamification_change_avatar';
     }
 }
