@@ -11,6 +11,7 @@ sonata_seo:
                 keywords:             "Fitbase Gesundheit Gesundheitsförderung"
                 description:          "Fitbase.de | Betriebliche Gesundheitsförderung 2.0"
                 robots:               index, follow
+                viewport:             "width=device-width, user-scalable=yes"
 
             property:
                 # Facebook application settings
