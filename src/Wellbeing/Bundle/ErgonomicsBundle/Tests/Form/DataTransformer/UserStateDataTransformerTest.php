@@ -17,10 +17,13 @@ use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandRight;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHeadRotation;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsLeanAmount;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderLeft;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderRight;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder;
 use Wellbeing\Bundle\ErgonomicsBundle\Form\DataTransformer\UserStateDataTransformer;
 
 class UserStateDataTransformerTest extends FitbaseTestAbstract
@@ -38,6 +41,7 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
             ->setTimestamp(time())
             ->setTicketType('T1')
             ->setHead('0.23;2.0;1.213')
+            ->setNeck('0.23;2.0;1.213')
             ->setShoulderCenter('0.53;1.12;0.713')
             ->setShoulderLeft('1.53;0.712;1.113')
             ->setShoulderRight('1.23;2.12;0.213')
@@ -46,6 +50,8 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
             ->setHandLeft('1.23;2.12;0.213')
             ->setHandRight('1.23;2.12;0.213')
             ->setSpineMid('1.23;2.12;0.213')
+            ->setSpineBase('1.23;2.12;0.213')
+            ->setSpineShoulder('1.23;2.12;0.213')
             ->setLeanAmount('12;20')
             ->setHeadRotation('1.23;2.12;0.213');
     }
@@ -60,6 +66,7 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
         return (new UserStateErgonomics())
             ->setDate((new \DateTime('now'))->getTimestamp())
             ->setHead(new UserStateErgonomicsHead(1, 1, 1))
+            ->setNeck(new UserStateErgonomicsNeck(1, 1, 1))
             ->setShoulderCenter(new UserStateErgonomicsShoulderCenter(1, 1, 1))
             ->setShoulderLeft(new UserStateErgonomicsShoulderLeft(1, 1, 1))
             ->setShoulderRight(new UserStateErgonomicsShoulderRight(1, 1, 1))
@@ -68,6 +75,8 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
             ->setHandLeft(new UserStateErgonomicsHandLeft(1, 1, 1))
             ->setHandRight(new UserStateErgonomicsHandRight(1, 1, 1))
             ->setSpineMid(new UserStateErgonomicsSpineMid(1, 1, 1))
+            ->setSpineBase(new UserStateErgonomicsSpineBase(1, 1, 1))
+            ->setSpineShoulder(new UserStateErgonomicsSpineShoulder(1, 1, 1))
             ->setLeanAmount(new UserStateErgonomicsLeanAmount(1, 1))
             ->setHeadRotation(new UserStateErgonomicsHeadRotation(1, 1, 1));
     }
@@ -118,6 +127,17 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
         $model = $transformer->transform($state);
 
         $this->assertEquals($model->getHead(), "{$state->getHead()->getX()};{$state->getHead()->getY()};{$state->getHead()->getZ()}");
+    }
+
+    public function testTransformerShouldChangeNeckToString()
+    {
+        $transformer = new UserStateDataTransformer();
+
+        $state = $this->getUserStateErgonomics();
+
+        $model = $transformer->transform($state);
+
+        $this->assertEquals($model->getNeck(), "{$state->getNeck()->getX()};{$state->getNeck()->getY()};{$state->getNeck()->getZ()}");
     }
 
     public function testTransformerShouldChangeShoulderLeftToString()
@@ -206,6 +226,28 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
         $model = $transformer->transform($state);
 
         $this->assertEquals($model->getSpineMid(), "{$state->getSpineMid()->getX()};{$state->getSpineMid()->getY()};{$state->getSpineMid()->getZ()}");
+    }
+
+    public function testTransformerShouldChangeSpineBaseToString()
+    {
+        $transformer = new UserStateDataTransformer();
+
+        $state = $this->getUserStateErgonomics();
+
+        $model = $transformer->transform($state);
+
+        $this->assertEquals($model->getSpineBase(), "{$state->getSpineBase()->getX()};{$state->getSpineBase()->getY()};{$state->getSpineBase()->getZ()}");
+    }
+
+    public function testTransformerShouldChangeSpineShoulderToString()
+    {
+        $transformer = new UserStateDataTransformer();
+
+        $state = $this->getUserStateErgonomics();
+
+        $model = $transformer->transform($state);
+
+        $this->assertEquals($model->getSpineShoulder(), "{$state->getSpineShoulder()->getX()};{$state->getSpineShoulder()->getY()};{$state->getSpineShoulder()->getZ()}");
     }
 
     public function testTransformerShouldChangeLeanAmountToString()
@@ -351,6 +393,28 @@ class UserStateDataTransformerTest extends FitbaseTestAbstract
         $entity = $transformer->reverseTransform($model);
 
         $this->assertEquals("{$entity->getSpineMid()->getX()};{$entity->getSpineMid()->getY()};{$entity->getSpineMid()->getZ()}", $model->getSpineMid());
+    }
+
+    public function testReverseTransformerShouldChangeSpineBaseToCoordinate()
+    {
+        $transformer = new UserStateDataTransformer();
+
+        $model = $this->getUserState();
+
+        $entity = $transformer->reverseTransform($model);
+
+        $this->assertEquals("{$entity->getSpineBase()->getX()};{$entity->getSpineBase()->getY()};{$entity->getSpineBase()->getZ()}", $model->getSpineBase());
+    }
+
+    public function testReverseTransformerShouldChangeSpineShoulderToCoordinate()
+    {
+        $transformer = new UserStateDataTransformer();
+
+        $model = $this->getUserState();
+
+        $entity = $transformer->reverseTransform($model);
+
+        $this->assertEquals("{$entity->getSpineShoulder()->getX()};{$entity->getSpineShoulder()->getY()};{$entity->getSpineShoulder()->getZ()}", $model->getSpineShoulder());
     }
 
     public function testReverseTransformerShouldChangeLeanAmountToCoordinate()

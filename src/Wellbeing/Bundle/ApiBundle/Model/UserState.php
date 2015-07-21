@@ -22,7 +22,6 @@ class UserState
     public $elbowRight;
     public $handLeft;
     public $handRight;
-    public $spineMid;
     public $leanAmount;
     public $headRotation;
     public $neck;
@@ -32,7 +31,9 @@ class UserState
     public $thumbRight;
     public $handTipLeft;
     public $handTipRight;
+    public $spineMid;
     public $spineBase;
+    public $spineShoulder;
     public $hipLeft;
     public $hipRight;
     public $kneeLeft;
@@ -62,6 +63,23 @@ class UserState
     public $lowerLipDepressorRight;
     public $happy;
     public $heartRate;
+
+    /**
+     * @return mixed
+     */
+    public function getSpineShoulder()
+    {
+        return $this->spineShoulder;
+    }
+
+    /**
+     * @param mixed $spineShoulder
+     */
+    public function setSpineShoulder($spineShoulder)
+    {
+        $this->spineShoulder = $spineShoulder;
+        return $this;
+    }
 
     /**
      * @return mixed

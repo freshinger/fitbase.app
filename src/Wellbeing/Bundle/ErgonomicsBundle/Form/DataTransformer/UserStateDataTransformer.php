@@ -19,10 +19,13 @@ use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHandRight;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHead;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsHeadRotation;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsLeanAmount;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderLeft;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderRight;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase;
 use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid;
+use Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder;
 
 class UserStateDataTransformer implements DataTransformerInterface
 {
@@ -44,6 +47,10 @@ class UserStateDataTransformer implements DataTransformerInterface
 
         if (($coordinates = $this->encodeXYZ($value->getHead()))) {
             $model->setHead($coordinates);
+        }
+
+        if (($coordinates = $this->encodeXYZ($value->getNeck()))) {
+            $model->setNeck($coordinates);
         }
 
         if (($coordinates = $this->encodeXYZ($value->getShoulderCenter()))) {
@@ -77,6 +84,15 @@ class UserStateDataTransformer implements DataTransformerInterface
         if (($coordinates = $this->encodeXYZ($value->getSpineMid()))) {
             $model->setSpineMid($coordinates);
         }
+
+        if (($coordinates = $this->encodeXYZ($value->getSpineBase()))) {
+            $model->setSpineBase($coordinates);
+        }
+
+        if (($coordinates = $this->encodeXYZ($value->getSpineShoulder()))) {
+            $model->setSpineShoulder($coordinates);
+        }
+
 
         if (($coordinates = $this->encodeXY($value->getLeanAmount()))) {
             $model->setLeanAmount($coordinates);
@@ -133,6 +149,11 @@ class UserStateDataTransformer implements DataTransformerInterface
             $entity->setHead(new UserStateErgonomicsHead($x, $y, $z));
         }
 
+        if (($coordinates = $this->decodeXYZ($value->getNeck()))) {
+            list ($x, $y, $z) = $coordinates;
+            $entity->setNeck(new UserStateErgonomicsNeck($x, $y, $z));
+        }
+
         if (($coordinates = $this->decodeXYZ($value->getShoulderCenter()))) {
             list ($x, $y, $z) = $coordinates;
             $entity->setShoulderCenter(new UserStateErgonomicsShoulderCenter($x, $y, $z));
@@ -171,6 +192,16 @@ class UserStateDataTransformer implements DataTransformerInterface
         if (($coordinates = $this->decodeXYZ($value->getSpineMid()))) {
             list ($x, $y, $z) = $coordinates;
             $entity->setSpineMid(new UserStateErgonomicsSpineMid($x, $y, $z));
+        }
+
+        if (($coordinates = $this->decodeXYZ($value->getSpineBase()))) {
+            list ($x, $y, $z) = $coordinates;
+            $entity->setSpineBase(new UserStateErgonomicsSpineBase($x, $y, $z));
+        }
+
+        if (($coordinates = $this->decodeXYZ($value->getSpineShoulder()))) {
+            list ($x, $y, $z) = $coordinates;
+            $entity->setSpineShoulder(new UserStateErgonomicsSpineShoulder($x, $y, $z));
         }
 
         if (($coordinates = $this->decodeXY($value->getLeanAmount()))) {

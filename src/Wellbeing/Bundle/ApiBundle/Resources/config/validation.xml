@@ -73,12 +73,7 @@
                 <option name="message">handRight</option>
             </constraint>
         </property>
-        <property name="spineMid">
-            <constraint name="Type">
-                <option name="type">string</option>
-                <option name="message">spineMid</option>
-            </constraint>
-        </property>
+
         <property name="leanAmount">
             <constraint name="Type">
                 <option name="type">string</option>
@@ -133,10 +128,22 @@
                 <option name="message">handTipRight</option>
             </constraint>
         </property>
+        <property name="spineMid">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">spineMid</option>
+            </constraint>
+        </property>
         <property name="spineBase">
             <constraint name="Type">
                 <option name="type">string</option>
                 <option name="message">spineBase</option>
+            </constraint>
+        </property>
+        <property name="spineShoulder">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">spineShoulder</option>
             </constraint>
         </property>
         <property name="hipLeft">

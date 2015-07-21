@@ -35,7 +35,7 @@ class UserStateErgonomicsSpineMid
     private $userState;
 
     /**
-     * Class cosntructor
+     * Class constructor
      *
      * @param $x
      * @param $y

@@ -400,9 +400,11 @@ class UserStateErgonomics
         $this->getElbowRight()->setUserState($this);
         $this->getHandLeft()->setUserState($this);
         $this->getHandRight()->setUserState($this);
-        $this->getSpineMid()->setUserState($this);
         $this->getLeanAmount()->setUserState($this);
         $this->getHeadRotation()->setUserState($this);
+        $this->getSpineMid()->setUserState($this);
+        $this->getSpineBase()->setUserState($this);
+        $this->getSpineShoulder()->setUserState($this);
     }
 
     /**
@@ -549,5 +551,90 @@ class UserStateErgonomics
         $winkel_zaehler = ($x1 * $x2) + ($y1 * $y2) + ($z1 * $z2); // Z‰hler der Winkelberechnung
         $winkel_nenner = (sqrt(($x1 * $x1) + ($y1 * $y1) + ($z1 * $z1))) * (sqrt(($x2 * $x2) + ($y2 * $y2) + ($z2 * $z2))); // Nenner der Winkelberechnung
         return (acos($winkel_zaehler / $winkel_nenner)) * $umrechungs_faktor; // acos vom Z‰hler und Nenner und Umrechung in Grad
+    }
+
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck
+     */
+    private $neck;
+
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder
+     */
+    private $spineShoulder;
+
+    /**
+     * @var \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase
+     */
+    private $spineBase;
+
+
+    /**
+     * Set neck
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck $neck
+     * @return UserStateErgonomics
+     */
+    public function setNeck(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck $neck = null)
+    {
+        $this->neck = $neck;
+
+        return $this;
+    }
+
+    /**
+     * Get neck
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck
+     */
+    public function getNeck()
+    {
+        return $this->neck;
+    }
+
+    /**
+     * Set spineShoulder
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder $spineShoulder
+     * @return UserStateErgonomics
+     */
+    public function setSpineShoulder(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder $spineShoulder = null)
+    {
+        $this->spineShoulder = $spineShoulder;
+
+        return $this;
+    }
+
+    /**
+     * Get spineShoulder
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder
+     */
+    public function getSpineShoulder()
+    {
+        return $this->spineShoulder;
+    }
+
+    /**
+     * Set spineBase
+     *
+     * @param \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase $spineBase
+     * @return UserStateErgonomics
+     */
+    public function setSpineBase(\Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase $spineBase = null)
+    {
+        $this->spineBase = $spineBase;
+
+        return $this;
+    }
+
+    /**
+     * Get spineBase
+     *
+     * @return \Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase
+     */
+    public function getSpineBase()
+    {
+        return $this->spineBase;
     }
 }

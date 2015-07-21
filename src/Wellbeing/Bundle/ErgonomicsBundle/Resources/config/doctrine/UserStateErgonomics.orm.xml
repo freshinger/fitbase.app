@@ -19,6 +19,13 @@
             </cascade>
         </one-to-one>
 
+        <one-to-one field="neck" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsNeck">
+            <join-column name="neckId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
         <one-to-one field="shoulderCenter" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsShoulderCenter">
             <join-column name="shoulderCenterId" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
@@ -70,6 +77,20 @@
 
         <one-to-one field="spineMid" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineMid">
             <join-column name="spineMidId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="spineShoulder" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineShoulder">
+            <join-column name="spineShoulderId" referenced-column-name="id" on-delete="CASCADE"/>
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-one field="spineBase" target-entity="Wellbeing\Bundle\ErgonomicsBundle\Entity\UserStateErgonomicsSpineBase">
+            <join-column name="spineBaseId" referenced-column-name="id" on-delete="CASCADE"/>
             <cascade>
                 <cascade-all/>
             </cascade>
